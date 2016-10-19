@@ -1,0 +1,113 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="SIMSSiteTopLevel.master.vb" Inherits="SIMS.SIMSSiteTopLevel" %>
+
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajaxtoolkit" %>
+<%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Site Information Management System</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <link rel="stylesheet" type="text/css" href="css/custom.css" />
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+    /*------------FOR UPDATEPROGRESS -----------------*/
+    .overlay {
+        position: fixed;
+        z-index: 99;
+        top: 0px;
+        left: 0px;
+        background-color: #FFFFFF;
+        width: 100%;
+        height: 100%;
+        filter: Alpha(Opacity=70);
+        opacity: 0.70;
+        -moz-opacity: 0.70;
+    }
+    * html .overlay 
+    {
+        position: absolute;
+        height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');
+        width: expression(document.body.scrollWidth > document.body.offsetWidth ? document.body.scrollWidth : document.body.offsetWidth + 'px');
+    }
+    .loader 
+    {
+        z-index: 100;
+        position: fixed;
+        width: 120px;
+        margin-left: -60px;
+        top: 50%;
+        left: 50%;
+    }
+    * html .loader 
+    {
+        position: absolute;
+        margin-top: expression((document.body.scrollHeight / 4) + (0 - parseInt(this.offsetParent.clientHeight / 2) + (document.documentElement && document.documentElement.scrollTop || document.body.scrollTop)) + 'px');
+    }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <ajaxtoolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+    </ajaxtoolkit:ToolkitScriptManager>
+    <telerik:RadStyleSheetManager ID="RadStyleSheetManager1" runat="server" CdnSettings-TelerikCdn="Enabled" />
+    <telerik:RadFormDecorator ID="FormDecorator1" runat="server" DecoratedControls="all" Skin="Web20"></telerik:RadFormDecorator>
+    <asp:UpdateProgress ID="UpdateProgress1" runat="server" DisplayAfter="800">
+        <ProgressTemplate>
+            <asp:Panel ID="Panel1" CssClass="overlay" runat="server">
+                <asp:Panel ID="Panel2" CssClass="loader" runat="server">
+                    <span class="SITitleFontSmall">Processing...</span>                        
+                </asp:Panel>
+            </asp:Panel>
+        </ProgressTemplate>
+    </asp:UpdateProgress>
+    <div class="bannerColorBand">
+        <div class="banner">
+            <div class="identifier">
+                <a href="http://www.usgs.gov/" title="U.S. Geological Survey Home Page">
+                <img src="images/USGSHeaderLogo.png" alt="U.S. Geological Survey - science for a changing world" width="178" height="72" style="border: none;" /></a>
+            </div>
+            <img src="images/header_graphic_spacer.gif" height="72" width="1" alt="" style="position: absolute;" />
+            <div class="ccsaBox">
+                <img src="images/header_graphic_spacer.gif" height="72" width="1" alt="" style="float: left;" />
+                <div class="ccsa">
+                    <br /><a href="http://internal.usgs.gov/">Intranet Home</a><br />
+                    <a href="http://internal.usgs.gov/ph/">Find A Person</a><br />
+                    <a href="http://search.usgs.gov/query.html?style=intranet">Search Intranet</a><br />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="siteTitle">
+        <p id="pTitle">&nbsp;&nbsp;<asp:HyperLink ID="hlTitle" runat="server" Text="SIMS - Site Information Management System" /></p>
+    </div>
+    <div class="siteNavigation">
+        <div id="pLogon" style="padding-top:8px;">
+            Internal USGS Access Only
+        </div>
+    </div>
+    <div id="BodyContent">
+        <div id="TopLevelContent">
+            <br /><a name="top"></a>
+            <table width="100%" cellpadding="10" cellspacing="0" border="0">
+                <tr>
+                    <td valign="top">
+                        <asp:ContentPlaceHolder id="cph1" runat="server">
+                    
+                        </asp:ContentPlaceHolder>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <p class="footerBar" style="clear: both;">&nbsp;</p>
+    <p class="footerText"><a href="http://internal.usgs.gov">U.S. Geological Survey Intranet</a><br />
+	    URL: <asp:HyperLink ID="hlSiteURL" runat="server" /><br />
+	    Page Contact Information: <a href="mailto:GS-W_Help_SIMS@usgs.gov">GS-W_Help_SIMS@usgs.gov</a><br />
+	    Page Last Updated: June 23, 2014</p>
+    </form>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WCFServices" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WCFServices" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfSite">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Site" nillable="true" type="tns:Site" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSite" nillable="true" type="tns:ArrayOfSite" />
+  <xs:complexType name="Site">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AgencyCd" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DBNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DistrictAbbrev" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DistrictName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Elements" nillable="true" type="tns:ArrayOfElement" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="NWISHost" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NWISWebSiteID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OfficeCd" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OfficeID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="OfficeName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Site" nillable="true" type="tns:Site" />
+  <xs:complexType name="ArrayOfElement">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Element" nillable="true" type="tns:Element" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfElement" nillable="true" type="tns:ArrayOfElement" />
+  <xs:complexType name="Element">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ElementID" type="xs:int" />
+      <xs:element minOccurs="0" name="ElementInfo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ElementName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ElementReportRefs" nillable="true" type="tns:ArrayOfElementReportRef" />
+      <xs:element minOccurs="0" name="Priority" type="xs:short" />
+      <xs:element minOccurs="0" name="Remark" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReportTypeCd" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RevisedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RevisedDate" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Element" nillable="true" type="tns:Element" />
+  <xs:complexType name="ArrayOfElementReportRef">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ElementReportRef" nillable="true" type="tns:ElementReportRef" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfElementReportRef" nillable="true" type="tns:ArrayOfElementReportRef" />
+  <xs:complexType name="ElementReportRef">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ElementID" type="xs:int" />
+      <xs:element minOccurs="0" name="ReportTypeCd" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ElementReportRef" nillable="true" type="tns:ElementReportRef" />
+</xs:schema>

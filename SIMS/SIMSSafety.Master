@@ -1,0 +1,111 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="SIMSSafety.master.vb" Inherits="SIMS.SIMSSafety" %>
+
+<%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Site Information Management System</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <link rel="stylesheet" type="text/css" href="css/custom.css" />
+    <telerik:RadStyleSheetManager ID="rssm" runat="server">
+        <StyleSheets>
+            <Telerik:StyleSheetReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Skins.Editor.css" />
+            <Telerik:StyleSheetReference Assembly="Telerik.Web.UI.Skins" Name="Telerik.Web.UI.Skins.Web20.Editor.Web20.css" />
+            <Telerik:StyleSheetReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Skins.Window.css" />
+            <Telerik:StyleSheetReference Assembly="Telerik.Web.UI.Skins" Name="Telerik.Web.UI.Skins.Web20.Window.Web20.css" />
+        </StyleSheets>
+    </telerik:RadStyleSheetManager>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <telerik:RadScriptManager ID="rsm" runat="server" />
+    <telerik:RadFormDecorator ID="rfd" runat="server" Skin="Web20" DecoratedControls="All" />
+    <div class="bannerColorBand">
+        <div class="banner">
+            <div class="identifier">
+                <a href="http://www.usgs.gov/" title="U.S. Geological Survey Home Page">
+                <img src="images/USGSHeaderLogo.png" alt="U.S. Geological Survey - science for a changing world" width="178" height="72" style="border: none;" /></a>
+            </div>
+            <img src="images/header_graphic_spacer.gif" height="72" width="1" alt="" style="position: absolute;" />
+            <div class="ccsaBox">
+                <img src="images/header_graphic_spacer.gif" height="72" width="1" alt="" style="float: left;" />
+                <div class="ccsa">
+                    <br /><a href="http://internal.usgs.gov/">Intranet Home</a><br />
+                    <a href="http://internal.usgs.gov/ph/">Find A Person</a><br />
+                    <a href="http://search.usgs.gov/query.html?style=intranet">Search Intranet</a><br />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="siteTitle">
+        <p id="pTitle">&nbsp;&nbsp;<asp:HyperLink ID="hlTitle" runat="server" Text="SIMS - Site Information Management System" /></p>
+    </div>
+    <div class="siteNavigation">
+        <div id="pNav"><asp:HyperLink ID="hlPrevPage" runat="server" Text="&nbsp; Return to previous page" /> &nbsp;&nbsp;&nbsp;
+            <asp:HyperLink ID="hlSIMSHome" runat="server" Text="SIMS Home" /> &nbsp;&nbsp;&nbsp;
+            <asp:HyperLink ID="hlRMSHome" runat="server" Text="RMS Home" /> &nbsp;&nbsp;&nbsp;
+            <asp:HyperLink ID="hlAdminTasks" runat="server" Text="Admin Tasks" />
+        </div>
+        <div id="pLogon">
+            <asp:Panel ID="pnlLogon" runat="server" CssClass="Logon">
+                <asp:Label ID="lblLogonUID" runat="server" CssClass="SIBodyFontSmaller" Font-Italic="true" /> |
+                <asp:Label ID="lblLogonLink" runat="server" Font-Bold="true" />
+            </asp:Panel>
+            Internal USGS Access Only
+        </div>
+    </div>
+    <div id="BodyContent">
+        <br /><a name="top"></a>
+        <table width="100%" cellpadding="10" cellspacing="0" border="0">
+            <tr>
+                <td valign="top">
+                    <table width="100%" cellpadding="10" cellspacing="0" border="0">
+                        <tr>
+                            <td valign="middle" width="60%">
+                                <asp:UpdatePanel ID="up1" runat="server" UpdateMode="Conditional">
+                                    <ContentTemplate>
+                                        <asp:Label ID="lblTest" runat="server" />
+                                        <asp:Label ID="lblPageTitle" runat="server" CssClass="SITitleFont" /><br /><br />
+                                        <asp:Label ID="lblSiteNumber" runat="server" CssClass="SITitleFont" />
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+                            </td>
+                            <td valign="bottom" width="40%" nowrap>
+                                <asp:Panel ID="pnlResponsibleOffice" runat="server" CssClass="SIBodyFont" HorizontalAlign="Right">
+                                    <b>Responsible Office:</b><br />
+                                    U.S. Geological Survey<br />
+                                    <asp:Label ID="lblOfficeName" runat="server" /><br />
+                                    <asp:Label ID="lblOfficeAddress" runat="server" /><br />
+                                    <asp:Label ID="lblOfficeCity" runat="server" /><br />
+                                    <asp:Label ID="lblOfficeNumber" runat="server" />
+                                </asp:Panel>
+                            </td>
+                        </tr>
+                    </table>
+                    <asp:Panel ID="pnlHR" runat="server">
+                        <hr />
+                    </asp:Panel>
+                    <asp:Panel ID="pnlNoAccess" runat="server" >
+                        <br />
+                        <asp:Label ID="lblNoAccess" runat="server" CssClass="SITitleFontSmall" />
+                    </asp:Panel>
+                    <asp:ContentPlaceHolder id="cph1" runat="server">
+                            
+                    </asp:ContentPlaceHolder>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <p class="footerBar" style="clear: both;">&nbsp;</p>
+    <p class="footerText"><a href="http://internal.usgs.gov">U.S. Geological Survey Intranet</a><br />
+	    URL: <asp:HyperLink ID="hlSiteURL" runat="server" /><br />
+	    Page Contact Information: <a href="mailto:GS-W_Help_SIMS@usgs.gov">GS-W_Help_SIMS@usgs.gov</a><br />
+	    Page Last Updated: August 27, 2013</p>
+    </form>
+</body>
+</html>

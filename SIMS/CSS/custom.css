@@ -1,0 +1,37 @@
+/* ================INSTRUCTIONS=================*/ 
+/* By changing the classes below, you can add your own custom banner image and/or custom site title bar. In order for your changes to work though, you MUST include a reference in your HTML pages to both the common CSS file and custom CSS file in that order.
+
+Instructions are provided below for customizing these classes.
+
+/* ================BANNER=======================*/  
+/* TO DISPLAY A CUSTOM BANNER IMAGE: 
+If you want to display a custom banner, change the "background: url" to point to a local banner, or external, image location.
+
+TO DISPLAY A CUSTOM BANNER COLOR (NO IMAGE): 
+If you would rather display a color instead of a banner image, change the "background: url" to point to "" and set the "background-color" to whatever color you wish to display.
+NOTE: You can use either hexadecimal color codes (i.e. - #000000) or HTML color names (i.e. - "black"). */ 
+.banner { 
+        background: url("") 178px 0px no-repeat; 
+		  background-color: #324d92;
+} 
+DIV.bannerColorBand, DIV.banner { 
+        background-color: #324d92; 
+} 
+/* ================SITE TITLE===================*/ 
+/* TO DISPLAY A CUSTOM SITE TITLE BAR: 
+The .siteTitle class is specific to the colored site title bar that lies beneath the USGS identifier. To change the color of this bar, set the "background-color" attribute below to the color you wish to display and change the "color" attribute to set the text color.
+NOTE: You can use either hexadecimal color codes (i.e. - #000000) or HTML color names (i.e. - "black"). */ 
+
+Div.siteTitle, #pTitle { 
+     background-color: #324d92; 
+     color: #ffffff; 
+} 
+/* =============STANDARD CONTENT===============*/ 
+/* TO CHANGE THE TEXT SIZE OF THE CONTENT:
+By default, USGS has set the font size to "small" in order to provide a consistent size for content across all pages. If you would prefer not to have a pre-defined font size for your pages, change the "font-size" attributes below to "font-size: 100%;". */
+body {
+	font-size: small;
+}
+th, td {
+	font-size: small;
+}

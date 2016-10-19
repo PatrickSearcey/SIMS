@@ -1,0 +1,228 @@
+/* ===OFFICIAL USGS INTERNAL STYLE SHEET===
+This CSS has been approved by all applicable parties and is subject to change...with prior notice. This CSS is meant to provide a consistent look and feel across all USGS Web pages and can be used in conjunction with the custom.css file and any additional style sheets of your own.
+
+DO NOT MODIFY THIS FILE IN ANY WAY.
+
+You can customize the banner image and site title properties ONLY by making the changes in the custom.css file. Refer to the custom.css file for specific instructions.
+===END DISCLAIMER NOTICE===*/
+/* ===STANDARD CONTENT===*/
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: small;
+	color: #000000;
+	background-color: #ffffff;
+	margin:0px 0px 0px 0px;
+}
+th, td {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: small;
+}
+a {
+   text-decoration: none;
+   color: #324d92;
+}
+a:visited 
+{
+    text-decoration: none;
+    color: #3d7025;
+}
+a:hover {
+   text-decoration: underline;
+}
+img 
+{
+    border: none;
+}
+/* ===STANDARD HEADER===*/
+
+.bannerColorBand {
+	font: 14px Verdana, Arial, Helvetica, sans-serif;
+	width: 100%;
+	height: 5.14em;
+	background-color: #324d92;
+}
+.banner {
+	/* background: url("http://internal.usgs.gov/images/headers/intranet_main.jpg") #000000 178px 0px no-repeat; */
+	width: 100%;
+	height: 72px;	
+	background-color: #324d92;
+}
+.identifier {
+	background-color: black;
+	width: 178px;
+	height: 5.14em;
+	float: left;
+}
+.coop { 
+    	padding-left: 18px; 
+    	position: absolute; 
+    	height: 5.14em; 
+    	background-color: black;             
+} 
+.siteTitle { 
+    	background-color: #324d92; 
+    	clear: both; 
+    	width: 100%; 
+    	border-top: 1px solid #CCCCCC; 
+    	font: 14px Verdana, Arial, Helvetica, sans-serif; 
+    	color: #CCCCCC; 
+    	padding-left:0px;
+    	padding-right:0px;
+    	padding-top:5px;
+    	padding-bottom:5px;
+} 
+.siteNavigation 
+{
+    background-color: #97b2dc;
+    clear: both;
+    width: 100%;
+    border-bottom: 1px solid #324d92;
+    border-top: 1px solid #CCCCCC;
+    font: 12px Verdana, arial, Helvetica, sans-serif;
+    color: #324d92;
+    padding:0px;
+    height:30px;
+} 
+.siteNavigation a 
+{
+    color:#FFFFFF;
+    text-decoration:none;
+    font-weight:bold;
+}
+.siteNavigation a:hover 
+{
+    color:#FFFFFF;
+    text-decoration:underline;
+    font-weight:bold;
+}
+#pNav 
+{
+    padding:0px;
+    padding-top:8px;
+    margin:0px;
+    float:left;
+}
+#pLogon 
+{
+    float:right;
+}
+.Logon {
+	font: .9em Verdana Arial Helvetica sans-serif;
+	letter-spacing: 1px;
+}
+#BodyContent
+{
+    background:#FFFFFF url("../images/SIMSBodyContentBG.gif") repeat-x;
+    width: 100%;
+    padding:0px;
+    margin:0px;
+}
+#TopLevelContent
+{
+    width: 1000px;
+    margin: 0px 0px 0px 10px;
+    /*margin: auto;*/
+}
+#TopLevelContent h3
+{
+    font-size: 12pt;
+    color: #20325e;
+    border-bottom: 1pt dotted #e4e6ea;
+    width:100%;
+    padding-top:0px;
+    margin-top:0px;
+}
+#pTitle { 
+    	font: bold 1.1em Verdana, Arial, Helvetica, sans-serif; 
+    	padding: 0px; 
+    	color: White;
+    	margin: 0px; 
+		text-decoration: none;
+} 
+#pTitle a { 
+    	font: bold 1.1em Verdana, Arial, Helvetica, sans-serif; 
+    	padding: 0px; 
+    	color: White;
+    	margin: 0px; 
+		text-decoration: none;
+} 
+#pTitle a:hover 
+{
+    color: White;
+}
+.internalOnly {
+	font: .8em Verdana Arial Helvetica sans-serif;
+	letter-spacing: 1px;
+	text-align: left;
+	padding-left:10px;
+}
+/* ===STANDARD CUSTOMER SERVICE AREA===*/
+.ccsaBox {
+	float: right;
+	background-color: #97b2dc;
+}
+.ccsa {
+	font:  1em/.5em Verdana, Arial, Helvetica, sans-serif;
+	height: 5.14em;
+	width: 10.5em;
+}
+.ccsa a:link { 
+            font: bold 1em/1.3em Verdana, Arial, Helvetica, sans-serif; 
+            color: #324d92; 
+            margin-left: 4px; 
+            text-decoration: none; 
+} 
+.ccsa a:visited { 
+            font: bold 1em/1.3em Verdana, Arial, Helvetica, sans-serif; 
+            color: #324d92; 
+            margin-left: 4px; 
+            text-decoration: none; 
+} 
+.ccsa a:hover { 
+            font: bold 1em/1.3em Verdana, Arial, Helvetica, sans-serif; 
+            color: #FFFFFF;; 
+            text-decoration: underline; 
+            margin-left: 4px; 
+} 
+.ccsa a:active { 
+            font: bold 1em/1.3em Verdana, Arial, Helvetica, sans-serif; 
+            color: #324d92; 
+            margin-left: 4px; 
+            text-decoration: none; 
+}
+ 
+/* ===STANDARD FOOTER===*/
+.footerBar {
+	background-color: #324d92;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 1em;
+	/*/*/padding: 4px; /*End hiding for this section in Netscape 4x*/
+	margin-top: 20px;
+    margin-bottom: -16px;
+}
+.footerBar a:link { 
+       padding-right: 40px; 
+       color: #ffffff; 
+       text-decoration: none; 
+} 
+.footerBar a:visited { 
+       padding-right: 40px; 
+       color: #ffffff; 
+       text-decoration: none; 
+} 
+.footerBar a:hover { 
+       padding-right: 40px; 
+       color: #ffffff; 
+       text-decoration: underline; 
+} 
+.footerBar a:active { 
+       padding-right: 40px; 
+       color: #ffffff; 
+       text-decoration: none; 
+} 
+.footerText {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 0.8em;
+	margin-bottom: -2px;
+	/*/*/padding: 4px;/*End hiding for this section in Netscape 4x*/
+}

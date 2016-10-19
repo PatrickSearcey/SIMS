@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f7da250e-be17-4e28-ab45-29368dc12b25" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://sims.water.usgs.gov/Services/WCFServices.PASSService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WCFServices.xsd" MetadataType="Schema" ID="2258fafb-7b7c-41d2-a013-6e746e58bad8" SourceId="1" SourceUrl="http://igskiacwvmgs011.gs.doi.net/Services/WCFServices.PASSService.svc?xsd=xsd2" />
+    <MetadataFile FileName="WCFServices1.xsd" MetadataType="Schema" ID="273741d0-be4d-48d5-bb03-c07bb8a5723b" SourceId="1" SourceUrl="http://igskiacwvmgs011.gs.doi.net/Services/WCFServices.PASSService.svc?xsd=xsd0" />
+    <MetadataFile FileName="PASSService.wsdl" MetadataType="Wsdl" ID="2bacdb04-e5f9-4ee6-a5dd-20e8aae3f429" SourceId="1" SourceUrl="http://igskiacwvmgs011.gs.doi.net/Services/WCFServices.PASSService.svc?wsdl" />
+    <MetadataFile FileName="WCFServices2.xsd" MetadataType="Schema" ID="b1a3a027-d687-475b-9ae3-e43dda49f786" SourceId="1" SourceUrl="http://igskiacwvmgs011.gs.doi.net/Services/WCFServices.PASSService.svc?xsd=xsd1" />
+    <MetadataFile FileName="WCFServices.disco" MetadataType="Disco" ID="6a7325a7-abf1-4cf0-8710-898b19a2d38d" SourceId="1" SourceUrl="http://igskiacwvmgs011.gs.doi.net/Services/WCFServices.PASSService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

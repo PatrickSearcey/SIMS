@@ -1,0 +1,803 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{AA411233-58A6-4F72-B762-82EB841E2120}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SIMS</RootNamespace>
+    <AssemblyName>SIMS</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MyType>Custom</MyType>
+    <UseIISExpress>false</UseIISExpress>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>SIMS.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>SIMS.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=3.0.31106.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="GMaps, Version=3.4.0.0, Culture=neutral, PublicKeyToken=1e11065af9ad6852, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\GMaps.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.KML, Version=2.1.0.10, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Google.KML.dll</HintPath>
+    </Reference>
+    <Reference Include="SIMSCustomControl, Version=1.0.4974.18760, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\SIMSCustomControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Ajax, Version=3.0.31106.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\System.Web.Ajax.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="Telerik.Web.Design, Version=2014.1.225.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Telerik.Web.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.UI, Version=2014.1.225.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Telerik.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.UI.Skins, Version=2014.1.225.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Telerik.Web.UI.Skins.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Archives.aspx" />
+    <Content Include="CablewayReport.aspx" />
+    <Content Include="Cableways.aspx" />
+    <Content Include="Controls\ApproveMANU.ascx" />
+    <Content Include="Controls\ElementJHAs.ascx" />
+    <Content Include="Controls\ElemReport.ascx" />
+    <Content Include="Controls\RecordTypeConfigDetails.ascx" />
+    <Content Include="CRPReports.aspx" />
+    <Content Include="CRPReportsNatl.aspx" />
+    <Content Include="CSS\common.css" />
+    <Content Include="CSS\custom.css" />
+    <Content Include="CSS\styles.css" />
+    <Content Include="CSS\styles_RMS.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="EditPeriodDates.aspx" />
+    <Content Include="EditPeriodStatus.aspx" />
+    <Content Include="ElemReport.aspx" />
+    <Content Include="ElemSiteReport.aspx" />
+    <Content Include="EmergencyInfo.aspx" />
+    <Content Include="EvalMaps.aspx" />
+    <Content Include="EvalSiteList.aspx" />
+    <Content Include="FieldTripMap.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\AddNewCablewayHelp.png" />
+    <Content Include="Images\AddNewVisitHelp.png" />
+    <Content Include="Images\approve.png" />
+    <Content Include="Images\arrowbullet.png" />
+    <Content Include="Images\bigarrow.png" />
+    <Content Include="Images\CablewayHelpDocumentation.png" />
+    <Content Include="Images\cleanicon.png" />
+    <Content Include="Images\collapse.jpg" />
+    <Content Include="Images\customdeletebutton.png" />
+    <Content Include="Images\delete.png" />
+    <Content Include="Images\dialogsavebutton.png" />
+    <Content Include="Images\edit.png" />
+    <Content Include="Images\emergency_legend.png" />
+    <Content Include="Images\expand.jpg" />
+    <Content Include="Images\False.png" />
+    <Content Include="Images\faqicon.png" />
+    <Content Include="Images\graphSS.png" />
+    <Content Include="Images\header_graphic_spacer.gif" />
+    <Content Include="Images\header_USGS_RMS.gif" />
+    <Content Include="Images\HomepageTitle.png" />
+    <Content Include="Images\icons\0.png" />
+    <Content Include="Images\icons\1.png" />
+    <Content Include="Images\icons\10.png" />
+    <Content Include="Images\icons\11.png" />
+    <Content Include="Images\icons\12.png" />
+    <Content Include="Images\icons\13.png" />
+    <Content Include="Images\icons\14.png" />
+    <Content Include="Images\icons\15.png" />
+    <Content Include="Images\icons\16.png" />
+    <Content Include="Images\icons\17.png" />
+    <Content Include="Images\icons\18.png" />
+    <Content Include="Images\icons\19.png" />
+    <Content Include="Images\icons\2.png" />
+    <Content Include="Images\icons\20.png" />
+    <Content Include="Images\icons\21.png" />
+    <Content Include="Images\icons\22.png" />
+    <Content Include="Images\icons\23.png" />
+    <Content Include="Images\icons\24.png" />
+    <Content Include="Images\icons\25.png" />
+    <Content Include="Images\icons\26.png" />
+    <Content Include="Images\icons\27.png" />
+    <Content Include="Images\icons\28.png" />
+    <Content Include="Images\icons\29.png" />
+    <Content Include="Images\icons\3.png" />
+    <Content Include="Images\icons\30.png" />
+    <Content Include="Images\icons\31.png" />
+    <Content Include="Images\icons\32.png" />
+    <Content Include="Images\icons\33.png" />
+    <Content Include="Images\icons\34.png" />
+    <Content Include="Images\icons\35.png" />
+    <Content Include="Images\icons\36.png" />
+    <Content Include="Images\icons\37.png" />
+    <Content Include="Images\icons\4.png" />
+    <Content Include="Images\icons\5.png" />
+    <Content Include="Images\icons\6.png" />
+    <Content Include="Images\icons\7.png" />
+    <Content Include="Images\icons\8.png" />
+    <Content Include="Images\icons\9.png" />
+    <Content Include="Images\keycolor0.gif" />
+    <Content Include="Images\keycolor1.gif" />
+    <Content Include="Images\keycolor2.gif" />
+    <Content Include="Images\legend_hospital.gif" />
+    <Content Include="Images\lock.png" />
+    <Content Include="Images\manualandhelplinks.png" />
+    <Content Include="Images\nofootnoteicon.png" />
+    <Content Include="Images\OfficeLevel.png" />
+    <Content Include="Images\printSHAlink.png" />
+    <Content Include="Images\priority.png" />
+    <Content Include="Images\RecordLevel.png" />
+    <Content Include="Images\refresh_custom1.png" />
+    <Content Include="Images\reports.png" />
+    <Content Include="Images\reportSS.png" />
+    <Content Include="Images\review.png" />
+    <Content Include="Images\RMSBodyContentBG.gif" />
+    <Content Include="Images\safetydivider.png" />
+    <Content Include="Images\savebutton.png" />
+    <Content Include="Images\savedialogs.png" />
+    <Content Include="Images\savedialogsbutton.png" />
+    <Content Include="Images\save_icon.gif" />
+    <Content Include="Images\SHAWarningsClose.png" />
+    <Content Include="Images\SHAWarningsOpen.png" />
+    <Content Include="Images\SIMSBodyContentBG.gif" />
+    <Content Include="Images\sitefilterbackground.png" />
+    <Content Include="Images\sitefilterbackgroundRMS.png" />
+    <Content Include="Images\sitefilterbackgroundRMS_thin.png" />
+    <Content Include="Images\sitefilterbackground_thin.png" />
+    <Content Include="Images\SiteIcons\CL.png" />
+    <Content Include="Images\SiteIcons\CLS.png" />
+    <Content Include="Images\SiteIcons\GW.png" />
+    <Content Include="Images\SiteIcons\GWS.png" />
+    <Content Include="Images\SiteIcons\OT.png" />
+    <Content Include="Images\SiteIcons\SP.png" />
+    <Content Include="Images\SiteIcons\SW.png" />
+    <Content Include="Images\SiteIcons\SWS.png" />
+    <Content Include="Images\spacer.gif" />
+    <Content Include="Images\stepstatusbg.gif" />
+    <Content Include="Images\sw_only.png" />
+    <Content Include="Images\tooltip.png" />
+    <Content Include="Images\True.png" />
+    <Content Include="Images\underarrow.png" />
+    <Content Include="Images\UpdateCablewayHelp.png" />
+    <Content Include="Images\updates.png" />
+    <Content Include="Images\USGSHeaderLogo.png" />
+    <Content Include="Images\usmap.gif" />
+    <Content Include="Images\WSCLevel.png" />
+    <Content Include="Modals\DeleteEmergencyInfo.aspx" />
+    <Content Include="Modals\FootnotesElems.aspx" />
+    <Content Include="Modals\GWElems.aspx" />
+    <Content Include="Modals\RemarksElems.aspx" />
+    <Content Include="NWISOpsRequest.aspx" />
+    <Content Include="RecordConfig.aspx" />
+    <Content Include="RecordConfigList.aspx" />
+    <Content Include="RecordLists.aspx" />
+    <Content Include="RecordProcessing.aspx" />
+    <Content Include="RecordTypeConfig.aspx" />
+    <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.4.1.js" />
+    <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Service References\PASSService\SIMS.PASSService.PASSSite.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Docs\MannedCablewayInspectionE-form.pdf" />
+    <Content Include="Docs\WMAMemorandum13.03.pdf" />
+    <Content Include="SiteRegister.aspx" />
+    <Content Include="WSCPersonnel.aspx" />
+    <Content Include="RMSNeedsApproval.ashx" />
+    <Content Include="Docs\Bank-OperatedCablewayInspectionE-form.pdf" />
+    <None Include="Service References\PASSService\WCFServices.disco" />
+    <None Include="Service References\PASSService\configuration91.svcinfo" />
+    <None Include="Service References\PASSService\configuration.svcinfo" />
+    <None Include="Service References\PASSService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.vb</LastGenOutput>
+    </None>
+    <Content Include="Service References\SIMSService\SIMS.SIMSService.Element.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SIMSService\SIMS.SIMSService.Site.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="MANUDump_v1.ashx" />
+    <Content Include="Docs\Appendix41-2-SRHedited.docx" />
+    <None Include="My Project\PublishProfiles\Profile1.pubxml" />
+    <None Include="Service References\PASSService\PASSService.wsdl" />
+    <None Include="Service References\PASSService\WCFServices.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PASSService\WCFServices1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PASSService\WCFServices2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SIMSService\configuration91.svcinfo" />
+    <None Include="Service References\SIMSService\configuration.svcinfo" />
+    <None Include="Service References\SIMSService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.vb</LastGenOutput>
+    </None>
+    <None Include="Service References\SIMSService\SIMSService1.wsdl" />
+    <None Include="Service References\SIMSService\WCFServices1.disco" />
+    <Content Include="Service.asmx" />
+    <Content Include="Services.aspx" />
+    <Content Include="SHAPrint.aspx" />
+    <Content Include="SHAReport.aspx" />
+    <Content Include="SiteHazardAnalysis.aspx" />
+    <Content Include="SiteListsFAQ.html" />
+    <Content Include="UltDataAging.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <None Include="Service References\SIMSService\WCFServices3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SIMSService\WCFServices31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SIMSService\WCFServices32.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Archives.aspx.designer.vb">
+      <DependentUpon>Archives.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Archives.aspx.vb">
+      <DependentUpon>Archives.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="CablewayReport.aspx.designer.vb">
+      <DependentUpon>CablewayReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CablewayReport.aspx.vb">
+      <DependentUpon>CablewayReport.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Cableways.aspx.designer.vb">
+      <DependentUpon>Cableways.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cableways.aspx.vb">
+      <DependentUpon>Cableways.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ApproveMANU.ascx.designer.vb">
+      <DependentUpon>ApproveMANU.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ApproveMANU.ascx.vb">
+      <DependentUpon>ApproveMANU.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ElementJHAs.ascx.designer.vb">
+      <DependentUpon>ElementJHAs.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ElementJHAs.ascx.vb">
+      <DependentUpon>ElementJHAs.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ElemReport.ascx.designer.vb">
+      <DependentUpon>ElemReport.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ElemReport.ascx.vb">
+      <DependentUpon>ElemReport.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\RecordTypeConfigDetails.ascx.designer.vb">
+      <DependentUpon>RecordTypeConfigDetails.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RecordTypeConfigDetails.ascx.vb">
+      <DependentUpon>RecordTypeConfigDetails.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateSHA.ashx.vb">
+      <DependentUpon>CreateSHA.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="CRPReports.aspx.designer.vb">
+      <DependentUpon>CRPReports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CRPReports.aspx.vb">
+      <DependentUpon>CRPReports.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="CRPReportsNatl.aspx.designer.vb">
+      <DependentUpon>CRPReportsNatl.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CRPReportsNatl.aspx.vb">
+      <DependentUpon>CRPReportsNatl.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="DialogsHandler.ashx.vb">
+      <DependentUpon>DialogsHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="DOM\Cableway.vb" />
+    <Compile Include="DOM\CablewayVisit.vb" />
+    <Compile Include="DOM\Config.vb" />
+    <Compile Include="DOM\DataListTemplate.vb" />
+    <Compile Include="DOM\District.vb" />
+    <Compile Include="DOM\Element.vb" />
+    <Compile Include="DOM\ElementReport.vb" />
+    <Compile Include="DOM\EmergContact.vb" />
+    <Compile Include="DOM\FieldTrip.vb" />
+    <Compile Include="DOM\General.vb" />
+    <Compile Include="DOM\GridViewTemplate.vb" />
+    <Compile Include="DOM\Helpers.vb" />
+    <Compile Include="DOM\Hospital.vb" />
+    <Compile Include="DOM\KML.vb" />
+    <Compile Include="DOM\Office.vb" />
+    <Compile Include="DOM\RadGridTemplate.vb" />
+    <Compile Include="DOM\Record.vb" />
+    <Compile Include="DOM\RecordPeriod.vb" />
+    <Compile Include="DOM\RecordType.vb" />
+    <Compile Include="DOM\ResponseHelper.vb" />
+    <Compile Include="DOM\SHAJHA.vb" />
+    <Compile Include="DOM\SHARefLevel.vb" />
+    <Compile Include="DOM\SHASpecificCond.vb" />
+    <Compile Include="DOM\Site.vb" />
+    <Compile Include="DOM\SiteElement.vb" />
+    <Compile Include="DOM\TCP.vb" />
+    <Compile Include="DOM\User.vb" />
+    <Compile Include="DOM\WSC.vb" />
+    <Compile Include="EditPeriodDates.aspx.designer.vb">
+      <DependentUpon>EditPeriodDates.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditPeriodDates.aspx.vb">
+      <DependentUpon>EditPeriodDates.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EditPeriodStatus.aspx.designer.vb">
+      <DependentUpon>EditPeriodStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditPeriodStatus.aspx.vb">
+      <DependentUpon>EditPeriodStatus.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="ElemReport.aspx.designer.vb">
+      <DependentUpon>ElemReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ElemReport.aspx.vb">
+      <DependentUpon>ElemReport.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="ElemSiteReport.aspx.designer.vb">
+      <DependentUpon>ElemSiteReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ElemSiteReport.aspx.vb">
+      <DependentUpon>ElemSiteReport.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EmergencyInfo.aspx.designer.vb">
+      <DependentUpon>EmergencyInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmergencyInfo.aspx.vb">
+      <DependentUpon>EmergencyInfo.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EvalMaps.aspx.designer.vb">
+      <DependentUpon>EvalMaps.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EvalMaps.aspx.vb">
+      <DependentUpon>EvalMaps.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EvalSiteList.aspx.designer.vb">
+      <DependentUpon>EvalSiteList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EvalSiteList.aspx.vb">
+      <DependentUpon>EvalSiteList.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="FieldTripMap.aspx.designer.vb">
+      <DependentUpon>FieldTripMap.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FieldTripMap.aspx.vb">
+      <DependentUpon>FieldTripMap.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Global.asax.vb">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="KMLHandler.ashx.vb">
+      <DependentUpon>KMLHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="MANUDump_v1.ashx.vb">
+      <DependentUpon>MANUDump_v1.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Modal.Master.designer.vb">
+      <DependentUpon>Modal.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Modal.Master.vb">
+      <DependentUpon>Modal.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modals\DeleteEmergencyInfo.aspx.designer.vb">
+      <DependentUpon>DeleteEmergencyInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\DeleteEmergencyInfo.aspx.vb">
+      <DependentUpon>DeleteEmergencyInfo.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Modals\FootnotesElems.aspx.designer.vb">
+      <DependentUpon>FootnotesElems.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\FootnotesElems.aspx.vb">
+      <DependentUpon>FootnotesElems.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Modals\GWElems.aspx.designer.vb">
+      <DependentUpon>GWElems.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\GWElems.aspx.vb">
+      <DependentUpon>GWElems.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Modals\RemarksElems.aspx.designer.vb">
+      <DependentUpon>RemarksElems.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\RemarksElems.aspx.vb">
+      <DependentUpon>RemarksElems.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\MyExtensions\MyWebExtension.vb">
+      <VBMyExtensionTemplateID>Microsoft.VisualBasic.Web.MyExtension</VBMyExtensionTemplateID>
+      <VBMyExtensionTemplateVersion>1.0.0.0</VBMyExtensionTemplateVersion>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="NWISOpsRequest.aspx.designer.vb">
+      <DependentUpon>NWISOpsRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NWISOpsRequest.aspx.vb">
+      <DependentUpon>NWISOpsRequest.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="RecordConfig.aspx.designer.vb">
+      <DependentUpon>RecordConfig.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RecordConfig.aspx.vb">
+      <DependentUpon>RecordConfig.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="RecordConfigList.aspx.designer.vb">
+      <DependentUpon>RecordConfigList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RecordConfigList.aspx.vb">
+      <DependentUpon>RecordConfigList.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="RecordLists.aspx.designer.vb">
+      <DependentUpon>RecordLists.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RecordLists.aspx.vb">
+      <DependentUpon>RecordLists.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="RecordProcessing.aspx.designer.vb">
+      <DependentUpon>RecordProcessing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RecordProcessing.aspx.vb">
+      <DependentUpon>RecordProcessing.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="RecordTypeConfig.aspx.designer.vb">
+      <DependentUpon>RecordTypeConfig.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RecordTypeConfig.aspx.vb">
+      <DependentUpon>RecordTypeConfig.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="RMS.Master.designer.vb">
+      <DependentUpon>RMS.Master</DependentUpon>
+    </Compile>
+    <Compile Include="RMS.Master.vb">
+      <DependentUpon>RMS.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RMSNeedsApproval.ashx.vb">
+      <DependentUpon>RMSNeedsApproval.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\PASSService\Reference.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\SIMSService\Reference.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service.asmx.vb">
+      <DependentUpon>Service.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services.aspx.designer.vb">
+      <DependentUpon>Services.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Services.aspx.vb">
+      <DependentUpon>Services.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="SHAPrint.aspx.designer.vb">
+      <DependentUpon>SHAPrint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SHAPrint.aspx.vb">
+      <DependentUpon>SHAPrint.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="SHAReport.aspx.designer.vb">
+      <DependentUpon>SHAReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SHAReport.aspx.vb">
+      <DependentUpon>SHAReport.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="SIMSSafety.Master.designer.vb">
+      <DependentUpon>SIMSSafety.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SIMSSafety.Master.vb">
+      <DependentUpon>SIMSSafety.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SIMSSite.Master.designer.vb">
+      <DependentUpon>SIMSSite.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SIMSSite.Master.vb">
+      <DependentUpon>SIMSSite.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SIMSSiteTopLevel.Master.designer.vb">
+      <DependentUpon>SIMSSiteTopLevel.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SIMSSiteTopLevel.Master.vb">
+      <DependentUpon>SIMSSiteTopLevel.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SiteHazardAnalysis.aspx.designer.vb">
+      <DependentUpon>SiteHazardAnalysis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SiteHazardAnalysis.aspx.vb">
+      <DependentUpon>SiteHazardAnalysis.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="SiteRegister.aspx.designer.vb">
+      <DependentUpon>SiteRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SiteRegister.aspx.vb">
+      <DependentUpon>SiteRegister.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="UltDataAging.aspx.designer.vb">
+      <DependentUpon>UltDataAging.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UltDataAging.aspx.vb">
+      <DependentUpon>UltDataAging.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="WSCPersonnel.aspx.designer.vb">
+      <DependentUpon>WSCPersonnel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WSCPersonnel.aspx.vb">
+      <DependentUpon>WSCPersonnel.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DialogsHandler.ashx" />
+    <None Include="App_Data\RadSpell\de-DE.tdf" />
+    <None Include="App_Data\RadSpell\en-GB.tdf" />
+    <None Include="App_Data\RadSpell\en-US.tdf" />
+    <None Include="App_Data\RadSpell\fr-FR.tdf" />
+    <Content Include="CreateSHA.ashx" />
+    <None Include="Docs\JHAs\Boat_Measurements_Lakes.PDF" />
+    <None Include="Docs\JHAs\Boat_Measurements_Streams.PDF" />
+    <None Include="Docs\JHAs\Bridge_Measurements.PDF" />
+    <None Include="Docs\JHAs\Cableway_Measurements.PDF" />
+    <None Include="Docs\JHAs\Groundwater.PDF" />
+    <None Include="Docs\JHAs\Servicing_Site.PDF" />
+    <None Include="Docs\JHAs\StillingWell_ConfinedSpace.PDF" />
+    <None Include="Docs\JHAs\Wading_Measurements.PDF" />
+    <None Include="Docs\JHAs\Water_Quality_Sampling.PDF" />
+    <None Include="Docs\KMLDownloadInstructions.pdf" />
+    <None Include="Docs\SIMSCablewayAdd_New.pdf" />
+    <None Include="Docs\SIMSCablewayAdd_New.xlsx" />
+    <None Include="Docs\SIMSCablewaySimple_Update.pdf" />
+    <None Include="Docs\SIMSCablewaySimple_Update.xlsx" />
+    <None Include="Docs\SIMSCablewayView_Edit_AddSiteVisits.pdf" />
+    <None Include="Docs\SIMSCablewayView_Edit_AddSiteVisits.xlsx" />
+    <Content Include="Modal.Master" />
+    <Content Include="KMLHandler.ashx" />
+    <None Include="Docs\SiteHazardAnalysis.pdf" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="SIMSSite.Master" />
+    <Content Include="SIMSSafety.Master" />
+    <Content Include="RMS.Master" />
+    <Content Include="SIMSSiteTopLevel.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Files\Cableways\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\PASSService\" />
+    <WCFMetadataStorage Include="Service References\SIMSService\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>52829</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
