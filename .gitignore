@@ -718,9 +718,17 @@ SIMS/obj/Release/Package/PackageTmp/UltDataAging.aspx
 SIMS/obj/Release/Package/PackageTmp/WSCPersonnel.aspx
 SIMS/obj/Release/Package/PackageTmp/Web.config
 SIMS/obj/Release/Package/PackageTmp/bin/AjaxControlToolkit.dll
+<<<<<<< HEAD
 SIMS/obj/Release/Package/PackageTmp/bin/GMaps.dll
 SIMS/obj/Release/Package/PackageTmp/bin/Google.KML.dll
 SIMS/obj/Release/Package/PackageTmp/bin/SIMS.dll
+=======
+SIMS/obj/Release/Package/PackageTmp/bin/AjaxControlToolkit.dll.refresh
+SIMS/obj/Release/Package/PackageTmp/bin/GMaps.dll
+SIMS/obj/Release/Package/PackageTmp/bin/Google.KML.dll
+SIMS/obj/Release/Package/PackageTmp/bin/SIMS.dll
+SIMS/obj/Release/Package/PackageTmp/bin/SIMS.dll.config
+>>>>>>> develop
 SIMS/obj/Release/Package/PackageTmp/bin/SIMS.xml
 SIMS/obj/Release/Package/PackageTmp/bin/SIMSCustomControl.dll
 SIMS/obj/Release/Package/PackageTmp/bin/System.Web.Ajax.dll

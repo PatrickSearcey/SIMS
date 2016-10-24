@@ -285,6 +285,7 @@
     <Content Include="WSCPersonnel.aspx" />
     <Content Include="RMSNeedsApproval.ashx" />
     <Content Include="Docs\Bank-OperatedCablewayInspectionE-form.pdf" />
+    <None Include="My Project\PublishProfiles\Development Profile.pubxml" />
     <None Include="Service References\PASSService\WCFServices.disco" />
     <None Include="Service References\PASSService\configuration91.svcinfo" />
     <None Include="Service References\PASSService\configuration.svcinfo" />
@@ -300,7 +301,7 @@
     </Content>
     <Content Include="MANUDump_v1.ashx" />
     <Content Include="Docs\Appendix41-2-SRHedited.docx" />
-    <None Include="My Project\PublishProfiles\Profile1.pubxml" />
+    <None Include="My Project\PublishProfiles\Production Profile.pubxml" />
     <None Include="Service References\PASSService\PASSService.wsdl" />
     <None Include="Service References\PASSService\WCFServices.xsd">
       <SubType>Designer</SubType>
