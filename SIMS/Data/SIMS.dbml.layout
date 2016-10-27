@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.125, 8.5" name="SIMS">
+  <DataContextMoniker Name="/SIMSDataContext" />
+  <nestedChildShapes>
+    <classShape Id="0e065167-2eb8-4aa3-a839-135bfb188180" absoluteBounds="8.875, 4.5, 2, 2.5401025390625">
+      <DataClassMoniker Name="/SIMSDataContext/Site" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a11b9955-d575-4c6d-a41f-5571908ddf0f" absoluteBounds="8.89, 4.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
