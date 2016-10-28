@@ -1,21 +1,18 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SIMS.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="SIMS2017.Default" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SIMS.Master" AutoEventWireup="true" CodeBehind="SIMSWSCHome.aspx.cs" Inherits="SIMS2017.SIMSWSCHome" %>
 <%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 
 <asp:Content ID="Content0" ContentPlaceHolderID="head" Runat="Server">
     <link href="styles/default.css" rel="stylesheet" />
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="cph1" runat="Server">
     <telerik:RadPageLayout runat="server" ID="RadPageLayout1">
         <Rows>
             <telerik:LayoutRow>
                 <Columns>
                     <telerik:LayoutColumn CssClass="jumbotron">
-                        <h1>H1 title, font size 36px</h1>
-                        <h2>H2 Title, font size 30 px. Duis nibh dolor, rhoncus in euismod at, feugiat id magna.
-                            <telerik:RadButton runat="server" ID="RadButton0" Text="Button" ButtonType="SkinnedButton"></telerik:RadButton>
-                        </h2>
-
+                        <h2>Welcome to the <asp:Literal ID="ltlWSCName" runat="server" /></h2>
+                        <img src="images/HomepageTitle.png" alt="SIMS" />
                     </telerik:LayoutColumn>
                 </Columns>
             </telerik:LayoutRow>
@@ -32,7 +29,7 @@
 
 </asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+<asp:Content ID="Content3" ContentPlaceHolderID="cph2" runat="Server">
     <telerik:RadPageLayout runat="server" ID="Content1">
         <Rows>
             <telerik:LayoutRow>

@@ -11,6 +11,57 @@
       <Column Name="station_full_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
       <Column Name="office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="alt_basin_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Association Name="lut_Office_Site" Member="Office" ThisKey="office_id" OtherKey="office_id" Type="Office" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.lut_Office" Member="Offices">
+    <Type Name="Office">
+      <Column Name="office_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="office_cd" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="office_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="tz_cd" Type="System.String" DbType="NVarChar(6)" CanBeNull="true" />
+      <Column Name="office_subnet" Type="System.String" DbType="NVarChar(11)" CanBeNull="true" />
+      <Column Name="dec_lat_va" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="dec_long_va" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="street_addrs" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="city_st_zip" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="ph_no" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="data_chief_email" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="reviewer_email" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="start_new_rec" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="use_mpntalt" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="lut_Office_Site" Member="Sites" ThisKey="office_id" OtherKey="office_id" Type="Site" />
+      <Association Name="lut_Office_tblEmployee" Member="Employees" ThisKey="office_id" OtherKey="office_id" Type="Employee" />
+      <Association Name="lut_WSC_lut_Office" Member="WSC" ThisKey="wsc_id" OtherKey="wsc_id" Type="WSC" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.lut_WSC" Member="WSCs">
+    <Type Name="WSC">
+      <Column Name="wsc_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="wsc_cd" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="wsc_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="nwisops_email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="reqID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="region_cd" Type="System.String" DbType="NVarChar(2)" CanBeNull="true" />
+      <Column Name="AD_OU" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="swr_url" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="cost_center_cd" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Association Name="lut_WSC_lut_Office" Member="Offices" ThisKey="wsc_id" OtherKey="wsc_id" Type="Office" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblEmployees" Member="Employees">
+    <Type Name="Employee">
+      <Column Name="user_id" Type="System.String" DbType="NVarChar(15) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="first_nm" Type="System.String" DbType="NVarChar(75)" CanBeNull="true" />
+      <Column Name="last_nm" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="administrator_va" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="approver_va" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="pass_access" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="show_reports" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="lut_Office_tblEmployee" Member="Office" ThisKey="office_id" OtherKey="office_id" Type="Office" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

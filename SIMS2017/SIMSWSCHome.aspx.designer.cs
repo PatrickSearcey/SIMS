@@ -10,51 +10,60 @@
 namespace SIMS2017 {
     
     
-    public partial class ListView {
+    public partial class SIMSWSCHome {
         
         /// <summary>
-        /// JumbotronLayout control.
+        /// RadPageLayout1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadPageLayout JumbotronLayout;
+        protected global::Telerik.Web.UI.RadPageLayout RadPageLayout1;
         
         /// <summary>
-        /// RadButton0 control.
+        /// ltlWSCName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton RadButton0;
+        protected global::System.Web.UI.WebControls.Literal ltlWSCName;
         
         /// <summary>
-        /// RadListViewImages control.
+        /// Content1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadListView RadListViewImages;
+        protected global::Telerik.Web.UI.RadPageLayout Content1;
         
         /// <summary>
-        /// RadListViewArticles control.
+        /// RadButton1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadListView RadListViewArticles;
+        protected global::Telerik.Web.UI.RadButton RadButton1;
         
         /// <summary>
-        /// RadLightBoxImageDetails control.
+        /// RadButton2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadLightBox RadLightBoxImageDetails;
+        protected global::Telerik.Web.UI.RadButton RadButton2;
+        
+        /// <summary>
+        /// RadButton3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton RadButton3;
     }
 }

@@ -8,16 +8,18 @@ using System.Web.UI.WebControls;
 
 namespace SIMS2017
 {
-    public partial class RMS : System.Web.UI.MasterPage
+    public partial class SIMSWSCHome : System.Web.UI.Page
     {
         #region Local Variables
         private Data.SIMSDataContext db = new Data.SIMSDataContext();
         public WindowsAuthenticationUser user = new WindowsAuthenticationUser();
-        #endregion
+        #endregion 
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ltlUserID.Text = user.ID;
+            var wsc = db.WSCs.FirstOrDefault(p => p.wsc_id == user.WSCID);
+            ltlWSCName.Text = wsc.wsc_nm + " Water Science Center";
+            
         }
     }
 }

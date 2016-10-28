@@ -31,6 +31,15 @@ namespace SIMS2017 {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// rfd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadFormDecorator rfd;
+        
+        /// <summary>
         /// MasterLayout control.
         /// </summary>
         /// <remarks>
@@ -40,39 +49,48 @@ namespace SIMS2017 {
         protected global::Telerik.Web.UI.RadPageLayout MasterLayout;
         
         /// <summary>
-        /// RadMenu1 control.
+        /// rmTop control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadMenu RadMenu1;
+        protected global::Telerik.Web.UI.RadMenu rmTop;
         
         /// <summary>
-        /// RadMenu2 control.
+        /// ltlUserID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadMenu RadMenu2;
+        protected global::System.Web.UI.WebControls.Literal ltlUserID;
         
         /// <summary>
-        /// ContentPlaceHolder1 control.
+        /// rmSide control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::Telerik.Web.UI.RadMenu rmSide;
         
         /// <summary>
-        /// ContentPlaceHolder2 control.
+        /// cph1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder2;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder cph1;
+        
+        /// <summary>
+        /// cph2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder cph2;
     }
 }

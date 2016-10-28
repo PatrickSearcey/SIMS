@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Site Information Management System</title>
     <meta name="viewport" content="initial-scale=1.0, minimum-scale=1, maximum-scale=1.0, user-scalable=no" />
     <link href="styles/SIMSbase.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -18,35 +18,29 @@
                 <img src="images/USGSHeaderLogoSIMS.png" alt="USGS" style="padding-right:50px;padding-bottom:5px" /><img src="images/SIMSLogo.png" alt="site logo" />
             </a>
             <div class="header">
-                <telerik:RadMenu ID="RadMenu1" CssClass="mainMenu" runat="server" RenderMode="Auto">
+                <telerik:RadMenu ID="rmTop" CssClass="mainMenu" runat="server" RenderMode="Auto">
                     <Items>
-                        <telerik:RadMenuItem Text="Home" NavigateUrl="Default.aspx" />
+                        <telerik:RadMenuItem Text="SIMS National Home" NavigateUrl="http://sims.water.usgs.gov/SIMS/Default.aspx" />
                         <telerik:RadMenuItem IsSeparator="true" />
-                        <telerik:RadMenuItem Text="Grid Page" NavigateUrl="Grid.aspx" />
+                        <telerik:RadMenuItem Text="SIMS WSC Home" NavigateUrl="~/SIMSWSCHome.aspx" />
                         <telerik:RadMenuItem IsSeparator="true" />
-                        <telerik:RadMenuItem Text="ListView Page" NavigateUrl="ListView.aspx" />
+                        <telerik:RadMenuItem Text="RMS WSC Home" NavigateUrl="~/RMSWSCHome.aspx" />
                         <telerik:RadMenuItem IsSeparator="true" />
-                        <telerik:RadMenuItem Text="About" />
+                        <telerik:RadMenuItem Text="Admin Tasks" NavigateUrl="~/Admin/Tasks.aspx" />
                         <telerik:RadMenuItem IsSeparator="true" />
-                        <telerik:RadMenuItem Text="Projects" />
+                        <telerik:RadMenuItem Text="Latest News" NavigateUrl="https://collaboration.usgs.gov/wg/owi/specialprojects/SIMS/Shared%20Documents/updates.html" />
                         <telerik:RadMenuItem IsSeparator="true" />
-                        <telerik:RadMenuItem Text="Dashboard" />
-                        <telerik:RadMenuItem IsSeparator="true" />
-                        <telerik:RadMenuItem Text="..." />
-                        <telerik:RadMenuItem IsSeparator="true" />
-                        <telerik:RadMenuItem Text="..." />
-                        <telerik:RadMenuItem IsSeparator="true" />
-                        <telerik:RadMenuItem Text="Contacts" />
+                        <telerik:RadMenuItem Text="Contact" NavigateUrl="~/NWISOpsRequest.aspx" />
                     </Items>
                 </telerik:RadMenu>
             </div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            <asp:ContentPlaceHolder ID="cph1" runat="server">
             </asp:ContentPlaceHolder>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+            <asp:ContentPlaceHolder ID="cph2" runat="server">
             </asp:ContentPlaceHolder>
             <hr style="margin-top: 40px" />
             <div class="footer">
-               Footer: © 2002-2015 Company Inc, 201 Jones Rd, Waltham, MA 03451
+               U.S. Geological Survey, <a href="mailto:GS-W_Help_SIMS@usgs.gov">GS-W Help SIMS@usgs.gov</a>, Page Last Updated: 10/28/2016
             </div>
         </div>
     </form>

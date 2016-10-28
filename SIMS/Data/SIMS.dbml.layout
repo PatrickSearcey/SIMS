@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.125, 8.5" name="SIMS">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 21.875, 9.875" name="SIMS">
   <DataContextMoniker Name="/SIMSDataContext" />
   <nestedChildShapes>
     <classShape Id="0e065167-2eb8-4aa3-a839-135bfb188180" absoluteBounds="8.875, 4.5, 2, 2.5401025390625">
@@ -8,5 +8,44 @@
         <elementListCompartment Id="a11b9955-d575-4c6d-a41f-5571908ddf0f" absoluteBounds="8.89, 4.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="fe78cdc6-6138-440a-b02e-69e1083415a3" absoluteBounds="15.125, 3.375, 2, 3.6939111328124996">
+      <DataClassMoniker Name="/SIMSDataContext/Office" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f62f6619-4f88-4e5c-9f3a-a026c43a239e" absoluteBounds="15.14, 3.835, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(15.125 : 4.90625); (10.875 : 4.90625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIMSDataContext/Office/lut_Office_Site" />
+      <nodes>
+        <classShapeMoniker Id="fe78cdc6-6138-440a-b02e-69e1083415a3" />
+        <classShapeMoniker Id="0e065167-2eb8-4aa3-a839-135bfb188180" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="fc968d82-c264-49b6-8676-480db9bb550f" absoluteBounds="19.625, 5.25, 2, 2.5401025390625">
+      <DataClassMoniker Name="/SIMSDataContext/WSC" />
+      <nestedChildShapes>
+        <elementListCompartment Id="58bcc8d2-c0f5-4287-b7ea-b7c5aba716de" absoluteBounds="19.64, 5.71, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(19.625 : 6.15945556640625); (17.125 : 6.15945556640625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIMSDataContext/WSC/lut_WSC_lut_Office" />
+      <nodes>
+        <classShapeMoniker Id="fc968d82-c264-49b6-8676-480db9bb550f" />
+        <classShapeMoniker Id="fe78cdc6-6138-440a-b02e-69e1083415a3" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="0003c775-63fe-49b5-91a7-d36edab3dca7" absoluteBounds="12.375, 7.125, 2, 2.5401025390625">
+      <DataClassMoniker Name="/SIMSDataContext/Employee" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9485fcd7-c431-4360-86ae-2e9e43b9bc81" absoluteBounds="12.39, 7.585, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(15.125 : 6.01883306640625); (13.375 : 6.01883306640625); (13.375 : 7.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIMSDataContext/Office/lut_Office_tblEmployee" />
+      <nodes>
+        <classShapeMoniker Id="fe78cdc6-6138-440a-b02e-69e1083415a3" />
+        <classShapeMoniker Id="0003c775-63fe-49b5-91a7-d36edab3dca7" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

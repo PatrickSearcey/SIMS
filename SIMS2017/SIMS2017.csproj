@@ -47,6 +47,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -88,6 +89,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\Tasks.aspx" />
     <Content Include="App_Data\RadCaptcha\0.wav" />
     <Content Include="App_Data\RadCaptcha\1.wav" />
     <Content Include="App_Data\RadCaptcha\2.wav" />
@@ -124,47 +126,46 @@
     <Content Include="App_Data\RadCaptcha\X.wav" />
     <Content Include="App_Data\RadCaptcha\Y.wav" />
     <Content Include="App_Data\RadCaptcha\Z.wav" />
+    <Content Include="images\HomepageTitle.png" />
     <Content Include="images\RMSlogo.png" />
+    <Content Include="images\RMSTitle.png" />
     <Content Include="images\SIMSLogo.png" />
+    <Content Include="images\USGSHeaderLogo.png" />
     <Content Include="images\USGSHeaderLogoRMS.png" />
     <Content Include="images\USGSHeaderLogoSIMS.png" />
+    <Content Include="RMSWSCHome.aspx" />
     <Content Include="SIMS.Master" />
     <Content Include="SIMSSingleMenu.Master" />
     <Content Include="styles\RMSbase.css" />
     <Content Include="styles\SIMSbase.css" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Default.aspx" />
-    <Content Include="Grid.aspx" />
-    <Content Include="ListView.aspx" />
+    <Content Include="SIMSWSCHome.aspx" />
     <Content Include="scripts\scripts.js" />
     <Content Include="styles\default.css" />
     <Content Include="styles\grid.css" />
-    <Content Include="styles\listView.css" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Article.cs" />
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="Admin\Tasks.aspx.cs">
+      <DependentUpon>Tasks.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="Admin\Tasks.aspx.designer.cs">
+      <DependentUpon>Tasks.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Grid.aspx.cs">
-      <DependentUpon>Grid.aspx</DependentUpon>
+    <Compile Include="RMSWSCHome.aspx.cs">
+      <DependentUpon>RMSWSCHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Grid.aspx.designer.cs">
-      <DependentUpon>Grid.aspx</DependentUpon>
+    <Compile Include="RMSWSCHome.aspx.designer.cs">
+      <DependentUpon>RMSWSCHome.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Image.cs" />
-    <Compile Include="ListView.aspx.cs">
-      <DependentUpon>ListView.aspx</DependentUpon>
+    <Compile Include="SIMSWSCHome.aspx.cs">
+      <DependentUpon>SIMSWSCHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ListView.aspx.designer.cs">
-      <DependentUpon>ListView.aspx</DependentUpon>
+    <Compile Include="SIMSWSCHome.aspx.designer.cs">
+      <DependentUpon>SIMSWSCHome.aspx</DependentUpon>
     </Compile>
     <Compile Include="RMS.Master.cs">
       <DependentUpon>RMS.Master</DependentUpon>
@@ -219,10 +220,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{4d240943-1b6d-4b33-a217-44f37a254b5c}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SIMS\Data\Data.csproj">
       <Project>{95601293-c09e-42aa-8186-610809f04374}</Project>
       <Name>Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

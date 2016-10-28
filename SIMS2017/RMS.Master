@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>SIMS - Records Management System</title>
     <meta name="viewport" content="initial-scale=1.0, minimum-scale=1, maximum-scale=1.0, user-scalable=no" />
     <link href="styles/RMSbase.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -13,6 +13,7 @@
 <body>
     <form id="form1" runat="server">
         <telerik:RadScriptManager runat="server"></telerik:RadScriptManager>
+        <telerik:RadFormDecorator runat="server" ID="rfd" Skin="Bootstrap" DecoratedControls="All" />
         <div id="wrapper">
         <telerik:RadPageLayout runat="server" ID="MasterLayout" GridType="Fluid">
             <Rows>
@@ -28,27 +29,29 @@
 
                         <%--Main Nav--%>
                         <telerik:LayoutColumn Span="10" SpanMd="9" SpanSm="12" SpanXs="12">
-                            <telerik:RadMenu ID="RadMenu1" runat="server" RenderMode="Auto">
+                            <telerik:RadMenu ID="rmTop" runat="server" RenderMode="Auto" Skin="Bootstrap">
                                 <Items>
-                                    <telerik:RadMenuItem Text="Home" NavigateUrl="Default.aspx" />
+                                    <telerik:RadMenuItem Text="SIMS National Home" NavigateUrl="http://sims.water.usgs.gov/SIMS/Default.aspx" />
                                     <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="Grid Page" NavigateUrl="Grid.aspx" />
+                                    <telerik:RadMenuItem Text="SIMS WSC Home" NavigateUrl="~/SIMSWSCHome.aspx" />
                                     <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="ListView Page" NavigateUrl="ListView.aspx" />
+                                    <telerik:RadMenuItem Text="RMS WSC Home" NavigateUrl="~/RMSWSCHome.aspx" />
                                     <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="About" />
+                                    <telerik:RadMenuItem Text="Admin Tasks" NavigateUrl="~/Admin/Tasks.aspx" />
                                     <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="Projects" />
+                                    <telerik:RadMenuItem Text="Latest News" NavigateUrl="https://collaboration.usgs.gov/wg/owi/specialprojects/SIMS/Shared%20Documents/updates.html" />
                                     <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="Dashboard" />
-                                    <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="..." />
-                                    <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="..." />
-                                    <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="Contacts" />
+                                    <telerik:RadMenuItem Text="Contact" NavigateUrl="~/NWISOpsRequest.aspx" />
                                 </Items>
                             </telerik:RadMenu>
+                        </telerik:LayoutColumn>
+                    </Columns>
+                </telerik:LayoutRow>
+
+                <telerik:LayoutRow>
+                    <Columns>
+                        <telerik:LayoutColumn Span="12" SpanMd="12" SpanSm="12" SpanXs="12" CssClass="subheader">
+                            internal only | logged in as: <asp:Literal ID="ltlUserID" runat="server" />
                         </telerik:LayoutColumn>
                     </Columns>
                 </telerik:LayoutRow>
@@ -58,23 +61,19 @@
                     <Columns>
                         <%--Sidebar--%>
                         <telerik:LayoutColumn Span="2" HiddenMd="true" HiddenSm="true" HiddenXs="true">
-                            <telerik:RadMenu ID="RadMenu2" CssClass="sidebar" Flow="Vertical" runat="server" >
+                            <telerik:RadMenu ID="rmSide" CssClass="sidebar" Flow="Vertical" runat="server" Skin="Bootstrap">
                                 <Items>
-                                    <telerik:RadMenuItem Text="Menu item 1" />
+                                    <telerik:RadMenuItem Text="CRP Tasks" />
                                     <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="Menu item 2" />
+                                    <telerik:RadMenuItem Text="CRP Tools" />
                                     <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="Menu item 3" />
+                                    <telerik:RadMenuItem Text="Reports" />
                                     <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="Menu item 4" />
+                                    <telerik:RadMenuItem Text="Station Analyses" />
                                     <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="Menu item 5" />
+                                    <telerik:RadMenuItem Text="Dialogs" />
                                     <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="Menu item 6" />
-                                    <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="Menu item 7" />
-                                    <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="Menu item 8" />
+                                    <telerik:RadMenuItem Text="Change Logs" />
                                 </Items>
                             </telerik:RadMenu>
                         </telerik:LayoutColumn>
@@ -82,9 +81,9 @@
                         <%--Content--%>
                         <telerik:CompositeLayoutColumn Span="10" SpanMd="12" SpanSm="12" SpanXs="12">
                             <Content>
-                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                <asp:ContentPlaceHolder ID="cph1" runat="server">
                                 </asp:ContentPlaceHolder>
-                                <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+                                <asp:ContentPlaceHolder ID="cph2" runat="server">
                                 </asp:ContentPlaceHolder>
                             </Content>
                         </telerik:CompositeLayoutColumn>
@@ -96,7 +95,7 @@
                     <Columns>
                         <telerik:LayoutColumn CssClass="footer">
                             <hr />
-                            Footer: © 2002-2015 Company Inc, 201 Jones Rd, Waltham, MA 03451
+                            U.S. Geological Survey, <a href="mailto:GS-W_Help_SIMS@usgs.gov">GS-W Help SIMS@usgs.gov</a>, Page Last Updated: 10/28/2016
                         </telerik:LayoutColumn>
                     </Columns>
                 </telerik:LayoutRow>

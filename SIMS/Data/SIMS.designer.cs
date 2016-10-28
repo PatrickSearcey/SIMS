@@ -33,6 +33,15 @@ namespace Data
     partial void InsertSite(Site instance);
     partial void UpdateSite(Site instance);
     partial void DeleteSite(Site instance);
+    partial void InsertOffice(Office instance);
+    partial void UpdateOffice(Office instance);
+    partial void DeleteOffice(Office instance);
+    partial void InsertWSC(WSC instance);
+    partial void UpdateWSC(WSC instance);
+    partial void DeleteWSC(WSC instance);
+    partial void InsertEmployee(Employee instance);
+    partial void UpdateEmployee(Employee instance);
+    partial void DeleteEmployee(Employee instance);
     #endregion
 		
 		public SIMSDataContext() : 
@@ -72,6 +81,30 @@ namespace Data
 				return this.GetTable<Site>();
 			}
 		}
+		
+		public System.Data.Linq.Table<Office> Offices
+		{
+			get
+			{
+				return this.GetTable<Office>();
+			}
+		}
+		
+		public System.Data.Linq.Table<WSC> WSCs
+		{
+			get
+			{
+				return this.GetTable<WSC>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Employee> Employees
+		{
+			get
+			{
+				return this.GetTable<Employee>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SIMS_Site_Master")]
@@ -97,6 +130,8 @@ namespace Data
 		private System.Nullable<int> _office_id;
 		
 		private string _alt_basin_nm;
+		
+		private EntityRef<Office> _Office;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -124,6 +159,7 @@ namespace Data
 		
 		public Site()
 		{
+			this._Office = default(EntityRef<Office>);
 			OnCreated();
 		}
 		
@@ -278,6 +314,10 @@ namespace Data
 			{
 				if ((this._office_id != value))
 				{
+					if (this._Office.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.Onoffice_idChanging(value);
 					this.SendPropertyChanging();
 					this._office_id = value;
@@ -303,6 +343,1112 @@ namespace Data
 					this._alt_basin_nm = value;
 					this.SendPropertyChanged("alt_basin_nm");
 					this.Onalt_basin_nmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_Office_Site", Storage="_Office", ThisKey="office_id", OtherKey="office_id", IsForeignKey=true)]
+		public Office Office
+		{
+			get
+			{
+				return this._Office.Entity;
+			}
+			set
+			{
+				Office previousValue = this._Office.Entity;
+				if (((previousValue != value) 
+							|| (this._Office.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Office.Entity = null;
+						previousValue.Sites.Remove(this);
+					}
+					this._Office.Entity = value;
+					if ((value != null))
+					{
+						value.Sites.Add(this);
+						this._office_id = value.office_id;
+					}
+					else
+					{
+						this._office_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Office");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.lut_Office")]
+	public partial class Office : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _office_id;
+		
+		private string _office_cd;
+		
+		private string _office_nm;
+		
+		private string _tz_cd;
+		
+		private string _office_subnet;
+		
+		private System.Nullable<double> _dec_lat_va;
+		
+		private System.Nullable<double> _dec_long_va;
+		
+		private string _street_addrs;
+		
+		private string _city_st_zip;
+		
+		private string _ph_no;
+		
+		private string _data_chief_email;
+		
+		private string _reviewer_email;
+		
+		private System.Nullable<bool> _start_new_rec;
+		
+		private System.Nullable<bool> _use_mpntalt;
+		
+		private System.Nullable<int> _wsc_id;
+		
+		private EntitySet<Site> _Sites;
+		
+		private EntitySet<Employee> _Employees;
+		
+		private EntityRef<WSC> _WSC;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onoffice_idChanging(int value);
+    partial void Onoffice_idChanged();
+    partial void Onoffice_cdChanging(string value);
+    partial void Onoffice_cdChanged();
+    partial void Onoffice_nmChanging(string value);
+    partial void Onoffice_nmChanged();
+    partial void Ontz_cdChanging(string value);
+    partial void Ontz_cdChanged();
+    partial void Onoffice_subnetChanging(string value);
+    partial void Onoffice_subnetChanged();
+    partial void Ondec_lat_vaChanging(System.Nullable<double> value);
+    partial void Ondec_lat_vaChanged();
+    partial void Ondec_long_vaChanging(System.Nullable<double> value);
+    partial void Ondec_long_vaChanged();
+    partial void Onstreet_addrsChanging(string value);
+    partial void Onstreet_addrsChanged();
+    partial void Oncity_st_zipChanging(string value);
+    partial void Oncity_st_zipChanged();
+    partial void Onph_noChanging(string value);
+    partial void Onph_noChanged();
+    partial void Ondata_chief_emailChanging(string value);
+    partial void Ondata_chief_emailChanged();
+    partial void Onreviewer_emailChanging(string value);
+    partial void Onreviewer_emailChanged();
+    partial void Onstart_new_recChanging(System.Nullable<bool> value);
+    partial void Onstart_new_recChanged();
+    partial void Onuse_mpntaltChanging(System.Nullable<bool> value);
+    partial void Onuse_mpntaltChanged();
+    partial void Onwsc_idChanging(System.Nullable<int> value);
+    partial void Onwsc_idChanged();
+    #endregion
+		
+		public Office()
+		{
+			this._Sites = new EntitySet<Site>(new Action<Site>(this.attach_Sites), new Action<Site>(this.detach_Sites));
+			this._Employees = new EntitySet<Employee>(new Action<Employee>(this.attach_Employees), new Action<Employee>(this.detach_Employees));
+			this._WSC = default(EntityRef<WSC>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int office_id
+		{
+			get
+			{
+				return this._office_id;
+			}
+			set
+			{
+				if ((this._office_id != value))
+				{
+					this.Onoffice_idChanging(value);
+					this.SendPropertyChanging();
+					this._office_id = value;
+					this.SendPropertyChanged("office_id");
+					this.Onoffice_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_cd", DbType="NVarChar(10)")]
+		public string office_cd
+		{
+			get
+			{
+				return this._office_cd;
+			}
+			set
+			{
+				if ((this._office_cd != value))
+				{
+					this.Onoffice_cdChanging(value);
+					this.SendPropertyChanging();
+					this._office_cd = value;
+					this.SendPropertyChanged("office_cd");
+					this.Onoffice_cdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_nm", DbType="NVarChar(150)")]
+		public string office_nm
+		{
+			get
+			{
+				return this._office_nm;
+			}
+			set
+			{
+				if ((this._office_nm != value))
+				{
+					this.Onoffice_nmChanging(value);
+					this.SendPropertyChanging();
+					this._office_nm = value;
+					this.SendPropertyChanged("office_nm");
+					this.Onoffice_nmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tz_cd", DbType="NVarChar(6)")]
+		public string tz_cd
+		{
+			get
+			{
+				return this._tz_cd;
+			}
+			set
+			{
+				if ((this._tz_cd != value))
+				{
+					this.Ontz_cdChanging(value);
+					this.SendPropertyChanging();
+					this._tz_cd = value;
+					this.SendPropertyChanged("tz_cd");
+					this.Ontz_cdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_subnet", DbType="NVarChar(11)")]
+		public string office_subnet
+		{
+			get
+			{
+				return this._office_subnet;
+			}
+			set
+			{
+				if ((this._office_subnet != value))
+				{
+					this.Onoffice_subnetChanging(value);
+					this.SendPropertyChanging();
+					this._office_subnet = value;
+					this.SendPropertyChanged("office_subnet");
+					this.Onoffice_subnetChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dec_lat_va", DbType="Float")]
+		public System.Nullable<double> dec_lat_va
+		{
+			get
+			{
+				return this._dec_lat_va;
+			}
+			set
+			{
+				if ((this._dec_lat_va != value))
+				{
+					this.Ondec_lat_vaChanging(value);
+					this.SendPropertyChanging();
+					this._dec_lat_va = value;
+					this.SendPropertyChanged("dec_lat_va");
+					this.Ondec_lat_vaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dec_long_va", DbType="Float")]
+		public System.Nullable<double> dec_long_va
+		{
+			get
+			{
+				return this._dec_long_va;
+			}
+			set
+			{
+				if ((this._dec_long_va != value))
+				{
+					this.Ondec_long_vaChanging(value);
+					this.SendPropertyChanging();
+					this._dec_long_va = value;
+					this.SendPropertyChanged("dec_long_va");
+					this.Ondec_long_vaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_street_addrs", DbType="NVarChar(150)")]
+		public string street_addrs
+		{
+			get
+			{
+				return this._street_addrs;
+			}
+			set
+			{
+				if ((this._street_addrs != value))
+				{
+					this.Onstreet_addrsChanging(value);
+					this.SendPropertyChanging();
+					this._street_addrs = value;
+					this.SendPropertyChanged("street_addrs");
+					this.Onstreet_addrsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_city_st_zip", DbType="NVarChar(150)")]
+		public string city_st_zip
+		{
+			get
+			{
+				return this._city_st_zip;
+			}
+			set
+			{
+				if ((this._city_st_zip != value))
+				{
+					this.Oncity_st_zipChanging(value);
+					this.SendPropertyChanging();
+					this._city_st_zip = value;
+					this.SendPropertyChanged("city_st_zip");
+					this.Oncity_st_zipChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ph_no", DbType="NVarChar(15)")]
+		public string ph_no
+		{
+			get
+			{
+				return this._ph_no;
+			}
+			set
+			{
+				if ((this._ph_no != value))
+				{
+					this.Onph_noChanging(value);
+					this.SendPropertyChanging();
+					this._ph_no = value;
+					this.SendPropertyChanged("ph_no");
+					this.Onph_noChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_data_chief_email", DbType="NVarChar(200)")]
+		public string data_chief_email
+		{
+			get
+			{
+				return this._data_chief_email;
+			}
+			set
+			{
+				if ((this._data_chief_email != value))
+				{
+					this.Ondata_chief_emailChanging(value);
+					this.SendPropertyChanging();
+					this._data_chief_email = value;
+					this.SendPropertyChanged("data_chief_email");
+					this.Ondata_chief_emailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_reviewer_email", DbType="NVarChar(200)")]
+		public string reviewer_email
+		{
+			get
+			{
+				return this._reviewer_email;
+			}
+			set
+			{
+				if ((this._reviewer_email != value))
+				{
+					this.Onreviewer_emailChanging(value);
+					this.SendPropertyChanging();
+					this._reviewer_email = value;
+					this.SendPropertyChanged("reviewer_email");
+					this.Onreviewer_emailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_start_new_rec", DbType="Bit")]
+		public System.Nullable<bool> start_new_rec
+		{
+			get
+			{
+				return this._start_new_rec;
+			}
+			set
+			{
+				if ((this._start_new_rec != value))
+				{
+					this.Onstart_new_recChanging(value);
+					this.SendPropertyChanging();
+					this._start_new_rec = value;
+					this.SendPropertyChanged("start_new_rec");
+					this.Onstart_new_recChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_use_mpntalt", DbType="Bit")]
+		public System.Nullable<bool> use_mpntalt
+		{
+			get
+			{
+				return this._use_mpntalt;
+			}
+			set
+			{
+				if ((this._use_mpntalt != value))
+				{
+					this.Onuse_mpntaltChanging(value);
+					this.SendPropertyChanging();
+					this._use_mpntalt = value;
+					this.SendPropertyChanged("use_mpntalt");
+					this.Onuse_mpntaltChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_id", DbType="Int")]
+		public System.Nullable<int> wsc_id
+		{
+			get
+			{
+				return this._wsc_id;
+			}
+			set
+			{
+				if ((this._wsc_id != value))
+				{
+					if (this._WSC.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onwsc_idChanging(value);
+					this.SendPropertyChanging();
+					this._wsc_id = value;
+					this.SendPropertyChanged("wsc_id");
+					this.Onwsc_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_Office_Site", Storage="_Sites", ThisKey="office_id", OtherKey="office_id")]
+		public EntitySet<Site> Sites
+		{
+			get
+			{
+				return this._Sites;
+			}
+			set
+			{
+				this._Sites.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_Office_tblEmployee", Storage="_Employees", ThisKey="office_id", OtherKey="office_id")]
+		public EntitySet<Employee> Employees
+		{
+			get
+			{
+				return this._Employees;
+			}
+			set
+			{
+				this._Employees.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_WSC_lut_Office", Storage="_WSC", ThisKey="wsc_id", OtherKey="wsc_id", IsForeignKey=true)]
+		public WSC WSC
+		{
+			get
+			{
+				return this._WSC.Entity;
+			}
+			set
+			{
+				WSC previousValue = this._WSC.Entity;
+				if (((previousValue != value) 
+							|| (this._WSC.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._WSC.Entity = null;
+						previousValue.Offices.Remove(this);
+					}
+					this._WSC.Entity = value;
+					if ((value != null))
+					{
+						value.Offices.Add(this);
+						this._wsc_id = value.wsc_id;
+					}
+					else
+					{
+						this._wsc_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("WSC");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Sites(Site entity)
+		{
+			this.SendPropertyChanging();
+			entity.Office = this;
+		}
+		
+		private void detach_Sites(Site entity)
+		{
+			this.SendPropertyChanging();
+			entity.Office = null;
+		}
+		
+		private void attach_Employees(Employee entity)
+		{
+			this.SendPropertyChanging();
+			entity.Office = this;
+		}
+		
+		private void detach_Employees(Employee entity)
+		{
+			this.SendPropertyChanging();
+			entity.Office = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.lut_WSC")]
+	public partial class WSC : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _wsc_id;
+		
+		private string _wsc_cd;
+		
+		private string _wsc_nm;
+		
+		private string _nwisops_email;
+		
+		private System.Nullable<int> _reqID;
+		
+		private string _region_cd;
+		
+		private string _AD_OU;
+		
+		private string _swr_url;
+		
+		private string _cost_center_cd;
+		
+		private EntitySet<Office> _Offices;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onwsc_idChanging(int value);
+    partial void Onwsc_idChanged();
+    partial void Onwsc_cdChanging(string value);
+    partial void Onwsc_cdChanged();
+    partial void Onwsc_nmChanging(string value);
+    partial void Onwsc_nmChanged();
+    partial void Onnwisops_emailChanging(string value);
+    partial void Onnwisops_emailChanged();
+    partial void OnreqIDChanging(System.Nullable<int> value);
+    partial void OnreqIDChanged();
+    partial void Onregion_cdChanging(string value);
+    partial void Onregion_cdChanged();
+    partial void OnAD_OUChanging(string value);
+    partial void OnAD_OUChanged();
+    partial void Onswr_urlChanging(string value);
+    partial void Onswr_urlChanged();
+    partial void Oncost_center_cdChanging(string value);
+    partial void Oncost_center_cdChanged();
+    #endregion
+		
+		public WSC()
+		{
+			this._Offices = new EntitySet<Office>(new Action<Office>(this.attach_Offices), new Action<Office>(this.detach_Offices));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int wsc_id
+		{
+			get
+			{
+				return this._wsc_id;
+			}
+			set
+			{
+				if ((this._wsc_id != value))
+				{
+					this.Onwsc_idChanging(value);
+					this.SendPropertyChanging();
+					this._wsc_id = value;
+					this.SendPropertyChanged("wsc_id");
+					this.Onwsc_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_cd", DbType="NVarChar(10)")]
+		public string wsc_cd
+		{
+			get
+			{
+				return this._wsc_cd;
+			}
+			set
+			{
+				if ((this._wsc_cd != value))
+				{
+					this.Onwsc_cdChanging(value);
+					this.SendPropertyChanging();
+					this._wsc_cd = value;
+					this.SendPropertyChanged("wsc_cd");
+					this.Onwsc_cdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_nm", DbType="NVarChar(150)")]
+		public string wsc_nm
+		{
+			get
+			{
+				return this._wsc_nm;
+			}
+			set
+			{
+				if ((this._wsc_nm != value))
+				{
+					this.Onwsc_nmChanging(value);
+					this.SendPropertyChanging();
+					this._wsc_nm = value;
+					this.SendPropertyChanged("wsc_nm");
+					this.Onwsc_nmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nwisops_email", DbType="NVarChar(100)")]
+		public string nwisops_email
+		{
+			get
+			{
+				return this._nwisops_email;
+			}
+			set
+			{
+				if ((this._nwisops_email != value))
+				{
+					this.Onnwisops_emailChanging(value);
+					this.SendPropertyChanging();
+					this._nwisops_email = value;
+					this.SendPropertyChanged("nwisops_email");
+					this.Onnwisops_emailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_reqID", DbType="Int")]
+		public System.Nullable<int> reqID
+		{
+			get
+			{
+				return this._reqID;
+			}
+			set
+			{
+				if ((this._reqID != value))
+				{
+					this.OnreqIDChanging(value);
+					this.SendPropertyChanging();
+					this._reqID = value;
+					this.SendPropertyChanged("reqID");
+					this.OnreqIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_region_cd", DbType="NVarChar(2)")]
+		public string region_cd
+		{
+			get
+			{
+				return this._region_cd;
+			}
+			set
+			{
+				if ((this._region_cd != value))
+				{
+					this.Onregion_cdChanging(value);
+					this.SendPropertyChanging();
+					this._region_cd = value;
+					this.SendPropertyChanged("region_cd");
+					this.Onregion_cdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AD_OU", DbType="NVarChar(MAX)")]
+		public string AD_OU
+		{
+			get
+			{
+				return this._AD_OU;
+			}
+			set
+			{
+				if ((this._AD_OU != value))
+				{
+					this.OnAD_OUChanging(value);
+					this.SendPropertyChanging();
+					this._AD_OU = value;
+					this.SendPropertyChanged("AD_OU");
+					this.OnAD_OUChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_swr_url", DbType="NVarChar(MAX)")]
+		public string swr_url
+		{
+			get
+			{
+				return this._swr_url;
+			}
+			set
+			{
+				if ((this._swr_url != value))
+				{
+					this.Onswr_urlChanging(value);
+					this.SendPropertyChanging();
+					this._swr_url = value;
+					this.SendPropertyChanged("swr_url");
+					this.Onswr_urlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cost_center_cd", DbType="NVarChar(10)")]
+		public string cost_center_cd
+		{
+			get
+			{
+				return this._cost_center_cd;
+			}
+			set
+			{
+				if ((this._cost_center_cd != value))
+				{
+					this.Oncost_center_cdChanging(value);
+					this.SendPropertyChanging();
+					this._cost_center_cd = value;
+					this.SendPropertyChanged("cost_center_cd");
+					this.Oncost_center_cdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_WSC_lut_Office", Storage="_Offices", ThisKey="wsc_id", OtherKey="wsc_id")]
+		public EntitySet<Office> Offices
+		{
+			get
+			{
+				return this._Offices;
+			}
+			set
+			{
+				this._Offices.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Offices(Office entity)
+		{
+			this.SendPropertyChanging();
+			entity.WSC = this;
+		}
+		
+		private void detach_Offices(Office entity)
+		{
+			this.SendPropertyChanging();
+			entity.WSC = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblEmployees")]
+	public partial class Employee : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _user_id;
+		
+		private string _first_nm;
+		
+		private string _last_nm;
+		
+		private System.Nullable<int> _office_id;
+		
+		private string _administrator_va;
+		
+		private System.Nullable<bool> _approver_va;
+		
+		private string _pass_access;
+		
+		private System.Nullable<bool> _active;
+		
+		private System.Nullable<bool> _show_reports;
+		
+		private EntityRef<Office> _Office;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onuser_idChanging(string value);
+    partial void Onuser_idChanged();
+    partial void Onfirst_nmChanging(string value);
+    partial void Onfirst_nmChanged();
+    partial void Onlast_nmChanging(string value);
+    partial void Onlast_nmChanged();
+    partial void Onoffice_idChanging(System.Nullable<int> value);
+    partial void Onoffice_idChanged();
+    partial void Onadministrator_vaChanging(string value);
+    partial void Onadministrator_vaChanged();
+    partial void Onapprover_vaChanging(System.Nullable<bool> value);
+    partial void Onapprover_vaChanged();
+    partial void Onpass_accessChanging(string value);
+    partial void Onpass_accessChanged();
+    partial void OnactiveChanging(System.Nullable<bool> value);
+    partial void OnactiveChanged();
+    partial void Onshow_reportsChanging(System.Nullable<bool> value);
+    partial void Onshow_reportsChanged();
+    #endregion
+		
+		public Employee()
+		{
+			this._Office = default(EntityRef<Office>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_user_id", DbType="NVarChar(15) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string user_id
+		{
+			get
+			{
+				return this._user_id;
+			}
+			set
+			{
+				if ((this._user_id != value))
+				{
+					this.Onuser_idChanging(value);
+					this.SendPropertyChanging();
+					this._user_id = value;
+					this.SendPropertyChanged("user_id");
+					this.Onuser_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_first_nm", DbType="NVarChar(75)")]
+		public string first_nm
+		{
+			get
+			{
+				return this._first_nm;
+			}
+			set
+			{
+				if ((this._first_nm != value))
+				{
+					this.Onfirst_nmChanging(value);
+					this.SendPropertyChanging();
+					this._first_nm = value;
+					this.SendPropertyChanged("first_nm");
+					this.Onfirst_nmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_last_nm", DbType="NVarChar(50)")]
+		public string last_nm
+		{
+			get
+			{
+				return this._last_nm;
+			}
+			set
+			{
+				if ((this._last_nm != value))
+				{
+					this.Onlast_nmChanging(value);
+					this.SendPropertyChanging();
+					this._last_nm = value;
+					this.SendPropertyChanged("last_nm");
+					this.Onlast_nmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_id", DbType="Int")]
+		public System.Nullable<int> office_id
+		{
+			get
+			{
+				return this._office_id;
+			}
+			set
+			{
+				if ((this._office_id != value))
+				{
+					if (this._Office.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onoffice_idChanging(value);
+					this.SendPropertyChanging();
+					this._office_id = value;
+					this.SendPropertyChanged("office_id");
+					this.Onoffice_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_administrator_va", DbType="NVarChar(50)")]
+		public string administrator_va
+		{
+			get
+			{
+				return this._administrator_va;
+			}
+			set
+			{
+				if ((this._administrator_va != value))
+				{
+					this.Onadministrator_vaChanging(value);
+					this.SendPropertyChanging();
+					this._administrator_va = value;
+					this.SendPropertyChanged("administrator_va");
+					this.Onadministrator_vaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approver_va", DbType="Bit")]
+		public System.Nullable<bool> approver_va
+		{
+			get
+			{
+				return this._approver_va;
+			}
+			set
+			{
+				if ((this._approver_va != value))
+				{
+					this.Onapprover_vaChanging(value);
+					this.SendPropertyChanging();
+					this._approver_va = value;
+					this.SendPropertyChanged("approver_va");
+					this.Onapprover_vaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pass_access", DbType="NVarChar(50)")]
+		public string pass_access
+		{
+			get
+			{
+				return this._pass_access;
+			}
+			set
+			{
+				if ((this._pass_access != value))
+				{
+					this.Onpass_accessChanging(value);
+					this.SendPropertyChanging();
+					this._pass_access = value;
+					this.SendPropertyChanged("pass_access");
+					this.Onpass_accessChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_active", DbType="Bit")]
+		public System.Nullable<bool> active
+		{
+			get
+			{
+				return this._active;
+			}
+			set
+			{
+				if ((this._active != value))
+				{
+					this.OnactiveChanging(value);
+					this.SendPropertyChanging();
+					this._active = value;
+					this.SendPropertyChanged("active");
+					this.OnactiveChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_show_reports", DbType="Bit")]
+		public System.Nullable<bool> show_reports
+		{
+			get
+			{
+				return this._show_reports;
+			}
+			set
+			{
+				if ((this._show_reports != value))
+				{
+					this.Onshow_reportsChanging(value);
+					this.SendPropertyChanging();
+					this._show_reports = value;
+					this.SendPropertyChanged("show_reports");
+					this.Onshow_reportsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_Office_tblEmployee", Storage="_Office", ThisKey="office_id", OtherKey="office_id", IsForeignKey=true)]
+		public Office Office
+		{
+			get
+			{
+				return this._Office.Entity;
+			}
+			set
+			{
+				Office previousValue = this._Office.Entity;
+				if (((previousValue != value) 
+							|| (this._Office.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Office.Entity = null;
+						previousValue.Employees.Remove(this);
+					}
+					this._Office.Entity = value;
+					if ((value != null))
+					{
+						value.Employees.Add(this);
+						this._office_id = value.office_id;
+					}
+					else
+					{
+						this._office_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Office");
 				}
 			}
 		}
