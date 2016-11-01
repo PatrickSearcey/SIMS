@@ -13,13 +13,31 @@ namespace SIMS2017 {
     public partial class SIMSWSCHome {
         
         /// <summary>
-        /// RadPageLayout1 control.
+        /// ram control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadPageLayout RadPageLayout1;
+        protected global::Telerik.Web.UI.RadAjaxManager ram;
+        
+        /// <summary>
+        /// ralp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadAjaxLoadingPanel ralp;
+        
+        /// <summary>
+        /// rplTop control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPageLayout rplTop;
         
         /// <summary>
         /// ltlWSCName control.
@@ -31,39 +49,84 @@ namespace SIMS2017 {
         protected global::System.Web.UI.WebControls.Literal ltlWSCName;
         
         /// <summary>
-        /// Content1 control.
+        /// osHome control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadPageLayout Content1;
+        protected global::SIMS2017.Control.OfficeSelector osHome;
         
         /// <summary>
-        /// RadButton1 control.
+        /// rplContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton RadButton1;
+        protected global::Telerik.Web.UI.RadPageLayout rplContent;
         
         /// <summary>
-        /// RadButton2 control.
+        /// ltlOfficeName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton RadButton2;
+        protected global::System.Web.UI.WebControls.Literal ltlOfficeName;
         
         /// <summary>
-        /// RadButton3 control.
+        /// pnlFieldTrip control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton RadButton3;
+        protected global::System.Web.UI.WebControls.Panel pnlFieldTrip;
+        
+        /// <summary>
+        /// ltlFieldTrip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlFieldTrip;
+        
+        /// <summary>
+        /// hlMapTrip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlMapTrip;
+        
+        /// <summary>
+        /// hlRealtimeGraphs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlRealtimeGraphs;
+        
+        /// <summary>
+        /// lbFAQ control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lbFAQ;
+        
+        /// <summary>
+        /// rgSites control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid rgSites;
     }
 }

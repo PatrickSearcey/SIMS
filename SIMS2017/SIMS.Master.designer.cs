@@ -238,6 +238,51 @@ namespace SIMS2017 {
         protected global::System.Web.UI.WebControls.HyperLink hlADRStatus;
         
         /// <summary>
+        /// hlMapFieldTrips control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlMapFieldTrips;
+        
+        /// <summary>
+        /// hlKMLWSC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlKMLWSC;
+        
+        /// <summary>
+        /// hlKMLOffice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlKMLOffice;
+        
+        /// <summary>
+        /// hlKMLInstructions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlKMLInstructions;
+        
+        /// <summary>
+        /// hlEvalMaps control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlEvalMaps;
+        
+        /// <summary>
         /// cph1 control.
         /// </summary>
         /// <remarks>

@@ -126,6 +126,7 @@
     <Content Include="App_Data\RadCaptcha\X.wav" />
     <Content Include="App_Data\RadCaptcha\Y.wav" />
     <Content Include="App_Data\RadCaptcha\Z.wav" />
+    <Content Include="Control\OfficeSelector.ascx" />
     <Content Include="images\HomepageTitle.png" />
     <Content Include="images\RMSlogo.png" />
     <Content Include="images\RMSTitle.png" />
@@ -152,6 +153,13 @@
     </Compile>
     <Compile Include="Admin\Tasks.aspx.designer.cs">
       <DependentUpon>Tasks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Control\OfficeSelector.ascx.cs">
+      <DependentUpon>OfficeSelector.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Control\OfficeSelector.ascx.designer.cs">
+      <DependentUpon>OfficeSelector.ascx</DependentUpon>
     </Compile>
     <Compile Include="RMSWSCHome.aspx.cs">
       <DependentUpon>RMSWSCHome.aspx</DependentUpon>

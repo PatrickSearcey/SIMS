@@ -1,19 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="simsdb" Class="SIMSDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=IGSKIACWVMGS012;Initial Catalog=simsdb;Integrated Security=True" SettingsObjectName="Data.Properties.Settings" SettingsPropertyName="simsdbConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.SIMS_Site_Master" Member="Sites">
-    <Type Name="Site">
-      <Column Name="site_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="nwisweb_site_id" Type="System.Decimal" DbType="Decimal(10,0)" CanBeNull="true" />
-      <Column Name="agency_cd" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
-      <Column Name="site_no" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
-      <Column Name="nwis_host" Type="System.String" DbType="NVarChar(12) NOT NULL" CanBeNull="false" />
-      <Column Name="db_no" Type="System.String" DbType="NVarChar(2) NOT NULL" CanBeNull="false" />
-      <Column Name="station_full_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Column Name="office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="alt_basin_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Association Name="lut_Office_Site" Member="Office" ThisKey="office_id" OtherKey="office_id" Type="Office" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.lut_Office" Member="Offices">
     <Type Name="Office">
       <Column Name="office_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -31,9 +17,9 @@
       <Column Name="start_new_rec" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="use_mpntalt" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="lut_Office_Site" Member="Sites" ThisKey="office_id" OtherKey="office_id" Type="Site" />
-      <Association Name="lut_Office_tblEmployee" Member="Employees" ThisKey="office_id" OtherKey="office_id" Type="Employee" />
-      <Association Name="lut_WSC_lut_Office" Member="WSC" ThisKey="wsc_id" OtherKey="wsc_id" Type="WSC" IsForeignKey="true" />
+      <Association Name="Office_Employee" Member="Employees" ThisKey="office_id" OtherKey="office_id" Type="Employee" />
+      <Association Name="Office_SIMS_Site_Master" Member="Sites" ThisKey="office_id" OtherKey="office_id" Type="Site" />
+      <Association Name="WSC_Office" Member="WSC" ThisKey="wsc_id" OtherKey="wsc_id" Type="WSC" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.lut_WSC" Member="WSCs">
@@ -47,7 +33,7 @@
       <Column Name="AD_OU" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="swr_url" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="cost_center_cd" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Association Name="lut_WSC_lut_Office" Member="Offices" ThisKey="wsc_id" OtherKey="wsc_id" Type="Office" />
+      <Association Name="WSC_Office" Member="Offices" ThisKey="wsc_id" OtherKey="wsc_id" Type="Office" />
     </Type>
   </Table>
   <Table Name="dbo.tblEmployees" Member="Employees">
@@ -61,7 +47,60 @@
       <Column Name="pass_access" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="show_reports" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="lut_Office_tblEmployee" Member="Office" ThisKey="office_id" OtherKey="office_id" Type="Office" IsForeignKey="true" />
+      <Association Name="Office_Employee" Member="Office" ThisKey="office_id" OtherKey="office_id" Type="Office" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Trip_Lut_Trip" Member="Trips">
+    <Type Name="Trip">
+      <Column Name="trip_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="trip_nu" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="trip_nm" Type="System.String" DbType="NVarChar(210)" CanBeNull="true" />
+      <Column Name="user_id" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="trip_desc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="gen_trip_desc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Trip_Lut_Trip_Trip_Site_Master" Member="TripSites" ThisKey="trip_id" OtherKey="trip_id" Type="TripSite" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Trip_Site_Master" Member="TripSites">
+    <Type Name="TripSite">
+      <Column Name="trip_site_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="trip_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="station_type_cd" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="index_map_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="remarks" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="Trip_Lut_Trip_Trip_Site_Master" Member="Trip" ThisKey="trip_id" OtherKey="trip_id" Type="Trip" IsForeignKey="true" />
+      <Association Name="SIMS_Site_Master_Trip_Site_Master" Member="Site" ThisKey="site_id" OtherKey="site_id" Type="Site" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SIMS_Site_Master" Member="Sites">
+    <Type Name="Site">
+      <Column Name="site_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nwisweb_site_id" Type="System.Decimal" DbType="Decimal(10,0)" CanBeNull="true" />
+      <Column Name="agency_cd" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="site_no" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="nwis_host" Type="System.String" DbType="NVarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="db_no" Type="System.String" DbType="NVarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="station_full_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="alt_basin_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Association Name="SIMS_Site_Master_Trip_Site_Master" Member="TripSites" ThisKey="site_id" OtherKey="site_id" Type="TripSite" />
+      <Association Name="Office_SIMS_Site_Master" Member="Office" ThisKey="office_id" OtherKey="office_id" Type="Office" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vSiteMasterList" Member="vSiteMasterLists">
+    <Type Name="vSiteMasterList">
+      <Column Name="site_no" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="agency_cd" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="station_nm" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="site_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tel_fg" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Column Name="agency_use_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sims_site_tp" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="trip_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

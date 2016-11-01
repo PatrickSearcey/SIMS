@@ -1,10 +1,12 @@
 ﻿using Core;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Telerik.Web.UI;
 
 namespace SIMS2017
 {
@@ -13,13 +15,270 @@ namespace SIMS2017
         #region Local Variables
         private Data.SIMSDataContext db = new Data.SIMSDataContext();
         public WindowsAuthenticationUser user = new WindowsAuthenticationUser();
+        private int WSCID
+        {
+            get
+            {
+                if (Session["WSCID"] == null) return 0; else return (int)Session["WSCID"];
+            }
+            set
+            {
+                Session["WSCID"] = value;
+            }
+        }
+        private int OfficeID
+        {
+            get
+            {
+                if (Session["OfficeID"] == null) return 0; else return (int)Session["OfficeID"];
+            }
+            set
+            {
+                Session["OfficeID"] = value;
+            }
+        }
+        private int TripID
+        {
+            get
+            {
+                if (Session["TripID"] == null) return 0; else return (int)Session["TripID"];
+            }
+            set
+            {
+                Session["TripID"] = value;
+            }
+        }
         #endregion 
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            var wsc = db.WSCs.FirstOrDefault(p => p.wsc_id == user.WSCID);
-            ltlWSCName.Text = wsc.wsc_nm + " Water Science Center";
-            
+            if (WSCID == 0) WSCID = user.WSCID;
+            if (OfficeID == 0) OfficeID = user.OfficeID;
+            osHome.SelectorChanged += new EventHandler(osHome_SelectorChanged);
+
+            if (!Page.IsPostBack)
+            {
+                var wsc = db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID);
+                ltlWSCName.Text = wsc.wsc_nm + " Water Science Center";
+
+                lbFAQ.NavigateUrl = String.Format("{0}SiteListsFAQ.html", Config.SIMSURL);
+
+                ltlOfficeName.Text = "USGS Master Station List for " + db.Offices.Where(p => p.office_id == OfficeID).Select(p => p.office_nm).First();
+
+                pnlFieldTrip.Visible = false;
+            }
         }
+
+        #region Methods
+        protected void SetupFieldTripPanel()
+        {
+            var trip = db.Trips.Where(p => p.trip_id == TripID);
+
+            ltlFieldTrip.Text = "Field Trip: " + trip.FirstOrDefault().trip_nm + " - " + db.Employees.Where(p => p.user_id == trip.FirstOrDefault().user_id).FirstOrDefault().first_nm + " " + db.Employees.Where(p => p.user_id == trip.FirstOrDefault().user_id).FirstOrDefault().last_nm;
+            hlMapTrip.NavigateUrl = String.Format("{0}fieldtripmap.aspx?office_id={1}&trip_id={2}&wsc_id={3}", Config.SIMSURL, OfficeID, TripID, WSCID);
+
+            string site_no_list = "";
+            var trip_sites = db.TripSites.Where(p => p.trip_id == TripID).Select(p => p.Site.site_no).ToList();
+            foreach (string site in trip_sites)
+            {
+                site_no_list += site.Trim();
+            }
+            hlRealtimeGraphs.NavigateUrl = "http://waterdata.usgs.gov/nwis/uv?multiple_site_no=" + site_no_list + "&sort_key=site_no&group_key=NONE&sitefile_output_format=html_table&column_name=agency_cd&column_name=site_no&column_name=station_nm&range_selection=days&period=7&format=gif_default&date_format=YYYY-MM-DD&rdb_compression=file&list_of_search_criteria=multiple_site_no%2Crealtime_parameter_selection";
+        }
+        #endregion
+
+        #region Misc Events
+        private void osHome_SelectorChanged(object sender, EventArgs e)
+        {
+            if (TripID == 0)
+            {
+                ltlOfficeName.Text = "USGS Master Station List for " + db.Offices.Where(p => p.office_id == OfficeID).Select(p => p.office_nm).First();
+                pnlFieldTrip.Visible = false;
+            }
+            else
+            {
+                ltlOfficeName.Text = "USGS Field Trip Station List";
+                pnlFieldTrip.Visible = true;
+                SetupFieldTripPanel();
+            }
+            rgSites.Rebind();
+        }
+        #endregion
+
+        #region Internal Classes
+        internal class SiteDataItem
+        {
+            private string _site_id;
+            private string _site_no;
+            private string _station_nm;
+            private string _SIMSURL;
+            private string _office_id;
+            private string _wsc_id;
+            private string _agency_cd;
+            private string _SiteType;
+            private string _Active;
+            private string _SIMSClassicURL;
+            private string _tel_flag;
+            private int? _trip_id;
+
+            public string site_id
+            {
+                get { return _site_id; }
+                set { _site_id = value; }
+            }
+            public string site_no
+            {
+                get { return _site_no; }
+                set { _site_no = value; }
+            }
+            public string station_nm
+            {
+                get { return _station_nm; }
+                set { _station_nm = value; }
+            }
+            public string SIMSURL
+            {
+                get { return _SIMSURL; }
+                set { _SIMSURL = value; }
+            }
+            public string office_id
+            {
+                get { return _office_id; }
+                set { _office_id = value; }
+            }
+            public string wsc_id
+            {
+                get { return _wsc_id; }
+                set { _wsc_id = value; }
+            }
+            public string agency_cd
+            {
+                get { return _agency_cd; }
+                set { _agency_cd = value; }
+            }
+            public string SiteType
+            {
+                get { return _SiteType; }
+                set { _SiteType = value; }
+            }
+            public string Active
+            {
+                get { return _Active; }
+                set { _Active = value; }
+            }
+            public string SIMSClassicURL
+            {
+                get { return _SIMSClassicURL; }
+                set { _SIMSClassicURL = value; }
+            }
+            public string TelFlag
+            {
+                get { return _tel_flag; }
+                set { _tel_flag = value; }
+            }
+            public int? trip_id
+            {
+                get { return _trip_id; }
+                set { _trip_id = value; }
+            }
+            public SiteDataItem()
+            {
+                _site_id = site_id;
+                _site_no = site_no;
+                _station_nm = station_nm;
+                _SIMSURL = SIMSURL;
+                _office_id = office_id;
+                _wsc_id = wsc_id;
+                _agency_cd = agency_cd;
+                _SiteType = SiteType;
+                _Active = Active;
+                _SIMSClassicURL = SIMSClassicURL;
+                _tel_flag = TelFlag;
+                _trip_id = trip_id;
+            }
+        }
+        #endregion
+
+        #region Data
+        private IEnumerable<SiteDataItem> GetData()
+        {
+            var ret = db.vSiteMasterLists.Where(p => p.office_id == OfficeID).Select(p => new SiteDataItem()
+            {
+                site_id = p.site_id.ToString(),
+                site_no = p.site_no,
+                station_nm = p.station_nm,
+                SIMSURL = Config.SIMSURL,
+                office_id = p.office_id.ToString(),
+                wsc_id = p.wsc_id.ToString(),
+                agency_cd = p.agency_cd,
+                SiteType = p.sims_site_tp,
+                Active = GetActiveData(p.agency_use_cd.ToString()),
+                SIMSClassicURL = Config.SIMSClassicURL,
+                TelFlag = p.tel_fg,
+                trip_id = p.trip_id
+            }).OrderBy(p => p.site_no).ToList();
+
+            return ret;
+        }
+
+        private string GetActiveData(string agency_use_cd)
+        {
+            string ret;
+            switch (agency_use_cd)
+            {
+                case "L":
+                case "A":
+                case "M":
+                    ret = "Active";
+                    break;
+                case "I":
+                case "R":
+                case "D":
+                case "O":
+                    ret = "Inactive";
+                    break;
+                default:
+                    ret = "unknown";
+                    break;
+            }
+            return ret;
+        }
+        #endregion
+
+        #region Sites Grid
+        protected void rgSites_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
+        {
+            if (TripID == 0) rgSites.DataSource = GetData(); else rgSites.DataSource = GetData().Where(p => p.trip_id == TripID);
+        }
+
+        protected void rgSites_ItemDataBound(object sender, GridItemEventArgs e)
+        {
+            if (e.Item is GridDataItem)
+            {
+                GridDataItem dataItem = e.Item as GridDataItem;
+                if (dataItem["TelFlag"].Text != "NNN")
+                    dataItem.BackColor = Color.AliceBlue;
+            }
+        }
+
+        protected void rgSites_PreRender(object sender, EventArgs e)
+        {
+            GridFilterMenu menu = rgSites.FilterMenu;
+            int i = 0;
+            while (i < menu.Items.Count)
+            {
+                if (menu.Items[i].Text == "NoFilter" | menu.Items[i].Text == "Contains" | menu.Items[i].Text == "EqualTo" | menu.Items[i].Text == "DoesNotContain")
+                {
+                    i = i + 1;
+                }
+                else
+                {
+                    menu.Items.RemoveAt(i);
+                }
+            }
+        }
+        #endregion
+
+
     }
 }

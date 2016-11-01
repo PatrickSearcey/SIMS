@@ -9,6 +9,12 @@ namespace Core
     public class Config
     {
 #if DEBUG
+        public static String SIMSServerURL { get { return "http://simsdev.cr.usgs.gov/" ; } }
+#else
+        public static String SIMSServerURL { get { return "http://simswater.usgs.gov/" ; } }
+#endif
+
+#if DEBUG
         public static String SIMSClassicURL { get { return "http://simsdev.cr.usgs.gov/SIMSClassic/" ; } }
 #else
         public static String SIMSClassicURL { get { return "http://sims.water.usgs.gov/SIMSClassic/" ; } }
