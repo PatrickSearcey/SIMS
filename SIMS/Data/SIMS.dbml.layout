@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 22.875, 11.5" name="SIMS">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 26.75, 11.5" name="SIMS">
   <DataContextMoniker Name="/SIMSDataContext" />
   <nestedChildShapes>
     <classShape Id="fe78cdc6-6138-440a-b02e-69e1083415a3" absoluteBounds="15.125, 3.375, 2, 3.6939111328124996">
@@ -79,5 +79,25 @@
         <elementListCompartment Id="8c9baaed-3b99-43c9-83a3-d5e27abeb923" absoluteBounds="12.015, 3.21, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="8cf585e9-9fe9-480a-81b6-08fbf2764b9b" absoluteBounds="24.5, 6.375, 2, 1.3862939453125">
+      <DataClassMoniker Name="/SIMSDataContext/Exception" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6a477574-7781-440f-a965-22036af83ce8" absoluteBounds="24.515, 6.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(21.625 : 7.06814697265625); (22.0729166666667 : 7.06814697265625 : JumpStart); (22.2395833333333 : 7.06814697265625 : JumpEnd); (24.5 : 7.06814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIMSDataContext/WSC/WSC_lut_Exception" />
+      <nodes>
+        <classShapeMoniker Id="fc968d82-c264-49b6-8676-480db9bb550f" />
+        <classShapeMoniker Id="8cf585e9-9fe9-480a-81b6-08fbf2764b9b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(14.375 : 8.45755126953125); (22.0729166666667 : 8.45755126953125 : JumpStart); (22.2395833333333 : 8.45755126953125 : JumpEnd); (25.5 : 8.45755126953125); (25.5 : 7.7612939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIMSDataContext/Employee/Employee_lut_Exception" />
+      <nodes>
+        <classShapeMoniker Id="0003c775-63fe-49b5-91a7-d36edab3dca7" />
+        <classShapeMoniker Id="8cf585e9-9fe9-480a-81b6-08fbf2764b9b" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

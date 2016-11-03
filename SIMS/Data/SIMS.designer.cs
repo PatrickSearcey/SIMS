@@ -48,6 +48,9 @@ namespace Data
     partial void InsertSite(Site instance);
     partial void UpdateSite(Site instance);
     partial void DeleteSite(Site instance);
+    partial void InsertException(Exception instance);
+    partial void UpdateException(Exception instance);
+    partial void DeleteException(Exception instance);
     #endregion
 		
 		public SIMSDataContext() : 
@@ -133,6 +136,14 @@ namespace Data
 			get
 			{
 				return this.GetTable<vSiteMasterList>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Exception> Exceptions
+		{
+			get
+			{
+				return this.GetTable<Exception>();
 			}
 		}
 	}
@@ -658,6 +669,8 @@ namespace Data
 		
 		private EntitySet<Office> _Offices;
 		
+		private EntitySet<Exception> _Exceptions;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -685,6 +698,7 @@ namespace Data
 		public WSC()
 		{
 			this._Offices = new EntitySet<Office>(new Action<Office>(this.attach_Offices), new Action<Office>(this.detach_Offices));
+			this._Exceptions = new EntitySet<Exception>(new Action<Exception>(this.attach_Exceptions), new Action<Exception>(this.detach_Exceptions));
 			OnCreated();
 		}
 		
@@ -881,6 +895,19 @@ namespace Data
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="WSC_lut_Exception", Storage="_Exceptions", ThisKey="wsc_id", OtherKey="exc_wsc_id")]
+		public EntitySet<Exception> Exceptions
+		{
+			get
+			{
+				return this._Exceptions;
+			}
+			set
+			{
+				this._Exceptions.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -912,6 +939,18 @@ namespace Data
 			this.SendPropertyChanging();
 			entity.WSC = null;
 		}
+		
+		private void attach_Exceptions(Exception entity)
+		{
+			this.SendPropertyChanging();
+			entity.WSC = this;
+		}
+		
+		private void detach_Exceptions(Exception entity)
+		{
+			this.SendPropertyChanging();
+			entity.WSC = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblEmployees")]
@@ -937,6 +976,8 @@ namespace Data
 		private System.Nullable<bool> _active;
 		
 		private System.Nullable<bool> _show_reports;
+		
+		private EntitySet<Exception> _Exceptions;
 		
 		private EntityRef<Office> _Office;
 		
@@ -966,6 +1007,7 @@ namespace Data
 		
 		public Employee()
 		{
+			this._Exceptions = new EntitySet<Exception>(new Action<Exception>(this.attach_Exceptions), new Action<Exception>(this.detach_Exceptions));
 			this._Office = default(EntityRef<Office>);
 			OnCreated();
 		}
@@ -1154,6 +1196,19 @@ namespace Data
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Employee_lut_Exception", Storage="_Exceptions", ThisKey="user_id", OtherKey="user_id")]
+		public EntitySet<Exception> Exceptions
+		{
+			get
+			{
+				return this._Exceptions;
+			}
+			set
+			{
+				this._Exceptions.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Office_Employee", Storage="_Office", ThisKey="office_id", OtherKey="office_id", IsForeignKey=true)]
 		public Office Office
 		{
@@ -1206,6 +1261,18 @@ namespace Data
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Exceptions(Exception entity)
+		{
+			this.SendPropertyChanging();
+			entity.Employee = this;
+		}
+		
+		private void detach_Exceptions(Exception entity)
+		{
+			this.SendPropertyChanging();
+			entity.Employee = null;
 		}
 	}
 	
@@ -2215,6 +2282,198 @@ namespace Data
 				{
 					this._trip_id = value;
 				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.lut_Exception")]
+	public partial class Exception : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _user_id;
+		
+		private string _notes;
+		
+		private int _exc_wsc_id;
+		
+		private EntityRef<WSC> _WSC;
+		
+		private EntityRef<Employee> _Employee;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onuser_idChanging(string value);
+    partial void Onuser_idChanged();
+    partial void OnnotesChanging(string value);
+    partial void OnnotesChanged();
+    partial void Onexc_wsc_idChanging(int value);
+    partial void Onexc_wsc_idChanged();
+    #endregion
+		
+		public Exception()
+		{
+			this._WSC = default(EntityRef<WSC>);
+			this._Employee = default(EntityRef<Employee>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_user_id", DbType="NVarChar(15) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string user_id
+		{
+			get
+			{
+				return this._user_id;
+			}
+			set
+			{
+				if ((this._user_id != value))
+				{
+					if (this._Employee.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onuser_idChanging(value);
+					this.SendPropertyChanging();
+					this._user_id = value;
+					this.SendPropertyChanged("user_id");
+					this.Onuser_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_notes", DbType="NVarChar(250)")]
+		public string notes
+		{
+			get
+			{
+				return this._notes;
+			}
+			set
+			{
+				if ((this._notes != value))
+				{
+					this.OnnotesChanging(value);
+					this.SendPropertyChanging();
+					this._notes = value;
+					this.SendPropertyChanged("notes");
+					this.OnnotesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_exc_wsc_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int exc_wsc_id
+		{
+			get
+			{
+				return this._exc_wsc_id;
+			}
+			set
+			{
+				if ((this._exc_wsc_id != value))
+				{
+					if (this._WSC.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onexc_wsc_idChanging(value);
+					this.SendPropertyChanging();
+					this._exc_wsc_id = value;
+					this.SendPropertyChanged("exc_wsc_id");
+					this.Onexc_wsc_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="WSC_lut_Exception", Storage="_WSC", ThisKey="exc_wsc_id", OtherKey="wsc_id", IsForeignKey=true)]
+		public WSC WSC
+		{
+			get
+			{
+				return this._WSC.Entity;
+			}
+			set
+			{
+				WSC previousValue = this._WSC.Entity;
+				if (((previousValue != value) 
+							|| (this._WSC.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._WSC.Entity = null;
+						previousValue.Exceptions.Remove(this);
+					}
+					this._WSC.Entity = value;
+					if ((value != null))
+					{
+						value.Exceptions.Add(this);
+						this._exc_wsc_id = value.wsc_id;
+					}
+					else
+					{
+						this._exc_wsc_id = default(int);
+					}
+					this.SendPropertyChanged("WSC");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Employee_lut_Exception", Storage="_Employee", ThisKey="user_id", OtherKey="user_id", IsForeignKey=true)]
+		public Employee Employee
+		{
+			get
+			{
+				return this._Employee.Entity;
+			}
+			set
+			{
+				Employee previousValue = this._Employee.Entity;
+				if (((previousValue != value) 
+							|| (this._Employee.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Employee.Entity = null;
+						previousValue.Exceptions.Remove(this);
+					}
+					this._Employee.Entity = value;
+					if ((value != null))
+					{
+						value.Exceptions.Add(this);
+						this._user_id = value.user_id;
+					}
+					else
+					{
+						this._user_id = default(string);
+					}
+					this.SendPropertyChanged("Employee");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}

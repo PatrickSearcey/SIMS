@@ -40,7 +40,44 @@
     margin: 0 40px;
 }
 
+#wrapper .subheader {
+    text-align:right;
+    font-size: .8em;
+    font-style:italic;
+    padding-bottom:20px;
+}
+
 #wrapper .footer {
-    padding: 20px 15px;
+    width:100%;
+    padding: 10px 15px;
     line-height: 30px;
+}
+
+.selector {
+    width: 90%;
+    margin: auto;
+    padding-left:20px;
+    padding-right:20px;
+}
+
+.headers {
+    width: 70% !important;
+}
+
+.linkbar {
+    width: 90%;
+    margin: auto;
+    font-size:10pt;
+    padding-top:10px;
+    border-bottom:solid 1px #808080;
+    height:40px;
+}
+
+.mainContent {
+    max-width:90% !important;
+}
+
+h4 {
+    border-bottom: 1px solid #d4d4d5;
+    color: #314d93;
 }

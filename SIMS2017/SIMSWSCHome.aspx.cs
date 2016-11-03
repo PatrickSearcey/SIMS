@@ -48,12 +48,14 @@ namespace SIMS2017
                 Session["TripID"] = value;
             }
         }
+        private Boolean ShowActiveSites = true;
         #endregion 
 
+        #region Page Events
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (WSCID == 0) WSCID = user.WSCID;
             if (OfficeID == 0) OfficeID = user.OfficeID;
+            if (WSCID == 0) WSCID = (int)db.Offices.Where(p => p.office_id == OfficeID).FirstOrDefault().wsc_id;
             osHome.SelectorChanged += new EventHandler(osHome_SelectorChanged);
 
             if (!Page.IsPostBack)
@@ -66,8 +68,18 @@ namespace SIMS2017
                 ltlOfficeName.Text = "USGS Master Station List for " + db.Offices.Where(p => p.office_id == OfficeID).Select(p => p.office_nm).First();
 
                 pnlFieldTrip.Visible = false;
+
+                ShowActiveSites = true;
+                lbActiveToggle.Text = "Click to view inactive sites";
+                lbActiveToggle.CommandArgument = "inactive";
             }
         }
+
+        protected void Page_LoadComplete(object sender, EventArgs e)
+        {
+            ltlSiteCount.Text = rgSites.Items.Count.ToString() + " sites returned";
+        }
+        #endregion
 
         #region Methods
         protected void SetupFieldTripPanel()
@@ -81,7 +93,7 @@ namespace SIMS2017
             var trip_sites = db.TripSites.Where(p => p.trip_id == TripID).Select(p => p.Site.site_no).ToList();
             foreach (string site in trip_sites)
             {
-                site_no_list += site.Trim();
+                site_no_list += site.Trim() + ",";
             }
             hlRealtimeGraphs.NavigateUrl = "http://waterdata.usgs.gov/nwis/uv?multiple_site_no=" + site_no_list + "&sort_key=site_no&group_key=NONE&sitefile_output_format=html_table&column_name=agency_cd&column_name=site_no&column_name=station_nm&range_selection=days&period=7&format=gif_default&date_format=YYYY-MM-DD&rdb_compression=file&list_of_search_criteria=multiple_site_no%2Crealtime_parameter_selection";
         }
@@ -90,16 +102,41 @@ namespace SIMS2017
         #region Misc Events
         private void osHome_SelectorChanged(object sender, EventArgs e)
         {
+            //If the office was the only thing changed, reset to the office site list
             if (TripID == 0)
             {
                 ltlOfficeName.Text = "USGS Master Station List for " + db.Offices.Where(p => p.office_id == OfficeID).Select(p => p.office_nm).First();
                 pnlFieldTrip.Visible = false;
             }
-            else
+            else //Switch to the field trip site list
             {
                 ltlOfficeName.Text = "USGS Field Trip Station List";
                 pnlFieldTrip.Visible = true;
                 SetupFieldTripPanel();
+            }
+
+            //Reset the active site toggle to show active sites
+            ShowActiveSites = true;
+            lbActiveToggle.Text = "Click to view inactive sites";
+            lbActiveToggle.CommandArgument = "inactive";
+
+            rgSites.Rebind();
+        }
+        
+        //Event that fires when a user has selected to see inactive or active sites
+        protected void lbActiveToggle_Command(object sender, CommandEventArgs e)
+        {
+            if (e.CommandArgument.ToString() == "inactive")
+            {
+                ShowActiveSites = false;
+                lbActiveToggle.Text = "Click to view active sites";
+                lbActiveToggle.CommandArgument = "active";
+            }
+            else
+            {
+                ShowActiveSites = true;
+                lbActiveToggle.Text = "Click to view inactive sites";
+                lbActiveToggle.CommandArgument = "inactive";
             }
             rgSites.Rebind();
         }
@@ -111,13 +148,12 @@ namespace SIMS2017
             private string _site_id;
             private string _site_no;
             private string _station_nm;
-            private string _SIMSURL;
+            private string _SIMS2017URL;
             private string _office_id;
             private string _wsc_id;
             private string _agency_cd;
             private string _SiteType;
             private string _Active;
-            private string _SIMSClassicURL;
             private string _tel_flag;
             private int? _trip_id;
 
@@ -136,10 +172,10 @@ namespace SIMS2017
                 get { return _station_nm; }
                 set { _station_nm = value; }
             }
-            public string SIMSURL
+            public string SIMS2017URL
             {
-                get { return _SIMSURL; }
-                set { _SIMSURL = value; }
+                get { return _SIMS2017URL; }
+                set { _SIMS2017URL = value; }
             }
             public string office_id
             {
@@ -166,11 +202,6 @@ namespace SIMS2017
                 get { return _Active; }
                 set { _Active = value; }
             }
-            public string SIMSClassicURL
-            {
-                get { return _SIMSClassicURL; }
-                set { _SIMSClassicURL = value; }
-            }
             public string TelFlag
             {
                 get { return _tel_flag; }
@@ -186,13 +217,12 @@ namespace SIMS2017
                 _site_id = site_id;
                 _site_no = site_no;
                 _station_nm = station_nm;
-                _SIMSURL = SIMSURL;
+                _SIMS2017URL = SIMS2017URL;
                 _office_id = office_id;
                 _wsc_id = wsc_id;
                 _agency_cd = agency_cd;
                 _SiteType = SiteType;
                 _Active = Active;
-                _SIMSClassicURL = SIMSClassicURL;
                 _tel_flag = TelFlag;
                 _trip_id = trip_id;
             }
@@ -207,13 +237,12 @@ namespace SIMS2017
                 site_id = p.site_id.ToString(),
                 site_no = p.site_no,
                 station_nm = p.station_nm,
-                SIMSURL = Config.SIMSURL,
+                SIMS2017URL = Config.SIMS2017URL,
                 office_id = p.office_id.ToString(),
                 wsc_id = p.wsc_id.ToString(),
                 agency_cd = p.agency_cd,
                 SiteType = p.sims_site_tp,
                 Active = GetActiveData(p.agency_use_cd.ToString()),
-                SIMSClassicURL = Config.SIMSClassicURL,
                 TelFlag = p.tel_fg,
                 trip_id = p.trip_id
             }).OrderBy(p => p.site_no).ToList();
@@ -248,7 +277,14 @@ namespace SIMS2017
         #region Sites Grid
         protected void rgSites_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
         {
-            if (TripID == 0) rgSites.DataSource = GetData(); else rgSites.DataSource = GetData().Where(p => p.trip_id == TripID);
+            if (TripID == 0)
+            {
+                if (ShowActiveSites) rgSites.DataSource = GetData().Where(p => p.Active == "Active"); else rgSites.DataSource = GetData().Where(p => p.Active == "Inactive");
+            }
+            else
+            {
+                if (ShowActiveSites) rgSites.DataSource = GetData().Where(p => p.trip_id == TripID && p.Active == "Active"); else rgSites.DataSource = GetData().Where(p => p.trip_id == TripID && p.Active == "Inactive");
+            }
         }
 
         protected void rgSites_ItemDataBound(object sender, GridItemEventArgs e)

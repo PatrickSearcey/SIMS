@@ -7,19 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SIMS2017 {
+namespace SIMS2017.Modal {
     
     
-    public partial class SIMSSingleMenu {
-        
-        /// <summary>
-        /// head control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+    public partial class FieldTripEdit {
         
         /// <summary>
         /// form1 control.
@@ -31,39 +22,57 @@ namespace SIMS2017 {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// rmTop control.
+        /// rsm2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadMenu rmTop;
+        protected global::Telerik.Web.UI.RadScriptManager rsm2;
         
         /// <summary>
-        /// ltlUserID control.
+        /// rfd2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlUserID;
+        protected global::Telerik.Web.UI.RadFormDecorator rfd2;
         
         /// <summary>
-        /// cph1 control.
+        /// rssm2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder cph1;
+        protected global::Telerik.Web.UI.RadStyleSheetManager rssm2;
         
         /// <summary>
-        /// cph2 control.
+        /// rlbFieldTripsStart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder cph2;
+        protected global::Telerik.Web.UI.RadListBox rlbFieldTripsStart;
+        
+        /// <summary>
+        /// rlbFieldTripsEnd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadListBox rlbFieldTripsEnd;
+        
+        /// <summary>
+        /// rbClose control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton rbClose;
     }
 }

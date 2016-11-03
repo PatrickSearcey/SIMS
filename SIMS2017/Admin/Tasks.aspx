@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SIMSSingleMenu.Master" AutoEventWireup="true" CodeBehind="Tasks.aspx.cs" Inherits="SIMS2._0.Admin.Tasks" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SIMSSingleMenu.Master" AutoEventWireup="true" CodeBehind="Tasks.aspx.cs" Inherits="SIMS2017.Admin.Tasks" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="styles/grid.css" rel="stylesheet" />
 </asp:Content>

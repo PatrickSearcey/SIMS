@@ -20,8 +20,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SIMS2._0</RootNamespace>
-    <AssemblyName>SIMS2._0</AssemblyName>
+    <RootNamespace>SIMS2017</RootNamespace>
+    <AssemblyName>SIMS2017</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -127,6 +127,7 @@
     <Content Include="App_Data\RadCaptcha\Y.wav" />
     <Content Include="App_Data\RadCaptcha\Z.wav" />
     <Content Include="Control\OfficeSelector.ascx" />
+    <Content Include="Control\SitePageHeading.ascx" />
     <Content Include="images\HomepageTitle.png" />
     <Content Include="images\RMSlogo.png" />
     <Content Include="images\RMSTitle.png" />
@@ -134,9 +135,11 @@
     <Content Include="images\USGSHeaderLogo.png" />
     <Content Include="images\USGSHeaderLogoRMS.png" />
     <Content Include="images\USGSHeaderLogoSIMS.png" />
+    <Content Include="Modal\FieldTripEdit.aspx" />
     <Content Include="RMSWSCHome.aspx" />
     <Content Include="SIMS.Master" />
     <Content Include="SIMSSingleMenu.Master" />
+    <Content Include="StationInfo.aspx" />
     <Content Include="styles\RMSbase.css" />
     <Content Include="styles\SIMSbase.css" />
   </ItemGroup>
@@ -144,7 +147,7 @@
     <Content Include="SIMSWSCHome.aspx" />
     <Content Include="scripts\scripts.js" />
     <Content Include="styles\default.css" />
-    <Content Include="styles\grid.css" />
+    <Content Include="styles\stationinfo.css" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin\Tasks.aspx.cs">
@@ -160,6 +163,20 @@
     </Compile>
     <Compile Include="Control\OfficeSelector.ascx.designer.cs">
       <DependentUpon>OfficeSelector.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Control\SitePageHeading.ascx.cs">
+      <DependentUpon>SitePageHeading.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Control\SitePageHeading.ascx.designer.cs">
+      <DependentUpon>SitePageHeading.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modal\FieldTripEdit.aspx.cs">
+      <DependentUpon>FieldTripEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modal\FieldTripEdit.aspx.designer.cs">
+      <DependentUpon>FieldTripEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="RMSWSCHome.aspx.cs">
       <DependentUpon>RMSWSCHome.aspx</DependentUpon>
@@ -204,6 +221,13 @@
       <DependentUpon>SIMSSingleMenu.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StationInfo.aspx.cs">
+      <DependentUpon>StationInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StationInfo.aspx.designer.cs">
+      <DependentUpon>StationInfo.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\RadSpell\de-DE.tdf" />
@@ -220,6 +244,7 @@
   <ItemGroup>
     <Content Include="RMSSingleMenu.Master" />
     <Content Include="RMS.Master" />
+    <None Include="Properties\PublishProfiles\Development.pubxml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

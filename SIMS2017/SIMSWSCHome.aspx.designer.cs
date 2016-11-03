@@ -121,6 +121,24 @@ namespace SIMS2017 {
         protected global::System.Web.UI.WebControls.HyperLink lbFAQ;
         
         /// <summary>
+        /// ltlSiteCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlSiteCount;
+        
+        /// <summary>
+        /// lbActiveToggle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbActiveToggle;
+        
+        /// <summary>
         /// rgSites control.
         /// </summary>
         /// <remarks>

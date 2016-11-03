@@ -34,6 +34,7 @@
       <Column Name="swr_url" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="cost_center_cd" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Association Name="WSC_Office" Member="Offices" ThisKey="wsc_id" OtherKey="wsc_id" Type="Office" />
+      <Association Name="WSC_lut_Exception" Member="Exceptions" ThisKey="wsc_id" OtherKey="exc_wsc_id" Type="Exception" />
     </Type>
   </Table>
   <Table Name="dbo.tblEmployees" Member="Employees">
@@ -47,6 +48,7 @@
       <Column Name="pass_access" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="show_reports" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Employee_lut_Exception" Member="Exceptions" ThisKey="user_id" OtherKey="user_id" Type="Exception" />
       <Association Name="Office_Employee" Member="Office" ThisKey="office_id" OtherKey="office_id" Type="Office" IsForeignKey="true" />
     </Type>
   </Table>
@@ -101,6 +103,15 @@
       <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="sims_site_tp" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
       <Column Name="trip_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.lut_Exception" Member="Exceptions">
+    <Type Name="Exception">
+      <Column Name="user_id" Type="System.String" DbType="NVarChar(15) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="notes" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="exc_wsc_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="WSC_lut_Exception" Member="WSC" ThisKey="exc_wsc_id" OtherKey="wsc_id" Type="WSC" IsForeignKey="true" />
+      <Association Name="Employee_lut_Exception" Member="Employee" ThisKey="user_id" OtherKey="user_id" Type="Employee" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

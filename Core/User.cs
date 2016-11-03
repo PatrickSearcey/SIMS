@@ -21,7 +21,7 @@ namespace Core
         private bool _showreports = false;
         private bool _active = false;
         private int _office_id;
-        private int _wsc_id;
+        private List<int> _wsc_id = new List<int>();
         private String _id, _firstName, _lastName;
         #endregion
 
@@ -39,7 +39,7 @@ namespace Core
 #endif
             //try to see if the user is in the database
             var user = db.Employees.FirstOrDefault(p => p.user_id == _id);
-            //If the user isn't null it has Admin priveldges, or doesn't, and a user role
+            //If the user isn't null it has Admin priveldges, or doesn't
             if (user != null)
             {
                 if (user.administrator_va == "SuperUser") _superUser = true;
@@ -51,7 +51,11 @@ namespace Core
                 _firstName = user.first_nm;
                 _lastName = user.last_nm;
                 _office_id = (int)user.office_id;
-                _wsc_id = (int)user.Office.wsc_id;
+                _wsc_id.Add((int)user.Office.wsc_id);
+                foreach (int wsc in user.Exceptions.Select(p => p.exc_wsc_id).ToList())
+                {
+                    _wsc_id.Add(wsc);
+                }
                 _active = (bool)user.active;
                 _showreports = (bool)user.show_reports;
             }
@@ -79,7 +83,7 @@ namespace Core
         public String FirstName { get { return _firstName; } }
         public String LastName { get { return _lastName; } }
         public int OfficeID { get { return _office_id; } }
-        public int WSCID { get { return _wsc_id; } }
+        public List<int> WSCID { get { return _wsc_id; } }
         public Boolean Active { get { return _active; } }
         public Boolean ShowReports { get { return _showreports; } }
         public Boolean IsSafetyApprover { get { return _safetyapprover; } }

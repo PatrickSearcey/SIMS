@@ -40,10 +40,10 @@ namespace SIMS2017
         protected void Page_Load(object sender, EventArgs e)
         {
             ltlUserID.Text = user.ID;
-            if (WSCID == 0) WSCID = Convert.ToInt32(Request.QueryString["wsc_id"]);
-            if (WSCID == 0) WSCID = user.WSCID;
             if (OfficeID == 0) OfficeID = Convert.ToInt32(Request.QueryString["office_id"]);
             if (OfficeID == 0) OfficeID = user.OfficeID;
+            if (WSCID == 0) WSCID = Convert.ToInt32(Request.QueryString["wsc_id"]);
+            if (WSCID == 0) WSCID = (int)db.Offices.Where(p => p.office_id == OfficeID).FirstOrDefault().wsc_id;
 
             SetupPageHyperlinks();
         }

@@ -90,14 +90,6 @@ h6 {
     background-color: #314d93;
 }
 
-#wrapper .subheader {
-    text-align:right;
-    font-size: .8em;
-    font-style:italic;
-    margin-top:-40px;
-    padding-bottom:20px;
-}
-
 #wrapper .RadButton {
     font-size: 1em;
 }
@@ -120,6 +112,11 @@ div.RadMenuPopup,
 }
 
 .filters {
+    width: 60%;
+    float:left;
+}
+
+.headers {
     width: 60%;
     float:left;
 }
