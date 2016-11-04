@@ -13,7 +13,8 @@
 <body>
     <form id="form1" runat="server">
         <telerik:RadScriptManager runat="server"></telerik:RadScriptManager>
-        <telerik:RadFormDecorator runat="server" ID="rfd" Skin="Bootstrap" DecoratedControls="All" />
+        <telerik:RadFormDecorator RenderMode="Lightweight" runat="server" DecoratedControls="All" Skin="Bootstrap" />
+
         <div id="wrapper">
         <telerik:RadPageLayout runat="server" ID="MasterLayout" GridType="Fluid">
             <Rows>

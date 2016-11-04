@@ -13,6 +13,8 @@
 <body>
     <form id="form1" runat="server">
         <telerik:RadScriptManager runat="server"></telerik:RadScriptManager>
+        <telerik:RadFormDecorator RenderMode="Lightweight" runat="server" DecoratedControls="All" Skin="Bootstrap" />
+
         <div id="wrapper">
             <a href="#" class="logo">
                 <img src="images/USGSHeaderLogoSIMS.png" alt="USGS" style="padding-right:50px;padding-bottom:5px" /><img src="images/SIMSLogo.png" alt="site logo" />

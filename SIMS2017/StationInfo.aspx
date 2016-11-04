@@ -4,14 +4,24 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="styles/stationinfo.css" rel="stylesheet" />
     <script type="text/javascript">
-        function EditFieldTrips(id) {
-            window.radopen("Modal/FieldTripEdit.aspx?site_id=" + id, "EditFieldTrips");
-            return false;
+        function openWin(_id) {
+            var oWnd = radopen("Modal/FieldTripEdit.aspx?site_id=" + _id, "rwEditFieldTrips");
+        }
+
+        function OnClientClose(oWnd, args) {
+            //get the transferred arguments
+            var arg = args.get_argument();
+            if (arg) {
+                var fieldTrips = arg.fieldTrips;
+                var hfFieldTripIDs = document.getElementById("<%= hfFieldTripIDs.ClientID %>");
+                hfFieldTripIDs.value = fieldTrips;
+                $find("<%= ram.ClientID %>").ajaxRequest("Rebind");
+            }
         }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph1" runat="server">
-    <telerik:RadAjaxManager ID="ram" runat="server">
+    <telerik:RadAjaxManager ID="ram" runat="server" OnAjaxRequest="ram_AjaxRequest">
         <AjaxSettings>
             <telerik:AjaxSetting AjaxControlID="lbEditPubName">
                 <UpdatedControls>
@@ -39,15 +49,19 @@
                     <telerik:AjaxUpdatedControl ControlID="ph1" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="ram">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="pnlFieldTripView" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
         </AjaxSettings>
     </telerik:RadAjaxManager>
-    <telerik:RadWindowManager ID="rwm" runat="server" Skin="Bootstrap">
+    <telerik:RadWindowManager RenderMode="Lightweight" ID="rwm" ShowContentDuringLoad="false" VisibleStatusbar="false" ReloadOnShow="true" runat="server" EnableShadow="true">
         <Windows>
-            <telerik:RadWindow ID="EditFieldTrips" runat="server" Title="Edit Field Trips" Height="300px"
-                Width="800px" Left="150px" ReloadOnShow="true" ShowContentDuringLoad="false" Modal="false" />
-        </Windows> 
+            <telerik:RadWindow RenderMode="Lightweight" ID="rwEditFieldTrips" runat="server" Behaviors="Close" OnClientClose="OnClientClose" Width="900" Height="400" />
+        </Windows>
     </telerik:RadWindowManager>
-
+    <asp:HiddenField ID="hfFieldTripIDs" runat="server" />
 
     <uc:PageHeading id="ph1" runat="server" />
     <div class="linkbar">

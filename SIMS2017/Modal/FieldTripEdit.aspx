@@ -19,7 +19,7 @@
     <form id="form1" runat="server">
     <telerik:RadScriptManager ID="rsm2" runat="server">
     </telerik:RadScriptManager>
-    <telerik:RadFormDecorator ID="rfd2" runat="server" DecoratedControls="all" Skin="Office2010Silver" RenderMode="Lightweight"></telerik:RadFormDecorator>
+    <telerik:RadFormDecorator ID="rfd2" runat="server" DecoratedControls="all" Skin="Bootstrap" RenderMode="Lightweight" />
     <telerik:RadStyleSheetManager ID="rssm2" runat="server" CdnSettings-TelerikCdn="Enabled" />
     <script type="text/javascript">
         function GetRadWindow() {
@@ -32,36 +32,43 @@
         function returnToParent() {
             //create the argument that will be returned to the parent page
             var oArg = new Object();
- 
-            //get the selection choices from the RadListBox
-            var rlbFieldTripsEnd = document.getElementById("<%= rlbFieldTripsEnd.ClientID %>").value;
-            oArg.FieldTrips = rlbFieldTripsEnd;
+
+            //get the selected items from RadListBox
+            var fieldTrips = $find("<%= rlbFieldTripsEnd.ClientID %>");
+            var items = fieldTrips.get_items();
+            var trip_ids = "";
+            items.forEach(function (item) {
+                trip_ids += item.get_value() + ",";
+            })
+            oArg.fieldTrips = trip_ids;
 
             //get a reference to the current RadWindow
             var oWnd = GetRadWindow();
- 
+
             //Close the RadWindow and send the argument to the parent page
-            oWnd.close(oArg);
+            if (oArg.fieldTrips) {
+                oWnd.close(oArg);
+            }
         }
-    </script>
+        </script>
     <div>
         <table>
             <tr>
-                <td valign="top">
-                    <center><p>Options</p></center>
-                    <div style="padding-top:5px;">
-                        <telerik:RadListBox Height="150px" runat="server" ID="rlbFieldTripsStart" EnableDragAndDrop="true" TransferToID="rlbFieldTripsEnd" AllowTransfer="true" Width="450px" Skin="Bootstrap" />
+                <td>
+                    <h4>Options</h4>
+                    <div style="padding: 5px 0 10px 0;">
+                        <telerik:RadListBox Height="170px" runat="server" ID="rlbFieldTripsStart" EnableDragAndDrop="true" TransferToID="rlbFieldTripsEnd" AllowTransfer="true" Width="400px" Skin="Bootstrap" DataTextField="TripName" DataValueField="trip_id" />
                     </div>
                 </td>
-                <td valign="top">
-                    <center><p>Selected</p></center>
-                    <div style="padding-top:5px;">
-                        <telerik:RadListBox Height="150px" runat="server" ID="rlbFieldTripsEnd" EnableDragAndDrop="true" Width="450px" Skin="Bootstrap" />
+                <td>
+                    <h4>Selected</h4>
+                    <div style="padding: 5px 0 10px 0;">
+                        <telerik:RadListBox Height="170px" runat="server" ID="rlbFieldTripsEnd" EnableDragAndDrop="true" Width="400px" Skin="Bootstrap" DataTextField="TripName" DataValueField="trip_id" />
                     </div>
                 </td>
             </tr>
         </table>
-        <telerik:RadButton ID="rbClose" runat="server" Text="Accept changes and close window" OnClientClicked="returnToParent(); return false;" />
+        <button title="Commit" id="close" onclick="returnToParent(); return false;">Commit changes and close</button>
     </div>
     </form>
 </body>

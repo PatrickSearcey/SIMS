@@ -56,7 +56,7 @@ namespace SIMS2017
             //If no site_id was passed, then redirect back to the homepage
             string site_id = "3000336"; // Request.QueryString["site_id"];
             if (!string.IsNullOrEmpty(site_id)) SiteID = Convert.ToInt32(site_id); else Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
-
+            
             //Using the passed site_id, setup the site data element, and reset the office and wsc to match that of the current site
             currSite = db.Sites.Where(p => p.site_id == SiteID).FirstOrDefault();
             OfficeID = (int)currSite.office_id;
@@ -92,7 +92,7 @@ namespace SIMS2017
                 fieldtrips += trip.Trip.trip_nm + " - " + trip.Trip.user_id + ", ";
             }
             ltlFieldTrip.Text = fieldtrips.TrimEnd(' ').TrimEnd(',');
-            lbEditFieldTrip.OnClientClick = String.Format("return EditFieldTrips('{0}');", currSite.site_id);
+            lbEditFieldTrip.OnClientClick = String.Format("openWin('{0}'); return false;", currSite.site_id);
 
             //Station Documents
 
@@ -192,6 +192,41 @@ namespace SIMS2017
             {
                 int site_id = db.Sites.Where(p => p.site_no == site_no).FirstOrDefault().site_id;
                 Response.Redirect(String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site_id));
+            }
+        }
+
+        protected void ram_AjaxRequest(object sender, AjaxRequestEventArgs e)
+        {
+            if (e.Argument == "Rebind")
+            {
+                //Delete all of the field trips assigned to this site
+                db.TripSites.DeleteAllOnSubmit(currSite.TripSites);
+                db.SubmitChanges();
+
+                //Split out the hfFieldTripIDs string by ',' and place into an array
+                string[] FieldTripIDs = hfFieldTripIDs.Value.Split(',');
+
+                if (FieldTripIDs.Count() > 0)
+                {
+                    //Add each field trip from the listbox as a new record
+                    foreach (var trip_id in FieldTripIDs)
+                    {
+                        if (!string.IsNullOrEmpty(trip_id))
+                        {
+                            if (currSite.TripSites.FirstOrDefault(p => p.trip_id.ToString() == trip_id) == null) currSite.TripSites.Add(new Data.TripSite { trip_id = Convert.ToInt32(trip_id), site_id = currSite.site_id });
+                        }
+                    }
+                }
+                //Commit changes to the database
+                db.SubmitChanges();
+
+                //Refresh the field trip text
+                string fieldtrips = "";
+                foreach (var trip in currSite.TripSites.ToList())
+                {
+                    fieldtrips += trip.Trip.trip_nm + " - " + trip.Trip.user_id + ", ";
+                }
+                ltlFieldTrip.Text = fieldtrips.TrimEnd(' ').TrimEnd(',');
             }
         }
         #endregion
