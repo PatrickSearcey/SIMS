@@ -99,13 +99,47 @@
                                         Office assignment: <telerik:RadDropDownList ID="rddlOffice" runat="server" DataValueField="office_id" DataTextField="office_nm" OnSelectedIndexChanged="Commit_Command" AutoPostBack="true" Width="350px" />
                                     </asp:Panel>
                                     <asp:Panel ID="pnlFieldTripView" runat="server">
-                                        Field trip(s): <b><asp:Literal ID="ltlFieldTrip" runat="server" /></b> <asp:LinkButton ID="lbEditFieldTrip" runat="server" Text="edit" />
-                                    </asp:Panel>
+                                        Field trip(s): <b><asp:Literal ID="ltlFieldTrip" runat="server" /></b> <asp:HyperLink ID="hlMapTrips" runat="server" Target="_blank" Text="map trip" /> | <asp:LinkButton ID="lbEditFieldTrip" runat="server" Text="edit" />
+                                    </asp:Panel> 
+                                    <p><asp:HyperLink ID="hlSiFTA" runat="server" Target="_blank" Text="Take me to SiFTA for this site." Font-Bold="true" /></p>
                                 </Content>
                             </telerik:LayoutRow>
                             <telerik:LayoutRow>
                                 <Content>
                                     <h4>Safety</h4>
+                                    <div style="width:95%;text-align:right;margin-top:-10px;font-size:9pt;">
+                                        &raquo; <asp:HyperLink ID="hlSHATutorial" runat="server" target="_blank" Text="Download the SHA Tutorial" />
+                                    </div>
+                                    <asp:Panel ID="pnlSHACreate" runat="server">
+                                        <asp:HyperLink ID="hlSHACreate" runat="server" Text="Create an SHA for this site" />
+                                    </asp:Panel>
+                                    <asp:Panel ID="pnlSHAEdit" runat="server">
+                                        <b><asp:HyperLink ID="hlSHAEdit" runat="server" Text="Site Hazard Analysis" /></b> &nbsp;&nbsp;<asp:HyperLink ID="hlSHAPrintVersion" runat="server" Text="&laquo; view print version" Font-Size="Smaller" />
+                                        <div style="padding-left:10px;font-size:10pt;">
+                                            <asp:Literal ID="ltlSHAReviewed" runat="server" /><br />
+                                            <asp:Literal ID="ltlSHAApproved" runat="server" />
+                                        </div>
+                                    </asp:Panel>
+                                    <hr />
+                                    <div style="width:95%;text-align:right;margin-top:-8px;font-size:9pt;">
+                                        &raquo; <asp:HyperLink ID="hlTCPTutorial" runat="server" target="_blank" Text="Download the TCP Tutorial" />
+                                    </div>
+                                    <asp:Panel ID="pnlTCPCreate" runat="server">
+                                        <asp:HyperLink ID="hlTCPCreate" runat="server" Text="Create a TCP for this site" />
+                                    </asp:Panel>
+                                    <asp:Panel ID="pnlTCPEdit" runat="server">
+                                        <b>Traffic Control Plans (last approved):</b>
+                                        <div style="padding-left:10px;font-size:10pt;">
+                                            <asp:HyperLink ID="hlTCPEdit" runat="server" Text="Edit/Add/Delete Traffic Control Plans" Font-Bold="true" /><br />
+                                            <asp:DataList ID="dlTCPs" runat="server">
+                                                <ItemTemplate>
+                                                    <asp:HyperLink ID="hlTCP" runat="server" Text='<%# Eval("TCPName") %>' NavigateUrl='<%# Eval("TCPURL") %>' /> (<%# Eval("LastApprovedDt") %>)<br />
+                                                    <img src="images/underarrow.png" alt="look here!" style="padding-left:15px;" /> <%# Eval("TCPApprovalStatus") %>
+                                                </ItemTemplate>
+                                            </asp:DataList>
+                                            <asp:HyperLink ID="hlTCPTrackStatus" runat="server" Text="Track Approval Status" Font-Bold="true" />
+                                        </div>
+                                    </asp:Panel>
                                 </Content>
                             </telerik:LayoutRow>
                         </Rows>
@@ -115,6 +149,15 @@
                             <telerik:LayoutRow>
                                 <Content>
                                     <h4>Station Documents</h4>
+                                    <div style="padding-left:15px;">
+                                        <asp:HyperLink ID="hlEditDocs" runat="server" Text="Edit Documents" /><br />
+                                        <asp:HyperLink ID="hlSDESC" runat="server" Text="Station Description" /><br />
+                                        <asp:HyperLink ID="hlMANU" runat="server" Text="Manuscript" /> &nbsp;&nbsp;<asp:Literal ID="ltlApproved" runat="server" /><br />
+                                        <asp:HyperLink ID="hlSANAL" runat="server" Text="Station Analysis" /><br />
+                                        <asp:HyperLink ID="hlCustomReport" runat="server" Text="Custom Report" /><br />
+                                        <asp:HyperLink ID="hlArchives" runat="server" Text="Retrieve Archived Elements" /><br />
+                                        <asp:HyperLink ID="hlSLAP" runat="server" Text="SLAP: Historic Level Summary" Target="_blank" />
+                                    </div>
                                 </Content>
                             </telerik:LayoutRow>
                             <telerik:LayoutRow>
@@ -133,6 +176,66 @@
                             <telerik:LayoutRow>
                                 <Content>
                                 <h4>DCP/Realtime Ops</h4>
+                                <div class="DCPTable"">
+                                    <table>
+                                        <tr>
+                                            <td colspan="2">
+                                                <b>Office Time:</b> <asp:Literal ID="ltlDCPOfficeTime" runat="server" /><br />
+                                                <b>Site Time:</b> <asp:Literal ID="ltlDCPSiteTime" runat="server" /><br />
+                                                <b>GMT Time:</b> <asp:Literal ID="ltlDCPGMTTime" runat="server" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <b>Next Transmit Time:</b>
+                                                <table>
+                                                    <tr>
+                                                        <td><b>Local</b></td>
+                                                        <td><b><asp:Literal ID="ltlDCPLocalNextTransmit" runat="server" /></b></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>GMT</b></td>
+                                                        <td><b><asp:Literal ID="ltlDCPGMTNextTransmit" runat="server" /></b></td>
+                                                    </tr>
+                                                </table>
+                                                <b>Minutes to next trans.: <asp:Literal ID="ltlDCPMinToNextTransmit" runat="server" /></b>
+                                            </td>
+                                            <td valign="top">
+                                                <table style="border:1px solid #808080">
+                                                    <tr>
+                                                        <td><b>DCPID</b></td>
+                                                        <td><b>Prim./ Rndm. Channel</b></td>
+                                                        <td><b>Prim./ Rndm. Baud</b></td>
+                                                        <td><b>Satellite Azimuth/ Elevation</b></td>
+                                                        <td><b>Trans. Time/ Interval/ Window</b></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <div>
+                                                    <div style="width:30%;float:left;">
+                                                        <asp:HyperLink ID="hlDCPHADS" runat="server" Target="_blank" Text="NWS HADS System" Font-Bold="true" /><br />
+                                                        <asp:HyperLink ID="hlDCPEDDN" runat="server" Target="_blank" Text="EDDN Platform Configuration" Font-Bold="true" /><br />
+                                                        <asp:HyperLink ID="hlDCPPASS" runat="server" Target="_blank" Text="PASS Home" Font-Bold="true" />
+                                                    </div>
+                                                    <div style="float:right;width:70%;">
+                                                        <b>View data for specified hours:</b> <asp:TextBox ID="tbDCPViewData" runat="server" Text="8" Width="50px" /> <asp:Button ID="btnDCPViewData" runat="server" Enabled="false" Text="Go!" /><br />
+                                                        <i>This option currently not available. Maintainers of this web site have been notified of the problem.</i>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
                                 </Content>
                             </telerik:LayoutRow>
                         </Rows>

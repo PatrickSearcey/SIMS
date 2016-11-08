@@ -18,7 +18,7 @@
       <Column Name="use_mpntalt" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Office_Employee" Member="Employees" ThisKey="office_id" OtherKey="office_id" Type="Employee" />
-      <Association Name="Office_SIMS_Site_Master" Member="Sites" ThisKey="office_id" OtherKey="office_id" Type="Site" />
+      <Association Name="Office_Site" Member="Sites" ThisKey="office_id" OtherKey="office_id" Type="Site" />
       <Association Name="WSC_Office" Member="WSC" ThisKey="wsc_id" OtherKey="wsc_id" Type="WSC" IsForeignKey="true" />
     </Type>
   </Table>
@@ -34,7 +34,7 @@
       <Column Name="swr_url" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="cost_center_cd" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Association Name="WSC_Office" Member="Offices" ThisKey="wsc_id" OtherKey="wsc_id" Type="Office" />
-      <Association Name="WSC_lut_Exception" Member="Exceptions" ThisKey="wsc_id" OtherKey="exc_wsc_id" Type="Exception" />
+      <Association Name="WSC_Exception" Member="Exceptions" ThisKey="wsc_id" OtherKey="exc_wsc_id" Type="Exception" />
     </Type>
   </Table>
   <Table Name="dbo.tblEmployees" Member="Employees">
@@ -48,7 +48,7 @@
       <Column Name="pass_access" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="show_reports" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="Employee_lut_Exception" Member="Exceptions" ThisKey="user_id" OtherKey="user_id" Type="Exception" />
+      <Association Name="Employee_Exception" Member="Exceptions" ThisKey="user_id" OtherKey="user_id" Type="Exception" />
       <Association Name="Office_Employee" Member="Office" ThisKey="office_id" OtherKey="office_id" Type="Office" IsForeignKey="true" />
     </Type>
   </Table>
@@ -61,7 +61,7 @@
       <Column Name="user_id" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="trip_desc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="gen_trip_desc" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Trip_Lut_Trip_Trip_Site_Master" Member="TripSites" ThisKey="trip_id" OtherKey="trip_id" Type="TripSite" />
+      <Association Name="Trip_TripSite" Member="TripSites" ThisKey="trip_id" OtherKey="trip_id" Type="TripSite" />
     </Type>
   </Table>
   <Table Name="dbo.Trip_Site_Master" Member="TripSites">
@@ -72,8 +72,8 @@
       <Column Name="station_type_cd" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
       <Column Name="index_map_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="remarks" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Association Name="Trip_Lut_Trip_Trip_Site_Master" Member="Trip" ThisKey="trip_id" OtherKey="trip_id" Type="Trip" IsForeignKey="true" />
-      <Association Name="SIMS_Site_Master_Trip_Site_Master" Member="Site" ThisKey="site_id" OtherKey="site_id" Type="Site" IsForeignKey="true" />
+      <Association Name="Trip_TripSite" Member="Trip" ThisKey="trip_id" OtherKey="trip_id" Type="Trip" IsForeignKey="true" />
+      <Association Name="Site_TripSite" Member="Site" ThisKey="site_id" OtherKey="site_id" Type="Site" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.SIMS_Site_Master" Member="Sites">
@@ -87,8 +87,14 @@
       <Column Name="station_full_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
       <Column Name="office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="alt_basin_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Association Name="SIMS_Site_Master_Trip_Site_Master" Member="TripSites" ThisKey="site_id" OtherKey="site_id" Type="TripSite" />
-      <Association Name="Office_SIMS_Site_Master" Member="Office" ThisKey="office_id" OtherKey="office_id" Type="Office" IsForeignKey="true" />
+      <Association Name="Site_TripSite" Member="TripSites" ThisKey="site_id" OtherKey="site_id" Type="TripSite" />
+      <Association Name="Site_ElemReportApprove" Member="ElemReportApproves" ThisKey="site_id" OtherKey="site_id" Type="ElemReportApprove" />
+      <Association Name="Site_ElemReportSum" Member="ElemReportSums" ThisKey="site_id" OtherKey="site_id" Type="ElemReportSum" />
+      <Association Name="Site_Record" Member="RMS_Record_Masters" ThisKey="site_id" OtherKey="site_id" Type="Record" />
+      <Association Name="Site_Record1" Member="Records" ThisKey="site_id" OtherKey="site_id" Type="Record" />
+      <Association Name="Site_SHA_Site_Master" Member="SHAs" ThisKey="site_id" OtherKey="site_id" Type="SHA" />
+      <Association Name="Site_TCP_Site_Master" Member="TCPSite" ThisKey="site_id" OtherKey="site_id" Type="TCPSite" Cardinality="One" />
+      <Association Name="Office_Site" Member="Office" ThisKey="office_id" OtherKey="office_id" Type="Office" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.vSiteMasterList" Member="vSiteMasterLists">
@@ -110,8 +116,331 @@
       <Column Name="user_id" Type="System.String" DbType="NVarChar(15) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="notes" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
       <Column Name="exc_wsc_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="WSC_lut_Exception" Member="WSC" ThisKey="exc_wsc_id" OtherKey="wsc_id" Type="WSC" IsForeignKey="true" />
-      <Association Name="Employee_lut_Exception" Member="Employee" ThisKey="user_id" OtherKey="user_id" Type="Employee" IsForeignKey="true" />
+      <Association Name="WSC_Exception" Member="WSC" ThisKey="exc_wsc_id" OtherKey="wsc_id" Type="WSC" IsForeignKey="true" />
+      <Association Name="Employee_Exception" Member="Employee" ThisKey="user_id" OtherKey="user_id" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Elem_Report_Approve" Member="ElemReportApproves">
+    <Type Name="ElemReportApprove">
+      <Column Name="report_approve_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="report_type_cd" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="approved_by" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="approved_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="approver_comments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="publish_complete" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Association Name="Site_ElemReportApprove" Member="Site" ThisKey="site_id" OtherKey="site_id" Type="Site" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Elem_Report_Sum" Member="ElemReportSums">
+    <Type Name="ElemReportSum">
+      <Column Name="report_sum_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="report_type_cd" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="revised_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Site_ElemReportSum" Member="Site" ThisKey="site_id" OtherKey="site_id" Type="Site" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RMS_Record_Master" Member="Records">
+    <Type Name="Record">
+      <Column Name="rms_record_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="site_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="operator_va" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="assigned_checker_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="assigned_reviewer_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="not_published_fg" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="not_used_fg" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="record_type_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="category_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="cat_reason" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Association Name="Site_Record" Member="Site" ThisKey="site_id" OtherKey="site_id" Type="Site" IsForeignKey="true" />
+      <Association Name="Site_Record1" Member="Site1" ThisKey="site_id" OtherKey="site_id" Type="Site" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="RecordType_Record" Member="RecordType" ThisKey="record_type_id" OtherKey="record_type_id" Type="RecordType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RMS_Record_Types" Member="RecordTypes">
+    <Type Name="RecordType">
+      <Column Name="record_type_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="type_cd" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="type_ds" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="work_html_va" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="check_html_va" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="review_html_va" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ts_fg" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="wsc_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="RecordType_Record" Member="Records" ThisKey="record_type_id" OtherKey="record_type_id" Type="Record" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vSITEFILE" Member="vSITEFILEs">
+    <Type Name="vSITEFILE">
+      <Column Name="site_id" Type="System.Decimal" DbType="Decimal(10,0) NOT NULL" CanBeNull="false" />
+      <Column Name="agency_cd" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="site_no" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="nwis_host" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="db_no" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Column Name="station_nm" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="lat_va" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="long_va" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="dec_lat_va" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="dec_long_va" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="coord_meth_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="coord_acy_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="coord_datum_cd" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="district_cd" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="country_cd" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="state_cd" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="county_cd" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="land_net_ds" Type="System.String" DbType="VarChar(23)" CanBeNull="true" />
+      <Column Name="map_nm" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="map_scale_fc" Type="System.String" DbType="VarChar(7)" CanBeNull="true" />
+      <Column Name="alt_va" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="alt_meth_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="alt_acy_va" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="alt_datum_cd" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="huc_cd" Type="System.String" DbType="VarChar(16)" CanBeNull="true" />
+      <Column Name="basin_cd" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="topo_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="site_tp_cd" Type="System.String" DbType="VarChar(7)" CanBeNull="true" />
+      <Column Name="agency_use_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="data_types_cd" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="instruments_cd" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="site_rmks_tx" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="inventory_dt" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="drain_area_va" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="contrib_drain_area_va" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="tz_cd" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="reliability_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="gw_file_cd" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="construction_dt" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="site_use_1_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="site_use_2_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="site_use_3_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="water_use_1_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="water_use_2_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="water_use_3_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="nat_water_use_cd" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="aqfr_type_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="aqfr_cd" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="nat_aqfr_cd" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="well_depth_va" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="hole_depth_va" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="depth_src_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="project_no" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="local_time_fg" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="site_web_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="site_cn" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="site_mn" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="sitefile_md" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="dec_coord_datum_cd" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SHA_Lut_ElemJHA" Member="ElementJHAs">
+    <Type Name="ElementJHA">
+      <Column Name="elem_jha_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="element_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="jha_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="SHA_Lut_ElemJHA_SHA_Site_JHA" Member="SHAJHAs" ThisKey="elem_jha_id" OtherKey="elem_jha_id" Type="SHAJHA" />
+      <Association Name="SHA_Lut_JHA_SHA_Lut_ElemJHA" Member="JHA" ThisKey="jha_id" OtherKey="jha_id" Type="JHA" IsForeignKey="true" />
+      <Association Name="Elem_Lut_ElemDetail_ElementJHA" Member="ElementDetail" ThisKey="element_id" OtherKey="element_id" Type="ElementDetail" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SHA_Site_SpecificCond" Member="SHASpecificConditions">
+    <Type Name="SHASpecificCondition">
+      <Column Name="site_specificcond_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="site_jha_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="remarks" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="priority" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="SHA_Site_JHA_SHA_Site_SpecificCond" Member="SHAJHA" ThisKey="site_jha_id" OtherKey="site_jha_id" Type="SHAJHA" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SHA_Lut_JHA" Member="JHAs">
+    <Type Name="JHA">
+      <Column Name="jha_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="jha_description" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="stream" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="lake" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="estuary" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="specificsource" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="spring" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="groundwater" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="meteorological" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="outfall" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="diversion" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="landapplication" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="aggregategroundwater" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="wateruse_placeofuse" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="coastalqw" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="aggregatesurfacewater" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="SHA_Lut_JHA_SHA_Lut_ElemJHA" Member="ElementJHAs" ThisKey="jha_id" OtherKey="jha_id" Type="ElementJHA" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SHA_Lut_RefLevel" Member="ReferenceLevels">
+    <Type Name="ReferenceLevel">
+      <Column Name="reflevel_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="reflevel_tp" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="notes" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="SHA_Lut_RefLevel_SHA_Site_RefLevel" Member="SHAReferenceLevels" ThisKey="reflevel_id" OtherKey="reflevel_id" Type="SHAReferenceLevel" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SHA_Site_Contact" Member="SHAContacts">
+    <Type Name="SHAContact">
+      <Column Name="site_contact_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="sha_site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="contact_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="SHA_Site_Master_SHA_Site_Contact" Member="SHA" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHA" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SHA_Site_Equip" Member="SHAEquips">
+    <Type Name="SHAEquip">
+      <Column Name="site_equip_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="sha_site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="recom_equip" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="SHA_Site_Master_SHA_Site_Equip" Member="SHA" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHA" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SHA_Site_Hospital" Member="SHAHospitals">
+    <Type Name="SHAHospital">
+      <Column Name="site_hospital_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="sha_site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="hospital_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="SHA_Site_Master_SHA_Site_Hospital" Member="SHA" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHA" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SHA_Site_JHA" Member="SHAJHAs">
+    <Type Name="SHAJHA">
+      <Column Name="site_jha_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="sha_site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="elem_jha_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="SHA_Site_JHA_SHA_Site_SpecificCond" Member="SHASpecificConditions" ThisKey="site_jha_id" OtherKey="site_jha_id" Type="SHASpecificCondition" />
+      <Association Name="SHA_Site_JHA_SHA_Site_RefLevel" Member="SHAReferenceLevels" ThisKey="site_jha_id" OtherKey="site_jha_id" Type="SHAReferenceLevel" />
+      <Association Name="SHA_Lut_ElemJHA_SHA_Site_JHA" Member="ElementJHA" ThisKey="elem_jha_id" OtherKey="elem_jha_id" Type="ElementJHA" IsForeignKey="true" />
+      <Association Name="SHA_Site_Master_SHA_Site_JHA" Member="SHA" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHA" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SHA_Site_Master" Member="SHAs">
+    <Type Name="SHA">
+      <Column Name="sha_site_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="emerg_service" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="cell_service" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="updated_by" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="updated_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="reviewed_by" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="reviewed_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="approved_by" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="approved_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="reviewer_comments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="SHA_Site_Master_SHA_Site_Contact" Member="SHAContacts" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHAContact" />
+      <Association Name="SHA_Site_Master_SHA_Site_Equip" Member="SHAEquips" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHAEquip" />
+      <Association Name="SHA_Site_Master_SHA_Site_Hospital" Member="SHAHospitals" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHAHospital" />
+      <Association Name="SHA_Site_Master_SHA_Site_JHA" Member="SHAJHAs" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHAJHA" />
+      <Association Name="SHA_Site_Master_SHA_Site_Servicing" Member="SHAServicings" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHAServicing" />
+      <Association Name="Site_SHA_Site_Master" Member="Site" ThisKey="site_id" OtherKey="site_id" Type="Site" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SHA_Site_RefLevel" Member="SHAReferenceLevels">
+    <Type Name="SHAReferenceLevel">
+      <Column Name="site_reflevel_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="site_jha_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="reflevel_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="reflevel_va" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="remarks" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="reflevel_units" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="SHA_Lut_RefLevel_SHA_Site_RefLevel" Member="ReferenceLevel" ThisKey="reflevel_id" OtherKey="reflevel_id" Type="ReferenceLevel" IsForeignKey="true" />
+      <Association Name="SHA_Site_JHA_SHA_Site_RefLevel" Member="SHAJHA" ThisKey="site_jha_id" OtherKey="site_jha_id" Type="SHAJHA" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SHA_Site_Servicing" Member="SHAServicings">
+    <Type Name="SHAServicing">
+      <Column Name="site_servicing_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="sha_site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="servicing_va" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="priority" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="SHA_Site_Master_SHA_Site_Servicing" Member="SHA" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHA" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Elem_Lut_ElemDetail" Member="ElementDetails">
+    <Type Name="ElementDetail">
+      <Column Name="element_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="element_nm" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="priority" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="remark" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="stream" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="lake" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="estuary" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="specificsource" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="spring" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="groundwater" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="meteorological" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="outfall" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="diversion" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="landapplication" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="aggregategroundwater" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="aggregatesurfacewater" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="wateruse_placeofuse" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="coastalqw" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Elem_Lut_ElemDetail_ElementJHA" Member="ElementJHAs" ThisKey="element_id" OtherKey="element_id" Type="ElementJHA" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TCP_Site_PlanNumber" Member="TCPs">
+    <Type Name="TCP">
+      <Column Name="tcp_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="plan_no" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="work_area_offset" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="work_area_activity" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="cone_no" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="plan_remark" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="updated_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="updated_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="reviewed_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="reviewed_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="approved_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="approved_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="approval_ready" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="no_changes" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="reviewer_comments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="TCP_Lut_PlanDetail_TCP_Site_PlanNumber" Member="TCPPlanDetail" ThisKey="plan_no" OtherKey="plan_no" Type="TCPPlanDetail" IsForeignKey="true" />
+      <Association Name="TCP_Site_Master_TCP_Site_PlanNumber" Member="TCPSite" ThisKey="site_id" OtherKey="site_id" Type="TCPSite" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TCP_Lut_PlanDetails" Member="TCPPlanDetails">
+    <Type Name="TCPPlanDetail">
+      <Column Name="plan_no" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="plan_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="plan_subnm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="speed_tbl" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="stream" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="lake" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="estuary" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="specificsource" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="spring" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="groundwater" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="meteorological" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="outfall" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="diversion" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="landapplication" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="aggregategroundwater" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="wateruse_placeofuse" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="coastalqw" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="aggregatesurfacewater" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="TCP_Lut_PlanDetail_TCP_Site_PlanNumber" Member="TCPs" ThisKey="plan_no" OtherKey="plan_no" Type="TCP" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TCP_Site_Master" Member="TCPSites">
+    <Type Name="TCPSite">
+      <Column Name="site_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="road_nm" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="road_width" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="bridge_length" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="speed_limit" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="site_remark" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="updated_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="updated_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="TCP_Site_Master_TCP_Site_PlanNumber" Member="TCPs" ThisKey="site_id" OtherKey="site_id" Type="TCP" />
+      <Association Name="Site_TCP_Site_Master" Member="Site" ThisKey="site_id" OtherKey="site_id" Type="Site" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

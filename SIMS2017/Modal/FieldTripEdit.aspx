@@ -36,19 +36,22 @@
             //get the selected items from RadListBox
             var fieldTrips = $find("<%= rlbFieldTripsEnd.ClientID %>");
             var items = fieldTrips.get_items();
-            var trip_ids = "";
-            items.forEach(function (item) {
-                trip_ids += item.get_value() + ",";
-            })
-            oArg.fieldTrips = trip_ids;
-
+            if (items) {
+                var trip_ids = "";
+                items.forEach(function (item) {
+                    trip_ids += item.get_value() + ",";
+                })
+                oArg.fieldTrips = trip_ids;
+            }
+            else {
+                oArg.fieldTrips = "";
+            }
+            
             //get a reference to the current RadWindow
             var oWnd = GetRadWindow();
 
             //Close the RadWindow and send the argument to the parent page
-            if (oArg.fieldTrips) {
-                oWnd.close(oArg);
-            }
+            oWnd.close(oArg);
         }
         </script>
     <div>

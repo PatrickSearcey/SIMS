@@ -43,5 +43,36 @@ namespace Core
 #else
         public static String PASSURL { get { return "http://sims.water.usgs.gov/PASS/" ; } }
 #endif
+
+        protected static List<int> SLAPWSC()
+        {
+            List<int> ret = new List<int>();
+            ret.Add(1);
+            ret.Add(3);
+            ret.Add(4);
+            ret.Add(5);
+            ret.Add(9);
+            ret.Add(11);
+            ret.Add(12);
+            ret.Add(13);
+            ret.Add(14);
+            ret.Add(15);
+            ret.Add(18);
+            ret.Add(22);
+            ret.Add(25);
+            ret.Add(33);
+            ret.Add(35);
+            ret.Add(31);
+            
+            return ret;
+        }
+
+        public static List<int> IsSLAPWSC
+        {
+            get
+            {
+                return SLAPWSC();
+            }
+        }
     }
 }
