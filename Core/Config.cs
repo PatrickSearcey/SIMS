@@ -44,6 +44,12 @@ namespace Core
         public static String PASSURL { get { return "http://sims.water.usgs.gov/PASS/" ; } }
 #endif
 
+#if DEBUG
+        public static String SafetyURL { get { return "http://simsdev.cr.usgs.gov/Safety/"; } }
+#else
+        public static String SafetyURL { get { return "http://sims.water.usgs.gov/Safety/"; } } 
+#endif
+
         protected static List<int> SLAPWSC()
         {
             List<int> ret = new List<int>();

@@ -54,7 +54,7 @@ namespace SIMS2017
         protected void Page_Load(object sender, EventArgs e)
         {
             //If no site_id was passed, then redirect back to the homepage
-            string site_id = "3000336"; // Request.QueryString["site_id"];
+            string site_id = "3019214"; // Request.QueryString["site_id"];
             if (!string.IsNullOrEmpty(site_id)) SiteID = Convert.ToInt32(site_id); else Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
             
             //Using the passed site_id, setup the site data element, and reset the office and wsc to match that of the current site
@@ -128,7 +128,6 @@ namespace SIMS2017
             }
             else ltlApproved.Visible = false;
 
-
             //CRP
 
             //Safety
@@ -160,21 +159,31 @@ namespace SIMS2017
                 pnlSHAEdit.Visible = false;
                 hlSHACreate.NavigateUrl = String.Format("{0}Helper/CreateSHA.ashx?site_id={1}", Config.SIMS2017URL, currSite.site_id);
             }
-            var TCP = currSite.TCPSite.TCPs.FirstOrDefault();
-            if (TCP != null)
+            var TCPSite = currSite.TCPSite;
+            if (TCPSite != null)
             {
-                pnlTCPCreate.Visible = false;
-                pnlTCPEdit.Visible = true;
-                hlTCPEdit.NavigateUrl = String.Format("{0}Safety/TCPEdit.aspx?site_id={1}", Config.SIMS2017URL, currSite.site_id);
-                dlTCPs.DataSource = currSite.TCPSite.TCPs.Select(p => new
+                var TCP = TCPSite.TCPs.FirstOrDefault();
+                if (TCP != null)
                 {
-                    TCPName = p.TCPPlanDetail.plan_nm,
-                    TCPURL = String.Format("{0}Safety/TCPView.aspx?tcp_id={1}", Config.SIMS2017URL, p.tcp_id),
-                    LastApprovedDt = TCPApprovedDate(p.approved_dt),
-                    TCPApprovalStatus = TCPApprovalStatus((bool)p.approval_ready, p.tcp_id)
-                });
-                dlTCPs.DataBind();
-                hlTCPTrackStatus.NavigateUrl = String.Format("{0}Safety/TCPReport.aspx", Config.SIMS2017URL);
+                    pnlTCPCreate.Visible = false;
+                    pnlTCPEdit.Visible = true;
+                    hlTCPEdit.NavigateUrl = String.Format("{0}Safety/TCPEdit.aspx?site_id={1}", Config.SIMS2017URL, currSite.site_id);
+                    dlTCPs.DataSource = currSite.TCPSite.TCPs.Select(p => new
+                    {
+                        TCPName = p.TCPPlanDetail.Name,
+                        TCPURL = String.Format("{0}Safety/TCPView.aspx?tcp_id={1}", Config.SIMS2017URL, p.TCPID),
+                        LastApprovedDt = TCPApprovedDate(p.ApprovedDt),
+                        TCPApprovalStatus = TCPApprovalStatus((bool)p.ApprovalReady, p.TCPID)
+                    });
+                    dlTCPs.DataBind();
+                    hlTCPTrackStatus.NavigateUrl = String.Format("{0}Safety/TCPReport.aspx", Config.SIMS2017URL);
+                }
+                else
+                {
+                    pnlTCPCreate.Visible = true;
+                    pnlTCPEdit.Visible = false;
+                    hlTCPCreate.NavigateUrl = String.Format("{0}Safety/TCPEdit.aspx?site_id={1}", Config.SIMS2017URL, currSite.site_id);
+                }
             }
             else
             {
@@ -184,6 +193,43 @@ namespace SIMS2017
             }
 
             //DCP/Realtime Ops
+            var di = db.spz_GetDCPInfo(currSite.site_id).FirstOrDefault();
+            if (di != null)
+            {
+                pnlDCPTable.Visible = true;
+                ltlNoDCP.Visible = false;
+
+                ltlDCPOfficeTime.Text = String.Format("{0:dddd, MMMM dd, yyyy} ({1}), {0:h:mm:ss tt}", di.doffice, di.jdoffice.Substring(4,3));
+                ltlDCPSiteTime.Text = String.Format("{0:dddd, MMMM dd, yyyy} ({1}), {0:h:mm:ss tt}", di.dsite, di.jdsite.Substring(4, 3));
+                ltlDCPGMTTime.Text = String.Format("{0:dddd, MMMM dd, yyyy} ({1}), {0:h:mm:ss tt}", di.dutc, di.jdutc.Substring(4, 3));
+
+                dlDCPTable.DataSource = db.spz_GetDCPInfo(currSite.site_id).Select(p => new
+                    {
+                        LocalTransmitTime = NextTransmitTime(Convert.ToDateTime(p.doffice), p.officedcptimes, "local"),
+                        GMTTransmitTime = NextTransmitTime(Convert.ToDateTime(p.dutc), p.utcdcptimes, "GMT"),
+                        MinutesToNext = NextTransmitTime(Convert.ToDateTime(p.doffice), p.officedcptimes, "next"),
+                        dcp_id = p.dcp_id,
+                        primary_ch = p.primary_ch,
+                        random_ch = p.random_ch,
+                        primary_bd = p.primary_bd,
+                        random_bd = p.random_bd,
+                        ant_azimuth = p.ant_azimuth,
+                        satellite = p.satellite,
+                        ant_elev = p.ant_elev,
+                        assigned_time = p.assigned_time,
+                        trans_interval = p.trans_interval,
+                        window = p.window,
+                        PASSURL = Config.PASSURL
+                    });
+                dlDCPTable.DataBind();
+            }
+            else
+            {
+                pnlDCPTable.Visible = false;
+                ltlNoDCP.Text = "No Package Contents";
+            }
+            
+            
         }
 
         private string TCPApprovalStatus(bool approval_ready, int TCPID)
@@ -200,6 +246,43 @@ namespace SIMS2017
             string ret = "";
 
             if (approved_dt != null) ret = String.Format("{0:MM/dd/yyyy}", approved_dt); else ret = "<i>never approved</i>";
+
+            return ret;
+        }
+
+        private string NextTransmitTime(DateTime dNow, string times, string type)
+        {
+            string ret = "";
+            string[] time = times.Split(',');
+            int idxNext = 0;
+            DateTime dCur;
+            int i;
+
+            for (i = 0; i < time.Length; i++ )
+            {
+                dCur = Convert.ToDateTime(String.Format("{0:MM/dd/yyyy} {1}", dNow, time[i]));
+                if (dCur > dNow)
+                {
+                    idxNext = i;
+                    break;
+                }
+            }
+
+            if (i > time.GetUpperBound(0)) i = 0;
+
+            if (type == "next")
+            {
+                TimeSpan span = Convert.ToDateTime(String.Format("{0:MM/dd/yyyy} {1}", dNow, time[i])).Subtract(dNow);
+                ret = span.Minutes.ToString();
+            }
+            else if (type == "local")
+            {
+                ret = String.Format("{0:hh:mm}", time[i]);
+            }
+            else if (type == "GMT")
+            {
+                ret = String.Format("{0:hh:mm}", time[idxNext]);
+            }
 
             return ret;
         }

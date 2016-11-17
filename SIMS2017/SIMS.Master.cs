@@ -55,11 +55,11 @@ namespace SIMS2017
             hlPASS.NavigateUrl = Config.PASSURL;
             hlStationLevels.NavigateUrl = String.Format("{0}StationLevels.aspx?wsc_id={1}", Config.SLAPURL, WSCID);
             hlOfficeReport.NavigateUrl = String.Format("{0}StationElemRpt.asp?office_id={1}&wsc_id={2}", Config.SIMSClassicURL, OfficeID, WSCID);
-            hlCableway.NavigateUrl = String.Format("{0}CablewayReport.aspx?tp=status&wsc_id={1}", Config.SIMSURL, WSCID);
-            hlEditCableway.NavigateUrl = String.Format("{0}Cableways.aspx?wsc_id={1}", Config.SIMSURL, WSCID);
-            hlSHAReport.NavigateUrl = String.Format("{0}SHAReport.aspx?office_id={1}&wsc_id={2}", Config.SIMSURL, OfficeID, WSCID);
-            hlTCPReport.NavigateUrl = String.Format("{0}admin/TCPadmin.asp?view=show&office_id={1}&wsc_id={2}", Config.SIMSClassicURL, OfficeID, WSCID);
-            hlEmergencyInfo.NavigateUrl = String.Format("{0}EmergencyInfo.aspx?office_id={1}", Config.SIMSURL, OfficeID);
+            hlCableway.NavigateUrl = String.Format("{0}CablewayReport.aspx?tp=status&wsc_id={1}", Config.SafetyURL, WSCID);
+            hlEditCableway.NavigateUrl = String.Format("{0}Cableways.aspx?wsc_id={1}", Config.SafetyURL, WSCID);
+            hlSHAReport.NavigateUrl = String.Format("{0}SHAReport.aspx?office_id={1}", Config.SafetyURL, OfficeID, WSCID);
+            hlTCPReport.NavigateUrl = String.Format("{0}TCPReport.aspx?office_id={1}", Config.SafetyURL, OfficeID, WSCID);
+            hlEmergencyInfo.NavigateUrl = String.Format("{0}EmergencyInfo.aspx?office_id={1}", Config.SafetyURL, OfficeID);
             hlMAI.NavigateUrl = String.Format("{0}ElemReport.aspx?wsc_id={1}", Config.SIMSURL, WSCID);
             hlWYSummaryReport.NavigateUrl = String.Format("{0}WY/wys_details.html", Config.SIMSServerURL);
             hlPubsList.NavigateUrl = String.Format("{0}StationsList.asp?office_id={1}&wy=2013", Config.SIMSClassicURL, OfficeID);

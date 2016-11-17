@@ -454,6 +454,15 @@ namespace SIMS2017 {
         protected global::System.Web.UI.WebControls.HyperLink hlSLAP;
         
         /// <summary>
+        /// pnlDCPTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlDCPTable;
+        
+        /// <summary>
         /// ltlDCPOfficeTime control.
         /// </summary>
         /// <remarks>
@@ -481,75 +490,21 @@ namespace SIMS2017 {
         protected global::System.Web.UI.WebControls.Literal ltlDCPGMTTime;
         
         /// <summary>
-        /// ltlDCPLocalNextTransmit control.
+        /// dlDCPTable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlDCPLocalNextTransmit;
+        protected global::System.Web.UI.WebControls.DataList dlDCPTable;
         
         /// <summary>
-        /// ltlDCPGMTNextTransmit control.
+        /// ltlNoDCP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlDCPGMTNextTransmit;
-        
-        /// <summary>
-        /// ltlDCPMinToNextTransmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlDCPMinToNextTransmit;
-        
-        /// <summary>
-        /// hlDCPHADS control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlDCPHADS;
-        
-        /// <summary>
-        /// hlDCPEDDN control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlDCPEDDN;
-        
-        /// <summary>
-        /// hlDCPPASS control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlDCPPASS;
-        
-        /// <summary>
-        /// tbDCPViewData control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbDCPViewData;
-        
-        /// <summary>
-        /// btnDCPViewData control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDCPViewData;
+        protected global::System.Web.UI.WebControls.Literal ltlNoDCP;
     }
 }

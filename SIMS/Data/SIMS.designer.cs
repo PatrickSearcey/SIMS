@@ -99,12 +99,12 @@ namespace Data
     partial void InsertElementDetail(ElementDetail instance);
     partial void UpdateElementDetail(ElementDetail instance);
     partial void DeleteElementDetail(ElementDetail instance);
-    partial void InsertTCP(TCP instance);
-    partial void UpdateTCP(TCP instance);
-    partial void DeleteTCP(TCP instance);
     partial void InsertTCPPlanDetail(TCPPlanDetail instance);
     partial void UpdateTCPPlanDetail(TCPPlanDetail instance);
     partial void DeleteTCPPlanDetail(TCPPlanDetail instance);
+    partial void InsertTCP(TCP instance);
+    partial void UpdateTCP(TCP instance);
+    partial void DeleteTCP(TCP instance);
     partial void InsertTCPSite(TCPSite instance);
     partial void UpdateTCPSite(TCPSite instance);
     partial void DeleteTCPSite(TCPSite instance);
@@ -340,19 +340,19 @@ namespace Data
 			}
 		}
 		
-		public System.Data.Linq.Table<TCP> TCPs
-		{
-			get
-			{
-				return this.GetTable<TCP>();
-			}
-		}
-		
 		public System.Data.Linq.Table<TCPPlanDetail> TCPPlanDetails
 		{
 			get
 			{
 				return this.GetTable<TCPPlanDetail>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TCP> TCPs
+		{
+			get
+			{
+				return this.GetTable<TCP>();
 			}
 		}
 		
@@ -362,6 +362,13 @@ namespace Data
 			{
 				return this.GetTable<TCPSite>();
 			}
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spz_GetDCPInfo")]
+		public ISingleResult<spz_GetDCPInfoResult> spz_GetDCPInfo([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> site_id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), site_id);
+			return ((ISingleResult<spz_GetDCPInfoResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -2317,7 +2324,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_SHA_Site_Master", Storage="_SHAs", ThisKey="site_id", OtherKey="site_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_SHA", Storage="_SHAs", ThisKey="site_id", OtherKey="site_id")]
 		public EntitySet<SHA> SHAs
 		{
 			get
@@ -5121,7 +5128,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Lut_ElemJHA_SHA_Site_JHA", Storage="_SHAJHAs", ThisKey="elem_jha_id", OtherKey="elem_jha_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ElementJHA_SHAJHA", Storage="_SHAJHAs", ThisKey="elem_jha_id", OtherKey="elem_jha_id")]
 		public EntitySet<SHAJHA> SHAJHAs
 		{
 			get
@@ -5134,7 +5141,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Lut_JHA_SHA_Lut_ElemJHA", Storage="_JHA", ThisKey="jha_id", OtherKey="jha_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="JHA_ElementJHA", Storage="_JHA", ThisKey="jha_id", OtherKey="jha_id", IsForeignKey=true)]
 		public JHA JHA
 		{
 			get
@@ -5168,7 +5175,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Elem_Lut_ElemDetail_ElementJHA", Storage="_ElementDetail", ThisKey="element_id", OtherKey="element_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ElementDetail_ElementJHA", Storage="_ElementDetail", ThisKey="element_id", OtherKey="element_id", IsForeignKey=true)]
 		public ElementDetail ElementDetail
 		{
 			get
@@ -5355,7 +5362,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Site_JHA_SHA_Site_SpecificCond", Storage="_SHAJHA", ThisKey="site_jha_id", OtherKey="site_jha_id", IsForeignKey=true, DeleteRule="CASCADE")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHAJHA_SHASpecificCondition", Storage="_SHAJHA", ThisKey="site_jha_id", OtherKey="site_jha_id", IsForeignKey=true, DeleteRule="CASCADE")]
 		public SHAJHA SHAJHA
 		{
 			get
@@ -5814,7 +5821,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Lut_JHA_SHA_Lut_ElemJHA", Storage="_ElementJHAs", ThisKey="jha_id", OtherKey="jha_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="JHA_ElementJHA", Storage="_ElementJHAs", ThisKey="jha_id", OtherKey="jha_id")]
 		public EntitySet<ElementJHA> ElementJHAs
 		{
 			get
@@ -5952,7 +5959,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Lut_RefLevel_SHA_Site_RefLevel", Storage="_SHAReferenceLevels", ThisKey="reflevel_id", OtherKey="reflevel_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ReferenceLevel_SHAReferenceLevel", Storage="_SHAReferenceLevels", ThisKey="reflevel_id", OtherKey="reflevel_id")]
 		public EntitySet<SHAReferenceLevel> SHAReferenceLevels
 		{
 			get
@@ -6094,7 +6101,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Site_Master_SHA_Site_Contact", Storage="_SHA", ThisKey="sha_site_id", OtherKey="sha_site_id", IsForeignKey=true, DeleteRule="CASCADE")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_SHAContact", Storage="_SHA", ThisKey="sha_site_id", OtherKey="sha_site_id", IsForeignKey=true, DeleteRule="CASCADE")]
 		public SHA SHA
 		{
 			get
@@ -6245,7 +6252,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Site_Master_SHA_Site_Equip", Storage="_SHA", ThisKey="sha_site_id", OtherKey="sha_site_id", IsForeignKey=true, DeleteRule="CASCADE")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_SHAEquip", Storage="_SHA", ThisKey="sha_site_id", OtherKey="sha_site_id", IsForeignKey=true, DeleteRule="CASCADE")]
 		public SHA SHA
 		{
 			get
@@ -6396,7 +6403,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Site_Master_SHA_Site_Hospital", Storage="_SHA", ThisKey="sha_site_id", OtherKey="sha_site_id", IsForeignKey=true, DeleteRule="CASCADE")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_SHAHospital", Storage="_SHA", ThisKey="sha_site_id", OtherKey="sha_site_id", IsForeignKey=true, DeleteRule="CASCADE")]
 		public SHA SHA
 		{
 			get
@@ -6560,7 +6567,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Site_JHA_SHA_Site_SpecificCond", Storage="_SHASpecificConditions", ThisKey="site_jha_id", OtherKey="site_jha_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHAJHA_SHASpecificCondition", Storage="_SHASpecificConditions", ThisKey="site_jha_id", OtherKey="site_jha_id")]
 		public EntitySet<SHASpecificCondition> SHASpecificConditions
 		{
 			get
@@ -6573,7 +6580,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Site_JHA_SHA_Site_RefLevel", Storage="_SHAReferenceLevels", ThisKey="site_jha_id", OtherKey="site_jha_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHAJHA_SHAReferenceLevel", Storage="_SHAReferenceLevels", ThisKey="site_jha_id", OtherKey="site_jha_id")]
 		public EntitySet<SHAReferenceLevel> SHAReferenceLevels
 		{
 			get
@@ -6586,7 +6593,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Lut_ElemJHA_SHA_Site_JHA", Storage="_ElementJHA", ThisKey="elem_jha_id", OtherKey="elem_jha_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ElementJHA_SHAJHA", Storage="_ElementJHA", ThisKey="elem_jha_id", OtherKey="elem_jha_id", IsForeignKey=true)]
 		public ElementJHA ElementJHA
 		{
 			get
@@ -6620,7 +6627,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Site_Master_SHA_Site_JHA", Storage="_SHA", ThisKey="sha_site_id", OtherKey="sha_site_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_SHAJHA", Storage="_SHA", ThisKey="sha_site_id", OtherKey="sha_site_id", IsForeignKey=true)]
 		public SHA SHA
 		{
 			get
@@ -7002,7 +7009,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Site_Master_SHA_Site_Contact", Storage="_SHAContacts", ThisKey="sha_site_id", OtherKey="sha_site_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_SHAContact", Storage="_SHAContacts", ThisKey="sha_site_id", OtherKey="sha_site_id")]
 		public EntitySet<SHAContact> SHAContacts
 		{
 			get
@@ -7015,7 +7022,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Site_Master_SHA_Site_Equip", Storage="_SHAEquips", ThisKey="sha_site_id", OtherKey="sha_site_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_SHAEquip", Storage="_SHAEquips", ThisKey="sha_site_id", OtherKey="sha_site_id")]
 		public EntitySet<SHAEquip> SHAEquips
 		{
 			get
@@ -7028,7 +7035,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Site_Master_SHA_Site_Hospital", Storage="_SHAHospitals", ThisKey="sha_site_id", OtherKey="sha_site_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_SHAHospital", Storage="_SHAHospitals", ThisKey="sha_site_id", OtherKey="sha_site_id")]
 		public EntitySet<SHAHospital> SHAHospitals
 		{
 			get
@@ -7041,7 +7048,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Site_Master_SHA_Site_JHA", Storage="_SHAJHAs", ThisKey="sha_site_id", OtherKey="sha_site_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_SHAJHA", Storage="_SHAJHAs", ThisKey="sha_site_id", OtherKey="sha_site_id")]
 		public EntitySet<SHAJHA> SHAJHAs
 		{
 			get
@@ -7054,7 +7061,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Site_Master_SHA_Site_Servicing", Storage="_SHAServicings", ThisKey="sha_site_id", OtherKey="sha_site_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_SHAServicing", Storage="_SHAServicings", ThisKey="sha_site_id", OtherKey="sha_site_id")]
 		public EntitySet<SHAServicing> SHAServicings
 		{
 			get
@@ -7067,7 +7074,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_SHA_Site_Master", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_SHA", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
 		public Site Site
 		{
 			get
@@ -7357,7 +7364,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Lut_RefLevel_SHA_Site_RefLevel", Storage="_ReferenceLevel", ThisKey="reflevel_id", OtherKey="reflevel_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ReferenceLevel_SHAReferenceLevel", Storage="_ReferenceLevel", ThisKey="reflevel_id", OtherKey="reflevel_id", IsForeignKey=true)]
 		public ReferenceLevel ReferenceLevel
 		{
 			get
@@ -7391,7 +7398,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Site_JHA_SHA_Site_RefLevel", Storage="_SHAJHA", ThisKey="site_jha_id", OtherKey="site_jha_id", IsForeignKey=true, DeleteRule="CASCADE")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHAJHA_SHAReferenceLevel", Storage="_SHAJHA", ThisKey="site_jha_id", OtherKey="site_jha_id", IsForeignKey=true, DeleteRule="CASCADE")]
 		public SHAJHA SHAJHA
 		{
 			get
@@ -7566,7 +7573,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Site_Master_SHA_Site_Servicing", Storage="_SHA", ThisKey="sha_site_id", OtherKey="sha_site_id", IsForeignKey=true, DeleteRule="CASCADE")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_SHAServicing", Storage="_SHA", ThisKey="sha_site_id", OtherKey="sha_site_id", IsForeignKey=true, DeleteRule="CASCADE")]
 		public SHA SHA
 		{
 			get
@@ -8097,7 +8104,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Elem_Lut_ElemDetail_ElementJHA", Storage="_ElementJHAs", ThisKey="element_id", OtherKey="element_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ElementDetail_ElementJHA", Storage="_ElementJHAs", ThisKey="element_id", OtherKey="element_id")]
 		public EntitySet<ElementJHA> ElementJHAs
 		{
 			get
@@ -8143,43 +8150,561 @@ namespace Data
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TCP_Site_PlanNumber")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TCP_Lut_PlanDetails")]
+	public partial class TCPPlanDetail : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _PlanID;
+		
+		private string _Number;
+		
+		private string _Name;
+		
+		private string _SubName;
+		
+		private string _Notes;
+		
+		private System.Nullable<bool> _Stream;
+		
+		private System.Nullable<bool> _Lake;
+		
+		private System.Nullable<bool> _Estuary;
+		
+		private System.Nullable<bool> _SpecificSource;
+		
+		private System.Nullable<bool> _Spring;
+		
+		private System.Nullable<bool> _Groundwater;
+		
+		private System.Nullable<bool> _Meteorological;
+		
+		private System.Nullable<bool> _Outfall;
+		
+		private System.Nullable<bool> _Diversion;
+		
+		private System.Nullable<bool> _LandApplication;
+		
+		private System.Nullable<bool> _AggregateGW;
+		
+		private System.Nullable<bool> _WaterUse_PlaceOfUse;
+		
+		private System.Nullable<bool> _CoastalQW;
+		
+		private System.Nullable<bool> _AggregateSW;
+		
+		private EntitySet<TCP> _TCPs;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPlanIDChanging(int value);
+    partial void OnPlanIDChanged();
+    partial void OnNumberChanging(string value);
+    partial void OnNumberChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnSubNameChanging(string value);
+    partial void OnSubNameChanged();
+    partial void OnNotesChanging(string value);
+    partial void OnNotesChanged();
+    partial void OnStreamChanging(System.Nullable<bool> value);
+    partial void OnStreamChanged();
+    partial void OnLakeChanging(System.Nullable<bool> value);
+    partial void OnLakeChanged();
+    partial void OnEstuaryChanging(System.Nullable<bool> value);
+    partial void OnEstuaryChanged();
+    partial void OnSpecificSourceChanging(System.Nullable<bool> value);
+    partial void OnSpecificSourceChanged();
+    partial void OnSpringChanging(System.Nullable<bool> value);
+    partial void OnSpringChanged();
+    partial void OnGroundwaterChanging(System.Nullable<bool> value);
+    partial void OnGroundwaterChanged();
+    partial void OnMeteorologicalChanging(System.Nullable<bool> value);
+    partial void OnMeteorologicalChanged();
+    partial void OnOutfallChanging(System.Nullable<bool> value);
+    partial void OnOutfallChanged();
+    partial void OnDiversionChanging(System.Nullable<bool> value);
+    partial void OnDiversionChanged();
+    partial void OnLandApplicationChanging(System.Nullable<bool> value);
+    partial void OnLandApplicationChanged();
+    partial void OnAggregateGWChanging(System.Nullable<bool> value);
+    partial void OnAggregateGWChanged();
+    partial void OnWaterUse_PlaceOfUseChanging(System.Nullable<bool> value);
+    partial void OnWaterUse_PlaceOfUseChanged();
+    partial void OnCoastalQWChanging(System.Nullable<bool> value);
+    partial void OnCoastalQWChanged();
+    partial void OnAggregateSWChanging(System.Nullable<bool> value);
+    partial void OnAggregateSWChanged();
+    #endregion
+		
+		public TCPPlanDetail()
+		{
+			this._TCPs = new EntitySet<TCP>(new Action<TCP>(this.attach_TCPs), new Action<TCP>(this.detach_TCPs));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlanID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int PlanID
+		{
+			get
+			{
+				return this._PlanID;
+			}
+			set
+			{
+				if ((this._PlanID != value))
+				{
+					this.OnPlanIDChanging(value);
+					this.SendPropertyChanging();
+					this._PlanID = value;
+					this.SendPropertyChanged("PlanID");
+					this.OnPlanIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Number", DbType="NVarChar(10)")]
+		public string Number
+		{
+			get
+			{
+				return this._Number;
+			}
+			set
+			{
+				if ((this._Number != value))
+				{
+					this.OnNumberChanging(value);
+					this.SendPropertyChanging();
+					this._Number = value;
+					this.SendPropertyChanged("Number");
+					this.OnNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(150)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubName", DbType="NVarChar(150)")]
+		public string SubName
+		{
+			get
+			{
+				return this._SubName;
+			}
+			set
+			{
+				if ((this._SubName != value))
+				{
+					this.OnSubNameChanging(value);
+					this.SendPropertyChanging();
+					this._SubName = value;
+					this.SendPropertyChanged("SubName");
+					this.OnSubNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Notes", DbType="NVarChar(MAX)")]
+		public string Notes
+		{
+			get
+			{
+				return this._Notes;
+			}
+			set
+			{
+				if ((this._Notes != value))
+				{
+					this.OnNotesChanging(value);
+					this.SendPropertyChanging();
+					this._Notes = value;
+					this.SendPropertyChanged("Notes");
+					this.OnNotesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Stream", DbType="Bit")]
+		public System.Nullable<bool> Stream
+		{
+			get
+			{
+				return this._Stream;
+			}
+			set
+			{
+				if ((this._Stream != value))
+				{
+					this.OnStreamChanging(value);
+					this.SendPropertyChanging();
+					this._Stream = value;
+					this.SendPropertyChanged("Stream");
+					this.OnStreamChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Lake", DbType="Bit")]
+		public System.Nullable<bool> Lake
+		{
+			get
+			{
+				return this._Lake;
+			}
+			set
+			{
+				if ((this._Lake != value))
+				{
+					this.OnLakeChanging(value);
+					this.SendPropertyChanging();
+					this._Lake = value;
+					this.SendPropertyChanged("Lake");
+					this.OnLakeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estuary", DbType="Bit")]
+		public System.Nullable<bool> Estuary
+		{
+			get
+			{
+				return this._Estuary;
+			}
+			set
+			{
+				if ((this._Estuary != value))
+				{
+					this.OnEstuaryChanging(value);
+					this.SendPropertyChanging();
+					this._Estuary = value;
+					this.SendPropertyChanged("Estuary");
+					this.OnEstuaryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SpecificSource", DbType="Bit")]
+		public System.Nullable<bool> SpecificSource
+		{
+			get
+			{
+				return this._SpecificSource;
+			}
+			set
+			{
+				if ((this._SpecificSource != value))
+				{
+					this.OnSpecificSourceChanging(value);
+					this.SendPropertyChanging();
+					this._SpecificSource = value;
+					this.SendPropertyChanged("SpecificSource");
+					this.OnSpecificSourceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Spring", DbType="Bit")]
+		public System.Nullable<bool> Spring
+		{
+			get
+			{
+				return this._Spring;
+			}
+			set
+			{
+				if ((this._Spring != value))
+				{
+					this.OnSpringChanging(value);
+					this.SendPropertyChanging();
+					this._Spring = value;
+					this.SendPropertyChanged("Spring");
+					this.OnSpringChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Groundwater", DbType="Bit")]
+		public System.Nullable<bool> Groundwater
+		{
+			get
+			{
+				return this._Groundwater;
+			}
+			set
+			{
+				if ((this._Groundwater != value))
+				{
+					this.OnGroundwaterChanging(value);
+					this.SendPropertyChanging();
+					this._Groundwater = value;
+					this.SendPropertyChanged("Groundwater");
+					this.OnGroundwaterChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Meteorological", DbType="Bit")]
+		public System.Nullable<bool> Meteorological
+		{
+			get
+			{
+				return this._Meteorological;
+			}
+			set
+			{
+				if ((this._Meteorological != value))
+				{
+					this.OnMeteorologicalChanging(value);
+					this.SendPropertyChanging();
+					this._Meteorological = value;
+					this.SendPropertyChanged("Meteorological");
+					this.OnMeteorologicalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Outfall", DbType="Bit")]
+		public System.Nullable<bool> Outfall
+		{
+			get
+			{
+				return this._Outfall;
+			}
+			set
+			{
+				if ((this._Outfall != value))
+				{
+					this.OnOutfallChanging(value);
+					this.SendPropertyChanging();
+					this._Outfall = value;
+					this.SendPropertyChanged("Outfall");
+					this.OnOutfallChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Diversion", DbType="Bit")]
+		public System.Nullable<bool> Diversion
+		{
+			get
+			{
+				return this._Diversion;
+			}
+			set
+			{
+				if ((this._Diversion != value))
+				{
+					this.OnDiversionChanging(value);
+					this.SendPropertyChanging();
+					this._Diversion = value;
+					this.SendPropertyChanged("Diversion");
+					this.OnDiversionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LandApplication", DbType="Bit")]
+		public System.Nullable<bool> LandApplication
+		{
+			get
+			{
+				return this._LandApplication;
+			}
+			set
+			{
+				if ((this._LandApplication != value))
+				{
+					this.OnLandApplicationChanging(value);
+					this.SendPropertyChanging();
+					this._LandApplication = value;
+					this.SendPropertyChanged("LandApplication");
+					this.OnLandApplicationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AggregateGW", DbType="Bit")]
+		public System.Nullable<bool> AggregateGW
+		{
+			get
+			{
+				return this._AggregateGW;
+			}
+			set
+			{
+				if ((this._AggregateGW != value))
+				{
+					this.OnAggregateGWChanging(value);
+					this.SendPropertyChanging();
+					this._AggregateGW = value;
+					this.SendPropertyChanged("AggregateGW");
+					this.OnAggregateGWChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WaterUse_PlaceOfUse", DbType="Bit")]
+		public System.Nullable<bool> WaterUse_PlaceOfUse
+		{
+			get
+			{
+				return this._WaterUse_PlaceOfUse;
+			}
+			set
+			{
+				if ((this._WaterUse_PlaceOfUse != value))
+				{
+					this.OnWaterUse_PlaceOfUseChanging(value);
+					this.SendPropertyChanging();
+					this._WaterUse_PlaceOfUse = value;
+					this.SendPropertyChanged("WaterUse_PlaceOfUse");
+					this.OnWaterUse_PlaceOfUseChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CoastalQW", DbType="Bit")]
+		public System.Nullable<bool> CoastalQW
+		{
+			get
+			{
+				return this._CoastalQW;
+			}
+			set
+			{
+				if ((this._CoastalQW != value))
+				{
+					this.OnCoastalQWChanging(value);
+					this.SendPropertyChanging();
+					this._CoastalQW = value;
+					this.SendPropertyChanged("CoastalQW");
+					this.OnCoastalQWChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AggregateSW", DbType="Bit")]
+		public System.Nullable<bool> AggregateSW
+		{
+			get
+			{
+				return this._AggregateSW;
+			}
+			set
+			{
+				if ((this._AggregateSW != value))
+				{
+					this.OnAggregateSWChanging(value);
+					this.SendPropertyChanging();
+					this._AggregateSW = value;
+					this.SendPropertyChanged("AggregateSW");
+					this.OnAggregateSWChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPPlanDetail_TCP_Site_Plan", Storage="_TCPs", ThisKey="PlanID", OtherKey="PlanID")]
+		public EntitySet<TCP> TCPs
+		{
+			get
+			{
+				return this._TCPs;
+			}
+			set
+			{
+				this._TCPs.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_TCPs(TCP entity)
+		{
+			this.SendPropertyChanging();
+			entity.TCPPlanDetail = this;
+		}
+		
+		private void detach_TCPs(TCP entity)
+		{
+			this.SendPropertyChanging();
+			entity.TCPPlanDetail = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TCP_Site_Plan")]
 	public partial class TCP : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _tcp_id;
+		private int _TCPID;
 		
 		private System.Nullable<int> _site_id;
 		
-		private System.Nullable<short> _plan_no;
+		private System.Nullable<int> _PlanID;
 		
-		private System.Nullable<int> _work_area_offset;
+		private string _WorkAreaActivity;
 		
-		private string _work_area_activity;
+		private string _Remarks;
 		
-		private string _cone_no;
+		private string _UpdatedBy;
 		
-		private string _plan_remark;
+		private System.Nullable<System.DateTime> _UpdatedDt;
 		
-		private string _updated_by;
+		private string _ReviewedBy;
 		
-		private System.Nullable<System.DateTime> _updated_dt;
+		private System.Nullable<System.DateTime> _ReviewedDt;
 		
-		private string _reviewed_by;
+		private string _ApprovedBy;
 		
-		private System.Nullable<System.DateTime> _reviewed_dt;
+		private System.Nullable<System.DateTime> _ApprovedDt;
 		
-		private string _approved_by;
+		private System.Nullable<bool> _ApprovalReady;
 		
-		private System.Nullable<System.DateTime> _approved_dt;
+		private System.Nullable<bool> _NoChanges;
 		
-		private System.Nullable<bool> _approval_ready;
-		
-		private System.Nullable<bool> _no_changes;
-		
-		private string _reviewer_comments;
+		private string _ReviewerComments;
 		
 		private EntityRef<TCPPlanDetail> _TCPPlanDetail;
 		
@@ -8189,38 +8714,34 @@ namespace Data
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void Ontcp_idChanging(int value);
-    partial void Ontcp_idChanged();
+    partial void OnTCPIDChanging(int value);
+    partial void OnTCPIDChanged();
     partial void Onsite_idChanging(System.Nullable<int> value);
     partial void Onsite_idChanged();
-    partial void Onplan_noChanging(System.Nullable<short> value);
-    partial void Onplan_noChanged();
-    partial void Onwork_area_offsetChanging(System.Nullable<int> value);
-    partial void Onwork_area_offsetChanged();
-    partial void Onwork_area_activityChanging(string value);
-    partial void Onwork_area_activityChanged();
-    partial void Oncone_noChanging(string value);
-    partial void Oncone_noChanged();
-    partial void Onplan_remarkChanging(string value);
-    partial void Onplan_remarkChanged();
-    partial void Onupdated_byChanging(string value);
-    partial void Onupdated_byChanged();
-    partial void Onupdated_dtChanging(System.Nullable<System.DateTime> value);
-    partial void Onupdated_dtChanged();
-    partial void Onreviewed_byChanging(string value);
-    partial void Onreviewed_byChanged();
-    partial void Onreviewed_dtChanging(System.Nullable<System.DateTime> value);
-    partial void Onreviewed_dtChanged();
-    partial void Onapproved_byChanging(string value);
-    partial void Onapproved_byChanged();
-    partial void Onapproved_dtChanging(System.Nullable<System.DateTime> value);
-    partial void Onapproved_dtChanged();
-    partial void Onapproval_readyChanging(System.Nullable<bool> value);
-    partial void Onapproval_readyChanged();
-    partial void Onno_changesChanging(System.Nullable<bool> value);
-    partial void Onno_changesChanged();
-    partial void Onreviewer_commentsChanging(string value);
-    partial void Onreviewer_commentsChanged();
+    partial void OnPlanIDChanging(System.Nullable<int> value);
+    partial void OnPlanIDChanged();
+    partial void OnWorkAreaActivityChanging(string value);
+    partial void OnWorkAreaActivityChanged();
+    partial void OnRemarksChanging(string value);
+    partial void OnRemarksChanged();
+    partial void OnUpdatedByChanging(string value);
+    partial void OnUpdatedByChanged();
+    partial void OnUpdatedDtChanging(System.Nullable<System.DateTime> value);
+    partial void OnUpdatedDtChanged();
+    partial void OnReviewedByChanging(string value);
+    partial void OnReviewedByChanged();
+    partial void OnReviewedDtChanging(System.Nullable<System.DateTime> value);
+    partial void OnReviewedDtChanged();
+    partial void OnApprovedByChanging(string value);
+    partial void OnApprovedByChanged();
+    partial void OnApprovedDtChanging(System.Nullable<System.DateTime> value);
+    partial void OnApprovedDtChanged();
+    partial void OnApprovalReadyChanging(System.Nullable<bool> value);
+    partial void OnApprovalReadyChanged();
+    partial void OnNoChangesChanging(System.Nullable<bool> value);
+    partial void OnNoChangesChanged();
+    partial void OnReviewerCommentsChanging(string value);
+    partial void OnReviewerCommentsChanged();
     #endregion
 		
 		public TCP()
@@ -8230,22 +8751,22 @@ namespace Data
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tcp_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int tcp_id
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TCPID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int TCPID
 		{
 			get
 			{
-				return this._tcp_id;
+				return this._TCPID;
 			}
 			set
 			{
-				if ((this._tcp_id != value))
+				if ((this._TCPID != value))
 				{
-					this.Ontcp_idChanging(value);
+					this.OnTCPIDChanging(value);
 					this.SendPropertyChanging();
-					this._tcp_id = value;
-					this.SendPropertyChanged("tcp_id");
-					this.Ontcp_idChanged();
+					this._TCPID = value;
+					this.SendPropertyChanged("TCPID");
+					this.OnTCPIDChanged();
 				}
 			}
 		}
@@ -8274,291 +8795,251 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_plan_no", DbType="SmallInt")]
-		public System.Nullable<short> plan_no
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlanID", DbType="Int")]
+		public System.Nullable<int> PlanID
 		{
 			get
 			{
-				return this._plan_no;
+				return this._PlanID;
 			}
 			set
 			{
-				if ((this._plan_no != value))
+				if ((this._PlanID != value))
 				{
 					if (this._TCPPlanDetail.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.Onplan_noChanging(value);
+					this.OnPlanIDChanging(value);
 					this.SendPropertyChanging();
-					this._plan_no = value;
-					this.SendPropertyChanged("plan_no");
-					this.Onplan_noChanged();
+					this._PlanID = value;
+					this.SendPropertyChanged("PlanID");
+					this.OnPlanIDChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_work_area_offset", DbType="Int")]
-		public System.Nullable<int> work_area_offset
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WorkAreaActivity", DbType="NVarChar(150)")]
+		public string WorkAreaActivity
 		{
 			get
 			{
-				return this._work_area_offset;
+				return this._WorkAreaActivity;
 			}
 			set
 			{
-				if ((this._work_area_offset != value))
+				if ((this._WorkAreaActivity != value))
 				{
-					this.Onwork_area_offsetChanging(value);
+					this.OnWorkAreaActivityChanging(value);
 					this.SendPropertyChanging();
-					this._work_area_offset = value;
-					this.SendPropertyChanged("work_area_offset");
-					this.Onwork_area_offsetChanged();
+					this._WorkAreaActivity = value;
+					this.SendPropertyChanged("WorkAreaActivity");
+					this.OnWorkAreaActivityChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_work_area_activity", DbType="NVarChar(150)")]
-		public string work_area_activity
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remarks", DbType="NVarChar(MAX)")]
+		public string Remarks
 		{
 			get
 			{
-				return this._work_area_activity;
+				return this._Remarks;
 			}
 			set
 			{
-				if ((this._work_area_activity != value))
+				if ((this._Remarks != value))
 				{
-					this.Onwork_area_activityChanging(value);
+					this.OnRemarksChanging(value);
 					this.SendPropertyChanging();
-					this._work_area_activity = value;
-					this.SendPropertyChanged("work_area_activity");
-					this.Onwork_area_activityChanged();
+					this._Remarks = value;
+					this.SendPropertyChanged("Remarks");
+					this.OnRemarksChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cone_no", DbType="NVarChar(10)")]
-		public string cone_no
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="NVarChar(20)")]
+		public string UpdatedBy
 		{
 			get
 			{
-				return this._cone_no;
+				return this._UpdatedBy;
 			}
 			set
 			{
-				if ((this._cone_no != value))
+				if ((this._UpdatedBy != value))
 				{
-					this.Oncone_noChanging(value);
+					this.OnUpdatedByChanging(value);
 					this.SendPropertyChanging();
-					this._cone_no = value;
-					this.SendPropertyChanged("cone_no");
-					this.Oncone_noChanged();
+					this._UpdatedBy = value;
+					this.SendPropertyChanged("UpdatedBy");
+					this.OnUpdatedByChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_plan_remark", DbType="NVarChar(MAX)")]
-		public string plan_remark
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdatedDt
 		{
 			get
 			{
-				return this._plan_remark;
+				return this._UpdatedDt;
 			}
 			set
 			{
-				if ((this._plan_remark != value))
+				if ((this._UpdatedDt != value))
 				{
-					this.Onplan_remarkChanging(value);
+					this.OnUpdatedDtChanging(value);
 					this.SendPropertyChanging();
-					this._plan_remark = value;
-					this.SendPropertyChanged("plan_remark");
-					this.Onplan_remarkChanged();
+					this._UpdatedDt = value;
+					this.SendPropertyChanged("UpdatedDt");
+					this.OnUpdatedDtChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_updated_by", DbType="NVarChar(50)")]
-		public string updated_by
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReviewedBy", DbType="NVarChar(20)")]
+		public string ReviewedBy
 		{
 			get
 			{
-				return this._updated_by;
+				return this._ReviewedBy;
 			}
 			set
 			{
-				if ((this._updated_by != value))
+				if ((this._ReviewedBy != value))
 				{
-					this.Onupdated_byChanging(value);
+					this.OnReviewedByChanging(value);
 					this.SendPropertyChanging();
-					this._updated_by = value;
-					this.SendPropertyChanged("updated_by");
-					this.Onupdated_byChanged();
+					this._ReviewedBy = value;
+					this.SendPropertyChanged("ReviewedBy");
+					this.OnReviewedByChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_updated_dt", DbType="DateTime")]
-		public System.Nullable<System.DateTime> updated_dt
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReviewedDt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ReviewedDt
 		{
 			get
 			{
-				return this._updated_dt;
+				return this._ReviewedDt;
 			}
 			set
 			{
-				if ((this._updated_dt != value))
+				if ((this._ReviewedDt != value))
 				{
-					this.Onupdated_dtChanging(value);
+					this.OnReviewedDtChanging(value);
 					this.SendPropertyChanging();
-					this._updated_dt = value;
-					this.SendPropertyChanged("updated_dt");
-					this.Onupdated_dtChanged();
+					this._ReviewedDt = value;
+					this.SendPropertyChanged("ReviewedDt");
+					this.OnReviewedDtChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_reviewed_by", DbType="NVarChar(50)")]
-		public string reviewed_by
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApprovedBy", DbType="NVarChar(20)")]
+		public string ApprovedBy
 		{
 			get
 			{
-				return this._reviewed_by;
+				return this._ApprovedBy;
 			}
 			set
 			{
-				if ((this._reviewed_by != value))
+				if ((this._ApprovedBy != value))
 				{
-					this.Onreviewed_byChanging(value);
+					this.OnApprovedByChanging(value);
 					this.SendPropertyChanging();
-					this._reviewed_by = value;
-					this.SendPropertyChanged("reviewed_by");
-					this.Onreviewed_byChanged();
+					this._ApprovedBy = value;
+					this.SendPropertyChanged("ApprovedBy");
+					this.OnApprovedByChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_reviewed_dt", DbType="DateTime")]
-		public System.Nullable<System.DateTime> reviewed_dt
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApprovedDt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ApprovedDt
 		{
 			get
 			{
-				return this._reviewed_dt;
+				return this._ApprovedDt;
 			}
 			set
 			{
-				if ((this._reviewed_dt != value))
+				if ((this._ApprovedDt != value))
 				{
-					this.Onreviewed_dtChanging(value);
+					this.OnApprovedDtChanging(value);
 					this.SendPropertyChanging();
-					this._reviewed_dt = value;
-					this.SendPropertyChanged("reviewed_dt");
-					this.Onreviewed_dtChanged();
+					this._ApprovedDt = value;
+					this.SendPropertyChanged("ApprovedDt");
+					this.OnApprovedDtChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved_by", DbType="NVarChar(50)")]
-		public string approved_by
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApprovalReady", DbType="Bit")]
+		public System.Nullable<bool> ApprovalReady
 		{
 			get
 			{
-				return this._approved_by;
+				return this._ApprovalReady;
 			}
 			set
 			{
-				if ((this._approved_by != value))
+				if ((this._ApprovalReady != value))
 				{
-					this.Onapproved_byChanging(value);
+					this.OnApprovalReadyChanging(value);
 					this.SendPropertyChanging();
-					this._approved_by = value;
-					this.SendPropertyChanged("approved_by");
-					this.Onapproved_byChanged();
+					this._ApprovalReady = value;
+					this.SendPropertyChanged("ApprovalReady");
+					this.OnApprovalReadyChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved_dt", DbType="DateTime")]
-		public System.Nullable<System.DateTime> approved_dt
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoChanges", DbType="Bit")]
+		public System.Nullable<bool> NoChanges
 		{
 			get
 			{
-				return this._approved_dt;
+				return this._NoChanges;
 			}
 			set
 			{
-				if ((this._approved_dt != value))
+				if ((this._NoChanges != value))
 				{
-					this.Onapproved_dtChanging(value);
+					this.OnNoChangesChanging(value);
 					this.SendPropertyChanging();
-					this._approved_dt = value;
-					this.SendPropertyChanged("approved_dt");
-					this.Onapproved_dtChanged();
+					this._NoChanges = value;
+					this.SendPropertyChanged("NoChanges");
+					this.OnNoChangesChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approval_ready", DbType="Bit")]
-		public System.Nullable<bool> approval_ready
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReviewerComments", DbType="NVarChar(MAX)")]
+		public string ReviewerComments
 		{
 			get
 			{
-				return this._approval_ready;
+				return this._ReviewerComments;
 			}
 			set
 			{
-				if ((this._approval_ready != value))
+				if ((this._ReviewerComments != value))
 				{
-					this.Onapproval_readyChanging(value);
+					this.OnReviewerCommentsChanging(value);
 					this.SendPropertyChanging();
-					this._approval_ready = value;
-					this.SendPropertyChanged("approval_ready");
-					this.Onapproval_readyChanged();
+					this._ReviewerComments = value;
+					this.SendPropertyChanged("ReviewerComments");
+					this.OnReviewerCommentsChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_no_changes", DbType="Bit")]
-		public System.Nullable<bool> no_changes
-		{
-			get
-			{
-				return this._no_changes;
-			}
-			set
-			{
-				if ((this._no_changes != value))
-				{
-					this.Onno_changesChanging(value);
-					this.SendPropertyChanging();
-					this._no_changes = value;
-					this.SendPropertyChanged("no_changes");
-					this.Onno_changesChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_reviewer_comments", DbType="NVarChar(MAX)")]
-		public string reviewer_comments
-		{
-			get
-			{
-				return this._reviewer_comments;
-			}
-			set
-			{
-				if ((this._reviewer_comments != value))
-				{
-					this.Onreviewer_commentsChanging(value);
-					this.SendPropertyChanging();
-					this._reviewer_comments = value;
-					this.SendPropertyChanged("reviewer_comments");
-					this.Onreviewer_commentsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCP_Lut_PlanDetail_TCP_Site_PlanNumber", Storage="_TCPPlanDetail", ThisKey="plan_no", OtherKey="plan_no", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPPlanDetail_TCP_Site_Plan", Storage="_TCPPlanDetail", ThisKey="PlanID", OtherKey="PlanID", IsForeignKey=true)]
 		public TCPPlanDetail TCPPlanDetail
 		{
 			get
@@ -8581,18 +9062,18 @@ namespace Data
 					if ((value != null))
 					{
 						value.TCPs.Add(this);
-						this._plan_no = value.plan_no;
+						this._PlanID = value.PlanID;
 					}
 					else
 					{
-						this._plan_no = default(Nullable<short>);
+						this._PlanID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("TCPPlanDetail");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCP_Site_Master_TCP_Site_PlanNumber", Storage="_TCPSite", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCP_Site_Master_TCP_Site_Plan", Storage="_TCPSite", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
 		public TCPSite TCPSite
 		{
 			get
@@ -8647,528 +9128,6 @@ namespace Data
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TCP_Lut_PlanDetails")]
-	public partial class TCPPlanDetail : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private short _plan_no;
-		
-		private string _plan_nm;
-		
-		private string _plan_subnm;
-		
-		private string _notes;
-		
-		private string _speed_tbl;
-		
-		private System.Nullable<bool> _stream;
-		
-		private System.Nullable<bool> _lake;
-		
-		private System.Nullable<bool> _estuary;
-		
-		private System.Nullable<bool> _specificsource;
-		
-		private System.Nullable<bool> _spring;
-		
-		private System.Nullable<bool> _groundwater;
-		
-		private System.Nullable<bool> _meteorological;
-		
-		private System.Nullable<bool> _outfall;
-		
-		private System.Nullable<bool> _diversion;
-		
-		private System.Nullable<bool> _landapplication;
-		
-		private System.Nullable<bool> _aggregategroundwater;
-		
-		private System.Nullable<bool> _wateruse_placeofuse;
-		
-		private System.Nullable<bool> _coastalqw;
-		
-		private System.Nullable<bool> _aggregatesurfacewater;
-		
-		private EntitySet<TCP> _TCPs;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onplan_noChanging(short value);
-    partial void Onplan_noChanged();
-    partial void Onplan_nmChanging(string value);
-    partial void Onplan_nmChanged();
-    partial void Onplan_subnmChanging(string value);
-    partial void Onplan_subnmChanged();
-    partial void OnnotesChanging(string value);
-    partial void OnnotesChanged();
-    partial void Onspeed_tblChanging(string value);
-    partial void Onspeed_tblChanged();
-    partial void OnstreamChanging(System.Nullable<bool> value);
-    partial void OnstreamChanged();
-    partial void OnlakeChanging(System.Nullable<bool> value);
-    partial void OnlakeChanged();
-    partial void OnestuaryChanging(System.Nullable<bool> value);
-    partial void OnestuaryChanged();
-    partial void OnspecificsourceChanging(System.Nullable<bool> value);
-    partial void OnspecificsourceChanged();
-    partial void OnspringChanging(System.Nullable<bool> value);
-    partial void OnspringChanged();
-    partial void OngroundwaterChanging(System.Nullable<bool> value);
-    partial void OngroundwaterChanged();
-    partial void OnmeteorologicalChanging(System.Nullable<bool> value);
-    partial void OnmeteorologicalChanged();
-    partial void OnoutfallChanging(System.Nullable<bool> value);
-    partial void OnoutfallChanged();
-    partial void OndiversionChanging(System.Nullable<bool> value);
-    partial void OndiversionChanged();
-    partial void OnlandapplicationChanging(System.Nullable<bool> value);
-    partial void OnlandapplicationChanged();
-    partial void OnaggregategroundwaterChanging(System.Nullable<bool> value);
-    partial void OnaggregategroundwaterChanged();
-    partial void Onwateruse_placeofuseChanging(System.Nullable<bool> value);
-    partial void Onwateruse_placeofuseChanged();
-    partial void OncoastalqwChanging(System.Nullable<bool> value);
-    partial void OncoastalqwChanged();
-    partial void OnaggregatesurfacewaterChanging(System.Nullable<bool> value);
-    partial void OnaggregatesurfacewaterChanged();
-    #endregion
-		
-		public TCPPlanDetail()
-		{
-			this._TCPs = new EntitySet<TCP>(new Action<TCP>(this.attach_TCPs), new Action<TCP>(this.detach_TCPs));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_plan_no", DbType="SmallInt NOT NULL", IsPrimaryKey=true)]
-		public short plan_no
-		{
-			get
-			{
-				return this._plan_no;
-			}
-			set
-			{
-				if ((this._plan_no != value))
-				{
-					this.Onplan_noChanging(value);
-					this.SendPropertyChanging();
-					this._plan_no = value;
-					this.SendPropertyChanged("plan_no");
-					this.Onplan_noChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_plan_nm", DbType="NVarChar(150)")]
-		public string plan_nm
-		{
-			get
-			{
-				return this._plan_nm;
-			}
-			set
-			{
-				if ((this._plan_nm != value))
-				{
-					this.Onplan_nmChanging(value);
-					this.SendPropertyChanging();
-					this._plan_nm = value;
-					this.SendPropertyChanged("plan_nm");
-					this.Onplan_nmChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_plan_subnm", DbType="NVarChar(150)")]
-		public string plan_subnm
-		{
-			get
-			{
-				return this._plan_subnm;
-			}
-			set
-			{
-				if ((this._plan_subnm != value))
-				{
-					this.Onplan_subnmChanging(value);
-					this.SendPropertyChanging();
-					this._plan_subnm = value;
-					this.SendPropertyChanged("plan_subnm");
-					this.Onplan_subnmChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_notes", DbType="NVarChar(MAX)")]
-		public string notes
-		{
-			get
-			{
-				return this._notes;
-			}
-			set
-			{
-				if ((this._notes != value))
-				{
-					this.OnnotesChanging(value);
-					this.SendPropertyChanging();
-					this._notes = value;
-					this.SendPropertyChanged("notes");
-					this.OnnotesChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_speed_tbl", DbType="NVarChar(MAX)")]
-		public string speed_tbl
-		{
-			get
-			{
-				return this._speed_tbl;
-			}
-			set
-			{
-				if ((this._speed_tbl != value))
-				{
-					this.Onspeed_tblChanging(value);
-					this.SendPropertyChanging();
-					this._speed_tbl = value;
-					this.SendPropertyChanged("speed_tbl");
-					this.Onspeed_tblChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_stream", DbType="Bit")]
-		public System.Nullable<bool> stream
-		{
-			get
-			{
-				return this._stream;
-			}
-			set
-			{
-				if ((this._stream != value))
-				{
-					this.OnstreamChanging(value);
-					this.SendPropertyChanging();
-					this._stream = value;
-					this.SendPropertyChanged("stream");
-					this.OnstreamChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lake", DbType="Bit")]
-		public System.Nullable<bool> lake
-		{
-			get
-			{
-				return this._lake;
-			}
-			set
-			{
-				if ((this._lake != value))
-				{
-					this.OnlakeChanging(value);
-					this.SendPropertyChanging();
-					this._lake = value;
-					this.SendPropertyChanged("lake");
-					this.OnlakeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_estuary", DbType="Bit")]
-		public System.Nullable<bool> estuary
-		{
-			get
-			{
-				return this._estuary;
-			}
-			set
-			{
-				if ((this._estuary != value))
-				{
-					this.OnestuaryChanging(value);
-					this.SendPropertyChanging();
-					this._estuary = value;
-					this.SendPropertyChanged("estuary");
-					this.OnestuaryChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_specificsource", DbType="Bit")]
-		public System.Nullable<bool> specificsource
-		{
-			get
-			{
-				return this._specificsource;
-			}
-			set
-			{
-				if ((this._specificsource != value))
-				{
-					this.OnspecificsourceChanging(value);
-					this.SendPropertyChanging();
-					this._specificsource = value;
-					this.SendPropertyChanged("specificsource");
-					this.OnspecificsourceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_spring", DbType="Bit")]
-		public System.Nullable<bool> spring
-		{
-			get
-			{
-				return this._spring;
-			}
-			set
-			{
-				if ((this._spring != value))
-				{
-					this.OnspringChanging(value);
-					this.SendPropertyChanging();
-					this._spring = value;
-					this.SendPropertyChanged("spring");
-					this.OnspringChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_groundwater", DbType="Bit")]
-		public System.Nullable<bool> groundwater
-		{
-			get
-			{
-				return this._groundwater;
-			}
-			set
-			{
-				if ((this._groundwater != value))
-				{
-					this.OngroundwaterChanging(value);
-					this.SendPropertyChanging();
-					this._groundwater = value;
-					this.SendPropertyChanged("groundwater");
-					this.OngroundwaterChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_meteorological", DbType="Bit")]
-		public System.Nullable<bool> meteorological
-		{
-			get
-			{
-				return this._meteorological;
-			}
-			set
-			{
-				if ((this._meteorological != value))
-				{
-					this.OnmeteorologicalChanging(value);
-					this.SendPropertyChanging();
-					this._meteorological = value;
-					this.SendPropertyChanged("meteorological");
-					this.OnmeteorologicalChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_outfall", DbType="Bit")]
-		public System.Nullable<bool> outfall
-		{
-			get
-			{
-				return this._outfall;
-			}
-			set
-			{
-				if ((this._outfall != value))
-				{
-					this.OnoutfallChanging(value);
-					this.SendPropertyChanging();
-					this._outfall = value;
-					this.SendPropertyChanged("outfall");
-					this.OnoutfallChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_diversion", DbType="Bit")]
-		public System.Nullable<bool> diversion
-		{
-			get
-			{
-				return this._diversion;
-			}
-			set
-			{
-				if ((this._diversion != value))
-				{
-					this.OndiversionChanging(value);
-					this.SendPropertyChanging();
-					this._diversion = value;
-					this.SendPropertyChanged("diversion");
-					this.OndiversionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_landapplication", DbType="Bit")]
-		public System.Nullable<bool> landapplication
-		{
-			get
-			{
-				return this._landapplication;
-			}
-			set
-			{
-				if ((this._landapplication != value))
-				{
-					this.OnlandapplicationChanging(value);
-					this.SendPropertyChanging();
-					this._landapplication = value;
-					this.SendPropertyChanged("landapplication");
-					this.OnlandapplicationChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_aggregategroundwater", DbType="Bit")]
-		public System.Nullable<bool> aggregategroundwater
-		{
-			get
-			{
-				return this._aggregategroundwater;
-			}
-			set
-			{
-				if ((this._aggregategroundwater != value))
-				{
-					this.OnaggregategroundwaterChanging(value);
-					this.SendPropertyChanging();
-					this._aggregategroundwater = value;
-					this.SendPropertyChanged("aggregategroundwater");
-					this.OnaggregategroundwaterChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wateruse_placeofuse", DbType="Bit")]
-		public System.Nullable<bool> wateruse_placeofuse
-		{
-			get
-			{
-				return this._wateruse_placeofuse;
-			}
-			set
-			{
-				if ((this._wateruse_placeofuse != value))
-				{
-					this.Onwateruse_placeofuseChanging(value);
-					this.SendPropertyChanging();
-					this._wateruse_placeofuse = value;
-					this.SendPropertyChanged("wateruse_placeofuse");
-					this.Onwateruse_placeofuseChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_coastalqw", DbType="Bit")]
-		public System.Nullable<bool> coastalqw
-		{
-			get
-			{
-				return this._coastalqw;
-			}
-			set
-			{
-				if ((this._coastalqw != value))
-				{
-					this.OncoastalqwChanging(value);
-					this.SendPropertyChanging();
-					this._coastalqw = value;
-					this.SendPropertyChanged("coastalqw");
-					this.OncoastalqwChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_aggregatesurfacewater", DbType="Bit")]
-		public System.Nullable<bool> aggregatesurfacewater
-		{
-			get
-			{
-				return this._aggregatesurfacewater;
-			}
-			set
-			{
-				if ((this._aggregatesurfacewater != value))
-				{
-					this.OnaggregatesurfacewaterChanging(value);
-					this.SendPropertyChanging();
-					this._aggregatesurfacewater = value;
-					this.SendPropertyChanged("aggregatesurfacewater");
-					this.OnaggregatesurfacewaterChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCP_Lut_PlanDetail_TCP_Site_PlanNumber", Storage="_TCPs", ThisKey="plan_no", OtherKey="plan_no")]
-		public EntitySet<TCP> TCPs
-		{
-			get
-			{
-				return this._TCPs;
-			}
-			set
-			{
-				this._TCPs.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_TCPs(TCP entity)
-		{
-			this.SendPropertyChanging();
-			entity.TCPPlanDetail = this;
-		}
-		
-		private void detach_TCPs(TCP entity)
-		{
-			this.SendPropertyChanging();
-			entity.TCPPlanDetail = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TCP_Site_Master")]
 	public partial class TCPSite : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -9177,19 +9136,41 @@ namespace Data
 		
 		private int _site_id;
 		
-		private string _road_nm;
+		private string _RoadName;
 		
-		private System.Nullable<int> _road_width;
+		private System.Nullable<bool> _Expressway;
 		
-		private System.Nullable<int> _bridge_length;
+		private System.Nullable<int> _BridgeWidth;
 		
-		private System.Nullable<int> _speed_limit;
+		private System.Nullable<int> _WorkZone;
 		
-		private string _site_remark;
+		private System.Nullable<int> _LaneWidth;
 		
-		private string _updated_by;
+		private System.Nullable<int> _ShoulderWidth;
 		
-		private System.Nullable<System.DateTime> _updated_dt;
+		private System.Nullable<int> _SpeedLimit;
+		
+		private System.Nullable<int> _LaneNumber;
+		
+		private System.Nullable<bool> _Flow2Way;
+		
+		private System.Nullable<bool> _DividedHighway;
+		
+		private System.Nullable<bool> _Median;
+		
+		private System.Nullable<bool> _Flaggers;
+		
+		private System.Nullable<bool> _RemoteSite;
+		
+		private System.Nullable<bool> _ShortDuration;
+		
+		private string _TrafficVolume;
+		
+		private string _Notes;
+		
+		private string _UpdatedBy;
+		
+		private System.Nullable<System.DateTime> _UpdatedDt;
 		
 		private EntitySet<TCP> _TCPs;
 		
@@ -9201,20 +9182,42 @@ namespace Data
     partial void OnCreated();
     partial void Onsite_idChanging(int value);
     partial void Onsite_idChanged();
-    partial void Onroad_nmChanging(string value);
-    partial void Onroad_nmChanged();
-    partial void Onroad_widthChanging(System.Nullable<int> value);
-    partial void Onroad_widthChanged();
-    partial void Onbridge_lengthChanging(System.Nullable<int> value);
-    partial void Onbridge_lengthChanged();
-    partial void Onspeed_limitChanging(System.Nullable<int> value);
-    partial void Onspeed_limitChanged();
-    partial void Onsite_remarkChanging(string value);
-    partial void Onsite_remarkChanged();
-    partial void Onupdated_byChanging(string value);
-    partial void Onupdated_byChanged();
-    partial void Onupdated_dtChanging(System.Nullable<System.DateTime> value);
-    partial void Onupdated_dtChanged();
+    partial void OnRoadNameChanging(string value);
+    partial void OnRoadNameChanged();
+    partial void OnExpresswayChanging(System.Nullable<bool> value);
+    partial void OnExpresswayChanged();
+    partial void OnBridgeWidthChanging(System.Nullable<int> value);
+    partial void OnBridgeWidthChanged();
+    partial void OnWorkZoneChanging(System.Nullable<int> value);
+    partial void OnWorkZoneChanged();
+    partial void OnLaneWidthChanging(System.Nullable<int> value);
+    partial void OnLaneWidthChanged();
+    partial void OnShoulderWidthChanging(System.Nullable<int> value);
+    partial void OnShoulderWidthChanged();
+    partial void OnSpeedLimitChanging(System.Nullable<int> value);
+    partial void OnSpeedLimitChanged();
+    partial void OnLaneNumberChanging(System.Nullable<int> value);
+    partial void OnLaneNumberChanged();
+    partial void OnFlow2WayChanging(System.Nullable<bool> value);
+    partial void OnFlow2WayChanged();
+    partial void OnDividedHighwayChanging(System.Nullable<bool> value);
+    partial void OnDividedHighwayChanged();
+    partial void OnMedianChanging(System.Nullable<bool> value);
+    partial void OnMedianChanged();
+    partial void OnFlaggersChanging(System.Nullable<bool> value);
+    partial void OnFlaggersChanged();
+    partial void OnRemoteSiteChanging(System.Nullable<bool> value);
+    partial void OnRemoteSiteChanged();
+    partial void OnShortDurationChanging(System.Nullable<bool> value);
+    partial void OnShortDurationChanged();
+    partial void OnTrafficVolumeChanging(string value);
+    partial void OnTrafficVolumeChanged();
+    partial void OnNotesChanging(string value);
+    partial void OnNotesChanged();
+    partial void OnUpdatedByChanging(string value);
+    partial void OnUpdatedByChanged();
+    partial void OnUpdatedDtChanging(System.Nullable<System.DateTime> value);
+    partial void OnUpdatedDtChanged();
     #endregion
 		
 		public TCPSite()
@@ -9248,147 +9251,367 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_road_nm", DbType="NVarChar(50)")]
-		public string road_nm
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoadName", DbType="NVarChar(50)")]
+		public string RoadName
 		{
 			get
 			{
-				return this._road_nm;
+				return this._RoadName;
 			}
 			set
 			{
-				if ((this._road_nm != value))
+				if ((this._RoadName != value))
 				{
-					this.Onroad_nmChanging(value);
+					this.OnRoadNameChanging(value);
 					this.SendPropertyChanging();
-					this._road_nm = value;
-					this.SendPropertyChanged("road_nm");
-					this.Onroad_nmChanged();
+					this._RoadName = value;
+					this.SendPropertyChanged("RoadName");
+					this.OnRoadNameChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_road_width", DbType="Int")]
-		public System.Nullable<int> road_width
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Expressway", DbType="Bit")]
+		public System.Nullable<bool> Expressway
 		{
 			get
 			{
-				return this._road_width;
+				return this._Expressway;
 			}
 			set
 			{
-				if ((this._road_width != value))
+				if ((this._Expressway != value))
 				{
-					this.Onroad_widthChanging(value);
+					this.OnExpresswayChanging(value);
 					this.SendPropertyChanging();
-					this._road_width = value;
-					this.SendPropertyChanged("road_width");
-					this.Onroad_widthChanged();
+					this._Expressway = value;
+					this.SendPropertyChanged("Expressway");
+					this.OnExpresswayChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bridge_length", DbType="Int")]
-		public System.Nullable<int> bridge_length
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BridgeWidth", DbType="Int")]
+		public System.Nullable<int> BridgeWidth
 		{
 			get
 			{
-				return this._bridge_length;
+				return this._BridgeWidth;
 			}
 			set
 			{
-				if ((this._bridge_length != value))
+				if ((this._BridgeWidth != value))
 				{
-					this.Onbridge_lengthChanging(value);
+					this.OnBridgeWidthChanging(value);
 					this.SendPropertyChanging();
-					this._bridge_length = value;
-					this.SendPropertyChanged("bridge_length");
-					this.Onbridge_lengthChanged();
+					this._BridgeWidth = value;
+					this.SendPropertyChanged("BridgeWidth");
+					this.OnBridgeWidthChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_speed_limit", DbType="Int")]
-		public System.Nullable<int> speed_limit
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WorkZone", DbType="Int")]
+		public System.Nullable<int> WorkZone
 		{
 			get
 			{
-				return this._speed_limit;
+				return this._WorkZone;
 			}
 			set
 			{
-				if ((this._speed_limit != value))
+				if ((this._WorkZone != value))
 				{
-					this.Onspeed_limitChanging(value);
+					this.OnWorkZoneChanging(value);
 					this.SendPropertyChanging();
-					this._speed_limit = value;
-					this.SendPropertyChanged("speed_limit");
-					this.Onspeed_limitChanged();
+					this._WorkZone = value;
+					this.SendPropertyChanged("WorkZone");
+					this.OnWorkZoneChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_remark", DbType="NVarChar(MAX)")]
-		public string site_remark
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LaneWidth", DbType="Int")]
+		public System.Nullable<int> LaneWidth
 		{
 			get
 			{
-				return this._site_remark;
+				return this._LaneWidth;
 			}
 			set
 			{
-				if ((this._site_remark != value))
+				if ((this._LaneWidth != value))
 				{
-					this.Onsite_remarkChanging(value);
+					this.OnLaneWidthChanging(value);
 					this.SendPropertyChanging();
-					this._site_remark = value;
-					this.SendPropertyChanged("site_remark");
-					this.Onsite_remarkChanged();
+					this._LaneWidth = value;
+					this.SendPropertyChanged("LaneWidth");
+					this.OnLaneWidthChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_updated_by", DbType="NVarChar(50)")]
-		public string updated_by
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShoulderWidth", DbType="Int")]
+		public System.Nullable<int> ShoulderWidth
 		{
 			get
 			{
-				return this._updated_by;
+				return this._ShoulderWidth;
 			}
 			set
 			{
-				if ((this._updated_by != value))
+				if ((this._ShoulderWidth != value))
 				{
-					this.Onupdated_byChanging(value);
+					this.OnShoulderWidthChanging(value);
 					this.SendPropertyChanging();
-					this._updated_by = value;
-					this.SendPropertyChanged("updated_by");
-					this.Onupdated_byChanged();
+					this._ShoulderWidth = value;
+					this.SendPropertyChanged("ShoulderWidth");
+					this.OnShoulderWidthChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_updated_dt", DbType="DateTime")]
-		public System.Nullable<System.DateTime> updated_dt
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SpeedLimit", DbType="Int")]
+		public System.Nullable<int> SpeedLimit
 		{
 			get
 			{
-				return this._updated_dt;
+				return this._SpeedLimit;
 			}
 			set
 			{
-				if ((this._updated_dt != value))
+				if ((this._SpeedLimit != value))
 				{
-					this.Onupdated_dtChanging(value);
+					this.OnSpeedLimitChanging(value);
 					this.SendPropertyChanging();
-					this._updated_dt = value;
-					this.SendPropertyChanged("updated_dt");
-					this.Onupdated_dtChanged();
+					this._SpeedLimit = value;
+					this.SendPropertyChanged("SpeedLimit");
+					this.OnSpeedLimitChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCP_Site_Master_TCP_Site_PlanNumber", Storage="_TCPs", ThisKey="site_id", OtherKey="site_id")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LaneNumber", DbType="Int")]
+		public System.Nullable<int> LaneNumber
+		{
+			get
+			{
+				return this._LaneNumber;
+			}
+			set
+			{
+				if ((this._LaneNumber != value))
+				{
+					this.OnLaneNumberChanging(value);
+					this.SendPropertyChanging();
+					this._LaneNumber = value;
+					this.SendPropertyChanged("LaneNumber");
+					this.OnLaneNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Flow2Way", DbType="Bit")]
+		public System.Nullable<bool> Flow2Way
+		{
+			get
+			{
+				return this._Flow2Way;
+			}
+			set
+			{
+				if ((this._Flow2Way != value))
+				{
+					this.OnFlow2WayChanging(value);
+					this.SendPropertyChanging();
+					this._Flow2Way = value;
+					this.SendPropertyChanged("Flow2Way");
+					this.OnFlow2WayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DividedHighway", DbType="Bit")]
+		public System.Nullable<bool> DividedHighway
+		{
+			get
+			{
+				return this._DividedHighway;
+			}
+			set
+			{
+				if ((this._DividedHighway != value))
+				{
+					this.OnDividedHighwayChanging(value);
+					this.SendPropertyChanging();
+					this._DividedHighway = value;
+					this.SendPropertyChanged("DividedHighway");
+					this.OnDividedHighwayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Median", DbType="Bit")]
+		public System.Nullable<bool> Median
+		{
+			get
+			{
+				return this._Median;
+			}
+			set
+			{
+				if ((this._Median != value))
+				{
+					this.OnMedianChanging(value);
+					this.SendPropertyChanging();
+					this._Median = value;
+					this.SendPropertyChanged("Median");
+					this.OnMedianChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Flaggers", DbType="Bit")]
+		public System.Nullable<bool> Flaggers
+		{
+			get
+			{
+				return this._Flaggers;
+			}
+			set
+			{
+				if ((this._Flaggers != value))
+				{
+					this.OnFlaggersChanging(value);
+					this.SendPropertyChanging();
+					this._Flaggers = value;
+					this.SendPropertyChanged("Flaggers");
+					this.OnFlaggersChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RemoteSite", DbType="Bit")]
+		public System.Nullable<bool> RemoteSite
+		{
+			get
+			{
+				return this._RemoteSite;
+			}
+			set
+			{
+				if ((this._RemoteSite != value))
+				{
+					this.OnRemoteSiteChanging(value);
+					this.SendPropertyChanging();
+					this._RemoteSite = value;
+					this.SendPropertyChanged("RemoteSite");
+					this.OnRemoteSiteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShortDuration", DbType="Bit")]
+		public System.Nullable<bool> ShortDuration
+		{
+			get
+			{
+				return this._ShortDuration;
+			}
+			set
+			{
+				if ((this._ShortDuration != value))
+				{
+					this.OnShortDurationChanging(value);
+					this.SendPropertyChanging();
+					this._ShortDuration = value;
+					this.SendPropertyChanged("ShortDuration");
+					this.OnShortDurationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrafficVolume", DbType="NVarChar(50)")]
+		public string TrafficVolume
+		{
+			get
+			{
+				return this._TrafficVolume;
+			}
+			set
+			{
+				if ((this._TrafficVolume != value))
+				{
+					this.OnTrafficVolumeChanging(value);
+					this.SendPropertyChanging();
+					this._TrafficVolume = value;
+					this.SendPropertyChanged("TrafficVolume");
+					this.OnTrafficVolumeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Notes", DbType="NVarChar(MAX)")]
+		public string Notes
+		{
+			get
+			{
+				return this._Notes;
+			}
+			set
+			{
+				if ((this._Notes != value))
+				{
+					this.OnNotesChanging(value);
+					this.SendPropertyChanging();
+					this._Notes = value;
+					this.SendPropertyChanged("Notes");
+					this.OnNotesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="NVarChar(20)")]
+		public string UpdatedBy
+		{
+			get
+			{
+				return this._UpdatedBy;
+			}
+			set
+			{
+				if ((this._UpdatedBy != value))
+				{
+					this.OnUpdatedByChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedBy = value;
+					this.SendPropertyChanged("UpdatedBy");
+					this.OnUpdatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdatedDt
+		{
+			get
+			{
+				return this._UpdatedDt;
+			}
+			set
+			{
+				if ((this._UpdatedDt != value))
+				{
+					this.OnUpdatedDtChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedDt = value;
+					this.SendPropertyChanged("UpdatedDt");
+					this.OnUpdatedDtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCP_Site_Master_TCP_Site_Plan", Storage="_TCPs", ThisKey="site_id", OtherKey="site_id")]
 		public EntitySet<TCP> TCPs
 		{
 			get
@@ -9465,6 +9688,536 @@ namespace Data
 		{
 			this.SendPropertyChanging();
 			entity.TCPSite = null;
+		}
+	}
+	
+	public partial class spz_GetDCPInfoResult
+	{
+		
+		private string _officedcptimes;
+		
+		private string _utcdcptimes;
+		
+		private string _dcptime;
+		
+		private string _tzsite;
+		
+		private string _tzoffice;
+		
+		private System.Nullable<System.DateTime> _dutc;
+		
+		private string _jdutc;
+		
+		private System.Nullable<System.DateTime> _doffice;
+		
+		private string _jdoffice;
+		
+		private System.Nullable<System.DateTime> _dsite;
+		
+		private string _jdsite;
+		
+		private string _dcp_id;
+		
+		private System.Nullable<int> _site_id;
+		
+		private string _site_no;
+		
+		private string _assigned_time;
+		
+		private string _trans_interval;
+		
+		private string _window;
+		
+		private System.Nullable<int> _primary_ch;
+		
+		private System.Nullable<int> _primary_bd;
+		
+		private System.Nullable<int> _random_ch;
+		
+		private System.Nullable<int> _random_bd;
+		
+		private string _satellite;
+		
+		private string _contact_id;
+		
+		private string _contact_nm;
+		
+		private string _pass_station_nm;
+		
+		private System.Nullable<short> _ant_azimuth;
+		
+		private System.Nullable<short> _ant_elev;
+		
+		private string _remark;
+		
+		private System.Nullable<int> _wsc_id;
+		
+		public spz_GetDCPInfoResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_officedcptimes", DbType="NVarChar(300)")]
+		public string officedcptimes
+		{
+			get
+			{
+				return this._officedcptimes;
+			}
+			set
+			{
+				if ((this._officedcptimes != value))
+				{
+					this._officedcptimes = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_utcdcptimes", DbType="NVarChar(300)")]
+		public string utcdcptimes
+		{
+			get
+			{
+				return this._utcdcptimes;
+			}
+			set
+			{
+				if ((this._utcdcptimes != value))
+				{
+					this._utcdcptimes = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dcptime", DbType="NVarChar(8)")]
+		public string dcptime
+		{
+			get
+			{
+				return this._dcptime;
+			}
+			set
+			{
+				if ((this._dcptime != value))
+				{
+					this._dcptime = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tzsite", DbType="NVarChar(6)")]
+		public string tzsite
+		{
+			get
+			{
+				return this._tzsite;
+			}
+			set
+			{
+				if ((this._tzsite != value))
+				{
+					this._tzsite = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tzoffice", DbType="NVarChar(6)")]
+		public string tzoffice
+		{
+			get
+			{
+				return this._tzoffice;
+			}
+			set
+			{
+				if ((this._tzoffice != value))
+				{
+					this._tzoffice = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dutc", DbType="DateTime")]
+		public System.Nullable<System.DateTime> dutc
+		{
+			get
+			{
+				return this._dutc;
+			}
+			set
+			{
+				if ((this._dutc != value))
+				{
+					this._dutc = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_jdutc", DbType="NVarChar(7)")]
+		public string jdutc
+		{
+			get
+			{
+				return this._jdutc;
+			}
+			set
+			{
+				if ((this._jdutc != value))
+				{
+					this._jdutc = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_doffice", DbType="DateTime")]
+		public System.Nullable<System.DateTime> doffice
+		{
+			get
+			{
+				return this._doffice;
+			}
+			set
+			{
+				if ((this._doffice != value))
+				{
+					this._doffice = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_jdoffice", DbType="NVarChar(7)")]
+		public string jdoffice
+		{
+			get
+			{
+				return this._jdoffice;
+			}
+			set
+			{
+				if ((this._jdoffice != value))
+				{
+					this._jdoffice = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dsite", DbType="DateTime")]
+		public System.Nullable<System.DateTime> dsite
+		{
+			get
+			{
+				return this._dsite;
+			}
+			set
+			{
+				if ((this._dsite != value))
+				{
+					this._dsite = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_jdsite", DbType="NVarChar(7)")]
+		public string jdsite
+		{
+			get
+			{
+				return this._jdsite;
+			}
+			set
+			{
+				if ((this._jdsite != value))
+				{
+					this._jdsite = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dcp_id", DbType="NVarChar(8)")]
+		public string dcp_id
+		{
+			get
+			{
+				return this._dcp_id;
+			}
+			set
+			{
+				if ((this._dcp_id != value))
+				{
+					this._dcp_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int")]
+		public System.Nullable<int> site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					this._site_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_no", DbType="NVarChar(16)")]
+		public string site_no
+		{
+			get
+			{
+				return this._site_no;
+			}
+			set
+			{
+				if ((this._site_no != value))
+				{
+					this._site_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_assigned_time", DbType="NVarChar(6)")]
+		public string assigned_time
+		{
+			get
+			{
+				return this._assigned_time;
+			}
+			set
+			{
+				if ((this._assigned_time != value))
+				{
+					this._assigned_time = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_trans_interval", DbType="NVarChar(10)")]
+		public string trans_interval
+		{
+			get
+			{
+				return this._trans_interval;
+			}
+			set
+			{
+				if ((this._trans_interval != value))
+				{
+					this._trans_interval = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_window", DbType="NVarChar(10)")]
+		public string window
+		{
+			get
+			{
+				return this._window;
+			}
+			set
+			{
+				if ((this._window != value))
+				{
+					this._window = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_primary_ch", DbType="Int")]
+		public System.Nullable<int> primary_ch
+		{
+			get
+			{
+				return this._primary_ch;
+			}
+			set
+			{
+				if ((this._primary_ch != value))
+				{
+					this._primary_ch = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_primary_bd", DbType="Int")]
+		public System.Nullable<int> primary_bd
+		{
+			get
+			{
+				return this._primary_bd;
+			}
+			set
+			{
+				if ((this._primary_bd != value))
+				{
+					this._primary_bd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_random_ch", DbType="Int")]
+		public System.Nullable<int> random_ch
+		{
+			get
+			{
+				return this._random_ch;
+			}
+			set
+			{
+				if ((this._random_ch != value))
+				{
+					this._random_ch = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_random_bd", DbType="Int")]
+		public System.Nullable<int> random_bd
+		{
+			get
+			{
+				return this._random_bd;
+			}
+			set
+			{
+				if ((this._random_bd != value))
+				{
+					this._random_bd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_satellite", DbType="NVarChar(1)")]
+		public string satellite
+		{
+			get
+			{
+				return this._satellite;
+			}
+			set
+			{
+				if ((this._satellite != value))
+				{
+					this._satellite = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contact_id", DbType="NVarChar(20)")]
+		public string contact_id
+		{
+			get
+			{
+				return this._contact_id;
+			}
+			set
+			{
+				if ((this._contact_id != value))
+				{
+					this._contact_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contact_nm", DbType="NVarChar(50)")]
+		public string contact_nm
+		{
+			get
+			{
+				return this._contact_nm;
+			}
+			set
+			{
+				if ((this._contact_nm != value))
+				{
+					this._contact_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pass_station_nm", DbType="NVarChar(100)")]
+		public string pass_station_nm
+		{
+			get
+			{
+				return this._pass_station_nm;
+			}
+			set
+			{
+				if ((this._pass_station_nm != value))
+				{
+					this._pass_station_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ant_azimuth", DbType="SmallInt")]
+		public System.Nullable<short> ant_azimuth
+		{
+			get
+			{
+				return this._ant_azimuth;
+			}
+			set
+			{
+				if ((this._ant_azimuth != value))
+				{
+					this._ant_azimuth = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ant_elev", DbType="SmallInt")]
+		public System.Nullable<short> ant_elev
+		{
+			get
+			{
+				return this._ant_elev;
+			}
+			set
+			{
+				if ((this._ant_elev != value))
+				{
+					this._ant_elev = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_remark", DbType="NVarChar(255)")]
+		public string remark
+		{
+			get
+			{
+				return this._remark;
+			}
+			set
+			{
+				if ((this._remark != value))
+				{
+					this._remark = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_id", DbType="Int")]
+		public System.Nullable<int> wsc_id
+		{
+			get
+			{
+				return this._wsc_id;
+			}
+			set
+			{
+				if ((this._wsc_id != value))
+				{
+					this._wsc_id = value;
+				}
+			}
 		}
 	}
 }

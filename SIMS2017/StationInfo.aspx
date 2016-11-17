@@ -176,66 +176,69 @@
                             <telerik:LayoutRow>
                                 <Content>
                                 <h4>DCP/Realtime Ops</h4>
-                                <div class="DCPTable"">
-                                    <table>
-                                        <tr>
-                                            <td colspan="2">
-                                                <b>Office Time:</b> <asp:Literal ID="ltlDCPOfficeTime" runat="server" /><br />
-                                                <b>Site Time:</b> <asp:Literal ID="ltlDCPSiteTime" runat="server" /><br />
-                                                <b>GMT Time:</b> <asp:Literal ID="ltlDCPGMTTime" runat="server" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <b>Next Transmit Time:</b>
-                                                <table>
-                                                    <tr>
-                                                        <td><b>Local</b></td>
-                                                        <td><b><asp:Literal ID="ltlDCPLocalNextTransmit" runat="server" /></b></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>GMT</b></td>
-                                                        <td><b><asp:Literal ID="ltlDCPGMTNextTransmit" runat="server" /></b></td>
-                                                    </tr>
-                                                </table>
-                                                <b>Minutes to next trans.: <asp:Literal ID="ltlDCPMinToNextTransmit" runat="server" /></b>
-                                            </td>
-                                            <td valign="top">
-                                                <table style="border:1px solid #808080">
-                                                    <tr>
-                                                        <td><b>DCPID</b></td>
-                                                        <td><b>Prim./ Rndm. Channel</b></td>
-                                                        <td><b>Prim./ Rndm. Baud</b></td>
-                                                        <td><b>Satellite Azimuth/ Elevation</b></td>
-                                                        <td><b>Trans. Time/ Interval/ Window</b></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2">
-                                                <div>
-                                                    <div style="width:30%;float:left;">
-                                                        <asp:HyperLink ID="hlDCPHADS" runat="server" Target="_blank" Text="NWS HADS System" Font-Bold="true" /><br />
-                                                        <asp:HyperLink ID="hlDCPEDDN" runat="server" Target="_blank" Text="EDDN Platform Configuration" Font-Bold="true" /><br />
-                                                        <asp:HyperLink ID="hlDCPPASS" runat="server" Target="_blank" Text="PASS Home" Font-Bold="true" />
-                                                    </div>
-                                                    <div style="float:right;width:70%;">
-                                                        <b>View data for specified hours:</b> <asp:TextBox ID="tbDCPViewData" runat="server" Text="8" Width="50px" /> <asp:Button ID="btnDCPViewData" runat="server" Enabled="false" Text="Go!" /><br />
-                                                        <i>This option currently not available. Maintainers of this web site have been notified of the problem.</i>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
+                                <asp:Panel ID="pnlDCPTable" runat="server" CssClass="DCPTable">
+                                    <div>
+                                        <b>Office Time:</b> <asp:Literal ID="ltlDCPOfficeTime" runat="server" /><br />
+                                        <b>Site Time:</b> <asp:Literal ID="ltlDCPSiteTime" runat="server" /><br />
+                                        <b>GMT Time:</b> <asp:Literal ID="ltlDCPGMTTime" runat="server" />
+                                    </div>
+                                    <asp:DataList ID="dlDCPTable" runat="server">
+                                        <ItemTemplate>
+                                            <table width="800">
+                                                <tr>
+                                                    <td width="200">
+                                                        <b>Next Transmit Time:</b>
+                                                        <table style="border:1px solid #808080;" cellpadding="3px">
+                                                            <tr>
+                                                                <td><b>Local</b></td>
+                                                                <td style="background-color:white;"><b><%# Eval("LocalTransmitTime") %></b></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><b>GMT</b></tdstyle="background-color:white;>
+                                                                <td style="background-color:white;"><b><%# Eval("GMTTransmitTime") %></b></td>
+                                                            </tr>
+                                                        </table>
+                                                        <b>Minutes to next trans.: <span style="background-color:white;padding:0 3px 0 3px"><%# Eval("MinutesToNext") %></span></b>
+                                                    </td>
+                                                    <td valign="top">
+                                                        <table style="border:1px solid #808080;" cellpadding="3px">
+                                                            <tr>
+                                                                <td style="text-align:center;"><b>DCPID</b></td>
+                                                                <td style="text-align:center;"><b>Prim./<br />Rndm. Channel</b></td>
+                                                                <td style="text-align:center;"><b>Prim./<br />Rndm. Baud</b></td>
+                                                                <td style="text-align:center;"><b>Satellite Azimuth/<br />Elevation</b></td>
+                                                                <td style="text-align:center;"><b>Trans. Time/<br />Interval/ Window</b></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="background-color:white;text-align:center;"><%# Eval("dcp_id") %></td>
+                                                                <td style="background-color:white;text-align:center;"><%# Eval("primary_ch") %> / <%# Eval("random_ch") %></td>
+                                                                <td style="background-color:white;text-align:center;"><%# Eval("primary_bd") %> / <%# Eval("random_bd") %></td>
+                                                                <td style="background-color:white;text-align:center;"><%# Eval("satellite") %><%# Eval("ant_azimuth") %> / <%# Eval("ant_elev") %></td>
+                                                                <td style="background-color:white;text-align:center;"><%# Eval("assigned_time") %> / <%# Eval("trans_interval") %> / <%# Eval("window") %></td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" valign="top">
+                                                        <div style="width:100%;">
+                                                            <div style="width:30%;float:left;">
+                                                                <b><a href='<%# String.Format("http://amazon.nws.noaa.gov/cgi-bin/hads/dipper/dcpInfo2.pl?table=dcp&nesdis_id={0}", Eval("dcp_id")) %>' target="_blank">NWS HADS System</a></b><br />
+                                                                <b><a href='<%# String.Format("http://eddn.usgs.gov/cgi-bin/configSummary.cgi?dcpid={0}&type=view", Eval("dcp_id")) %>' target="_blank">EDDN Platform Configuration</a></b><br />
+                                                                <b><a href='<%# String.Format("{0}", Eval("PASSURL")) %>' target="_blank">PASS Home</a></b><br />
+                                                            </div>
+                                                            <div style="float:right;width:70%;">
+                                                                <b>View data for specified hours:</b> <asp:TextBox ID="tbDCPViewData" runat="server" Text="8" Width="40px" /> <asp:Button ID="btnDCPViewData" runat="server" Enabled="false" Text="Go!" /><br />
+                                                                <i>This option currently not available. Maintainers of this web site have been notified of the problem.</i>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </ItemTemplate>
+                                    </asp:DataList>
+                                </asp:Panel>
+                                <asp:Literal ID="ltlNoDCP" runat="server" />
                                 </Content>
                             </telerik:LayoutRow>
                         </Rows>
