@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Site Information Management System</title>
     <meta name="viewport" content="initial-scale=1.0, minimum-scale=1, maximum-scale=1.0, user-scalable=no" />
     <link href="styles/base.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -13,33 +13,34 @@
 <body>
     <form id="form1" runat="server">
         <telerik:RadScriptManager runat="server"></telerik:RadScriptManager>
+        <telerik:RadFormDecorator RenderMode="Lightweight" runat="server" DecoratedControls="All" Skin="Bootstrap" />
+
         <div id="wrapper">
             <a href="#" class="logo">
-                <img src="images/logo.png" alt="site logo" />
+               <img src="images/USGSHeaderLogo.png" alt="USGS" style="padding-right:50px;padding-bottom:5px" /><img src="images/SafetyLogo.png" alt="site logo" />
             </a>
             <div class="header">
-                <telerik:RadMenu ID="RadMenu1" CssClass="mainMenu" runat="server" RenderMode="Auto">
+                <telerik:RadMenu ID="rmTop" CssClass="mainMenu" runat="server" RenderMode="Auto">
                     <Items>
-                        <telerik:RadMenuItem Text="Home" NavigateUrl="Default.aspx" />
+                        <telerik:RadMenuItem Text="SIMS National Home" NavigateUrl="http://sims.water.usgs.gov/SIMS/Default.aspx" />
                         <telerik:RadMenuItem IsSeparator="true" />
-                        <telerik:RadMenuItem Text="Grid Page" NavigateUrl="Grid.aspx" />
+                        <telerik:RadMenuItem Text="SIMS WSC Home" NavigateUrl="~/SIMSWSCHome.aspx" />
                         <telerik:RadMenuItem IsSeparator="true" />
-                        <telerik:RadMenuItem Text="ListView Page" NavigateUrl="ListView.aspx" />
+                        <telerik:RadMenuItem Text="RMS WSC Home" NavigateUrl="~/RMSWSCHome.aspx" />
                         <telerik:RadMenuItem IsSeparator="true" />
-                        <telerik:RadMenuItem Text="About" />
+                        <telerik:RadMenuItem Text="Admin Tasks" NavigateUrl="~/Admin/Tasks.aspx" />
                         <telerik:RadMenuItem IsSeparator="true" />
-                        <telerik:RadMenuItem Text="Projects" />
+                        <telerik:RadMenuItem Text="Latest News" NavigateUrl="https://collaboration.usgs.gov/wg/owi/specialprojects/SIMS/Shared%20Documents/updates.html" />
                         <telerik:RadMenuItem IsSeparator="true" />
-                        <telerik:RadMenuItem Text="Dashboard" />
-                        <telerik:RadMenuItem IsSeparator="true" />
-                        <telerik:RadMenuItem Text="..." />
-                        <telerik:RadMenuItem IsSeparator="true" />
-                        <telerik:RadMenuItem Text="..." />
-                        <telerik:RadMenuItem IsSeparator="true" />
-                        <telerik:RadMenuItem Text="Contacts" />
+                        <telerik:RadMenuItem Text="Contact" NavigateUrl="~/NWISOpsRequest.aspx" />
                     </Items>
                 </telerik:RadMenu>
             </div>
+
+            <div class="subheader">
+                internal only | logged in as: <asp:Literal ID="ltlUserID" runat="server" />
+            </div>
+
             <asp:ContentPlaceHolder ID="cph1" runat="server">
             </asp:ContentPlaceHolder>
             <asp:ContentPlaceHolder ID="cph2" runat="server">

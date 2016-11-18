@@ -47,6 +47,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -126,9 +127,14 @@
     <Content Include="App_Data\RadCaptcha\Z.wav" />
     <Content Include="CablewayReport.aspx" />
     <Content Include="Cableways.aspx" />
+    <Content Include="Control\SitePageHeading.ascx" />
     <Content Include="EmergencyInfo.aspx" />
+    <Content Include="images\Safetylogo.png" />
+    <Content Include="images\SafetyTitle.png" />
+    <Content Include="images\USGSHeaderLogo.png" />
     <Content Include="Safety.Master" />
     <Content Include="SafetySingleMenu.Master" />
+    <Content Include="TCPEdit.aspx" />
     <Content Include="TCPReport.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +159,13 @@
     </Compile>
     <Compile Include="Cableways.aspx.designer.cs">
       <DependentUpon>Cableways.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Control\SitePageHeading.ascx.cs">
+      <DependentUpon>SitePageHeading.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Control\SitePageHeading.ascx.designer.cs">
+      <DependentUpon>SitePageHeading.ascx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -190,6 +203,13 @@
       <DependentUpon>SafetySingleMenu.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TCPEdit.aspx.cs">
+      <DependentUpon>TCPEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TCPEdit.aspx.designer.cs">
+      <DependentUpon>TCPEdit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TCPReport.aspx.cs">
       <DependentUpon>TCPReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -229,9 +249,7 @@
       <Name>Data</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="images\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>

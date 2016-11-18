@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SitePageHeading.ascx.cs" Inherits="SIMS2017.Control.SitePageHeading" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SitePageHeading.ascx.cs" Inherits="Safety.Control.SitePageHeading" %>
 <div class="selector">
     <div class="headers">
         <h2><asp:Literal ID="ltlPageTitle" runat="server" /></h2>

@@ -128,10 +128,10 @@
     <Content Include="App_Data\RadCaptcha\Z.wav" />
     <Content Include="Control\OfficeSelector.ascx" />
     <Content Include="Control\SitePageHeading.ascx" />
-    <Content Include="images\HomepageTitle.png" />
     <Content Include="images\RMSlogo.png" />
     <Content Include="images\RMSTitle.png" />
     <Content Include="images\SIMSLogo.png" />
+    <Content Include="images\SIMSTitle.png" />
     <Content Include="images\underarrow.png" />
     <Content Include="images\USGSHeaderLogo.png" />
     <Content Include="images\USGSHeaderLogoRMS.png" />

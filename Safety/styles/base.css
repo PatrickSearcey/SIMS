@@ -26,6 +26,7 @@ body {
 a {
   background: transparent;
   text-decoration: none !important;
+  color: #a0865d;
 }
 
 a:-webkit-any-link {
@@ -44,7 +45,7 @@ input {
 
 hr {
     border-width: 1px 0 0 0;
-    border-color: #767676;
+    border-color: #a0865d;
     border-style: solid;
 }
 
@@ -92,7 +93,7 @@ h6 {
 }
 
 #wrapper .header {
-    background-color: #314d93;
+    background-color: #099b7a;
 }
 
 #wrapper .RadButton {
@@ -109,9 +110,9 @@ div.RadMenuPopup,
     margin-top:10px;
     padding:10px;
     height:130px;
-    background: #d1ddf0; /* Old browsers */
-    -webkit-box-shadow: 0 0 5px 0 #d1ddf0;
-    box-shadow: 0 0 5px 0 #d1ddf0;
+    background: #b7e2d6; /* Old browsers */
+    -webkit-box-shadow: 0 0 5px 0 #b7e2d6;
+    box-shadow: 0 0 5px 0 #b7e2d6;
     -webkit-border-radius: 5px;
     border-radius: 5px;
 }

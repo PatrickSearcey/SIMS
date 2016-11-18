@@ -188,20 +188,20 @@
                                                 <tr>
                                                     <td width="200">
                                                         <b>Next Transmit Time:</b>
-                                                        <table style="border:1px solid #808080;" cellpadding="3px">
+                                                        <table style="border:1px solid #acb274;" cellpadding="3px">
                                                             <tr>
                                                                 <td><b>Local</b></td>
-                                                                <td style="background-color:white;"><b><%# Eval("LocalTransmitTime") %></b></td>
+                                                                <td style="background-color:white;color: #808080;"><b><%# Eval("LocalTransmitTime") %></b></td>
                                                             </tr>
                                                             <tr>
                                                                 <td><b>GMT</b></tdstyle="background-color:white;>
-                                                                <td style="background-color:white;"><b><%# Eval("GMTTransmitTime") %></b></td>
+                                                                <td style="background-color:white;color: #808080;"><b><%# Eval("GMTTransmitTime") %></b></td>
                                                             </tr>
                                                         </table>
-                                                        <b>Minutes to next trans.: <span style="background-color:white;padding:0 3px 0 3px"><%# Eval("MinutesToNext") %></span></b>
+                                                        <b>Minutes to next trans.: <span style="background-color:white;padding:0 3px 0 3px;color: #808080;"><%# Eval("MinutesToNext") %></span></b>
                                                     </td>
                                                     <td valign="top">
-                                                        <table style="border:1px solid #808080;" cellpadding="3px">
+                                                        <table style="border:1px solid #acb274;" cellpadding="3px">
                                                             <tr>
                                                                 <td style="text-align:center;"><b>DCPID</b></td>
                                                                 <td style="text-align:center;"><b>Prim./<br />Rndm. Channel</b></td>
@@ -210,11 +210,11 @@
                                                                 <td style="text-align:center;"><b>Trans. Time/<br />Interval/ Window</b></td>
                                                             </tr>
                                                             <tr>
-                                                                <td style="background-color:white;text-align:center;"><%# Eval("dcp_id") %></td>
-                                                                <td style="background-color:white;text-align:center;"><%# Eval("primary_ch") %> / <%# Eval("random_ch") %></td>
-                                                                <td style="background-color:white;text-align:center;"><%# Eval("primary_bd") %> / <%# Eval("random_bd") %></td>
-                                                                <td style="background-color:white;text-align:center;"><%# Eval("satellite") %><%# Eval("ant_azimuth") %> / <%# Eval("ant_elev") %></td>
-                                                                <td style="background-color:white;text-align:center;"><%# Eval("assigned_time") %> / <%# Eval("trans_interval") %> / <%# Eval("window") %></td>
+                                                                <td style="background-color:white;text-align:center;color: #808080;"><%# Eval("dcp_id") %></td>
+                                                                <td style="background-color:white;text-align:center;color: #808080;"><%# Eval("primary_ch") %> / <%# Eval("random_ch") %></td>
+                                                                <td style="background-color:white;text-align:center;color: #808080;"><%# Eval("primary_bd") %> / <%# Eval("random_bd") %></td>
+                                                                <td style="background-color:white;text-align:center;color: #808080;"><%# Eval("satellite") %><%# Eval("ant_azimuth") %> / <%# Eval("ant_elev") %></td>
+                                                                <td style="background-color:white;text-align:center;color: #808080;"><%# Eval("assigned_time") %> / <%# Eval("trans_interval") %> / <%# Eval("window") %></td>
                                                             </tr>
                                                         </table>
                                                     </td>

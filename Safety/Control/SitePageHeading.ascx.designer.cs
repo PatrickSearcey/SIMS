@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SIMS2017.Control {
+namespace Safety.Control {
     
     
     public partial class SitePageHeading {

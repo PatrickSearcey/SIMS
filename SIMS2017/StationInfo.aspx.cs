@@ -54,7 +54,7 @@ namespace SIMS2017
         protected void Page_Load(object sender, EventArgs e)
         {
             //If no site_id was passed, then redirect back to the homepage
-            string site_id = "3019214"; // Request.QueryString["site_id"];
+            string site_id = Request.QueryString["site_id"];
             if (!string.IsNullOrEmpty(site_id)) SiteID = Convert.ToInt32(site_id); else Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
             
             //Using the passed site_id, setup the site data element, and reset the office and wsc to match that of the current site
@@ -120,7 +120,7 @@ namespace SIMS2017
                     {
                         DateTime approved_dt = Convert.ToDateTime(manuApproved.approved_dt);
                         DateTime revised_dt = Convert.ToDateTime(db.ElemReportSums.FirstOrDefault(p => p.site_id == currSite.site_id && p.report_type_cd == "MANU").revised_dt);
-                        if (revised_dt > approved_dt) ltlApproved.Text = String.Format("(<a href='{0}StationDoc/MAISite.aspx?site_id={1}'>Needs Approval</a>)", Config.SIMS2017URL, currSite.site_id); else ltlApproved.Text = String.Format("(<a href='{0}StationDoc/MAISite.aspx?site_id={1}'>Approved</a>)", Config.SIMS2017URL, currSite.site_id);
+                        if (revised_dt > approved_dt) ltlApproved.Text = String.Format("(<a href='{0}StationDoc/MAISite.aspx?site_id={1}' style='color:red;'>Needs Approval</a>)", Config.SIMS2017URL, currSite.site_id); else ltlApproved.Text = String.Format("(<a href='{0}StationDoc/MAISite.aspx?site_id={1}' style='color:green'>Approved</a>)", Config.SIMS2017URL, currSite.site_id);
                     }
                     else ltlApproved.Text = String.Format("(<a href='{0}StationDoc/MAISite.aspx?site_id={1}'>Needs Approval</a>)", Config.SIMS2017URL, currSite.site_id);
                 }
@@ -129,6 +129,7 @@ namespace SIMS2017
             else ltlApproved.Visible = false;
 
             //CRP
+
 
             //Safety
             hlSHATutorial.NavigateUrl = String.Format("{0}SIMSShare/SIMS_SHA_Tutorial.pptx", Config.SIMSURL);
@@ -173,7 +174,7 @@ namespace SIMS2017
                         TCPName = p.TCPPlanDetail.Name,
                         TCPURL = String.Format("{0}Safety/TCPView.aspx?tcp_id={1}", Config.SIMS2017URL, p.TCPID),
                         LastApprovedDt = TCPApprovedDate(p.ApprovedDt),
-                        TCPApprovalStatus = TCPApprovalStatus((bool)p.ApprovalReady, p.TCPID)
+                        TCPApprovalStatus = TCPApprovalStatus(p.ApprovalReady, p.TCPID)
                     });
                     dlTCPs.DataBind();
                     hlTCPTrackStatus.NavigateUrl = String.Format("{0}Safety/TCPReport.aspx", Config.SIMS2017URL);
@@ -232,11 +233,18 @@ namespace SIMS2017
             
         }
 
-        private string TCPApprovalStatus(bool approval_ready, int TCPID)
+        private string TCPApprovalStatus(bool? approval_ready, int TCPID)
         {
             string ret = "";
 
-            if (approval_ready) ret = "<i>TCP pending approval</i>"; else ret = String.Format("<a href='{0}Safety/TCPEdit.aspx?tcp_id={1}&action=approve'><b>Submit for Approval</b></a>", Config.SIMS2017URL, TCPID);
+            if (approval_ready != null)
+            {
+                if ((bool)approval_ready) ret = "<i>TCP pending approval</i>"; else ret = String.Format("<a href='{0}Safety/TCPEdit.aspx?tcp_id={1}&action=approve'><b>Submit for Approval</b></a>", Config.SIMS2017URL, TCPID);
+            }
+            else
+            {
+                ret = String.Format("<a href='{0}Safety/TCPEdit.aspx?tcp_id={1}&action=approve'><b>Submit for Approval</b></a>", Config.SIMS2017URL, TCPID);
+            }
 
             return ret;
         }
@@ -292,6 +300,7 @@ namespace SIMS2017
             lbEditPubName.Visible = HasEditAccess;
             lbEditOffice.Visible = HasEditAccess;
             lbEditFieldTrip.Visible = HasEditAccess;
+            hlEditDocs.Visible = HasEditAccess;
         }
         #endregion
 

@@ -56,7 +56,7 @@
                 <Columns>
                     <telerik:LayoutColumn CssClass="jumbotron">
                         <h2>Welcome to the <asp:Literal ID="ltlWSCName" runat="server" /></h2>
-                        <img src="images/HomepageTitle.png" alt="SIMS" />
+                        <img src="images/SIMSTitle.png" alt="SIMS" />
                     </telerik:LayoutColumn>
                 </Columns>
             </telerik:LayoutRow>

@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace SIMS2017.Control
+namespace Safety.Control
 {
     public partial class SitePageHeading : System.Web.UI.UserControl
     {

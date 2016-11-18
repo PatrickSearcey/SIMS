@@ -26,6 +26,11 @@ body {
 a {
   background: transparent;
   text-decoration: none !important;
+  color: #486ece;
+}
+
+a:hover {
+    text-decoration: underline !important;
 }
 
 a:-webkit-any-link {

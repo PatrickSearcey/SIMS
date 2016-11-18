@@ -87,11 +87,19 @@ h4 {
     padding:5px;
     height:100%;
     width: 800px;
-    background: #d1ddf0; /* Old browsers */
-    -webkit-box-shadow: 0 0 5px 0 #d1ddf0;
-    box-shadow: 0 0 5px 0 #d1ddf0;
+    color: #f0f4c9;
+    background: #149d49; /* Old browsers */
+    -webkit-box-shadow: 0 0 5px 0 #149d49;
+    box-shadow: 0 0 5px 0 #149d49;
     -webkit-border-radius: 5px;
     border-radius: 5px;
     font-size: 9pt;
 }
 
+.DCPTable a {
+    color: aliceblue !important;
+}
+
+.DCPTable a:hover {
+    text-decoration: underline !important;
+}
