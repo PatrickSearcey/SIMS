@@ -139,8 +139,8 @@ namespace SIMS2017
             {
                 pnlSHACreate.Visible = false;
                 pnlSHAEdit.Visible = true;
-                hlSHAEdit.NavigateUrl = String.Format("{0}Safety/SiteHazardAnalysis.aspx?site_id={1}", Config.SIMS2017URL, currSite.site_id);
-                hlSHAPrintVersion.NavigateUrl = String.Format("{0}Safety/SHAPrint.aspx?site_id={1}", Config.SIMS2017URL, currSite.site_id);
+                hlSHAEdit.NavigateUrl = String.Format("{0}SiteHazardAnalysis.aspx?site_id={1}", Config.SafetyURL, currSite.site_id);
+                hlSHAPrintVersion.NavigateUrl = String.Format("{0}SHAPrint.aspx?site_id={1}", Config.SafetyURL, currSite.site_id);
                 string approved_dt = String.Format("{0:MM/dd/yyyy}", SHA.approved_dt);
                 if (string.IsNullOrEmpty(approved_dt)) ltlSHAApproved.Text = "last approved: <i>never approved</i>";
                 else
@@ -168,29 +168,29 @@ namespace SIMS2017
                 {
                     pnlTCPCreate.Visible = false;
                     pnlTCPEdit.Visible = true;
-                    hlTCPEdit.NavigateUrl = String.Format("{0}Safety/TCPEdit.aspx?site_id={1}", Config.SIMS2017URL, currSite.site_id);
+                    hlTCPEdit.NavigateUrl = String.Format("{0}TCPEdit.aspx?site_id={1}", Config.SafetyURL, currSite.site_id);
                     dlTCPs.DataSource = currSite.TCPSite.TCPs.Select(p => new
                     {
                         TCPName = p.TCPPlanDetail.Name,
-                        TCPURL = String.Format("{0}Safety/TCPView.aspx?tcp_id={1}", Config.SIMS2017URL, p.TCPID),
+                        TCPURL = String.Format("{0}TCPView.aspx?tcp_id={1}", Config.SafetyURL, p.TCPID),
                         LastApprovedDt = TCPApprovedDate(p.ApprovedDt),
                         TCPApprovalStatus = TCPApprovalStatus(p.ApprovalReady, p.TCPID)
                     });
                     dlTCPs.DataBind();
-                    hlTCPTrackStatus.NavigateUrl = String.Format("{0}Safety/TCPReport.aspx", Config.SIMS2017URL);
+                    hlTCPTrackStatus.NavigateUrl = String.Format("{0}TCPReport.aspx", Config.SafetyURL);
                 }
                 else
                 {
                     pnlTCPCreate.Visible = true;
                     pnlTCPEdit.Visible = false;
-                    hlTCPCreate.NavigateUrl = String.Format("{0}Safety/TCPEdit.aspx?site_id={1}", Config.SIMS2017URL, currSite.site_id);
+                    hlTCPCreate.NavigateUrl = String.Format("{0}TCPEdit.aspx?site_id={1}", Config.SafetyURL, currSite.site_id);
                 }
             }
             else
             {
                 pnlTCPCreate.Visible = true;
                 pnlTCPEdit.Visible = false;
-                hlTCPCreate.NavigateUrl = String.Format("{0}Safety/TCPEdit.aspx?site_id={1}", Config.SIMS2017URL, currSite.site_id);
+                hlTCPCreate.NavigateUrl = String.Format("{0}TCPEdit.aspx?site_id={1}", Config.SafetyURL, currSite.site_id);
             }
 
             //DCP/Realtime Ops
@@ -239,11 +239,11 @@ namespace SIMS2017
 
             if (approval_ready != null)
             {
-                if ((bool)approval_ready) ret = "<i>TCP pending approval</i>"; else ret = String.Format("<a href='{0}Safety/TCPEdit.aspx?tcp_id={1}&action=approve'><b>Submit for Approval</b></a>", Config.SIMS2017URL, TCPID);
+                if ((bool)approval_ready) ret = "<i>TCP pending approval</i>"; else ret = String.Format("<a href='{0}TCPEdit.aspx?tcp_id={1}&action=approve'><b>Submit for Approval</b></a>", Config.SafetyURL, TCPID);
             }
             else
             {
-                ret = String.Format("<a href='{0}Safety/TCPEdit.aspx?tcp_id={1}&action=approve'><b>Submit for Approval</b></a>", Config.SIMS2017URL, TCPID);
+                ret = String.Format("<a href='{0}TCPEdit.aspx?tcp_id={1}&action=approve'><b>Submit for Approval</b></a>", Config.SafetyURL, TCPID);
             }
 
             return ret;

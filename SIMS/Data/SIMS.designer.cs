@@ -364,6 +364,14 @@ namespace Data
 			}
 		}
 		
+		public System.Data.Linq.Table<TCPCalculation> TCPCalculations
+		{
+			get
+			{
+				return this.GetTable<TCPCalculation>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spz_GetDCPInfo")]
 		public ISingleResult<spz_GetDCPInfoResult> spz_GetDCPInfo([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> site_id)
 		{
@@ -2337,7 +2345,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_TCP_Site_Master", Storage="_TCPSite", ThisKey="site_id", OtherKey="site_id", IsUnique=true, IsForeignKey=false)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_TCPSite", Storage="_TCPSite", ThisKey="site_id", OtherKey="site_id", IsUnique=true, IsForeignKey=false)]
 		public TCPSite TCPSite
 		{
 			get
@@ -8626,7 +8634,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPPlanDetail_TCP_Site_Plan", Storage="_TCPs", ThisKey="PlanID", OtherKey="PlanID")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPPlanDetail_TCP", Storage="_TCPs", ThisKey="PlanID", OtherKey="PlanID")]
 		public EntitySet<TCP> TCPs
 		{
 			get
@@ -9039,7 +9047,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPPlanDetail_TCP_Site_Plan", Storage="_TCPPlanDetail", ThisKey="PlanID", OtherKey="PlanID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPPlanDetail_TCP", Storage="_TCPPlanDetail", ThisKey="PlanID", OtherKey="PlanID", IsForeignKey=true)]
 		public TCPPlanDetail TCPPlanDetail
 		{
 			get
@@ -9073,7 +9081,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCP_Site_Master_TCP_Site_Plan", Storage="_TCPSite", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPSite_TCP", Storage="_TCPSite", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
 		public TCPSite TCPSite
 		{
 			get
@@ -9611,7 +9619,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCP_Site_Master_TCP_Site_Plan", Storage="_TCPs", ThisKey="site_id", OtherKey="site_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPSite_TCP", Storage="_TCPs", ThisKey="site_id", OtherKey="site_id")]
 		public EntitySet<TCP> TCPs
 		{
 			get
@@ -9624,7 +9632,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_TCP_Site_Master", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_TCPSite", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
 		public Site Site
 		{
 			get
@@ -9688,6 +9696,105 @@ namespace Data
 		{
 			this.SendPropertyChanging();
 			entity.TCPSite = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TCP_Lut_Calculations")]
+	public partial class TCPCalculation
+	{
+		
+		private System.Nullable<int> _Speed;
+		
+		private System.Nullable<int> _WarningSignSpacing;
+		
+		private System.Nullable<int> _MinTaperLength;
+		
+		private System.Nullable<int> _OptBufferLength;
+		
+		private System.Nullable<int> _FlaggerDistance;
+		
+		public TCPCalculation()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Speed", DbType="Int")]
+		public System.Nullable<int> Speed
+		{
+			get
+			{
+				return this._Speed;
+			}
+			set
+			{
+				if ((this._Speed != value))
+				{
+					this._Speed = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WarningSignSpacing", DbType="Int")]
+		public System.Nullable<int> WarningSignSpacing
+		{
+			get
+			{
+				return this._WarningSignSpacing;
+			}
+			set
+			{
+				if ((this._WarningSignSpacing != value))
+				{
+					this._WarningSignSpacing = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MinTaperLength", DbType="Int")]
+		public System.Nullable<int> MinTaperLength
+		{
+			get
+			{
+				return this._MinTaperLength;
+			}
+			set
+			{
+				if ((this._MinTaperLength != value))
+				{
+					this._MinTaperLength = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OptBufferLength", DbType="Int")]
+		public System.Nullable<int> OptBufferLength
+		{
+			get
+			{
+				return this._OptBufferLength;
+			}
+			set
+			{
+				if ((this._OptBufferLength != value))
+				{
+					this._OptBufferLength = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FlaggerDistance", DbType="Int")]
+		public System.Nullable<int> FlaggerDistance
+		{
+			get
+			{
+				return this._FlaggerDistance;
+			}
+			set
+			{
+				if ((this._FlaggerDistance != value))
+				{
+					this._FlaggerDistance = value;
+				}
+			}
 		}
 	}
 	

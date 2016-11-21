@@ -49,6 +49,15 @@ namespace Safety {
         protected global::System.Web.UI.WebControls.Panel pnlEditSiteSpecificInfo;
         
         /// <summary>
+        /// ltlLastUpdated control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlLastUpdated;
+        
+        /// <summary>
         /// rddlRemote control.
         /// </summary>
         /// <remarks>
@@ -94,6 +103,15 @@ namespace Safety {
         protected global::Telerik.Web.UI.RadDropDownList rddlExpressway;
         
         /// <summary>
+        /// rfvExpressway control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvExpressway;
+        
+        /// <summary>
         /// rntbBridgeWidth control.
         /// </summary>
         /// <remarks>
@@ -101,6 +119,15 @@ namespace Safety {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadNumericTextBox rntbBridgeWidth;
+        
+        /// <summary>
+        /// rfvBridgeWidth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvBridgeWidth;
         
         /// <summary>
         /// rntbWorkZone control.
@@ -112,6 +139,15 @@ namespace Safety {
         protected global::Telerik.Web.UI.RadNumericTextBox rntbWorkZone;
         
         /// <summary>
+        /// rfvWorkZone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvWorkZone;
+        
+        /// <summary>
         /// rntbLaneWidth control.
         /// </summary>
         /// <remarks>
@@ -119,6 +155,15 @@ namespace Safety {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadNumericTextBox rntbLaneWidth;
+        
+        /// <summary>
+        /// rfvLaneWidth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvLaneWidth;
         
         /// <summary>
         /// rntbShoulderWidth control.
@@ -130,6 +175,15 @@ namespace Safety {
         protected global::Telerik.Web.UI.RadNumericTextBox rntbShoulderWidth;
         
         /// <summary>
+        /// rfvShoulderWidth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvShoulderWidth;
+        
+        /// <summary>
         /// rntbSpeedLimit control.
         /// </summary>
         /// <remarks>
@@ -137,6 +191,15 @@ namespace Safety {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadNumericTextBox rntbSpeedLimit;
+        
+        /// <summary>
+        /// rfvSpeedLimit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvSpeedLimit;
         
         /// <summary>
         /// rntbLaneNumber control.
@@ -148,6 +211,33 @@ namespace Safety {
         protected global::Telerik.Web.UI.RadNumericTextBox rntbLaneNumber;
         
         /// <summary>
+        /// rfvLaneNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvLaneNumber;
+        
+        /// <summary>
+        /// rddlShortDuration control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDropDownList rddlShortDuration;
+        
+        /// <summary>
+        /// rfvShortDuration control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvShortDuration;
+        
+        /// <summary>
         /// rddlFlow2Way control.
         /// </summary>
         /// <remarks>
@@ -155,6 +245,15 @@ namespace Safety {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadDropDownList rddlFlow2Way;
+        
+        /// <summary>
+        /// rfvFlow2Way control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFlow2Way;
         
         /// <summary>
         /// rddlTrafficVolume control.
@@ -166,6 +265,15 @@ namespace Safety {
         protected global::Telerik.Web.UI.RadDropDownList rddlTrafficVolume;
         
         /// <summary>
+        /// rfvTrafficVolume control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTrafficVolume;
+        
+        /// <summary>
         /// rddlDividedHighway control.
         /// </summary>
         /// <remarks>
@@ -173,6 +281,15 @@ namespace Safety {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadDropDownList rddlDividedHighway;
+        
+        /// <summary>
+        /// rfvDividedHighway control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDividedHighway;
         
         /// <summary>
         /// rddlMedian control.
@@ -184,6 +301,33 @@ namespace Safety {
         protected global::Telerik.Web.UI.RadDropDownList rddlMedian;
         
         /// <summary>
+        /// rfvMedian control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMedian;
+        
+        /// <summary>
+        /// rddlFlaggers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDropDownList rddlFlaggers;
+        
+        /// <summary>
+        /// rfvFlaggers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFlaggers;
+        
+        /// <summary>
         /// rtbNotes control.
         /// </summary>
         /// <remarks>
@@ -191,6 +335,15 @@ namespace Safety {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadTextBox rtbNotes;
+        
+        /// <summary>
+        /// ltlNote control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlNote;
         
         /// <summary>
         /// rbSubmit control.
@@ -209,5 +362,23 @@ namespace Safety {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadButton rbCancel;
+        
+        /// <summary>
+        /// pnlTCPs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlTCPs;
+        
+        /// <summary>
+        /// dlTCPs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dlTCPs;
     }
 }
