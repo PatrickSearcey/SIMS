@@ -102,12 +102,12 @@ namespace Data
     partial void InsertTCPPlanDetail(TCPPlanDetail instance);
     partial void UpdateTCPPlanDetail(TCPPlanDetail instance);
     partial void DeleteTCPPlanDetail(TCPPlanDetail instance);
-    partial void InsertTCP(TCP instance);
-    partial void UpdateTCP(TCP instance);
-    partial void DeleteTCP(TCP instance);
     partial void InsertTCPSite(TCPSite instance);
     partial void UpdateTCPSite(TCPSite instance);
     partial void DeleteTCPSite(TCPSite instance);
+    partial void InsertTCP(TCP instance);
+    partial void UpdateTCP(TCP instance);
+    partial void DeleteTCP(TCP instance);
     #endregion
 		
 		public SIMSDataContext() : 
@@ -348,11 +348,11 @@ namespace Data
 			}
 		}
 		
-		public System.Data.Linq.Table<TCP> TCPs
+		public System.Data.Linq.Table<TCPCalculation> TCPCalculations
 		{
 			get
 			{
-				return this.GetTable<TCP>();
+				return this.GetTable<TCPCalculation>();
 			}
 		}
 		
@@ -364,11 +364,11 @@ namespace Data
 			}
 		}
 		
-		public System.Data.Linq.Table<TCPCalculation> TCPCalculations
+		public System.Data.Linq.Table<TCP> TCPs
 		{
 			get
 			{
-				return this.GetTable<TCPCalculation>();
+				return this.GetTable<TCP>();
 			}
 		}
 		
@@ -2345,7 +2345,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_TCPSite", Storage="_TCPSite", ThisKey="site_id", OtherKey="site_id", IsUnique=true, IsForeignKey=false)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_TCP_Site_Master", Storage="_TCPSite", ThisKey="site_id", OtherKey="site_id", IsUnique=true, IsForeignKey=false)]
 		public TCPSite TCPSite
 		{
 			get
@@ -8634,7 +8634,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPPlanDetail_TCP", Storage="_TCPs", ThisKey="PlanID", OtherKey="PlanID")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPPlanDetail_TCP_Site_Plan", Storage="_TCPs", ThisKey="PlanID", OtherKey="PlanID")]
 		public EntitySet<TCP> TCPs
 		{
 			get
@@ -8677,6 +8677,644 @@ namespace Data
 		{
 			this.SendPropertyChanging();
 			entity.TCPPlanDetail = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TCP_Lut_Calculations")]
+	public partial class TCPCalculation
+	{
+		
+		private System.Nullable<int> _Speed;
+		
+		private System.Nullable<int> _WarningSignSpacing;
+		
+		private System.Nullable<int> _MinTaperLength;
+		
+		private System.Nullable<int> _OptBufferLength;
+		
+		private System.Nullable<int> _FlaggerDistance;
+		
+		public TCPCalculation()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Speed", DbType="Int")]
+		public System.Nullable<int> Speed
+		{
+			get
+			{
+				return this._Speed;
+			}
+			set
+			{
+				if ((this._Speed != value))
+				{
+					this._Speed = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WarningSignSpacing", DbType="Int")]
+		public System.Nullable<int> WarningSignSpacing
+		{
+			get
+			{
+				return this._WarningSignSpacing;
+			}
+			set
+			{
+				if ((this._WarningSignSpacing != value))
+				{
+					this._WarningSignSpacing = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MinTaperLength", DbType="Int")]
+		public System.Nullable<int> MinTaperLength
+		{
+			get
+			{
+				return this._MinTaperLength;
+			}
+			set
+			{
+				if ((this._MinTaperLength != value))
+				{
+					this._MinTaperLength = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OptBufferLength", DbType="Int")]
+		public System.Nullable<int> OptBufferLength
+		{
+			get
+			{
+				return this._OptBufferLength;
+			}
+			set
+			{
+				if ((this._OptBufferLength != value))
+				{
+					this._OptBufferLength = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FlaggerDistance", DbType="Int")]
+		public System.Nullable<int> FlaggerDistance
+		{
+			get
+			{
+				return this._FlaggerDistance;
+			}
+			set
+			{
+				if ((this._FlaggerDistance != value))
+				{
+					this._FlaggerDistance = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TCP_Site_Master")]
+	public partial class TCPSite : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _site_id;
+		
+		private string _RoadName;
+		
+		private System.Nullable<bool> _Expressway;
+		
+		private System.Nullable<int> _BridgeWidth;
+		
+		private System.Nullable<int> _WorkZone;
+		
+		private System.Nullable<int> _LaneWidth;
+		
+		private System.Nullable<int> _ShoulderWidth;
+		
+		private System.Nullable<int> _SpeedLimit;
+		
+		private System.Nullable<int> _LaneNumber;
+		
+		private System.Nullable<bool> _Flow2Way;
+		
+		private System.Nullable<bool> _DividedHighway;
+		
+		private System.Nullable<bool> _Median;
+		
+		private System.Nullable<bool> _Flaggers;
+		
+		private System.Nullable<bool> _RemoteSite;
+		
+		private string _TrafficVolume;
+		
+		private string _Notes;
+		
+		private string _UpdatedBy;
+		
+		private System.Nullable<System.DateTime> _UpdatedDt;
+		
+		private EntitySet<TCP> _TCPs;
+		
+		private EntityRef<Site> _Site;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onsite_idChanging(int value);
+    partial void Onsite_idChanged();
+    partial void OnRoadNameChanging(string value);
+    partial void OnRoadNameChanged();
+    partial void OnExpresswayChanging(System.Nullable<bool> value);
+    partial void OnExpresswayChanged();
+    partial void OnBridgeWidthChanging(System.Nullable<int> value);
+    partial void OnBridgeWidthChanged();
+    partial void OnWorkZoneChanging(System.Nullable<int> value);
+    partial void OnWorkZoneChanged();
+    partial void OnLaneWidthChanging(System.Nullable<int> value);
+    partial void OnLaneWidthChanged();
+    partial void OnShoulderWidthChanging(System.Nullable<int> value);
+    partial void OnShoulderWidthChanged();
+    partial void OnSpeedLimitChanging(System.Nullable<int> value);
+    partial void OnSpeedLimitChanged();
+    partial void OnLaneNumberChanging(System.Nullable<int> value);
+    partial void OnLaneNumberChanged();
+    partial void OnFlow2WayChanging(System.Nullable<bool> value);
+    partial void OnFlow2WayChanged();
+    partial void OnDividedHighwayChanging(System.Nullable<bool> value);
+    partial void OnDividedHighwayChanged();
+    partial void OnMedianChanging(System.Nullable<bool> value);
+    partial void OnMedianChanged();
+    partial void OnFlaggersChanging(System.Nullable<bool> value);
+    partial void OnFlaggersChanged();
+    partial void OnRemoteSiteChanging(System.Nullable<bool> value);
+    partial void OnRemoteSiteChanged();
+    partial void OnTrafficVolumeChanging(string value);
+    partial void OnTrafficVolumeChanged();
+    partial void OnNotesChanging(string value);
+    partial void OnNotesChanged();
+    partial void OnUpdatedByChanging(string value);
+    partial void OnUpdatedByChanged();
+    partial void OnUpdatedDtChanging(System.Nullable<System.DateTime> value);
+    partial void OnUpdatedDtChanged();
+    #endregion
+		
+		public TCPSite()
+		{
+			this._TCPs = new EntitySet<TCP>(new Action<TCP>(this.attach_TCPs), new Action<TCP>(this.detach_TCPs));
+			this._Site = default(EntityRef<Site>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					if (this._Site.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onsite_idChanging(value);
+					this.SendPropertyChanging();
+					this._site_id = value;
+					this.SendPropertyChanged("site_id");
+					this.Onsite_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoadName", DbType="NVarChar(50)")]
+		public string RoadName
+		{
+			get
+			{
+				return this._RoadName;
+			}
+			set
+			{
+				if ((this._RoadName != value))
+				{
+					this.OnRoadNameChanging(value);
+					this.SendPropertyChanging();
+					this._RoadName = value;
+					this.SendPropertyChanged("RoadName");
+					this.OnRoadNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Expressway", DbType="Bit")]
+		public System.Nullable<bool> Expressway
+		{
+			get
+			{
+				return this._Expressway;
+			}
+			set
+			{
+				if ((this._Expressway != value))
+				{
+					this.OnExpresswayChanging(value);
+					this.SendPropertyChanging();
+					this._Expressway = value;
+					this.SendPropertyChanged("Expressway");
+					this.OnExpresswayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BridgeWidth", DbType="Int")]
+		public System.Nullable<int> BridgeWidth
+		{
+			get
+			{
+				return this._BridgeWidth;
+			}
+			set
+			{
+				if ((this._BridgeWidth != value))
+				{
+					this.OnBridgeWidthChanging(value);
+					this.SendPropertyChanging();
+					this._BridgeWidth = value;
+					this.SendPropertyChanged("BridgeWidth");
+					this.OnBridgeWidthChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WorkZone", DbType="Int")]
+		public System.Nullable<int> WorkZone
+		{
+			get
+			{
+				return this._WorkZone;
+			}
+			set
+			{
+				if ((this._WorkZone != value))
+				{
+					this.OnWorkZoneChanging(value);
+					this.SendPropertyChanging();
+					this._WorkZone = value;
+					this.SendPropertyChanged("WorkZone");
+					this.OnWorkZoneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LaneWidth", DbType="Int")]
+		public System.Nullable<int> LaneWidth
+		{
+			get
+			{
+				return this._LaneWidth;
+			}
+			set
+			{
+				if ((this._LaneWidth != value))
+				{
+					this.OnLaneWidthChanging(value);
+					this.SendPropertyChanging();
+					this._LaneWidth = value;
+					this.SendPropertyChanged("LaneWidth");
+					this.OnLaneWidthChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShoulderWidth", DbType="Int")]
+		public System.Nullable<int> ShoulderWidth
+		{
+			get
+			{
+				return this._ShoulderWidth;
+			}
+			set
+			{
+				if ((this._ShoulderWidth != value))
+				{
+					this.OnShoulderWidthChanging(value);
+					this.SendPropertyChanging();
+					this._ShoulderWidth = value;
+					this.SendPropertyChanged("ShoulderWidth");
+					this.OnShoulderWidthChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SpeedLimit", DbType="Int")]
+		public System.Nullable<int> SpeedLimit
+		{
+			get
+			{
+				return this._SpeedLimit;
+			}
+			set
+			{
+				if ((this._SpeedLimit != value))
+				{
+					this.OnSpeedLimitChanging(value);
+					this.SendPropertyChanging();
+					this._SpeedLimit = value;
+					this.SendPropertyChanged("SpeedLimit");
+					this.OnSpeedLimitChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LaneNumber", DbType="Int")]
+		public System.Nullable<int> LaneNumber
+		{
+			get
+			{
+				return this._LaneNumber;
+			}
+			set
+			{
+				if ((this._LaneNumber != value))
+				{
+					this.OnLaneNumberChanging(value);
+					this.SendPropertyChanging();
+					this._LaneNumber = value;
+					this.SendPropertyChanged("LaneNumber");
+					this.OnLaneNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Flow2Way", DbType="Bit")]
+		public System.Nullable<bool> Flow2Way
+		{
+			get
+			{
+				return this._Flow2Way;
+			}
+			set
+			{
+				if ((this._Flow2Way != value))
+				{
+					this.OnFlow2WayChanging(value);
+					this.SendPropertyChanging();
+					this._Flow2Way = value;
+					this.SendPropertyChanged("Flow2Way");
+					this.OnFlow2WayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DividedHighway", DbType="Bit")]
+		public System.Nullable<bool> DividedHighway
+		{
+			get
+			{
+				return this._DividedHighway;
+			}
+			set
+			{
+				if ((this._DividedHighway != value))
+				{
+					this.OnDividedHighwayChanging(value);
+					this.SendPropertyChanging();
+					this._DividedHighway = value;
+					this.SendPropertyChanged("DividedHighway");
+					this.OnDividedHighwayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Median", DbType="Bit")]
+		public System.Nullable<bool> Median
+		{
+			get
+			{
+				return this._Median;
+			}
+			set
+			{
+				if ((this._Median != value))
+				{
+					this.OnMedianChanging(value);
+					this.SendPropertyChanging();
+					this._Median = value;
+					this.SendPropertyChanged("Median");
+					this.OnMedianChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Flaggers", DbType="Bit")]
+		public System.Nullable<bool> Flaggers
+		{
+			get
+			{
+				return this._Flaggers;
+			}
+			set
+			{
+				if ((this._Flaggers != value))
+				{
+					this.OnFlaggersChanging(value);
+					this.SendPropertyChanging();
+					this._Flaggers = value;
+					this.SendPropertyChanged("Flaggers");
+					this.OnFlaggersChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RemoteSite", DbType="Bit")]
+		public System.Nullable<bool> RemoteSite
+		{
+			get
+			{
+				return this._RemoteSite;
+			}
+			set
+			{
+				if ((this._RemoteSite != value))
+				{
+					this.OnRemoteSiteChanging(value);
+					this.SendPropertyChanging();
+					this._RemoteSite = value;
+					this.SendPropertyChanged("RemoteSite");
+					this.OnRemoteSiteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrafficVolume", DbType="NVarChar(50)")]
+		public string TrafficVolume
+		{
+			get
+			{
+				return this._TrafficVolume;
+			}
+			set
+			{
+				if ((this._TrafficVolume != value))
+				{
+					this.OnTrafficVolumeChanging(value);
+					this.SendPropertyChanging();
+					this._TrafficVolume = value;
+					this.SendPropertyChanged("TrafficVolume");
+					this.OnTrafficVolumeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Notes", DbType="NVarChar(MAX)")]
+		public string Notes
+		{
+			get
+			{
+				return this._Notes;
+			}
+			set
+			{
+				if ((this._Notes != value))
+				{
+					this.OnNotesChanging(value);
+					this.SendPropertyChanging();
+					this._Notes = value;
+					this.SendPropertyChanged("Notes");
+					this.OnNotesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="NVarChar(20)")]
+		public string UpdatedBy
+		{
+			get
+			{
+				return this._UpdatedBy;
+			}
+			set
+			{
+				if ((this._UpdatedBy != value))
+				{
+					this.OnUpdatedByChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedBy = value;
+					this.SendPropertyChanged("UpdatedBy");
+					this.OnUpdatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdatedDt
+		{
+			get
+			{
+				return this._UpdatedDt;
+			}
+			set
+			{
+				if ((this._UpdatedDt != value))
+				{
+					this.OnUpdatedDtChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedDt = value;
+					this.SendPropertyChanged("UpdatedDt");
+					this.OnUpdatedDtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPSite_TCP_Site_Plan", Storage="_TCPs", ThisKey="site_id", OtherKey="site_id")]
+		public EntitySet<TCP> TCPs
+		{
+			get
+			{
+				return this._TCPs;
+			}
+			set
+			{
+				this._TCPs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_TCP_Site_Master", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		public Site Site
+		{
+			get
+			{
+				return this._Site.Entity;
+			}
+			set
+			{
+				Site previousValue = this._Site.Entity;
+				if (((previousValue != value) 
+							|| (this._Site.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Site.Entity = null;
+						previousValue.TCPSite = null;
+					}
+					this._Site.Entity = value;
+					if ((value != null))
+					{
+						value.TCPSite = this;
+						this._site_id = value.site_id;
+					}
+					else
+					{
+						this._site_id = default(int);
+					}
+					this.SendPropertyChanged("Site");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_TCPs(TCP entity)
+		{
+			this.SendPropertyChanging();
+			entity.TCPSite = this;
+		}
+		
+		private void detach_TCPs(TCP entity)
+		{
+			this.SendPropertyChanging();
+			entity.TCPSite = null;
 		}
 	}
 	
@@ -9047,7 +9685,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPPlanDetail_TCP", Storage="_TCPPlanDetail", ThisKey="PlanID", OtherKey="PlanID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPPlanDetail_TCP_Site_Plan", Storage="_TCPPlanDetail", ThisKey="PlanID", OtherKey="PlanID", IsForeignKey=true)]
 		public TCPPlanDetail TCPPlanDetail
 		{
 			get
@@ -9081,7 +9719,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPSite_TCP", Storage="_TCPSite", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPSite_TCP_Site_Plan", Storage="_TCPSite", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
 		public TCPSite TCPSite
 		{
 			get
@@ -9132,668 +9770,6 @@ namespace Data
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TCP_Site_Master")]
-	public partial class TCPSite : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _site_id;
-		
-		private string _RoadName;
-		
-		private System.Nullable<bool> _Expressway;
-		
-		private System.Nullable<int> _BridgeWidth;
-		
-		private System.Nullable<int> _WorkZone;
-		
-		private System.Nullable<int> _LaneWidth;
-		
-		private System.Nullable<int> _ShoulderWidth;
-		
-		private System.Nullable<int> _SpeedLimit;
-		
-		private System.Nullable<int> _LaneNumber;
-		
-		private System.Nullable<bool> _Flow2Way;
-		
-		private System.Nullable<bool> _DividedHighway;
-		
-		private System.Nullable<bool> _Median;
-		
-		private System.Nullable<bool> _Flaggers;
-		
-		private System.Nullable<bool> _RemoteSite;
-		
-		private System.Nullable<bool> _ShortDuration;
-		
-		private string _TrafficVolume;
-		
-		private string _Notes;
-		
-		private string _UpdatedBy;
-		
-		private System.Nullable<System.DateTime> _UpdatedDt;
-		
-		private EntitySet<TCP> _TCPs;
-		
-		private EntityRef<Site> _Site;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onsite_idChanging(int value);
-    partial void Onsite_idChanged();
-    partial void OnRoadNameChanging(string value);
-    partial void OnRoadNameChanged();
-    partial void OnExpresswayChanging(System.Nullable<bool> value);
-    partial void OnExpresswayChanged();
-    partial void OnBridgeWidthChanging(System.Nullable<int> value);
-    partial void OnBridgeWidthChanged();
-    partial void OnWorkZoneChanging(System.Nullable<int> value);
-    partial void OnWorkZoneChanged();
-    partial void OnLaneWidthChanging(System.Nullable<int> value);
-    partial void OnLaneWidthChanged();
-    partial void OnShoulderWidthChanging(System.Nullable<int> value);
-    partial void OnShoulderWidthChanged();
-    partial void OnSpeedLimitChanging(System.Nullable<int> value);
-    partial void OnSpeedLimitChanged();
-    partial void OnLaneNumberChanging(System.Nullable<int> value);
-    partial void OnLaneNumberChanged();
-    partial void OnFlow2WayChanging(System.Nullable<bool> value);
-    partial void OnFlow2WayChanged();
-    partial void OnDividedHighwayChanging(System.Nullable<bool> value);
-    partial void OnDividedHighwayChanged();
-    partial void OnMedianChanging(System.Nullable<bool> value);
-    partial void OnMedianChanged();
-    partial void OnFlaggersChanging(System.Nullable<bool> value);
-    partial void OnFlaggersChanged();
-    partial void OnRemoteSiteChanging(System.Nullable<bool> value);
-    partial void OnRemoteSiteChanged();
-    partial void OnShortDurationChanging(System.Nullable<bool> value);
-    partial void OnShortDurationChanged();
-    partial void OnTrafficVolumeChanging(string value);
-    partial void OnTrafficVolumeChanged();
-    partial void OnNotesChanging(string value);
-    partial void OnNotesChanged();
-    partial void OnUpdatedByChanging(string value);
-    partial void OnUpdatedByChanged();
-    partial void OnUpdatedDtChanging(System.Nullable<System.DateTime> value);
-    partial void OnUpdatedDtChanged();
-    #endregion
-		
-		public TCPSite()
-		{
-			this._TCPs = new EntitySet<TCP>(new Action<TCP>(this.attach_TCPs), new Action<TCP>(this.detach_TCPs));
-			this._Site = default(EntityRef<Site>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int site_id
-		{
-			get
-			{
-				return this._site_id;
-			}
-			set
-			{
-				if ((this._site_id != value))
-				{
-					if (this._Site.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onsite_idChanging(value);
-					this.SendPropertyChanging();
-					this._site_id = value;
-					this.SendPropertyChanged("site_id");
-					this.Onsite_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoadName", DbType="NVarChar(50)")]
-		public string RoadName
-		{
-			get
-			{
-				return this._RoadName;
-			}
-			set
-			{
-				if ((this._RoadName != value))
-				{
-					this.OnRoadNameChanging(value);
-					this.SendPropertyChanging();
-					this._RoadName = value;
-					this.SendPropertyChanged("RoadName");
-					this.OnRoadNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Expressway", DbType="Bit")]
-		public System.Nullable<bool> Expressway
-		{
-			get
-			{
-				return this._Expressway;
-			}
-			set
-			{
-				if ((this._Expressway != value))
-				{
-					this.OnExpresswayChanging(value);
-					this.SendPropertyChanging();
-					this._Expressway = value;
-					this.SendPropertyChanged("Expressway");
-					this.OnExpresswayChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BridgeWidth", DbType="Int")]
-		public System.Nullable<int> BridgeWidth
-		{
-			get
-			{
-				return this._BridgeWidth;
-			}
-			set
-			{
-				if ((this._BridgeWidth != value))
-				{
-					this.OnBridgeWidthChanging(value);
-					this.SendPropertyChanging();
-					this._BridgeWidth = value;
-					this.SendPropertyChanged("BridgeWidth");
-					this.OnBridgeWidthChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WorkZone", DbType="Int")]
-		public System.Nullable<int> WorkZone
-		{
-			get
-			{
-				return this._WorkZone;
-			}
-			set
-			{
-				if ((this._WorkZone != value))
-				{
-					this.OnWorkZoneChanging(value);
-					this.SendPropertyChanging();
-					this._WorkZone = value;
-					this.SendPropertyChanged("WorkZone");
-					this.OnWorkZoneChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LaneWidth", DbType="Int")]
-		public System.Nullable<int> LaneWidth
-		{
-			get
-			{
-				return this._LaneWidth;
-			}
-			set
-			{
-				if ((this._LaneWidth != value))
-				{
-					this.OnLaneWidthChanging(value);
-					this.SendPropertyChanging();
-					this._LaneWidth = value;
-					this.SendPropertyChanged("LaneWidth");
-					this.OnLaneWidthChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShoulderWidth", DbType="Int")]
-		public System.Nullable<int> ShoulderWidth
-		{
-			get
-			{
-				return this._ShoulderWidth;
-			}
-			set
-			{
-				if ((this._ShoulderWidth != value))
-				{
-					this.OnShoulderWidthChanging(value);
-					this.SendPropertyChanging();
-					this._ShoulderWidth = value;
-					this.SendPropertyChanged("ShoulderWidth");
-					this.OnShoulderWidthChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SpeedLimit", DbType="Int")]
-		public System.Nullable<int> SpeedLimit
-		{
-			get
-			{
-				return this._SpeedLimit;
-			}
-			set
-			{
-				if ((this._SpeedLimit != value))
-				{
-					this.OnSpeedLimitChanging(value);
-					this.SendPropertyChanging();
-					this._SpeedLimit = value;
-					this.SendPropertyChanged("SpeedLimit");
-					this.OnSpeedLimitChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LaneNumber", DbType="Int")]
-		public System.Nullable<int> LaneNumber
-		{
-			get
-			{
-				return this._LaneNumber;
-			}
-			set
-			{
-				if ((this._LaneNumber != value))
-				{
-					this.OnLaneNumberChanging(value);
-					this.SendPropertyChanging();
-					this._LaneNumber = value;
-					this.SendPropertyChanged("LaneNumber");
-					this.OnLaneNumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Flow2Way", DbType="Bit")]
-		public System.Nullable<bool> Flow2Way
-		{
-			get
-			{
-				return this._Flow2Way;
-			}
-			set
-			{
-				if ((this._Flow2Way != value))
-				{
-					this.OnFlow2WayChanging(value);
-					this.SendPropertyChanging();
-					this._Flow2Way = value;
-					this.SendPropertyChanged("Flow2Way");
-					this.OnFlow2WayChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DividedHighway", DbType="Bit")]
-		public System.Nullable<bool> DividedHighway
-		{
-			get
-			{
-				return this._DividedHighway;
-			}
-			set
-			{
-				if ((this._DividedHighway != value))
-				{
-					this.OnDividedHighwayChanging(value);
-					this.SendPropertyChanging();
-					this._DividedHighway = value;
-					this.SendPropertyChanged("DividedHighway");
-					this.OnDividedHighwayChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Median", DbType="Bit")]
-		public System.Nullable<bool> Median
-		{
-			get
-			{
-				return this._Median;
-			}
-			set
-			{
-				if ((this._Median != value))
-				{
-					this.OnMedianChanging(value);
-					this.SendPropertyChanging();
-					this._Median = value;
-					this.SendPropertyChanged("Median");
-					this.OnMedianChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Flaggers", DbType="Bit")]
-		public System.Nullable<bool> Flaggers
-		{
-			get
-			{
-				return this._Flaggers;
-			}
-			set
-			{
-				if ((this._Flaggers != value))
-				{
-					this.OnFlaggersChanging(value);
-					this.SendPropertyChanging();
-					this._Flaggers = value;
-					this.SendPropertyChanged("Flaggers");
-					this.OnFlaggersChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RemoteSite", DbType="Bit")]
-		public System.Nullable<bool> RemoteSite
-		{
-			get
-			{
-				return this._RemoteSite;
-			}
-			set
-			{
-				if ((this._RemoteSite != value))
-				{
-					this.OnRemoteSiteChanging(value);
-					this.SendPropertyChanging();
-					this._RemoteSite = value;
-					this.SendPropertyChanged("RemoteSite");
-					this.OnRemoteSiteChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShortDuration", DbType="Bit")]
-		public System.Nullable<bool> ShortDuration
-		{
-			get
-			{
-				return this._ShortDuration;
-			}
-			set
-			{
-				if ((this._ShortDuration != value))
-				{
-					this.OnShortDurationChanging(value);
-					this.SendPropertyChanging();
-					this._ShortDuration = value;
-					this.SendPropertyChanged("ShortDuration");
-					this.OnShortDurationChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrafficVolume", DbType="NVarChar(50)")]
-		public string TrafficVolume
-		{
-			get
-			{
-				return this._TrafficVolume;
-			}
-			set
-			{
-				if ((this._TrafficVolume != value))
-				{
-					this.OnTrafficVolumeChanging(value);
-					this.SendPropertyChanging();
-					this._TrafficVolume = value;
-					this.SendPropertyChanged("TrafficVolume");
-					this.OnTrafficVolumeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Notes", DbType="NVarChar(MAX)")]
-		public string Notes
-		{
-			get
-			{
-				return this._Notes;
-			}
-			set
-			{
-				if ((this._Notes != value))
-				{
-					this.OnNotesChanging(value);
-					this.SendPropertyChanging();
-					this._Notes = value;
-					this.SendPropertyChanged("Notes");
-					this.OnNotesChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="NVarChar(20)")]
-		public string UpdatedBy
-		{
-			get
-			{
-				return this._UpdatedBy;
-			}
-			set
-			{
-				if ((this._UpdatedBy != value))
-				{
-					this.OnUpdatedByChanging(value);
-					this.SendPropertyChanging();
-					this._UpdatedBy = value;
-					this.SendPropertyChanged("UpdatedBy");
-					this.OnUpdatedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDt", DbType="DateTime")]
-		public System.Nullable<System.DateTime> UpdatedDt
-		{
-			get
-			{
-				return this._UpdatedDt;
-			}
-			set
-			{
-				if ((this._UpdatedDt != value))
-				{
-					this.OnUpdatedDtChanging(value);
-					this.SendPropertyChanging();
-					this._UpdatedDt = value;
-					this.SendPropertyChanged("UpdatedDt");
-					this.OnUpdatedDtChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPSite_TCP", Storage="_TCPs", ThisKey="site_id", OtherKey="site_id")]
-		public EntitySet<TCP> TCPs
-		{
-			get
-			{
-				return this._TCPs;
-			}
-			set
-			{
-				this._TCPs.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_TCPSite", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
-		public Site Site
-		{
-			get
-			{
-				return this._Site.Entity;
-			}
-			set
-			{
-				Site previousValue = this._Site.Entity;
-				if (((previousValue != value) 
-							|| (this._Site.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Site.Entity = null;
-						previousValue.TCPSite = null;
-					}
-					this._Site.Entity = value;
-					if ((value != null))
-					{
-						value.TCPSite = this;
-						this._site_id = value.site_id;
-					}
-					else
-					{
-						this._site_id = default(int);
-					}
-					this.SendPropertyChanged("Site");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_TCPs(TCP entity)
-		{
-			this.SendPropertyChanging();
-			entity.TCPSite = this;
-		}
-		
-		private void detach_TCPs(TCP entity)
-		{
-			this.SendPropertyChanging();
-			entity.TCPSite = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TCP_Lut_Calculations")]
-	public partial class TCPCalculation
-	{
-		
-		private System.Nullable<int> _Speed;
-		
-		private System.Nullable<int> _WarningSignSpacing;
-		
-		private System.Nullable<int> _MinTaperLength;
-		
-		private System.Nullable<int> _OptBufferLength;
-		
-		private System.Nullable<int> _FlaggerDistance;
-		
-		public TCPCalculation()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Speed", DbType="Int")]
-		public System.Nullable<int> Speed
-		{
-			get
-			{
-				return this._Speed;
-			}
-			set
-			{
-				if ((this._Speed != value))
-				{
-					this._Speed = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WarningSignSpacing", DbType="Int")]
-		public System.Nullable<int> WarningSignSpacing
-		{
-			get
-			{
-				return this._WarningSignSpacing;
-			}
-			set
-			{
-				if ((this._WarningSignSpacing != value))
-				{
-					this._WarningSignSpacing = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MinTaperLength", DbType="Int")]
-		public System.Nullable<int> MinTaperLength
-		{
-			get
-			{
-				return this._MinTaperLength;
-			}
-			set
-			{
-				if ((this._MinTaperLength != value))
-				{
-					this._MinTaperLength = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OptBufferLength", DbType="Int")]
-		public System.Nullable<int> OptBufferLength
-		{
-			get
-			{
-				return this._OptBufferLength;
-			}
-			set
-			{
-				if ((this._OptBufferLength != value))
-				{
-					this._OptBufferLength = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FlaggerDistance", DbType="Int")]
-		public System.Nullable<int> FlaggerDistance
-		{
-			get
-			{
-				return this._FlaggerDistance;
-			}
-			set
-			{
-				if ((this._FlaggerDistance != value))
-				{
-					this._FlaggerDistance = value;
-				}
 			}
 		}
 	}

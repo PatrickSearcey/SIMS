@@ -9,18 +9,18 @@
         <AjaxSettings>
             <telerik:AjaxSetting AjaxControlID="rddlRemote">
                 <UpdatedControls>
-                    <telerik:AjaxUpdatedControl ControlID="pnlEditSiteSpecificInfo" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlEditSiteSpecificInfo" LoadingPanelID="ralp" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
-            <telerik:AjaxSetting AjaxControlID="btnSubmit">
+            <telerik:AjaxSetting AjaxControlID="rbSubmit">
                 <UpdatedControls>
-                    <telerik:AjaxUpdatedControl ControlID="pnlEditSiteSpecificInfo" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlEditSiteSpecificInfo" LoadingPanelID="ralp" />
                     <telerik:AjaxUpdatedControl ControlID="pnlTCPs" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="btnCancel">
                 <UpdatedControls>
-                    <telerik:AjaxUpdatedControl ControlID="pnlEditSiteSpecificInfo" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlEditSiteSpecificInfo" LoadingPanelID="ralp" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="dlTCPs">
@@ -28,8 +28,27 @@
                     <telerik:AjaxUpdatedControl ControlID="dlTCPs" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="rddlFlow2Way">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="rddlFlaggers" />
+                    <telerik:AjaxUpdatedControl ControlID="rfvFlaggers" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="rntbLaneNumber">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="rddlFlaggers" />
+                    <telerik:AjaxUpdatedControl ControlID="rfvFlaggers" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="rntbShoulderWidth">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="rddlFlaggers" />
+                    <telerik:AjaxUpdatedControl ControlID="rfvFlaggers" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
         </AjaxSettings>
     </telerik:RadAjaxManager>
+    <telerik:RadAjaxLoadingPanel ID="ralp" runat="server" Skin="Bootstrap" />
 
     <uc:PageHeading id="ph1" runat="server" />
 
@@ -108,7 +127,7 @@
                                             <tr>
                                                 <td>Shoulder Width</td>
                                                 <td>
-                                                    <telerik:RadNumericTextBox ID="rntbShoulderWidth" runat="server" Width="100px" /> feet
+                                                    <telerik:RadNumericTextBox ID="rntbShoulderWidth" runat="server" Width="100px" OnTextChanged="RunPlanLogic" AutoPostBack="true" /> feet
                                                     <asp:RequiredFieldValidator ID="rfvShoulderWidth" runat="server" ControlToValidate="rntbShoulderWidth" ErrorMessage="* required" ForeColor="Red" />
                                                 </td>
                                             </tr>
@@ -122,27 +141,14 @@
                                             <tr>
                                                 <td>Number of Lanes</td>
                                                 <td>
-                                                    <telerik:RadNumericTextBox ID="rntbLaneNumber" runat="server" Width="100px" />
+                                                    <telerik:RadNumericTextBox ID="rntbLaneNumber" runat="server" Width="100px" OnTextChanged="RunPlanLogic" AutoPostBack="true" />
                                                     <asp:RequiredFieldValidator ID="rfvLaneNumber" runat="server" ControlToValidate="rntbLaneNumber" ErrorMessage="* required" ForeColor="Red" />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Duration of Work</td>
-                                                <td>
-                                                    <telerik:RadDropDownList id="rddlShortDuration" runat="server" Width="100px">
-                                                        <Items>
-                                                            <telerik:DropDownListItem Text="" Value="" />
-                                                            <telerik:DropDownListItem Text="< 1 hr" Value="True" />
-                                                            <telerik:DropDownListItem Text="1 - 8 hrs" Value="False" />
-                                                        </Items>
-                                                    </telerik:RadDropDownList>
-                                                    <asp:RequiredFieldValidator ID="rfvShortDuration" runat="server" ControlToValidate="rddlShortDuration" ErrorMessage="* required" ForeColor="Red" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Traffic Flow</td>
                                                 <td>
-                                                    <telerik:RadDropDownList id="rddlFlow2Way" runat="server" Width="100px">
+                                                    <telerik:RadDropDownList id="rddlFlow2Way" runat="server" Width="100px" OnSelectedIndexChanged="RunPlanLogic" AutoPostBack="true">
                                                         <Items>
                                                             <telerik:DropDownListItem Text="" Value="" />
                                                             <telerik:DropDownListItem Text="two-way" Value="True" />

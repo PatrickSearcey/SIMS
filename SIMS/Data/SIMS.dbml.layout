@@ -326,44 +326,44 @@
         <elementListCompartment Id="6f4c594d-536f-45f0-9937-5958bba43bce" absoluteBounds="20.64, 33.46, 1.9700000000000002, 3.903116861979167" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="12d174cf-0af2-42be-9cab-33e389daf04d" absoluteBounds="24, 30.625, 2, 3.5016097005208309">
-      <DataClassMoniker Name="/SIMSDataContext/TCP" />
-      <nestedChildShapes>
-        <elementListCompartment Id="6237bc35-dda8-4457-a1e8-e3119b860000" absoluteBounds="24.015, 31.085, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="13814394-e4ba-4683-9b44-6762f58faa97" absoluteBounds="20.625, 27, 2, 4.4631168619791666">
-      <DataClassMoniker Name="/SIMSDataContext/TCPSite" />
-      <nestedChildShapes>
-        <elementListCompartment Id="4a6b4fd4-9630-4ffe-ba17-c6d8a01ab64f" absoluteBounds="20.64, 27.46, 1.9700000000000002, 3.903116861979167" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(22.625 : 33.5633048502604); (24 : 33.5633048502604)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/SIMSDataContext/TCPPlanDetail/TCPPlanDetail_TCP" />
-      <nodes>
-        <classShapeMoniker Id="010871fd-aa5f-4aeb-96cd-cdb0eb8a939f" />
-        <classShapeMoniker Id="12d174cf-0af2-42be-9cab-33e389daf04d" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(22.625 : 31.0440584309896); (24 : 31.0440584309896)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/SIMSDataContext/TCPSite/TCPSite_TCP" />
-      <nodes>
-        <classShapeMoniker Id="13814394-e4ba-4683-9b44-6762f58faa97" />
-        <classShapeMoniker Id="12d174cf-0af2-42be-9cab-33e389daf04d" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(19.1601563125 : 4.5401025390625); (19.1601563125 : 8.875); (20.125 : 8.875); (20.125 : 29.2315584309896); (20.625 : 29.2315584309896)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/SIMSDataContext/Site/Site_TCPSite" />
-      <nodes>
-        <classShapeMoniker Id="5592f205-a65e-45de-8704-57de5b59bcd0" />
-        <classShapeMoniker Id="13814394-e4ba-4683-9b44-6762f58faa97" />
-      </nodes>
-    </associationConnector>
     <classShape Id="40a399c7-a8a3-4afb-88df-1bd0253ec8e1" absoluteBounds="17, 30.875, 2, 1.7708968098958331">
       <DataClassMoniker Name="/SIMSDataContext/TCPCalculation" />
       <nestedChildShapes>
         <elementListCompartment Id="484d25f6-c71b-490d-997a-675256f667a5" absoluteBounds="17.015, 31.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="fcd97e52-c58b-46f0-b629-048730d116e4" absoluteBounds="20.625, 27.125, 2, 4.2708154296875023">
+      <DataClassMoniker Name="/SIMSDataContext/TCPSite" />
+      <nestedChildShapes>
+        <elementListCompartment Id="79bc2cd1-34c2-4d15-ba3f-ff96177d7568" absoluteBounds="20.64, 27.585, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(19.1601563125 : 4.5401025390625); (19.1601563125 : 8.875); (20.125 : 8.875); (20.125 : 29.2604077148438); (20.625 : 29.2604077148438)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIMSDataContext/Site/Site_TCP_Site_Master" />
+      <nodes>
+        <classShapeMoniker Id="5592f205-a65e-45de-8704-57de5b59bcd0" />
+        <classShapeMoniker Id="fcd97e52-c58b-46f0-b629-048730d116e4" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="8fcb4869-f137-4568-9e11-1a9889669d97" absoluteBounds="23.875, 31.875, 2, 3.5016097005208326">
+      <DataClassMoniker Name="/SIMSDataContext/TCP" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f2eb19d8-2cf5-49de-9381-067566679621" absoluteBounds="23.89, 32.335, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(22.625 : 34.1883048502604); (23.875 : 34.1883048502604)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIMSDataContext/TCPPlanDetail/TCPPlanDetail_TCP_Site_Plan" />
+      <nodes>
+        <classShapeMoniker Id="010871fd-aa5f-4aeb-96cd-cdb0eb8a939f" />
+        <classShapeMoniker Id="8fcb4869-f137-4568-9e11-1a9889669d97" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(22.625 : 29.2604077148438); (24.84375 : 29.2604077148438); (24.84375 : 31.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIMSDataContext/TCPSite/TCPSite_TCP_Site_Plan" />
+      <nodes>
+        <classShapeMoniker Id="fcd97e52-c58b-46f0-b629-048730d116e4" />
+        <classShapeMoniker Id="8fcb4869-f137-4568-9e11-1a9889669d97" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

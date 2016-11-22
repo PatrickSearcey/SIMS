@@ -22,6 +22,15 @@ namespace Safety {
         protected global::Telerik.Web.UI.RadAjaxManager ram;
         
         /// <summary>
+        /// ralp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadAjaxLoadingPanel ralp;
+        
+        /// <summary>
         /// ph1 control.
         /// </summary>
         /// <remarks>
@@ -218,24 +227,6 @@ namespace Safety {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvLaneNumber;
-        
-        /// <summary>
-        /// rddlShortDuration control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadDropDownList rddlShortDuration;
-        
-        /// <summary>
-        /// rfvShortDuration control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvShortDuration;
         
         /// <summary>
         /// rddlFlow2Way control.
