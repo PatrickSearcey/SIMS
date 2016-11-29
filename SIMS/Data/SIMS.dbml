@@ -579,29 +579,4 @@
     <Parameter Name="site_id" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.SP_Safety_Info" Method="SP_Safety_Info">
-    <Parameter Name="site_jha_id" Type="System.Int32" DbType="Int" />
-    <Parameter Name="site_id" Type="System.Int32" DbType="Int" />
-    <Parameter Name="type" Type="System.Int16" DbType="SmallInt" />
-    <Parameter Name="what" Type="System.String" DbType="NVarChar(10)" />
-    <ElementType Name="SP_Safety_InfoResult">
-      <Column Name="sha_site_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="site_jha_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="jha_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="jha_description" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="element_nm" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
-      <Column Name="emerg_service" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="cell_service" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="updated_by" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="updated_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="updated_dt_short" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="reviewed_by" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
-      <Column Name="reviewed_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="reviewed_dt_short" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="approved_by" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
-      <Column Name="approved_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="approved_dt_short" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="reviewer_comments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-    </ElementType>
-  </Function>
 </Database>

@@ -80,16 +80,17 @@ namespace Safety
 
             if (!Page.IsPostBack)
             {
+                //Clear session state variable
+                Session["btnpressed"] = "";
+
                 //--PAGE ACCESS SECTION-------------------------------------------------------------
-                if (user.IsSuperUser || user.WSCID.Contains(WSCID))
-                    pnlHasAccess.Visible = true;
+                if (user.IsSuperUser || user.WSCID.Contains(WSCID)) pnlHasAccess.Visible = true;
                 else
+                {
                     Response.Redirect("SHAView.aspx?site_id=" + SiteID.ToString());
                     pnlHasAccess.Visible = false;
+                }
                 //--END PAGE ACCESS SECTION---------------------------------------------------------
-
-                //Start with a clean session
-                Session.Clear();
 
                 hlPrintSHA.NavigateUrl = "SHAView.aspx?site_id=" + SiteID.ToString();
 
@@ -137,11 +138,11 @@ namespace Safety
         {
             if (e.CommandName == "ServicingSite")
             {
-                if (e.CommandArgument == "AddHazard")
+                if (e.CommandArgument.ToString() == "AddHazard")
                 {
                     AddServicingSiteHazard();
                 }
-                else if (e.CommandArgument == "AddEquip")
+                else if (e.CommandArgument.ToString() == "AddEquip")
                 {
                     AddRecEquipment();
                 }
@@ -240,14 +241,15 @@ namespace Safety
         #region Site Specific Panel
         protected void SetupServicingSitePanel()
         {
-            var sssc = db.SP_Safety_Info(0, currSHA.Site.site_id, 0, "sssc").ToList();
-            var equip = db.SP_Safety_Info(0, currSHA.Site.site_id, 0, "equip").ToList();
+            var sssc = db.SHAServicings.Where(p => p.sha_site_id == currSHA.sha_site_id).OrderByDescending(p => p.priority).ToList();
+            var equip = db.SHAEquips.Where(p => p.sha_site_id == currSHA.sha_site_id).ToList();
 
             lvServicingSiteSpecificCond.DataSource = sssc;
             lvServicingSiteSpecificCond.DataBind();
             lvServicingSiteRecEquip.DataSource = equip;
             lvServicingSiteRecEquip.DataBind();
 
+            //If there are servicing items, show toggle link button
             if (sssc.Count > 0)
             {
                 if (hfToggleHazardEditMode.Value == "true")
@@ -265,6 +267,7 @@ namespace Safety
                 lbToggleHazardEditMode.Visible = false;
             }
 
+            //If there are recommended equipment, show toggle link button
             if (equip.Count > 0)
             {
                 if (hfToggleEquipEditMode.Value == "true")
@@ -310,7 +313,7 @@ namespace Safety
                 try
                 {
                     int priority = Convert.ToInt32(DataBinder.Eval(dataitem.DataItem, "priority"));
-                    if (priority < 0)
+                    if (priority == 1)
                     {
                         lbl.Font.Bold = true;
                     }
@@ -506,7 +509,7 @@ namespace Safety
         {
             var servicingList = currSHA.SHAServicings.Select(p => p.servicing_va).ToList();
 
-            foreach (RadListBoxItem item in rlbHazards.CheckedItems)
+            foreach (RadListBoxItem item in rlbHazards.SelectedItems)
             {
                 if (!servicingList.Contains(item.Text))
                 {
@@ -546,7 +549,7 @@ namespace Safety
         {
             var equipList = currSHA.SHAEquips.Select(p => p.recom_equip).ToList();
 
-            foreach (RadListBoxItem item in rlbHazards.CheckedItems)
+            foreach (RadListBoxItem item in rlbEquip.SelectedItems)
             {
                 if (!equipList.Contains(item.Text))
                 {
@@ -589,7 +592,7 @@ namespace Safety
             List<int> elementids = new List<int>();
             phElements.Controls.Clear();
 
-            var elements = currSHA.Site.ElementSite.SiteElements.Where(p => p.element_id == 13 || p.element_id == 57 || p.element_id == 124 || p.element_id == 1002 || p.element_id == 1003 || p.element_id == 1004).ToList();
+            var elements = db.SiteElements.Where(p => p.site_id == SiteID && p.element_id == 13 || p.site_id == SiteID && p.element_id == 57 || p.site_id == SiteID && p.element_id == 124 || p.site_id == SiteID && p.element_id == 1002 || p.site_id == SiteID && p.element_id == 1003 || p.site_id == SiteID && p.element_id == 1004).ToList();
 
             foreach (var rec in elements)
             {
@@ -615,47 +618,15 @@ namespace Safety
 
             if (sims_site_tp == "sw" & elementids.Count < 5 & (string.IsNullOrEmpty(ddlNewMeasType.SelectedValue) | ddlNewMeasType.SelectedValue == "0"))
             {
-                RemoveDropDownItems();
+                ddlNewMeasType.Items.Clear();
 
-                ddlNewMeasType.Items.Add(new ListItem("", "0"));
+                ddlNewMeasType.Items.Add(new DropDownListItem { Value = "0", Text = "" });
 
-                ddlNewMeasType.Items.Add(new ListItem("DISCHARGE MEASUREMENTS", Config.DischargeMeasElem.ToString()));
-                ddlNewMeasType.Items.Add(new ListItem("LAKE / RESERVOIR MEASUREMENTS", Config.LakeMeasElem.ToString()));
-                ddlNewMeasType.Items.Add(new ListItem("WATER QUALITY MEASUREMENT", Config.QWMeasElem.ToString()));
-                ddlNewMeasType.Items.Add(new ListItem("ECOLOGICAL MEASUREMENTS", Config.EcoMeasElem.ToString()));
-                ddlNewMeasType.Items.Add(new ListItem("ATMOSPHERIC MEASUREMENTS", Config.AtmMeasElem.ToString()));
-
-                if (elementids.Count > 0)
-                {
-                    foreach (int id in elementids)
-                    {
-                        if (id == Config.DischargeMeasElem)
-                        {
-                            ddlNewMeasType.Items.Remove(ddlNewMeasType.Items.FindByValue(Config.DischargeMeasElem.ToString()));
-                            break;
-                        }
-                        if (id == Config.QWMeasElem)
-                        {
-                            ddlNewMeasType.Items.Remove(ddlNewMeasType.Items.FindByValue(Config.QWMeasElem.ToString()));
-                            break;
-                        }
-                        if (id == Config.LakeMeasElem)
-                        {
-                            ddlNewMeasType.Items.Remove(ddlNewMeasType.Items.FindByValue(Config.LakeMeasElem.ToString()));
-                            break;
-                        }
-                        if (id == Config.EcoMeasElem)
-                        {
-                            ddlNewMeasType.Items.Remove(ddlNewMeasType.Items.FindByValue(Config.EcoMeasElem.ToString()));
-                            break;
-                        }
-                        if (id == Config.AtmMeasElem)
-                        {
-                            ddlNewMeasType.Items.Remove(ddlNewMeasType.Items.FindByValue(Config.AtmMeasElem.ToString()));
-                            break;
-                        }
-                    }
-                }
+                if (!elementids.Contains(Config.DischargeMeasElem)) ddlNewMeasType.Items.Add(new DropDownListItem { Text = "DISCHARGE MEASUREMENTS", Value = Config.DischargeMeasElem.ToString() });
+                if (!elementids.Contains(Config.LakeMeasElem)) ddlNewMeasType.Items.Add(new DropDownListItem { Text = "LAKE / RESERVOIR MEASUREMENTS", Value = Config.LakeMeasElem.ToString() });
+                if (!elementids.Contains(Config.QWMeasElem)) ddlNewMeasType.Items.Add(new DropDownListItem { Text = "WATER QUALITY MEASUREMENT", Value = Config.QWMeasElem.ToString() });
+                if (!elementids.Contains(Config.EcoMeasElem)) ddlNewMeasType.Items.Add(new DropDownListItem { Text = "ECOLOGICAL MEASUREMENTS", Value = Config.EcoMeasElem.ToString() });
+                if (!elementids.Contains(Config.AtmMeasElem)) ddlNewMeasType.Items.Add(new DropDownListItem { Text = "ATMOSPHERIC MEASUREMENTS", Value = Config.AtmMeasElem.ToString() });
 
                 ddlNewMeasType.Visible = true;
                 btnNewMeasType.Visible = true;
@@ -663,41 +634,14 @@ namespace Safety
             }
             else if (sims_site_tp == "gw" & elementids.Count < 4 & (string.IsNullOrEmpty(ddlNewMeasType.SelectedValue) | ddlNewMeasType.SelectedValue == "0"))
             {
-                RemoveDropDownItems();
+                ddlNewMeasType.Items.Clear();
 
-                ddlNewMeasType.Items.Add(new ListItem("", "0"));
+                ddlNewMeasType.Items.Add(new DropDownListItem { Value = "0", Text = "" });
 
-                ddlNewMeasType.Items.Add(new ListItem("GROUNDWATER MEASUREMENTS", Config.GWMeasElem.ToString()));
-                ddlNewMeasType.Items.Add(new ListItem("WATER QUALITY MEASUREMENT", Config.QWMeasElem.ToString()));
-                ddlNewMeasType.Items.Add(new ListItem("ECOLOGICAL MEASUREMENTS", Config.EcoMeasElem.ToString()));
-                ddlNewMeasType.Items.Add(new ListItem("ATMOSPHERIC MEASUREMENTS", Config.AtmMeasElem.ToString()));
-
-                if (elementids.Count > 0)
-                {
-                    foreach (int id in elementids)
-                    {
-                        if (id == Config.GWMeasElem)
-                        {
-                            ddlNewMeasType.Items.Remove(ddlNewMeasType.Items.FindByValue(Config.GWMeasElem.ToString()));
-                            break;
-                        }
-                        if (id == Config.QWMeasElem)
-                        {
-                            ddlNewMeasType.Items.Remove(ddlNewMeasType.Items.FindByValue(Config.QWMeasElem.ToString()));
-                            break;
-                        }
-                        if (id == Config.EcoMeasElem)
-                        {
-                            ddlNewMeasType.Items.Remove(ddlNewMeasType.Items.FindByValue(Config.EcoMeasElem.ToString()));
-                            break;
-                        }
-                        if (id == Config.AtmMeasElem)
-                        {
-                            ddlNewMeasType.Items.Remove(ddlNewMeasType.Items.FindByValue(Config.AtmMeasElem.ToString()));
-                            break;
-                        }
-                    }
-                }
+                if (!elementids.Contains(Config.GWMeasElem)) ddlNewMeasType.Items.Add(new DropDownListItem { Text = "GROUNDWATER MEASUREMENTS", Value = Config.GWMeasElem.ToString() });
+                if (!elementids.Contains(Config.QWMeasElem)) ddlNewMeasType.Items.Add(new DropDownListItem { Text = "WATER QUALITY MEASUREMENT", Value = Config.QWMeasElem.ToString() });
+                if (!elementids.Contains(Config.EcoMeasElem)) ddlNewMeasType.Items.Add(new DropDownListItem { Text = "ECOLOGICAL MEASUREMENTS", Value = Config.EcoMeasElem.ToString() });
+                if (!elementids.Contains(Config.AtmMeasElem)) ddlNewMeasType.Items.Add(new DropDownListItem { Text = "ATMOSPHERIC MEASUREMENTS", Value = Config.AtmMeasElem.ToString() });
 
                 ddlNewMeasType.Visible = true;
                 btnNewMeasType.Visible = true;
@@ -711,20 +655,10 @@ namespace Safety
             }
         }
 
-        protected void RemoveDropDownItems()
-        {
-            ddlNewMeasType.Items.Remove(ddlNewMeasType.Items.FindByValue("0"));
-            ddlNewMeasType.Items.Remove(ddlNewMeasType.Items.FindByValue(Config.DischargeMeasElem.ToString()));
-            ddlNewMeasType.Items.Remove(ddlNewMeasType.Items.FindByValue(Config.QWMeasElem.ToString()));
-            ddlNewMeasType.Items.Remove(ddlNewMeasType.Items.FindByValue(Config.LakeMeasElem.ToString()));
-            ddlNewMeasType.Items.Remove(ddlNewMeasType.Items.FindByValue(Config.EcoMeasElem.ToString()));
-            ddlNewMeasType.Items.Remove(ddlNewMeasType.Items.FindByValue(Config.AtmMeasElem.ToString()));
-            ddlNewMeasType.Items.Remove(ddlNewMeasType.Items.FindByValue(Config.GWMeasElem.ToString()));
-        }
 
         protected void btnNewMeasType_Command(object sender, System.Web.UI.WebControls.CommandEventArgs e)
         {
-            if (string.IsNullOrEmpty(Session["btnpressed"].ToString()) | Session["btnpressed"] == "true")
+            if (string.IsNullOrEmpty(Session["btnpressed"].ToString()) | Session["btnpressed"].ToString() == "true")
             {
                 int element_id = Convert.ToInt32(ddlNewMeasType.SelectedValue);
                 Data.SiteElement elem_temp = new Data.SiteElement();
@@ -750,7 +684,7 @@ namespace Safety
                     DisplayMessage(true, ex.Message, "element");
                 }
 
-                ddlNewMeasType.SelectedValue = null;
+                ddlNewMeasType.SelectedValue = "0";
                 SetupMeasurementSpecificPanel();
             }
             Session["btnpressed"] = "true";
@@ -895,7 +829,7 @@ namespace Safety
         {
             bool es = false;
 
-            if (e.CommandArgument == "911")
+            if (e.CommandArgument.ToString() == "911")
             {
                 if ((bool)currSHA.emerg_service)
                 {
@@ -934,7 +868,16 @@ namespace Safety
         #region "Contacts"
         protected void rgContacts_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
         {
-            rgContacts.DataSource = currSHA.SHAContacts.Select(p => new Data.Contact()).ToList();
+            rgContacts.DataSource = currSHA.SHAContacts.Select(p => new Data.Contact
+            {
+                contact_id = Convert.ToInt32(p.contact_id),
+                contact_nm = p.Contact.contact_nm,
+                street_addrs = p.Contact.street_addrs,
+                city = p.Contact.city,
+                state = p.Contact.state,
+                zip = p.Contact.zip,
+                ph_no = p.Contact.ph_no
+            }).ToList();
         }
 
         protected void rgContacts_PreRender(object sender, EventArgs e)
@@ -1046,7 +989,17 @@ namespace Safety
         #region "Hospitals"
         protected void rgHospitals_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
         {
-            rgHospitals.DataSource = currSHA.SHAHospitals.Select(p => new Data.Hospital()).ToList();
+            rgHospitals.DataSource = currSHA.SHAHospitals.Select(p => new Data.Hospital {
+                hospital_id = Convert.ToInt32(p.hospital_id),
+                hospital_nm = p.Hospital.hospital_nm,
+                street_addrs = p.Hospital.street_addrs,
+                city = p.Hospital.city,
+                state = p.Hospital.state,
+                zip = p.Hospital.zip,
+                ph_no = p.Hospital.ph_no,
+                dec_lat_va = p.Hospital.dec_lat_va,
+                dec_long_va = p.Hospital.dec_long_va
+            }).ToList();
         }
 
         protected void rgHospitals_PreRender(object sender, EventArgs e)

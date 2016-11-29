@@ -62,8 +62,8 @@ namespace Safety.Control
                 List<ReferenceLevelItem> rli = new List<ReferenceLevelItem>();
 
                 rli = db.ReferenceLevels.Select(p => new ReferenceLevelItem() {
-                    RefLevelID = p.reflevel_id,
-                    RefLevelTypeDescription = p.reflevel_tp + " - " + p.notes
+                    reflevel_id = p.reflevel_id,
+                    reflevel_tp_desc = p.reflevel_tp + " - " + p.notes
                 }).ToList();
 
                 return rli;
@@ -78,7 +78,7 @@ namespace Safety.Control
                 var jhas = db.ElementJHAs.Where(p => p.element_id == ElementID).ToList();
 
                 //Now create an object with the elem_jha_ids currently assigned to this site
-                var currJhas = db.SHAJHAs.Where(p => p.sha_site_id == SiteID).Select(p => p.elem_jha_id).ToList();
+                var currJhas = db.SHAJHAs.Where(p => p.sha_site_id == db.SHAs.FirstOrDefault(s => s.site_id == SiteID).sha_site_id).Select(p => p.elem_jha_id).ToList();
                 
                 foreach (var jha in jhas)
                 {
@@ -86,8 +86,8 @@ namespace Safety.Control
                     if (!currJhas.Contains(jha.elem_jha_id))
                     {
                         ehi.Add(new ElementHazardsItem() {
-                            ElemJHAID = jha.elem_jha_id,
-                            JHADescription = jha.JHA.jha_description
+                            elem_jha_id = jha.elem_jha_id,
+                            jha_description = jha.JHA.jha_description
                         });
                     }
                 }
@@ -101,49 +101,104 @@ namespace Safety.Control
             currSiteElem = db.SiteElements.FirstOrDefault(p => p.element_id == ElementID && p.site_id == SiteID);
             
 		    ltlElemRevisedInfo.Text = "Revised by: " + currSiteElem.revised_by + " &nbsp;&nbsp;Date revised: " + currSiteElem.revised_dt.ToString();
-		    ltlElemInfo.Text = currSiteElem.element_info.Replace("\n\n", "<br /><br />\n");
+            if (currSiteElem.element_info != null) ltlElemInfo.Text = currSiteElem.element_info.Replace("\n\n", "<br /><br />\n"); else ltlElemInfo.Text = "";
 		    ltlElemName.Text = currSiteElem.ElementDetail.element_nm;
             ltlElemName2.Text = currSiteElem.ElementDetail.element_nm;
 
             hlRevisionHistory.NavigateUrl = String.Format("{0}StationDoc/Archive.aspx?element_id={1}&site+id={2}&begin_dt=1/1/1900&end_dt={3}", Config.SIMS2017URL, ElementID, SiteID, DateTime.Now);
 
-		    if (hfToggleElementEditMode.Value == "true") {
-			    lbToggleElementEditMode.Text = "leave element edit mode";
-			    pnlEditElemInfo.Visible = true;
-			    pnlStaticElemInfo.Visible = false;
-		    } else {
-			    lbToggleElementEditMode.Text = "enter element edit mode";
-			    pnlEditElemInfo.Visible = false;
-			    pnlStaticElemInfo.Visible = true;
-		    }
+            if (hfToggleElementEditMode.Value == "true")
+            {
+                lbToggleElementEditMode.Text = "leave element edit mode";
+                pnlEditElemInfo.Visible = true;
+                pnlStaticElemInfo.Visible = false;
+            }
+            else
+            {
+                lbToggleElementEditMode.Text = "enter element edit mode";
+                pnlEditElemInfo.Visible = false;
+                pnlStaticElemInfo.Visible = true;
+            }
 
-		    if (hfToggleElementHazardEditMode.Value == "true") {
-			    lbToggleElementHazardEditMode.Text = "leave hazard edit mode";
-		    } else {
-			    lbToggleElementHazardEditMode.Text = "enter hazard edit mode";
-		    }
+            if (hfToggleElementHazardEditMode.Value == "true")
+            {
+                lbToggleElementHazardEditMode.Text = "leave hazard edit mode";
+            }
+            else
+            {
+                lbToggleElementHazardEditMode.Text = "enter hazard edit mode";
+            }
         }
 
         #region Internal Classes
         internal class ReferenceLevelItem
         {
+            private int _site_reflevel_id;
+            private int _site_jha_id;
             private int _reflevel_id;
+            private string _reflevel_tp;
+            private double _reflevel_va;
+            private string _reflevel_units;
+            private string _remarks;
             private string _reflevel_tp_desc;
+            private string _reflevel_desc;
 
-            public int RefLevelID
+            public int site_reflevel_id
+            {
+                get { return _site_reflevel_id; }
+                set { _site_reflevel_id = value; }
+            }
+            public int site_jha_id
+            {
+                get { return _site_jha_id; }
+                set { _site_jha_id = value; }
+            }
+            public int reflevel_id
             {
                 get { return _reflevel_id; }
                 set { _reflevel_id = value; }
             }
-            public string RefLevelTypeDescription
+            public string reflevel_tp
+            {
+                get { return _reflevel_tp; }
+                set { _reflevel_tp = value; }
+            }
+            public double reflevel_va
+            {
+                get { return _reflevel_va; }
+                set { _reflevel_va = value; }
+            }
+            public string reflevel_units
+            {
+                get { return _reflevel_units; }
+                set { _reflevel_units = value; }
+            }
+            public string remarks
+            {
+                get { return _remarks; }
+                set { _remarks = value; }
+            }
+            public string reflevel_tp_desc
             {
                 get { return _reflevel_tp_desc; }
                 set { _reflevel_tp_desc = value; }
             }
+            public string reflevel_desc
+            {
+                get { return _reflevel_desc; }
+                set { _reflevel_desc = value; }
+            }
             public ReferenceLevelItem()
             {
-                _reflevel_id = RefLevelID;
-                _reflevel_tp_desc = RefLevelTypeDescription;
+                _site_reflevel_id = site_reflevel_id;
+                _site_jha_id = site_jha_id;
+                _reflevel_id = reflevel_id;
+                _reflevel_tp = reflevel_tp;
+                _reflevel_va = reflevel_va;
+                _reflevel_units = reflevel_units;
+                _remarks = remarks;
+                _reflevel_tp_desc = reflevel_tp_desc;
+                _reflevel_desc = reflevel_desc;
             }
         }
 
@@ -155,38 +210,38 @@ namespace Safety.Control
             private int _jha_id;
             private string _jha_description;
 
-            public int SHASiteID
+            public int sha_site_id
             {
                 get { return _sha_site_id; }
                 set { _sha_site_id = value; }
             }
-            public int SiteJHAID
+            public int site_jha_id
             {
                 get { return _site_jha_id; }
                 set { _site_jha_id = value; }
             }
-            public int ElemJHAID
+            public int elem_jha_id
             {
                 get { return _elem_jha_id; }
                 set { _elem_jha_id = value; }
             }
-            public int JHAID
+            public int jha_id
             {
                 get { return _jha_id; }
                 set { _jha_id = value; }
             }
-            public string JHADescription
+            public string jha_description
             {
                 get { return _jha_description; }
                 set { _jha_description = value; }
             }
             public ElementHazardsItem()
             {
-                _sha_site_id = SHASiteID;
-                _site_jha_id = SiteJHAID;
-                _elem_jha_id = ElemJHAID;
-                _jha_id = JHAID;
-                _jha_description = JHADescription;
+                _sha_site_id = sha_site_id;
+                _site_jha_id = site_jha_id;
+                _elem_jha_id = elem_jha_id;
+                _jha_id = jha_id;
+                _jha_description = jha_description;
             }
         }
         #endregion
@@ -213,10 +268,10 @@ namespace Safety.Control
         protected void lbToggleElementHazardEditMode_Click(object sender, EventArgs e)
 	    {
 		    if (string.IsNullOrEmpty(hfToggleElementHazardEditMode.Value)) {
-			    hfToggleElementHazardEditMode.Value = "true";
+                hfToggleElementHazardEditMode.Value = "true";
 			    lbToggleElementHazardEditMode.Text = "leave hazard edit mode";
 		    } else {
-			    hfToggleElementHazardEditMode.Value = "";
+                hfToggleElementHazardEditMode.Value = "";
 			    lbToggleElementHazardEditMode.Text = "enter hazard edit mode";
 			    lblError2.Visible = false;
 			    lblSuccess2.Visible = false;
@@ -236,10 +291,10 @@ namespace Safety.Control
 	    }
         #endregion 
 
-	    #region "Element Editing Routines"
+	    #region Element Editing Routines
 	    protected void btnSubmitElemInfo_Command(object sender, CommandEventArgs e)
 	    {
-		    if (e.CommandArgument == "editelement" & !string.IsNullOrEmpty(hfToggleElementEditMode.Value)) {
+		    if (e.CommandArgument.ToString() == "editelement" & !string.IsNullOrEmpty(hfToggleElementEditMode.Value)) {
                 try {
                     //First confirm that there is element information to back up
                     if (!string.IsNullOrEmpty(currSiteElem.element_info))
@@ -287,28 +342,26 @@ namespace Safety.Control
 	    }
 	    #endregion
 
-	    #region "RadGrid Routines"
+	    #region RadGrid Routines
 	    public void rgElementHazards_NeedDataSource(object source, GridNeedDataSourceEventArgs e)
 	    {
 		    if (!e.IsFromDetailTable) {
-                var hazard = db.SHAJHAs.FirstOrDefault(p => p.SHA.site_id == SiteID && p.ElementJHA.element_id == ElementID);
+                var hazard = db.SHAJHAs.Where(p => p.SHA.site_id == SiteID && p.ElementJHA.element_id == ElementID).Select(p => new ElementHazardsItem {
+                    sha_site_id = Convert.ToInt32(p.sha_site_id),
+                    site_jha_id = p.site_jha_id,
+                    elem_jha_id = p.ElementJHA.elem_jha_id,
+                    jha_id = Convert.ToInt32(p.ElementJHA.jha_id),
+                    jha_description = p.ElementJHA.JHA.jha_description
+                }).ToList();
 
-                ElementHazardsItem ehi = new ElementHazardsItem() {
-                    SHASiteID = Convert.ToInt32(hazard.sha_site_id),
-                    SiteJHAID = Convert.ToInt32(hazard.ElementJHA.jha_id),
-                    ElemJHAID = Convert.ToInt32(hazard.elem_jha_id),
-                    JHAID = Convert.ToInt32(hazard.ElementJHA.jha_id),
-                    JHADescription = hazard.ElementJHA.JHA.jha_description
-                };
-
-			    if (hfToggleElementHazardEditMode.Value == "true" && JHAList.Count > 0) {
+                if (hfToggleElementHazardEditMode.Value == "true" && JHAList.Count > 0) {
 				    rgElementHazards.MasterTableView.CommandItemDisplay = GridCommandItemDisplay.Bottom;
 			    } else {
 				    rgElementHazards.MasterTableView.CommandItemDisplay = GridCommandItemDisplay.None;
 				    rgElementHazards.MasterTableView.ClearEditItems();
 			    }
 
-			    rgElementHazards.DataSource = ehi;
+			    rgElementHazards.DataSource = hazard;
 		    }
 	    }
 
@@ -324,12 +377,12 @@ namespace Safety.Control
                     e.DetailTableView.DataSource = specificCond;
 				    break;
 			    case "JobLimits":
-                    var jobLimits = hazard.SHAReferenceLevels.Select(p => new {
+                    var jobLimits = hazard.SHAReferenceLevels.Select(p => new ReferenceLevelItem {
                         site_reflevel_id = p.site_reflevel_id,
-                        site_jha_id = p.site_jha_id,
-                        reflevel_id = p.reflevel_id,
+                        site_jha_id = Convert.ToInt32(p.site_jha_id),
+                        reflevel_id = Convert.ToInt32(p.reflevel_id),
                         reflevel_tp = p.ReferenceLevel.reflevel_tp,
-                        reflevel_va = p.reflevel_va,
+                        reflevel_va = Convert.ToDouble(p.reflevel_va),
                         reflevel_units = p.reflevel_units,
                         remarks = p.remarks,
                         reflevel_desc = p.ReferenceLevel.reflevel_tp + " - " + p.ReferenceLevel.notes
@@ -338,7 +391,7 @@ namespace Safety.Control
 				    break;
 		    }
 
-		    if (hfToggleElementHazardEditMode.Value == "true") {
+            if (hfToggleElementHazardEditMode.Value == "true"){
 			    e.DetailTableView.CommandItemDisplay = GridCommandItemDisplay.Bottom;
 		    } else {
 			    e.DetailTableView.CommandItemDisplay = GridCommandItemDisplay.None;
@@ -351,7 +404,7 @@ namespace Safety.Control
 	    /// </summary>
 	    protected void rgElementHazards_PreRender(object sender, EventArgs e)
 	    {
-		    if (string.IsNullOrEmpty(hfToggleElementHazardEditMode.Value)) {
+            if (string.IsNullOrEmpty(hfToggleElementHazardEditMode.Value)) {
 			    foreach (GridColumn col in rgElementHazards.MasterTableView.RenderColumns) {
 				    if (col.UniqueName == "DeleteColumn") {
 					    col.Visible = false;
@@ -416,8 +469,9 @@ namespace Safety.Control
 
 				    if (!(e.Item is IGridInsertItem)) {
 					    ltlHazardsEditFormTitle.Text = "Edit Hazard";
-					    tbHazard.Text = ((DataRowView)e.Item.DataItem)["remarks"].ToString();
-					    if (((DataRowView)e.Item.DataItem)["priority"].ToString() == "False") {
+                        tbHazard.Text = ((Data.SHASpecificCondition)e.Item.DataItem).remarks;
+                        bool priority = Convert.ToBoolean(((Data.SHASpecificCondition)e.Item.DataItem).priority);
+					    if (!priority) {
 						    cbPriority.Checked = false;
 					    } else {
 						    cbPriority.Checked = true;
@@ -448,10 +502,10 @@ namespace Safety.Control
 
 				    if (!(e.Item is IGridInsertItem)) {
 					    ltlJobLimitsEditFormTitle.Text = "Edit Job Limit";
-					    rcbJobLimitType.SelectedValue = ((DataRowView)e.Item.DataItem)["reflevel_id"].ToString();
-					    rntbJobLimitValue.Text = ((DataRowView)e.Item.DataItem)["reflevel_va"].ToString();
-					    tbUnits.Text = ((DataRowView)e.Item.DataItem)["reflevel_units"].ToString();
-					    tbRemarks.Text = ((DataRowView)e.Item.DataItem)["remarks"].ToString();
+                        rcbJobLimitType.SelectedValue = ((ReferenceLevelItem)e.Item.DataItem).reflevel_id.ToString();
+                        rntbJobLimitValue.Text = ((ReferenceLevelItem)e.Item.DataItem).reflevel_va.ToString();
+                        tbUnits.Text = ((ReferenceLevelItem)e.Item.DataItem).reflevel_units;
+                        tbRemarks.Text = ((ReferenceLevelItem)e.Item.DataItem).remarks;
 
 					    btnUpdate3.Visible = true;
 					    btnInsert3.Visible = false;
@@ -705,7 +759,8 @@ namespace Safety.Control
             sha.updated_dt = DateTime.Now;
             db.SubmitChanges();
 	    }
-	    public ElementJHAs()
+	    
+        public ElementJHAs()
 	    {
 		    Load += Page_Load;
 	    }

@@ -3,7 +3,7 @@
 <style type="text/css">
     .Custom .rgCaption
     {
-        background-color:#dbdbb4;
+        background-color:#f3efe9;
         font-size: 10pt;
         font-weight: bold;
         color: #26364e;
@@ -11,7 +11,7 @@
     }
     .Custom .rgMasterTable .rgRow td
     {
-        background-color:#4e75b3;
+        background-color:#099b7a;
         font-size: 12pt;
         font-weight: bold;
         color: white;
@@ -19,7 +19,7 @@
     }
     .Custom .rgMasterTable .rgAltRow td
     {
-        background-color:#4e75b3;
+        background-color:#099b7a;
         font-size: 12pt;
         font-weight: bold;
         color: white;
@@ -148,7 +148,7 @@
     <h5 class="sectionHeadings">Site Specific Job Hazards for <asp:Literal ID="ltlElemName2" runat="server" /></h5>
     <div style="float:left;">
         <asp:Label ID="lblError2" runat="server" EnableViewState="False" Font-Bold="True" ForeColor="Red"></asp:Label>
-        <asp:Label ID="lblSuccess2" runat="server" EnableViewState="False" Font-Bold="True" ForeColor="Green"></asp:Label>
+        <asp:Label ID="lblSuccess2" runat="server" EnableViewState="False" Font-Bold="True" ForeColor="MediumOrchid"></asp:Label>
     </div>
     <div style="text-align:right;">
         <asp:LinkButton ID="lbToggleElementHazardEditMode" runat="server" OnClick="lbToggleElementHazardEditMode_Click" />
@@ -170,14 +170,14 @@
                 <telerik:GridBoundColumn DataField="jha_description" UniqueName="jha_description" />
                 <telerik:GridTemplateColumn UniqueName="TemplateLinks" HeaderStyle-Width="185">
                     <ItemTemplate>
-                        <asp:HyperLink ID="hlFullReport" runat="server" ImageUrl="../images/reports.png" CssClass="gridImage" Target="_blank"  />
+                        <asp:HyperLink ID="hlFullReport" runat="server" ImageUrl="~/images/reports.png" CssClass="gridImage" Target="_blank"  />
                         <telerik:RadToolTip runat="server" ID="rtt0" RelativeTo="Element" Width="150px" AutoCloseDelay="10000" 
-                            Height="30px" TargetControlID="hlFullReport" IsClientID="false" Animation="Fade" Position="TopRight" Skin="Bootstrap">
+                            Height="80px" TargetControlID="hlFullReport" IsClientID="false" Animation="Fade" Position="TopRight" Skin="Bootstrap">
                             View the standardized Job Hazard information for this job.
                         </telerik:RadToolTip>
                     </ItemTemplate>
                 </telerik:GridTemplateColumn>
-                <telerik:GridButtonColumn ConfirmText="Delete this measurement type?" ButtonType="ImageButton" CommandName="Delete" Text="Delete" ImageUrl="../images/customdeletebutton.png"
+                <telerik:GridButtonColumn ConfirmText="Delete this measurement type?" ButtonType="ImageButton" CommandName="Delete" Text="Delete" ImageUrl="~/images/customdeletebutton.png"
                     UniqueName="DeleteColumn">
                     <HeaderStyle Width="20px" />
                     <ItemStyle HorizontalAlign="Center" CssClass="MyImageButton" />
@@ -185,7 +185,7 @@
             </Columns>
             <EditFormSettings EditFormType="Template">
                 <FormTemplate>
-                    <div style="padding:5px;background-color: #cfe3db;">
+                    <div style="padding:5px;background-color: #d1ede5;">
                         <h5>Add a new measurement type for this element</h5><br />
                         <asp:DropDownList ID="ddlMeasType" runat="server" DataTextField="jha_description" DataValueField="elem_jha_id" Width="400px" /><br /><br />
                         <asp:Button ID="btnInsert1" Text="Insert" runat="server" CommandName="PerformInsert" />
@@ -215,7 +215,7 @@
                     </Columns>
                     <EditFormSettings EditFormType="Template">
                         <FormTemplate>
-                            <div style="padding:5px;background-color: #cfe3db;">
+                            <div style="padding:5px;background-color: #d1ede5;">
                                 <h5><asp:Literal ID="ltlHazardsEditFormTitle" runat="server" /></h5><br />
                                 <asp:TextBox ID="tbHazard" runat="server" Width="400px" Height="100px" TextMode="MultiLine" /><br />
                                 <label>Is this a high priority (will be moved to the top of the hazard list, and font bolded)?</label> <asp:CheckBox ID="cbPriority" runat="server" /> <br /><br />
@@ -249,7 +249,7 @@
                     </Columns>
                     <EditFormSettings EditFormType="Template">
                         <FormTemplate>
-                            <div style="padding:5px;background-color: #cfe3db;">
+                            <div style="padding:5px;background-color: #d1ede5;">
                                 <h5><asp:Literal ID="ltlJobLimitsEditFormTitle" runat="server" /></h5>
                                 <table cellspacing="0" cellpadding="5" width="100%" border="0" rules="none">
                                     <tr>

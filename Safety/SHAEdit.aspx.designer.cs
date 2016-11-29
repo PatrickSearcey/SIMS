@@ -244,7 +244,7 @@ namespace Safety {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddHazards;
+        protected global::Telerik.Web.UI.RadButton btnAddHazards;
         
         /// <summary>
         /// pnlAddEquip control.
@@ -280,7 +280,7 @@ namespace Safety {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddEquip;
+        protected global::Telerik.Web.UI.RadButton btnAddEquip;
         
         /// <summary>
         /// lbCloseAddSiteSpecificInfo control.
@@ -316,7 +316,7 @@ namespace Safety {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlNewMeasType;
+        protected global::Telerik.Web.UI.RadDropDownList ddlNewMeasType;
         
         /// <summary>
         /// btnNewMeasType control.
@@ -325,7 +325,7 @@ namespace Safety {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNewMeasType;
+        protected global::Telerik.Web.UI.RadButton btnNewMeasType;
         
         /// <summary>
         /// lblError1 control.

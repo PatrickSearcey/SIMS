@@ -130,7 +130,14 @@
     <Content Include="Control\ElementJHAs.ascx" />
     <Content Include="Control\SitePageHeading.ascx" />
     <Content Include="EmergencyInfo.aspx" />
+    <Content Include="images\arrowbullet.png" />
     <Content Include="images\bullet.png" />
+    <Content Include="images\customdeletebutton.png" />
+    <Content Include="images\delete.png" />
+    <Content Include="images\edit.png" />
+    <Content Include="images\printSHAlink.png" />
+    <Content Include="images\priority.png" />
+    <Content Include="images\reports.png" />
     <Content Include="images\Safetylogo.png" />
     <Content Include="images\SafetyTitle.png" />
     <Content Include="images\USGSHeaderLogo.png" />

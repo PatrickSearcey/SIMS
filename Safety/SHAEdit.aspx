@@ -217,7 +217,7 @@
     <uc:PageHeading id="ph1" runat="server" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph2" runat="server">
-    <asp:Panel ID="pnlHasAccess" runat="server">
+    <asp:Panel ID="pnlHasAccess" runat="server" CssClass="pnlHasAccess">
 
         <!-- PRINT VERSION LINK -->
         <div style="float:right;padding-top:0;margin-top:0;">
@@ -312,8 +312,8 @@
         <asp:Panel ID="pnlAddSiteSpecificInfo" runat="server" CssClass="addServicingSiteInfo">
             <h4 class="sectionHeadings">Add Servicing Site Specific Info</h4>
             <asp:Panel ID="pnlAddHazard" runat="server" CssClass="leftpanel">
-                <p>Add Hazard Info</p>
-                <telerik:RadListBox ID="rlbHazards" runat="server" CheckBoxes="true" Width="400px" Height="100px">
+                <p style="font-weight:bold;">Add Hazard Info</p>
+                <telerik:RadListBox ID="rlbHazards" runat="server" CheckBoxes="true" Width="400px" Height="150px">
                     <Items>
                         <telerik:RadListBoxItem Text="aircraft required" />
                         <telerik:RadListBoxItem Text="compressed gas cylinders tansport and storage (secured)" />
@@ -340,11 +340,11 @@
                 </telerik:RadListBox>
                 <p style="padding-top:2px;padding-bottom:2px;">
                 <label>Other:</label> <asp:TextBox ID="tbOtherHazard" runat="server" /></p>
-                <asp:Button ID="btnAddHazards" runat="server" Text="Add checked hazards" OnCommand="AddInfo_Command" CommandName="ServicingSite" CommandArgument="AddHazard" />
+                <telerik:RadButton ID="btnAddHazards" runat="server" Text="Add checked hazards" OnCommand="AddInfo_Command" CommandName="ServicingSite" CommandArgument="AddHazard" AutoPostBack="true" />
             </asp:Panel>
             <asp:Panel ID="pnlAddEquip" runat="server" CssClass="rightpanel">
-                <p>Add Required PPE & Recommended Equipment</p>
-                <telerik:RadListBox ID="rlbEquip" runat="server" CheckBoxes="true" Width="250px" Height="100px">
+                <p style="font-weight:bold;">Add Required PPE & Recommended Equipment</p>
+                <telerik:RadListBox ID="rlbEquip" runat="server" CheckBoxes="true" Width="250px" Height="150px">
                     <Items>
                         <telerik:RadListBoxItem Text="cell phone" />
                         <telerik:RadListBoxItem Text="first aid kit" />
@@ -368,7 +368,7 @@
                 </telerik:RadListBox>
                 <p style="padding-top:2px;padding-bottom:2px;">
                 <label>Other:</label> <asp:TextBox ID="tbOtherEquip" runat="server" /></p>
-                <asp:Button ID="btnAddEquip" runat="server" Text="Add checked equipment" OnCommand="AddInfo_Command" CommandName="ServicingSite" CommandArgument="AddEquip" />
+                <telerik:RadButton ID="btnAddEquip" runat="server" Text="Add checked equipment" OnCommand="AddInfo_Command" CommandName="ServicingSite" CommandArgument="AddEquip" AutoPostBack="true" />
             </asp:Panel>
             <div style="margin: 3px 0 0 0;font-size: 8pt;width:100%;text-align:right;"><asp:LinkButton ID="lbCloseAddSiteSpecificInfo" runat="server" OnCommand="lbAddSiteSpecificInfo_Command" CommandArgument="close">Done adding? 
             Click to close this section.</asp:LinkButton></div>
@@ -388,7 +388,7 @@
             <asp:PlaceHolder ID="phElements" runat="server" />
             <h4 class="sectionHeadings">Add a New Measurement Element</h4>
             <p><asp:Literal ID="ltlNewMeasType" runat="server" /></p>
-            <asp:DropDownList ID="ddlNewMeasType" runat="server" /> <asp:Button ID="btnNewMeasType" runat="server" Text="Add new element" OnCommand="btnNewMeasType_Command" CommandArgument="addnew" />
+            <div style="float:left;padding-right:10px;"><telerik:RadDropDownList ID="ddlNewMeasType" runat="server" Skin="Bootstrap" Width="400px" /></div><telerik:RadButton ID="btnNewMeasType" runat="server" Text="Add new element" OnCommand="btnNewMeasType_Command" CommandArgument="addnew" AutoPostBack="true" />
             <p><asp:Label ID="lblError1" runat="server" EnableViewState="False" Font-Bold="True" ForeColor="Red"></asp:Label>
             <asp:Label ID="lblSuccess1" runat="server" EnableViewState="False" Font-Bold="True" ForeColor="Green"></asp:Label></p>
         </div>

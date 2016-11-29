@@ -105,3 +105,90 @@ h4 {
     border-radius: 5px;
     font-size:10pt;
 }
+
+/*----------------FOR SAFETY SUMMARY-----------------------*/
+.pnlHasAccess {
+    margin:auto;
+    padding: 20px 20px 0 20px;
+}
+.basicPanel 
+{
+    padding-top:10px;
+    padding-bottom:10px;
+    width: 970px;
+}
+.subPanel
+{
+    padding:10px;
+    width:950px;
+    background-color: #d1ede5;
+    border: 1px solid #4a9987;
+}
+.roundedPanel
+{
+    width: 900px;
+	margin: 10px 0 10px 0;
+	padding: 10px;
+	color: #565656;	
+	background: #f3efe9; /* Old browsers */
+    -webkit-box-shadow: 0 0 5px 0 #f3efe9;
+    box-shadow: 0 0 5px 0 #f3efe9;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.addServicingSiteInfo
+{
+    width: 900px;
+    min-height:260px;
+	margin: 10px 0 10px 0;
+	padding: 10px;
+	color: #565656;	
+	background: #f3efe9; /* Old browsers */
+    -webkit-box-shadow: 0 0 5px 0 #f3efe9;
+    box-shadow: 0 0 5px 0 #f3efe9;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.leftpanel
+{
+    float:left;
+    width:55%;
+    margin-top:0;
+}
+.rightpanel
+{
+    float:right;
+    width:45%;
+    margin-top:0;
+}
+.floatLeft
+{
+    float:left;
+}
+h3.sectionHeadings
+{
+    color: #846b45;
+    font-weight:bold;
+    font-size: 14pt;
+    border-bottom: 1px dotted #099b7a;
+}
+h4.sectionHeadings
+{
+    color: #4a9987 !important;
+    font-size: 12pt !important;
+    font-weight:bold !important;
+    border-bottom: 1px dotted #099b7a !important;
+}
+h5.sectionHeadings
+{
+    color: #4a9987 !important;
+    font-size: 11pt !important; 
+    font-weight: bold !important;
+    border-bottom: 1px dotted #099b7a !important;
+}
+.noData
+{
+    font-style:italic;
+    color:#666666;
+    font-size:smaller;
+}

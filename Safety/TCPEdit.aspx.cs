@@ -92,14 +92,15 @@ namespace Safety
         #region Properties
         private IEnumerable<TCPDataItem> TCPDataSource()
         {
-            return currSite.TCPSite.TCPs.Select(p => new TCPDataItem
-            {
-                TCPID = p.TCPID,
-                TCPLink = String.Format("{0}TCPView.aspx?TCPID={1}", Config.SafetyURL, p.TCPID),
-                TCPName = String.Format("{0} - TCP, {1}", p.TCPPlanDetail.Number, p.TCPPlanDetail.SubName),
-                PlanRemarks = p.Remarks,
-                WorkAreaActivity = p.WorkAreaActivity
-            });
+            var tcps = db.TCPs.Where(p => p.site_id == SiteID).Select(p => new TCPDataItem {
+                    TCPID = p.TCPID,
+                    TCPLink = String.Format("{0}TCPView.aspx?TCPID={1}", Config.SafetyURL, p.TCPID),
+                    TCPName = String.Format("{0} - TCP, {1}", p.TCPPlanDetail.Number, p.TCPPlanDetail.SubName),
+                    PlanRemarks = p.Remarks,
+                    WorkAreaActivity = p.WorkAreaActivity
+                }).ToList();
+
+            return tcps;
         }
         #endregion
 
