@@ -102,12 +102,24 @@ namespace Data
     partial void InsertTCPPlanDetail(TCPPlanDetail instance);
     partial void UpdateTCPPlanDetail(TCPPlanDetail instance);
     partial void DeleteTCPPlanDetail(TCPPlanDetail instance);
-    partial void InsertTCPSite(TCPSite instance);
-    partial void UpdateTCPSite(TCPSite instance);
-    partial void DeleteTCPSite(TCPSite instance);
     partial void InsertTCP(TCP instance);
     partial void UpdateTCP(TCP instance);
     partial void DeleteTCP(TCP instance);
+    partial void InsertTCPSite(TCPSite instance);
+    partial void UpdateTCPSite(TCPSite instance);
+    partial void DeleteTCPSite(TCPSite instance);
+    partial void InsertHospital(Hospital instance);
+    partial void UpdateHospital(Hospital instance);
+    partial void DeleteHospital(Hospital instance);
+    partial void InsertContact(Contact instance);
+    partial void UpdateContact(Contact instance);
+    partial void DeleteContact(Contact instance);
+    partial void InsertElementSite(ElementSite instance);
+    partial void UpdateElementSite(ElementSite instance);
+    partial void DeleteElementSite(ElementSite instance);
+    partial void InsertSiteElement(SiteElement instance);
+    partial void UpdateSiteElement(SiteElement instance);
+    partial void DeleteSiteElement(SiteElement instance);
     #endregion
 		
 		public SIMSDataContext() : 
@@ -356,14 +368,6 @@ namespace Data
 			}
 		}
 		
-		public System.Data.Linq.Table<TCPSite> TCPSites
-		{
-			get
-			{
-				return this.GetTable<TCPSite>();
-			}
-		}
-		
 		public System.Data.Linq.Table<TCP> TCPs
 		{
 			get
@@ -372,11 +376,81 @@ namespace Data
 			}
 		}
 		
+		public System.Data.Linq.Table<TCPSite> TCPSites
+		{
+			get
+			{
+				return this.GetTable<TCPSite>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Hospital> Hospitals
+		{
+			get
+			{
+				return this.GetTable<Hospital>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Contact> Contacts
+		{
+			get
+			{
+				return this.GetTable<Contact>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ElementSite> ElementSites
+		{
+			get
+			{
+				return this.GetTable<ElementSite>();
+			}
+		}
+		
+		public System.Data.Linq.Table<SiteElement> SiteElements
+		{
+			get
+			{
+				return this.GetTable<SiteElement>();
+			}
+		}
+		
+		public System.Data.Linq.Table<SiteElementBackup> SiteElementBackups
+		{
+			get
+			{
+				return this.GetTable<SiteElementBackup>();
+			}
+		}
+		
+		public System.Data.Linq.Table<SiteType> SiteTypes
+		{
+			get
+			{
+				return this.GetTable<SiteType>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spz_GetDCPInfo")]
 		public ISingleResult<spz_GetDCPInfoResult> spz_GetDCPInfo([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> site_id)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), site_id);
 			return ((ISingleResult<spz_GetDCPInfoResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_Report_Update_Site_LastEdited")]
+		public int SP_Report_Update_Site_LastEdited([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> site_id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), site_id);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_Safety_Info")]
+		public ISingleResult<SP_Safety_InfoResult> SP_Safety_Info([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> site_jha_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> site_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="SmallInt")] System.Nullable<short> type, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(10)")] string what)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), site_jha_id, site_id, type, what);
+			return ((ISingleResult<SP_Safety_InfoResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -2044,6 +2118,8 @@ namespace Data
 		
 		private EntityRef<TCPSite> _TCPSite;
 		
+		private EntityRef<ElementSite> _ElementSite;
+		
 		private EntityRef<Office> _Office;
 		
     #region Extensibility Method Definitions
@@ -2079,6 +2155,7 @@ namespace Data
 			this._Records = new EntitySet<Record>(new Action<Record>(this.attach_Records), new Action<Record>(this.detach_Records));
 			this._SHAs = new EntitySet<SHA>(new Action<SHA>(this.attach_SHAs), new Action<SHA>(this.detach_SHAs));
 			this._TCPSite = default(EntityRef<TCPSite>);
+			this._ElementSite = default(EntityRef<ElementSite>);
 			this._Office = default(EntityRef<Office>);
 			OnCreated();
 		}
@@ -2345,7 +2422,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_TCP_Site_Master", Storage="_TCPSite", ThisKey="site_id", OtherKey="site_id", IsUnique=true, IsForeignKey=false)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_TCPSite", Storage="_TCPSite", ThisKey="site_id", OtherKey="site_id", IsUnique=true, IsForeignKey=false)]
 		public TCPSite TCPSite
 		{
 			get
@@ -2370,6 +2447,35 @@ namespace Data
 						value.Site = this;
 					}
 					this.SendPropertyChanged("TCPSite");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Elem_Site_Master", Storage="_ElementSite", ThisKey="site_id", OtherKey="site_id", IsUnique=true, IsForeignKey=false)]
+		public ElementSite ElementSite
+		{
+			get
+			{
+				return this._ElementSite.Entity;
+			}
+			set
+			{
+				ElementSite previousValue = this._ElementSite.Entity;
+				if (((previousValue != value) 
+							|| (this._ElementSite.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ElementSite.Entity = null;
+						previousValue.Site = null;
+					}
+					this._ElementSite.Entity = value;
+					if ((value != null))
+					{
+						value.Site = this;
+					}
+					this.SendPropertyChanged("ElementSite");
 				}
 			}
 		}
@@ -6027,6 +6133,8 @@ namespace Data
 		
 		private EntityRef<SHA> _SHA;
 		
+		private EntityRef<Contact> _Contact;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -6042,6 +6150,7 @@ namespace Data
 		public SHAContact()
 		{
 			this._SHA = default(EntityRef<SHA>);
+			this._Contact = default(EntityRef<Contact>);
 			OnCreated();
 		}
 		
@@ -6100,6 +6209,10 @@ namespace Data
 			{
 				if ((this._contact_id != value))
 				{
+					if (this._Contact.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.Oncontact_idChanging(value);
 					this.SendPropertyChanging();
 					this._contact_id = value;
@@ -6139,6 +6252,40 @@ namespace Data
 						this._sha_site_id = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("SHA");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_Contact_SHAContact", Storage="_Contact", ThisKey="contact_id", OtherKey="contact_id", IsForeignKey=true)]
+		public Contact Contact
+		{
+			get
+			{
+				return this._Contact.Entity;
+			}
+			set
+			{
+				Contact previousValue = this._Contact.Entity;
+				if (((previousValue != value) 
+							|| (this._Contact.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Contact.Entity = null;
+						previousValue.SHAContacts.Remove(this);
+					}
+					this._Contact.Entity = value;
+					if ((value != null))
+					{
+						value.SHAContacts.Add(this);
+						this._contact_id = value.contact_id;
+					}
+					else
+					{
+						this._contact_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Contact");
 				}
 			}
 		}
@@ -6329,6 +6476,8 @@ namespace Data
 		
 		private EntityRef<SHA> _SHA;
 		
+		private EntityRef<Hospital> _Hospital;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -6344,6 +6493,7 @@ namespace Data
 		public SHAHospital()
 		{
 			this._SHA = default(EntityRef<SHA>);
+			this._Hospital = default(EntityRef<Hospital>);
 			OnCreated();
 		}
 		
@@ -6402,6 +6552,10 @@ namespace Data
 			{
 				if ((this._hospital_id != value))
 				{
+					if (this._Hospital.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.Onhospital_idChanging(value);
 					this.SendPropertyChanging();
 					this._hospital_id = value;
@@ -6441,6 +6595,40 @@ namespace Data
 						this._sha_site_id = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("SHA");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_Hospital_SHAHospital", Storage="_Hospital", ThisKey="hospital_id", OtherKey="hospital_id", IsForeignKey=true)]
+		public Hospital Hospital
+		{
+			get
+			{
+				return this._Hospital.Entity;
+			}
+			set
+			{
+				Hospital previousValue = this._Hospital.Entity;
+				if (((previousValue != value) 
+							|| (this._Hospital.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Hospital.Entity = null;
+						previousValue.SHAHospitals.Remove(this);
+					}
+					this._Hospital.Entity = value;
+					if ((value != null))
+					{
+						value.SHAHospitals.Add(this);
+						this._hospital_id = value.hospital_id;
+					}
+					else
+					{
+						this._hospital_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Hospital");
 				}
 			}
 		}
@@ -7682,6 +7870,8 @@ namespace Data
 		
 		private EntitySet<ElementJHA> _ElementJHAs;
 		
+		private EntitySet<SiteElement> _SiteElements;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -7729,6 +7919,7 @@ namespace Data
 		public ElementDetail()
 		{
 			this._ElementJHAs = new EntitySet<ElementJHA>(new Action<ElementJHA>(this.attach_ElementJHAs), new Action<ElementJHA>(this.detach_ElementJHAs));
+			this._SiteElements = new EntitySet<SiteElement>(new Action<SiteElement>(this.attach_SiteElements), new Action<SiteElement>(this.detach_SiteElements));
 			OnCreated();
 		}
 		
@@ -8125,6 +8316,19 @@ namespace Data
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ElementDetail_Elem_Site_Element", Storage="_SiteElements", ThisKey="element_id", OtherKey="element_id")]
+		public EntitySet<SiteElement> SiteElements
+		{
+			get
+			{
+				return this._SiteElements;
+			}
+			set
+			{
+				this._SiteElements.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -8152,6 +8356,18 @@ namespace Data
 		}
 		
 		private void detach_ElementJHAs(ElementJHA entity)
+		{
+			this.SendPropertyChanging();
+			entity.ElementDetail = null;
+		}
+		
+		private void attach_SiteElements(SiteElement entity)
+		{
+			this.SendPropertyChanging();
+			entity.ElementDetail = this;
+		}
+		
+		private void detach_SiteElements(SiteElement entity)
 		{
 			this.SendPropertyChanging();
 			entity.ElementDetail = null;
@@ -8634,7 +8850,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPPlanDetail_TCP_Site_Plan", Storage="_TCPs", ThisKey="PlanID", OtherKey="PlanID")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPPlanDetail_TCP", Storage="_TCPs", ThisKey="PlanID", OtherKey="PlanID")]
 		public EntitySet<TCP> TCPs
 		{
 			get
@@ -8775,6 +8991,462 @@ namespace Data
 				{
 					this._FlaggerDistance = value;
 				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TCP_Site_Plan")]
+	public partial class TCP : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _TCPID;
+		
+		private System.Nullable<int> _site_id;
+		
+		private System.Nullable<int> _PlanID;
+		
+		private string _WorkAreaActivity;
+		
+		private string _Remarks;
+		
+		private string _UpdatedBy;
+		
+		private System.Nullable<System.DateTime> _UpdatedDt;
+		
+		private string _ReviewedBy;
+		
+		private System.Nullable<System.DateTime> _ReviewedDt;
+		
+		private string _ApprovedBy;
+		
+		private System.Nullable<System.DateTime> _ApprovedDt;
+		
+		private System.Nullable<bool> _ApprovalReady;
+		
+		private System.Nullable<bool> _NoChanges;
+		
+		private string _ReviewerComments;
+		
+		private EntityRef<TCPPlanDetail> _TCPPlanDetail;
+		
+		private EntityRef<TCPSite> _TCPSite;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTCPIDChanging(int value);
+    partial void OnTCPIDChanged();
+    partial void Onsite_idChanging(System.Nullable<int> value);
+    partial void Onsite_idChanged();
+    partial void OnPlanIDChanging(System.Nullable<int> value);
+    partial void OnPlanIDChanged();
+    partial void OnWorkAreaActivityChanging(string value);
+    partial void OnWorkAreaActivityChanged();
+    partial void OnRemarksChanging(string value);
+    partial void OnRemarksChanged();
+    partial void OnUpdatedByChanging(string value);
+    partial void OnUpdatedByChanged();
+    partial void OnUpdatedDtChanging(System.Nullable<System.DateTime> value);
+    partial void OnUpdatedDtChanged();
+    partial void OnReviewedByChanging(string value);
+    partial void OnReviewedByChanged();
+    partial void OnReviewedDtChanging(System.Nullable<System.DateTime> value);
+    partial void OnReviewedDtChanged();
+    partial void OnApprovedByChanging(string value);
+    partial void OnApprovedByChanged();
+    partial void OnApprovedDtChanging(System.Nullable<System.DateTime> value);
+    partial void OnApprovedDtChanged();
+    partial void OnApprovalReadyChanging(System.Nullable<bool> value);
+    partial void OnApprovalReadyChanged();
+    partial void OnNoChangesChanging(System.Nullable<bool> value);
+    partial void OnNoChangesChanged();
+    partial void OnReviewerCommentsChanging(string value);
+    partial void OnReviewerCommentsChanged();
+    #endregion
+		
+		public TCP()
+		{
+			this._TCPPlanDetail = default(EntityRef<TCPPlanDetail>);
+			this._TCPSite = default(EntityRef<TCPSite>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TCPID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int TCPID
+		{
+			get
+			{
+				return this._TCPID;
+			}
+			set
+			{
+				if ((this._TCPID != value))
+				{
+					this.OnTCPIDChanging(value);
+					this.SendPropertyChanging();
+					this._TCPID = value;
+					this.SendPropertyChanged("TCPID");
+					this.OnTCPIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int")]
+		public System.Nullable<int> site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					if (this._TCPSite.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onsite_idChanging(value);
+					this.SendPropertyChanging();
+					this._site_id = value;
+					this.SendPropertyChanged("site_id");
+					this.Onsite_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlanID", DbType="Int")]
+		public System.Nullable<int> PlanID
+		{
+			get
+			{
+				return this._PlanID;
+			}
+			set
+			{
+				if ((this._PlanID != value))
+				{
+					if (this._TCPPlanDetail.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPlanIDChanging(value);
+					this.SendPropertyChanging();
+					this._PlanID = value;
+					this.SendPropertyChanged("PlanID");
+					this.OnPlanIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WorkAreaActivity", DbType="NVarChar(150)")]
+		public string WorkAreaActivity
+		{
+			get
+			{
+				return this._WorkAreaActivity;
+			}
+			set
+			{
+				if ((this._WorkAreaActivity != value))
+				{
+					this.OnWorkAreaActivityChanging(value);
+					this.SendPropertyChanging();
+					this._WorkAreaActivity = value;
+					this.SendPropertyChanged("WorkAreaActivity");
+					this.OnWorkAreaActivityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remarks", DbType="NVarChar(MAX)")]
+		public string Remarks
+		{
+			get
+			{
+				return this._Remarks;
+			}
+			set
+			{
+				if ((this._Remarks != value))
+				{
+					this.OnRemarksChanging(value);
+					this.SendPropertyChanging();
+					this._Remarks = value;
+					this.SendPropertyChanged("Remarks");
+					this.OnRemarksChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="NVarChar(20)")]
+		public string UpdatedBy
+		{
+			get
+			{
+				return this._UpdatedBy;
+			}
+			set
+			{
+				if ((this._UpdatedBy != value))
+				{
+					this.OnUpdatedByChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedBy = value;
+					this.SendPropertyChanged("UpdatedBy");
+					this.OnUpdatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdatedDt
+		{
+			get
+			{
+				return this._UpdatedDt;
+			}
+			set
+			{
+				if ((this._UpdatedDt != value))
+				{
+					this.OnUpdatedDtChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedDt = value;
+					this.SendPropertyChanged("UpdatedDt");
+					this.OnUpdatedDtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReviewedBy", DbType="NVarChar(20)")]
+		public string ReviewedBy
+		{
+			get
+			{
+				return this._ReviewedBy;
+			}
+			set
+			{
+				if ((this._ReviewedBy != value))
+				{
+					this.OnReviewedByChanging(value);
+					this.SendPropertyChanging();
+					this._ReviewedBy = value;
+					this.SendPropertyChanged("ReviewedBy");
+					this.OnReviewedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReviewedDt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ReviewedDt
+		{
+			get
+			{
+				return this._ReviewedDt;
+			}
+			set
+			{
+				if ((this._ReviewedDt != value))
+				{
+					this.OnReviewedDtChanging(value);
+					this.SendPropertyChanging();
+					this._ReviewedDt = value;
+					this.SendPropertyChanged("ReviewedDt");
+					this.OnReviewedDtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApprovedBy", DbType="NVarChar(20)")]
+		public string ApprovedBy
+		{
+			get
+			{
+				return this._ApprovedBy;
+			}
+			set
+			{
+				if ((this._ApprovedBy != value))
+				{
+					this.OnApprovedByChanging(value);
+					this.SendPropertyChanging();
+					this._ApprovedBy = value;
+					this.SendPropertyChanged("ApprovedBy");
+					this.OnApprovedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApprovedDt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ApprovedDt
+		{
+			get
+			{
+				return this._ApprovedDt;
+			}
+			set
+			{
+				if ((this._ApprovedDt != value))
+				{
+					this.OnApprovedDtChanging(value);
+					this.SendPropertyChanging();
+					this._ApprovedDt = value;
+					this.SendPropertyChanged("ApprovedDt");
+					this.OnApprovedDtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApprovalReady", DbType="Bit")]
+		public System.Nullable<bool> ApprovalReady
+		{
+			get
+			{
+				return this._ApprovalReady;
+			}
+			set
+			{
+				if ((this._ApprovalReady != value))
+				{
+					this.OnApprovalReadyChanging(value);
+					this.SendPropertyChanging();
+					this._ApprovalReady = value;
+					this.SendPropertyChanged("ApprovalReady");
+					this.OnApprovalReadyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoChanges", DbType="Bit")]
+		public System.Nullable<bool> NoChanges
+		{
+			get
+			{
+				return this._NoChanges;
+			}
+			set
+			{
+				if ((this._NoChanges != value))
+				{
+					this.OnNoChangesChanging(value);
+					this.SendPropertyChanging();
+					this._NoChanges = value;
+					this.SendPropertyChanged("NoChanges");
+					this.OnNoChangesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReviewerComments", DbType="NVarChar(MAX)")]
+		public string ReviewerComments
+		{
+			get
+			{
+				return this._ReviewerComments;
+			}
+			set
+			{
+				if ((this._ReviewerComments != value))
+				{
+					this.OnReviewerCommentsChanging(value);
+					this.SendPropertyChanging();
+					this._ReviewerComments = value;
+					this.SendPropertyChanged("ReviewerComments");
+					this.OnReviewerCommentsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPPlanDetail_TCP", Storage="_TCPPlanDetail", ThisKey="PlanID", OtherKey="PlanID", IsForeignKey=true)]
+		public TCPPlanDetail TCPPlanDetail
+		{
+			get
+			{
+				return this._TCPPlanDetail.Entity;
+			}
+			set
+			{
+				TCPPlanDetail previousValue = this._TCPPlanDetail.Entity;
+				if (((previousValue != value) 
+							|| (this._TCPPlanDetail.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TCPPlanDetail.Entity = null;
+						previousValue.TCPs.Remove(this);
+					}
+					this._TCPPlanDetail.Entity = value;
+					if ((value != null))
+					{
+						value.TCPs.Add(this);
+						this._PlanID = value.PlanID;
+					}
+					else
+					{
+						this._PlanID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("TCPPlanDetail");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPSite_TCP", Storage="_TCPSite", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		public TCPSite TCPSite
+		{
+			get
+			{
+				return this._TCPSite.Entity;
+			}
+			set
+			{
+				TCPSite previousValue = this._TCPSite.Entity;
+				if (((previousValue != value) 
+							|| (this._TCPSite.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TCPSite.Entity = null;
+						previousValue.TCPs.Remove(this);
+					}
+					this._TCPSite.Entity = value;
+					if ((value != null))
+					{
+						value.TCPs.Add(this);
+						this._site_id = value.site_id;
+					}
+					else
+					{
+						this._site_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("TCPSite");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -9238,7 +9910,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPSite_TCP_Site_Plan", Storage="_TCPs", ThisKey="site_id", OtherKey="site_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPSite_TCP", Storage="_TCPs", ThisKey="site_id", OtherKey="site_id")]
 		public EntitySet<TCP> TCPs
 		{
 			get
@@ -9251,7 +9923,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_TCP_Site_Master", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_TCPSite", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
 		public Site Site
 		{
 			get
@@ -9318,107 +9990,607 @@ namespace Data
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TCP_Site_Plan")]
-	public partial class TCP : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.lut_Hospital")]
+	public partial class Hospital : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _TCPID;
+		private int _hospital_id;
 		
-		private System.Nullable<int> _site_id;
+		private string _hospital_nm;
 		
-		private System.Nullable<int> _PlanID;
+		private string _street_addrs;
 		
-		private string _WorkAreaActivity;
+		private string _city;
 		
-		private string _Remarks;
+		private string _state;
 		
-		private string _UpdatedBy;
+		private string _zip;
 		
-		private System.Nullable<System.DateTime> _UpdatedDt;
+		private string _ph_no;
 		
-		private string _ReviewedBy;
+		private System.Nullable<double> _dec_lat_va;
 		
-		private System.Nullable<System.DateTime> _ReviewedDt;
+		private System.Nullable<double> _dec_long_va;
 		
-		private string _ApprovedBy;
+		private int _wsc_id;
 		
-		private System.Nullable<System.DateTime> _ApprovedDt;
-		
-		private System.Nullable<bool> _ApprovalReady;
-		
-		private System.Nullable<bool> _NoChanges;
-		
-		private string _ReviewerComments;
-		
-		private EntityRef<TCPPlanDetail> _TCPPlanDetail;
-		
-		private EntityRef<TCPSite> _TCPSite;
+		private EntitySet<SHAHospital> _SHAHospitals;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnTCPIDChanging(int value);
-    partial void OnTCPIDChanged();
-    partial void Onsite_idChanging(System.Nullable<int> value);
-    partial void Onsite_idChanged();
-    partial void OnPlanIDChanging(System.Nullable<int> value);
-    partial void OnPlanIDChanged();
-    partial void OnWorkAreaActivityChanging(string value);
-    partial void OnWorkAreaActivityChanged();
-    partial void OnRemarksChanging(string value);
-    partial void OnRemarksChanged();
-    partial void OnUpdatedByChanging(string value);
-    partial void OnUpdatedByChanged();
-    partial void OnUpdatedDtChanging(System.Nullable<System.DateTime> value);
-    partial void OnUpdatedDtChanged();
-    partial void OnReviewedByChanging(string value);
-    partial void OnReviewedByChanged();
-    partial void OnReviewedDtChanging(System.Nullable<System.DateTime> value);
-    partial void OnReviewedDtChanged();
-    partial void OnApprovedByChanging(string value);
-    partial void OnApprovedByChanged();
-    partial void OnApprovedDtChanging(System.Nullable<System.DateTime> value);
-    partial void OnApprovedDtChanged();
-    partial void OnApprovalReadyChanging(System.Nullable<bool> value);
-    partial void OnApprovalReadyChanged();
-    partial void OnNoChangesChanging(System.Nullable<bool> value);
-    partial void OnNoChangesChanged();
-    partial void OnReviewerCommentsChanging(string value);
-    partial void OnReviewerCommentsChanged();
+    partial void Onhospital_idChanging(int value);
+    partial void Onhospital_idChanged();
+    partial void Onhospital_nmChanging(string value);
+    partial void Onhospital_nmChanged();
+    partial void Onstreet_addrsChanging(string value);
+    partial void Onstreet_addrsChanged();
+    partial void OncityChanging(string value);
+    partial void OncityChanged();
+    partial void OnstateChanging(string value);
+    partial void OnstateChanged();
+    partial void OnzipChanging(string value);
+    partial void OnzipChanged();
+    partial void Onph_noChanging(string value);
+    partial void Onph_noChanged();
+    partial void Ondec_lat_vaChanging(System.Nullable<double> value);
+    partial void Ondec_lat_vaChanged();
+    partial void Ondec_long_vaChanging(System.Nullable<double> value);
+    partial void Ondec_long_vaChanged();
+    partial void Onwsc_idChanging(int value);
+    partial void Onwsc_idChanged();
     #endregion
 		
-		public TCP()
+		public Hospital()
 		{
-			this._TCPPlanDetail = default(EntityRef<TCPPlanDetail>);
-			this._TCPSite = default(EntityRef<TCPSite>);
+			this._SHAHospitals = new EntitySet<SHAHospital>(new Action<SHAHospital>(this.attach_SHAHospitals), new Action<SHAHospital>(this.detach_SHAHospitals));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TCPID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int TCPID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_hospital_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int hospital_id
 		{
 			get
 			{
-				return this._TCPID;
+				return this._hospital_id;
 			}
 			set
 			{
-				if ((this._TCPID != value))
+				if ((this._hospital_id != value))
 				{
-					this.OnTCPIDChanging(value);
+					this.Onhospital_idChanging(value);
 					this.SendPropertyChanging();
-					this._TCPID = value;
-					this.SendPropertyChanged("TCPID");
-					this.OnTCPIDChanged();
+					this._hospital_id = value;
+					this.SendPropertyChanged("hospital_id");
+					this.Onhospital_idChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int")]
-		public System.Nullable<int> site_id
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_hospital_nm", DbType="NVarChar(150)")]
+		public string hospital_nm
+		{
+			get
+			{
+				return this._hospital_nm;
+			}
+			set
+			{
+				if ((this._hospital_nm != value))
+				{
+					this.Onhospital_nmChanging(value);
+					this.SendPropertyChanging();
+					this._hospital_nm = value;
+					this.SendPropertyChanged("hospital_nm");
+					this.Onhospital_nmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_street_addrs", DbType="NVarChar(50)")]
+		public string street_addrs
+		{
+			get
+			{
+				return this._street_addrs;
+			}
+			set
+			{
+				if ((this._street_addrs != value))
+				{
+					this.Onstreet_addrsChanging(value);
+					this.SendPropertyChanging();
+					this._street_addrs = value;
+					this.SendPropertyChanged("street_addrs");
+					this.Onstreet_addrsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_city", DbType="NVarChar(50)")]
+		public string city
+		{
+			get
+			{
+				return this._city;
+			}
+			set
+			{
+				if ((this._city != value))
+				{
+					this.OncityChanging(value);
+					this.SendPropertyChanging();
+					this._city = value;
+					this.SendPropertyChanged("city");
+					this.OncityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_state", DbType="NVarChar(2)")]
+		public string state
+		{
+			get
+			{
+				return this._state;
+			}
+			set
+			{
+				if ((this._state != value))
+				{
+					this.OnstateChanging(value);
+					this.SendPropertyChanging();
+					this._state = value;
+					this.SendPropertyChanged("state");
+					this.OnstateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_zip", DbType="NVarChar(10)")]
+		public string zip
+		{
+			get
+			{
+				return this._zip;
+			}
+			set
+			{
+				if ((this._zip != value))
+				{
+					this.OnzipChanging(value);
+					this.SendPropertyChanging();
+					this._zip = value;
+					this.SendPropertyChanged("zip");
+					this.OnzipChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ph_no", DbType="NVarChar(15)")]
+		public string ph_no
+		{
+			get
+			{
+				return this._ph_no;
+			}
+			set
+			{
+				if ((this._ph_no != value))
+				{
+					this.Onph_noChanging(value);
+					this.SendPropertyChanging();
+					this._ph_no = value;
+					this.SendPropertyChanged("ph_no");
+					this.Onph_noChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dec_lat_va", DbType="Float")]
+		public System.Nullable<double> dec_lat_va
+		{
+			get
+			{
+				return this._dec_lat_va;
+			}
+			set
+			{
+				if ((this._dec_lat_va != value))
+				{
+					this.Ondec_lat_vaChanging(value);
+					this.SendPropertyChanging();
+					this._dec_lat_va = value;
+					this.SendPropertyChanged("dec_lat_va");
+					this.Ondec_lat_vaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dec_long_va", DbType="Float")]
+		public System.Nullable<double> dec_long_va
+		{
+			get
+			{
+				return this._dec_long_va;
+			}
+			set
+			{
+				if ((this._dec_long_va != value))
+				{
+					this.Ondec_long_vaChanging(value);
+					this.SendPropertyChanging();
+					this._dec_long_va = value;
+					this.SendPropertyChanged("dec_long_va");
+					this.Ondec_long_vaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_id", DbType="Int NOT NULL")]
+		public int wsc_id
+		{
+			get
+			{
+				return this._wsc_id;
+			}
+			set
+			{
+				if ((this._wsc_id != value))
+				{
+					this.Onwsc_idChanging(value);
+					this.SendPropertyChanging();
+					this._wsc_id = value;
+					this.SendPropertyChanged("wsc_id");
+					this.Onwsc_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_Hospital_SHAHospital", Storage="_SHAHospitals", ThisKey="hospital_id", OtherKey="hospital_id")]
+		public EntitySet<SHAHospital> SHAHospitals
+		{
+			get
+			{
+				return this._SHAHospitals;
+			}
+			set
+			{
+				this._SHAHospitals.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_SHAHospitals(SHAHospital entity)
+		{
+			this.SendPropertyChanging();
+			entity.Hospital = this;
+		}
+		
+		private void detach_SHAHospitals(SHAHospital entity)
+		{
+			this.SendPropertyChanging();
+			entity.Hospital = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.lut_Contact")]
+	public partial class Contact : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _contact_id;
+		
+		private string _contact_nm;
+		
+		private string _street_addrs;
+		
+		private string _city;
+		
+		private string _state;
+		
+		private string _zip;
+		
+		private string _ph_no;
+		
+		private int _wsc_id;
+		
+		private EntitySet<SHAContact> _SHAContacts;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Oncontact_idChanging(int value);
+    partial void Oncontact_idChanged();
+    partial void Oncontact_nmChanging(string value);
+    partial void Oncontact_nmChanged();
+    partial void Onstreet_addrsChanging(string value);
+    partial void Onstreet_addrsChanged();
+    partial void OncityChanging(string value);
+    partial void OncityChanged();
+    partial void OnstateChanging(string value);
+    partial void OnstateChanged();
+    partial void OnzipChanging(string value);
+    partial void OnzipChanged();
+    partial void Onph_noChanging(string value);
+    partial void Onph_noChanged();
+    partial void Onwsc_idChanging(int value);
+    partial void Onwsc_idChanged();
+    #endregion
+		
+		public Contact()
+		{
+			this._SHAContacts = new EntitySet<SHAContact>(new Action<SHAContact>(this.attach_SHAContacts), new Action<SHAContact>(this.detach_SHAContacts));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contact_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int contact_id
+		{
+			get
+			{
+				return this._contact_id;
+			}
+			set
+			{
+				if ((this._contact_id != value))
+				{
+					this.Oncontact_idChanging(value);
+					this.SendPropertyChanging();
+					this._contact_id = value;
+					this.SendPropertyChanged("contact_id");
+					this.Oncontact_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contact_nm", DbType="NVarChar(150)")]
+		public string contact_nm
+		{
+			get
+			{
+				return this._contact_nm;
+			}
+			set
+			{
+				if ((this._contact_nm != value))
+				{
+					this.Oncontact_nmChanging(value);
+					this.SendPropertyChanging();
+					this._contact_nm = value;
+					this.SendPropertyChanged("contact_nm");
+					this.Oncontact_nmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_street_addrs", DbType="NVarChar(150)")]
+		public string street_addrs
+		{
+			get
+			{
+				return this._street_addrs;
+			}
+			set
+			{
+				if ((this._street_addrs != value))
+				{
+					this.Onstreet_addrsChanging(value);
+					this.SendPropertyChanging();
+					this._street_addrs = value;
+					this.SendPropertyChanged("street_addrs");
+					this.Onstreet_addrsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_city", DbType="NVarChar(50)")]
+		public string city
+		{
+			get
+			{
+				return this._city;
+			}
+			set
+			{
+				if ((this._city != value))
+				{
+					this.OncityChanging(value);
+					this.SendPropertyChanging();
+					this._city = value;
+					this.SendPropertyChanged("city");
+					this.OncityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_state", DbType="NVarChar(2)")]
+		public string state
+		{
+			get
+			{
+				return this._state;
+			}
+			set
+			{
+				if ((this._state != value))
+				{
+					this.OnstateChanging(value);
+					this.SendPropertyChanging();
+					this._state = value;
+					this.SendPropertyChanged("state");
+					this.OnstateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_zip", DbType="NVarChar(10)")]
+		public string zip
+		{
+			get
+			{
+				return this._zip;
+			}
+			set
+			{
+				if ((this._zip != value))
+				{
+					this.OnzipChanging(value);
+					this.SendPropertyChanging();
+					this._zip = value;
+					this.SendPropertyChanged("zip");
+					this.OnzipChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ph_no", DbType="NVarChar(15)")]
+		public string ph_no
+		{
+			get
+			{
+				return this._ph_no;
+			}
+			set
+			{
+				if ((this._ph_no != value))
+				{
+					this.Onph_noChanging(value);
+					this.SendPropertyChanging();
+					this._ph_no = value;
+					this.SendPropertyChanged("ph_no");
+					this.Onph_noChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_id", DbType="Int NOT NULL")]
+		public int wsc_id
+		{
+			get
+			{
+				return this._wsc_id;
+			}
+			set
+			{
+				if ((this._wsc_id != value))
+				{
+					this.Onwsc_idChanging(value);
+					this.SendPropertyChanging();
+					this._wsc_id = value;
+					this.SendPropertyChanged("wsc_id");
+					this.Onwsc_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_Contact_SHAContact", Storage="_SHAContacts", ThisKey="contact_id", OtherKey="contact_id")]
+		public EntitySet<SHAContact> SHAContacts
+		{
+			get
+			{
+				return this._SHAContacts;
+			}
+			set
+			{
+				this._SHAContacts.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_SHAContacts(SHAContact entity)
+		{
+			this.SendPropertyChanging();
+			entity.Contact = this;
+		}
+		
+		private void detach_SHAContacts(SHAContact entity)
+		{
+			this.SendPropertyChanging();
+			entity.Contact = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Elem_Site_Master")]
+	public partial class ElementSite : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _site_id;
+		
+		private System.Nullable<System.DateTime> _approved_dt;
+		
+		private string _approved_by;
+		
+		private EntitySet<SiteElement> _SiteElements;
+		
+		private EntityRef<Site> _Site;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onsite_idChanging(int value);
+    partial void Onsite_idChanged();
+    partial void Onapproved_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onapproved_dtChanged();
+    partial void Onapproved_byChanging(string value);
+    partial void Onapproved_byChanged();
+    #endregion
+		
+		public ElementSite()
+		{
+			this._SiteElements = new EntitySet<SiteElement>(new Action<SiteElement>(this.attach_SiteElements), new Action<SiteElement>(this.detach_SiteElements));
+			this._Site = default(EntityRef<Site>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int site_id
 		{
 			get
 			{
@@ -9428,7 +10600,7 @@ namespace Data
 			{
 				if ((this._site_id != value))
 				{
-					if (this._TCPSite.HasLoadedOrAssignedValue)
+					if (this._Site.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -9441,314 +10613,89 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlanID", DbType="Int")]
-		public System.Nullable<int> PlanID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> approved_dt
 		{
 			get
 			{
-				return this._PlanID;
+				return this._approved_dt;
 			}
 			set
 			{
-				if ((this._PlanID != value))
+				if ((this._approved_dt != value))
 				{
-					if (this._TCPPlanDetail.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnPlanIDChanging(value);
+					this.Onapproved_dtChanging(value);
 					this.SendPropertyChanging();
-					this._PlanID = value;
-					this.SendPropertyChanged("PlanID");
-					this.OnPlanIDChanged();
+					this._approved_dt = value;
+					this.SendPropertyChanged("approved_dt");
+					this.Onapproved_dtChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WorkAreaActivity", DbType="NVarChar(150)")]
-		public string WorkAreaActivity
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved_by", DbType="NVarChar(50)")]
+		public string approved_by
 		{
 			get
 			{
-				return this._WorkAreaActivity;
+				return this._approved_by;
 			}
 			set
 			{
-				if ((this._WorkAreaActivity != value))
+				if ((this._approved_by != value))
 				{
-					this.OnWorkAreaActivityChanging(value);
+					this.Onapproved_byChanging(value);
 					this.SendPropertyChanging();
-					this._WorkAreaActivity = value;
-					this.SendPropertyChanged("WorkAreaActivity");
-					this.OnWorkAreaActivityChanged();
+					this._approved_by = value;
+					this.SendPropertyChanged("approved_by");
+					this.Onapproved_byChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remarks", DbType="NVarChar(MAX)")]
-		public string Remarks
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Elem_Site_Master_Elem_Site_Element", Storage="_SiteElements", ThisKey="site_id", OtherKey="site_id")]
+		public EntitySet<SiteElement> SiteElements
 		{
 			get
 			{
-				return this._Remarks;
+				return this._SiteElements;
 			}
 			set
 			{
-				if ((this._Remarks != value))
-				{
-					this.OnRemarksChanging(value);
-					this.SendPropertyChanging();
-					this._Remarks = value;
-					this.SendPropertyChanged("Remarks");
-					this.OnRemarksChanged();
-				}
+				this._SiteElements.Assign(value);
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="NVarChar(20)")]
-		public string UpdatedBy
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Elem_Site_Master", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		public Site Site
 		{
 			get
 			{
-				return this._UpdatedBy;
+				return this._Site.Entity;
 			}
 			set
 			{
-				if ((this._UpdatedBy != value))
-				{
-					this.OnUpdatedByChanging(value);
-					this.SendPropertyChanging();
-					this._UpdatedBy = value;
-					this.SendPropertyChanged("UpdatedBy");
-					this.OnUpdatedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDt", DbType="DateTime")]
-		public System.Nullable<System.DateTime> UpdatedDt
-		{
-			get
-			{
-				return this._UpdatedDt;
-			}
-			set
-			{
-				if ((this._UpdatedDt != value))
-				{
-					this.OnUpdatedDtChanging(value);
-					this.SendPropertyChanging();
-					this._UpdatedDt = value;
-					this.SendPropertyChanged("UpdatedDt");
-					this.OnUpdatedDtChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReviewedBy", DbType="NVarChar(20)")]
-		public string ReviewedBy
-		{
-			get
-			{
-				return this._ReviewedBy;
-			}
-			set
-			{
-				if ((this._ReviewedBy != value))
-				{
-					this.OnReviewedByChanging(value);
-					this.SendPropertyChanging();
-					this._ReviewedBy = value;
-					this.SendPropertyChanged("ReviewedBy");
-					this.OnReviewedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReviewedDt", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ReviewedDt
-		{
-			get
-			{
-				return this._ReviewedDt;
-			}
-			set
-			{
-				if ((this._ReviewedDt != value))
-				{
-					this.OnReviewedDtChanging(value);
-					this.SendPropertyChanging();
-					this._ReviewedDt = value;
-					this.SendPropertyChanged("ReviewedDt");
-					this.OnReviewedDtChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApprovedBy", DbType="NVarChar(20)")]
-		public string ApprovedBy
-		{
-			get
-			{
-				return this._ApprovedBy;
-			}
-			set
-			{
-				if ((this._ApprovedBy != value))
-				{
-					this.OnApprovedByChanging(value);
-					this.SendPropertyChanging();
-					this._ApprovedBy = value;
-					this.SendPropertyChanged("ApprovedBy");
-					this.OnApprovedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApprovedDt", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ApprovedDt
-		{
-			get
-			{
-				return this._ApprovedDt;
-			}
-			set
-			{
-				if ((this._ApprovedDt != value))
-				{
-					this.OnApprovedDtChanging(value);
-					this.SendPropertyChanging();
-					this._ApprovedDt = value;
-					this.SendPropertyChanged("ApprovedDt");
-					this.OnApprovedDtChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApprovalReady", DbType="Bit")]
-		public System.Nullable<bool> ApprovalReady
-		{
-			get
-			{
-				return this._ApprovalReady;
-			}
-			set
-			{
-				if ((this._ApprovalReady != value))
-				{
-					this.OnApprovalReadyChanging(value);
-					this.SendPropertyChanging();
-					this._ApprovalReady = value;
-					this.SendPropertyChanged("ApprovalReady");
-					this.OnApprovalReadyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoChanges", DbType="Bit")]
-		public System.Nullable<bool> NoChanges
-		{
-			get
-			{
-				return this._NoChanges;
-			}
-			set
-			{
-				if ((this._NoChanges != value))
-				{
-					this.OnNoChangesChanging(value);
-					this.SendPropertyChanging();
-					this._NoChanges = value;
-					this.SendPropertyChanged("NoChanges");
-					this.OnNoChangesChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReviewerComments", DbType="NVarChar(MAX)")]
-		public string ReviewerComments
-		{
-			get
-			{
-				return this._ReviewerComments;
-			}
-			set
-			{
-				if ((this._ReviewerComments != value))
-				{
-					this.OnReviewerCommentsChanging(value);
-					this.SendPropertyChanging();
-					this._ReviewerComments = value;
-					this.SendPropertyChanged("ReviewerComments");
-					this.OnReviewerCommentsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPPlanDetail_TCP_Site_Plan", Storage="_TCPPlanDetail", ThisKey="PlanID", OtherKey="PlanID", IsForeignKey=true)]
-		public TCPPlanDetail TCPPlanDetail
-		{
-			get
-			{
-				return this._TCPPlanDetail.Entity;
-			}
-			set
-			{
-				TCPPlanDetail previousValue = this._TCPPlanDetail.Entity;
+				Site previousValue = this._Site.Entity;
 				if (((previousValue != value) 
-							|| (this._TCPPlanDetail.HasLoadedOrAssignedValue == false)))
+							|| (this._Site.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._TCPPlanDetail.Entity = null;
-						previousValue.TCPs.Remove(this);
+						this._Site.Entity = null;
+						previousValue.ElementSite = null;
 					}
-					this._TCPPlanDetail.Entity = value;
+					this._Site.Entity = value;
 					if ((value != null))
 					{
-						value.TCPs.Add(this);
-						this._PlanID = value.PlanID;
-					}
-					else
-					{
-						this._PlanID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("TCPPlanDetail");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPSite_TCP_Site_Plan", Storage="_TCPSite", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
-		public TCPSite TCPSite
-		{
-			get
-			{
-				return this._TCPSite.Entity;
-			}
-			set
-			{
-				TCPSite previousValue = this._TCPSite.Entity;
-				if (((previousValue != value) 
-							|| (this._TCPSite.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TCPSite.Entity = null;
-						previousValue.TCPs.Remove(this);
-					}
-					this._TCPSite.Entity = value;
-					if ((value != null))
-					{
-						value.TCPs.Add(this);
+						value.ElementSite = this;
 						this._site_id = value.site_id;
 					}
 					else
 					{
-						this._site_id = default(Nullable<int>);
+						this._site_id = default(int);
 					}
-					this.SendPropertyChanged("TCPSite");
+					this.SendPropertyChanged("Site");
 				}
 			}
 		}
@@ -9770,6 +10717,672 @@ namespace Data
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_SiteElements(SiteElement entity)
+		{
+			this.SendPropertyChanging();
+			entity.ElementSite = this;
+		}
+		
+		private void detach_SiteElements(SiteElement entity)
+		{
+			this.SendPropertyChanging();
+			entity.ElementSite = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Elem_Site_Element")]
+	public partial class SiteElement : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _elem_site_id;
+		
+		private System.Nullable<int> _site_id;
+		
+		private System.Nullable<int> _element_id;
+		
+		private string _element_info;
+		
+		private string _revised_by;
+		
+		private System.Nullable<System.DateTime> _revised_dt;
+		
+		private string _entered_by;
+		
+		private System.Nullable<System.DateTime> _entered_dt;
+		
+		private EntityRef<ElementDetail> _ElementDetail;
+		
+		private EntityRef<ElementSite> _ElementSite;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onelem_site_idChanging(int value);
+    partial void Onelem_site_idChanged();
+    partial void Onsite_idChanging(System.Nullable<int> value);
+    partial void Onsite_idChanged();
+    partial void Onelement_idChanging(System.Nullable<int> value);
+    partial void Onelement_idChanged();
+    partial void Onelement_infoChanging(string value);
+    partial void Onelement_infoChanged();
+    partial void Onrevised_byChanging(string value);
+    partial void Onrevised_byChanged();
+    partial void Onrevised_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onrevised_dtChanged();
+    partial void Onentered_byChanging(string value);
+    partial void Onentered_byChanged();
+    partial void Onentered_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onentered_dtChanged();
+    #endregion
+		
+		public SiteElement()
+		{
+			this._ElementDetail = default(EntityRef<ElementDetail>);
+			this._ElementSite = default(EntityRef<ElementSite>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_elem_site_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int elem_site_id
+		{
+			get
+			{
+				return this._elem_site_id;
+			}
+			set
+			{
+				if ((this._elem_site_id != value))
+				{
+					this.Onelem_site_idChanging(value);
+					this.SendPropertyChanging();
+					this._elem_site_id = value;
+					this.SendPropertyChanged("elem_site_id");
+					this.Onelem_site_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int")]
+		public System.Nullable<int> site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					if (this._ElementSite.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onsite_idChanging(value);
+					this.SendPropertyChanging();
+					this._site_id = value;
+					this.SendPropertyChanged("site_id");
+					this.Onsite_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_element_id", DbType="Int")]
+		public System.Nullable<int> element_id
+		{
+			get
+			{
+				return this._element_id;
+			}
+			set
+			{
+				if ((this._element_id != value))
+				{
+					if (this._ElementDetail.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onelement_idChanging(value);
+					this.SendPropertyChanging();
+					this._element_id = value;
+					this.SendPropertyChanged("element_id");
+					this.Onelement_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_element_info", DbType="NVarChar(MAX)")]
+		public string element_info
+		{
+			get
+			{
+				return this._element_info;
+			}
+			set
+			{
+				if ((this._element_info != value))
+				{
+					this.Onelement_infoChanging(value);
+					this.SendPropertyChanging();
+					this._element_info = value;
+					this.SendPropertyChanged("element_info");
+					this.Onelement_infoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_revised_by", DbType="NVarChar(15)")]
+		public string revised_by
+		{
+			get
+			{
+				return this._revised_by;
+			}
+			set
+			{
+				if ((this._revised_by != value))
+				{
+					this.Onrevised_byChanging(value);
+					this.SendPropertyChanging();
+					this._revised_by = value;
+					this.SendPropertyChanged("revised_by");
+					this.Onrevised_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_revised_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> revised_dt
+		{
+			get
+			{
+				return this._revised_dt;
+			}
+			set
+			{
+				if ((this._revised_dt != value))
+				{
+					this.Onrevised_dtChanging(value);
+					this.SendPropertyChanging();
+					this._revised_dt = value;
+					this.SendPropertyChanged("revised_dt");
+					this.Onrevised_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entered_by", DbType="NVarChar(15)")]
+		public string entered_by
+		{
+			get
+			{
+				return this._entered_by;
+			}
+			set
+			{
+				if ((this._entered_by != value))
+				{
+					this.Onentered_byChanging(value);
+					this.SendPropertyChanging();
+					this._entered_by = value;
+					this.SendPropertyChanged("entered_by");
+					this.Onentered_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entered_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> entered_dt
+		{
+			get
+			{
+				return this._entered_dt;
+			}
+			set
+			{
+				if ((this._entered_dt != value))
+				{
+					this.Onentered_dtChanging(value);
+					this.SendPropertyChanging();
+					this._entered_dt = value;
+					this.SendPropertyChanged("entered_dt");
+					this.Onentered_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ElementDetail_Elem_Site_Element", Storage="_ElementDetail", ThisKey="element_id", OtherKey="element_id", IsForeignKey=true)]
+		public ElementDetail ElementDetail
+		{
+			get
+			{
+				return this._ElementDetail.Entity;
+			}
+			set
+			{
+				ElementDetail previousValue = this._ElementDetail.Entity;
+				if (((previousValue != value) 
+							|| (this._ElementDetail.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ElementDetail.Entity = null;
+						previousValue.SiteElements.Remove(this);
+					}
+					this._ElementDetail.Entity = value;
+					if ((value != null))
+					{
+						value.SiteElements.Add(this);
+						this._element_id = value.element_id;
+					}
+					else
+					{
+						this._element_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ElementDetail");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Elem_Site_Master_Elem_Site_Element", Storage="_ElementSite", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		public ElementSite ElementSite
+		{
+			get
+			{
+				return this._ElementSite.Entity;
+			}
+			set
+			{
+				ElementSite previousValue = this._ElementSite.Entity;
+				if (((previousValue != value) 
+							|| (this._ElementSite.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ElementSite.Entity = null;
+						previousValue.SiteElements.Remove(this);
+					}
+					this._ElementSite.Entity = value;
+					if ((value != null))
+					{
+						value.SiteElements.Add(this);
+						this._site_id = value.site_id;
+					}
+					else
+					{
+						this._site_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ElementSite");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Elem_Site_Element_Backup")]
+	public partial class SiteElementBackup
+	{
+		
+		private System.Nullable<int> _site_id;
+		
+		private System.Nullable<int> _element_id;
+		
+		private string _element_info;
+		
+		private string _revised_by;
+		
+		private System.Nullable<System.DateTime> _revised_dt;
+		
+		private string _entered_by;
+		
+		private System.Nullable<System.DateTime> _entered_dt;
+		
+		private string _backup_by;
+		
+		private System.Nullable<System.DateTime> _backup_dt;
+		
+		public SiteElementBackup()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int")]
+		public System.Nullable<int> site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					this._site_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_element_id", DbType="Int")]
+		public System.Nullable<int> element_id
+		{
+			get
+			{
+				return this._element_id;
+			}
+			set
+			{
+				if ((this._element_id != value))
+				{
+					this._element_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_element_info", DbType="NVarChar(MAX)")]
+		public string element_info
+		{
+			get
+			{
+				return this._element_info;
+			}
+			set
+			{
+				if ((this._element_info != value))
+				{
+					this._element_info = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_revised_by", DbType="NVarChar(15)")]
+		public string revised_by
+		{
+			get
+			{
+				return this._revised_by;
+			}
+			set
+			{
+				if ((this._revised_by != value))
+				{
+					this._revised_by = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_revised_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> revised_dt
+		{
+			get
+			{
+				return this._revised_dt;
+			}
+			set
+			{
+				if ((this._revised_dt != value))
+				{
+					this._revised_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entered_by", DbType="NVarChar(15)")]
+		public string entered_by
+		{
+			get
+			{
+				return this._entered_by;
+			}
+			set
+			{
+				if ((this._entered_by != value))
+				{
+					this._entered_by = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entered_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> entered_dt
+		{
+			get
+			{
+				return this._entered_dt;
+			}
+			set
+			{
+				if ((this._entered_dt != value))
+				{
+					this._entered_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_backup_by", DbType="NVarChar(15)")]
+		public string backup_by
+		{
+			get
+			{
+				return this._backup_by;
+			}
+			set
+			{
+				if ((this._backup_by != value))
+				{
+					this._backup_by = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_backup_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> backup_dt
+		{
+			get
+			{
+				return this._backup_dt;
+			}
+			set
+			{
+				if ((this._backup_dt != value))
+				{
+					this._backup_dt = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.lut_site_tp")]
+	public partial class SiteType
+	{
+		
+		private string _site_tp_cd;
+		
+		private string _sims_site_tp;
+		
+		private System.Nullable<int> _sims_site_tp_id;
+		
+		private System.Nullable<int> _site_tp_srt_nu;
+		
+		private string _site_tp_vld_fg;
+		
+		private string _site_tp_prim_fg;
+		
+		private string _site_tp_nm;
+		
+		private string _site_tp_ln;
+		
+		private string _site_tp_ds;
+		
+		public SiteType()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_tp_cd", DbType="NVarChar(7) NOT NULL", CanBeNull=false)]
+		public string site_tp_cd
+		{
+			get
+			{
+				return this._site_tp_cd;
+			}
+			set
+			{
+				if ((this._site_tp_cd != value))
+				{
+					this._site_tp_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sims_site_tp", DbType="NVarChar(5)")]
+		public string sims_site_tp
+		{
+			get
+			{
+				return this._sims_site_tp;
+			}
+			set
+			{
+				if ((this._sims_site_tp != value))
+				{
+					this._sims_site_tp = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sims_site_tp_id", DbType="Int")]
+		public System.Nullable<int> sims_site_tp_id
+		{
+			get
+			{
+				return this._sims_site_tp_id;
+			}
+			set
+			{
+				if ((this._sims_site_tp_id != value))
+				{
+					this._sims_site_tp_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_tp_srt_nu", DbType="Int")]
+		public System.Nullable<int> site_tp_srt_nu
+		{
+			get
+			{
+				return this._site_tp_srt_nu;
+			}
+			set
+			{
+				if ((this._site_tp_srt_nu != value))
+				{
+					this._site_tp_srt_nu = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_tp_vld_fg", DbType="NVarChar(1)")]
+		public string site_tp_vld_fg
+		{
+			get
+			{
+				return this._site_tp_vld_fg;
+			}
+			set
+			{
+				if ((this._site_tp_vld_fg != value))
+				{
+					this._site_tp_vld_fg = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_tp_prim_fg", DbType="NVarChar(1)")]
+		public string site_tp_prim_fg
+		{
+			get
+			{
+				return this._site_tp_prim_fg;
+			}
+			set
+			{
+				if ((this._site_tp_prim_fg != value))
+				{
+					this._site_tp_prim_fg = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_tp_nm", DbType="NVarChar(10)")]
+		public string site_tp_nm
+		{
+			get
+			{
+				return this._site_tp_nm;
+			}
+			set
+			{
+				if ((this._site_tp_nm != value))
+				{
+					this._site_tp_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_tp_ln", DbType="NVarChar(40)")]
+		public string site_tp_ln
+		{
+			get
+			{
+				return this._site_tp_ln;
+			}
+			set
+			{
+				if ((this._site_tp_ln != value))
+				{
+					this._site_tp_ln = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_tp_ds", DbType="NVarChar(MAX)")]
+		public string site_tp_ds
+		{
+			get
+			{
+				return this._site_tp_ds;
+			}
+			set
+			{
+				if ((this._site_tp_ds != value))
+				{
+					this._site_tp_ds = value;
+				}
 			}
 		}
 	}
@@ -10299,6 +11912,320 @@ namespace Data
 				if ((this._wsc_id != value))
 				{
 					this._wsc_id = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_Safety_InfoResult
+	{
+		
+		private int _sha_site_id;
+		
+		private System.Nullable<int> _site_jha_id;
+		
+		private System.Nullable<int> _jha_id;
+		
+		private string _jha_description;
+		
+		private string _element_nm;
+		
+		private System.Nullable<bool> _emerg_service;
+		
+		private System.Nullable<bool> _cell_service;
+		
+		private string _updated_by;
+		
+		private System.Nullable<System.DateTime> _updated_dt;
+		
+		private string _updated_dt_short;
+		
+		private string _reviewed_by;
+		
+		private System.Nullable<System.DateTime> _reviewed_dt;
+		
+		private string _reviewed_dt_short;
+		
+		private string _approved_by;
+		
+		private System.Nullable<System.DateTime> _approved_dt;
+		
+		private string _approved_dt_short;
+		
+		private string _reviewer_comments;
+		
+		public SP_Safety_InfoResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sha_site_id", DbType="Int NOT NULL")]
+		public int sha_site_id
+		{
+			get
+			{
+				return this._sha_site_id;
+			}
+			set
+			{
+				if ((this._sha_site_id != value))
+				{
+					this._sha_site_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_jha_id", DbType="Int")]
+		public System.Nullable<int> site_jha_id
+		{
+			get
+			{
+				return this._site_jha_id;
+			}
+			set
+			{
+				if ((this._site_jha_id != value))
+				{
+					this._site_jha_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_jha_id", DbType="Int")]
+		public System.Nullable<int> jha_id
+		{
+			get
+			{
+				return this._jha_id;
+			}
+			set
+			{
+				if ((this._jha_id != value))
+				{
+					this._jha_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_jha_description", DbType="NVarChar(100)")]
+		public string jha_description
+		{
+			get
+			{
+				return this._jha_description;
+			}
+			set
+			{
+				if ((this._jha_description != value))
+				{
+					this._jha_description = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_element_nm", DbType="NVarChar(60)")]
+		public string element_nm
+		{
+			get
+			{
+				return this._element_nm;
+			}
+			set
+			{
+				if ((this._element_nm != value))
+				{
+					this._element_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_emerg_service", DbType="Bit")]
+		public System.Nullable<bool> emerg_service
+		{
+			get
+			{
+				return this._emerg_service;
+			}
+			set
+			{
+				if ((this._emerg_service != value))
+				{
+					this._emerg_service = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cell_service", DbType="Bit")]
+		public System.Nullable<bool> cell_service
+		{
+			get
+			{
+				return this._cell_service;
+			}
+			set
+			{
+				if ((this._cell_service != value))
+				{
+					this._cell_service = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_updated_by", DbType="NVarChar(20)")]
+		public string updated_by
+		{
+			get
+			{
+				return this._updated_by;
+			}
+			set
+			{
+				if ((this._updated_by != value))
+				{
+					this._updated_by = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_updated_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> updated_dt
+		{
+			get
+			{
+				return this._updated_dt;
+			}
+			set
+			{
+				if ((this._updated_dt != value))
+				{
+					this._updated_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_updated_dt_short", DbType="VarChar(30)")]
+		public string updated_dt_short
+		{
+			get
+			{
+				return this._updated_dt_short;
+			}
+			set
+			{
+				if ((this._updated_dt_short != value))
+				{
+					this._updated_dt_short = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_reviewed_by", DbType="NVarChar(15)")]
+		public string reviewed_by
+		{
+			get
+			{
+				return this._reviewed_by;
+			}
+			set
+			{
+				if ((this._reviewed_by != value))
+				{
+					this._reviewed_by = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_reviewed_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> reviewed_dt
+		{
+			get
+			{
+				return this._reviewed_dt;
+			}
+			set
+			{
+				if ((this._reviewed_dt != value))
+				{
+					this._reviewed_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_reviewed_dt_short", DbType="VarChar(30)")]
+		public string reviewed_dt_short
+		{
+			get
+			{
+				return this._reviewed_dt_short;
+			}
+			set
+			{
+				if ((this._reviewed_dt_short != value))
+				{
+					this._reviewed_dt_short = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved_by", DbType="NVarChar(15)")]
+		public string approved_by
+		{
+			get
+			{
+				return this._approved_by;
+			}
+			set
+			{
+				if ((this._approved_by != value))
+				{
+					this._approved_by = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> approved_dt
+		{
+			get
+			{
+				return this._approved_dt;
+			}
+			set
+			{
+				if ((this._approved_dt != value))
+				{
+					this._approved_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved_dt_short", DbType="VarChar(30)")]
+		public string approved_dt_short
+		{
+			get
+			{
+				return this._approved_dt_short;
+			}
+			set
+			{
+				if ((this._approved_dt_short != value))
+				{
+					this._approved_dt_short = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_reviewer_comments", DbType="NVarChar(MAX)")]
+		public string reviewer_comments
+		{
+			get
+			{
+				return this._reviewer_comments;
+			}
+			set
+			{
+				if ((this._reviewer_comments != value))
+				{
+					this._reviewer_comments = value;
 				}
 			}
 		}

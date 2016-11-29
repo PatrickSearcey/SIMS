@@ -171,7 +171,7 @@ namespace SIMS2017
                     hlTCPEdit.NavigateUrl = String.Format("{0}TCPEdit.aspx?site_id={1}", Config.SafetyURL, currSite.site_id);
                     dlTCPs.DataSource = currSite.TCPSite.TCPs.Select(p => new
                     {
-                        TCPName = p.TCPPlanDetail.Name,
+                        TCPName = String.Format("{0} - TCP, {1}", p.TCPPlanDetail.Number, p.TCPPlanDetail.SubName),
                         TCPURL = String.Format("{0}TCPView.aspx?tcp_id={1}", Config.SafetyURL, p.TCPID),
                         LastApprovedDt = TCPApprovedDate(p.ApprovedDt),
                         TCPApprovalStatus = TCPApprovalStatus(p.ApprovalReady, p.TCPID)

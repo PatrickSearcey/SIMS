@@ -80,5 +80,42 @@ namespace Core
                 return SLAPWSC();
             }
         }
+
+        public static int DischargeMeasElem
+        {
+            get { return 13; }
+        }
+
+        public static int LakeMeasElem
+        {
+            get { return 1002; }
+        }
+
+        public static int EcoMeasElem
+        {
+            get { return 1003; }
+        }
+
+        public static int AtmMeasElem
+        {
+            get { return 1004; }
+        }
+
+        public static int GWMeasElem
+        {
+            get { return 57; }
+        }
+
+        public static int QWMeasElem
+        {
+            get { return 124; }
+        }
+
+        public static int SiteHazardElem
+        {
+            get { return 45; }
+        }
+
+
     }
 }

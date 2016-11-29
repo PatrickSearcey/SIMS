@@ -1,3 +1,15 @@
+Core/obj/
+Data/obj/
+Core/bin/
+Data/bin/
+SIMS/Data/obj/
+SIMS/Data/bin/
+SIMS2017/obj/
+SIMS2017/bin/
+Safety/obj/
+Safety/bin/
+SIMS/bin/
+SIMS/obj/
 SIMS/SIMS.suo
 SIMS/SIMS.v11.suo
 SIMS/SIMS.v12.suo

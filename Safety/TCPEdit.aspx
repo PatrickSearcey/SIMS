@@ -18,9 +18,14 @@
                     <telerik:AjaxUpdatedControl ControlID="pnlTCPs" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
-            <telerik:AjaxSetting AjaxControlID="btnCancel">
+            <telerik:AjaxSetting AjaxControlID="rbCancel">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="pnlEditSiteSpecificInfo" LoadingPanelID="ralp" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="lbAddPlanVI">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="pnlTCPs" LoadingPanelID="ralp" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="dlTCPs">
@@ -106,42 +111,42 @@
                                             <tr>
                                                 <td>Bridge Width</td>
                                                 <td>
-                                                    <telerik:RadNumericTextBox ID="rntbBridgeWidth" runat="server"  Width="100px" /> feet
+                                                    <telerik:RadNumericTextBox ID="rntbBridgeWidth" runat="server"  Width="100px" NumberFormat-DecimalDigits="0" /> feet
                                                     <asp:RequiredFieldValidator ID="rfvBridgeWidth" runat="server" ControlToValidate="rntbBridgeWidth" ErrorMessage="* required" ForeColor="Red" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Work Zone (Bridge Length)</td>
                                                 <td>
-                                                    <telerik:RadNumericTextBox ID="rntbWorkZone" runat="server" Width="100px" /> feet
+                                                    <telerik:RadNumericTextBox ID="rntbWorkZone" runat="server" Width="100px" NumberFormat-DecimalDigits="0" /> feet
                                                     <asp:RequiredFieldValidator ID="rfvWorkZone" runat="server" ControlToValidate="rntbWorkZone" ErrorMessage="* required" ForeColor="Red" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Lane Width</td>
                                                 <td>
-                                                    <telerik:RadNumericTextBox ID="rntbLaneWidth" runat="server" Width="100px" /> feet
+                                                    <telerik:RadNumericTextBox ID="rntbLaneWidth" runat="server" Width="100px" NumberFormat-DecimalDigits="0" /> feet
                                                     <asp:RequiredFieldValidator ID="rfvLaneWidth" runat="server" ControlToValidate="rntbLaneWidth" ErrorMessage="* required" ForeColor="Red" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Shoulder Width</td>
                                                 <td>
-                                                    <telerik:RadNumericTextBox ID="rntbShoulderWidth" runat="server" Width="100px" OnTextChanged="RunPlanLogic" AutoPostBack="true" /> feet
+                                                    <telerik:RadNumericTextBox ID="rntbShoulderWidth" runat="server" Width="100px" OnTextChanged="RunPlanLogic" AutoPostBack="true" NumberFormat-DecimalDigits="0" /> feet
                                                     <asp:RequiredFieldValidator ID="rfvShoulderWidth" runat="server" ControlToValidate="rntbShoulderWidth" ErrorMessage="* required" ForeColor="Red" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Speed Limit</td>
                                                 <td>
-                                                    <telerik:RadNumericTextBox ID="rntbSpeedLimit" runat="server" Width="100px" /> mph
+                                                    <telerik:RadNumericTextBox ID="rntbSpeedLimit" runat="server" Width="100px" NumberFormat-DecimalDigits="0" /> mph
                                                     <asp:RequiredFieldValidator ID="rfvSpeedLimit" runat="server" ControlToValidate="rntbSpeedLimit" ErrorMessage="* required" ForeColor="Red" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Number of Lanes</td>
                                                 <td>
-                                                    <telerik:RadNumericTextBox ID="rntbLaneNumber" runat="server" Width="100px" OnTextChanged="RunPlanLogic" AutoPostBack="true" />
+                                                    <telerik:RadNumericTextBox ID="rntbLaneNumber" runat="server" Width="100px" OnTextChanged="RunPlanLogic" AutoPostBack="true" NumberFormat-DecimalDigits="0" />
                                                     <asp:RequiredFieldValidator ID="rfvLaneNumber" runat="server" ControlToValidate="rntbLaneNumber" ErrorMessage="* required" ForeColor="Red" />
                                                 </td>
                                             </tr>
@@ -242,14 +247,17 @@
                                         <asp:DataList ID="dlTCPs" runat="server" DataKeyField="TCPID" 
                                             OnEditCommand="dlTCPs_EditCommand" 
                                             OnCancelCommand="dlTCPs_CancelCommand"
-                                            OnUpdateCommand="dlTCPs_UpdateCommand">
+                                            OnUpdateCommand="dlTCPs_UpdateCommand" 
+                                            OnItemCreated="dlTCPs_ItemCreated" 
+                                            OnDeleteCommand="dlTCPs_DeleteCommand">
                                             <ItemTemplate>
                                                 <a href='<%# Eval("TCPLink") %>'><%# Eval("TCPName") %></a><br />
                                                 <div class="PlanInfo">
                                                     <b>Work Area Activity:</b><br />
                                                     <%# Eval("WorkAreaActivity") %><br />
                                                     <b>Plan Specific Notes:</b><br />
-                                                    <%# Eval("PlanRemarks") %><br /><asp:LinkButton ID="lbPlanRemarks" runat="server" Text="edit plan info" CommandName="edit" Font-Bold="true" />
+                                                    <%# Eval("PlanRemarks") %><br /><asp:LinkButton ID="lbPlanRemarks" runat="server" Text="edit plan info" CommandName="edit" Font-Bold="true" /> |
+                                                    <asp:LinkButton ID="lbDelete" runat="server" Text="delete plan" Font-Bold="true" CommandName="delete" />
                                                 </div>
                                             </ItemTemplate>
                                             <EditItemTemplate>
@@ -263,6 +271,8 @@
                                                 </div>
                                             </EditItemTemplate>
                                         </asp:DataList>
+                                        <br />
+                                        <asp:Image ID="imgBullet" runat="server" ImageUrl="~/images/bullet.png" AlternateText="bullet" /> <asp:LinkButton ID="lbAddPlanVI" runat="server" Text="Click here to add TCP VI - Plan Too Complicated" OnCommand="lbAddPlanVI_Command" CommandArgument="AddVI" />
                                     </asp:Panel>
                                 </Content>
                             </telerik:LayoutRow>

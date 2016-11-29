@@ -127,13 +127,17 @@
     <Content Include="App_Data\RadCaptcha\Z.wav" />
     <Content Include="CablewayReport.aspx" />
     <Content Include="Cableways.aspx" />
+    <Content Include="Control\ElementJHAs.ascx" />
     <Content Include="Control\SitePageHeading.ascx" />
     <Content Include="EmergencyInfo.aspx" />
+    <Content Include="images\bullet.png" />
     <Content Include="images\Safetylogo.png" />
     <Content Include="images\SafetyTitle.png" />
     <Content Include="images\USGSHeaderLogo.png" />
+    <Content Include="Modal\DeleteEmergencyInfo.aspx" />
     <Content Include="Safety.Master" />
     <Content Include="SafetySingleMenu.Master" />
+    <Content Include="SHAEdit.aspx" />
     <Content Include="TCPEdit.aspx" />
     <Content Include="TCPReport.aspx" />
   </ItemGroup>
@@ -160,6 +164,13 @@
     <Compile Include="Cableways.aspx.designer.cs">
       <DependentUpon>Cableways.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Control\ElementJHAs.ascx.cs">
+      <DependentUpon>ElementJHAs.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Control\ElementJHAs.ascx.designer.cs">
+      <DependentUpon>ElementJHAs.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Control\SitePageHeading.ascx.cs">
       <DependentUpon>SitePageHeading.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -180,6 +191,27 @@
     </Compile>
     <Compile Include="EmergencyInfo.aspx.designer.cs">
       <DependentUpon>EmergencyInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modal.Master.cs">
+      <DependentUpon>Modal.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modal.Master.designer.cs">
+      <DependentUpon>Modal.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Modal\DeleteEmergencyInfo.aspx.cs">
+      <DependentUpon>DeleteEmergencyInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modal\DeleteEmergencyInfo.aspx.designer.cs">
+      <DependentUpon>DeleteEmergencyInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SHAEdit.aspx.cs">
+      <DependentUpon>SHAEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SHAEdit.aspx.designer.cs">
+      <DependentUpon>SHAEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="SHAReport.aspx.cs">
       <DependentUpon>SHAReport.aspx</DependentUpon>
@@ -231,6 +263,7 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Modal.Master" />
     <None Include="Properties\PublishProfiles\Development Site.pubxml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
@@ -249,7 +282,9 @@
       <Name>Data</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="NewFolder1\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>

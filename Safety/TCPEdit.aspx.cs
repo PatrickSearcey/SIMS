@@ -93,13 +93,13 @@ namespace Safety
         private IEnumerable<TCPDataItem> TCPDataSource()
         {
             return currSite.TCPSite.TCPs.Select(p => new TCPDataItem
-                {
-                    TCPID = p.TCPID,
-                    TCPLink = String.Format("{0}TCPView.aspx?TCPID={1}", Config.SafetyURL, p.TCPID),
-                    TCPName = String.Format("{0} - TCP, {1}", p.TCPPlanDetail.Number, p.TCPPlanDetail.SubName),
-                    PlanRemarks = p.Remarks,
-                    WorkAreaActivity = p.WorkAreaActivity
-                });
+            {
+                TCPID = p.TCPID,
+                TCPLink = String.Format("{0}TCPView.aspx?TCPID={1}", Config.SafetyURL, p.TCPID),
+                TCPName = String.Format("{0} - TCP, {1}", p.TCPPlanDetail.Number, p.TCPPlanDetail.SubName),
+                PlanRemarks = p.Remarks,
+                WorkAreaActivity = p.WorkAreaActivity
+            });
         }
         #endregion
 
@@ -160,6 +160,9 @@ namespace Safety
                 {
                     EnableControl = false;
                     SetControlStatus();
+                    //Plan Specific Information
+                    dlTCPs.DataSource = TCPDataSource();
+                    dlTCPs.DataBind();
                     return;
                 }
             }
@@ -200,10 +203,20 @@ namespace Safety
                     rfvFlaggers.Enabled = false;
                 }
             }
+            else
+            {
+                rddlFlaggers.Enabled = false;
+                rfvFlaggers.Enabled = false;
+            }
 
             //Plan Specific Information
             dlTCPs.DataSource = TCPDataSource();
             dlTCPs.DataBind();
+
+            //If there is already a plan VI in the database, do not show the link button to add it
+            var planVI = currSite.TCPSite.TCPs.FirstOrDefault(p => p.PlanID == 8);
+            if (planVI != null) lbAddPlanVI.Visible = false; else lbAddPlanVI.Visible = true;
+            if (planVI != null) imgBullet.Visible = false; else imgBullet.Visible = true;
         }
 
         protected void SetupPermission()
@@ -238,10 +251,14 @@ namespace Safety
             rfvDividedHighway.Enabled = EnableControl;
             rddlMedian.Enabled = EnableControl;
             rfvMedian.Enabled = EnableControl;
-            if (rddlFlaggers.Enabled)
+            if (currSite.TCPSite.TCPs.FirstOrDefault() != null)
             {
-                rddlFlaggers.Enabled = EnableControl;
-                rfvFlaggers.Enabled = EnableControl;
+                var tcps = currSite.TCPSite.TCPs;
+                if (tcps.FirstOrDefault(p => p.PlanID == 3) != null || tcps.FirstOrDefault(p => p.PlanID == 4) != null)
+                {
+                    rddlFlaggers.Enabled = EnableControl;
+                    rfvFlaggers.Enabled = EnableControl;
+                }
             }
         }
 
@@ -272,48 +289,94 @@ namespace Safety
             if (Page.IsValid)
             {
                 string note = "";
-                Data.TCPSite newSite = new Data.TCPSite();
+                Data.TCPSite newSite;
+
+                bool bflag;
+                int iflag;
+
+                //Setup all of the form field variables
+                Boolean remotesite = Convert.ToBoolean(rddlRemote.SelectedValue);
+                Boolean expressway = false;
+                int bridgewidth = 0;
+                int workzone = 0;
+                int lanewidth = 0;
+                int lanenumber = 0;
+                int shoulderwidth = 0;
+                int speedlimit = 0;
+                Boolean flow2way = false;
+                Boolean dividedhighway = false;
+                Boolean median = false;
+                Boolean flaggers = false;
+                if (!remotesite)
+                {
+                    if (Boolean.TryParse(rddlExpressway.SelectedValue, out bflag)) expressway = Convert.ToBoolean(rddlExpressway.SelectedValue);
+                    if (Int32.TryParse(rntbBridgeWidth.Text, out iflag)) bridgewidth = Convert.ToInt32(rntbBridgeWidth.Text);
+                    if (Int32.TryParse(rntbWorkZone.Text, out iflag)) workzone = Convert.ToInt32(rntbWorkZone.Text);
+                    if (Int32.TryParse(rntbLaneWidth.Text, out iflag)) lanewidth = Convert.ToInt32(rntbLaneWidth.Text);
+                    if (Int32.TryParse(rntbLaneNumber.Text, out iflag)) lanenumber = Convert.ToInt32(rntbLaneNumber.Text);
+                    if (Int32.TryParse(rntbShoulderWidth.Text, out iflag)) shoulderwidth = Convert.ToInt32(rntbShoulderWidth.Text);
+                    if (Int32.TryParse(rntbSpeedLimit.Text, out iflag)) speedlimit = Convert.ToInt32(rntbSpeedLimit.Text);
+                    if (Boolean.TryParse(rddlFlow2Way.SelectedValue, out bflag)) flow2way = Convert.ToBoolean(rddlFlow2Way.SelectedValue);
+                    if (Boolean.TryParse(rddlDividedHighway.SelectedValue, out bflag)) dividedhighway = Convert.ToBoolean(rddlDividedHighway.SelectedValue);
+                    if (Boolean.TryParse(rddlMedian.SelectedValue, out bflag)) median = Convert.ToBoolean(rddlMedian.SelectedValue);
+                    if (Boolean.TryParse(rddlFlaggers.SelectedValue, out bflag)) flaggers = Convert.ToBoolean(rddlFlaggers.SelectedValue);
+                }
 
                 if (currSite.TCPSite == null) //If an entry for the site does not yet exist in the TCP Site table, add it
                 {
-                    newSite = new Data.TCPSite()
+                    if (Convert.ToBoolean(rddlRemote.SelectedValue))
+                    {
+                        newSite = new Data.TCPSite()
+                            {
+                                site_id = currSite.site_id,
+                                RemoteSite = remotesite,
+                                Notes = rtbNotes.Text,
+                                UpdatedBy = user.ID,
+                                UpdatedDt = DateTime.Now
+                            };
+                    }
+                    else
+                    {
+                        newSite = new Data.TCPSite()
                         {
-                            RemoteSite = Convert.ToBoolean(rddlRemote.SelectedValue),
+                            site_id = currSite.site_id,
+                            RemoteSite = remotesite,
                             RoadName = rtbRoadName.Text,
-                            Expressway = Convert.ToBoolean(rddlExpressway.SelectedValue),
-                            BridgeWidth = Convert.ToInt32(rntbBridgeWidth.Text),
-                            WorkZone = Convert.ToInt32(rntbWorkZone.Text),
-                            LaneWidth = Convert.ToInt32(rntbLaneWidth.Text),
-                            LaneNumber = Convert.ToInt32(rntbLaneNumber.Text),
-                            ShoulderWidth = Convert.ToInt32(rntbShoulderWidth.Text),
-                            SpeedLimit = Convert.ToInt32(rntbSpeedLimit.Text),
-                            Flow2Way = Convert.ToBoolean(rddlFlow2Way.SelectedValue),
+                            Expressway = expressway,
+                            BridgeWidth = bridgewidth,
+                            WorkZone = workzone,
+                            LaneWidth = lanewidth,
+                            LaneNumber = lanenumber,
+                            ShoulderWidth = shoulderwidth,
+                            SpeedLimit = speedlimit,
+                            Flow2Way = flow2way,
                             TrafficVolume = rddlTrafficVolume.SelectedValue,
-                            DividedHighway = Convert.ToBoolean(rddlDividedHighway.SelectedValue),
-                            Median = Convert.ToBoolean(rddlMedian.SelectedValue),
-                            Flaggers = Convert.ToBoolean(rddlFlaggers.SelectedValue),
+                            DividedHighway = dividedhighway,
+                            Median = median,
+                            Flaggers = flaggers,
                             Notes = rtbNotes.Text,
                             UpdatedBy = user.ID,
                             UpdatedDt = DateTime.Now
                         };
+                    }
                     db.TCPSites.InsertOnSubmit(newSite);
                 }
                 else //otherwise, update the record
                 {
-                    currSite.TCPSite.RemoteSite = Convert.ToBoolean(rddlRemote.SelectedValue);
+                    currSite.TCPSite.RemoteSite = remotesite;
                     currSite.TCPSite.RoadName = rtbRoadName.Text;
-                    currSite.TCPSite.Expressway = Convert.ToBoolean(rddlExpressway.SelectedValue);
-                    currSite.TCPSite.BridgeWidth = Convert.ToInt32(rntbBridgeWidth.Text);
-                    currSite.TCPSite.WorkZone = Convert.ToInt32(rntbWorkZone.Text);
-                    currSite.TCPSite.LaneWidth = Convert.ToInt32(rntbLaneWidth.Text);
-                    currSite.TCPSite.LaneNumber = Convert.ToInt32(rntbLaneNumber.Text);
-                    currSite.TCPSite.ShoulderWidth = Convert.ToInt32(rntbShoulderWidth.Text);
-                    currSite.TCPSite.SpeedLimit = Convert.ToInt32(rntbSpeedLimit.Text);
-                    currSite.TCPSite.Flow2Way = Convert.ToBoolean(rddlFlow2Way.SelectedValue);
+                    currSite.TCPSite.Expressway = expressway;
+                    currSite.TCPSite.BridgeWidth = bridgewidth;
+                    currSite.TCPSite.WorkZone = workzone;
+                    currSite.TCPSite.LaneWidth = lanewidth;
+                    currSite.TCPSite.LaneNumber = lanenumber;
+                    currSite.TCPSite.ShoulderWidth = shoulderwidth;
+                    currSite.TCPSite.SpeedLimit = speedlimit;
+                    currSite.TCPSite.Flow2Way = flow2way;
                     currSite.TCPSite.TrafficVolume = rddlTrafficVolume.SelectedValue;
-                    currSite.TCPSite.DividedHighway = Convert.ToBoolean(rddlDividedHighway.SelectedValue);
-                    currSite.TCPSite.Median = Convert.ToBoolean(rddlMedian.SelectedValue);
-                    currSite.TCPSite.Flaggers = Convert.ToBoolean(rddlFlaggers.SelectedValue);
+                    currSite.TCPSite.DividedHighway = dividedhighway;
+                    currSite.TCPSite.Median = median;
+                    currSite.TCPSite.Flaggers = flaggers;
                     currSite.TCPSite.Notes = rtbNotes.Text;
                     currSite.TCPSite.UpdatedBy = user.ID;
                     currSite.TCPSite.UpdatedDt = DateTime.Now;
@@ -324,7 +387,8 @@ namespace Safety
 
                 //Determine the plan ID to use based on the submitted site specific information
                 int plan_id = PlanID(newSite);
-                //First, check to see if there is more than one TCP for the site
+                
+                #region First, check to see if there is more than one TCP for the site
                 if (newSite.TCPs.Count > 1)
                 {
                     //Grab all TCPs assigned to this site, and loop through
@@ -351,10 +415,10 @@ namespace Safety
                     List<int> idsToDelete = new List<int>();
                     foreach (Data.TCP tcp in tcps)
                     {
-                        //If there is no plan that matches the determined plan_id, then update the first plan that isn't plan IV (too complicated), and delete the rest of the plans
+                        //If there is no plan that matches the determined plan_id, then update the first plan that isn't plan VI (too complicated), and delete the rest of the plans
                         if (currPlanIndex == 0)
                         {
-                            if (x == 1 && x != plan8Index)
+                            if (x == 1 && x != plan8Index) //Update the first plan, unless it's plan VI (too complicated)
                             {
                                 if (plan_id == 5 && tcp.PlanID == 6) tcp.PlanID = tcp.PlanID; else tcp.PlanID = plan_id; //If the determined plan is IVa, then do not update the plan ID for IVb
                                 tcp.UpdatedBy = user.ID;
@@ -363,7 +427,7 @@ namespace Safety
                                 db.SubmitChanges();
                                 note = "<br /><b>ALERT:</b> Based on your submitted site specific information, the assigned TCP has been updated to " + tcp.TCPPlanDetail.Number + " - " + tcp.TCPPlanDetail.SubName + ".";
                             }
-                            else if (x == 2 && plan8Index == 1)
+                            else if (x == 2 && plan8Index == 1) //If the first plan was plan VI (too complicated), update the second plan
                             {
                                 if (plan_id == 5 && tcp.PlanID == 6) tcp.PlanID = tcp.PlanID; else tcp.PlanID = plan_id; //If the determined plan is IVa, then do not update the plan ID for IVb
                                 tcp.UpdatedBy = user.ID;
@@ -374,12 +438,15 @@ namespace Safety
                             }
                             else if (x > 1 && x != plan8Index) //If there is more than one plan assigned to the site, other than plan VI, delete from database
                             {
-                                //Do not delete plan IVb if plan IVa is the determined plan!
-                                idsToDelete.Add(tcp.TCPID);
-                                if (plan_id == 5) idsToDelete.Remove(6);
+                                //But do not delete plan IVb if plan IVa is the determined plan!
+                                if (plan_id == 5 && tcp.PlanID == 6)
+                                {
+                                    //skip
+                                }
+                                else idsToDelete.Add(tcp.TCPID);
                             }
 
-                            //Now make sure to add plan IVa as an entirely new plan (plan IVb is already there and was updated above)
+                            //Now make sure to add plan IVb as an entirely new plan (plan IVa is already there and was updated above)
                             if (x == 1 && plan_id == 5)
                             {
                                 Data.TCP newTCP = new Data.TCP()
@@ -396,7 +463,7 @@ namespace Safety
                                 db.SubmitChanges();
                             }
                         }
-                        else //A plan was found to match the determined plan_id; update its information, and delete the rest of the plans (except plan IV)
+                        else //A plan was found to match the determined plan_id; update its information, and delete the rest of the plans (except plan VI)
                         {
                             if (x == currPlanIndex)
                             {
@@ -416,9 +483,12 @@ namespace Safety
                             }
                             else if (x != currPlanIndex && x != plan8Index)
                             {
-                                //Do not delete plan IVb if plan IVa is the determined plan!
-                                idsToDelete.Add(tcp.TCPID);
-                                if (plan_id == 5) idsToDelete.Remove(6);
+                                //But do not delete plan IVb if plan IVa is the determined plan!
+                                if (plan_id == 5 && tcp.PlanID == 6)
+                                {
+                                    //skip
+                                }
+                                else idsToDelete.Add(tcp.TCPID);
                             }
                         }
 
@@ -433,7 +503,9 @@ namespace Safety
                         db.SubmitChanges();
                     }
                 }
-                else if (newSite.TCPs.Count == 1) //If there is only one TCP
+                #endregion
+                #region If there is only one TCP
+                else if (newSite.TCPs.Count == 1) 
                 {
                     //Check to see if the one TCP is plan VI (too complicated)
                     if (newSite.TCPs.FirstOrDefault().PlanID == 8)
@@ -479,7 +551,7 @@ namespace Safety
                                 db.SubmitChanges();
                             }
 
-                            note = "<br /><b>AlERT:</b> A new TCP was created for this site. You can view it by clicking the link under the Traffic Control Plan section below. Refresh your browser if you do not see the new plan.";
+                            note = "<br /><b>AlERT:</b> A new TCP was created for this site. You can view it by clicking the link under the Traffic Control Plan section below. <b>Refresh your browser if you do not see the new plan.</b>";
                         }
                     }
                     else if (plan_id == 5) //Check to see if the determined plan is IVa
@@ -503,7 +575,7 @@ namespace Safety
                         newTCPIV.ApprovalReady = false;
                         db.TCPs.InsertOnSubmit(newTCPIV);
                         db.SubmitChanges();
-                        note = "<br /><b>ALERT:</b> A new TCP was created for this site. You can view it by clicking the link under the Traffic Control Plan section below.  Refresh your browser if you do not see the new plan.";
+                        note = "<br /><b>ALERT:</b> A new TCP was created for this site. You can view it by clicking the link under the Traffic Control Plan section below.  <b>Refresh your browser if you do not see the new plan.</b>";
 
                     }
                     else //Otherwise, just update the plan
@@ -517,7 +589,9 @@ namespace Safety
                         note = "";
                     }
                 }
-                else //If no record is in the TCP Site Plan table yet, then add a new one
+                #endregion
+                #region If no record is in the TCP Site Plan table yet, then add a new one
+                else 
                 {
                     Data.TCP newTCP = new Data.TCP()
                     {
@@ -548,14 +622,15 @@ namespace Safety
                         db.TCPs.InsertOnSubmit(newTCP);
                         db.SubmitChanges();
 
-                        note = "<br /><b>AlERT:</b> Two new TCPs were created for this site. You can view them by clicking the links under the Traffic Control Plan section below.";
+                        note = "<br /><b>AlERT:</b> Two new TCPs were created for this site. You can view them by clicking the links under the Traffic Control Plan section below. <b>Refresh your browser if you do not see the new plans.</b>";
                     }
                     else
                     {
-                        note = "<br /><b>AlERT:</b> A new TCP was created for this site. You can view it by clicking the link under the Traffic Control Plan section below.";
+                        note = "<br /><b>AlERT:</b> A new TCP was created for this site. You can view it by clicking the link under the Traffic Control Plan section below. <b>Refreh your browser if you do not see the new plan.</b>";
                     }
                 }
-                
+                #endregion
+
                 ltlLastUpdated.Text = "This information was lasted updated on " + String.Format("{0:MM/dd/yyyy}", DateTime.Now) + " at " + String.Format("{0:h:mm tt}", DateTime.Now) + " by " + user.ID + "."; 
                 ltlNote.Text = "<span style='color:green;'>Changes to the site specific information saved! " + note + "</span>";
 
@@ -589,6 +664,26 @@ namespace Safety
             }
         }
 
+        protected void lbAddPlanVI_Command(object sender, CommandEventArgs e)
+        {
+            Data.TCP newTCPVI = new Data.TCP()
+            {
+                site_id = currSite.site_id,
+                PlanID = 8,
+                UpdatedBy = user.ID,
+                UpdatedDt = DateTime.Now,
+                ApprovalReady = false
+            };
+            db.TCPs.InsertOnSubmit(newTCPVI);
+            db.SubmitChanges();
+
+            dlTCPs.DataSource = TCPDataSource();
+            dlTCPs.DataBind();
+
+            lbAddPlanVI.Visible = false;
+            imgBullet.Visible = false;
+        }
+
         protected void RunPlanLogic(object sender, EventArgs e)
         {
             switch (sender.GetType().Name)
@@ -599,25 +694,57 @@ namespace Safety
                     //If changing the shoulder width
                     if (rntb.ID == "rntbShoulderWidth")
                     {
-                        if (Convert.ToInt32(rntb.Text) < 5)
+                        if (!string.IsNullOrEmpty(rntbLaneNumber.Text) && !string.IsNullOrEmpty(rddlFlow2Way.SelectedValue))
                         {
-                            if (Convert.ToInt32(rntbLaneNumber.Text) == 2 && Convert.ToBoolean(rddlFlow2Way.SelectedValue))
+                            if (Convert.ToInt32(rntb.Text) < 5)
                             {
-                                rddlFlaggers.Enabled = true;
-                                rfvFlaggers.Enabled = true;
+                                if (Convert.ToInt32(rntbLaneNumber.Text) == 2 && Convert.ToBoolean(rddlFlow2Way.SelectedValue))
+                                {
+                                    rddlFlaggers.Enabled = true;
+                                    rfvFlaggers.Enabled = true;
+                                }
+                                else
+                                {
+                                    rddlFlaggers.Enabled = false;
+                                    rfvFlaggers.Enabled = false;
+                                }
                             }
-                        }
-                        else
-                        {
-                            rddlFlaggers.Enabled = false;
-                            rfvFlaggers.Enabled = false;
+                            else
+                            {
+                                rddlFlaggers.Enabled = false;
+                                rfvFlaggers.Enabled = false;
+                            }
                         }
                     }
                     else if (rntb.ID == "rntbLaneNumber") //If changing the lane number
                     {
+                        if (!string.IsNullOrEmpty(rntbShoulderWidth.Text) && !string.IsNullOrEmpty(rddlFlow2Way.SelectedValue))
+                        {
+                            if (Convert.ToInt32(rntbShoulderWidth.Text) < 5)
+                            {
+                                if (Convert.ToInt32(rntb.Text) == 2 && Convert.ToBoolean(rddlFlow2Way.SelectedValue))
+                                {
+                                    rddlFlaggers.Enabled = true;
+                                    rfvFlaggers.Enabled = true;
+                                }
+                                else
+                                {
+                                    rddlFlaggers.Enabled = false;
+                                    rfvFlaggers.Enabled = false;
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case "RadDropDownList":
+                    RadDropDownList rddl = (RadDropDownList)sender;
+
+                    //If changing the traffic flow
+                    if (!string.IsNullOrEmpty(rntbShoulderWidth.Text) && !string.IsNullOrEmpty(rntbLaneNumber.Text))
+                    {
                         if (Convert.ToInt32(rntbShoulderWidth.Text) < 5)
                         {
-                            if (Convert.ToInt32(rntb.Text) == 2 && Convert.ToBoolean(rddlFlow2Way.SelectedValue))
+                            if (Convert.ToInt32(rntbLaneNumber.Text) == 2 && Convert.ToBoolean(rddl.SelectedValue))
                             {
                                 rddlFlaggers.Enabled = true;
                                 rfvFlaggers.Enabled = true;
@@ -627,24 +754,6 @@ namespace Safety
                                 rddlFlaggers.Enabled = false;
                                 rfvFlaggers.Enabled = false;
                             }
-                        }
-                    }
-                    break;
-                case "RadDropDownList":
-                    RadDropDownList rddl = (RadDropDownList)sender;
-
-                    //If changing the traffic flow
-                    if (Convert.ToInt32(rntbShoulderWidth.Text) < 5)
-                    {
-                        if (Convert.ToInt32(rntbLaneNumber.Text) == 2 && Convert.ToBoolean(rddl.SelectedValue))
-                        {
-                            rddlFlaggers.Enabled = true;
-                            rfvFlaggers.Enabled = true;
-                        }
-                        else
-                        {
-                            rddlFlaggers.Enabled = false;
-                            rfvFlaggers.Enabled = false;
                         }
                     }
                     break;
@@ -686,6 +795,37 @@ namespace Safety
             dlTCPs.DataSource = TCPDataSource();
             dlTCPs.DataBind();
         }
+
+        protected void dlTCPs_DeleteCommand(object sender, DataListCommandEventArgs e)
+        {
+            int TCPID = (int)dlTCPs.DataKeys[e.Item.ItemIndex];
+            var TCP = db.TCPs.FirstOrDefault(p => p.TCPID == TCPID);
+            db.TCPs.DeleteOnSubmit(TCP);
+            db.SubmitChanges();
+
+            dlTCPs.EditItemIndex = -1;
+            dlTCPs.DataSource = TCPDataSource();
+            dlTCPs.DataBind();
+        }
+
+        protected void dlTCPs_ItemCreated(object sender, DataListItemEventArgs e)
+        {
+            switch (e.Item.ItemType)
+            {
+                case ListItemType.Item:
+                case ListItemType.AlternatingItem:
+                    try
+                    {
+                        LinkButton delBtn = (LinkButton)e.Item.FindControl("lbDelete");
+                        delBtn.Attributes.Add("onclick",
+                           "return confirm('WARNING: You will lose all plan related data, including review and approve information, if you delete this plan. " +
+                           "After deleting, to re-add a TCP to the site, click the Submit Changes button under the Site Specific Information. " +
+                           "Click Okay to delete, or Cancel.');");
+                    }
+                    catch { }
+                    break;
+            }
+        }
         #endregion
 
         #region Functions
@@ -697,35 +837,37 @@ namespace Safety
         {
             int ret = 8;
 
-            if ((bool)ts.RemoteSite) ret = 1; //If remote site, then use plan 0
-            if (ts.ShoulderWidth == 0) //If work is beyond shoulder, use plan V
-            {
-                ret = 9; 
-            }
-            else if (ts.ShoulderWidth < 5)
-            {
-                if (ts.LaneNumber == 4 && (bool)ts.Flow2Way) //If 4-lane, 2-way, use plan II
+            if ((bool)ts.RemoteSite) 
+                ret = 1; //If remote site, then use plan 0
+            else
+                if (ts.ShoulderWidth == 0) //If work is beyond shoulder, use plan V
                 {
-                    if ((bool)ts.DividedHighway) ret = 7; else ret = 2; //If multi-lane, divided highway, use plan III
+                    ret = 9; 
                 }
-                else if (ts.LaneNumber == 2 && (bool)ts.Flow2Way) //If 2-lane, 2-way
+                else if (ts.ShoulderWidth < 5)
                 {
-                    if ((bool)ts.Flaggers) ret = 3; else ret = 4; //Determined by the presence of flaggers whether plan Ia or Ib is used
+                    if (ts.LaneNumber == 4 && (bool)ts.Flow2Way) //If 4-lane, 2-way, use plan II
+                    {
+                        if ((bool)ts.DividedHighway) ret = 7; else ret = 2; //If multi-lane, divided highway, use plan III
+                    }
+                    else if (ts.LaneNumber == 2 && (bool)ts.Flow2Way) //If 2-lane, 2-way
+                    {
+                        if ((bool)ts.Flaggers) ret = 3; else ret = 4; //Determined by the presence of flaggers whether plan Ia or Ib is used
+                    }
+                    else if ((bool)ts.DividedHighway && ts.LaneNumber > 1) //If multi-lane, divided highway, use plan III
+                    {
+                        ret = 7;
+                    }
+                    else //Plan is too complicated, use plan VI
+                    {
+                        ret = 8;
+                    }
                 }
-                else if ((bool)ts.DividedHighway && ts.LaneNumber > 1) //If multi-lane, divided highway, use plan III
+                else //If shoulder is > 5ft and short duration (time < 1 hr) is true, use plan IVa, else use plan IVb
                 {
-                    ret = 7;
+                    //Add both plan 5 and 6
+                    ret = 5;
                 }
-                else //Plan is too complicated, use plan VI
-                {
-                    ret = 8;
-                }
-            }
-            else //If shoulder is > 5ft and short duration (time < 1 hr) is true, use plan IVa, else use plan IVb
-            {
-                //Add both plan 5 and 6
-                ret = 5;
-            }
 
             return ret;
         }

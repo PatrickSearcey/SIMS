@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace SIMS2017.StationDoc
 {
-    public partial class Archives : System.Web.UI.Page
+    public partial class Archive : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
