@@ -143,7 +143,7 @@
         <asp:Button id="btnSubmitElemInfo" runat="server" Text="save changes and leave edit mode" OnCommand="btnSubmitElemInfo_Command" CommandArgument="editelement" />
         <asp:Button ID="btnCloseElemInfoEditing" runat="server" Text="cancel and leave edit mode without saving changes" OnCommand="btnSubmitElemInfo_Command" CommandArgument="closeediting" />
         <p><asp:Label ID="lblError1" runat="server" EnableViewState="False" Font-Bold="True" ForeColor="Red"></asp:Label>
-        <asp:Label ID="lblSuccess1" runat="server" EnableViewState="False" Font-Bold="True" ForeColor="Green"></asp:Label></p>
+        <asp:Label ID="lblSuccess1" runat="server" EnableViewState="False" Font-Bold="True" ForeColor="MediumOrchid"></asp:Label></p>
     </asp:Panel>
     <h5 class="sectionHeadings">Site Specific Job Hazards for <asp:Literal ID="ltlElemName2" runat="server" /></h5>
     <div style="float:left;">
@@ -187,7 +187,7 @@
                 <FormTemplate>
                     <div style="padding:5px;background-color: #d1ede5;">
                         <h5>Add a new measurement type for this element</h5><br />
-                        <asp:DropDownList ID="ddlMeasType" runat="server" DataTextField="jha_description" DataValueField="elem_jha_id" Width="400px" /><br /><br />
+                        <telerik:RadDropDownList ID="rddlMeasType" runat="server" DataTextField="jha_description" DataValueField="elem_jha_id" Width="400px" Skin="Bootstrap" /><br /><br />
                         <asp:Button ID="btnInsert1" Text="Insert" runat="server" CommandName="PerformInsert" />
                         <asp:Button ID="btnCancel1" Text="Cancel" runat="server" CausesValidation="false" CommandName="Cancel" />
                     </div>
@@ -259,7 +259,7 @@
                                     </tr>
                                     <tr>
                                         <td style="width:120px;"><label>Job limit type:</label></td>
-                                        <td><telerik:RadComboBox ID="rcbJobLimitType" runat="server" DataTextField="reflevel_tp_desc" DataValueField="reflevel_id" Skin="Bootstrap" Width="400px" />
+                                        <td><telerik:RadDropDownList ID="rddlJobLimitType" runat="server" DataTextField="reflevel_tp_desc" DataValueField="reflevel_id" Skin="Bootstrap" Width="400px" />
                                         </td>
                                     </tr>
                                     <tr>

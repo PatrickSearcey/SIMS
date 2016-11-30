@@ -12,7 +12,7 @@
             var rowControl = grid.get_masterTableView().get_dataItems()[rowIndex].get_element();
             grid.get_masterTableView().selectItem(rowControl, true);
 
-            window.radopen("Modals/DeleteEmergencyInfo.aspx?hospital_id=" + id + "&sha_site_id=" + sha_site_id, "DeleteDialog");
+            window.radopen("Modal/DeleteEmergencyInfo.aspx?hospital_id=" + id + "&sha_site_id=" + sha_site_id, "DeleteDialog");
             return false;
         }
         function ShowDeleteContactForm(id, rowIndex, sha_site_id) {
@@ -21,7 +21,7 @@
             var rowControl = grid.get_masterTableView().get_dataItems()[rowIndex].get_element();
             grid.get_masterTableView().selectItem(rowControl, true);
 
-            window.radopen("Modals/DeleteEmergencyInfo.aspx?contact_id=" + id + "&sha_site_id=" + sha_site_id, "DeleteDialog");
+            window.radopen("Modal/DeleteEmergencyInfo.aspx?contact_id=" + id + "&sha_site_id=" + sha_site_id, "DeleteDialog");
             return false;
         }
         function refreshGrid(arg) {
@@ -313,7 +313,7 @@
             <h4 class="sectionHeadings">Add Servicing Site Specific Info</h4>
             <asp:Panel ID="pnlAddHazard" runat="server" CssClass="leftpanel">
                 <p style="font-weight:bold;">Add Hazard Info</p>
-                <telerik:RadListBox ID="rlbHazards" runat="server" CheckBoxes="true" Width="400px" Height="150px">
+                <telerik:RadListBox ID="rlbHazards" runat="server" CheckBoxes="false" Width="400px" Height="150px" SelectionMode="Multiple">
                     <Items>
                         <telerik:RadListBoxItem Text="aircraft required" />
                         <telerik:RadListBoxItem Text="compressed gas cylinders tansport and storage (secured)" />
@@ -340,11 +340,11 @@
                 </telerik:RadListBox>
                 <p style="padding-top:2px;padding-bottom:2px;">
                 <label>Other:</label> <asp:TextBox ID="tbOtherHazard" runat="server" /></p>
-                <telerik:RadButton ID="btnAddHazards" runat="server" Text="Add checked hazards" OnCommand="AddInfo_Command" CommandName="ServicingSite" CommandArgument="AddHazard" AutoPostBack="true" />
+                <telerik:RadButton ID="btnAddHazards" runat="server" Text="Add selected hazards" OnCommand="AddInfo_Command" CommandName="ServicingSite" CommandArgument="AddHazard" AutoPostBack="true" />
             </asp:Panel>
             <asp:Panel ID="pnlAddEquip" runat="server" CssClass="rightpanel">
                 <p style="font-weight:bold;">Add Required PPE & Recommended Equipment</p>
-                <telerik:RadListBox ID="rlbEquip" runat="server" CheckBoxes="true" Width="250px" Height="150px">
+                <telerik:RadListBox ID="rlbEquip" runat="server" CheckBoxes="false" Width="250px" Height="150px" SelectionMode="Multiple">
                     <Items>
                         <telerik:RadListBoxItem Text="cell phone" />
                         <telerik:RadListBoxItem Text="first aid kit" />
@@ -368,7 +368,7 @@
                 </telerik:RadListBox>
                 <p style="padding-top:2px;padding-bottom:2px;">
                 <label>Other:</label> <asp:TextBox ID="tbOtherEquip" runat="server" /></p>
-                <telerik:RadButton ID="btnAddEquip" runat="server" Text="Add checked equipment" OnCommand="AddInfo_Command" CommandName="ServicingSite" CommandArgument="AddEquip" AutoPostBack="true" />
+                <telerik:RadButton ID="btnAddEquip" runat="server" Text="Add selected equipment" OnCommand="AddInfo_Command" CommandName="ServicingSite" CommandArgument="AddEquip" AutoPostBack="true" />
             </asp:Panel>
             <div style="margin: 3px 0 0 0;font-size: 8pt;width:100%;text-align:right;"><asp:LinkButton ID="lbCloseAddSiteSpecificInfo" runat="server" OnCommand="lbAddSiteSpecificInfo_Command" CommandArgument="close">Done adding? 
             Click to close this section.</asp:LinkButton></div>
@@ -390,7 +390,7 @@
             <p><asp:Literal ID="ltlNewMeasType" runat="server" /></p>
             <div style="float:left;padding-right:10px;"><telerik:RadDropDownList ID="ddlNewMeasType" runat="server" Skin="Bootstrap" Width="400px" /></div><telerik:RadButton ID="btnNewMeasType" runat="server" Text="Add new element" OnCommand="btnNewMeasType_Command" CommandArgument="addnew" AutoPostBack="true" />
             <p><asp:Label ID="lblError1" runat="server" EnableViewState="False" Font-Bold="True" ForeColor="Red"></asp:Label>
-            <asp:Label ID="lblSuccess1" runat="server" EnableViewState="False" Font-Bold="True" ForeColor="Green"></asp:Label></p>
+            <asp:Label ID="lblSuccess1" runat="server" EnableViewState="False" Font-Bold="True" ForeColor="MediumOrchid"></asp:Label></p>
         </div>
     </div>
 
@@ -434,7 +434,7 @@
                 <asp:Button id="btnSubmitElemInfo" runat="server" Text="save changes and leave edit mode" OnCommand="btnSubmitElemInfo_Command" CommandArgument="editelement" />
                 <asp:Button ID="btnCloseElemInfoEditing" runat="server" Text="cancel and leave edit mode without saving changes" OnCommand="btnSubmitElemInfo_Command" CommandArgument="closeediting" />
                 <p><asp:Label ID="lblError2" runat="server" EnableViewState="False" Font-Bold="True" ForeColor="Red"></asp:Label>
-                <asp:Label ID="lblSuccess2" runat="server" EnableViewState="False" Font-Bold="True" ForeColor="Green"></asp:Label></p>
+                <asp:Label ID="lblSuccess2" runat="server" EnableViewState="False" Font-Bold="True" ForeColor="MediumOrchid"></asp:Label></p>
             </asp:Panel>
         </asp:Panel>
     </div>
@@ -491,7 +491,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <asp:DropDownList ID="ddlEmergContacts" runat="server" DataTextField="contact_nm" DataValueField="contact_id" />
+                                            <telerik:RadDropDownList ID="ddlEmergContacts" runat="server" DataTextField="contact_nm" DataValueField="contact_id" Skin="Bootstrap" Width="400px"  />
                                             <asp:RequiredFieldValidator ID="rfvEmergContacts" runat="server" ControlToValidate="ddlEmergContacts" ErrorMessage="*required" Font-Bold="true" Font-Size="X-Small" />
                                             <p style="font-size:8pt;color:#707070;font-style:italic;margin-top:5px;">If the contact cannot be found in the list, add it using the 
                                                 <asp:HyperLink ID="hlEmergInfo2" runat="server" Target="_blank">Emergency Information Management Interface.</asp:HyperLink></p>
@@ -555,7 +555,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <asp:DropDownList ID="ddlHospitals" runat="server" DataTextField="hospital_nm" DataValueField="hospital_id" />
+                                            <telerik:RadDropDownList ID="ddlHospitals" runat="server" DataTextField="hospital_nm" DataValueField="hospital_id" Skin="Bootstrap" Width="400px" />
                                             <asp:RequiredFieldValidator ID="rfvHospitals" runat="server" ControlToValidate="ddlHospitals" ErrorMessage="*required" Font-Bold="true" Font-Size="X-Small" />
                                             <p style="font-size:8pt;color:#707070;font-style:italic;margin-top:5px;">If the hospital cannot be found in the list, add it using the <asp:HyperLink ID="hlEmergInfo3" runat="server" Target="_blank">Emergency Information Management Interface.</asp:HyperLink></p>
                                         </td>
@@ -576,8 +576,8 @@
         </asp:Panel>
         <telerik:RadWindowManager ID="rwm" runat="server">
             <Windows>
-                <telerik:RadWindow ID="DeleteDialog" runat="server" Title="Delete emergency info" Height="200px" Skin="Bootstrap"
-                    width="300px" Left="150px" ReloadOnShow="true" ShowContentDuringLoad="false" Modal="true" />
+                <telerik:RadWindow ID="DeleteDialog" runat="server" Title="Delete emergency info" Height="300px" Skin="Bootstrap"
+                    width="400px" Left="150px" ReloadOnShow="true" ShowContentDuringLoad="false" Modal="true" />
             </Windows>
         </telerik:RadWindowManager>
     </div>

@@ -178,6 +178,7 @@ h4.sectionHeadings
     font-size: 12pt !important;
     font-weight:bold !important;
     border-bottom: 1px dotted #099b7a !important;
+    margin-bottom:3px;
 }
 h5.sectionHeadings
 {
@@ -185,6 +186,7 @@ h5.sectionHeadings
     font-size: 11pt !important; 
     font-weight: bold !important;
     border-bottom: 1px dotted #099b7a !important;
+    margin-bottom:3px;
 }
 .noData
 {

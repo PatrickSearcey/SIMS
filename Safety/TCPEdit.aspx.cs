@@ -159,6 +159,8 @@ namespace Safety
                 rddlRemote.SelectedValue = currSite.TCPSite.RemoteSite.ToString();
                 if ((bool)currSite.TCPSite.RemoteSite)
                 {
+                    rddlFlaggers.Enabled = false;
+                    rfvFlaggers.Enabled = false;
                     EnableControl = false;
                     SetControlStatus();
                     //Plan Specific Information

@@ -65,7 +65,7 @@ namespace Safety
         protected void Page_Load(object sender, System.EventArgs e)
         {
             //If no site_id was passed, then redirect back to the homepage
-            string site_id = "3000002";// Request.QueryString["site_id"];
+            string site_id = Request.QueryString["site_id"];
             if (!string.IsNullOrEmpty(site_id)) SiteID = Convert.ToInt32(site_id); else Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
 
             //Using the passed site_id, setup the site data element, and reset the office and wsc to match that of the current site
@@ -667,6 +667,7 @@ namespace Safety
                 {
                     elem_temp.site_id = SiteID;
                     elem_temp.element_id = element_id;
+                    elem_temp.element_info = "";
                     elem_temp.entered_by = user.ID;
                     elem_temp.entered_dt = DateTime.Now;
                     elem_temp.revised_by = user.ID;
@@ -865,10 +866,11 @@ namespace Safety
             db.SubmitChanges();
         }
 
-        #region "Contacts"
+        #region Contacts
         protected void rgContacts_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
         {
-            rgContacts.DataSource = currSHA.SHAContacts.Select(p => new Data.Contact
+            var sha_contacts = db.SHAContacts.Where(p => p.SHA.site_id == SiteID).ToList();
+            rgContacts.DataSource = sha_contacts.Select(p => new Data.Contact
             {
                 contact_id = Convert.ToInt32(p.contact_id),
                 contact_nm = p.Contact.contact_nm,
@@ -917,7 +919,7 @@ namespace Safety
             {
                 GridEditableItem item = (GridEditableItem)e.Item;
 
-                DropDownList ddlEmergContacts = (DropDownList)item.FindControl("ddlEmergContacts");
+                RadDropDownList ddlEmergContacts = (RadDropDownList)item.FindControl("ddlEmergContacts");
                 ddlEmergContacts.DataSource = db.Contacts.Where(p => p.wsc_id == currSHA.Site.Office.wsc_id).ToList();
                 ddlEmergContacts.DataBind();
 
@@ -933,7 +935,7 @@ namespace Safety
 
             try
             {
-                contact_id = Convert.ToInt32((item.FindControl("ddlEmergContacts") as DropDownList).SelectedValue);
+                contact_id = Convert.ToInt32((item.FindControl("ddlEmergContacts") as RadDropDownList).SelectedValue);
             }
             catch (Exception ex)
             {
@@ -981,15 +983,16 @@ namespace Safety
             }
             else
             {
-                ltlNotice1.Text = "<p style='color:green;font-weight:bold;'>" + text + "</p>";
+                ltlNotice1.Text = "<p style='color:MediumOrchid;font-weight:bold;'>" + text + "</p>";
             }
         }
         #endregion
 
-        #region "Hospitals"
+        #region Hospitals
         protected void rgHospitals_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
         {
-            rgHospitals.DataSource = currSHA.SHAHospitals.Select(p => new Data.Hospital {
+            var sha_hospitals = db.SHAHospitals.Where(p => p.SHA.site_id == SiteID).ToList();
+            rgHospitals.DataSource = sha_hospitals.Select(p => new Data.Hospital {
                 hospital_id = Convert.ToInt32(p.hospital_id),
                 hospital_nm = p.Hospital.hospital_nm,
                 street_addrs = p.Hospital.street_addrs,
@@ -1041,7 +1044,7 @@ namespace Safety
             {
                 GridEditableItem item = (GridEditableItem)e.Item;
 
-                DropDownList ddlHospitals = (DropDownList)item.FindControl("ddlHospitals");
+                RadDropDownList ddlHospitals = (RadDropDownList)item.FindControl("ddlHospitals");
                 ddlHospitals.DataSource = db.Hospitals.Where(p => p.wsc_id == currSHA.Site.Office.wsc_id).ToList();
                 ddlHospitals.DataBind();
 
@@ -1057,7 +1060,7 @@ namespace Safety
 
             try
             {
-                hospital_id = Convert.ToInt32((item.FindControl("ddlHospitals") as DropDownList).SelectedValue);
+                hospital_id = Convert.ToInt32((item.FindControl("ddlHospitals") as RadDropDownList).SelectedValue);
             }
             catch (Exception ex)
             {
@@ -1105,14 +1108,14 @@ namespace Safety
             }
             else
             {
-                ltlNotice2.Text = "<p style='color:green;font-weight:bold;'>" + text + "</p>";
+                ltlNotice2.Text = "<p style='color:MediumOrchid;font-weight:bold;'>" + text + "</p>";
             }
         }
         #endregion
 
         #endregion
 
-        #region "Admin Panel"
+        #region Admin Panel
         protected void SetupAdminPanel()
         {
             ltlReviewedBy.Text = currSHA.reviewed_by;

@@ -139,8 +139,8 @@ namespace SIMS2017
             {
                 pnlSHACreate.Visible = false;
                 pnlSHAEdit.Visible = true;
-                hlSHAEdit.NavigateUrl = String.Format("{0}SiteHazardAnalysis.aspx?site_id={1}", Config.SafetyURL, currSite.site_id);
-                hlSHAPrintVersion.NavigateUrl = String.Format("{0}SHAPrint.aspx?site_id={1}", Config.SafetyURL, currSite.site_id);
+                hlSHAEdit.NavigateUrl = String.Format("{0}SHAEdit.aspx?site_id={1}", Config.SafetyURL, currSite.site_id);
+                hlSHAPrintVersion.NavigateUrl = String.Format("{0}SHAView.aspx?site_id={1}", Config.SafetyURL, currSite.site_id);
                 string approved_dt = String.Format("{0:MM/dd/yyyy}", SHA.approved_dt);
                 if (string.IsNullOrEmpty(approved_dt)) ltlSHAApproved.Text = "last approved: <i>never approved</i>";
                 else
@@ -158,7 +158,7 @@ namespace SIMS2017
             {
                 pnlSHACreate.Visible = true;
                 pnlSHAEdit.Visible = false;
-                hlSHACreate.NavigateUrl = String.Format("{0}Helper/CreateSHA.ashx?site_id={1}", Config.SIMS2017URL, currSite.site_id);
+                hlSHACreate.NavigateUrl = String.Format("{0}Helper/CreateSHA.ashx?site_id={1}", Config.SafetyURL, currSite.site_id);
             }
             var TCPSite = currSite.TCPSite;
             if (TCPSite != null)

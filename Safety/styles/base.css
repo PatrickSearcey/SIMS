@@ -8,7 +8,7 @@ form {
 }
 
 body {
-	font: normal 16px "Segoe UI", Arial, sans-serif;
+	font: normal 11pt "Segoe UI", Arial, sans-serif;
     color: #555555;
 }
 
@@ -130,4 +130,66 @@ div.RadMenuPopup,
 .officeinfo {
     float:right;
     text-align:right;
+}
+
+/*-----------------------------------------*/
+/*----- CUSTOM TELERIK CONTROL STYLES -----*/
+/*-----------------------------------------*/
+
+/*RadDropDownList*/
+.rddlItem {
+    font-size:10pt !important;
+}
+.rddlFakeInput {
+    font-size: 10pt !important;
+}
+.rddlItemSelected {
+    background-color: #099b7a !important;
+}
+.rddlItemHovered {
+    background-color: #d1ede5 !important;
+}
+
+/*RadListBox*/
+.rlbItem {
+    font-size: 10pt !important;
+}
+.rlbSelected {
+    background-color: #099b7a !important;
+}
+.rlbHovered {
+    background-color: #d1ede5 !important;
+}
+
+/*RadGrid*/
+div.RadGrid .rgRow td,
+div.RadGrid .rgAltRow td
+{
+    padding:10px;
+    font-size: 10pt;
+}
+.RadGrid {
+    line-height: 1.2 !important;
+}
+.RadGrid_Bootstrap .rgRow {
+    height: 0.8em !important;
+}
+.rgNoRecords {
+    font-size:11pt;
+}
+.rgCommandCell {
+    font-size:10pt;
+    line-height: 1.2 !important;
+    background-color:#099b7a !important;
+}
+.rgHeader {
+    font-size:10pt;
+    line-height: 1.2 !important;
+    font-weight:bold !important;
+}
+.rgAdd {
+    background-color: #d1ede5 !important;
+}
+.rgActionButton:hover {
+    background-color: #f3efe9 !important;
 }

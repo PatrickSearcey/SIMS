@@ -491,7 +491,7 @@ namespace Safety.Control
 				    GridEditableItem item = (GridEditableItem)e.Item;
 
 				    Literal ltlJobLimitsEditFormTitle = (Literal)item.FindControl("ltlJobLimitsEditFormTitle");
-				    RadComboBox rcbJobLimitType = (RadComboBox)item.FindControl("rcbJobLimitType");
+                    RadDropDownList rcbJobLimitType = (RadDropDownList)item.FindControl("rddlJobLimitType");
 				    RadNumericTextBox rntbJobLimitValue = (RadNumericTextBox)item.FindControl("rntbJobLimitValue");
 				    TextBox tbUnits = (TextBox)item.FindControl("tbUnits");
 				    TextBox tbRemarks = (TextBox)item.FindControl("tbRemarks");
@@ -522,7 +522,7 @@ namespace Safety.Control
 			    if (e.Item.IsInEditMode) {
 				    GridEditableItem item = (GridEditableItem)e.Item;
 
-				    DropDownList ddlMeasType = (DropDownList)item.FindControl("ddlMeasType");
+                    RadDropDownList ddlMeasType = (RadDropDownList)item.FindControl("rddlMeasType");
 
 				    ddlMeasType.DataSource = JHAList;
 				    ddlMeasType.DataBind();
@@ -611,7 +611,7 @@ namespace Safety.Control
 			    try {
 				    GridDataItem parentItem = (GridDataItem)e.Item.OwnerTableView.ParentItem;
 				    newJL.site_jha_id = Convert.ToInt32(parentItem.OwnerTableView.DataKeyValues[parentItem.ItemIndex]["site_jha_id"]);
-				    newJL.reflevel_id = Convert.ToInt32((item.FindControl("rcbJobLimitType") as RadComboBox).SelectedValue);
+				    newJL.reflevel_id = Convert.ToInt32((item.FindControl("rddlJobLimitType") as RadDropDownList).SelectedValue);
 				    newJL.reflevel_va = Convert.ToDouble((item.FindControl("rntbJobLimitValue") as RadNumericTextBox).Text);
 				    newJL.reflevel_units = (item.FindControl("tbUnits") as TextBox).Text;
 				    newJL.remarks = (item.FindControl("tbRemarks") as TextBox).Text;
@@ -631,7 +631,7 @@ namespace Safety.Control
                 Data.SHAJHA newJHA = new Data.SHAJHA();
 
 			    try {
-				    newJHA.elem_jha_id = Convert.ToInt32((item.FindControl("ddlMeasType") as DropDownList).SelectedValue);
+				    newJHA.elem_jha_id = Convert.ToInt32((item.FindControl("rddlMeasType") as RadDropDownList).SelectedValue);
 				    newJHA.sha_site_id = db.SHAs.FirstOrDefault(p => p.site_id == SiteID).sha_site_id;
 			    } catch (Exception ex) {
 			    }
@@ -680,7 +680,7 @@ namespace Safety.Control
 			    int site_reflevel_id = Convert.ToInt32(item.GetDataKeyValue("site_reflevel_id"));
 			    var updateRL = db.SHAReferenceLevels.FirstOrDefault(p => p.site_reflevel_id == site_reflevel_id);
 
-			    updateRL.reflevel_id = Convert.ToInt32((item.FindControl("rcbJobLimitType") as RadComboBox).SelectedValue);
+			    updateRL.reflevel_id = Convert.ToInt32((item.FindControl("rddlJobLimitType") as RadDropDownList).SelectedValue);
                 updateRL.reflevel_va = Convert.ToDouble((item.FindControl("rntbJobLimitValue") as RadNumericTextBox).Text);
                 updateRL.reflevel_units = (item.FindControl("tbUnits") as TextBox).Text;
                 updateRL.remarks = (item.FindControl("tbRemarks") as TextBox).Text;
