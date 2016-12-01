@@ -142,10 +142,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/18/2016 11:37:46</publishTime>
     </File>
     <File Include="bin/Safety.dll">
-      <publishTime>11/30/2016 11:02:28</publishTime>
+      <publishTime>12/01/2016 12:37:15</publishTime>
     </File>
     <File Include="bin/Safety.pdb">
-      <publishTime>11/30/2016 11:02:28</publishTime>
+      <publishTime>12/01/2016 12:37:14</publishTime>
     </File>
     <File Include="bin/Telerik.Web.Spreadsheet.dll">
       <publishTime>10/18/2016 11:37:46</publishTime>
@@ -242,6 +242,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="SHAReport.aspx">
       <publishTime>11/17/2016 11:11:30</publishTime>
+    </File>
+    <File Include="SHAView.aspx">
+      <publishTime>12/01/2016 10:55:52</publishTime>
     </File>
     <File Include="styles/base.css">
       <publishTime>11/30/2016 10:39:46</publishTime>

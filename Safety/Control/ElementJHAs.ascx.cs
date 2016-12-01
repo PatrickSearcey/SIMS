@@ -57,11 +57,12 @@ namespace Safety.Control
         #endregion
 
         #region Data Properties
-        private List<ReferenceLevelItem> RefLevelTypeList {
+        private List<Models.RefLevelModel> RefLevelTypeList {
             get {
-                List<ReferenceLevelItem> rli = new List<ReferenceLevelItem>();
+                List<Models.RefLevelModel> rli = new List<Models.RefLevelModel>();
 
-                rli = db.ReferenceLevels.Select(p => new ReferenceLevelItem() {
+                rli = db.ReferenceLevels.Select(p => new Models.RefLevelModel()
+                {
                     reflevel_id = p.reflevel_id,
                     reflevel_tp_desc = p.reflevel_tp + " - " + p.notes
                 }).ToList();
@@ -70,9 +71,9 @@ namespace Safety.Control
             }
         }
 
-        private List<ElementHazardsItem> JHAList {
+        private List<Models.JHAModel> JHAList {
             get {
-                List<ElementHazardsItem> ehi = new List<ElementHazardsItem>();
+                List<Models.JHAModel> ehi = new List<Models.JHAModel>();
                 
                 //Get the full list of JHAs for the current element
                 var jhas = db.ElementJHAs.Where(p => p.element_id == ElementID).ToList();
@@ -85,7 +86,8 @@ namespace Safety.Control
                     //If the elem_jha_id is not in the currently assigned list of elem_jha_ids, then add to the List
                     if (!currJhas.Contains(jha.elem_jha_id))
                     {
-                        ehi.Add(new ElementHazardsItem() {
+                        ehi.Add(new Models.JHAModel()
+                        {
                             elem_jha_id = jha.elem_jha_id,
                             jha_description = jha.JHA.jha_description
                         });
@@ -129,122 +131,6 @@ namespace Safety.Control
                 lbToggleElementHazardEditMode.Text = "enter hazard edit mode";
             }
         }
-
-        #region Internal Classes
-        internal class ReferenceLevelItem
-        {
-            private int _site_reflevel_id;
-            private int _site_jha_id;
-            private int _reflevel_id;
-            private string _reflevel_tp;
-            private double _reflevel_va;
-            private string _reflevel_units;
-            private string _remarks;
-            private string _reflevel_tp_desc;
-            private string _reflevel_desc;
-
-            public int site_reflevel_id
-            {
-                get { return _site_reflevel_id; }
-                set { _site_reflevel_id = value; }
-            }
-            public int site_jha_id
-            {
-                get { return _site_jha_id; }
-                set { _site_jha_id = value; }
-            }
-            public int reflevel_id
-            {
-                get { return _reflevel_id; }
-                set { _reflevel_id = value; }
-            }
-            public string reflevel_tp
-            {
-                get { return _reflevel_tp; }
-                set { _reflevel_tp = value; }
-            }
-            public double reflevel_va
-            {
-                get { return _reflevel_va; }
-                set { _reflevel_va = value; }
-            }
-            public string reflevel_units
-            {
-                get { return _reflevel_units; }
-                set { _reflevel_units = value; }
-            }
-            public string remarks
-            {
-                get { return _remarks; }
-                set { _remarks = value; }
-            }
-            public string reflevel_tp_desc
-            {
-                get { return _reflevel_tp_desc; }
-                set { _reflevel_tp_desc = value; }
-            }
-            public string reflevel_desc
-            {
-                get { return _reflevel_desc; }
-                set { _reflevel_desc = value; }
-            }
-            public ReferenceLevelItem()
-            {
-                _site_reflevel_id = site_reflevel_id;
-                _site_jha_id = site_jha_id;
-                _reflevel_id = reflevel_id;
-                _reflevel_tp = reflevel_tp;
-                _reflevel_va = reflevel_va;
-                _reflevel_units = reflevel_units;
-                _remarks = remarks;
-                _reflevel_tp_desc = reflevel_tp_desc;
-                _reflevel_desc = reflevel_desc;
-            }
-        }
-
-        internal class ElementHazardsItem
-        {
-            private int _sha_site_id;
-            private int _site_jha_id;
-            private int _elem_jha_id;
-            private int _jha_id;
-            private string _jha_description;
-
-            public int sha_site_id
-            {
-                get { return _sha_site_id; }
-                set { _sha_site_id = value; }
-            }
-            public int site_jha_id
-            {
-                get { return _site_jha_id; }
-                set { _site_jha_id = value; }
-            }
-            public int elem_jha_id
-            {
-                get { return _elem_jha_id; }
-                set { _elem_jha_id = value; }
-            }
-            public int jha_id
-            {
-                get { return _jha_id; }
-                set { _jha_id = value; }
-            }
-            public string jha_description
-            {
-                get { return _jha_description; }
-                set { _jha_description = value; }
-            }
-            public ElementHazardsItem()
-            {
-                _sha_site_id = sha_site_id;
-                _site_jha_id = site_jha_id;
-                _elem_jha_id = elem_jha_id;
-                _jha_id = jha_id;
-                _jha_description = jha_description;
-            }
-        }
-        #endregion
 
         #region Page Events, Methods
         protected void lbToggleElementEditMode_Click(object sender, EventArgs e)
@@ -346,7 +232,8 @@ namespace Safety.Control
 	    public void rgElementHazards_NeedDataSource(object source, GridNeedDataSourceEventArgs e)
 	    {
 		    if (!e.IsFromDetailTable) {
-                var hazard = db.SHAJHAs.Where(p => p.SHA.site_id == SiteID && p.ElementJHA.element_id == ElementID).Select(p => new ElementHazardsItem {
+                var hazard = db.SHAJHAs.Where(p => p.SHA.site_id == SiteID && p.ElementJHA.element_id == ElementID).Select(p => new Models.JHAModel
+                {
                     sha_site_id = Convert.ToInt32(p.sha_site_id),
                     site_jha_id = p.site_jha_id,
                     elem_jha_id = p.ElementJHA.elem_jha_id,
@@ -377,7 +264,8 @@ namespace Safety.Control
                     e.DetailTableView.DataSource = specificCond;
 				    break;
 			    case "JobLimits":
-                    var jobLimits = hazard.SHAReferenceLevels.Select(p => new ReferenceLevelItem {
+                    var jobLimits = hazard.SHAReferenceLevels.Select(p => new Models.RefLevelModel
+                    {
                         site_reflevel_id = p.site_reflevel_id,
                         site_jha_id = Convert.ToInt32(p.site_jha_id),
                         reflevel_id = Convert.ToInt32(p.reflevel_id),
@@ -502,10 +390,10 @@ namespace Safety.Control
 
 				    if (!(e.Item is IGridInsertItem)) {
 					    ltlJobLimitsEditFormTitle.Text = "Edit Job Limit";
-                        rcbJobLimitType.SelectedValue = ((ReferenceLevelItem)e.Item.DataItem).reflevel_id.ToString();
-                        rntbJobLimitValue.Text = ((ReferenceLevelItem)e.Item.DataItem).reflevel_va.ToString();
-                        tbUnits.Text = ((ReferenceLevelItem)e.Item.DataItem).reflevel_units;
-                        tbRemarks.Text = ((ReferenceLevelItem)e.Item.DataItem).remarks;
+                        rcbJobLimitType.SelectedValue = ((Models.RefLevelModel)e.Item.DataItem).reflevel_id.ToString();
+                        rntbJobLimitValue.Text = ((Models.RefLevelModel)e.Item.DataItem).reflevel_va.ToString();
+                        tbUnits.Text = ((Models.RefLevelModel)e.Item.DataItem).reflevel_units;
+                        tbRemarks.Text = ((Models.RefLevelModel)e.Item.DataItem).remarks;
 
 					    btnUpdate3.Visible = true;
 					    btnInsert3.Visible = false;

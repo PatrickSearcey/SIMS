@@ -554,7 +554,7 @@ namespace Safety
                                 db.SubmitChanges();
                             }
 
-                            note = "<br /><b>AlERT:</b> A new TCP was created for this site. You can view it by clicking the link under the Traffic Control Plan section below. <b>Refresh your browser if you do not see the new plan.</b>";
+                            note = "<br /><b>AlERT:</b> A new TCP was created for this site. You can view it by clicking the link under the Traffic Control Plan section below.";
                         }
                     }
                     else if (plan_id == 5) //Check to see if the determined plan is IVa
@@ -578,7 +578,7 @@ namespace Safety
                         newTCPIV.ApprovalReady = false;
                         db.TCPs.InsertOnSubmit(newTCPIV);
                         db.SubmitChanges();
-                        note = "<br /><b>ALERT:</b> A new TCP was created for this site. You can view it by clicking the link under the Traffic Control Plan section below.  <b>Refresh your browser if you do not see the new plan.</b>";
+                        note = "<br /><b>ALERT:</b> A new TCP was created for this site. You can view it by clicking the link under the Traffic Control Plan section below.";
 
                     }
                     else //Otherwise, just update the plan
