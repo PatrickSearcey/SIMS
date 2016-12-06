@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SIMS2017 {
+namespace RMS {
     
     
-    public partial class RMS {
+    public partial class MasterPageSingleMenu {
         
         /// <summary>
         /// head control.
@@ -31,24 +31,6 @@ namespace SIMS2017 {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// rfd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadFormDecorator rfd;
-        
-        /// <summary>
-        /// MasterLayout control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadPageLayout MasterLayout;
-        
-        /// <summary>
         /// rmTop control.
         /// </summary>
         /// <remarks>
@@ -56,24 +38,6 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadMenu rmTop;
-        
-        /// <summary>
-        /// ltlUserID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlUserID;
-        
-        /// <summary>
-        /// rmSide control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadMenu rmSide;
         
         /// <summary>
         /// cph1 control.

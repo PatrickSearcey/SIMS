@@ -28,26 +28,7 @@
 
                         <%--Main Nav--%>
                         <telerik:LayoutColumn Span="10" SpanMd="9" SpanSm="12" SpanXs="12">
-                            <telerik:RadMenu ID="RadMenu1" runat="server" RenderMode="Auto">
-                                <Items>
-                                    <telerik:RadMenuItem Text="Home" NavigateUrl="Default.aspx" />
-                                    <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="Grid Page" NavigateUrl="Grid.aspx" />
-                                    <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="ListView Page" NavigateUrl="ListView.aspx" />
-                                    <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="About" />
-                                    <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="Projects" />
-                                    <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="Dashboard" />
-                                    <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="..." />
-                                    <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="..." />
-                                    <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="Contacts" />
-                                </Items>
+                            <telerik:RadMenu ID="rmTop" runat="server" RenderMode="Auto">
                             </telerik:RadMenu>
                         </telerik:LayoutColumn>
                     </Columns>

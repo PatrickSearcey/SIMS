@@ -57,12 +57,6 @@ namespace Data
     partial void InsertElemReportSum(ElemReportSum instance);
     partial void UpdateElemReportSum(ElemReportSum instance);
     partial void DeleteElemReportSum(ElemReportSum instance);
-    partial void InsertRecord(Record instance);
-    partial void UpdateRecord(Record instance);
-    partial void DeleteRecord(Record instance);
-    partial void InsertRecordType(RecordType instance);
-    partial void UpdateRecordType(RecordType instance);
-    partial void DeleteRecordType(RecordType instance);
     partial void InsertElementJHA(ElementJHA instance);
     partial void UpdateElementJHA(ElementJHA instance);
     partial void DeleteElementJHA(ElementJHA instance);
@@ -120,6 +114,39 @@ namespace Data
     partial void InsertSiteElement(SiteElement instance);
     partial void UpdateSiteElement(SiteElement instance);
     partial void DeleteSiteElement(SiteElement instance);
+    partial void InsertPeriodSavedNote(PeriodSavedNote instance);
+    partial void UpdatePeriodSavedNote(PeriodSavedNote instance);
+    partial void DeletePeriodSavedNote(PeriodSavedNote instance);
+    partial void InsertRecordType(RecordType instance);
+    partial void UpdateRecordType(RecordType instance);
+    partial void DeleteRecordType(RecordType instance);
+    partial void InsertRecord(Record instance);
+    partial void UpdateRecord(Record instance);
+    partial void DeleteRecord(Record instance);
+    partial void InsertRecordDD(RecordDD instance);
+    partial void UpdateRecordDD(RecordDD instance);
+    partial void DeleteRecordDD(RecordDD instance);
+    partial void InsertRecordLock(RecordLock instance);
+    partial void UpdateRecordLock(RecordLock instance);
+    partial void DeleteRecordLock(RecordLock instance);
+    partial void InsertRecordEOYStatus(RecordEOYStatus instance);
+    partial void UpdateRecordEOYStatus(RecordEOYStatus instance);
+    partial void DeleteRecordEOYStatus(RecordEOYStatus instance);
+    partial void InsertPeriodDialog(PeriodDialog instance);
+    partial void UpdatePeriodDialog(PeriodDialog instance);
+    partial void DeletePeriodDialog(PeriodDialog instance);
+    partial void InsertPeriodChangeLog(PeriodChangeLog instance);
+    partial void UpdatePeriodChangeLog(PeriodChangeLog instance);
+    partial void DeletePeriodChangeLog(PeriodChangeLog instance);
+    partial void InsertRecordAnalysisStatus(RecordAnalysisStatus instance);
+    partial void UpdateRecordAnalysisStatus(RecordAnalysisStatus instance);
+    partial void DeleteRecordAnalysisStatus(RecordAnalysisStatus instance);
+    partial void InsertRecordAltOffice(RecordAltOffice instance);
+    partial void UpdateRecordAltOffice(RecordAltOffice instance);
+    partial void DeleteRecordAltOffice(RecordAltOffice instance);
+    partial void InsertRecordAnalysisPeriod(RecordAnalysisPeriod instance);
+    partial void UpdateRecordAnalysisPeriod(RecordAnalysisPeriod instance);
+    partial void DeleteRecordAnalysisPeriod(RecordAnalysisPeriod instance);
     #endregion
 		
 		public SIMSDataContext() : 
@@ -229,22 +256,6 @@ namespace Data
 			get
 			{
 				return this.GetTable<ElemReportSum>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Record> Records
-		{
-			get
-			{
-				return this.GetTable<Record>();
-			}
-		}
-		
-		public System.Data.Linq.Table<RecordType> RecordTypes
-		{
-			get
-			{
-				return this.GetTable<RecordType>();
 			}
 		}
 		
@@ -432,6 +443,102 @@ namespace Data
 			}
 		}
 		
+		public System.Data.Linq.Table<PeriodSavedNote> PeriodSavedNotes
+		{
+			get
+			{
+				return this.GetTable<PeriodSavedNote>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RecordType> RecordTypes
+		{
+			get
+			{
+				return this.GetTable<RecordType>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Record> Records
+		{
+			get
+			{
+				return this.GetTable<Record>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RecordDD> RecordDDs
+		{
+			get
+			{
+				return this.GetTable<RecordDD>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RecordLock> RecordLocks
+		{
+			get
+			{
+				return this.GetTable<RecordLock>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RecordEOYStatus> RecordEOYStatus
+		{
+			get
+			{
+				return this.GetTable<RecordEOYStatus>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PeriodDialog> PeriodDialogs
+		{
+			get
+			{
+				return this.GetTable<PeriodDialog>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PeriodChangeLog> PeriodChangeLogs
+		{
+			get
+			{
+				return this.GetTable<PeriodChangeLog>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RecordApprovalStatus> RecordApprovalStatus
+		{
+			get
+			{
+				return this.GetTable<RecordApprovalStatus>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RecordAnalysisStatus> RecordAnalysisStatus
+		{
+			get
+			{
+				return this.GetTable<RecordAnalysisStatus>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RecordAltOffice> RecordAltOffices
+		{
+			get
+			{
+				return this.GetTable<RecordAltOffice>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RecordAnalysisPeriod> RecordAnalysisPeriods
+		{
+			get
+			{
+				return this.GetTable<RecordAnalysisPeriod>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spz_GetDCPInfo")]
 		public ISingleResult<spz_GetDCPInfoResult> spz_GetDCPInfo([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> site_id)
 		{
@@ -444,6 +551,41 @@ namespace Data
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), site_id);
 			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RMS_Get_Record_DDs")]
+		public ISingleResult<SP_RMS_Get_Record_DDsResult> SP_RMS_Get_Record_DDs([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> rms_record_id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), rms_record_id);
+			return ((ISingleResult<SP_RMS_Get_Record_DDsResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RMS_WYs_with_periods_to_work")]
+		public ISingleResult<SP_RMS_WYs_with_periods_to_workResult> SP_RMS_WYs_with_periods_to_work([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> rms_record_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(4)")] string wy)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), rms_record_id, wy);
+			return ((ISingleResult<SP_RMS_WYs_with_periods_to_workResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RMS_Periods_per_WY")]
+		public ISingleResult<SP_RMS_Periods_per_WYResult> SP_RMS_Periods_per_WY([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> rms_record_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> start_dt, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> end_dt, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(15)")] string status_va)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), rms_record_id, start_dt, end_dt, status_va);
+			return ((ISingleResult<SP_RMS_Periods_per_WYResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_Site_Analyzed_Doubles")]
+		public ISingleResult<SP_Site_Analyzed_DoublesResult> SP_Site_Analyzed_Doubles([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> rms_record_id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), rms_record_id);
+			return ((ISingleResult<SP_Site_Analyzed_DoublesResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RMS_WYs_with_periods")]
+		public ISingleResult<SP_RMS_WYs_with_periodsResult> SP_RMS_WYs_with_periods([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> rms_record_id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), rms_record_id);
+			return ((ISingleResult<SP_RMS_WYs_with_periodsResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -2103,15 +2245,13 @@ namespace Data
 		
 		private EntitySet<ElemReportSum> _ElemReportSums;
 		
-		private EntitySet<Record> _RMS_Record_Masters;
-		
-		private EntitySet<Record> _Records;
-		
 		private EntitySet<SHA> _SHAs;
 		
 		private EntityRef<TCPSite> _TCPSite;
 		
 		private EntityRef<ElementSite> _ElementSite;
+		
+		private EntitySet<Record> _Records;
 		
 		private EntityRef<Office> _Office;
 		
@@ -2144,11 +2284,10 @@ namespace Data
 			this._TripSites = new EntitySet<TripSite>(new Action<TripSite>(this.attach_TripSites), new Action<TripSite>(this.detach_TripSites));
 			this._ElemReportApproves = new EntitySet<ElemReportApprove>(new Action<ElemReportApprove>(this.attach_ElemReportApproves), new Action<ElemReportApprove>(this.detach_ElemReportApproves));
 			this._ElemReportSums = new EntitySet<ElemReportSum>(new Action<ElemReportSum>(this.attach_ElemReportSums), new Action<ElemReportSum>(this.detach_ElemReportSums));
-			this._RMS_Record_Masters = new EntitySet<Record>(new Action<Record>(this.attach_RMS_Record_Masters), new Action<Record>(this.detach_RMS_Record_Masters));
-			this._Records = new EntitySet<Record>(new Action<Record>(this.attach_Records), new Action<Record>(this.detach_Records));
 			this._SHAs = new EntitySet<SHA>(new Action<SHA>(this.attach_SHAs), new Action<SHA>(this.detach_SHAs));
 			this._TCPSite = default(EntityRef<TCPSite>);
 			this._ElementSite = default(EntityRef<ElementSite>);
+			this._Records = new EntitySet<Record>(new Action<Record>(this.attach_Records), new Action<Record>(this.detach_Records));
 			this._Office = default(EntityRef<Office>);
 			OnCreated();
 		}
@@ -2376,32 +2515,6 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Record", Storage="_RMS_Record_Masters", ThisKey="site_id", OtherKey="site_id")]
-		public EntitySet<Record> RMS_Record_Masters
-		{
-			get
-			{
-				return this._RMS_Record_Masters;
-			}
-			set
-			{
-				this._RMS_Record_Masters.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Record1", Storage="_Records", ThisKey="site_id", OtherKey="site_id")]
-		public EntitySet<Record> Records
-		{
-			get
-			{
-				return this._Records;
-			}
-			set
-			{
-				this._Records.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_SHA", Storage="_SHAs", ThisKey="site_id", OtherKey="site_id")]
 		public EntitySet<SHA> SHAs
 		{
@@ -2444,7 +2557,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Elem_Site_Master", Storage="_ElementSite", ThisKey="site_id", OtherKey="site_id", IsUnique=true, IsForeignKey=false)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_ElementSite", Storage="_ElementSite", ThisKey="site_id", OtherKey="site_id", IsUnique=true, IsForeignKey=false)]
 		public ElementSite ElementSite
 		{
 			get
@@ -2470,6 +2583,19 @@ namespace Data
 					}
 					this.SendPropertyChanged("ElementSite");
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Record", Storage="_Records", ThisKey="site_id", OtherKey="site_id")]
+		public EntitySet<Record> Records
+		{
+			get
+			{
+				return this._Records;
+			}
+			set
+			{
+				this._Records.Assign(value);
 			}
 		}
 		
@@ -2563,13 +2689,13 @@ namespace Data
 			entity.Site = null;
 		}
 		
-		private void attach_RMS_Record_Masters(Record entity)
+		private void attach_SHAs(SHA entity)
 		{
 			this.SendPropertyChanging();
 			entity.Site = this;
 		}
 		
-		private void detach_RMS_Record_Masters(Record entity)
+		private void detach_SHAs(SHA entity)
 		{
 			this.SendPropertyChanging();
 			entity.Site = null;
@@ -2578,22 +2704,10 @@ namespace Data
 		private void attach_Records(Record entity)
 		{
 			this.SendPropertyChanging();
-			entity.Site1 = this;
-		}
-		
-		private void detach_Records(Record entity)
-		{
-			this.SendPropertyChanging();
-			entity.Site1 = null;
-		}
-		
-		private void attach_SHAs(SHA entity)
-		{
-			this.SendPropertyChanging();
 			entity.Site = this;
 		}
 		
-		private void detach_SHAs(SHA entity)
+		private void detach_Records(Record entity)
 		{
 			this.SendPropertyChanging();
 			entity.Site = null;
@@ -3400,661 +3514,6 @@ namespace Data
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Record_Master")]
-	public partial class Record : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _rms_record_id;
-		
-		private int _site_id;
-		
-		private string _operator_va;
-		
-		private string _assigned_checker_uid;
-		
-		private string _assigned_reviewer_uid;
-		
-		private bool _not_published_fg;
-		
-		private bool _not_used_fg;
-		
-		private System.Nullable<int> _record_type_id;
-		
-		private System.Nullable<int> _category_no;
-		
-		private string _cat_reason;
-		
-		private EntityRef<Site> _Site;
-		
-		private EntityRef<Site> _Site1;
-		
-		private EntityRef<RecordType> _RecordType;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onrms_record_idChanging(int value);
-    partial void Onrms_record_idChanged();
-    partial void Onsite_idChanging(int value);
-    partial void Onsite_idChanged();
-    partial void Onoperator_vaChanging(string value);
-    partial void Onoperator_vaChanged();
-    partial void Onassigned_checker_uidChanging(string value);
-    partial void Onassigned_checker_uidChanged();
-    partial void Onassigned_reviewer_uidChanging(string value);
-    partial void Onassigned_reviewer_uidChanged();
-    partial void Onnot_published_fgChanging(bool value);
-    partial void Onnot_published_fgChanged();
-    partial void Onnot_used_fgChanging(bool value);
-    partial void Onnot_used_fgChanged();
-    partial void Onrecord_type_idChanging(System.Nullable<int> value);
-    partial void Onrecord_type_idChanged();
-    partial void Oncategory_noChanging(System.Nullable<int> value);
-    partial void Oncategory_noChanged();
-    partial void Oncat_reasonChanging(string value);
-    partial void Oncat_reasonChanged();
-    #endregion
-		
-		public Record()
-		{
-			this._Site = default(EntityRef<Site>);
-			this._Site1 = default(EntityRef<Site>);
-			this._RecordType = default(EntityRef<RecordType>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int rms_record_id
-		{
-			get
-			{
-				return this._rms_record_id;
-			}
-			set
-			{
-				if ((this._rms_record_id != value))
-				{
-					this.Onrms_record_idChanging(value);
-					this.SendPropertyChanging();
-					this._rms_record_id = value;
-					this.SendPropertyChanged("rms_record_id");
-					this.Onrms_record_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int NOT NULL")]
-		public int site_id
-		{
-			get
-			{
-				return this._site_id;
-			}
-			set
-			{
-				if ((this._site_id != value))
-				{
-					if ((this._Site.HasLoadedOrAssignedValue || this._Site1.HasLoadedOrAssignedValue))
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onsite_idChanging(value);
-					this.SendPropertyChanging();
-					this._site_id = value;
-					this.SendPropertyChanged("site_id");
-					this.Onsite_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_operator_va", DbType="NVarChar(50)")]
-		public string operator_va
-		{
-			get
-			{
-				return this._operator_va;
-			}
-			set
-			{
-				if ((this._operator_va != value))
-				{
-					this.Onoperator_vaChanging(value);
-					this.SendPropertyChanging();
-					this._operator_va = value;
-					this.SendPropertyChanged("operator_va");
-					this.Onoperator_vaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_assigned_checker_uid", DbType="NVarChar(50)")]
-		public string assigned_checker_uid
-		{
-			get
-			{
-				return this._assigned_checker_uid;
-			}
-			set
-			{
-				if ((this._assigned_checker_uid != value))
-				{
-					this.Onassigned_checker_uidChanging(value);
-					this.SendPropertyChanging();
-					this._assigned_checker_uid = value;
-					this.SendPropertyChanged("assigned_checker_uid");
-					this.Onassigned_checker_uidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_assigned_reviewer_uid", DbType="NVarChar(50)")]
-		public string assigned_reviewer_uid
-		{
-			get
-			{
-				return this._assigned_reviewer_uid;
-			}
-			set
-			{
-				if ((this._assigned_reviewer_uid != value))
-				{
-					this.Onassigned_reviewer_uidChanging(value);
-					this.SendPropertyChanging();
-					this._assigned_reviewer_uid = value;
-					this.SendPropertyChanged("assigned_reviewer_uid");
-					this.Onassigned_reviewer_uidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_not_published_fg", DbType="Bit NOT NULL")]
-		public bool not_published_fg
-		{
-			get
-			{
-				return this._not_published_fg;
-			}
-			set
-			{
-				if ((this._not_published_fg != value))
-				{
-					this.Onnot_published_fgChanging(value);
-					this.SendPropertyChanging();
-					this._not_published_fg = value;
-					this.SendPropertyChanged("not_published_fg");
-					this.Onnot_published_fgChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_not_used_fg", DbType="Bit NOT NULL")]
-		public bool not_used_fg
-		{
-			get
-			{
-				return this._not_used_fg;
-			}
-			set
-			{
-				if ((this._not_used_fg != value))
-				{
-					this.Onnot_used_fgChanging(value);
-					this.SendPropertyChanging();
-					this._not_used_fg = value;
-					this.SendPropertyChanged("not_used_fg");
-					this.Onnot_used_fgChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_record_type_id", DbType="Int")]
-		public System.Nullable<int> record_type_id
-		{
-			get
-			{
-				return this._record_type_id;
-			}
-			set
-			{
-				if ((this._record_type_id != value))
-				{
-					if (this._RecordType.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onrecord_type_idChanging(value);
-					this.SendPropertyChanging();
-					this._record_type_id = value;
-					this.SendPropertyChanged("record_type_id");
-					this.Onrecord_type_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_category_no", DbType="Int")]
-		public System.Nullable<int> category_no
-		{
-			get
-			{
-				return this._category_no;
-			}
-			set
-			{
-				if ((this._category_no != value))
-				{
-					this.Oncategory_noChanging(value);
-					this.SendPropertyChanging();
-					this._category_no = value;
-					this.SendPropertyChanged("category_no");
-					this.Oncategory_noChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cat_reason", DbType="NVarChar(500)")]
-		public string cat_reason
-		{
-			get
-			{
-				return this._cat_reason;
-			}
-			set
-			{
-				if ((this._cat_reason != value))
-				{
-					this.Oncat_reasonChanging(value);
-					this.SendPropertyChanging();
-					this._cat_reason = value;
-					this.SendPropertyChanged("cat_reason");
-					this.Oncat_reasonChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Record", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
-		public Site Site
-		{
-			get
-			{
-				return this._Site.Entity;
-			}
-			set
-			{
-				Site previousValue = this._Site.Entity;
-				if (((previousValue != value) 
-							|| (this._Site.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Site.Entity = null;
-						previousValue.RMS_Record_Masters.Remove(this);
-					}
-					this._Site.Entity = value;
-					if ((value != null))
-					{
-						value.RMS_Record_Masters.Add(this);
-						this._site_id = value.site_id;
-					}
-					else
-					{
-						this._site_id = default(int);
-					}
-					this.SendPropertyChanged("Site");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Record1", Storage="_Site1", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public Site Site1
-		{
-			get
-			{
-				return this._Site1.Entity;
-			}
-			set
-			{
-				Site previousValue = this._Site1.Entity;
-				if (((previousValue != value) 
-							|| (this._Site1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Site1.Entity = null;
-						previousValue.Records.Remove(this);
-					}
-					this._Site1.Entity = value;
-					if ((value != null))
-					{
-						value.Records.Add(this);
-						this._site_id = value.site_id;
-					}
-					else
-					{
-						this._site_id = default(int);
-					}
-					this.SendPropertyChanged("Site1");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordType_Record", Storage="_RecordType", ThisKey="record_type_id", OtherKey="record_type_id", IsForeignKey=true)]
-		public RecordType RecordType
-		{
-			get
-			{
-				return this._RecordType.Entity;
-			}
-			set
-			{
-				RecordType previousValue = this._RecordType.Entity;
-				if (((previousValue != value) 
-							|| (this._RecordType.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._RecordType.Entity = null;
-						previousValue.Records.Remove(this);
-					}
-					this._RecordType.Entity = value;
-					if ((value != null))
-					{
-						value.Records.Add(this);
-						this._record_type_id = value.record_type_id;
-					}
-					else
-					{
-						this._record_type_id = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("RecordType");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Record_Types")]
-	public partial class RecordType : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _record_type_id;
-		
-		private string _type_cd;
-		
-		private string _type_ds;
-		
-		private string _work_html_va;
-		
-		private string _check_html_va;
-		
-		private string _review_html_va;
-		
-		private System.Nullable<bool> _ts_fg;
-		
-		private int _wsc_id;
-		
-		private EntitySet<Record> _Records;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onrecord_type_idChanging(int value);
-    partial void Onrecord_type_idChanged();
-    partial void Ontype_cdChanging(string value);
-    partial void Ontype_cdChanged();
-    partial void Ontype_dsChanging(string value);
-    partial void Ontype_dsChanged();
-    partial void Onwork_html_vaChanging(string value);
-    partial void Onwork_html_vaChanged();
-    partial void Oncheck_html_vaChanging(string value);
-    partial void Oncheck_html_vaChanged();
-    partial void Onreview_html_vaChanging(string value);
-    partial void Onreview_html_vaChanged();
-    partial void Onts_fgChanging(System.Nullable<bool> value);
-    partial void Onts_fgChanged();
-    partial void Onwsc_idChanging(int value);
-    partial void Onwsc_idChanged();
-    #endregion
-		
-		public RecordType()
-		{
-			this._Records = new EntitySet<Record>(new Action<Record>(this.attach_Records), new Action<Record>(this.detach_Records));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_record_type_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int record_type_id
-		{
-			get
-			{
-				return this._record_type_id;
-			}
-			set
-			{
-				if ((this._record_type_id != value))
-				{
-					this.Onrecord_type_idChanging(value);
-					this.SendPropertyChanging();
-					this._record_type_id = value;
-					this.SendPropertyChanged("record_type_id");
-					this.Onrecord_type_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_cd", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string type_cd
-		{
-			get
-			{
-				return this._type_cd;
-			}
-			set
-			{
-				if ((this._type_cd != value))
-				{
-					this.Ontype_cdChanging(value);
-					this.SendPropertyChanging();
-					this._type_cd = value;
-					this.SendPropertyChanged("type_cd");
-					this.Ontype_cdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_ds", DbType="NVarChar(200)")]
-		public string type_ds
-		{
-			get
-			{
-				return this._type_ds;
-			}
-			set
-			{
-				if ((this._type_ds != value))
-				{
-					this.Ontype_dsChanging(value);
-					this.SendPropertyChanging();
-					this._type_ds = value;
-					this.SendPropertyChanged("type_ds");
-					this.Ontype_dsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_work_html_va", DbType="NVarChar(MAX)")]
-		public string work_html_va
-		{
-			get
-			{
-				return this._work_html_va;
-			}
-			set
-			{
-				if ((this._work_html_va != value))
-				{
-					this.Onwork_html_vaChanging(value);
-					this.SendPropertyChanging();
-					this._work_html_va = value;
-					this.SendPropertyChanged("work_html_va");
-					this.Onwork_html_vaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_check_html_va", DbType="NVarChar(MAX)")]
-		public string check_html_va
-		{
-			get
-			{
-				return this._check_html_va;
-			}
-			set
-			{
-				if ((this._check_html_va != value))
-				{
-					this.Oncheck_html_vaChanging(value);
-					this.SendPropertyChanging();
-					this._check_html_va = value;
-					this.SendPropertyChanged("check_html_va");
-					this.Oncheck_html_vaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_review_html_va", DbType="NVarChar(MAX)")]
-		public string review_html_va
-		{
-			get
-			{
-				return this._review_html_va;
-			}
-			set
-			{
-				if ((this._review_html_va != value))
-				{
-					this.Onreview_html_vaChanging(value);
-					this.SendPropertyChanging();
-					this._review_html_va = value;
-					this.SendPropertyChanged("review_html_va");
-					this.Onreview_html_vaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ts_fg", DbType="Bit")]
-		public System.Nullable<bool> ts_fg
-		{
-			get
-			{
-				return this._ts_fg;
-			}
-			set
-			{
-				if ((this._ts_fg != value))
-				{
-					this.Onts_fgChanging(value);
-					this.SendPropertyChanging();
-					this._ts_fg = value;
-					this.SendPropertyChanged("ts_fg");
-					this.Onts_fgChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_id", DbType="Int NOT NULL")]
-		public int wsc_id
-		{
-			get
-			{
-				return this._wsc_id;
-			}
-			set
-			{
-				if ((this._wsc_id != value))
-				{
-					this.Onwsc_idChanging(value);
-					this.SendPropertyChanging();
-					this._wsc_id = value;
-					this.SendPropertyChanged("wsc_id");
-					this.Onwsc_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordType_Record", Storage="_Records", ThisKey="record_type_id", OtherKey="record_type_id")]
-		public EntitySet<Record> Records
-		{
-			get
-			{
-				return this._Records;
-			}
-			set
-			{
-				this._Records.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Records(Record entity)
-		{
-			this.SendPropertyChanging();
-			entity.RecordType = this;
-		}
-		
-		private void detach_Records(Record entity)
-		{
-			this.SendPropertyChanging();
-			entity.RecordType = null;
 		}
 	}
 	
@@ -6249,7 +5708,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_Contact_SHAContact", Storage="_Contact", ThisKey="contact_id", OtherKey="contact_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Contact_SHAContact", Storage="_Contact", ThisKey="contact_id", OtherKey="contact_id", IsForeignKey=true)]
 		public Contact Contact
 		{
 			get
@@ -6592,7 +6051,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_Hospital_SHAHospital", Storage="_Hospital", ThisKey="hospital_id", OtherKey="hospital_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Hospital_SHAHospital", Storage="_Hospital", ThisKey="hospital_id", OtherKey="hospital_id", IsForeignKey=true)]
 		public Hospital Hospital
 		{
 			get
@@ -8309,7 +7768,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ElementDetail_Elem_Site_Element", Storage="_SiteElements", ThisKey="element_id", OtherKey="element_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ElementDetail_SiteElement", Storage="_SiteElements", ThisKey="element_id", OtherKey="element_id")]
 		public EntitySet<SiteElement> SiteElements
 		{
 			get
@@ -10243,7 +9702,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_Hospital_SHAHospital", Storage="_SHAHospitals", ThisKey="hospital_id", OtherKey="hospital_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Hospital_SHAHospital", Storage="_SHAHospitals", ThisKey="hospital_id", OtherKey="hospital_id")]
 		public EntitySet<SHAHospital> SHAHospitals
 		{
 			get
@@ -10501,7 +9960,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_Contact_SHAContact", Storage="_SHAContacts", ThisKey="contact_id", OtherKey="contact_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Contact_SHAContact", Storage="_SHAContacts", ThisKey="contact_id", OtherKey="contact_id")]
 		public EntitySet<SHAContact> SHAContacts
 		{
 			get
@@ -10646,7 +10105,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Elem_Site_Master_Elem_Site_Element", Storage="_SiteElements", ThisKey="site_id", OtherKey="site_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ElementSite_SiteElement", Storage="_SiteElements", ThisKey="site_id", OtherKey="site_id")]
 		public EntitySet<SiteElement> SiteElements
 		{
 			get
@@ -10659,7 +10118,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Elem_Site_Master", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_ElementSite", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
 		public Site Site
 		{
 			get
@@ -10949,7 +10408,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ElementDetail_Elem_Site_Element", Storage="_ElementDetail", ThisKey="element_id", OtherKey="element_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ElementDetail_SiteElement", Storage="_ElementDetail", ThisKey="element_id", OtherKey="element_id", IsForeignKey=true)]
 		public ElementDetail ElementDetail
 		{
 			get
@@ -10983,7 +10442,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Elem_Site_Master_Elem_Site_Element", Storage="_ElementSite", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ElementSite_SiteElement", Storage="_ElementSite", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
 		public ElementSite ElementSite
 		{
 			get
@@ -11377,6 +10836,3310 @@ namespace Data
 					this._site_tp_ds = value;
 				}
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Saved_Notes")]
+	public partial class PeriodSavedNote : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _period_id;
+		
+		private string _record_type_va;
+		
+		private string _html_reanalyze_flag_va;
+		
+		private string _comments_va;
+		
+		private System.Nullable<System.DateTime> _entered_dt;
+		
+		private EntityRef<RecordAnalysisPeriod> _RecordAnalysisPeriod;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onperiod_idChanging(int value);
+    partial void Onperiod_idChanged();
+    partial void Onrecord_type_vaChanging(string value);
+    partial void Onrecord_type_vaChanged();
+    partial void Onhtml_reanalyze_flag_vaChanging(string value);
+    partial void Onhtml_reanalyze_flag_vaChanged();
+    partial void Oncomments_vaChanging(string value);
+    partial void Oncomments_vaChanged();
+    partial void Onentered_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onentered_dtChanged();
+    #endregion
+		
+		public PeriodSavedNote()
+		{
+			this._RecordAnalysisPeriod = default(EntityRef<RecordAnalysisPeriod>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_period_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int period_id
+		{
+			get
+			{
+				return this._period_id;
+			}
+			set
+			{
+				if ((this._period_id != value))
+				{
+					if (this._RecordAnalysisPeriod.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onperiod_idChanging(value);
+					this.SendPropertyChanging();
+					this._period_id = value;
+					this.SendPropertyChanged("period_id");
+					this.Onperiod_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_record_type_va", DbType="NVarChar(50)")]
+		public string record_type_va
+		{
+			get
+			{
+				return this._record_type_va;
+			}
+			set
+			{
+				if ((this._record_type_va != value))
+				{
+					this.Onrecord_type_vaChanging(value);
+					this.SendPropertyChanging();
+					this._record_type_va = value;
+					this.SendPropertyChanged("record_type_va");
+					this.Onrecord_type_vaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_html_reanalyze_flag_va", DbType="NVarChar(50)")]
+		public string html_reanalyze_flag_va
+		{
+			get
+			{
+				return this._html_reanalyze_flag_va;
+			}
+			set
+			{
+				if ((this._html_reanalyze_flag_va != value))
+				{
+					this.Onhtml_reanalyze_flag_vaChanging(value);
+					this.SendPropertyChanging();
+					this._html_reanalyze_flag_va = value;
+					this.SendPropertyChanged("html_reanalyze_flag_va");
+					this.Onhtml_reanalyze_flag_vaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_comments_va", DbType="NVarChar(MAX)")]
+		public string comments_va
+		{
+			get
+			{
+				return this._comments_va;
+			}
+			set
+			{
+				if ((this._comments_va != value))
+				{
+					this.Oncomments_vaChanging(value);
+					this.SendPropertyChanging();
+					this._comments_va = value;
+					this.SendPropertyChanged("comments_va");
+					this.Oncomments_vaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entered_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> entered_dt
+		{
+			get
+			{
+				return this._entered_dt;
+			}
+			set
+			{
+				if ((this._entered_dt != value))
+				{
+					this.Onentered_dtChanging(value);
+					this.SendPropertyChanging();
+					this._entered_dt = value;
+					this.SendPropertyChanged("entered_dt");
+					this.Onentered_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_PeriodSavedNote", Storage="_RecordAnalysisPeriod", ThisKey="period_id", OtherKey="period_id", IsForeignKey=true)]
+		public RecordAnalysisPeriod RecordAnalysisPeriod
+		{
+			get
+			{
+				return this._RecordAnalysisPeriod.Entity;
+			}
+			set
+			{
+				RecordAnalysisPeriod previousValue = this._RecordAnalysisPeriod.Entity;
+				if (((previousValue != value) 
+							|| (this._RecordAnalysisPeriod.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._RecordAnalysisPeriod.Entity = null;
+						previousValue.PeriodSavedNote = null;
+					}
+					this._RecordAnalysisPeriod.Entity = value;
+					if ((value != null))
+					{
+						value.PeriodSavedNote = this;
+						this._period_id = value.period_id;
+					}
+					else
+					{
+						this._period_id = default(int);
+					}
+					this.SendPropertyChanged("RecordAnalysisPeriod");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Record_Types")]
+	public partial class RecordType : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _record_type_id;
+		
+		private string _type_cd;
+		
+		private string _type_ds;
+		
+		private string _analyze_html_va;
+		
+		private string _approve_html_va;
+		
+		private System.Nullable<bool> _ts_fg;
+		
+		private System.Nullable<int> _wsc_id;
+		
+		private System.Nullable<int> _record_type_id_old;
+		
+		private EntitySet<Record> _Records;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onrecord_type_idChanging(int value);
+    partial void Onrecord_type_idChanged();
+    partial void Ontype_cdChanging(string value);
+    partial void Ontype_cdChanged();
+    partial void Ontype_dsChanging(string value);
+    partial void Ontype_dsChanged();
+    partial void Onanalyze_html_vaChanging(string value);
+    partial void Onanalyze_html_vaChanged();
+    partial void Onapprove_html_vaChanging(string value);
+    partial void Onapprove_html_vaChanged();
+    partial void Onts_fgChanging(System.Nullable<bool> value);
+    partial void Onts_fgChanged();
+    partial void Onwsc_idChanging(System.Nullable<int> value);
+    partial void Onwsc_idChanged();
+    partial void Onrecord_type_id_oldChanging(System.Nullable<int> value);
+    partial void Onrecord_type_id_oldChanged();
+    #endregion
+		
+		public RecordType()
+		{
+			this._Records = new EntitySet<Record>(new Action<Record>(this.attach_Records), new Action<Record>(this.detach_Records));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_record_type_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int record_type_id
+		{
+			get
+			{
+				return this._record_type_id;
+			}
+			set
+			{
+				if ((this._record_type_id != value))
+				{
+					this.Onrecord_type_idChanging(value);
+					this.SendPropertyChanging();
+					this._record_type_id = value;
+					this.SendPropertyChanged("record_type_id");
+					this.Onrecord_type_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_cd", DbType="NVarChar(50)")]
+		public string type_cd
+		{
+			get
+			{
+				return this._type_cd;
+			}
+			set
+			{
+				if ((this._type_cd != value))
+				{
+					this.Ontype_cdChanging(value);
+					this.SendPropertyChanging();
+					this._type_cd = value;
+					this.SendPropertyChanged("type_cd");
+					this.Ontype_cdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_ds", DbType="NVarChar(200)")]
+		public string type_ds
+		{
+			get
+			{
+				return this._type_ds;
+			}
+			set
+			{
+				if ((this._type_ds != value))
+				{
+					this.Ontype_dsChanging(value);
+					this.SendPropertyChanging();
+					this._type_ds = value;
+					this.SendPropertyChanged("type_ds");
+					this.Ontype_dsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_analyze_html_va", DbType="NVarChar(MAX)")]
+		public string analyze_html_va
+		{
+			get
+			{
+				return this._analyze_html_va;
+			}
+			set
+			{
+				if ((this._analyze_html_va != value))
+				{
+					this.Onanalyze_html_vaChanging(value);
+					this.SendPropertyChanging();
+					this._analyze_html_va = value;
+					this.SendPropertyChanged("analyze_html_va");
+					this.Onanalyze_html_vaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approve_html_va", DbType="NVarChar(MAX)")]
+		public string approve_html_va
+		{
+			get
+			{
+				return this._approve_html_va;
+			}
+			set
+			{
+				if ((this._approve_html_va != value))
+				{
+					this.Onapprove_html_vaChanging(value);
+					this.SendPropertyChanging();
+					this._approve_html_va = value;
+					this.SendPropertyChanged("approve_html_va");
+					this.Onapprove_html_vaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ts_fg", DbType="Bit")]
+		public System.Nullable<bool> ts_fg
+		{
+			get
+			{
+				return this._ts_fg;
+			}
+			set
+			{
+				if ((this._ts_fg != value))
+				{
+					this.Onts_fgChanging(value);
+					this.SendPropertyChanging();
+					this._ts_fg = value;
+					this.SendPropertyChanged("ts_fg");
+					this.Onts_fgChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_id", DbType="Int")]
+		public System.Nullable<int> wsc_id
+		{
+			get
+			{
+				return this._wsc_id;
+			}
+			set
+			{
+				if ((this._wsc_id != value))
+				{
+					this.Onwsc_idChanging(value);
+					this.SendPropertyChanging();
+					this._wsc_id = value;
+					this.SendPropertyChanged("wsc_id");
+					this.Onwsc_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_record_type_id_old", DbType="Int")]
+		public System.Nullable<int> record_type_id_old
+		{
+			get
+			{
+				return this._record_type_id_old;
+			}
+			set
+			{
+				if ((this._record_type_id_old != value))
+				{
+					this.Onrecord_type_id_oldChanging(value);
+					this.SendPropertyChanging();
+					this._record_type_id_old = value;
+					this.SendPropertyChanged("record_type_id_old");
+					this.Onrecord_type_id_oldChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordType_Record", Storage="_Records", ThisKey="record_type_id", OtherKey="record_type_id")]
+		public EntitySet<Record> Records
+		{
+			get
+			{
+				return this._Records;
+			}
+			set
+			{
+				this._Records.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Records(Record entity)
+		{
+			this.SendPropertyChanging();
+			entity.RecordType = this;
+		}
+		
+		private void detach_Records(Record entity)
+		{
+			this.SendPropertyChanging();
+			entity.RecordType = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Record_Master")]
+	public partial class Record : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _rms_record_id;
+		
+		private System.Nullable<int> _site_id;
+		
+		private string _analyzer_uid;
+		
+		private string _approver_uid;
+		
+		private System.Nullable<bool> _not_published_fg;
+		
+		private System.Nullable<bool> _not_used_fg;
+		
+		private System.Nullable<int> _record_type_id;
+		
+		private System.Nullable<int> _category_no;
+		
+		private string _cat_reason;
+		
+		private System.Nullable<int> _rms_record_id_old;
+		
+		private EntitySet<RecordDD> _RecordDDs;
+		
+		private EntityRef<RecordLock> _RecordLock;
+		
+		private EntitySet<RecordEOYStatus> _RecordEOYStatus;
+		
+		private EntityRef<RecordAnalysisStatus> _RecordAnalysisStatus;
+		
+		private EntityRef<RecordAltOffice> _RecordAltOffice;
+		
+		private EntitySet<RecordAnalysisPeriod> _RecordAnalysisPeriods;
+		
+		private EntityRef<RecordType> _RecordType;
+		
+		private EntityRef<Site> _Site;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onrms_record_idChanging(int value);
+    partial void Onrms_record_idChanged();
+    partial void Onsite_idChanging(System.Nullable<int> value);
+    partial void Onsite_idChanged();
+    partial void Onanalyzer_uidChanging(string value);
+    partial void Onanalyzer_uidChanged();
+    partial void Onapprover_uidChanging(string value);
+    partial void Onapprover_uidChanged();
+    partial void Onnot_published_fgChanging(System.Nullable<bool> value);
+    partial void Onnot_published_fgChanged();
+    partial void Onnot_used_fgChanging(System.Nullable<bool> value);
+    partial void Onnot_used_fgChanged();
+    partial void Onrecord_type_idChanging(System.Nullable<int> value);
+    partial void Onrecord_type_idChanged();
+    partial void Oncategory_noChanging(System.Nullable<int> value);
+    partial void Oncategory_noChanged();
+    partial void Oncat_reasonChanging(string value);
+    partial void Oncat_reasonChanged();
+    partial void Onrms_record_id_oldChanging(System.Nullable<int> value);
+    partial void Onrms_record_id_oldChanged();
+    #endregion
+		
+		public Record()
+		{
+			this._RecordDDs = new EntitySet<RecordDD>(new Action<RecordDD>(this.attach_RecordDDs), new Action<RecordDD>(this.detach_RecordDDs));
+			this._RecordLock = default(EntityRef<RecordLock>);
+			this._RecordEOYStatus = new EntitySet<RecordEOYStatus>(new Action<RecordEOYStatus>(this.attach_RecordEOYStatus), new Action<RecordEOYStatus>(this.detach_RecordEOYStatus));
+			this._RecordAnalysisStatus = default(EntityRef<RecordAnalysisStatus>);
+			this._RecordAltOffice = default(EntityRef<RecordAltOffice>);
+			this._RecordAnalysisPeriods = new EntitySet<RecordAnalysisPeriod>(new Action<RecordAnalysisPeriod>(this.attach_RecordAnalysisPeriods), new Action<RecordAnalysisPeriod>(this.detach_RecordAnalysisPeriods));
+			this._RecordType = default(EntityRef<RecordType>);
+			this._Site = default(EntityRef<Site>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					this.Onrms_record_idChanging(value);
+					this.SendPropertyChanging();
+					this._rms_record_id = value;
+					this.SendPropertyChanged("rms_record_id");
+					this.Onrms_record_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int")]
+		public System.Nullable<int> site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					if (this._Site.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onsite_idChanging(value);
+					this.SendPropertyChanging();
+					this._site_id = value;
+					this.SendPropertyChanged("site_id");
+					this.Onsite_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_analyzer_uid", DbType="NVarChar(50)")]
+		public string analyzer_uid
+		{
+			get
+			{
+				return this._analyzer_uid;
+			}
+			set
+			{
+				if ((this._analyzer_uid != value))
+				{
+					this.Onanalyzer_uidChanging(value);
+					this.SendPropertyChanging();
+					this._analyzer_uid = value;
+					this.SendPropertyChanged("analyzer_uid");
+					this.Onanalyzer_uidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approver_uid", DbType="NVarChar(50)")]
+		public string approver_uid
+		{
+			get
+			{
+				return this._approver_uid;
+			}
+			set
+			{
+				if ((this._approver_uid != value))
+				{
+					this.Onapprover_uidChanging(value);
+					this.SendPropertyChanging();
+					this._approver_uid = value;
+					this.SendPropertyChanged("approver_uid");
+					this.Onapprover_uidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_not_published_fg", DbType="Bit")]
+		public System.Nullable<bool> not_published_fg
+		{
+			get
+			{
+				return this._not_published_fg;
+			}
+			set
+			{
+				if ((this._not_published_fg != value))
+				{
+					this.Onnot_published_fgChanging(value);
+					this.SendPropertyChanging();
+					this._not_published_fg = value;
+					this.SendPropertyChanged("not_published_fg");
+					this.Onnot_published_fgChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_not_used_fg", DbType="Bit")]
+		public System.Nullable<bool> not_used_fg
+		{
+			get
+			{
+				return this._not_used_fg;
+			}
+			set
+			{
+				if ((this._not_used_fg != value))
+				{
+					this.Onnot_used_fgChanging(value);
+					this.SendPropertyChanging();
+					this._not_used_fg = value;
+					this.SendPropertyChanged("not_used_fg");
+					this.Onnot_used_fgChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_record_type_id", DbType="Int")]
+		public System.Nullable<int> record_type_id
+		{
+			get
+			{
+				return this._record_type_id;
+			}
+			set
+			{
+				if ((this._record_type_id != value))
+				{
+					if (this._RecordType.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onrecord_type_idChanging(value);
+					this.SendPropertyChanging();
+					this._record_type_id = value;
+					this.SendPropertyChanged("record_type_id");
+					this.Onrecord_type_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_category_no", DbType="Int")]
+		public System.Nullable<int> category_no
+		{
+			get
+			{
+				return this._category_no;
+			}
+			set
+			{
+				if ((this._category_no != value))
+				{
+					this.Oncategory_noChanging(value);
+					this.SendPropertyChanging();
+					this._category_no = value;
+					this.SendPropertyChanged("category_no");
+					this.Oncategory_noChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cat_reason", DbType="NVarChar(500)")]
+		public string cat_reason
+		{
+			get
+			{
+				return this._cat_reason;
+			}
+			set
+			{
+				if ((this._cat_reason != value))
+				{
+					this.Oncat_reasonChanging(value);
+					this.SendPropertyChanging();
+					this._cat_reason = value;
+					this.SendPropertyChanged("cat_reason");
+					this.Oncat_reasonChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id_old", DbType="Int")]
+		public System.Nullable<int> rms_record_id_old
+		{
+			get
+			{
+				return this._rms_record_id_old;
+			}
+			set
+			{
+				if ((this._rms_record_id_old != value))
+				{
+					this.Onrms_record_id_oldChanging(value);
+					this.SendPropertyChanging();
+					this._rms_record_id_old = value;
+					this.SendPropertyChanged("rms_record_id_old");
+					this.Onrms_record_id_oldChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordDD", Storage="_RecordDDs", ThisKey="rms_record_id", OtherKey="rms_record_id")]
+		public EntitySet<RecordDD> RecordDDs
+		{
+			get
+			{
+				return this._RecordDDs;
+			}
+			set
+			{
+				this._RecordDDs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordLock", Storage="_RecordLock", ThisKey="rms_record_id", OtherKey="rms_record_id", IsUnique=true, IsForeignKey=false)]
+		public RecordLock RecordLock
+		{
+			get
+			{
+				return this._RecordLock.Entity;
+			}
+			set
+			{
+				RecordLock previousValue = this._RecordLock.Entity;
+				if (((previousValue != value) 
+							|| (this._RecordLock.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._RecordLock.Entity = null;
+						previousValue.Record = null;
+					}
+					this._RecordLock.Entity = value;
+					if ((value != null))
+					{
+						value.Record = this;
+					}
+					this.SendPropertyChanged("RecordLock");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordEOYStatus", Storage="_RecordEOYStatus", ThisKey="rms_record_id", OtherKey="rms_record_id")]
+		public EntitySet<RecordEOYStatus> RecordEOYStatus
+		{
+			get
+			{
+				return this._RecordEOYStatus;
+			}
+			set
+			{
+				this._RecordEOYStatus.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordAnalysisStatus", Storage="_RecordAnalysisStatus", ThisKey="rms_record_id", OtherKey="rms_record_id", IsUnique=true, IsForeignKey=false)]
+		public RecordAnalysisStatus RecordAnalysisStatus
+		{
+			get
+			{
+				return this._RecordAnalysisStatus.Entity;
+			}
+			set
+			{
+				RecordAnalysisStatus previousValue = this._RecordAnalysisStatus.Entity;
+				if (((previousValue != value) 
+							|| (this._RecordAnalysisStatus.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._RecordAnalysisStatus.Entity = null;
+						previousValue.Record = null;
+					}
+					this._RecordAnalysisStatus.Entity = value;
+					if ((value != null))
+					{
+						value.Record = this;
+					}
+					this.SendPropertyChanged("RecordAnalysisStatus");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordAltOffice", Storage="_RecordAltOffice", ThisKey="rms_record_id", OtherKey="rms_record_id", IsUnique=true, IsForeignKey=false)]
+		public RecordAltOffice RecordAltOffice
+		{
+			get
+			{
+				return this._RecordAltOffice.Entity;
+			}
+			set
+			{
+				RecordAltOffice previousValue = this._RecordAltOffice.Entity;
+				if (((previousValue != value) 
+							|| (this._RecordAltOffice.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._RecordAltOffice.Entity = null;
+						previousValue.Record = null;
+					}
+					this._RecordAltOffice.Entity = value;
+					if ((value != null))
+					{
+						value.Record = this;
+					}
+					this.SendPropertyChanged("RecordAltOffice");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordAnalysisPeriod", Storage="_RecordAnalysisPeriods", ThisKey="rms_record_id", OtherKey="rms_record_id")]
+		public EntitySet<RecordAnalysisPeriod> RecordAnalysisPeriods
+		{
+			get
+			{
+				return this._RecordAnalysisPeriods;
+			}
+			set
+			{
+				this._RecordAnalysisPeriods.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordType_Record", Storage="_RecordType", ThisKey="record_type_id", OtherKey="record_type_id", IsForeignKey=true)]
+		public RecordType RecordType
+		{
+			get
+			{
+				return this._RecordType.Entity;
+			}
+			set
+			{
+				RecordType previousValue = this._RecordType.Entity;
+				if (((previousValue != value) 
+							|| (this._RecordType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._RecordType.Entity = null;
+						previousValue.Records.Remove(this);
+					}
+					this._RecordType.Entity = value;
+					if ((value != null))
+					{
+						value.Records.Add(this);
+						this._record_type_id = value.record_type_id;
+					}
+					else
+					{
+						this._record_type_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("RecordType");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Record", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		public Site Site
+		{
+			get
+			{
+				return this._Site.Entity;
+			}
+			set
+			{
+				Site previousValue = this._Site.Entity;
+				if (((previousValue != value) 
+							|| (this._Site.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Site.Entity = null;
+						previousValue.Records.Remove(this);
+					}
+					this._Site.Entity = value;
+					if ((value != null))
+					{
+						value.Records.Add(this);
+						this._site_id = value.site_id;
+					}
+					else
+					{
+						this._site_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Site");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_RecordDDs(RecordDD entity)
+		{
+			this.SendPropertyChanging();
+			entity.Record = this;
+		}
+		
+		private void detach_RecordDDs(RecordDD entity)
+		{
+			this.SendPropertyChanging();
+			entity.Record = null;
+		}
+		
+		private void attach_RecordEOYStatus(RecordEOYStatus entity)
+		{
+			this.SendPropertyChanging();
+			entity.Record = this;
+		}
+		
+		private void detach_RecordEOYStatus(RecordEOYStatus entity)
+		{
+			this.SendPropertyChanging();
+			entity.Record = null;
+		}
+		
+		private void attach_RecordAnalysisPeriods(RecordAnalysisPeriod entity)
+		{
+			this.SendPropertyChanging();
+			entity.Record = this;
+		}
+		
+		private void detach_RecordAnalysisPeriods(RecordAnalysisPeriod entity)
+		{
+			this.SendPropertyChanging();
+			entity.Record = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Record_DD")]
+	public partial class RecordDD : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _dd_id;
+		
+		private System.Nullable<int> _rms_record_id;
+		
+		private System.Nullable<int> _dd_nu;
+		
+		private System.Nullable<int> _iv_ts_id;
+		
+		private string _gu_id;
+		
+		private EntityRef<Record> _Record;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Ondd_idChanging(int value);
+    partial void Ondd_idChanged();
+    partial void Onrms_record_idChanging(System.Nullable<int> value);
+    partial void Onrms_record_idChanged();
+    partial void Ondd_nuChanging(System.Nullable<int> value);
+    partial void Ondd_nuChanged();
+    partial void Oniv_ts_idChanging(System.Nullable<int> value);
+    partial void Oniv_ts_idChanged();
+    partial void Ongu_idChanging(string value);
+    partial void Ongu_idChanged();
+    #endregion
+		
+		public RecordDD()
+		{
+			this._Record = default(EntityRef<Record>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dd_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int dd_id
+		{
+			get
+			{
+				return this._dd_id;
+			}
+			set
+			{
+				if ((this._dd_id != value))
+				{
+					this.Ondd_idChanging(value);
+					this.SendPropertyChanging();
+					this._dd_id = value;
+					this.SendPropertyChanged("dd_id");
+					this.Ondd_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int")]
+		public System.Nullable<int> rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					if (this._Record.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onrms_record_idChanging(value);
+					this.SendPropertyChanging();
+					this._rms_record_id = value;
+					this.SendPropertyChanged("rms_record_id");
+					this.Onrms_record_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dd_nu", DbType="Int")]
+		public System.Nullable<int> dd_nu
+		{
+			get
+			{
+				return this._dd_nu;
+			}
+			set
+			{
+				if ((this._dd_nu != value))
+				{
+					this.Ondd_nuChanging(value);
+					this.SendPropertyChanging();
+					this._dd_nu = value;
+					this.SendPropertyChanged("dd_nu");
+					this.Ondd_nuChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iv_ts_id", DbType="Int")]
+		public System.Nullable<int> iv_ts_id
+		{
+			get
+			{
+				return this._iv_ts_id;
+			}
+			set
+			{
+				if ((this._iv_ts_id != value))
+				{
+					this.Oniv_ts_idChanging(value);
+					this.SendPropertyChanging();
+					this._iv_ts_id = value;
+					this.SendPropertyChanged("iv_ts_id");
+					this.Oniv_ts_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gu_id", DbType="NVarChar(32)")]
+		public string gu_id
+		{
+			get
+			{
+				return this._gu_id;
+			}
+			set
+			{
+				if ((this._gu_id != value))
+				{
+					this.Ongu_idChanging(value);
+					this.SendPropertyChanging();
+					this._gu_id = value;
+					this.SendPropertyChanged("gu_id");
+					this.Ongu_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordDD", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		public Record Record
+		{
+			get
+			{
+				return this._Record.Entity;
+			}
+			set
+			{
+				Record previousValue = this._Record.Entity;
+				if (((previousValue != value) 
+							|| (this._Record.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Record.Entity = null;
+						previousValue.RecordDDs.Remove(this);
+					}
+					this._Record.Entity = value;
+					if ((value != null))
+					{
+						value.RecordDDs.Add(this);
+						this._rms_record_id = value.rms_record_id;
+					}
+					else
+					{
+						this._rms_record_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Record");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Locks")]
+	public partial class RecordLock : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _rms_record_id;
+		
+		private string _lock_type;
+		
+		private string _lock_uid;
+		
+		private System.DateTime _lock_dt;
+		
+		private System.Nullable<int> _period_id;
+		
+		private EntityRef<Record> _Record;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onrms_record_idChanging(int value);
+    partial void Onrms_record_idChanged();
+    partial void Onlock_typeChanging(string value);
+    partial void Onlock_typeChanged();
+    partial void Onlock_uidChanging(string value);
+    partial void Onlock_uidChanged();
+    partial void Onlock_dtChanging(System.DateTime value);
+    partial void Onlock_dtChanged();
+    partial void Onperiod_idChanging(System.Nullable<int> value);
+    partial void Onperiod_idChanged();
+    #endregion
+		
+		public RecordLock()
+		{
+			this._Record = default(EntityRef<Record>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					if (this._Record.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onrms_record_idChanging(value);
+					this.SendPropertyChanging();
+					this._rms_record_id = value;
+					this.SendPropertyChanged("rms_record_id");
+					this.Onrms_record_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lock_type", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string lock_type
+		{
+			get
+			{
+				return this._lock_type;
+			}
+			set
+			{
+				if ((this._lock_type != value))
+				{
+					this.Onlock_typeChanging(value);
+					this.SendPropertyChanging();
+					this._lock_type = value;
+					this.SendPropertyChanged("lock_type");
+					this.Onlock_typeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lock_uid", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string lock_uid
+		{
+			get
+			{
+				return this._lock_uid;
+			}
+			set
+			{
+				if ((this._lock_uid != value))
+				{
+					this.Onlock_uidChanging(value);
+					this.SendPropertyChanging();
+					this._lock_uid = value;
+					this.SendPropertyChanged("lock_uid");
+					this.Onlock_uidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lock_dt", DbType="DateTime NOT NULL")]
+		public System.DateTime lock_dt
+		{
+			get
+			{
+				return this._lock_dt;
+			}
+			set
+			{
+				if ((this._lock_dt != value))
+				{
+					this.Onlock_dtChanging(value);
+					this.SendPropertyChanging();
+					this._lock_dt = value;
+					this.SendPropertyChanged("lock_dt");
+					this.Onlock_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_period_id", DbType="Int")]
+		public System.Nullable<int> period_id
+		{
+			get
+			{
+				return this._period_id;
+			}
+			set
+			{
+				if ((this._period_id != value))
+				{
+					this.Onperiod_idChanging(value);
+					this.SendPropertyChanging();
+					this._period_id = value;
+					this.SendPropertyChanged("period_id");
+					this.Onperiod_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordLock", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		public Record Record
+		{
+			get
+			{
+				return this._Record.Entity;
+			}
+			set
+			{
+				Record previousValue = this._Record.Entity;
+				if (((previousValue != value) 
+							|| (this._Record.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Record.Entity = null;
+						previousValue.RecordLock = null;
+					}
+					this._Record.Entity = value;
+					if ((value != null))
+					{
+						value.RecordLock = this;
+						this._rms_record_id = value.rms_record_id;
+					}
+					else
+					{
+						this._rms_record_id = default(int);
+					}
+					this.SendPropertyChanged("Record");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_EOY_Status")]
+	public partial class RecordEOYStatus : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _rms_record_id;
+		
+		private short _water_year_va;
+		
+		private string _eoy_status_va;
+		
+		private string _status_set_by;
+		
+		private System.Nullable<System.DateTime> _status_set_dt;
+		
+		private string _analyzed_by;
+		
+		private string _approved_by;
+		
+		private EntityRef<Record> _Record;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onrms_record_idChanging(int value);
+    partial void Onrms_record_idChanged();
+    partial void Onwater_year_vaChanging(short value);
+    partial void Onwater_year_vaChanged();
+    partial void Oneoy_status_vaChanging(string value);
+    partial void Oneoy_status_vaChanged();
+    partial void Onstatus_set_byChanging(string value);
+    partial void Onstatus_set_byChanged();
+    partial void Onstatus_set_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onstatus_set_dtChanged();
+    partial void Onanalyzed_byChanging(string value);
+    partial void Onanalyzed_byChanged();
+    partial void Onapproved_byChanging(string value);
+    partial void Onapproved_byChanged();
+    #endregion
+		
+		public RecordEOYStatus()
+		{
+			this._Record = default(EntityRef<Record>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					if (this._Record.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onrms_record_idChanging(value);
+					this.SendPropertyChanging();
+					this._rms_record_id = value;
+					this.SendPropertyChanged("rms_record_id");
+					this.Onrms_record_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_water_year_va", DbType="SmallInt NOT NULL", IsPrimaryKey=true)]
+		public short water_year_va
+		{
+			get
+			{
+				return this._water_year_va;
+			}
+			set
+			{
+				if ((this._water_year_va != value))
+				{
+					this.Onwater_year_vaChanging(value);
+					this.SendPropertyChanging();
+					this._water_year_va = value;
+					this.SendPropertyChanged("water_year_va");
+					this.Onwater_year_vaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_eoy_status_va", DbType="NVarChar(50)")]
+		public string eoy_status_va
+		{
+			get
+			{
+				return this._eoy_status_va;
+			}
+			set
+			{
+				if ((this._eoy_status_va != value))
+				{
+					this.Oneoy_status_vaChanging(value);
+					this.SendPropertyChanging();
+					this._eoy_status_va = value;
+					this.SendPropertyChanged("eoy_status_va");
+					this.Oneoy_status_vaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status_set_by", DbType="NVarChar(50)")]
+		public string status_set_by
+		{
+			get
+			{
+				return this._status_set_by;
+			}
+			set
+			{
+				if ((this._status_set_by != value))
+				{
+					this.Onstatus_set_byChanging(value);
+					this.SendPropertyChanging();
+					this._status_set_by = value;
+					this.SendPropertyChanged("status_set_by");
+					this.Onstatus_set_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status_set_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> status_set_dt
+		{
+			get
+			{
+				return this._status_set_dt;
+			}
+			set
+			{
+				if ((this._status_set_dt != value))
+				{
+					this.Onstatus_set_dtChanging(value);
+					this.SendPropertyChanging();
+					this._status_set_dt = value;
+					this.SendPropertyChanged("status_set_dt");
+					this.Onstatus_set_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_analyzed_by", DbType="NVarChar(50)")]
+		public string analyzed_by
+		{
+			get
+			{
+				return this._analyzed_by;
+			}
+			set
+			{
+				if ((this._analyzed_by != value))
+				{
+					this.Onanalyzed_byChanging(value);
+					this.SendPropertyChanging();
+					this._analyzed_by = value;
+					this.SendPropertyChanged("analyzed_by");
+					this.Onanalyzed_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved_by", DbType="NVarChar(50)")]
+		public string approved_by
+		{
+			get
+			{
+				return this._approved_by;
+			}
+			set
+			{
+				if ((this._approved_by != value))
+				{
+					this.Onapproved_byChanging(value);
+					this.SendPropertyChanging();
+					this._approved_by = value;
+					this.SendPropertyChanged("approved_by");
+					this.Onapproved_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordEOYStatus", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		public Record Record
+		{
+			get
+			{
+				return this._Record.Entity;
+			}
+			set
+			{
+				Record previousValue = this._Record.Entity;
+				if (((previousValue != value) 
+							|| (this._Record.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Record.Entity = null;
+						previousValue.RecordEOYStatus.Remove(this);
+					}
+					this._Record.Entity = value;
+					if ((value != null))
+					{
+						value.RecordEOYStatus.Add(this);
+						this._rms_record_id = value.rms_record_id;
+					}
+					else
+					{
+						this._rms_record_id = default(int);
+					}
+					this.SendPropertyChanged("Record");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Dialog")]
+	public partial class PeriodDialog : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _dialog_id;
+		
+		private System.Nullable<int> _period_id;
+		
+		private System.Nullable<System.DateTime> _dialog_dt;
+		
+		private string _dialog_by;
+		
+		private string _status_set_to_va;
+		
+		private string _origin_va;
+		
+		private string _comments_va;
+		
+		private System.Nullable<System.DateTime> _period_end_dt;
+		
+		private string _reanalyze_severity;
+		
+		private System.Nullable<int> _dialog_id_old;
+		
+		private EntityRef<RecordAnalysisPeriod> _RecordAnalysisPeriod;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Ondialog_idChanging(int value);
+    partial void Ondialog_idChanged();
+    partial void Onperiod_idChanging(System.Nullable<int> value);
+    partial void Onperiod_idChanged();
+    partial void Ondialog_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Ondialog_dtChanged();
+    partial void Ondialog_byChanging(string value);
+    partial void Ondialog_byChanged();
+    partial void Onstatus_set_to_vaChanging(string value);
+    partial void Onstatus_set_to_vaChanged();
+    partial void Onorigin_vaChanging(string value);
+    partial void Onorigin_vaChanged();
+    partial void Oncomments_vaChanging(string value);
+    partial void Oncomments_vaChanged();
+    partial void Onperiod_end_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onperiod_end_dtChanged();
+    partial void Onreanalyze_severityChanging(string value);
+    partial void Onreanalyze_severityChanged();
+    partial void Ondialog_id_oldChanging(System.Nullable<int> value);
+    partial void Ondialog_id_oldChanged();
+    #endregion
+		
+		public PeriodDialog()
+		{
+			this._RecordAnalysisPeriod = default(EntityRef<RecordAnalysisPeriod>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dialog_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int dialog_id
+		{
+			get
+			{
+				return this._dialog_id;
+			}
+			set
+			{
+				if ((this._dialog_id != value))
+				{
+					this.Ondialog_idChanging(value);
+					this.SendPropertyChanging();
+					this._dialog_id = value;
+					this.SendPropertyChanged("dialog_id");
+					this.Ondialog_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_period_id", DbType="Int")]
+		public System.Nullable<int> period_id
+		{
+			get
+			{
+				return this._period_id;
+			}
+			set
+			{
+				if ((this._period_id != value))
+				{
+					if (this._RecordAnalysisPeriod.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onperiod_idChanging(value);
+					this.SendPropertyChanging();
+					this._period_id = value;
+					this.SendPropertyChanged("period_id");
+					this.Onperiod_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dialog_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> dialog_dt
+		{
+			get
+			{
+				return this._dialog_dt;
+			}
+			set
+			{
+				if ((this._dialog_dt != value))
+				{
+					this.Ondialog_dtChanging(value);
+					this.SendPropertyChanging();
+					this._dialog_dt = value;
+					this.SendPropertyChanged("dialog_dt");
+					this.Ondialog_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dialog_by", DbType="NVarChar(50)")]
+		public string dialog_by
+		{
+			get
+			{
+				return this._dialog_by;
+			}
+			set
+			{
+				if ((this._dialog_by != value))
+				{
+					this.Ondialog_byChanging(value);
+					this.SendPropertyChanging();
+					this._dialog_by = value;
+					this.SendPropertyChanged("dialog_by");
+					this.Ondialog_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status_set_to_va", DbType="NVarChar(50)")]
+		public string status_set_to_va
+		{
+			get
+			{
+				return this._status_set_to_va;
+			}
+			set
+			{
+				if ((this._status_set_to_va != value))
+				{
+					this.Onstatus_set_to_vaChanging(value);
+					this.SendPropertyChanging();
+					this._status_set_to_va = value;
+					this.SendPropertyChanged("status_set_to_va");
+					this.Onstatus_set_to_vaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_origin_va", DbType="NVarChar(10)")]
+		public string origin_va
+		{
+			get
+			{
+				return this._origin_va;
+			}
+			set
+			{
+				if ((this._origin_va != value))
+				{
+					this.Onorigin_vaChanging(value);
+					this.SendPropertyChanging();
+					this._origin_va = value;
+					this.SendPropertyChanged("origin_va");
+					this.Onorigin_vaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_comments_va", DbType="NVarChar(MAX)")]
+		public string comments_va
+		{
+			get
+			{
+				return this._comments_va;
+			}
+			set
+			{
+				if ((this._comments_va != value))
+				{
+					this.Oncomments_vaChanging(value);
+					this.SendPropertyChanging();
+					this._comments_va = value;
+					this.SendPropertyChanged("comments_va");
+					this.Oncomments_vaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_period_end_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> period_end_dt
+		{
+			get
+			{
+				return this._period_end_dt;
+			}
+			set
+			{
+				if ((this._period_end_dt != value))
+				{
+					this.Onperiod_end_dtChanging(value);
+					this.SendPropertyChanging();
+					this._period_end_dt = value;
+					this.SendPropertyChanged("period_end_dt");
+					this.Onperiod_end_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_reanalyze_severity", DbType="NVarChar(50)")]
+		public string reanalyze_severity
+		{
+			get
+			{
+				return this._reanalyze_severity;
+			}
+			set
+			{
+				if ((this._reanalyze_severity != value))
+				{
+					this.Onreanalyze_severityChanging(value);
+					this.SendPropertyChanging();
+					this._reanalyze_severity = value;
+					this.SendPropertyChanged("reanalyze_severity");
+					this.Onreanalyze_severityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dialog_id_old", DbType="Int")]
+		public System.Nullable<int> dialog_id_old
+		{
+			get
+			{
+				return this._dialog_id_old;
+			}
+			set
+			{
+				if ((this._dialog_id_old != value))
+				{
+					this.Ondialog_id_oldChanging(value);
+					this.SendPropertyChanging();
+					this._dialog_id_old = value;
+					this.SendPropertyChanged("dialog_id_old");
+					this.Ondialog_id_oldChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_PeriodDialog", Storage="_RecordAnalysisPeriod", ThisKey="period_id", OtherKey="period_id", IsForeignKey=true)]
+		public RecordAnalysisPeriod RecordAnalysisPeriod
+		{
+			get
+			{
+				return this._RecordAnalysisPeriod.Entity;
+			}
+			set
+			{
+				RecordAnalysisPeriod previousValue = this._RecordAnalysisPeriod.Entity;
+				if (((previousValue != value) 
+							|| (this._RecordAnalysisPeriod.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._RecordAnalysisPeriod.Entity = null;
+						previousValue.PeriodDialogs.Remove(this);
+					}
+					this._RecordAnalysisPeriod.Entity = value;
+					if ((value != null))
+					{
+						value.PeriodDialogs.Add(this);
+						this._period_id = value.period_id;
+					}
+					else
+					{
+						this._period_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("RecordAnalysisPeriod");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Change_Log")]
+	public partial class PeriodChangeLog : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _change_log_id;
+		
+		private int _period_id;
+		
+		private string _edited_by_uid;
+		
+		private System.DateTime _edited_dt;
+		
+		private string _new_va;
+		
+		private EntityRef<RecordAnalysisPeriod> _RecordAnalysisPeriod;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onchange_log_idChanging(int value);
+    partial void Onchange_log_idChanged();
+    partial void Onperiod_idChanging(int value);
+    partial void Onperiod_idChanged();
+    partial void Onedited_by_uidChanging(string value);
+    partial void Onedited_by_uidChanged();
+    partial void Onedited_dtChanging(System.DateTime value);
+    partial void Onedited_dtChanged();
+    partial void Onnew_vaChanging(string value);
+    partial void Onnew_vaChanged();
+    #endregion
+		
+		public PeriodChangeLog()
+		{
+			this._RecordAnalysisPeriod = default(EntityRef<RecordAnalysisPeriod>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_change_log_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int change_log_id
+		{
+			get
+			{
+				return this._change_log_id;
+			}
+			set
+			{
+				if ((this._change_log_id != value))
+				{
+					this.Onchange_log_idChanging(value);
+					this.SendPropertyChanging();
+					this._change_log_id = value;
+					this.SendPropertyChanged("change_log_id");
+					this.Onchange_log_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_period_id", DbType="Int NOT NULL")]
+		public int period_id
+		{
+			get
+			{
+				return this._period_id;
+			}
+			set
+			{
+				if ((this._period_id != value))
+				{
+					if (this._RecordAnalysisPeriod.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onperiod_idChanging(value);
+					this.SendPropertyChanging();
+					this._period_id = value;
+					this.SendPropertyChanged("period_id");
+					this.Onperiod_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_edited_by_uid", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string edited_by_uid
+		{
+			get
+			{
+				return this._edited_by_uid;
+			}
+			set
+			{
+				if ((this._edited_by_uid != value))
+				{
+					this.Onedited_by_uidChanging(value);
+					this.SendPropertyChanging();
+					this._edited_by_uid = value;
+					this.SendPropertyChanged("edited_by_uid");
+					this.Onedited_by_uidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_edited_dt", DbType="DateTime NOT NULL")]
+		public System.DateTime edited_dt
+		{
+			get
+			{
+				return this._edited_dt;
+			}
+			set
+			{
+				if ((this._edited_dt != value))
+				{
+					this.Onedited_dtChanging(value);
+					this.SendPropertyChanging();
+					this._edited_dt = value;
+					this.SendPropertyChanged("edited_dt");
+					this.Onedited_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_new_va", DbType="NVarChar(MAX)")]
+		public string new_va
+		{
+			get
+			{
+				return this._new_va;
+			}
+			set
+			{
+				if ((this._new_va != value))
+				{
+					this.Onnew_vaChanging(value);
+					this.SendPropertyChanging();
+					this._new_va = value;
+					this.SendPropertyChanged("new_va");
+					this.Onnew_vaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_PeriodChangeLog", Storage="_RecordAnalysisPeriod", ThisKey="period_id", OtherKey="period_id", IsForeignKey=true)]
+		public RecordAnalysisPeriod RecordAnalysisPeriod
+		{
+			get
+			{
+				return this._RecordAnalysisPeriod.Entity;
+			}
+			set
+			{
+				RecordAnalysisPeriod previousValue = this._RecordAnalysisPeriod.Entity;
+				if (((previousValue != value) 
+							|| (this._RecordAnalysisPeriod.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._RecordAnalysisPeriod.Entity = null;
+						previousValue.PeriodChangeLogs.Remove(this);
+					}
+					this._RecordAnalysisPeriod.Entity = value;
+					if ((value != null))
+					{
+						value.PeriodChangeLogs.Add(this);
+						this._period_id = value.period_id;
+					}
+					else
+					{
+						this._period_id = default(int);
+					}
+					this.SendPropertyChanged("RecordAnalysisPeriod");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Approval_Status")]
+	public partial class RecordApprovalStatus
+	{
+		
+		private System.Nullable<int> _site_id;
+		
+		private System.Nullable<int> _dd_nu;
+		
+		private string _office_cd;
+		
+		private string _site_no;
+		
+		private System.Nullable<int> _category_no;
+		
+		private string _parm_cd;
+		
+		private System.Nullable<System.DateTime> _last_aging_dt;
+		
+		private System.Nullable<int> _rms_record_id;
+		
+		private string _type_cd;
+		
+		private string _type_ds;
+		
+		private System.Nullable<System.DateTime> _analyze_period_beg_dt;
+		
+		private System.Nullable<System.DateTime> _analyze_period_end_dt;
+		
+		private System.Nullable<System.DateTime> _approve_period_beg_dt;
+		
+		private System.Nullable<System.DateTime> _approve_period_end_dt;
+		
+		private System.Nullable<bool> _not_used_fg;
+		
+		private System.Nullable<int> _DaysSinceAging;
+		
+		private System.Nullable<int> _iv_ts_id;
+		
+		public RecordApprovalStatus()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int")]
+		public System.Nullable<int> site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					this._site_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dd_nu", DbType="Int")]
+		public System.Nullable<int> dd_nu
+		{
+			get
+			{
+				return this._dd_nu;
+			}
+			set
+			{
+				if ((this._dd_nu != value))
+				{
+					this._dd_nu = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_cd", DbType="NVarChar(10)")]
+		public string office_cd
+		{
+			get
+			{
+				return this._office_cd;
+			}
+			set
+			{
+				if ((this._office_cd != value))
+				{
+					this._office_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_no", DbType="NVarChar(15)")]
+		public string site_no
+		{
+			get
+			{
+				return this._site_no;
+			}
+			set
+			{
+				if ((this._site_no != value))
+				{
+					this._site_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_category_no", DbType="Int")]
+		public System.Nullable<int> category_no
+		{
+			get
+			{
+				return this._category_no;
+			}
+			set
+			{
+				if ((this._category_no != value))
+				{
+					this._category_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_parm_cd", DbType="NVarChar(5)")]
+		public string parm_cd
+		{
+			get
+			{
+				return this._parm_cd;
+			}
+			set
+			{
+				if ((this._parm_cd != value))
+				{
+					this._parm_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_last_aging_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> last_aging_dt
+		{
+			get
+			{
+				return this._last_aging_dt;
+			}
+			set
+			{
+				if ((this._last_aging_dt != value))
+				{
+					this._last_aging_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int")]
+		public System.Nullable<int> rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					this._rms_record_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_cd", DbType="NVarChar(50)")]
+		public string type_cd
+		{
+			get
+			{
+				return this._type_cd;
+			}
+			set
+			{
+				if ((this._type_cd != value))
+				{
+					this._type_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_ds", DbType="NVarChar(200)")]
+		public string type_ds
+		{
+			get
+			{
+				return this._type_ds;
+			}
+			set
+			{
+				if ((this._type_ds != value))
+				{
+					this._type_ds = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_analyze_period_beg_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> analyze_period_beg_dt
+		{
+			get
+			{
+				return this._analyze_period_beg_dt;
+			}
+			set
+			{
+				if ((this._analyze_period_beg_dt != value))
+				{
+					this._analyze_period_beg_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_analyze_period_end_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> analyze_period_end_dt
+		{
+			get
+			{
+				return this._analyze_period_end_dt;
+			}
+			set
+			{
+				if ((this._analyze_period_end_dt != value))
+				{
+					this._analyze_period_end_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approve_period_beg_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> approve_period_beg_dt
+		{
+			get
+			{
+				return this._approve_period_beg_dt;
+			}
+			set
+			{
+				if ((this._approve_period_beg_dt != value))
+				{
+					this._approve_period_beg_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approve_period_end_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> approve_period_end_dt
+		{
+			get
+			{
+				return this._approve_period_end_dt;
+			}
+			set
+			{
+				if ((this._approve_period_end_dt != value))
+				{
+					this._approve_period_end_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_not_used_fg", DbType="Bit")]
+		public System.Nullable<bool> not_used_fg
+		{
+			get
+			{
+				return this._not_used_fg;
+			}
+			set
+			{
+				if ((this._not_used_fg != value))
+				{
+					this._not_used_fg = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DaysSinceAging", DbType="Int")]
+		public System.Nullable<int> DaysSinceAging
+		{
+			get
+			{
+				return this._DaysSinceAging;
+			}
+			set
+			{
+				if ((this._DaysSinceAging != value))
+				{
+					this._DaysSinceAging = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iv_ts_id", DbType="Int")]
+		public System.Nullable<int> iv_ts_id
+		{
+			get
+			{
+				return this._iv_ts_id;
+			}
+			set
+			{
+				if ((this._iv_ts_id != value))
+				{
+					this._iv_ts_id = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Analysis_Status")]
+	public partial class RecordAnalysisStatus : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _rms_record_id;
+		
+		private string _analyzed_period_by;
+		
+		private System.Nullable<System.DateTime> _analyzed_period_dt;
+		
+		private string _approved_period_by;
+		
+		private System.Nullable<System.DateTime> _approved_period_dt;
+		
+		private EntityRef<Record> _Record;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onrms_record_idChanging(int value);
+    partial void Onrms_record_idChanged();
+    partial void Onanalyzed_period_byChanging(string value);
+    partial void Onanalyzed_period_byChanged();
+    partial void Onanalyzed_period_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onanalyzed_period_dtChanged();
+    partial void Onapproved_period_byChanging(string value);
+    partial void Onapproved_period_byChanged();
+    partial void Onapproved_period_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onapproved_period_dtChanged();
+    #endregion
+		
+		public RecordAnalysisStatus()
+		{
+			this._Record = default(EntityRef<Record>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					if (this._Record.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onrms_record_idChanging(value);
+					this.SendPropertyChanging();
+					this._rms_record_id = value;
+					this.SendPropertyChanged("rms_record_id");
+					this.Onrms_record_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_analyzed_period_by", DbType="NVarChar(50)")]
+		public string analyzed_period_by
+		{
+			get
+			{
+				return this._analyzed_period_by;
+			}
+			set
+			{
+				if ((this._analyzed_period_by != value))
+				{
+					this.Onanalyzed_period_byChanging(value);
+					this.SendPropertyChanging();
+					this._analyzed_period_by = value;
+					this.SendPropertyChanged("analyzed_period_by");
+					this.Onanalyzed_period_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_analyzed_period_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> analyzed_period_dt
+		{
+			get
+			{
+				return this._analyzed_period_dt;
+			}
+			set
+			{
+				if ((this._analyzed_period_dt != value))
+				{
+					this.Onanalyzed_period_dtChanging(value);
+					this.SendPropertyChanging();
+					this._analyzed_period_dt = value;
+					this.SendPropertyChanged("analyzed_period_dt");
+					this.Onanalyzed_period_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved_period_by", DbType="NVarChar(50)")]
+		public string approved_period_by
+		{
+			get
+			{
+				return this._approved_period_by;
+			}
+			set
+			{
+				if ((this._approved_period_by != value))
+				{
+					this.Onapproved_period_byChanging(value);
+					this.SendPropertyChanging();
+					this._approved_period_by = value;
+					this.SendPropertyChanged("approved_period_by");
+					this.Onapproved_period_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved_period_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> approved_period_dt
+		{
+			get
+			{
+				return this._approved_period_dt;
+			}
+			set
+			{
+				if ((this._approved_period_dt != value))
+				{
+					this.Onapproved_period_dtChanging(value);
+					this.SendPropertyChanging();
+					this._approved_period_dt = value;
+					this.SendPropertyChanged("approved_period_dt");
+					this.Onapproved_period_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordAnalysisStatus", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		public Record Record
+		{
+			get
+			{
+				return this._Record.Entity;
+			}
+			set
+			{
+				Record previousValue = this._Record.Entity;
+				if (((previousValue != value) 
+							|| (this._Record.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Record.Entity = null;
+						previousValue.RecordAnalysisStatus = null;
+					}
+					this._Record.Entity = value;
+					if ((value != null))
+					{
+						value.RecordAnalysisStatus = this;
+						this._rms_record_id = value.rms_record_id;
+					}
+					else
+					{
+						this._rms_record_id = default(int);
+					}
+					this.SendPropertyChanged("Record");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Alt_Office")]
+	public partial class RecordAltOffice : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _rms_record_id;
+		
+		private System.Nullable<int> _site_id;
+		
+		private System.Nullable<int> _alt_office_id;
+		
+		private EntityRef<Record> _Record;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onrms_record_idChanging(int value);
+    partial void Onrms_record_idChanged();
+    partial void Onsite_idChanging(System.Nullable<int> value);
+    partial void Onsite_idChanged();
+    partial void Onalt_office_idChanging(System.Nullable<int> value);
+    partial void Onalt_office_idChanged();
+    #endregion
+		
+		public RecordAltOffice()
+		{
+			this._Record = default(EntityRef<Record>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					if (this._Record.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onrms_record_idChanging(value);
+					this.SendPropertyChanging();
+					this._rms_record_id = value;
+					this.SendPropertyChanged("rms_record_id");
+					this.Onrms_record_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int")]
+		public System.Nullable<int> site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					this.Onsite_idChanging(value);
+					this.SendPropertyChanging();
+					this._site_id = value;
+					this.SendPropertyChanged("site_id");
+					this.Onsite_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_alt_office_id", DbType="Int")]
+		public System.Nullable<int> alt_office_id
+		{
+			get
+			{
+				return this._alt_office_id;
+			}
+			set
+			{
+				if ((this._alt_office_id != value))
+				{
+					this.Onalt_office_idChanging(value);
+					this.SendPropertyChanging();
+					this._alt_office_id = value;
+					this.SendPropertyChanged("alt_office_id");
+					this.Onalt_office_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordAltOffice", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		public Record Record
+		{
+			get
+			{
+				return this._Record.Entity;
+			}
+			set
+			{
+				Record previousValue = this._Record.Entity;
+				if (((previousValue != value) 
+							|| (this._Record.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Record.Entity = null;
+						previousValue.RecordAltOffice = null;
+					}
+					this._Record.Entity = value;
+					if ((value != null))
+					{
+						value.RecordAltOffice = this;
+						this._rms_record_id = value.rms_record_id;
+					}
+					else
+					{
+						this._rms_record_id = default(int);
+					}
+					this.SendPropertyChanged("Record");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Analysis_Periods")]
+	public partial class RecordAnalysisPeriod : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _period_id;
+		
+		private System.Nullable<int> _rms_record_id;
+		
+		private System.Nullable<System.DateTime> _period_beg_dt;
+		
+		private System.Nullable<System.DateTime> _period_end_dt;
+		
+		private string _status_va;
+		
+		private string _status_set_by;
+		
+		private string _status_set_by_role_va;
+		
+		private string _analyzed_by;
+		
+		private System.Nullable<System.DateTime> _analyzed_dt;
+		
+		private string _approved_by;
+		
+		private System.Nullable<System.DateTime> _approved_dt;
+		
+		private string _analysis_notes_va;
+		
+		private System.Nullable<int> _period_id_old;
+		
+		private EntityRef<PeriodSavedNote> _PeriodSavedNote;
+		
+		private EntitySet<PeriodDialog> _PeriodDialogs;
+		
+		private EntitySet<PeriodChangeLog> _PeriodChangeLogs;
+		
+		private EntityRef<Record> _Record;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onperiod_idChanging(int value);
+    partial void Onperiod_idChanged();
+    partial void Onrms_record_idChanging(System.Nullable<int> value);
+    partial void Onrms_record_idChanged();
+    partial void Onperiod_beg_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onperiod_beg_dtChanged();
+    partial void Onperiod_end_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onperiod_end_dtChanged();
+    partial void Onstatus_vaChanging(string value);
+    partial void Onstatus_vaChanged();
+    partial void Onstatus_set_byChanging(string value);
+    partial void Onstatus_set_byChanged();
+    partial void Onstatus_set_by_role_vaChanging(string value);
+    partial void Onstatus_set_by_role_vaChanged();
+    partial void Onanalyzed_byChanging(string value);
+    partial void Onanalyzed_byChanged();
+    partial void Onanalyzed_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onanalyzed_dtChanged();
+    partial void Onapproved_byChanging(string value);
+    partial void Onapproved_byChanged();
+    partial void Onapproved_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onapproved_dtChanged();
+    partial void Onanalysis_notes_vaChanging(string value);
+    partial void Onanalysis_notes_vaChanged();
+    partial void Onperiod_id_oldChanging(System.Nullable<int> value);
+    partial void Onperiod_id_oldChanged();
+    #endregion
+		
+		public RecordAnalysisPeriod()
+		{
+			this._PeriodSavedNote = default(EntityRef<PeriodSavedNote>);
+			this._PeriodDialogs = new EntitySet<PeriodDialog>(new Action<PeriodDialog>(this.attach_PeriodDialogs), new Action<PeriodDialog>(this.detach_PeriodDialogs));
+			this._PeriodChangeLogs = new EntitySet<PeriodChangeLog>(new Action<PeriodChangeLog>(this.attach_PeriodChangeLogs), new Action<PeriodChangeLog>(this.detach_PeriodChangeLogs));
+			this._Record = default(EntityRef<Record>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_period_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int period_id
+		{
+			get
+			{
+				return this._period_id;
+			}
+			set
+			{
+				if ((this._period_id != value))
+				{
+					this.Onperiod_idChanging(value);
+					this.SendPropertyChanging();
+					this._period_id = value;
+					this.SendPropertyChanged("period_id");
+					this.Onperiod_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int")]
+		public System.Nullable<int> rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					if (this._Record.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onrms_record_idChanging(value);
+					this.SendPropertyChanging();
+					this._rms_record_id = value;
+					this.SendPropertyChanged("rms_record_id");
+					this.Onrms_record_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_period_beg_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> period_beg_dt
+		{
+			get
+			{
+				return this._period_beg_dt;
+			}
+			set
+			{
+				if ((this._period_beg_dt != value))
+				{
+					this.Onperiod_beg_dtChanging(value);
+					this.SendPropertyChanging();
+					this._period_beg_dt = value;
+					this.SendPropertyChanged("period_beg_dt");
+					this.Onperiod_beg_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_period_end_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> period_end_dt
+		{
+			get
+			{
+				return this._period_end_dt;
+			}
+			set
+			{
+				if ((this._period_end_dt != value))
+				{
+					this.Onperiod_end_dtChanging(value);
+					this.SendPropertyChanging();
+					this._period_end_dt = value;
+					this.SendPropertyChanged("period_end_dt");
+					this.Onperiod_end_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status_va", DbType="NVarChar(15)")]
+		public string status_va
+		{
+			get
+			{
+				return this._status_va;
+			}
+			set
+			{
+				if ((this._status_va != value))
+				{
+					this.Onstatus_vaChanging(value);
+					this.SendPropertyChanging();
+					this._status_va = value;
+					this.SendPropertyChanged("status_va");
+					this.Onstatus_vaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status_set_by", DbType="NVarChar(50)")]
+		public string status_set_by
+		{
+			get
+			{
+				return this._status_set_by;
+			}
+			set
+			{
+				if ((this._status_set_by != value))
+				{
+					this.Onstatus_set_byChanging(value);
+					this.SendPropertyChanging();
+					this._status_set_by = value;
+					this.SendPropertyChanged("status_set_by");
+					this.Onstatus_set_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status_set_by_role_va", DbType="NVarChar(50)")]
+		public string status_set_by_role_va
+		{
+			get
+			{
+				return this._status_set_by_role_va;
+			}
+			set
+			{
+				if ((this._status_set_by_role_va != value))
+				{
+					this.Onstatus_set_by_role_vaChanging(value);
+					this.SendPropertyChanging();
+					this._status_set_by_role_va = value;
+					this.SendPropertyChanged("status_set_by_role_va");
+					this.Onstatus_set_by_role_vaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_analyzed_by", DbType="NVarChar(50)")]
+		public string analyzed_by
+		{
+			get
+			{
+				return this._analyzed_by;
+			}
+			set
+			{
+				if ((this._analyzed_by != value))
+				{
+					this.Onanalyzed_byChanging(value);
+					this.SendPropertyChanging();
+					this._analyzed_by = value;
+					this.SendPropertyChanged("analyzed_by");
+					this.Onanalyzed_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_analyzed_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> analyzed_dt
+		{
+			get
+			{
+				return this._analyzed_dt;
+			}
+			set
+			{
+				if ((this._analyzed_dt != value))
+				{
+					this.Onanalyzed_dtChanging(value);
+					this.SendPropertyChanging();
+					this._analyzed_dt = value;
+					this.SendPropertyChanged("analyzed_dt");
+					this.Onanalyzed_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved_by", DbType="NVarChar(50)")]
+		public string approved_by
+		{
+			get
+			{
+				return this._approved_by;
+			}
+			set
+			{
+				if ((this._approved_by != value))
+				{
+					this.Onapproved_byChanging(value);
+					this.SendPropertyChanging();
+					this._approved_by = value;
+					this.SendPropertyChanged("approved_by");
+					this.Onapproved_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> approved_dt
+		{
+			get
+			{
+				return this._approved_dt;
+			}
+			set
+			{
+				if ((this._approved_dt != value))
+				{
+					this.Onapproved_dtChanging(value);
+					this.SendPropertyChanging();
+					this._approved_dt = value;
+					this.SendPropertyChanged("approved_dt");
+					this.Onapproved_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_analysis_notes_va", DbType="NVarChar(MAX)")]
+		public string analysis_notes_va
+		{
+			get
+			{
+				return this._analysis_notes_va;
+			}
+			set
+			{
+				if ((this._analysis_notes_va != value))
+				{
+					this.Onanalysis_notes_vaChanging(value);
+					this.SendPropertyChanging();
+					this._analysis_notes_va = value;
+					this.SendPropertyChanged("analysis_notes_va");
+					this.Onanalysis_notes_vaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_period_id_old", DbType="Int")]
+		public System.Nullable<int> period_id_old
+		{
+			get
+			{
+				return this._period_id_old;
+			}
+			set
+			{
+				if ((this._period_id_old != value))
+				{
+					this.Onperiod_id_oldChanging(value);
+					this.SendPropertyChanging();
+					this._period_id_old = value;
+					this.SendPropertyChanged("period_id_old");
+					this.Onperiod_id_oldChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_PeriodSavedNote", Storage="_PeriodSavedNote", ThisKey="period_id", OtherKey="period_id", IsUnique=true, IsForeignKey=false)]
+		public PeriodSavedNote PeriodSavedNote
+		{
+			get
+			{
+				return this._PeriodSavedNote.Entity;
+			}
+			set
+			{
+				PeriodSavedNote previousValue = this._PeriodSavedNote.Entity;
+				if (((previousValue != value) 
+							|| (this._PeriodSavedNote.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._PeriodSavedNote.Entity = null;
+						previousValue.RecordAnalysisPeriod = null;
+					}
+					this._PeriodSavedNote.Entity = value;
+					if ((value != null))
+					{
+						value.RecordAnalysisPeriod = this;
+					}
+					this.SendPropertyChanged("PeriodSavedNote");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_PeriodDialog", Storage="_PeriodDialogs", ThisKey="period_id", OtherKey="period_id")]
+		public EntitySet<PeriodDialog> PeriodDialogs
+		{
+			get
+			{
+				return this._PeriodDialogs;
+			}
+			set
+			{
+				this._PeriodDialogs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_PeriodChangeLog", Storage="_PeriodChangeLogs", ThisKey="period_id", OtherKey="period_id")]
+		public EntitySet<PeriodChangeLog> PeriodChangeLogs
+		{
+			get
+			{
+				return this._PeriodChangeLogs;
+			}
+			set
+			{
+				this._PeriodChangeLogs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordAnalysisPeriod", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		public Record Record
+		{
+			get
+			{
+				return this._Record.Entity;
+			}
+			set
+			{
+				Record previousValue = this._Record.Entity;
+				if (((previousValue != value) 
+							|| (this._Record.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Record.Entity = null;
+						previousValue.RecordAnalysisPeriods.Remove(this);
+					}
+					this._Record.Entity = value;
+					if ((value != null))
+					{
+						value.RecordAnalysisPeriods.Add(this);
+						this._rms_record_id = value.rms_record_id;
+					}
+					else
+					{
+						this._rms_record_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Record");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_PeriodDialogs(PeriodDialog entity)
+		{
+			this.SendPropertyChanging();
+			entity.RecordAnalysisPeriod = this;
+		}
+		
+		private void detach_PeriodDialogs(PeriodDialog entity)
+		{
+			this.SendPropertyChanging();
+			entity.RecordAnalysisPeriod = null;
+		}
+		
+		private void attach_PeriodChangeLogs(PeriodChangeLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.RecordAnalysisPeriod = this;
+		}
+		
+		private void detach_PeriodChangeLogs(PeriodChangeLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.RecordAnalysisPeriod = null;
 		}
 	}
 	
@@ -11905,6 +14668,568 @@ namespace Data
 				if ((this._wsc_id != value))
 				{
 					this._wsc_id = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_RMS_Get_Record_DDsResult
+	{
+		
+		private int _dd_id;
+		
+		private System.Nullable<int> _rms_record_id;
+		
+		private System.Nullable<int> _dd_nu;
+		
+		private System.Nullable<int> _iv_ts_id;
+		
+		private string _gu_id;
+		
+		private string _ts_tx;
+		
+		private string _parameter_cd;
+		
+		private string _parm_nm;
+		
+		private string _dd_ts_ds;
+		
+		public SP_RMS_Get_Record_DDsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dd_id", DbType="Int NOT NULL")]
+		public int dd_id
+		{
+			get
+			{
+				return this._dd_id;
+			}
+			set
+			{
+				if ((this._dd_id != value))
+				{
+					this._dd_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int")]
+		public System.Nullable<int> rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					this._rms_record_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dd_nu", DbType="Int")]
+		public System.Nullable<int> dd_nu
+		{
+			get
+			{
+				return this._dd_nu;
+			}
+			set
+			{
+				if ((this._dd_nu != value))
+				{
+					this._dd_nu = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iv_ts_id", DbType="Int")]
+		public System.Nullable<int> iv_ts_id
+		{
+			get
+			{
+				return this._iv_ts_id;
+			}
+			set
+			{
+				if ((this._iv_ts_id != value))
+				{
+					this._iv_ts_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gu_id", DbType="NVarChar(32)")]
+		public string gu_id
+		{
+			get
+			{
+				return this._gu_id;
+			}
+			set
+			{
+				if ((this._gu_id != value))
+				{
+					this._gu_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ts_tx", DbType="NVarChar(75)")]
+		public string ts_tx
+		{
+			get
+			{
+				return this._ts_tx;
+			}
+			set
+			{
+				if ((this._ts_tx != value))
+				{
+					this._ts_tx = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_parameter_cd", DbType="NVarChar(5)")]
+		public string parameter_cd
+		{
+			get
+			{
+				return this._parameter_cd;
+			}
+			set
+			{
+				if ((this._parameter_cd != value))
+				{
+					this._parameter_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_parm_nm", DbType="NVarChar(75)")]
+		public string parm_nm
+		{
+			get
+			{
+				return this._parm_nm;
+			}
+			set
+			{
+				if ((this._parm_nm != value))
+				{
+					this._parm_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dd_ts_ds", DbType="NVarChar(75)")]
+		public string dd_ts_ds
+		{
+			get
+			{
+				return this._dd_ts_ds;
+			}
+			set
+			{
+				if ((this._dd_ts_ds != value))
+				{
+					this._dd_ts_ds = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_RMS_WYs_with_periods_to_workResult
+	{
+		
+		private string _status_va;
+		
+		public SP_RMS_WYs_with_periods_to_workResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status_va", DbType="NVarChar(15)")]
+		public string status_va
+		{
+			get
+			{
+				return this._status_va;
+			}
+			set
+			{
+				if ((this._status_va != value))
+				{
+					this._status_va = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_RMS_Periods_per_WYResult
+	{
+		
+		private int _period_id;
+		
+		private System.Nullable<System.DateTime> _period_beg_dt;
+		
+		private System.Nullable<System.DateTime> _period_end_dt;
+		
+		private string _status_va;
+		
+		public SP_RMS_Periods_per_WYResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_period_id", DbType="Int NOT NULL")]
+		public int period_id
+		{
+			get
+			{
+				return this._period_id;
+			}
+			set
+			{
+				if ((this._period_id != value))
+				{
+					this._period_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_period_beg_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> period_beg_dt
+		{
+			get
+			{
+				return this._period_beg_dt;
+			}
+			set
+			{
+				if ((this._period_beg_dt != value))
+				{
+					this._period_beg_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_period_end_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> period_end_dt
+		{
+			get
+			{
+				return this._period_end_dt;
+			}
+			set
+			{
+				if ((this._period_end_dt != value))
+				{
+					this._period_end_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status_va", DbType="NVarChar(15)")]
+		public string status_va
+		{
+			get
+			{
+				return this._status_va;
+			}
+			set
+			{
+				if ((this._status_va != value))
+				{
+					this._status_va = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_Site_Analyzed_DoublesResult
+	{
+		
+		private int _rms_record_id;
+		
+		private string _published_as_va;
+		
+		private string _type_ds;
+		
+		private string _status_va;
+		
+		private int _period_id;
+		
+		private System.Nullable<System.DateTime> _period_beg_dt;
+		
+		private System.Nullable<System.DateTime> _period_end_dt;
+		
+		private string _analyzed_by;
+		
+		private System.Nullable<System.DateTime> _analyzed_dt;
+		
+		private string _approved_by;
+		
+		private System.Nullable<System.DateTime> _approved_dt;
+		
+		private string _analysis_notes_va;
+		
+		private string _html_reanalyze_flag_va;
+		
+		private string _sn_comments;
+		
+		public SP_Site_Analyzed_DoublesResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int NOT NULL")]
+		public int rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					this._rms_record_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_published_as_va", DbType="NVarChar(50)")]
+		public string published_as_va
+		{
+			get
+			{
+				return this._published_as_va;
+			}
+			set
+			{
+				if ((this._published_as_va != value))
+				{
+					this._published_as_va = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_ds", DbType="NVarChar(200)")]
+		public string type_ds
+		{
+			get
+			{
+				return this._type_ds;
+			}
+			set
+			{
+				if ((this._type_ds != value))
+				{
+					this._type_ds = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status_va", DbType="NVarChar(15)")]
+		public string status_va
+		{
+			get
+			{
+				return this._status_va;
+			}
+			set
+			{
+				if ((this._status_va != value))
+				{
+					this._status_va = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_period_id", DbType="Int NOT NULL")]
+		public int period_id
+		{
+			get
+			{
+				return this._period_id;
+			}
+			set
+			{
+				if ((this._period_id != value))
+				{
+					this._period_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_period_beg_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> period_beg_dt
+		{
+			get
+			{
+				return this._period_beg_dt;
+			}
+			set
+			{
+				if ((this._period_beg_dt != value))
+				{
+					this._period_beg_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_period_end_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> period_end_dt
+		{
+			get
+			{
+				return this._period_end_dt;
+			}
+			set
+			{
+				if ((this._period_end_dt != value))
+				{
+					this._period_end_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_analyzed_by", DbType="NVarChar(50)")]
+		public string analyzed_by
+		{
+			get
+			{
+				return this._analyzed_by;
+			}
+			set
+			{
+				if ((this._analyzed_by != value))
+				{
+					this._analyzed_by = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_analyzed_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> analyzed_dt
+		{
+			get
+			{
+				return this._analyzed_dt;
+			}
+			set
+			{
+				if ((this._analyzed_dt != value))
+				{
+					this._analyzed_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved_by", DbType="NVarChar(50)")]
+		public string approved_by
+		{
+			get
+			{
+				return this._approved_by;
+			}
+			set
+			{
+				if ((this._approved_by != value))
+				{
+					this._approved_by = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> approved_dt
+		{
+			get
+			{
+				return this._approved_dt;
+			}
+			set
+			{
+				if ((this._approved_dt != value))
+				{
+					this._approved_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_analysis_notes_va", DbType="NText", UpdateCheck=UpdateCheck.Never)]
+		public string analysis_notes_va
+		{
+			get
+			{
+				return this._analysis_notes_va;
+			}
+			set
+			{
+				if ((this._analysis_notes_va != value))
+				{
+					this._analysis_notes_va = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_html_reanalyze_flag_va", DbType="NVarChar(50)")]
+		public string html_reanalyze_flag_va
+		{
+			get
+			{
+				return this._html_reanalyze_flag_va;
+			}
+			set
+			{
+				if ((this._html_reanalyze_flag_va != value))
+				{
+					this._html_reanalyze_flag_va = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sn_comments", DbType="NText", UpdateCheck=UpdateCheck.Never)]
+		public string sn_comments
+		{
+			get
+			{
+				return this._sn_comments;
+			}
+			set
+			{
+				if ((this._sn_comments != value))
+				{
+					this._sn_comments = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_RMS_WYs_with_periodsResult
+	{
+		
+		private System.Nullable<int> _WY;
+		
+		public SP_RMS_WYs_with_periodsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WY", DbType="Int")]
+		public System.Nullable<int> WY
+		{
+			get
+			{
+				return this._WY;
+			}
+			set
+			{
+				if ((this._WY != value))
+				{
+					this._WY = value;
 				}
 			}
 		}

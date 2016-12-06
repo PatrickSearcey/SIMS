@@ -6,7 +6,7 @@
 <head runat="server">
     <title>Site Information Management System</title>
     <meta name="viewport" content="initial-scale=1.0, minimum-scale=1, maximum-scale=1.0, user-scalable=no" />
-    <link href="styles/SIMSbase.css" rel="stylesheet" />
+    <link href="styles/base.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -21,19 +21,6 @@
             </a>
             <div class="header">
                 <telerik:RadMenu ID="rmTop" CssClass="mainMenu" runat="server" RenderMode="Auto">
-                    <Items>
-                        <telerik:RadMenuItem Text="SIMS National Home" NavigateUrl="http://sims.water.usgs.gov/SIMS/Default.aspx" />
-                        <telerik:RadMenuItem IsSeparator="true" />
-                        <telerik:RadMenuItem Text="SIMS WSC Home" NavigateUrl="~/SIMSWSCHome.aspx" />
-                        <telerik:RadMenuItem IsSeparator="true" />
-                        <telerik:RadMenuItem Text="RMS WSC Home" NavigateUrl="~/RMSWSCHome.aspx" />
-                        <telerik:RadMenuItem IsSeparator="true" />
-                        <telerik:RadMenuItem Text="Admin Tasks" NavigateUrl="~/Admin/Tasks.aspx" />
-                        <telerik:RadMenuItem IsSeparator="true" />
-                        <telerik:RadMenuItem Text="Latest News" NavigateUrl="https://collaboration.usgs.gov/wg/owi/specialprojects/SIMS/Shared%20Documents/updates.html" />
-                        <telerik:RadMenuItem IsSeparator="true" />
-                        <telerik:RadMenuItem Text="Contact" NavigateUrl="~/NWISOpsRequest.aspx" />
-                    </Items>
                 </telerik:RadMenu>
             </div>
 

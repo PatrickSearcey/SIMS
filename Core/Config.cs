@@ -50,6 +50,12 @@ namespace Core
         public static String SafetyURL { get { return "http://sims.water.usgs.gov/Safety/"; } } 
 #endif
 
+#if DEBUG
+        public static String RMSURL { get { return "http://simsdev.cr.usgs.gov/RMS/"; } }
+#else
+        public static String RMSURL { get { return "http://sims.water.usgs.gov/RMS/"; } } 
+#endif
+
         protected static List<int> SLAPWSC()
         {
             List<int> ret = new List<int>();

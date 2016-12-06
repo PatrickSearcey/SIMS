@@ -4,19 +4,27 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="styles/stationinfo.css" rel="stylesheet" />
     <script type="text/javascript">
-        function openWin(_id) {
-            var oWnd = radopen("Modal/FieldTripEdit.aspx?site_id=" + _id, "rwEditFieldTrips");
+        function openWin(_id, _type) {
+            if (_type == "field trip") var oWnd = radopen("Modal/FieldTripEdit.aspx?site_id=" + _id, "rwEditFieldTrips");
+            else var oWnd = radopen("Modal/RecordEdit.aspx?rms_record_id=" + _id + "&type=" + _type, "rwEditRecords");
         }
 
         function OnClientClose(oWnd, args) {
             //get the transferred arguments
             var arg = args.get_argument();
-            if (arg) {
+            if (arg && arg.type == "field trip") {
                 var fieldTrips = arg.fieldTrips;
                 var hfFieldTripIDs = document.getElementById("<%= hfFieldTripIDs.ClientID %>");
                 hfFieldTripIDs.value = fieldTrips;
-                $find("<%= ram.ClientID %>").ajaxRequest("Rebind");
+                $find("<%= ram.ClientID %>").ajaxRequest("RebindFieldTrips");
             }
+            else if (arg && arg.type == "record") {
+                $find("<%= ram.ClientID %>").ajaxRequest("RebindRecords");
+            }
+        }
+
+        function OpenSWR(_SWRurl) {
+            open(_SWRurl, 'SWRPopup', 'toolbar=yes, menubar=no, width=840, height=500, scrollbars=yes');
         }
     </script>
 </asp:Content>
@@ -52,6 +60,13 @@
             <telerik:AjaxSetting AjaxControlID="ram">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="pnlFieldTripView" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlRMS" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="rddlWYs">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="ltlHistoricPeriod" />
+                    <telerik:AjaxUpdatedControl ControlID="rddlWYs" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
         </AjaxSettings>
@@ -59,6 +74,7 @@
     <telerik:RadWindowManager RenderMode="Lightweight" ID="rwm" ShowContentDuringLoad="false" VisibleStatusbar="false" ReloadOnShow="true" runat="server" EnableShadow="true">
         <Windows>
             <telerik:RadWindow RenderMode="Lightweight" ID="rwEditFieldTrips" runat="server" Behaviors="Close" OnClientClose="OnClientClose" Width="900" Height="400" />
+            <telerik:RadWindow RenderMode="Lightweight" ID="rwEditRecords" runat="server" Behaviors="Close" OnClientClose="OnClientClose" Width="900" Height="600" />
         </Windows>
     </telerik:RadWindowManager>
     <asp:HiddenField ID="hfFieldTripIDs" runat="server" />
@@ -106,48 +122,6 @@
                             </telerik:LayoutRow>
                             <telerik:LayoutRow>
                                 <Content>
-                                    <h4>Safety</h4>
-                                    <div style="width:95%;text-align:right;margin-top:-10px;font-size:9pt;">
-                                        &raquo; <asp:HyperLink ID="hlSHATutorial" runat="server" target="_blank" Text="Download the SHA Tutorial" />
-                                    </div>
-                                    <asp:Panel ID="pnlSHACreate" runat="server">
-                                        <asp:HyperLink ID="hlSHACreate" runat="server" Text="Create an SHA for this site" />
-                                    </asp:Panel>
-                                    <asp:Panel ID="pnlSHAEdit" runat="server">
-                                        <b><asp:HyperLink ID="hlSHAEdit" runat="server" Text="Site Hazard Analysis" /></b> &nbsp;&nbsp;<asp:HyperLink ID="hlSHAPrintVersion" runat="server" Text="&laquo; view print version" Font-Size="Smaller" />
-                                        <div style="padding-left:10px;font-size:10pt;">
-                                            <asp:Literal ID="ltlSHAReviewed" runat="server" /><br />
-                                            <asp:Literal ID="ltlSHAApproved" runat="server" />
-                                        </div>
-                                    </asp:Panel>
-                                    <hr />
-                                    <div style="width:95%;text-align:right;margin-top:-8px;font-size:9pt;">
-                                        &raquo; <asp:HyperLink ID="hlTCPTutorial" runat="server" target="_blank" Text="Download the TCP Tutorial" />
-                                    </div>
-                                    <asp:Panel ID="pnlTCPCreate" runat="server">
-                                        <asp:HyperLink ID="hlTCPCreate" runat="server" Text="Create a TCP for this site" />
-                                    </asp:Panel>
-                                    <asp:Panel ID="pnlTCPEdit" runat="server">
-                                        <b>Traffic Control Plans (last approved):</b>
-                                        <div style="padding-left:10px;font-size:10pt;">
-                                            <asp:HyperLink ID="hlTCPEdit" runat="server" Text="Edit/Add/Delete Traffic Control Plans" Font-Bold="true" /><br />
-                                            <asp:DataList ID="dlTCPs" runat="server">
-                                                <ItemTemplate>
-                                                    <asp:HyperLink ID="hlTCP" runat="server" Text='<%# Eval("TCPName") %>' NavigateUrl='<%# Eval("TCPURL") %>' /> (<%# Eval("LastApprovedDt") %>)<br />
-                                                    <img src="images/underarrow.png" alt="look here!" style="padding-left:15px;" /> <%# Eval("TCPApprovalStatus") %>
-                                                </ItemTemplate>
-                                            </asp:DataList>
-                                            <asp:HyperLink ID="hlTCPTrackStatus" runat="server" Text="Track Approval Status" Font-Bold="true" />
-                                        </div>
-                                    </asp:Panel>
-                                </Content>
-                            </telerik:LayoutRow>
-                        </Rows>
-                    </telerik:CompositeLayoutColumn>
-                    <telerik:CompositeLayoutColumn Span="6" SpanMd="6" SpanSm="6" HiddenXs="true">
-                        <Rows>
-                            <telerik:LayoutRow>
-                                <Content>
                                     <h4>Station Documents</h4>
                                     <div style="padding-left:15px;">
                                         <asp:HyperLink ID="hlEditDocs" runat="server" Text="Edit Documents" /><br />
@@ -162,7 +136,91 @@
                             </telerik:LayoutRow>
                             <telerik:LayoutRow>
                                 <Content>
+                                    <h4>Safety</h4>
+                                    <asp:Panel ID="pnlSafety" runat="server" CssClass="SafetyPanel">
+                                        <div style="width:95%;text-align:right;font-size:9pt;">
+                                            &raquo; <asp:HyperLink ID="hlSHATutorial" runat="server" target="_blank" Text="Download the SHA Tutorial" />
+                                        </div>
+                                        <asp:Panel ID="pnlSHACreate" runat="server">
+                                            <asp:HyperLink ID="hlSHACreate" runat="server" Text="Create an SHA for this site" />
+                                        </asp:Panel>
+                                        <asp:Panel ID="pnlSHAEdit" runat="server">
+                                            <b><asp:HyperLink ID="hlSHAEdit" runat="server" Text="Site Hazard Analysis" /></b> &nbsp;&nbsp;<asp:HyperLink ID="hlSHAPrintVersion" runat="server" Text="&laquo; view print version" Font-Size="Small" />
+                                            <div style="padding-left:10px;font-size:10pt;">
+                                                <asp:Literal ID="ltlSHAReviewed" runat="server" /><br />
+                                                <asp:Literal ID="ltlSHAApproved" runat="server" />
+                                            </div>
+                                        </asp:Panel>
+                                        <hr />
+                                        <div style="width:95%;text-align:right;margin-top:-5px;font-size:9pt;">
+                                            &raquo; <asp:HyperLink ID="hlTCPTutorial" runat="server" target="_blank" Text="Download the TCP Tutorial" />
+                                        </div>
+                                        <asp:Panel ID="pnlTCPCreate" runat="server">
+                                            <asp:HyperLink ID="hlTCPCreate" runat="server" Text="Create a TCP for this site" />
+                                        </asp:Panel>
+                                        <asp:Panel ID="pnlTCPEdit" runat="server">
+                                            <b>Traffic Control Plans (last approved):</b>
+                                            <div style="padding-left:10px;font-size:10pt;">
+                                                <asp:HyperLink ID="hlTCPEdit" runat="server" Text="Edit/Add/Delete Traffic Control Plans" Font-Bold="true" /><br />
+                                                <asp:DataList ID="dlTCPs" runat="server">
+                                                    <ItemTemplate>
+                                                        <asp:HyperLink ID="hlTCP" runat="server" Text='<%# Eval("TCPName") %>' NavigateUrl='<%# Eval("TCPURL") %>' /> (<%# Eval("LastApprovedDt") %>)<br />
+                                                        <img src="images/underarrow.png" alt="look here!" style="padding-left:15px;" /> <%# Eval("TCPApprovalStatus") %>
+                                                    </ItemTemplate>
+                                                </asp:DataList>
+                                                <asp:HyperLink ID="hlTCPTrackStatus" runat="server" Text="Track Approval Status" Font-Bold="true" />
+                                            </div>
+                                        </asp:Panel>
+                                    </asp:Panel>
+                                </Content>
+                            </telerik:LayoutRow>
+                        </Rows>
+                    </telerik:CompositeLayoutColumn>
+                    <telerik:CompositeLayoutColumn Span="6" SpanMd="6" SpanSm="6" HiddenXs="true">
+                        <Rows>
+                            <telerik:LayoutRow>
+                                <Content>
                                     <h4>Continuous Records Processing</h4>
+                                    <asp:Panel ID="pnlRMS" runat="server" CssClass="RMSPanel">
+                                        <div style="width:100%;text-align:right;font-size:9pt;">
+                                            &raquo; <asp:HyperLink ID="hlAutoReview" runat="server" target="_blank" Text="Click here to view Auto Review (if applicable)" />
+                                        </div> 
+                                        <asp:DataList ID="dlRecords" runat="server" OnItemDataBound="dlRecords_ItemDataBound">
+                                            <ItemTemplate>
+                                                <asp:HiddenField ID="hfRMSRecordID" runat="server" />
+                                                <div style="width:100%;">
+                                                    <h5><%# Eval("type_ds") %></h5>
+                                                    <div style="float:right;margin-top:-30px">
+                                                        <asp:LinkButton ID="lbEditRecord" runat="server" Text="edit" /> | 
+                                                        <asp:HyperLink ID="hlAuditRecord" runat="server" Text="audit" />
+                                                    </div>
+                                                </div>
+                                                <asp:Panel ID="pnlRecord" runat="server" CssClass="RMSRecordPanel">
+                                                    <div>
+                                                        Analyzer/Approver: <b><%# Eval("personnel") %></b><br />
+                                                        Status: <b><%# Eval("published") %></b> | <b><%# Eval("active") %></b> 
+                                                        CRP Category: <b><%# Eval("cat_no") %></b><br />
+                                                        Time-series: <b><%# Eval("time_series") %></b><br />
+                                                        Responsible office: <b><%# Eval("office_cd") %></b><br />
+                                                    </div>
+                                                    <asp:Literal ID="ltlNewPeriod" runat="server" />
+
+                                                    <asp:Literal ID="ltlHistoricPeriod" runat="server" />
+
+                                                    <asp:Literal ID="ltlCurrentPeriods" runat="server" />
+
+                                                    <div style="height:30px;">
+                                                        <div style="float:left;padding-top:5px;">View approved records from WY:</div>
+                                                        <div style="float:right;"><telerik:RadDropDownList ID="rddlWYs" runat="server" DataValueField="WY" DataTextField="WY" AutoPostBack="true" OnSelectedIndexChanged="rddlWYs_SelectedIndexChanged" Width="80px" /></div>
+                                                    </div>
+                                                </asp:Panel>
+                                                <asp:Panel ID="pnlInactive" runat="server" CssClass="RMSRecordPanel">
+                                                    <p style="font-weight:bold;line-height:8pt;">This record is currently inactive.</p>
+                                                </asp:Panel>
+                                            </ItemTemplate>
+                                        </asp:DataList>
+                                        <asp:LinkButton ID="lbNewRecordType" runat="server" Text="Assign another record-type" Font-Bold="true" />
+                                    </asp:Panel>
                                 </Content>
                             </telerik:LayoutRow>
                         </Rows>

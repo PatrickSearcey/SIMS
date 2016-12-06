@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/RMS.Master" AutoEventWireup="true" CodeBehind="RMSWSCHome.aspx.cs" Inherits="SIMS2017.RMSWSCHome" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/RMS.Master" AutoEventWireup="true" CodeBehind="RMSWSCHome.aspx.cs" Inherits="RMS.RMSWSCHome" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="styles/default.css" rel="stylesheet" />
 </asp:Content>

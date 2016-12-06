@@ -40,6 +40,15 @@ namespace SIMS2017 {
         protected global::Telerik.Web.UI.RadWindow rwEditFieldTrips;
         
         /// <summary>
+        /// rwEditRecords control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadWindow rwEditRecords;
+        
+        /// <summary>
         /// hfFieldTripIDs control.
         /// </summary>
         /// <remarks>
@@ -247,6 +256,87 @@ namespace SIMS2017 {
         protected global::System.Web.UI.WebControls.HyperLink hlSiFTA;
         
         /// <summary>
+        /// hlEditDocs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlEditDocs;
+        
+        /// <summary>
+        /// hlSDESC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlSDESC;
+        
+        /// <summary>
+        /// hlMANU control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlMANU;
+        
+        /// <summary>
+        /// ltlApproved control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlApproved;
+        
+        /// <summary>
+        /// hlSANAL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlSANAL;
+        
+        /// <summary>
+        /// hlCustomReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlCustomReport;
+        
+        /// <summary>
+        /// hlArchives control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlArchives;
+        
+        /// <summary>
+        /// hlSLAP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlSLAP;
+        
+        /// <summary>
+        /// pnlSafety control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlSafety;
+        
+        /// <summary>
         /// hlSHATutorial control.
         /// </summary>
         /// <remarks>
@@ -382,76 +472,40 @@ namespace SIMS2017 {
         protected global::System.Web.UI.WebControls.HyperLink hlTCPTrackStatus;
         
         /// <summary>
-        /// hlEditDocs control.
+        /// pnlRMS control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlEditDocs;
+        protected global::System.Web.UI.WebControls.Panel pnlRMS;
         
         /// <summary>
-        /// hlSDESC control.
+        /// hlAutoReview control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlSDESC;
+        protected global::System.Web.UI.WebControls.HyperLink hlAutoReview;
         
         /// <summary>
-        /// hlMANU control.
+        /// dlRecords control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlMANU;
+        protected global::System.Web.UI.WebControls.DataList dlRecords;
         
         /// <summary>
-        /// ltlApproved control.
+        /// lbNewRecordType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlApproved;
-        
-        /// <summary>
-        /// hlSANAL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlSANAL;
-        
-        /// <summary>
-        /// hlCustomReport control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlCustomReport;
-        
-        /// <summary>
-        /// hlArchives control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlArchives;
-        
-        /// <summary>
-        /// hlSLAP control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlSLAP;
+        protected global::System.Web.UI.WebControls.LinkButton lbNewRecordType;
         
         /// <summary>
         /// pnlDCPTable control.

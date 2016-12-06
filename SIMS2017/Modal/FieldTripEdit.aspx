@@ -42,9 +42,11 @@
                     trip_ids += item.get_value() + ",";
                 })
                 oArg.fieldTrips = trip_ids;
+                oArg.type = "field trip";
             }
             else {
                 oArg.fieldTrips = "";
+                oArg.type = "";
             }
             
             //get a reference to the current RadWindow
@@ -53,7 +55,7 @@
             //Close the RadWindow and send the argument to the parent page
             oWnd.close(oArg);
         }
-        </script>
+    </script>
     <div>
         <table>
             <tr>

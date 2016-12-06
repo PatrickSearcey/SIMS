@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace SIMS2017
+namespace RMS
 {
-    public partial class RMSSingleMenu : System.Web.UI.MasterPage
+    public partial class RecordAudit : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

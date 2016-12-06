@@ -130,16 +130,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/18/2016 12:12:12</publishTime>
     </File>
     <File Include="bin/Core.dll">
-      <publishTime>11/29/2016 09:49:21</publishTime>
+      <publishTime>12/06/2016 13:21:08</publishTime>
     </File>
     <File Include="bin/Core.pdb">
-      <publishTime>11/29/2016 09:49:21</publishTime>
+      <publishTime>12/06/2016 13:21:08</publishTime>
     </File>
     <File Include="bin/Data.dll">
-      <publishTime>11/29/2016 09:49:20</publishTime>
+      <publishTime>12/06/2016 13:21:08</publishTime>
     </File>
     <File Include="bin/Data.pdb">
-      <publishTime>11/29/2016 09:49:20</publishTime>
+      <publishTime>12/06/2016 13:21:08</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>10/18/2016 11:37:46</publishTime>
@@ -151,10 +151,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/01/2016 16:26:44</publishTime>
     </File>
     <File Include="bin/SIMS2017.dll">
-      <publishTime>11/30/2016 09:27:34</publishTime>
+      <publishTime>12/06/2016 15:33:10</publishTime>
     </File>
     <File Include="bin/SIMS2017.pdb">
-      <publishTime>11/30/2016 09:27:34</publishTime>
+      <publishTime>12/06/2016 15:33:10</publishTime>
     </File>
     <File Include="bin/Telerik.Web.Spreadsheet.dll">
       <publishTime>10/18/2016 11:37:46</publishTime>
@@ -214,7 +214,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/26/2016 15:58:50</publishTime>
     </File>
     <File Include="Modal/FieldTripEdit.aspx">
-      <publishTime>11/04/2016 15:04:25</publishTime>
+      <publishTime>12/01/2016 16:25:27</publishTime>
+    </File>
+    <File Include="Modal/RecordEdit.aspx">
+      <publishTime>12/06/2016 14:01:26</publishTime>
     </File>
     <File Include="RMS.Master">
       <publishTime>10/28/2016 15:18:48</publishTime>
@@ -229,10 +232,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/04/2016 12:59:07</publishTime>
     </File>
     <File Include="SIMS.Master">
-      <publishTime>11/04/2016 11:47:01</publishTime>
+      <publishTime>12/01/2016 14:30:44</publishTime>
     </File>
     <File Include="SIMSSingleMenu.Master">
-      <publishTime>11/04/2016 11:46:51</publishTime>
+      <publishTime>12/01/2016 14:30:49</publishTime>
     </File>
     <File Include="SIMSWSCHome.aspx">
       <publishTime>11/18/2016 13:56:50</publishTime>
@@ -250,7 +253,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/04/2016 15:28:18</publishTime>
     </File>
     <File Include="StationInfo.aspx">
-      <publishTime>11/18/2016 13:30:18</publishTime>
+      <publishTime>12/06/2016 15:26:27</publishTime>
+    </File>
+    <File Include="styles/base.css">
+      <publishTime>11/18/2016 13:35:44</publishTime>
     </File>
     <File Include="styles/default.css">
       <publishTime>11/02/2016 13:15:50</publishTime>
@@ -265,7 +271,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/18/2016 13:35:44</publishTime>
     </File>
     <File Include="styles/stationinfo.css">
-      <publishTime>11/18/2016 13:33:20</publishTime>
+      <publishTime>12/06/2016 10:34:52</publishTime>
     </File>
     <File Include="web.config">
       <publishTime>11/02/2016 16:00:20</publishTime>

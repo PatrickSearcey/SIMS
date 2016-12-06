@@ -96,7 +96,7 @@ namespace SIMS2017
             }
             if (!string.IsNullOrEmpty(fieldtrips)) ltlFieldTrip.Text = fieldtrips.TrimEnd(' ').TrimEnd(','); else ltlFieldTrip.Text = "<i>none assigned</i>";
             hlMapTrips.NavigateUrl = String.Format("{0}fieldtripmap.aspx?office_id={1}&trip_id={2}&wsc_id={3}", Config.SIMSURL, OfficeID, currSite.TripSites.FirstOrDefault().trip_id, WSCID);
-            lbEditFieldTrip.OnClientClick = String.Format("openWin('{0}'); return false;", currSite.site_id);
+            lbEditFieldTrip.OnClientClick = String.Format("openWin('{0}','field trip'); return false;", currSite.site_id);
             hlSiFTA.NavigateUrl = "http://sifta.water.usgs.gov/NationalFunding/Site.aspx?SiteNumber=" + currSite.site_no.Trim();
 
             //Station Documents
@@ -129,7 +129,27 @@ namespace SIMS2017
             else ltlApproved.Visible = false;
 
             //CRP
-
+            var record = currSite.Records;
+            dlRecords.DataSource = record.Select(p => new RecordItem
+            {
+                rms_record_id = p.rms_record_id,
+                personnel = GetPersonnelAssignments(p.analyzer_uid, p.approver_uid),
+                published = GetPublished(Convert.ToBoolean(p.not_published_fg)),
+                active = GetActive(Convert.ToBoolean(p.not_used_fg)),
+                cat_no = p.category_no.ToString(),
+                office_cd = GetOfficeCode(p),
+                time_series = GetTimeSeries(p),
+                type_ds = p.RecordType.type_ds,
+                RMSURL = Config.RMSURL
+            }).ToList();
+            dlRecords.DataBind();
+            string swr_url = db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID).swr_url;
+            if (!string.IsNullOrEmpty(swr_url))
+            {
+                hlAutoReview.NavigateUrl = String.Format("javascript:OpenSWR('{0}{1}/')", swr_url, currSite.site_no.Replace(" ", ""));
+            }
+            else hlAutoReview.Visible = false;
+            lbNewRecordType.OnClientClick = String.Format("openWin('{0}','newrecord'); return false;", currSite.site_id);
 
             //Safety
             hlSHATutorial.NavigateUrl = String.Format("{0}SIMSShare/SIMS_SHA_Tutorial.pptx", Config.SIMSURL);
@@ -233,6 +253,98 @@ namespace SIMS2017
             
         }
 
+        private string GetPersonnelAssignments(string analyzer, string approver)
+        {
+            string ret = "<i>unassigned</i>";
+
+            if (!string.IsNullOrEmpty(analyzer) || !string.IsNullOrEmpty(approver))
+            {
+                string az;
+                string ap;
+                if (!string.IsNullOrEmpty(analyzer)) az = analyzer; else az = "<i>unassigned</i>";
+                if (!string.IsNullOrEmpty(approver)) ap = approver; else ap = "<i>unassigned</i>";
+                ret = az + "/" + ap;
+            }
+
+            return ret;
+        }
+
+        private string GetPublished(bool published)
+        {
+            string ret = "published";
+
+            if (!published) ret = "not published";
+
+            return ret;
+        }
+
+        private string GetActive(bool active)
+        {
+            string ret = "active";
+
+            if (active) ret = "inactive";
+
+            return ret;
+        }
+
+        private string GetTimeSeries(Data.Record record)
+        {
+            string ret = "";
+            
+            if (Convert.ToBoolean(record.RecordType.ts_fg))
+            {
+                ret = "yes";
+                var DDs = db.SP_RMS_Get_Record_DDs(record.rms_record_id).ToList();
+                List<string> dds = new List<string>();
+                List<string> tsids = new List<string>();
+
+                foreach (var dd in DDs)
+                {
+                    if (dd.dd_nu != null) dds.Add(dd.dd_nu.ToString());
+                    if (!string.IsNullOrEmpty(dd.ts_tx)) tsids.Add(dd.ts_tx);
+                }
+
+                if (dds.Count == 0)
+                {
+                    string ts_ids = "";
+                    foreach (string tsid in tsids)
+                    {
+                        ts_ids += tsid + ", ";
+                    }
+                    ret += " (ts/dd: " + ts_ids.TrimEnd(' ').TrimEnd(',') + ")";
+                }
+                else
+                {
+                    string dd_nus = "";
+                    foreach (string ddnu in dds)
+                    {
+                        dd_nus += ddnu + ", ";
+                    }
+                    ret += " (ts/dd: " + dd_nus.TrimEnd(' ').TrimEnd(',') + ")";
+                }
+            }
+            else
+            {
+                ret = "no";
+            }
+
+            return ret;
+        }
+
+        private string GetOfficeCode(Data.Record record)
+        {
+            string ret = currSite.Office.office_cd;
+
+            var altoffice = record.RecordAltOffice;
+
+            if (altoffice != null)
+            {
+                ret = db.Offices.FirstOrDefault(p => p.office_id == altoffice.alt_office_id).office_cd;
+            }
+
+            return ret;
+        }
+
         private string TCPApprovalStatus(bool? approval_ready, int TCPID)
         {
             string ret = "";
@@ -301,6 +413,430 @@ namespace SIMS2017
             lbEditOffice.Visible = HasEditAccess;
             lbEditFieldTrip.Visible = HasEditAccess;
             hlEditDocs.Visible = HasEditAccess;
+        }
+        #endregion
+
+        #region Internal Classes
+        internal class RecordItem
+        {
+            private int _rms_record_id;
+            private string _personnel;
+            private string _published;
+            private string _active;
+            private string _cat_no;
+            private string _time_series;
+            private string _office_cd;
+            private string _type_ds;
+            private string _RMSURL;
+
+            public int rms_record_id
+            {
+                get { return _rms_record_id; }
+                set { _rms_record_id = value; }
+            }
+            public string personnel
+            {
+                get { return _personnel; }
+                set { _personnel = value; }
+            }
+            public string published
+            {
+                get { return _published; }
+                set { _published = value; }
+            }
+            public string active
+            {
+                get { return _active; }
+                set { _active = value; }
+            }
+            public string cat_no
+            {
+                get { return _cat_no; }
+                set { _cat_no = value; }
+            }
+            public string time_series
+            {
+                get { return _time_series; }
+                set { _time_series = value; }
+            }
+            public string office_cd
+            {
+                get { return _office_cd; }
+                set { _office_cd = value; }
+            }
+            public string type_ds
+            {
+                get { return _type_ds; }
+                set { _type_ds = value; }
+            }
+            public string RMSURL
+            {
+                get { return _RMSURL; }
+                set { _RMSURL = value; }
+            }
+            public RecordItem()
+            {
+                _rms_record_id = rms_record_id;
+                _personnel = personnel;
+                _published = published;
+                _active = active;
+                _cat_no = cat_no;
+                _time_series = time_series;
+                _office_cd = office_cd;
+                _type_ds = type_ds;
+                _RMSURL = RMSURL;
+            }
+        }
+
+        internal class PeriodItem
+        {
+            private int _rms_record_id;
+            private string _WY;
+            private string _IconURL;
+            private string _LockIconURL;
+
+            public int rms_record_id
+            {
+                get { return _rms_record_id; }
+                set { _rms_record_id = value; }
+            }
+            public string WY
+            {
+                get { return _WY; }
+                set { _WY = value; }
+            }
+            public string IconURL
+            {
+                get { return _IconURL; }
+                set { _IconURL = value; }
+            }
+            public string LockIconURL
+            {
+                get { return _LockIconURL; }
+                set { _LockIconURL = value; }
+            }
+            public PeriodItem()
+            {
+                _rms_record_id = rms_record_id;
+                _WY = WY;
+                _IconURL = IconURL;
+                _LockIconURL = LockIconURL;
+            }
+        }
+        #endregion
+
+        #region CRP DataList Methods and Events
+        protected void dlRecords_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                RecordItem rec = e.Item.DataItem as RecordItem;
+                HiddenField hf = (HiddenField)e.Item.FindControl("hfRMSRecordID");
+                LinkButton lbEditRecord = (LinkButton)e.Item.FindControl("lbEditRecord");
+                HyperLink hlAuditRecord = (HyperLink)e.Item.FindControl("hlAuditRecord");
+                Literal ltlNewPeriod = (Literal)e.Item.FindControl("ltlNewPeriod");
+                Literal ltlCurrentPeriods = (Literal)e.Item.FindControl("ltlCurrentPeriods");
+                RadDropDownList rddlWYs = (RadDropDownList)e.Item.FindControl("rddlWYs");
+                Panel pnlRecord = (Panel)e.Item.FindControl("pnlRecord");
+                Panel pnlInactive = (Panel)e.Item.FindControl("pnlInactive");
+
+                hf.Value = rec.rms_record_id.ToString();
+                lbEditRecord.OnClientClick = String.Format("openWin('{0}','record'); return false;", rec.rms_record_id);
+
+                //If this is an active record, show the active panel, otherwise show the inactive
+                if (rec.active == "active")
+                {
+                    pnlRecord.Visible = true;
+                    pnlInactive.Visible = false;
+
+                    hlAuditRecord.NavigateUrl = String.Format("{0}RecordAudit.aspx?rms_record_id={1}", Config.RMSURL, rec.rms_record_id);
+
+                    //Grab all the years with a record period
+                    var years = db.SP_RMS_WYs_with_periods(rec.rms_record_id).ToList();
+
+                    rddlWYs.DataSource = years;
+                    rddlWYs.DataBind();
+                    rddlWYs.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
+                    
+                    List<string> currWYs = new List<string>();
+                    string currPeriods = "";
+                    ltlCurrentPeriods.Text = "";
+                    foreach (var year in years)
+                    {
+                        //Check to see what WYs have periods that have not been approved yet, and show these by default
+                        var currWY = db.SP_RMS_WYs_with_periods_to_work(rec.rms_record_id, year.WY.ToString()).ToList();
+
+                        if (currWY.Count > 0)
+                        {
+                            DropDownListItem itemToRemove = rddlWYs.Items.FirstOrDefault(p => p.Value == year.WY.ToString());
+                            rddlWYs.Items.Remove(itemToRemove);
+
+                            int prevWY = (int)year.WY - 1;
+                            string start_dt = "10/01/" + prevWY.ToString();
+                            string end_dt = "10/01/" + year.WY.ToString();
+
+                            //Grab the periods for the WY
+                            var periods = db.SP_RMS_Periods_per_WY(rec.rms_record_id, Convert.ToDateTime(start_dt), Convert.ToDateTime(end_dt), "0").ToList();
+
+                            //Set the reanalyze flag
+                            var reanalyze = db.SP_RMS_Periods_per_WY(rec.rms_record_id, Convert.ToDateTime(start_dt), Convert.ToDateTime(end_dt), "Reanalyze").ToList();
+
+                            //Loop through each period and setup the images and links
+                            currPeriods = RenderRecordPeriods(rec.rms_record_id, periods, reanalyze);
+
+                            ltlCurrentPeriods.Text += "<p style='font-weight:bold;'>" + year.WY.ToString() + "</p>" + currPeriods;
+                        }
+                    }
+
+                    if (string.IsNullOrEmpty(ltlCurrentPeriods.Text)) ltlCurrentPeriods.Text = "<b>Select a WY from the drop-down below to view analysis periods.</b>";
+                }
+                else
+                {
+                    hlAuditRecord.Visible = false;
+                    pnlRecord.Visible = false;
+                    pnlInactive.Visible = true;
+                }
+            }
+        }
+
+        protected void rddlWYs_SelectedIndexChanged(object sender, DropDownListEventArgs e)
+        {
+            RadDropDownList rddl = sender as RadDropDownList;
+            DataListItem item = rddl.NamingContainer as DataListItem;
+            HiddenField hf = (HiddenField)item.FindControl("hfRMSRecordID");
+            Literal ltl = (Literal)item.FindControl("ltlHistoricPeriod");
+            RadDropDownList rddlWYs = (RadDropDownList)item.FindControl("rddlWYs");
+
+            if (!string.IsNullOrEmpty(rddl.SelectedValue))
+            {
+                int prevWY = Convert.ToInt32(rddl.SelectedValue) - 1;
+                string start_dt = "10/01/" + prevWY.ToString();
+                string end_dt = "10/01/" + rddl.SelectedValue.ToString();
+
+                //Grab the periods for the WY
+                var periods = db.SP_RMS_Periods_per_WY(Convert.ToInt32(hf.Value), Convert.ToDateTime(start_dt), Convert.ToDateTime(end_dt), "0").ToList();
+
+                //Set the reanalyze flag
+                var reanalyze = db.SP_RMS_Periods_per_WY(Convert.ToInt32(hf.Value), Convert.ToDateTime(start_dt), Convert.ToDateTime(end_dt), "Reanalyze").ToList();
+
+                //Loop through each period and setup the images and links
+                string hisPeriods = RenderRecordPeriods(Convert.ToInt32(hf.Value), periods, reanalyze);
+
+                ltl.Text = "<p style='font-weight:bold;'>" + rddl.SelectedValue.ToString() + "</p>" + hisPeriods;
+            }
+            else
+            {
+                ltl.Text = "";
+            }
+        }
+
+
+        //Loop through each period and setup the images and links
+        private string RenderRecordPeriods(int rms_record_id, IEnumerable<Data.SP_RMS_Periods_per_WYResult> periods, List<Data.SP_RMS_Periods_per_WYResult> reanalyze_flag)
+        {
+            string currPeriods = "";
+            int? level = null;
+            int? prev_level = null;
+            string prev_status = "";
+            DateTime? prev_pbd = null;
+
+            string showlockpng = ShowLockPNG(rms_record_id);
+            string showsavepng = ShowLocks("save", rms_record_id);
+
+            foreach (var period in periods)
+            {
+                string imgApproved = "";
+                string hlStart = "&nbsp;&nbsp;&nbsp;&nbsp;";
+                string hlEnd = "</a>";
+                string note = "";
+                string showlock = "";
+                string showsave = "";
+
+                if (period.status_va == "Analyzing")
+                {
+                    hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=analyze' style='padding-left:14px;'>", Config.RMSURL, period.period_id.ToString());
+                    level = 2;
+                }
+                else if (period.status_va == "Reanalyze")
+                {
+                    hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=analyze' style='padding-left:14px;'>", Config.RMSURL, period.period_id.ToString());
+                    note = " <i>(reanalyze)</i>";
+                    level = 0;
+                    if (!string.IsNullOrEmpty(showsavepng))
+                    {
+                        hlStart = "&nbsp;&nbsp;&nbsp;&nbsp;";
+                        hlEnd = "";
+                    }
+                }
+                else if (period.status_va == "Analyzed")
+                {
+                    var doubles = db.SP_Site_Analyzed_Doubles(rms_record_id).FirstOrDefault();
+                    if (period.period_beg_dt != doubles.period_beg_dt)
+                    {
+                        hlStart = "&nbsp;&nbsp;&nbsp;&nbsp;";
+                        hlEnd = "";
+                    }
+                    else hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=approve' style='padding-left:14px;'>", Config.RMSURL, period.period_id.ToString());
+                    level = 3;
+                    if (!string.IsNullOrEmpty(showsavepng))
+                    {
+                        hlStart = "&nbsp;&nbsp;&nbsp;&nbsp;";
+                        hlEnd = "";
+                    }
+                }
+                else if (period.status_va == "Approving")
+                {
+                    hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=approve' style='padding-left:14px;'>", Config.RMSURL, period.period_id.ToString());
+                    level = 4;
+                }
+                else if (period.status_va == "Approved")
+                {
+                    imgApproved = String.Format("<img src='{0}images/approved.gif' alt='Approved' style='float:left;padding: 0 2px 2px 0;' />", Config.RMSURL);
+                    hlStart = String.Format("<a href='javascript:ShowAnalysisPopup({0});'>", period.period_id.ToString());
+                    level = 5;
+                }
+                else
+                {
+                    hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=analyze' style='padding-left:14px;'>", Config.RMSURL, period.period_id.ToString());
+                    if (!string.IsNullOrEmpty(showsavepng))
+                    {
+                        hlStart = "&nbsp;&nbsp;&nbsp;&nbsp;";
+                        hlEnd = "";
+                    }
+                    level = 1;
+                }
+
+                if (prev_status == period.status_va && prev_pbd != period.period_beg_dt)
+                {
+                    if (period.status_va != "Approved")
+                    {
+                        hlStart = "&nbsp;&nbsp;&nbsp;&nbsp;";
+                        hlEnd = "";
+                    }
+                }
+                else if (prev_status == "Reanalyze")
+                {
+                    if (period.status_va != "Approved")
+                    {
+                        hlStart = "&nbsp;&nbsp;&nbsp;&nbsp;";
+                        hlEnd = "";
+                    }
+                }
+                else if (period.status_va == "Analyzing" || period.status_va == "Analyzed")
+                {
+                    if (reanalyze_flag.Count > 0)
+                    {
+                        hlStart = "&nbsp;&nbsp;&nbsp;&nbsp;";
+                        hlEnd = "";
+                    }
+                    if (prev_status == "Approving")
+                    {
+                        hlStart = "&nbsp;&nbsp;&nbsp;&nbsp;";
+                        hlEnd = "";
+                    }
+                }
+
+                if (prev_level < level && prev_level != null)
+                {
+                    if (period.status_va != "Approved")
+                    {
+                        hlStart = "&nbsp;&nbsp;&nbsp;&nbsp;";
+                        hlEnd = "";
+                    }
+                }
+
+                if (period.status_va != "Approved")
+                {
+                    if (hlStart != "&nbsp;&nbsp;&nbsp;&nbsp;")
+                    {
+                        showlock = showlockpng;
+                        showsave = showsavepng;
+                    }
+                    else
+                    {
+                        showlock = "";
+                        showsave = "";
+                    }
+                }
+
+                currPeriods += String.Format("<p class='periods'>{0} {1}{2:MM/dd/yyyy}-{3:MM/dd/yyyy}{4} {5}{6}{7}</p>", imgApproved, hlStart, period.period_beg_dt, period.period_end_dt, hlEnd, note, showlock, showsave);
+
+                prev_level = level;
+                prev_status = period.status_va;
+                prev_pbd = period.period_beg_dt;
+            }
+
+            return currPeriods;
+        }
+
+        /// <summary>
+        /// Checks the RMS_Locks table to see if a lock exists for the rms_record_id and lock_type
+        /// </summary>
+        /// <param name="lock_type">Can be either Anaylze, Approve, or Reanalyze</param>
+        private Boolean RecordIsLocked(string lock_type, int rms_record_id)
+        {
+            Boolean pOut = false;
+
+            var locks = db.RecordLocks.FirstOrDefault(p => p.rms_record_id == rms_record_id && p.lock_type == lock_type);
+
+            if (locks != null) pOut = true;
+
+            return pOut;
+        }
+
+        /// <summary>
+        /// Gets the image for the submitted lock_type and rms_record_id, but only if the lock_uid does not match the current authenticated user
+        /// </summary>
+        /// <param name="lock_type">A lock_type of "lock" returns the lock icon; a lock_type of "save" returns the save icon</param>
+        private string ShowLocks(string lock_type, int rms_record_id)
+        {
+            string pOut = "";
+
+            var locks = db.RecordLocks.FirstOrDefault(p => p.rms_record_id == rms_record_id);
+
+            if (locks != null)
+            {
+                if (lock_type == "lock")
+                {
+                    if (locks.lock_uid != user.ID)
+                    {
+                        if (locks.lock_type == "Analyze" || locks.lock_type == "Approve" || locks.lock_type == "Reanalyze")
+                        {
+                            pOut = String.Format(" <img border='0' src='{0}images/lock_sm.png' alt='lock type is {1}, locked by {2} {3:MM/dd/yyyy}' />", Config.RMSURL, locks.lock_type, locks.lock_uid, locks.lock_dt);
+                        }
+                    }
+                }
+                else if (lock_type == "save")
+                {
+                    if (locks.lock_type == "Analyzing" || locks.lock_type == "Approving" || locks.lock_type == "Reanalyzing")
+                    {
+                        pOut = String.Format(" <img border='0' src='{0}images/save_sm.png' alt='{1} in progress by {2} {3:MM/dd/yyyy}' />", Config.RMSURL, locks.lock_type, locks.lock_uid, locks.lock_dt);
+                    }
+                }
+            }
+
+            return pOut;
+        }
+
+        /// <summary>
+        /// Returns a lock icon image of there is a lock for the record
+        /// </summary>
+        private string ShowLockPNG(int rms_record_id)
+        {
+            string pOut = "";
+            Boolean islocked = RecordIsLocked("Analyze", rms_record_id);
+            if (!islocked)
+            {
+                islocked = RecordIsLocked("Approve", rms_record_id);
+                if (!islocked)
+                {
+                    islocked = RecordIsLocked("Reanalyze", rms_record_id);
+                }
+            }
+
+            if (islocked) pOut = ShowLocks("lock", rms_record_id);
+
+            return pOut;
         }
         #endregion
 
@@ -384,7 +920,7 @@ namespace SIMS2017
 
         protected void ram_AjaxRequest(object sender, AjaxRequestEventArgs e)
         {
-            if (e.Argument == "Rebind")
+            if (e.Argument == "RebindFieldTrips")
             {
                 //Delete all of the field trips assigned to this site
                 db.TripSites.DeleteAllOnSubmit(currSite.TripSites);
@@ -415,6 +951,10 @@ namespace SIMS2017
                 }
                 if (!string.IsNullOrEmpty(fieldtrips)) ltlFieldTrip.Text = fieldtrips.TrimEnd(' ').TrimEnd(','); else ltlFieldTrip.Text = "<i>none assigned</i>";
                 
+            }
+            else if (e.Argument == "RebindRecords")
+            {
+
             }
         }
         #endregion

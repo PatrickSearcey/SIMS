@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace SIMS2._0
+namespace RMS
 {
     public partial class RMSWSCHome : System.Web.UI.Page
     {

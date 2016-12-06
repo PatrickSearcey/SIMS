@@ -103,3 +103,82 @@ h4 {
 .DCPTable a:hover {
     text-decoration: underline !important;
 }
+
+.SafetyPanel {
+    margin: 5px 0 0 0;
+    padding:5px;
+    height:100%;
+    width: 97%;
+    color: #a0865d;
+    background: #d1ede5; /* Old browsers */
+    -webkit-box-shadow: 0 0 5px 0 #d1ede5;
+    box-shadow: 0 0 5px 0 #d1ede5;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 10pt;
+}
+
+.SafetyPanel a {
+    color: #846b45 !important;
+}
+
+.SafetyPanel a:hover {
+    text-decoration: underline !important;
+}
+
+.RMSPanel {
+    margin: 5px 0 0 5px;
+    padding: 5px 5px 5px 15px;
+    height:100%;
+    width: 285px;
+    color: #f0eac8;
+    background: #b84626; /* Old browsers */
+    -webkit-box-shadow: 0 0 5px 0 #b84626;
+    box-shadow: 0 0 5px 0 #b84626;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 10pt;
+}
+
+.RMSPanel a {
+    color: #dfd183 !important;
+}
+
+.RMSPanel a:hover {
+    text-decoration: underline !important;
+}
+
+h5.rfdHeading  {
+    color: #f0eac8 !important;
+    font-weight:bold !important;
+}
+
+.RMSPanel .rddlItemSelected {
+    background-color: #b84626 !important;
+}
+
+.RMSRecordPanel {
+    margin: 5px 0 0 0;
+    padding:5px;
+    height:100%;
+    width: 97%;
+    color: #b84626;
+    background: #f0eac8; /* Old browsers */
+    -webkit-box-shadow: 0 0 5px 0 #f0eac8;
+    box-shadow: 0 0 5px 0 #f0eac8;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 9pt;
+}
+
+.RMSRecordPanel a {
+    color: #ec562c !important;
+}
+
+.RMSRecordPanel a:hover {
+    text-decoration: underline !important;
+}
+
+.periods {
+    line-height:8pt;
+}

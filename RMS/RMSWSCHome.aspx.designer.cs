@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SIMS2._0 {
+namespace RMS {
     
     
     public partial class RMSWSCHome {

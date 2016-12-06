@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="RMS.Master.cs" Inherits="SIMS2017.RMS" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="RMS.Master.cs" Inherits="RMS.MasterPage" %>
 <%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 <!DOCTYPE html>
 
@@ -6,7 +6,7 @@
 <head runat="server">
     <title>SIMS - Records Management System</title>
     <meta name="viewport" content="initial-scale=1.0, minimum-scale=1, maximum-scale=1.0, user-scalable=no" />
-    <link href="styles/RMSbase.css" rel="stylesheet" />
+    <link href="styles/base.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -23,26 +23,13 @@
                         <%--Logo--%>
                         <telerik:LayoutColumn Span="2" SpanMd="3" SpanSm="12" SpanXs="12">
                             <a href="#" class="logo">
-                                <img src="images/USGSHeaderLogo.png" alt="site logo"/>
+                                <img src="images/USGSHeaderLogoRMS.png" alt="site logo"/>
                             </a>
                         </telerik:LayoutColumn>
 
                         <%--Main Nav--%>
                         <telerik:LayoutColumn Span="10" SpanMd="9" SpanSm="12" SpanXs="12">
                             <telerik:RadMenu ID="rmTop" runat="server" RenderMode="Auto" Skin="Bootstrap">
-                                <Items>
-                                    <telerik:RadMenuItem Text="SIMS National Home" NavigateUrl="http://sims.water.usgs.gov/SIMS/Default.aspx" />
-                                    <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="SIMS WSC Home" NavigateUrl="~/SIMSWSCHome.aspx" />
-                                    <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="RMS WSC Home" NavigateUrl="~/RMSWSCHome.aspx" />
-                                    <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="Admin Tasks" NavigateUrl="~/Admin/Tasks.aspx" />
-                                    <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="Latest News" NavigateUrl="https://collaboration.usgs.gov/wg/owi/specialprojects/SIMS/Shared%20Documents/updates.html" />
-                                    <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="Contact" NavigateUrl="~/NWISOpsRequest.aspx" />
-                                </Items>
                             </telerik:RadMenu>
                         </telerik:LayoutColumn>
                     </Columns>
