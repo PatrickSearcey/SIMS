@@ -174,6 +174,9 @@ div.RadGrid .rgAltRow td
 .RadGrid_Bootstrap .rgRow {
     height: 0.8em !important;
 }
+.RadGrid_Bootstrap .rgAltRow {
+    height: 0.8em !important;
+}
 .rgNoRecords {
     font-size:11pt;
 }

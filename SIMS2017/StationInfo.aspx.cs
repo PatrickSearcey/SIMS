@@ -534,7 +534,8 @@ namespace SIMS2017
                 HiddenField hf = (HiddenField)e.Item.FindControl("hfRMSRecordID");
                 LinkButton lbEditRecord = (LinkButton)e.Item.FindControl("lbEditRecord");
                 HyperLink hlAuditRecord = (HyperLink)e.Item.FindControl("hlAuditRecord");
-                Literal ltlNewPeriod = (Literal)e.Item.FindControl("ltlNewPeriod");
+                HyperLink hlNewPeriod = (HyperLink)e.Item.FindControl("hlNewPeriod");
+                Image imgLock = (Image)e.Item.FindControl("imgLock");
                 Literal ltlCurrentPeriods = (Literal)e.Item.FindControl("ltlCurrentPeriods");
                 RadDropDownList rddlWYs = (RadDropDownList)e.Item.FindControl("rddlWYs");
                 Panel pnlRecord = (Panel)e.Item.FindControl("pnlRecord");
@@ -588,7 +589,27 @@ namespace SIMS2017
                         }
                     }
 
-                    if (string.IsNullOrEmpty(ltlCurrentPeriods.Text)) ltlCurrentPeriods.Text = "<b>Select a WY from the drop-down below to view analysis periods.</b>";
+                    if (string.IsNullOrEmpty(ltlCurrentPeriods.Text)) ltlCurrentPeriods.Text = "";
+
+                    //Setup the "analyze new period" link and associated lock icon
+                    if (!string.IsNullOrEmpty(NewPeriodLink(rec.rms_record_id, "URL")))
+                    {
+                        hlNewPeriod.Visible = true;
+                        hlNewPeriod.NavigateUrl = NewPeriodLink(rec.rms_record_id, "URL");
+                        imgLock.AlternateText = NewPeriodLink(rec.rms_record_id, "alt");
+                        if (!string.IsNullOrEmpty(imgLock.AlternateText))
+                        {
+                            imgLock.Visible = true;
+                            imgLock.ImageUrl = String.Format("{0}images/lock_sm.png", Config.RMSURL);
+                        }
+                        else imgLock.Visible = false;
+                    }
+                    else
+                    {
+                        hlNewPeriod.Visible = false;
+                        imgLock.Visible = false;
+                    }
+                    
                 }
                 else
                 {
@@ -630,8 +651,9 @@ namespace SIMS2017
             }
         }
 
-
-        //Loop through each period and setup the images and links
+        /// <summary>
+        /// Look through each period and setup the images and links
+        /// </summary>
         private string RenderRecordPeriods(int rms_record_id, IEnumerable<Data.SP_RMS_Periods_per_WYResult> periods, List<Data.SP_RMS_Periods_per_WYResult> reanalyze_flag)
         {
             string currPeriods = "";
@@ -654,12 +676,12 @@ namespace SIMS2017
 
                 if (period.status_va == "Analyzing")
                 {
-                    hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=analyze' style='padding-left:14px;'>", Config.RMSURL, period.period_id.ToString());
+                    hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=analyze' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
                     level = 2;
                 }
                 else if (period.status_va == "Reanalyze")
                 {
-                    hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=analyze' style='padding-left:14px;'>", Config.RMSURL, period.period_id.ToString());
+                    hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=analyze' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
                     note = " <i>(reanalyze)</i>";
                     level = 0;
                     if (!string.IsNullOrEmpty(showsavepng))
@@ -676,7 +698,7 @@ namespace SIMS2017
                         hlStart = "&nbsp;&nbsp;&nbsp;&nbsp;";
                         hlEnd = "";
                     }
-                    else hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=approve' style='padding-left:14px;'>", Config.RMSURL, period.period_id.ToString());
+                    else hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=approve' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
                     level = 3;
                     if (!string.IsNullOrEmpty(showsavepng))
                     {
@@ -686,18 +708,18 @@ namespace SIMS2017
                 }
                 else if (period.status_va == "Approving")
                 {
-                    hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=approve' style='padding-left:14px;'>", Config.RMSURL, period.period_id.ToString());
+                    hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=approve' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
                     level = 4;
                 }
                 else if (period.status_va == "Approved")
                 {
                     imgApproved = String.Format("<img src='{0}images/approved.gif' alt='Approved' style='float:left;padding: 0 2px 2px 0;' />", Config.RMSURL);
-                    hlStart = String.Format("<a href='javascript:ShowAnalysisPopup({0});'>", period.period_id.ToString());
+                    hlStart = String.Format("<a href='javascript:ShowAnalysisPopup({0})'>", period.period_id);
                     level = 5;
                 }
                 else
                 {
-                    hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=analyze' style='padding-left:14px;'>", Config.RMSURL, period.period_id.ToString());
+                    hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=analyze' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
                     if (!string.IsNullOrEmpty(showsavepng))
                     {
                         hlStart = "&nbsp;&nbsp;&nbsp;&nbsp;";
@@ -770,6 +792,42 @@ namespace SIMS2017
         }
 
         /// <summary>
+        /// Returns the URL to be used in the new period link or the alternate text to be used in the lock icon
+        /// </summary>
+        /// <param name="type">Pass "URL" to get the new period link, or "alt" to get the alternate text for the lock icon</param>
+        private string NewPeriodLink(int rms_record_id, string type)
+        {
+            string pOut = "";
+
+            string showlockpng = ShowLockPNG(rms_record_id);
+            string status_va = db.RecordAnalysisPeriods.OrderByDescending(p => p.period_beg_dt).FirstOrDefault(p => p.rms_record_id == rms_record_id).status_va;
+            string showsave = ShowLocks("save", rms_record_id);
+            var reanalyze_flag = db.RecordAnalysisPeriods.FirstOrDefault(p => p.rms_record_id == rms_record_id && p.status_va == "Reanalyze");
+
+            if (status_va != "Analyzing" && status_va != "Reanalyze" && string.IsNullOrEmpty(showsave))
+            {
+                if (reanalyze_flag == null)
+                {
+                    switch (type)
+                    {
+                        case "URL":
+                            pOut = String.Format("{0}RecordProcess.aspx?task=analyze&rms_record_id={1}", Config.RMSURL, rms_record_id);
+                            break;
+                        case "alt":
+                            if (!string.IsNullOrEmpty(showlockpng))
+                            {
+                                var locks = db.RecordLocks.FirstOrDefault(p => p.rms_record_id == rms_record_id);
+                                pOut = String.Format("lock type is {0}, locked by {1} {2:MM/dd/yyyy}", locks.lock_type, locks.lock_uid, locks.lock_dt);
+                            }
+                            break;
+                    }
+                }
+            }
+
+            return pOut;
+        }
+
+        /// <summary>
         /// Checks the RMS_Locks table to see if a lock exists for the rms_record_id and lock_type
         /// </summary>
         /// <param name="lock_type">Can be either Anaylze, Approve, or Reanalyze</param>
@@ -808,7 +866,7 @@ namespace SIMS2017
                 }
                 else if (lock_type == "save")
                 {
-                    if (locks.lock_type == "Analyzing" || locks.lock_type == "Approving" || locks.lock_type == "Reanalyzing")
+                    if (locks.lock_type == "Analyzing" || locks.lock_type == "Approving")
                     {
                         pOut = String.Format(" <img border='0' src='{0}images/save_sm.png' alt='{1} in progress by {2} {3:MM/dd/yyyy}' />", Config.RMSURL, locks.lock_type, locks.lock_uid, locks.lock_dt);
                     }

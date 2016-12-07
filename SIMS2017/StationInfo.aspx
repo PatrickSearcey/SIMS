@@ -26,6 +26,11 @@
         function OpenSWR(_SWRurl) {
             open(_SWRurl, 'SWRPopup', 'toolbar=yes, menubar=no, width=840, height=500, scrollbars=yes');
         }
+
+        function ShowAnalysisPopup(period_id) {
+            var SAUrl = '/RMS/Report/ReportPopup.aspx?type=analysisbyperiod&period_id=' + period_id;
+            open(SAUrl, 'SAPU', 'toolbar=yes, menubar=no, width=740, height=500, scrollbars=yes');
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph1" runat="server">
@@ -203,7 +208,9 @@
                                                         Time-series: <b><%# Eval("time_series") %></b><br />
                                                         Responsible office: <b><%# Eval("office_cd") %></b><br />
                                                     </div>
-                                                    <asp:Literal ID="ltlNewPeriod" runat="server" />
+                                                    <div class="NewPeriod">                                                    
+                                                        <asp:HyperLink ID="hlNewPeriod" runat="server" Text="analyze new period" /> <asp:Image ID="imgLock" runat="server" />
+                                                    </div>
 
                                                     <asp:Literal ID="ltlHistoricPeriod" runat="server" />
 
