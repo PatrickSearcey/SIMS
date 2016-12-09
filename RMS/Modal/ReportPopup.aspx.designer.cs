@@ -7,19 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RMS {
+namespace RMS.Modal {
     
     
-    public partial class MasterPageSingleMenu {
-        
-        /// <summary>
-        /// head control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+    public partial class ReportPopup {
         
         /// <summary>
         /// form1 control.
@@ -31,39 +22,30 @@ namespace RMS {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// rmTop control.
+        /// rsm2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadMenu rmTop;
+        protected global::Telerik.Web.UI.RadScriptManager rsm2;
         
         /// <summary>
-        /// ltlUserID control.
+        /// rfd2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlUserID;
+        protected global::Telerik.Web.UI.RadFormDecorator rfd2;
         
         /// <summary>
-        /// cph1 control.
+        /// rssm2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder cph1;
-        
-        /// <summary>
-        /// cph2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder cph2;
+        protected global::Telerik.Web.UI.RadStyleSheetManager rssm2;
     }
 }

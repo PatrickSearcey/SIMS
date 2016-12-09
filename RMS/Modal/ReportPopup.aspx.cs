@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace RMS.Report
+namespace RMS.Modal
 {
     public partial class ReportPopup : System.Web.UI.Page
     {

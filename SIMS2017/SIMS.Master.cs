@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -47,6 +48,7 @@ namespace SIMS2017
             if (WSCID == 0) WSCID = (int)db.Offices.Where(p => p.office_id == OfficeID).FirstOrDefault().wsc_id;
 
             SetupPageHyperlinks();
+            ClearLocks();
         }
 
         //For setting up hyperlinks in the side and top menus
@@ -82,6 +84,15 @@ namespace SIMS2017
             hlKMLOffice.NavigateUrl = String.Format("{0}KMLHandler.ashx?office_id={1}", Config.SIMSURL, OfficeID);
             hlKMLInstructions.NavigateUrl = String.Format("{0}Docs/KMLDownloadInstructions.pdf", Config.SIMSURL);
             hlEvalMaps.NavigateUrl = String.Format("{0}EvalMaps.aspx?wsc_id={1}", Config.SIMSURL, WSCID);
+        }
+
+        /// <summary>
+        /// Clear any record period locks that the user might have in place
+        /// </summary>
+        protected void ClearLocks()
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(String.Format("{0}Handler/ClearLock.ashx?user_id={1}", Config.RMSURL, user.ID));
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
         }
 
         //Handles Info By Site link redirects

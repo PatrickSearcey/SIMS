@@ -7,45 +7,45 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RMS.Report {
+namespace RMS.Control {
     
     
-    public partial class ReportPopup {
+    public partial class RecordPageHeading {
         
         /// <summary>
-        /// form1 control.
+        /// ltlPageTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.Literal ltlPageTitle;
         
         /// <summary>
-        /// rsm2 control.
+        /// ltlRecordType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadScriptManager rsm2;
+        protected global::System.Web.UI.WebControls.Literal ltlRecordType;
         
         /// <summary>
-        /// rfd2 control.
+        /// hlPageSubTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadFormDecorator rfd2;
+        protected global::System.Web.UI.WebControls.HyperLink hlPageSubTitle;
         
         /// <summary>
-        /// rssm2 control.
+        /// ltlOfficeInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadStyleSheetManager rssm2;
+        protected global::System.Web.UI.WebControls.Literal ltlOfficeInfo;
     }
 }

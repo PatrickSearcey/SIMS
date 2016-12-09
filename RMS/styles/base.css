@@ -24,7 +24,13 @@ body {
     }
 }
 a {
+  color: #ec562c !important;
   background: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+    text-decoration:underline !important;
 }
 
 img {
@@ -106,4 +112,28 @@ h6 {
 div.RadMenuPopup,
 #wrapper .RadMenu_Default, #wrapper .RadMenu_Default a.rmLink  {
     font-size: 1em;
+}
+
+.selector {
+    margin-top:10px;
+    padding:10px;
+    height:130px;
+    background: #f0eac8; /* Old browsers */
+    -webkit-box-shadow: 0 0 5px 0 #f0eac8;
+    box-shadow: 0 0 5px 0 #f0eac8;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.selector h2 {
+    margin-top:0;
+}
+
+.headers {
+    width: 60%;
+    float:left;
+}
+
+.officeinfo {
+    float:right;
+    text-align:right;
 }

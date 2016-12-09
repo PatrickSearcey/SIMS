@@ -21,6 +21,11 @@
                 <telerik:RadMenu ID="rmTop" CssClass="mainMenu" runat="server" RenderMode="Auto">
                 </telerik:RadMenu>
             </div>
+
+            <div class="subheader">
+                internal only | logged in as: <asp:Literal ID="ltlUserID" runat="server" />
+            </div>
+
             <asp:ContentPlaceHolder ID="cph1" runat="server">
             </asp:ContentPlaceHolder>
             <asp:ContentPlaceHolder ID="cph2" runat="server">

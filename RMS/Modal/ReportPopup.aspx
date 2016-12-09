@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ReportPopup.aspx.cs" Inherits="RMS.Report.ReportPopup" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ReportPopup.aspx.cs" Inherits="RMS.Modal.ReportPopup" %>
 
 <!DOCTYPE html>
 

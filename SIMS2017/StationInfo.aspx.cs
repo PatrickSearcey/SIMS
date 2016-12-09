@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -94,8 +95,16 @@ namespace SIMS2017
             {
                 fieldtrips += trip.Trip.trip_nm + " - " + trip.Trip.user_id + ", ";
             }
-            if (!string.IsNullOrEmpty(fieldtrips)) ltlFieldTrip.Text = fieldtrips.TrimEnd(' ').TrimEnd(','); else ltlFieldTrip.Text = "<i>none assigned</i>";
-            hlMapTrips.NavigateUrl = String.Format("{0}fieldtripmap.aspx?office_id={1}&trip_id={2}&wsc_id={3}", Config.SIMSURL, OfficeID, currSite.TripSites.FirstOrDefault().trip_id, WSCID);
+            if (!string.IsNullOrEmpty(fieldtrips))
+            {
+                ltlFieldTrip.Text = fieldtrips.TrimEnd(' ').TrimEnd(',');
+                hlMapTrips.NavigateUrl = String.Format("{0}fieldtripmap.aspx?office_id={1}&trip_id={2}&wsc_id={3}", Config.SIMSURL, OfficeID, currSite.TripSites.FirstOrDefault().trip_id, WSCID);
+            }
+            else
+            {
+                ltlFieldTrip.Text = "<i>none assigned</i>";
+                hlMapTrips.Visible = false;
+            }
             lbEditFieldTrip.OnClientClick = String.Format("openWin('{0}','field trip'); return false;", currSite.site_id);
             hlSiFTA.NavigateUrl = "http://sifta.water.usgs.gov/NationalFunding/Site.aspx?SiteNumber=" + currSite.site_no.Trim();
 
@@ -351,11 +360,11 @@ namespace SIMS2017
 
             if (approval_ready != null)
             {
-                if ((bool)approval_ready) ret = "<i>TCP pending approval</i>"; else ret = String.Format("<a href='{0}TCPEdit.aspx?tcp_id={1}&action=approve'><b>Submit for Approval</b></a>", Config.SafetyURL, TCPID);
+                if ((bool)approval_ready) ret = "<i>TCP pending approval</i>"; else ret = String.Format("<a href='{0}TCPEdit.aspx?tcp_id={1}&action=Approve'><b>Submit for Approval</b></a>", Config.SafetyURL, TCPID);
             }
             else
             {
-                ret = String.Format("<a href='{0}TCPEdit.aspx?tcp_id={1}&action=approve'><b>Submit for Approval</b></a>", Config.SafetyURL, TCPID);
+                ret = String.Format("<a href='{0}TCPEdit.aspx?tcp_id={1}&action=Approve'><b>Submit for Approval</b></a>", Config.SafetyURL, TCPID);
             }
 
             return ret;
@@ -676,12 +685,12 @@ namespace SIMS2017
 
                 if (period.status_va == "Analyzing")
                 {
-                    hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=analyze' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
+                    hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=Analyze' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
                     level = 2;
                 }
                 else if (period.status_va == "Reanalyze")
                 {
-                    hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=analyze' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
+                    hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=Reanalyze' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
                     note = " <i>(reanalyze)</i>";
                     level = 0;
                     if (!string.IsNullOrEmpty(showsavepng))
@@ -698,7 +707,7 @@ namespace SIMS2017
                         hlStart = "&nbsp;&nbsp;&nbsp;&nbsp;";
                         hlEnd = "";
                     }
-                    else hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=approve' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
+                    else hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=Approve' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
                     level = 3;
                     if (!string.IsNullOrEmpty(showsavepng))
                     {
@@ -708,7 +717,7 @@ namespace SIMS2017
                 }
                 else if (period.status_va == "Approving")
                 {
-                    hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=approve' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
+                    hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=Approve' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
                     level = 4;
                 }
                 else if (period.status_va == "Approved")
@@ -719,7 +728,7 @@ namespace SIMS2017
                 }
                 else
                 {
-                    hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=analyze' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
+                    hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=Analyze' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
                     if (!string.IsNullOrEmpty(showsavepng))
                     {
                         hlStart = "&nbsp;&nbsp;&nbsp;&nbsp;";
@@ -811,7 +820,7 @@ namespace SIMS2017
                     switch (type)
                     {
                         case "URL":
-                            pOut = String.Format("{0}RecordProcess.aspx?task=analyze&rms_record_id={1}", Config.RMSURL, rms_record_id);
+                            pOut = String.Format("{0}RecordProcess.aspx?task=Analyze&rms_record_id={1}", Config.RMSURL, rms_record_id);
                             break;
                         case "alt":
                             if (!string.IsNullOrEmpty(showlockpng))
@@ -858,7 +867,7 @@ namespace SIMS2017
                 {
                     if (locks.lock_uid != user.ID)
                     {
-                        if (locks.lock_type == "Analyze" || locks.lock_type == "Approve" || locks.lock_type == "Reanalyze")
+                        if (locks.lock_type == "Analyze" || locks.lock_type == "Approve")
                         {
                             pOut = String.Format(" <img border='0' src='{0}images/lock_sm.png' alt='lock type is {1}, locked by {2} {3:MM/dd/yyyy}' />", Config.RMSURL, locks.lock_type, locks.lock_uid, locks.lock_dt);
                         }
@@ -886,10 +895,6 @@ namespace SIMS2017
             if (!islocked)
             {
                 islocked = RecordIsLocked("Approve", rms_record_id);
-                if (!islocked)
-                {
-                    islocked = RecordIsLocked("Reanalyze", rms_record_id);
-                }
             }
 
             if (islocked) pOut = ShowLocks("lock", rms_record_id);
