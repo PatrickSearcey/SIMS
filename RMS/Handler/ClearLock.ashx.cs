@@ -16,6 +16,7 @@ namespace RMS.Handler
         {
             string user_id = context.Request.QueryString["user_id"];
             string rms_record_id = context.Request.QueryString["rms_record_id"];
+            string all = context.Request.QueryString["all"];
 
             if (!string.IsNullOrEmpty(rms_record_id))
             {
@@ -23,8 +24,13 @@ namespace RMS.Handler
 
                 if (currRecord != null)
                 {
-                    //Clear the lock
+                    //Clear the lock, but only the "lock" type, not the "save" type
                     if (currRecord.RecordLock.lock_type != "Analyzing" || currRecord.RecordLock.lock_type != "Approving")
+                    {
+                        db.RecordLocks.DeleteOnSubmit(currRecord.RecordLock);
+                        db.SubmitChanges();
+                    }
+                    else if (all == "true")
                     {
                         db.RecordLocks.DeleteOnSubmit(currRecord.RecordLock);
                         db.SubmitChanges();
@@ -34,7 +40,10 @@ namespace RMS.Handler
 
             if (!string.IsNullOrEmpty(user_id))
             {
-                db.RecordLocks.DeleteAllOnSubmit(db.RecordLocks.Where(p => p.lock_uid == user_id && p.lock_type == "Analyze" || p.lock_uid == user_id && p.lock_type == "Approve" || p.lock_uid == user_id && p.lock_type == "Reanalyze"));
+                if (all == "true") //Delete all locks, no matter what
+                    db.RecordLocks.DeleteAllOnSubmit(db.RecordLocks.Where(p => p.lock_uid == user_id));
+                else //Delete only "locks", not "saves"
+                    db.RecordLocks.DeleteAllOnSubmit(db.RecordLocks.Where(p => p.lock_uid == user_id && p.lock_type == "Analyze" || p.lock_uid == user_id && p.lock_type == "Approve" || p.lock_uid == user_id && p.lock_type == "Reanalyze"));
                 db.SubmitChanges();
             }
         }

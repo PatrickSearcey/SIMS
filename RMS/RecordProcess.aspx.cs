@@ -81,9 +81,9 @@ namespace RMS
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string period_id = "368644";// Request.QueryString["period_id"];
+            string period_id = Request.QueryString["period_id"];
             string rms_record_id = Request.QueryString["rms_record_id"];
-            task = "Analyze"; // Request.QueryString["task"];
+            task = Request.QueryString["task"];
 
             //If no rms_record_id or period_id was passed, then redirect back to the homepage
             if (!string.IsNullOrEmpty(period_id) || !string.IsNullOrEmpty(rms_record_id))
@@ -105,21 +105,24 @@ namespace RMS
             if (!Page.IsPostBack)
             {
                 //If the user belongs to this site's WSC (or has an exception to work in the WSC), or is a SuperUser, then allow them to edit the page
-                if (user.WSCID.Contains(WSCID) || user.IsSuperUser) HasEditAccess = true;
+                if (user.WSCID.Contains(WSCID) || user.IsSuperUser) HasEditAccess = true; else HasEditAccess = false;
 
-                CreateLock(task);
+                //Start with a cleared out PeriodID session state variable
+                if (string.IsNullOrEmpty(period_id)) PeriodID = 0;
+
                 PopulatePageData();
-                SetupPermission();
+                if (!Locked)
+                {
+                    CreateLock(task);
+                    SetupPermission();
+                }
             }
         }
-
 
         #region Page Load Methods
         protected void UserControlSetup()
         {
-            if (task == "Analyze") ph1.Title = "Analyze Record";
-            else if (task == "Reanalyze") ph1.Title = "Reanalyze Record";
-            else ph1.Title = "Approve Record";
+            ph1.Title = task + " Record";
             ph1.SubTitle = currRecord.Site.site_no + " " + currRecord.Site.station_full_nm;
             ph1.RecordType = currRecord.RecordType.type_ds + " Record for";
         }
@@ -153,7 +156,6 @@ namespace RMS
             {
                 pnlLocked.Visible = true;
                 pnlAnalyze.Visible = false;
-                pnlReanalyze.Visible = false;
                 pnlApprove.Visible = false;
                 SetupLockedPanel();
             }
@@ -164,23 +166,13 @@ namespace RMS
                     pnlLocked.Visible = false;
                     pnlAnalyze.Visible = true;
                     pnlApprove.Visible = false;
-                    pnlReanalyze.Visible = false;
                     SetupAnalyzePanel();
                 }
-                else if (task == "Reanalyze")
-                {
-                    pnlLocked.Visible = false;
-                    pnlAnalyze.Visible = false;
-                    pnlApprove.Visible = false;
-                    pnlReanalyze.Visible = true;
-                    SetupReanalyzePanel();
-                }
-                else if (task == "Approve")
+                else
                 {
                     pnlLocked.Visible = false;
                     pnlAnalyze.Visible = false;
                     pnlApprove.Visible = true;
-                    pnlReanalyze.Visible = false;
                     SetupApprovePanel();
                 }
             }
@@ -228,7 +220,7 @@ namespace RMS
                 
                 //If a previous period is found, then populate the analysis notes from previous period
                 var prevPeriod = currRecord.RecordAnalysisPeriods.FirstOrDefault(p => p.period_end_dt == period.period_beg_dt);
-                if (prevPeriod != null) rtbPrevAnalysisNotes.Text = prevPeriod.analysis_notes_va; else rtbPrevAnalysisNotes.Text = "No previous period found.";
+                if (prevPeriod != null) rtbPrevAnalysisNotes.Text = Format(prevPeriod.analysis_notes_va); else rtbPrevAnalysisNotes.Text = "No previous period found.";
 
                 reAnalysisNotes.Content = period.analysis_notes_va;
             }
@@ -240,7 +232,7 @@ namespace RMS
                 {
                     rdpBeginDateAnalyze.SelectedDate = analysis_status.analyzed_period_dt;
                     rdpBeginDateAnalyze.Enabled = false;
-                    rtbPrevAnalysisNotes.Text = currRecord.RecordAnalysisPeriods.FirstOrDefault(p => p.period_end_dt == analysis_status.analyzed_period_dt).analysis_notes_va;
+                    rtbPrevAnalysisNotes.Text = Format(currRecord.RecordAnalysisPeriods.FirstOrDefault(p => p.period_end_dt == analysis_status.analyzed_period_dt).analysis_notes_va);
                 }
                 else //Totally new, adding first period ever to record
                 {
@@ -250,19 +242,66 @@ namespace RMS
 
         }
 
-        protected void SetupReanalyzePanel()
-        {
-
-        }
-
+        /// <summary>
+        /// The Approve panel is used for both approving and reanalyzing
+        /// </summary>
         protected void SetupApprovePanel()
         {
+            var currPeriod = currRecord.RecordAnalysisPeriods.FirstOrDefault(p => p.period_id == PeriodID);
 
+            if (currPeriod == null) 
+                Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
+            else
+            {
+                ltlAnalyzedBy.Text = "<b>" + currPeriod.analyzed_by + "</b>";
+                if (!string.IsNullOrEmpty(currPeriod.approved_by)) ltlApprover.Text = "<b>" + currPeriod.approved_by + "</b>"; else ltlApprover.Text = "<b>" + user.ID + "</b>";
+                ltlTimePeriod.Text = String.Format("<b>{0:MM/dd/yyyy} - {1:MM/dd/yyyy}</b>", currPeriod.period_beg_dt, currPeriod.period_end_dt);
+                hlWYAnalysisNotes2.NavigateUrl = String.Format("javascript:OpenPopup('Modal/ReportPopup.aspx?view=wyanalysisnotes&rms_record_id={0}')", RecordID);
+                hlDialog.NavigateUrl = String.Format("javascript:OpenPopup('Modal/ReportPopup.aspx?view=dialog&period_id={0}')", PeriodID);
+                hlChangeLog.NavigateUrl = String.Format("javascript:OpenPopup('Modal/ReportPopup.aspx?view=changelog&period_id={0}')", PeriodID);
+                hlApproveInst.NavigateUrl = "javascript:OpenPopup('Modal/Instructions.aspx?type=Analyze')";
+                string swr_url = db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID).swr_url;
+                if (!string.IsNullOrEmpty(swr_url))
+                {
+                    hlAutoReview2.NavigateUrl = String.Format("javascript:OpenPopup('{0}{1}/')", swr_url, currRecord.Site.site_no.Replace(" ", ""));
+                }
+                else hlAutoReview2.Visible = false;
+                pnlAnalysisNotesEdit.Visible = false;
+                pnlAnalysisNotesReadOnly.Visible = true;
+                rtbAnalysisNotes.Text = Format(currPeriod.analysis_notes_va);
+                reAnalysisNotes2.Content = currPeriod.analysis_notes_va;
+                if (currPeriod.PeriodDialogs.FirstOrDefault(p => p.status_set_to_va == "Approving") != null)
+                    reComments.Content = currPeriod.PeriodDialogs.Where(p => p.status_set_to_va == "Approving").OrderByDescending(p => p.dialog_dt).FirstOrDefault().comments_va;
+                if (task == "Reanalyze")
+                {
+                    if (currPeriod.PeriodDialogs.FirstOrDefault(p => p.status_set_to_va == "Reanalyze") != null)
+                        rtbApproverComments.Text = Format(currPeriod.PeriodDialogs.Where(p => p.status_set_to_va == "Reanalyze").OrderByDescending(p => p.dialog_dt).FirstOrDefault().comments_va);
+                    pnlApproverComments.Visible = true;
+                    rbFinish.Text = "Finish Reanalyzing";
+                    rbFinish.CommandName = "Reanalyze";
+                    rbSave.Visible = false;
+                    rbReanalyze.Visible = false;
+                }
+                else
+                {
+                    rbFinish.Text = "Finish Approving";
+                    pnlApproverComments.Visible = false;
+                    rbFinish.CommandName = "Approve";
+                    rbSave.CommandName = "Approve";
+                }
+            }
         }
 
         protected void SetupPermission()
         {
+            if (!HasEditAccess) Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
+        }
+        
+        private string Format(string text)
+        {
+            text = text.Replace("<br />", "\n").Replace("</p>", "\n").Replace("<p>", "").Replace("<strong>", "").Replace("</strong>", "");
 
+            return text;
         }
         #endregion
 
@@ -277,6 +316,7 @@ namespace RMS
             db.SubmitChanges();
 
             PopulatePageData();
+            CreateLock(task);
         }
 
         protected void Button_Commands(object sender, CommandEventArgs e)
@@ -288,6 +328,7 @@ namespace RMS
                     else if (e.CommandArgument.ToString() == "Save") SaveAnalyzingPeriod();
                     break;
                 case "Reanalyze":
+                    FinishReanalyzingPeriod();
                     break;
                 case "Approve":
                     if (e.CommandArgument.ToString() == "Finish") FinishApprovingPeriod();
@@ -295,17 +336,57 @@ namespace RMS
                     else if (e.CommandArgument.ToString() == "Reanalyze") SendBackToReanalyze();
                     break;
                 case "Cancel":
-                    CloseOutPage();
+                    CloseOutPage(false);
+                    break;
+            }
+        }
+
+        protected void EditAnalysisNotes(object sender, CommandEventArgs e)
+        {
+            switch (e.CommandArgument.ToString())
+            {
+                case "Toggle":
+                    pnlAnalysisNotesEdit.Visible = true;
+                    pnlAnalysisNotesReadOnly.Visible = false;
+                    ltlNote.Visible = false;
+                    break;
+                case "Save":
+                    //Save the analysis notes
+                    var currPeriod = currRecord.RecordAnalysisPeriods.FirstOrDefault(p => p.period_id == PeriodID);
+                    currPeriod.analysis_notes_va = reAnalysisNotes2.Content;
+
+                    //Add an entry to the change log table
+                    Data.PeriodChangeLog pcl = new Data.PeriodChangeLog
+                    {
+                        period_id = currPeriod.period_id,
+                        edited_by_uid = user.ID,
+                        edited_dt = DateTime.Now,
+                        new_va = reAnalysisNotes2.Content
+                    };
+                    db.PeriodChangeLogs.InsertOnSubmit(pcl);
+                    db.SubmitChanges();
+
+                    rtbAnalysisNotes.Text = Format(reAnalysisNotes2.Content);
+                    ltlNote.Visible = true;
+                    pnlAnalysisNotesEdit.Visible = false;
+                    pnlAnalysisNotesReadOnly.Visible = true;
+                    break;
+                case "Cancel":
+                    pnlAnalysisNotesEdit.Visible = false;
+                    pnlAnalysisNotesReadOnly.Visible = true;
                     break;
             }
         }
         #endregion
 
         #region Button Methods
-        protected void CloseOutPage()
+        protected void CloseOutPage(bool finished)
         {
+            string all = "true";
+            if (!finished) all = "false";
+
             //Clear Locks
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(String.Format("{0}Handler/ClearLock.ashx?user_id={1}", Config.RMSURL, user.ID));
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(String.Format("{0}Handler/ClearLock.ashx?user_id={1}&all={2}", Config.RMSURL, user.ID, all));
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             //Redirect back to Station Info page
             Response.Redirect(String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, currRecord.Site.site_id));
@@ -329,11 +410,11 @@ namespace RMS
                     period.status_set_by_role_va = "Analyzer";
                     period.analyzed_by = user.ID;
                     period.analyzed_dt = DateTime.Now;
-                    period.analysis_notes_va = reAnalysisNotes.Text;
+                    period.analysis_notes_va = reAnalysisNotes.Content;
 
                     db.SubmitChanges();
-                    AddDialog(period.period_id, "Analyzed", "Analyzer", "The period is finished being Analyzed.", Convert.ToDateTime(rdpEndDateAnalyze.SelectedDate), "");
-                    AddChangeLog(period.period_id, reAnalysisNotes.Text);
+                    AddDialog(period.period_id, "Analyzed", "Analyzer", "The period is finished being analyzed.", Convert.ToDateTime(rdpEndDateAnalyze.SelectedDate));
+                    AddChangeLog(period.period_id, reAnalysisNotes.Content);
                 }
                 else //Insert new period
                 {
@@ -347,21 +428,21 @@ namespace RMS
                         status_set_by_role_va = "Analyzer",
                         analyzed_by = user.ID,
                         analyzed_dt = DateTime.Now,
-                        analysis_notes_va = reAnalysisNotes.Text
+                        analysis_notes_va = reAnalysisNotes.Content
                     };
                     db.RecordAnalysisPeriods.InsertOnSubmit(new_period);
                     db.SubmitChanges();
                     PeriodID = new_period.period_id;
-                    AddDialog(new_period.period_id, "Analyzed", "Analyzer", "The period is finished being Analyzed.", Convert.ToDateTime(rdpEndDateAnalyze.SelectedDate), "");
-                    AddChangeLog(new_period.period_id, reAnalysisNotes.Text);
+                    AddDialog(new_period.period_id, "Analyzed", "Analyzer", "The period is finished being Analyzed.", Convert.ToDateTime(rdpEndDateAnalyze.SelectedDate));
+                    AddChangeLog(new_period.period_id, reAnalysisNotes.Content);
                 }
 
                 SendEmails();
-                CloseOutPage();
+                CloseOutPage(true);
             }
             else
             {
-                ShowErrorMessage("The period start and/or end dates are not valid!");
+                ErrorMessage("The period start and/or end dates are not valid!");
             }
         }
         
@@ -383,10 +464,10 @@ namespace RMS
                     period.status_set_by_role_va = "Analyzer";
                     period.analyzed_by = user.ID;
                     period.analyzed_dt = DateTime.Now;
-                    period.analysis_notes_va = reAnalysisNotes.Text;
+                    period.analysis_notes_va = reAnalysisNotes.Content;
 
                     db.SubmitChanges();
-                    AddDialog(period.period_id, "Analyzing", "Analyzer", "The period was saved by the analyzer.", Convert.ToDateTime(rdpEndDateAnalyze.SelectedDate), "");
+                    AddDialog(period.period_id, "Analyzing", "Analyzer", "The period was saved by the analyzer.", Convert.ToDateTime(rdpEndDateAnalyze.SelectedDate));
                 }
                 else //Insert new period
                 {
@@ -400,54 +481,158 @@ namespace RMS
                         status_set_by_role_va = "Analyzer",
                         analyzed_by = user.ID,
                         analyzed_dt = DateTime.Now,
-                        analysis_notes_va = reAnalysisNotes.Text
+                        analysis_notes_va = reAnalysisNotes.Content
                     };
                     db.RecordAnalysisPeriods.InsertOnSubmit(new_period);
                     db.SubmitChanges();
-                    AddDialog(new_period.period_id, "Analyzing", "Analyzer", "The period was saved by the analyzer.", Convert.ToDateTime(rdpEndDateAnalyze.SelectedDate), "");
+                    PeriodID = new_period.period_id;
+                    AddDialog(new_period.period_id, "Analyzing", "Analyzer", "The period was saved by the analyzer.", Convert.ToDateTime(rdpEndDateAnalyze.SelectedDate));
                 }
 
                 //Change the lock to a save type
                 CreateLock("Analyzing");
                 SendEmails();
                 ltlSaved.Visible = true;
+                ErrorMessage("hide");
             }
             else
             {
-                ShowErrorMessage("The period start and/or end dates are not valid!");
+                ErrorMessage("The period start and/or end dates are not valid!");
             }
 
         }
 
         protected void FinishReanalyzingPeriod()
         {
+            //First, do some validation
+            Boolean valid = false;
+            if (!string.IsNullOrEmpty(reComments.Content)) valid = true;
 
-        }
+            if (valid)
+            {
+                var period = currRecord.RecordAnalysisPeriods.FirstOrDefault(p => p.period_id == PeriodID);
 
-        protected void SaveReanalyingPeriod()
-        {
+                period.status_va = "Analyzed";
+                period.status_set_by = user.ID;
+                period.status_set_by_role_va = "Analyzer";
+                period.analyzed_by = user.ID;
+                period.analyzed_dt = DateTime.Now;
 
+                db.SubmitChanges();
+                AddDialog(period.period_id, "", "Admin", "The period was reanalyzed and is ready for approval.", Convert.ToDateTime(period.period_end_dt));
+                AddDialog(period.period_id, "Analyzed", "Analyzer", reComments.Content, Convert.ToDateTime(period.period_end_dt));
+                
+                SendEmails();
+                CloseOutPage(true);
+            }
+            else
+            {
+                ErrorMessage("You must enter some comments before you can finish reanalyzing!");
+            }
         }
 
         protected void FinishApprovingPeriod()
         {
+            //First, do some validation
+            Boolean valid = false;
+            if (!string.IsNullOrEmpty(reComments.Content)) valid = true;
 
+            if (valid)
+            {
+                var period = currRecord.RecordAnalysisPeriods.FirstOrDefault(p => p.period_id == PeriodID);
+
+                period.status_va = "Approved";
+                period.status_set_by = user.ID;
+                period.status_set_by_role_va = "Approver";
+                period.approved_by = user.ID;
+                period.approved_dt = DateTime.Now;
+
+                db.SubmitChanges();
+                AddDialog(period.period_id, "", "Admin", "The period was set to approved by the approver.", Convert.ToDateTime(period.period_end_dt));
+                AddDialog(period.period_id, "Approved", "Approver", reComments.Content, Convert.ToDateTime(period.period_end_dt));
+
+                SendEmails();
+                CloseOutPage(true);
+            }
+            else
+            {
+                ErrorMessage("You must enter some comments when approving!");
+            }
         }
 
         protected void SaveApprovingPeriod()
         {
+            //First, do some validation
+            Boolean valid = false;
+            if (!string.IsNullOrEmpty(reComments.Content)) valid = true;
 
+            if (valid)
+            {
+                var period = currRecord.RecordAnalysisPeriods.FirstOrDefault(p => p.period_id == PeriodID);
+
+                period.status_va = "Approving";
+                period.status_set_by = user.ID;
+                period.status_set_by_role_va = "Approver";
+                period.approved_by = user.ID;
+                period.approved_dt = DateTime.Now;
+
+                db.SubmitChanges();
+                AddDialog(period.period_id, "", "Admin", "The period is currently being approved by the approver.", Convert.ToDateTime(period.period_end_dt));
+                AddDialog(period.period_id, "Approving", "Approver", reComments.Content, Convert.ToDateTime(period.period_end_dt));
+
+                //Change the lock to a save type
+                CreateLock("Approving");
+                SendEmails();
+                ltlSaved.Visible = true;
+                ErrorMessage("hide");
+            }
+            else
+            {
+                ErrorMessage("You must enter some comments before saving!");
+            }
         }
 
         protected void SendBackToReanalyze()
         {
+            //First, do some validation
+            Boolean valid = false;
+            if (!string.IsNullOrEmpty(reComments.Content)) valid = true;
 
+            if (valid)
+            {
+                var period = currRecord.RecordAnalysisPeriods.FirstOrDefault(p => p.period_id == PeriodID);
+
+                period.status_va = "Reanalyze";
+                period.status_set_by = user.ID;
+                period.status_set_by_role_va = "Approver";
+                period.approved_by = user.ID;
+                period.approved_dt = DateTime.Now;
+
+                db.SubmitChanges();
+                AddDialog(period.period_id, "", "Admin", "The period was sent back for reanalyzing.", Convert.ToDateTime(period.period_end_dt));
+                AddDialog(period.period_id, "Reanalyze", "Approver", reComments.Content, Convert.ToDateTime(period.period_end_dt));
+
+                SendEmails();
+                CloseOutPage(true);
+            }
+            else
+            {
+                ErrorMessage("You must enter a comment for the analyzer!");
+            }
         }
 
-        protected void ShowErrorMessage(string error_msg)
+        protected void ErrorMessage(string error_msg)
         {
-            ltlError.Text = error_msg;
-            pnlErrors.Visible = true;
+            if (error_msg == "hide")
+            {
+                ltlError.Text = "";
+                pnlErrors.Visible = false;
+            }
+            else
+            {
+                ltlError.Text = error_msg;
+                pnlErrors.Visible = true;
+            }
         }
 
         private Boolean ValidateDates(DateTime? begin_dt, DateTime? end_dt)
@@ -475,7 +660,7 @@ namespace RMS
         /// <param name="comments">Comments about the status change/reanalyzing notes</param>
         /// <param name="end_dt">The end date of the period</param>
         /// <param name="severity">The severity of the reason to Reanalyze</param>
-        protected void AddDialog(int period_id, string status, string origin_va, string comments, DateTime end_dt, string severity)
+        protected void AddDialog(int period_id, string status, string origin_va, string comments, DateTime end_dt)
         {
             Data.PeriodDialog dialog = new Data.PeriodDialog
             {
@@ -485,8 +670,7 @@ namespace RMS
                 status_set_to_va = status,
                 origin_va = origin_va,
                 comments_va = comments,
-                period_end_dt = end_dt,
-                reanalyze_severity = severity
+                period_end_dt = end_dt
             };
 
             db.PeriodDialogs.InsertOnSubmit(dialog);

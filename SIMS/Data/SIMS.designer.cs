@@ -132,9 +132,6 @@ namespace Data
     partial void InsertRecordEOYStatus(RecordEOYStatus instance);
     partial void UpdateRecordEOYStatus(RecordEOYStatus instance);
     partial void DeleteRecordEOYStatus(RecordEOYStatus instance);
-    partial void InsertPeriodDialog(PeriodDialog instance);
-    partial void UpdatePeriodDialog(PeriodDialog instance);
-    partial void DeletePeriodDialog(PeriodDialog instance);
     partial void InsertPeriodChangeLog(PeriodChangeLog instance);
     partial void UpdatePeriodChangeLog(PeriodChangeLog instance);
     partial void DeletePeriodChangeLog(PeriodChangeLog instance);
@@ -147,6 +144,9 @@ namespace Data
     partial void InsertRecordAnalysisPeriod(RecordAnalysisPeriod instance);
     partial void UpdateRecordAnalysisPeriod(RecordAnalysisPeriod instance);
     partial void DeleteRecordAnalysisPeriod(RecordAnalysisPeriod instance);
+    partial void InsertPeriodDialog(PeriodDialog instance);
+    partial void UpdatePeriodDialog(PeriodDialog instance);
+    partial void DeletePeriodDialog(PeriodDialog instance);
     #endregion
 		
 		public SIMSDataContext() : 
@@ -491,14 +491,6 @@ namespace Data
 			}
 		}
 		
-		public System.Data.Linq.Table<PeriodDialog> PeriodDialogs
-		{
-			get
-			{
-				return this.GetTable<PeriodDialog>();
-			}
-		}
-		
 		public System.Data.Linq.Table<PeriodChangeLog> PeriodChangeLogs
 		{
 			get
@@ -536,6 +528,14 @@ namespace Data
 			get
 			{
 				return this.GetTable<RecordAnalysisPeriod>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PeriodDialog> PeriodDialogs
+		{
+			get
+			{
+				return this.GetTable<PeriodDialog>();
 			}
 		}
 		
@@ -12481,325 +12481,6 @@ namespace Data
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Dialog")]
-	public partial class PeriodDialog : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _dialog_id;
-		
-		private System.Nullable<int> _period_id;
-		
-		private System.Nullable<System.DateTime> _dialog_dt;
-		
-		private string _dialog_by;
-		
-		private string _status_set_to_va;
-		
-		private string _origin_va;
-		
-		private string _comments_va;
-		
-		private System.Nullable<System.DateTime> _period_end_dt;
-		
-		private string _reanalyze_severity;
-		
-		private System.Nullable<int> _dialog_id_old;
-		
-		private EntityRef<RecordAnalysisPeriod> _RecordAnalysisPeriod;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Ondialog_idChanging(int value);
-    partial void Ondialog_idChanged();
-    partial void Onperiod_idChanging(System.Nullable<int> value);
-    partial void Onperiod_idChanged();
-    partial void Ondialog_dtChanging(System.Nullable<System.DateTime> value);
-    partial void Ondialog_dtChanged();
-    partial void Ondialog_byChanging(string value);
-    partial void Ondialog_byChanged();
-    partial void Onstatus_set_to_vaChanging(string value);
-    partial void Onstatus_set_to_vaChanged();
-    partial void Onorigin_vaChanging(string value);
-    partial void Onorigin_vaChanged();
-    partial void Oncomments_vaChanging(string value);
-    partial void Oncomments_vaChanged();
-    partial void Onperiod_end_dtChanging(System.Nullable<System.DateTime> value);
-    partial void Onperiod_end_dtChanged();
-    partial void Onreanalyze_severityChanging(string value);
-    partial void Onreanalyze_severityChanged();
-    partial void Ondialog_id_oldChanging(System.Nullable<int> value);
-    partial void Ondialog_id_oldChanged();
-    #endregion
-		
-		public PeriodDialog()
-		{
-			this._RecordAnalysisPeriod = default(EntityRef<RecordAnalysisPeriod>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dialog_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int dialog_id
-		{
-			get
-			{
-				return this._dialog_id;
-			}
-			set
-			{
-				if ((this._dialog_id != value))
-				{
-					this.Ondialog_idChanging(value);
-					this.SendPropertyChanging();
-					this._dialog_id = value;
-					this.SendPropertyChanged("dialog_id");
-					this.Ondialog_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_period_id", DbType="Int")]
-		public System.Nullable<int> period_id
-		{
-			get
-			{
-				return this._period_id;
-			}
-			set
-			{
-				if ((this._period_id != value))
-				{
-					if (this._RecordAnalysisPeriod.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onperiod_idChanging(value);
-					this.SendPropertyChanging();
-					this._period_id = value;
-					this.SendPropertyChanged("period_id");
-					this.Onperiod_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dialog_dt", DbType="DateTime")]
-		public System.Nullable<System.DateTime> dialog_dt
-		{
-			get
-			{
-				return this._dialog_dt;
-			}
-			set
-			{
-				if ((this._dialog_dt != value))
-				{
-					this.Ondialog_dtChanging(value);
-					this.SendPropertyChanging();
-					this._dialog_dt = value;
-					this.SendPropertyChanged("dialog_dt");
-					this.Ondialog_dtChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dialog_by", DbType="NVarChar(50)")]
-		public string dialog_by
-		{
-			get
-			{
-				return this._dialog_by;
-			}
-			set
-			{
-				if ((this._dialog_by != value))
-				{
-					this.Ondialog_byChanging(value);
-					this.SendPropertyChanging();
-					this._dialog_by = value;
-					this.SendPropertyChanged("dialog_by");
-					this.Ondialog_byChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status_set_to_va", DbType="NVarChar(50)")]
-		public string status_set_to_va
-		{
-			get
-			{
-				return this._status_set_to_va;
-			}
-			set
-			{
-				if ((this._status_set_to_va != value))
-				{
-					this.Onstatus_set_to_vaChanging(value);
-					this.SendPropertyChanging();
-					this._status_set_to_va = value;
-					this.SendPropertyChanged("status_set_to_va");
-					this.Onstatus_set_to_vaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_origin_va", DbType="NVarChar(10)")]
-		public string origin_va
-		{
-			get
-			{
-				return this._origin_va;
-			}
-			set
-			{
-				if ((this._origin_va != value))
-				{
-					this.Onorigin_vaChanging(value);
-					this.SendPropertyChanging();
-					this._origin_va = value;
-					this.SendPropertyChanged("origin_va");
-					this.Onorigin_vaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_comments_va", DbType="NVarChar(MAX)")]
-		public string comments_va
-		{
-			get
-			{
-				return this._comments_va;
-			}
-			set
-			{
-				if ((this._comments_va != value))
-				{
-					this.Oncomments_vaChanging(value);
-					this.SendPropertyChanging();
-					this._comments_va = value;
-					this.SendPropertyChanged("comments_va");
-					this.Oncomments_vaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_period_end_dt", DbType="DateTime")]
-		public System.Nullable<System.DateTime> period_end_dt
-		{
-			get
-			{
-				return this._period_end_dt;
-			}
-			set
-			{
-				if ((this._period_end_dt != value))
-				{
-					this.Onperiod_end_dtChanging(value);
-					this.SendPropertyChanging();
-					this._period_end_dt = value;
-					this.SendPropertyChanged("period_end_dt");
-					this.Onperiod_end_dtChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_reanalyze_severity", DbType="NVarChar(50)")]
-		public string reanalyze_severity
-		{
-			get
-			{
-				return this._reanalyze_severity;
-			}
-			set
-			{
-				if ((this._reanalyze_severity != value))
-				{
-					this.Onreanalyze_severityChanging(value);
-					this.SendPropertyChanging();
-					this._reanalyze_severity = value;
-					this.SendPropertyChanged("reanalyze_severity");
-					this.Onreanalyze_severityChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dialog_id_old", DbType="Int")]
-		public System.Nullable<int> dialog_id_old
-		{
-			get
-			{
-				return this._dialog_id_old;
-			}
-			set
-			{
-				if ((this._dialog_id_old != value))
-				{
-					this.Ondialog_id_oldChanging(value);
-					this.SendPropertyChanging();
-					this._dialog_id_old = value;
-					this.SendPropertyChanged("dialog_id_old");
-					this.Ondialog_id_oldChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_PeriodDialog", Storage="_RecordAnalysisPeriod", ThisKey="period_id", OtherKey="period_id", IsForeignKey=true)]
-		public RecordAnalysisPeriod RecordAnalysisPeriod
-		{
-			get
-			{
-				return this._RecordAnalysisPeriod.Entity;
-			}
-			set
-			{
-				RecordAnalysisPeriod previousValue = this._RecordAnalysisPeriod.Entity;
-				if (((previousValue != value) 
-							|| (this._RecordAnalysisPeriod.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._RecordAnalysisPeriod.Entity = null;
-						previousValue.PeriodDialogs.Remove(this);
-					}
-					this._RecordAnalysisPeriod.Entity = value;
-					if ((value != null))
-					{
-						value.PeriodDialogs.Add(this);
-						this._period_id = value.period_id;
-					}
-					else
-					{
-						this._period_id = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("RecordAnalysisPeriod");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Change_Log")]
 	public partial class PeriodChangeLog : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -13698,9 +13379,9 @@ namespace Data
 		
 		private EntityRef<PeriodSavedNote> _PeriodSavedNote;
 		
-		private EntitySet<PeriodDialog> _PeriodDialogs;
-		
 		private EntitySet<PeriodChangeLog> _PeriodChangeLogs;
+		
+		private EntitySet<PeriodDialog> _PeriodDialogs;
 		
 		private EntityRef<Record> _Record;
 		
@@ -13739,8 +13420,8 @@ namespace Data
 		public RecordAnalysisPeriod()
 		{
 			this._PeriodSavedNote = default(EntityRef<PeriodSavedNote>);
-			this._PeriodDialogs = new EntitySet<PeriodDialog>(new Action<PeriodDialog>(this.attach_PeriodDialogs), new Action<PeriodDialog>(this.detach_PeriodDialogs));
 			this._PeriodChangeLogs = new EntitySet<PeriodChangeLog>(new Action<PeriodChangeLog>(this.attach_PeriodChangeLogs), new Action<PeriodChangeLog>(this.detach_PeriodChangeLogs));
+			this._PeriodDialogs = new EntitySet<PeriodDialog>(new Action<PeriodDialog>(this.attach_PeriodDialogs), new Action<PeriodDialog>(this.detach_PeriodDialogs));
 			this._Record = default(EntityRef<Record>);
 			OnCreated();
 		}
@@ -14038,19 +13719,6 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_PeriodDialog", Storage="_PeriodDialogs", ThisKey="period_id", OtherKey="period_id")]
-		public EntitySet<PeriodDialog> PeriodDialogs
-		{
-			get
-			{
-				return this._PeriodDialogs;
-			}
-			set
-			{
-				this._PeriodDialogs.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_PeriodChangeLog", Storage="_PeriodChangeLogs", ThisKey="period_id", OtherKey="period_id")]
 		public EntitySet<PeriodChangeLog> PeriodChangeLogs
 		{
@@ -14061,6 +13729,19 @@ namespace Data
 			set
 			{
 				this._PeriodChangeLogs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_RMS_Dialog", Storage="_PeriodDialogs", ThisKey="period_id", OtherKey="period_id")]
+		public EntitySet<PeriodDialog> PeriodDialogs
+		{
+			get
+			{
+				return this._PeriodDialogs;
+			}
+			set
+			{
+				this._PeriodDialogs.Assign(value);
 			}
 		}
 		
@@ -14118,6 +13799,18 @@ namespace Data
 			}
 		}
 		
+		private void attach_PeriodChangeLogs(PeriodChangeLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.RecordAnalysisPeriod = this;
+		}
+		
+		private void detach_PeriodChangeLogs(PeriodChangeLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.RecordAnalysisPeriod = null;
+		}
+		
 		private void attach_PeriodDialogs(PeriodDialog entity)
 		{
 			this.SendPropertyChanging();
@@ -14129,17 +13822,300 @@ namespace Data
 			this.SendPropertyChanging();
 			entity.RecordAnalysisPeriod = null;
 		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Dialog")]
+	public partial class PeriodDialog : INotifyPropertyChanging, INotifyPropertyChanged
+	{
 		
-		private void attach_PeriodChangeLogs(PeriodChangeLog entity)
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _dialog_id;
+		
+		private System.Nullable<int> _period_id;
+		
+		private System.Nullable<System.DateTime> _dialog_dt;
+		
+		private string _dialog_by;
+		
+		private string _status_set_to_va;
+		
+		private string _origin_va;
+		
+		private string _comments_va;
+		
+		private System.Nullable<System.DateTime> _period_end_dt;
+		
+		private System.Nullable<int> _dialog_id_old;
+		
+		private EntityRef<RecordAnalysisPeriod> _RecordAnalysisPeriod;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Ondialog_idChanging(int value);
+    partial void Ondialog_idChanged();
+    partial void Onperiod_idChanging(System.Nullable<int> value);
+    partial void Onperiod_idChanged();
+    partial void Ondialog_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Ondialog_dtChanged();
+    partial void Ondialog_byChanging(string value);
+    partial void Ondialog_byChanged();
+    partial void Onstatus_set_to_vaChanging(string value);
+    partial void Onstatus_set_to_vaChanged();
+    partial void Onorigin_vaChanging(string value);
+    partial void Onorigin_vaChanged();
+    partial void Oncomments_vaChanging(string value);
+    partial void Oncomments_vaChanged();
+    partial void Onperiod_end_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onperiod_end_dtChanged();
+    partial void Ondialog_id_oldChanging(System.Nullable<int> value);
+    partial void Ondialog_id_oldChanged();
+    #endregion
+		
+		public PeriodDialog()
 		{
-			this.SendPropertyChanging();
-			entity.RecordAnalysisPeriod = this;
+			this._RecordAnalysisPeriod = default(EntityRef<RecordAnalysisPeriod>);
+			OnCreated();
 		}
 		
-		private void detach_PeriodChangeLogs(PeriodChangeLog entity)
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dialog_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int dialog_id
 		{
-			this.SendPropertyChanging();
-			entity.RecordAnalysisPeriod = null;
+			get
+			{
+				return this._dialog_id;
+			}
+			set
+			{
+				if ((this._dialog_id != value))
+				{
+					this.Ondialog_idChanging(value);
+					this.SendPropertyChanging();
+					this._dialog_id = value;
+					this.SendPropertyChanged("dialog_id");
+					this.Ondialog_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_period_id", DbType="Int")]
+		public System.Nullable<int> period_id
+		{
+			get
+			{
+				return this._period_id;
+			}
+			set
+			{
+				if ((this._period_id != value))
+				{
+					if (this._RecordAnalysisPeriod.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onperiod_idChanging(value);
+					this.SendPropertyChanging();
+					this._period_id = value;
+					this.SendPropertyChanged("period_id");
+					this.Onperiod_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dialog_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> dialog_dt
+		{
+			get
+			{
+				return this._dialog_dt;
+			}
+			set
+			{
+				if ((this._dialog_dt != value))
+				{
+					this.Ondialog_dtChanging(value);
+					this.SendPropertyChanging();
+					this._dialog_dt = value;
+					this.SendPropertyChanged("dialog_dt");
+					this.Ondialog_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dialog_by", DbType="NVarChar(50)")]
+		public string dialog_by
+		{
+			get
+			{
+				return this._dialog_by;
+			}
+			set
+			{
+				if ((this._dialog_by != value))
+				{
+					this.Ondialog_byChanging(value);
+					this.SendPropertyChanging();
+					this._dialog_by = value;
+					this.SendPropertyChanged("dialog_by");
+					this.Ondialog_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status_set_to_va", DbType="NVarChar(50)")]
+		public string status_set_to_va
+		{
+			get
+			{
+				return this._status_set_to_va;
+			}
+			set
+			{
+				if ((this._status_set_to_va != value))
+				{
+					this.Onstatus_set_to_vaChanging(value);
+					this.SendPropertyChanging();
+					this._status_set_to_va = value;
+					this.SendPropertyChanged("status_set_to_va");
+					this.Onstatus_set_to_vaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_origin_va", DbType="NVarChar(10)")]
+		public string origin_va
+		{
+			get
+			{
+				return this._origin_va;
+			}
+			set
+			{
+				if ((this._origin_va != value))
+				{
+					this.Onorigin_vaChanging(value);
+					this.SendPropertyChanging();
+					this._origin_va = value;
+					this.SendPropertyChanged("origin_va");
+					this.Onorigin_vaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_comments_va", DbType="NVarChar(MAX)")]
+		public string comments_va
+		{
+			get
+			{
+				return this._comments_va;
+			}
+			set
+			{
+				if ((this._comments_va != value))
+				{
+					this.Oncomments_vaChanging(value);
+					this.SendPropertyChanging();
+					this._comments_va = value;
+					this.SendPropertyChanged("comments_va");
+					this.Oncomments_vaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_period_end_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> period_end_dt
+		{
+			get
+			{
+				return this._period_end_dt;
+			}
+			set
+			{
+				if ((this._period_end_dt != value))
+				{
+					this.Onperiod_end_dtChanging(value);
+					this.SendPropertyChanging();
+					this._period_end_dt = value;
+					this.SendPropertyChanged("period_end_dt");
+					this.Onperiod_end_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dialog_id_old", DbType="Int")]
+		public System.Nullable<int> dialog_id_old
+		{
+			get
+			{
+				return this._dialog_id_old;
+			}
+			set
+			{
+				if ((this._dialog_id_old != value))
+				{
+					this.Ondialog_id_oldChanging(value);
+					this.SendPropertyChanging();
+					this._dialog_id_old = value;
+					this.SendPropertyChanged("dialog_id_old");
+					this.Ondialog_id_oldChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_RMS_Dialog", Storage="_RecordAnalysisPeriod", ThisKey="period_id", OtherKey="period_id", IsForeignKey=true)]
+		public RecordAnalysisPeriod RecordAnalysisPeriod
+		{
+			get
+			{
+				return this._RecordAnalysisPeriod.Entity;
+			}
+			set
+			{
+				RecordAnalysisPeriod previousValue = this._RecordAnalysisPeriod.Entity;
+				if (((previousValue != value) 
+							|| (this._RecordAnalysisPeriod.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._RecordAnalysisPeriod.Entity = null;
+						previousValue.PeriodDialogs.Remove(this);
+					}
+					this._RecordAnalysisPeriod.Entity = value;
+					if ((value != null))
+					{
+						value.PeriodDialogs.Add(this);
+						this._period_id = value.period_id;
+					}
+					else
+					{
+						this._period_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("RecordAnalysisPeriod");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	

@@ -220,15 +220,6 @@ namespace RMS {
         protected global::Telerik.Web.UI.RadButton rbCancelAnalyze;
         
         /// <summary>
-        /// pnlReanalyze control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlReanalyze;
-        
-        /// <summary>
         /// pnlApprove control.
         /// </summary>
         /// <remarks>
@@ -310,6 +301,15 @@ namespace RMS {
         protected global::System.Web.UI.WebControls.HyperLink hlAutoReview2;
         
         /// <summary>
+        /// ltlNote control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlNote;
+        
+        /// <summary>
         /// pnlAnalysisNotesReadOnly control.
         /// </summary>
         /// <remarks>
@@ -373,6 +373,24 @@ namespace RMS {
         protected global::Telerik.Web.UI.RadButton rbCancelAnalysisNotes;
         
         /// <summary>
+        /// pnlApproverComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlApproverComments;
+        
+        /// <summary>
+        /// rtbApproverComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadTextBox rtbApproverComments;
+        
+        /// <summary>
         /// reComments control.
         /// </summary>
         /// <remarks>
@@ -382,31 +400,40 @@ namespace RMS {
         protected global::Telerik.Web.UI.RadEditor reComments;
         
         /// <summary>
-        /// rbFinishApprove control.
+        /// rbReanalyze control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton rbFinishApprove;
+        protected global::Telerik.Web.UI.RadButton rbReanalyze;
         
         /// <summary>
-        /// rbSaveApprove control.
+        /// rbFinish control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton rbSaveApprove;
+        protected global::Telerik.Web.UI.RadButton rbFinish;
         
         /// <summary>
-        /// rbCancelApprove control.
+        /// rbSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton rbCancelApprove;
+        protected global::Telerik.Web.UI.RadButton rbSave;
+        
+        /// <summary>
+        /// rbCancel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton rbCancel;
         
         /// <summary>
         /// ltlSaved control.

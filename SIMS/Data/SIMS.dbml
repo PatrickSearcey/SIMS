@@ -587,21 +587,6 @@
       <Association Name="Record_RecordEOYStatus" Member="Record" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="Record" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.RMS_Dialog" Member="PeriodDialogs">
-    <Type Name="PeriodDialog">
-      <Column Name="dialog_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="period_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="dialog_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="dialog_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="status_set_to_va" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="origin_va" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="comments_va" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="period_end_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="reanalyze_severity" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="dialog_id_old" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="RecordAnalysisPeriod_PeriodDialog" Member="RecordAnalysisPeriod" ThisKey="period_id" OtherKey="period_id" Type="RecordAnalysisPeriod" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.RMS_Change_Log" Member="PeriodChangeLogs">
     <Type Name="PeriodChangeLog">
       <Column Name="change_log_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -667,9 +652,23 @@
       <Column Name="analysis_notes_va" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="period_id_old" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="RecordAnalysisPeriod_PeriodSavedNote" Member="PeriodSavedNote" ThisKey="period_id" OtherKey="period_id" Type="PeriodSavedNote" Cardinality="One" />
-      <Association Name="RecordAnalysisPeriod_PeriodDialog" Member="PeriodDialogs" ThisKey="period_id" OtherKey="period_id" Type="PeriodDialog" />
       <Association Name="RecordAnalysisPeriod_PeriodChangeLog" Member="PeriodChangeLogs" ThisKey="period_id" OtherKey="period_id" Type="PeriodChangeLog" />
+      <Association Name="RecordAnalysisPeriod_RMS_Dialog" Member="PeriodDialogs" ThisKey="period_id" OtherKey="period_id" Type="PeriodDialog" />
       <Association Name="Record_RecordAnalysisPeriod" Member="Record" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="Record" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RMS_Dialog" Member="PeriodDialogs">
+    <Type Name="PeriodDialog">
+      <Column Name="dialog_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="period_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dialog_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="dialog_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="status_set_to_va" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="origin_va" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="comments_va" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="period_end_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="dialog_id_old" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="RecordAnalysisPeriod_RMS_Dialog" Member="RecordAnalysisPeriod" ThisKey="period_id" OtherKey="period_id" Type="RecordAnalysisPeriod" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">

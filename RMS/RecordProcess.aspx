@@ -26,23 +26,47 @@
             <telerik:AjaxSetting AjaxControlID="rbFinishAnalyze">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="pnlErrors" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlAnalyze" LoadingPanelID="ralp" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="rbSaveAnalyze">
                 <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="pnlErrors" />
                     <telerik:AjaxUpdatedControl ControlID="ltlSaved" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlAnalyze" LoadingPanelID="ralp" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="rbReanalyze">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="pnlErrors" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlApprove" LoadingPanelID="ralp" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="rbFinish">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="pnlErrors" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlApprove" LoadingPanelID="ralp" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="rbSave">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="pnlErrors" />
+                    <telerik:AjaxUpdatedControl ControlID="ltlSaved" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlApprove" LoadingPanelID="ralp" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="pnlAnalysisNotesEdit">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="pnlAnalysisNotesEdit" />
                     <telerik:AjaxUpdatedControl ControlID="pnlAnalysisNotesReadOnly" />
+                    <telerik:AjaxUpdatedControl ControlID="ltlNote" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="pnlAnalysisNotesReadOnly">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="pnlAnalysisNotesReadOnly" />
                     <telerik:AjaxUpdatedControl ControlID="pnlAnalysisNotesEdit" />
+                    <telerik:AjaxUpdatedControl ControlID="ltlNote" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
         </AjaxSettings>
@@ -115,9 +139,6 @@
             </tr>
         </table>
     </asp:Panel>
-    <asp:Panel ID="pnlReanalyze" runat="server">
-
-    </asp:Panel>
     <asp:Panel ID="pnlApprove" runat="server">
         <table class="RecordProcess">
             <tr>
@@ -141,9 +162,10 @@
             <tr>
                 <td colspan="2">
                     <h4>Analysis notes</h4>
+                    <asp:Literal ID="ltlNote" runat="server" Text="<div style='width:100%;text-align:center;color:#ec562c;font-weight:bold;'>The analysis notes were saved!</div>" Visible="false" />
                     <asp:Panel ID="pnlAnalysisNotesReadOnly" runat="server">
                         <telerik:RadTextBox ID="rtbAnalysisNotes" runat="server" TextMode="MultiLine" Width="100%" Height="300px" ReadOnly="true" />
-                        <div style="text-align:center;">
+                        <div style="text-align:center;padding-top:5px;">
                             <telerik:RadButton ID="rbEditAnalysisNotes" runat="server" Text="Edit Analysis Notes" OnCommand="EditAnalysisNotes" CommandArgument="Toggle" />
                         </div>
                     </asp:Panel>
@@ -157,7 +179,7 @@
                             </Tools>
                             <SpellCheckSettings DictionaryLanguage="en-GB" DictionaryPath="~/App_Data/RadSpell/" />
                         </telerik:RadEditor>
-                        <div style="text-align:center;">
+                        <div style="text-align:center;padding-top:5px;">
                             <telerik:RadButton ID="rbSaveAnalysisNotes" runat="server" Text="Save Changes" OnCommand="EditAnalysisNotes" CommandArgument="Save" /> 
                             <telerik:RadButton ID="rbCancelAnalysisNotes" runat="server" Text="Cancel Without Saving" OnCommand="EditAnalysisNotes" CommandArgument="Cancel" />
                         </div>
@@ -166,8 +188,16 @@
             </tr>
             <tr>
                 <td colspan="2">
+                    <asp:Panel ID="pnlApproverComments" runat="server">
+                        <h4>Approver Comments</h4>
+                        <telerik:RadTextBox ID="rtbApproverComments" runat="server" TextMode="MultiLine" Width="100%" Height="100px" ReadOnly="true" />
+                    </asp:Panel>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
                     <h4>Comments</h4>
-                    <telerik:RadEditor ID="reComments" runat="server" Skin="Bootstrap" OnClientLoad="OnClientLoad" Width="100%" Height="300px">
+                    <telerik:RadEditor ID="reComments" runat="server" Skin="Bootstrap" OnClientLoad="OnClientLoad" Width="100%" Height="100px">
                         <Tools>
                             <telerik:EditorToolGroup>
                                 <telerik:EditorTool Name="AjaxSpellCheck" Visible="true" Enabled="true" />
@@ -181,9 +211,10 @@
             <tr>
                 <td colspan="2">
                     <div style="text-align:center;">
-                        <telerik:RadButton ID="rbFinishApprove" runat="server" Text="Finish Approving" OnCommand="Button_Commands" CommandArgument="Finish" CommandName="Approve" />
-                        <telerik:RadButton ID="rbSaveApprove" runat="server" Text="Save" OnCommand="Button_Commands" CommandArgument="Save" CommandName="Approve" />
-                        <telerik:RadButton ID="rbCancelApprove" runat="server" Text="Cancel" OnCommand="Button_Commands" CommandName="Cancel" />
+                        <telerik:RadButton ID="rbReanalyze" runat="server" Text="Send Back for Reanalyzing" OnCommand="Button_Commands" CommandArgument="Reanalyze" CommandName="Approve" />
+                        <telerik:RadButton ID="rbFinish" runat="server" OnCommand="Button_Commands" CommandArgument="Finish" />
+                        <telerik:RadButton ID="rbSave" runat="server" Text="Save" OnCommand="Button_Commands" CommandArgument="Save" />
+                        <telerik:RadButton ID="rbCancel" runat="server" Text="Cancel" OnCommand="Button_Commands" CommandName="Cancel" />
                     </div>
                 </td>
             </tr>
