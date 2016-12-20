@@ -510,16 +510,6 @@
       <Column Name="site_tp_ds" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.RMS_Saved_Notes" Member="PeriodSavedNotes">
-    <Type Name="PeriodSavedNote">
-      <Column Name="period_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="record_type_va" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="html_reanalyze_flag_va" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="comments_va" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="entered_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="RecordAnalysisPeriod_PeriodSavedNote" Member="RecordAnalysisPeriod" ThisKey="period_id" OtherKey="period_id" Type="RecordAnalysisPeriod" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.RMS_Record_Types" Member="RecordTypes">
     <Type Name="RecordType">
       <Column Name="record_type_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -651,9 +641,8 @@
       <Column Name="approved_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="analysis_notes_va" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="period_id_old" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="RecordAnalysisPeriod_PeriodSavedNote" Member="PeriodSavedNote" ThisKey="period_id" OtherKey="period_id" Type="PeriodSavedNote" Cardinality="One" />
       <Association Name="RecordAnalysisPeriod_PeriodChangeLog" Member="PeriodChangeLogs" ThisKey="period_id" OtherKey="period_id" Type="PeriodChangeLog" />
-      <Association Name="RecordAnalysisPeriod_RMS_Dialog" Member="PeriodDialogs" ThisKey="period_id" OtherKey="period_id" Type="PeriodDialog" />
+      <Association Name="RecordAnalysisPeriod_PeriodDialog" Member="PeriodDialogs" ThisKey="period_id" OtherKey="period_id" Type="PeriodDialog" />
       <Association Name="Record_RecordAnalysisPeriod" Member="Record" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="Record" IsForeignKey="true" />
     </Type>
   </Table>
@@ -668,7 +657,20 @@
       <Column Name="comments_va" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="period_end_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="dialog_id_old" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="RecordAnalysisPeriod_RMS_Dialog" Member="RecordAnalysisPeriod" ThisKey="period_id" OtherKey="period_id" Type="RecordAnalysisPeriod" IsForeignKey="true" />
+      <Association Name="RecordAnalysisPeriod_PeriodDialog" Member="RecordAnalysisPeriod" ThisKey="period_id" OtherKey="period_id" Type="RecordAnalysisPeriod" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vTS_ID_CACHE" Member="vTS_ID_CACHEs">
+    <Type Name="vTS_ID_CACHE">
+      <Column Name="ts_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="iv_ts_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="site_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="adaps_dd_nu" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="parameter_cd" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="ts_tx" Type="System.String" DbType="NVarChar(75)" CanBeNull="true" />
+      <Column Name="stat_cd" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="gu_id" Type="System.String" DbType="NVarChar(32)" CanBeNull="true" />
+      <Column Name="ts_id_md" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">
@@ -742,6 +744,12 @@
       <Column Name="status_va" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.SP_RMS_WYs_with_periods" Method="SP_RMS_WYs_with_periods">
+    <Parameter Name="rms_record_id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_RMS_WYs_with_periodsResult">
+      <Column Name="WY" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
   <Function Name="dbo.SP_Site_Analyzed_Doubles" Method="SP_Site_Analyzed_Doubles">
     <Parameter Name="rms_record_id" Type="System.Int32" DbType="Int" />
     <ElementType Name="SP_Site_Analyzed_DoublesResult">
@@ -757,14 +765,41 @@
       <Column Name="approved_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="approved_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="analysis_notes_va" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="html_reanalyze_flag_va" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="sn_comments" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
     </ElementType>
   </Function>
-  <Function Name="dbo.SP_RMS_WYs_with_periods" Method="SP_RMS_WYs_with_periods">
-    <Parameter Name="rms_record_id" Type="System.Int32" DbType="Int" />
-    <ElementType Name="SP_RMS_WYs_with_periodsResult">
-      <Column Name="WY" Type="System.Int32" DbType="Int" CanBeNull="true" />
+  <Function Name="dbo.SP_Personnel_by_WSC_office_or_user_id" Method="SP_Personnel_by_WSC_office_or_user_id">
+    <Parameter Name="wsc_id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="office_id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="user_id" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="show_reports" Type="System.String" DbType="NVarChar(3)" />
+    <Parameter Name="status" Type="System.String" DbType="NVarChar(4)" />
+    <Parameter Name="manage" Type="System.String" DbType="NVarChar(3)" />
+    <ElementType Name="SP_Personnel_by_WSC_office_or_user_idResult">
+      <Column Name="office_cd" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="office_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="user_id" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="user_nm" Type="System.String" DbType="NVarChar(126)" CanBeNull="true" />
+      <Column Name="first_nm" Type="System.String" DbType="NVarChar(75)" CanBeNull="true" />
+      <Column Name="last_nm" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="wsc_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="approver_va" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="administrator_va" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="pass_access" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="show_reports" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_RMS_Get_Site_DDs" Method="SP_RMS_Get_Site_DDs">
+    <Parameter Name="site_id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="options" Type="System.String" DbType="NVarChar(20)" />
+    <ElementType Name="SP_RMS_Get_Site_DDsResult">
+      <Column Name="iv_ts_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="site_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dd_nu" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="parm_cd" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="parm_nm" Type="System.String" DbType="NVarChar(29)" CanBeNull="true" />
+      <Column Name="dd_ts_ds" Type="System.String" DbType="NVarChar(95)" CanBeNull="true" />
+      <Column Name="gu_id" Type="System.String" DbType="NVarChar(32)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

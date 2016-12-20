@@ -127,25 +127,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/18/2016 12:12:12</publishTime>
     </File>
     <File Include="bin/Core.dll">
-      <publishTime>12/12/2016 13:43:28</publishTime>
+      <publishTime>12/15/2016 14:49:41</publishTime>
     </File>
     <File Include="bin/Core.pdb">
-      <publishTime>12/12/2016 13:43:27</publishTime>
+      <publishTime>12/15/2016 14:49:41</publishTime>
     </File>
     <File Include="bin/Data.dll">
-      <publishTime>12/12/2016 13:43:27</publishTime>
+      <publishTime>12/15/2016 14:49:41</publishTime>
     </File>
     <File Include="bin/Data.pdb">
-      <publishTime>12/12/2016 13:43:27</publishTime>
+      <publishTime>12/15/2016 14:49:41</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>10/18/2016 11:37:46</publishTime>
     </File>
     <File Include="bin/RMS.dll">
-      <publishTime>12/13/2016 15:55:43</publishTime>
+      <publishTime>12/15/2016 14:49:44</publishTime>
     </File>
     <File Include="bin/RMS.pdb">
-      <publishTime>12/13/2016 15:55:43</publishTime>
+      <publishTime>12/15/2016 14:49:43</publishTime>
     </File>
     <File Include="bin/Telerik.Web.Spreadsheet.dll">
       <publishTime>10/18/2016 11:37:46</publishTime>
@@ -198,8 +198,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="images/USGSHeaderLogoRMS.png">
       <publishTime>12/01/2016 14:16:00</publishTime>
     </File>
+    <File Include="Modal/Instructions.aspx">
+      <publishTime>12/14/2016 11:06:36</publishTime>
+    </File>
     <File Include="Modal/ReportPopup.aspx">
-      <publishTime>12/13/2016 16:01:56</publishTime>
+      <publishTime>12/14/2016 10:35:10</publishTime>
     </File>
     <File Include="RecordAudit.aspx">
       <publishTime>12/06/2016 15:23:02</publishTime>

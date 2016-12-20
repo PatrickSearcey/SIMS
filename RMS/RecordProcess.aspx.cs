@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -81,7 +82,7 @@ namespace RMS
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string period_id = Request.QueryString["period_id"];
+            string period_id =  Request.QueryString["period_id"];
             string rms_record_id = Request.QueryString["rms_record_id"];
             task = Request.QueryString["task"];
 
@@ -413,7 +414,7 @@ namespace RMS
                     period.analysis_notes_va = reAnalysisNotes.Content;
 
                     db.SubmitChanges();
-                    AddDialog(period.period_id, "Analyzed", "Analyzer", "The period is finished being analyzed.", Convert.ToDateTime(rdpEndDateAnalyze.SelectedDate));
+                    AddDialog(period, "Analyzed", "Analyzer", "The period is finished being analyzed.");
                     AddChangeLog(period.period_id, reAnalysisNotes.Content);
                 }
                 else //Insert new period
@@ -433,11 +434,11 @@ namespace RMS
                     db.RecordAnalysisPeriods.InsertOnSubmit(new_period);
                     db.SubmitChanges();
                     PeriodID = new_period.period_id;
-                    AddDialog(new_period.period_id, "Analyzed", "Analyzer", "The period is finished being Analyzed.", Convert.ToDateTime(rdpEndDateAnalyze.SelectedDate));
+                    AddDialog(new_period, "Analyzed", "Analyzer", "The period is finished being Analyzed.");
                     AddChangeLog(new_period.period_id, reAnalysisNotes.Content);
                 }
 
-                SendEmails();
+                SendEmails("Analyzed", "", currRecord.RecordAnalysisPeriods.FirstOrDefault(p => p.period_id == PeriodID));
                 CloseOutPage(true);
             }
             else
@@ -467,7 +468,7 @@ namespace RMS
                     period.analysis_notes_va = reAnalysisNotes.Content;
 
                     db.SubmitChanges();
-                    AddDialog(period.period_id, "Analyzing", "Analyzer", "The period was saved by the analyzer.", Convert.ToDateTime(rdpEndDateAnalyze.SelectedDate));
+                    AddDialog(period, "Analyzing", "Analyzer", "The period was saved by the analyzer.");
                 }
                 else //Insert new period
                 {
@@ -486,12 +487,11 @@ namespace RMS
                     db.RecordAnalysisPeriods.InsertOnSubmit(new_period);
                     db.SubmitChanges();
                     PeriodID = new_period.period_id;
-                    AddDialog(new_period.period_id, "Analyzing", "Analyzer", "The period was saved by the analyzer.", Convert.ToDateTime(rdpEndDateAnalyze.SelectedDate));
+                    AddDialog(new_period, "Analyzing", "Analyzer", "The period was saved by the analyzer.");
                 }
 
                 //Change the lock to a save type
                 CreateLock("Analyzing");
-                SendEmails();
                 ltlSaved.Visible = true;
                 ErrorMessage("hide");
             }
@@ -519,10 +519,10 @@ namespace RMS
                 period.analyzed_dt = DateTime.Now;
 
                 db.SubmitChanges();
-                AddDialog(period.period_id, "", "Admin", "The period was reanalyzed and is ready for approval.", Convert.ToDateTime(period.period_end_dt));
-                AddDialog(period.period_id, "Analyzed", "Analyzer", reComments.Content, Convert.ToDateTime(period.period_end_dt));
+                AddDialog(period, "", "Admin", "The period was reanalyzed and is ready for approval.");
+                AddDialog(period, "Analyzed", "Analyzer", reComments.Content);
                 
-                SendEmails();
+                SendEmails("Reanalyzed", reComments.Content, period);
                 CloseOutPage(true);
             }
             else
@@ -548,10 +548,10 @@ namespace RMS
                 period.approved_dt = DateTime.Now;
 
                 db.SubmitChanges();
-                AddDialog(period.period_id, "", "Admin", "The period was set to approved by the approver.", Convert.ToDateTime(period.period_end_dt));
-                AddDialog(period.period_id, "Approved", "Approver", reComments.Content, Convert.ToDateTime(period.period_end_dt));
+                AddDialog(period, "", "Admin", "The period was set to approved by the approver.");
+                AddDialog(period, "Approved", "Approver", reComments.Content);
 
-                SendEmails();
+                SendEmails("Approved", reComments.Content, period);
                 CloseOutPage(true);
             }
             else
@@ -577,12 +577,10 @@ namespace RMS
                 period.approved_dt = DateTime.Now;
 
                 db.SubmitChanges();
-                AddDialog(period.period_id, "", "Admin", "The period is currently being approved by the approver.", Convert.ToDateTime(period.period_end_dt));
-                AddDialog(period.period_id, "Approving", "Approver", reComments.Content, Convert.ToDateTime(period.period_end_dt));
+                AddDialog(period, "Approving", "Approver", reComments.Content);
 
                 //Change the lock to a save type
                 CreateLock("Approving");
-                SendEmails();
                 ltlSaved.Visible = true;
                 ErrorMessage("hide");
             }
@@ -609,10 +607,10 @@ namespace RMS
                 period.approved_dt = DateTime.Now;
 
                 db.SubmitChanges();
-                AddDialog(period.period_id, "", "Admin", "The period was sent back for reanalyzing.", Convert.ToDateTime(period.period_end_dt));
-                AddDialog(period.period_id, "Reanalyze", "Approver", reComments.Content, Convert.ToDateTime(period.period_end_dt));
+                AddDialog(period, "", "Admin", "The period was sent back for reanalyzing.");
+                AddDialog(period, "Reanalyze", "Approver", reComments.Content);
 
-                SendEmails();
+                SendEmails("Reanalyze", reComments.Content, period);
                 CloseOutPage(true);
             }
             else
@@ -654,26 +652,36 @@ namespace RMS
         /// <summary>
         /// Adds a record to the RMS_Dialog table.
         /// </summary>
-        /// <param name="period_id">The period ID for the period</param>
+        /// <param name="period">The period object</param>
         /// <param name="status">The status the period was set to</param>
         /// <param name="origin_va">The role of the user setting the status</param>
         /// <param name="comments">Comments about the status change/reanalyzing notes</param>
-        /// <param name="end_dt">The end date of the period</param>
-        /// <param name="severity">The severity of the reason to Reanalyze</param>
-        protected void AddDialog(int period_id, string status, string origin_va, string comments, DateTime end_dt)
+        protected void AddDialog(Data.RecordAnalysisPeriod period, string status, string origin_va, string comments)
         {
-            Data.PeriodDialog dialog = new Data.PeriodDialog
-            {
-                period_id = period_id,
-                dialog_dt = DateTime.Now,
-                dialog_by = user.ID,
-                status_set_to_va = status,
-                origin_va = origin_va,
-                comments_va = comments,
-                period_end_dt = end_dt
-            };
+            var dialog = period.PeriodDialogs.FirstOrDefault(p => p.status_set_to_va == status && p.status_set_to_va == "Approving" || p.status_set_to_va == status && p.status_set_to_va == "Analayzing");
 
-            db.PeriodDialogs.InsertOnSubmit(dialog);
+            if (dialog != null)
+            {
+                dialog.dialog_dt = DateTime.Now;
+                dialog.dialog_by = user.ID;
+                dialog.comments_va = comments;
+            }
+            else
+            {
+                Data.PeriodDialog new_dialog = new Data.PeriodDialog
+                {
+                    period_id = period.period_id,
+                    dialog_dt = DateTime.Now,
+                    dialog_by = user.ID,
+                    status_set_to_va = status,
+                    origin_va = origin_va,
+                    comments_va = comments,
+                    period_end_dt = period.period_end_dt
+                };
+
+                db.PeriodDialogs.InsertOnSubmit(new_dialog);
+            }
+
             db.SubmitChanges();
         }
 
@@ -695,10 +703,111 @@ namespace RMS
             db.PeriodChangeLogs.InsertOnSubmit(changelog);
             db.SubmitChanges();
         }
+        #endregion
 
-        protected void SendEmails()
+        #region Email Properties and Routines
+        protected void SendEmails(string action, string comments, Data.RecordAnalysisPeriod period)
         {
+            string timespan = String.Format("{0:MM/dd/yyyy} to {1:MM/dd/yyyy}", period.period_beg_dt, period.period_end_dt);
+            var cc = new List<String>();
+            var to = new List<String>();
 
+            using (var smtp = new SmtpClient() { Host = "gscamnlh01.wr.usgs.gov" })
+            {
+                var message = new MailMessage("rmsonline@usgs.gov", "rmsonline@usgs.gov");
+                message.IsBodyHtml = true;
+
+                switch (action)
+                {
+                    case "Analyzed":
+                        //TO the assigned approver
+                        to.Add(EmailAddress(period.Record.approver_uid));
+                        //CC the analyzer
+                        cc.Add(user.Email); 
+
+                        message.Subject = "Record for " + period.Record.Site.site_no.Trim() + " ready for approving";
+                        message.Body = "A record assigned to you for approving has been analyzed:<br /><br />" +
+                            "The record period of " + timespan + " for station " + period.Record.Site.site_no.Trim() + " " + period.Record.Site.station_full_nm +
+                            " (" + period.Record.RecordType.type_ds + ") has been analyzed by " + user.ID + ".";
+                        break;
+                    case "Approved":
+                        //TO the assigned analyzer
+                        to.Add(EmailAddress(period.Record.analyzer_uid));  
+                        //If the assigned analyzer is different from the user who analyzed the record, CC to the user who analyzed the record
+                        if (period.Record.analyzer_uid != period.analyzed_by) cc.Add(EmailAddress(period.analyzed_by));
+
+                        //If one has been setup, CC the office's designated approver
+                        var office = db.Offices.FirstOrDefault(p => p.office_id == OfficeID);
+                        if (!string.IsNullOrEmpty(office.reviewer_email)) cc.Add(office.reviewer_email);
+
+                        //Add the approver to the CC list
+                        cc.Add(user.Email);
+
+                        message.Subject = "Your record for " + period.Record.Site.site_no.Trim() + " has been approved by " + user.ID;
+                        message.Body = "The record period of " + timespan + " for station " + period.Record.Site.site_no.Trim() + " " + period.Record.Site.station_full_nm +
+                            " (" + period.Record.RecordType.type_ds + ") has been approved by " + user.ID + ". The status has been set to Approved. The following comments" +
+                            " were made by the approver:<br /><br />" + comments;
+
+                        break;
+                    case "Reanalyze":
+                        //To the assigned analyzer
+                        to.Add(EmailAddress(period.Record.analyzer_uid));
+                        //If the assigned analyzer is different from the user who analyzed the record, CC to the user who analyzed the record
+                        if (period.Record.analyzer_uid != period.analyzed_by) cc.Add(EmailAddress(period.analyzed_by));
+
+                        //Add the approver to the CC list
+                        cc.Add(user.Email);
+
+                        message.Subject = "Your record for " + period.Record.Site.site_no.Trim() + " needs to be reanalyzed";
+                        message.Body = "The record period of " + timespan + " for station " + period.Record.Site.site_no.Trim() + " " + period.Record.Site.station_full_nm +
+                            " (" + period.Record.RecordType.type_ds + ") has been sent back for reanalyzing.  The following comments were made by the approver:<br /><br />" +
+                            comments;
+
+                        break;
+                    case "Reanalyzed":
+                        //To the assigned approver
+                        to.Add(EmailAddress(period.Record.approver_uid));
+                        //If the assigned approver is different from the user who approved the record, CC to the user who approved the record
+                        if (period.Record.approver_uid != period.approved_by) cc.Add(EmailAddress(period.approved_by));
+
+                        //Add the analyzer to the CC list
+                        cc.Add(user.Email);
+
+                        message.Subject = "Record for " + period.Record.Site.site_no.Trim() + " has been reanalyzed by " + user.ID;
+                        message.Body = "The record period of " + timespan + " for station " + period.Record.Site.site_no.Trim() + " " + period.Record.Site.station_full_nm +
+                            " (" + period.Record.RecordType.type_ds + ") has been reanalyzed by " + user.ID + ". The status has been set to Analyzed. The following comments" +
+                            " were made by the analyzer:<br /><br />" + comments;
+
+                        break;
+                }
+
+#if DEBUG
+                string to_string = "";
+                string cc_string = "";
+                foreach (string email in to)
+                    to_string += email + ", ";
+                foreach (string email in cc)
+                    cc_string += email + ", ";
+                to_string.TrimEnd(' ').TrimEnd(',');
+                cc_string.TrimEnd(' ').TrimEnd(',');
+                message.Body += "<br /><br />To Recipients: " + to_string + "<br />CC Recipients: " + cc_string;
+
+                message.To.Add("dterry@usgs.gov");
+                message.CC.Add("slvasque@usgs.gov");
+#else
+                foreach (string email in to)
+                    message.To.Add(email);
+                foreach (string email in cc)
+                    message.CC.Add(email);
+#endif
+
+                smtp.Send(message);
+            }
+        }
+
+        private string EmailAddress(string user_id)
+        {
+            return user_id + "@usgs.gov";
         }
         #endregion
     }

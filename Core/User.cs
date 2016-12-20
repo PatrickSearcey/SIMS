@@ -22,7 +22,7 @@ namespace Core
         private bool _active = false;
         private int _office_id;
         private List<int> _wsc_id = new List<int>();
-        private String _id, _firstName, _lastName;
+        private String _id, _firstName, _lastName, _email;
         #endregion
 
         #region Constructors
@@ -35,7 +35,7 @@ namespace Core
             int pos = _id.IndexOf("\\");
             _id = _id.Substring(pos + 1);
 #if DEBUG
-            _id = "dterry";
+            _id = "slvasque";
 #endif
             //try to see if the user is in the database
             var user = db.Employees.FirstOrDefault(p => p.user_id == _id);
@@ -58,7 +58,9 @@ namespace Core
                 }
                 _active = (bool)user.active;
                 _showreports = (bool)user.show_reports;
+                _email = _id + "@usgs.gov";
             }
+
         }
 
         /// <summary>
@@ -82,6 +84,7 @@ namespace Core
         public String ID { get { return _id; } }
         public String FirstName { get { return _firstName; } }
         public String LastName { get { return _lastName; } }
+        public String Email { get { return _email;  } }
         public int OfficeID { get { return _office_id; } }
         public List<int> WSCID { get { return _wsc_id; } }
         public Boolean Active { get { return _active; } }

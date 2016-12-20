@@ -22,6 +22,15 @@ namespace SIMS2017 {
         protected global::Telerik.Web.UI.RadAjaxManager ram;
         
         /// <summary>
+        /// ralp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadAjaxLoadingPanel ralp;
+        
+        /// <summary>
         /// rwm control.
         /// </summary>
         /// <remarks>

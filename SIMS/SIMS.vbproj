@@ -290,6 +290,7 @@
     <Content Include="WSCPersonnel.aspx" />
     <Content Include="RMSNeedsApproval.ashx" />
     <Content Include="Docs\Bank-OperatedCablewayInspectionE-form.pdf" />
+    <Content Include="MANUDump_v2.ashx" />
     <None Include="My Project\PublishProfiles\Development Profile.pubxml" />
     <None Include="Service References\PASSService\WCFServices.disco" />
     <None Include="Service References\PASSService\configuration91.svcinfo" />
@@ -520,6 +521,9 @@
     </Compile>
     <Compile Include="MANUDump_v1.ashx.vb">
       <DependentUpon>MANUDump_v1.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="MANUDump_v2.ashx.vb">
+      <DependentUpon>MANUDump_v2.ashx</DependentUpon>
     </Compile>
     <Compile Include="Modal.Master.designer.vb">
       <DependentUpon>Modal.Master</DependentUpon>

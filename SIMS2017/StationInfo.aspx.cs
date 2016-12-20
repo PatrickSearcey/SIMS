@@ -145,7 +145,7 @@ namespace SIMS2017
                 personnel = GetPersonnelAssignments(p.analyzer_uid, p.approver_uid),
                 published = GetPublished(Convert.ToBoolean(p.not_published_fg)),
                 active = GetActive(Convert.ToBoolean(p.not_used_fg)),
-                cat_no = p.category_no.ToString(),
+                cat_no = GetCategory(Convert.ToInt32(p.category_no)),
                 office_cd = GetOfficeCode(p),
                 time_series = GetTimeSeries(p),
                 type_ds = p.RecordType.type_ds,
@@ -282,7 +282,7 @@ namespace SIMS2017
         {
             string ret = "published";
 
-            if (!published) ret = "not published";
+            if (published) ret = "not published";
 
             return ret;
         }
@@ -296,17 +296,31 @@ namespace SIMS2017
             return ret;
         }
 
+        private string GetCategory(int catno)
+        {
+            string ret = "";
+
+            if (catno > 0)
+                ret = "CRP Category: <b>" + catno.ToString() + "</b>";
+
+            return ret;
+        }
+
         private string GetTimeSeries(Data.Record record)
         {
             string ret = "";
             
             if (Convert.ToBoolean(record.RecordType.ts_fg))
-            {
                 ret = "yes";
-                var DDs = db.SP_RMS_Get_Record_DDs(record.rms_record_id).ToList();
-                List<string> dds = new List<string>();
-                List<string> tsids = new List<string>();
+            else
+                ret = "no";
 
+            var DDs = db.SP_RMS_Get_Record_DDs(record.rms_record_id).ToList();
+            List<string> dds = new List<string>();
+            List<string> tsids = new List<string>();
+
+            if (DDs.Count > 0)
+            {
                 foreach (var dd in DDs)
                 {
                     if (dd.dd_nu != null) dds.Add(dd.dd_nu.ToString());
@@ -317,24 +331,16 @@ namespace SIMS2017
                 {
                     string ts_ids = "";
                     foreach (string tsid in tsids)
-                    {
                         ts_ids += tsid + ", ";
-                    }
                     ret += " (ts/dd: " + ts_ids.TrimEnd(' ').TrimEnd(',') + ")";
                 }
                 else
                 {
                     string dd_nus = "";
                     foreach (string ddnu in dds)
-                    {
                         dd_nus += ddnu + ", ";
-                    }
                     ret += " (ts/dd: " + dd_nus.TrimEnd(' ').TrimEnd(',') + ")";
                 }
-            }
-            else
-            {
-                ret = "no";
             }
 
             return ret;
@@ -808,31 +814,47 @@ namespace SIMS2017
         {
             string pOut = "";
 
-            string showlockpng = ShowLockPNG(rms_record_id);
-            string status_va = db.RecordAnalysisPeriods.OrderByDescending(p => p.period_beg_dt).FirstOrDefault(p => p.rms_record_id == rms_record_id).status_va;
-            string showsave = ShowLocks("save", rms_record_id);
-            var reanalyze_flag = db.RecordAnalysisPeriods.FirstOrDefault(p => p.rms_record_id == rms_record_id && p.status_va == "Reanalyze");
+            var rap = db.RecordAnalysisPeriods.OrderByDescending(p => p.period_beg_dt).FirstOrDefault(p => p.rms_record_id == rms_record_id);
 
-            if (status_va != "Analyzing" && status_va != "Reanalyze" && string.IsNullOrEmpty(showsave))
+            if (rap != null)
             {
-                if (reanalyze_flag == null)
+                string showlockpng = ShowLockPNG(rms_record_id);
+                string status_va = rap.status_va;
+                string showsave = ShowLocks("save", rms_record_id);
+                var reanalyze_flag = db.RecordAnalysisPeriods.FirstOrDefault(p => p.rms_record_id == rms_record_id && p.status_va == "Reanalyze");
+
+                if (status_va != "Analyzing" && status_va != "Reanalyze" && string.IsNullOrEmpty(showsave))
                 {
-                    switch (type)
+                    if (reanalyze_flag == null)
                     {
-                        case "URL":
-                            pOut = String.Format("{0}RecordProcess.aspx?task=Analyze&rms_record_id={1}", Config.RMSURL, rms_record_id);
-                            break;
-                        case "alt":
-                            if (!string.IsNullOrEmpty(showlockpng))
-                            {
-                                var locks = db.RecordLocks.FirstOrDefault(p => p.rms_record_id == rms_record_id);
-                                pOut = String.Format("lock type is {0}, locked by {1} {2:MM/dd/yyyy}", locks.lock_type, locks.lock_uid, locks.lock_dt);
-                            }
-                            break;
+                        switch (type)
+                        {
+                            case "URL":
+                                pOut = String.Format("{0}RecordProcess.aspx?task=Analyze&rms_record_id={1}", Config.RMSURL, rms_record_id);
+                                break;
+                            case "alt":
+                                if (!string.IsNullOrEmpty(showlockpng))
+                                {
+                                    var locks = db.RecordLocks.FirstOrDefault(p => p.rms_record_id == rms_record_id);
+                                    pOut = String.Format("lock type is {0}, locked by {1} {2:MM/dd/yyyy}", locks.lock_type, locks.lock_uid, locks.lock_dt);
+                                }
+                                break;
+                        }
                     }
                 }
             }
-
+            else
+            {
+                switch (type)
+                {
+                    case "URL":
+                        pOut = String.Format("{0}RecordProcess.aspx?task=Analyze&rms_record_id={1}", Config.RMSURL, rms_record_id);
+                        break;
+                    case "alt":
+                        pOut = "";
+                        break;
+                }
+            }
             return pOut;
         }
 
@@ -1017,7 +1039,20 @@ namespace SIMS2017
             }
             else if (e.Argument == "RebindRecords")
             {
-
+                var record = currSite.Records;
+                dlRecords.DataSource = record.Select(p => new RecordItem
+                {
+                    rms_record_id = p.rms_record_id,
+                    personnel = GetPersonnelAssignments(p.analyzer_uid, p.approver_uid),
+                    published = GetPublished(Convert.ToBoolean(p.not_published_fg)),
+                    active = GetActive(Convert.ToBoolean(p.not_used_fg)),
+                    cat_no = GetCategory(Convert.ToInt32(p.category_no)),
+                    office_cd = GetOfficeCode(p),
+                    time_series = GetTimeSeries(p),
+                    type_ds = p.RecordType.type_ds,
+                    RMSURL = Config.RMSURL
+                }).ToList();
+                dlRecords.DataBind();
             }
         }
         #endregion

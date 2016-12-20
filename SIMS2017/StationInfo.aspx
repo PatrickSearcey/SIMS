@@ -6,6 +6,7 @@
     <script type="text/javascript">
         function openWin(_id, _type) {
             if (_type == "field trip") var oWnd = radopen("Modal/FieldTripEdit.aspx?site_id=" + _id, "rwEditFieldTrips");
+            else if (_type == "newrecord") var oWnd = radopen("Modal/RecordEdit.aspx?site_id=" + _id + "&type=" + _type, "rwEditRecords");
             else var oWnd = radopen("Modal/RecordEdit.aspx?rms_record_id=" + _id + "&type=" + _type, "rwEditRecords");
         }
 
@@ -18,7 +19,7 @@
                 hfFieldTripIDs.value = fieldTrips;
                 $find("<%= ram.ClientID %>").ajaxRequest("RebindFieldTrips");
             }
-            else if (arg && arg.type == "record") {
+            else {
                 $find("<%= ram.ClientID %>").ajaxRequest("RebindRecords");
             }
         }
@@ -28,7 +29,7 @@
         }
 
         function ShowAnalysisPopup(period_id) {
-            var SAUrl = '/RMS/Report/ReportPopup.aspx?type=analysisbyperiod&period_id=' + period_id;
+            var SAUrl = '/RMS/Modal/ReportPopup.aspx?view=analysisbyperiod&period_id=' + period_id;
             open(SAUrl, 'SAPU', 'toolbar=yes, menubar=no, width=740, height=500, scrollbars=yes');
         }
     </script>
@@ -65,7 +66,7 @@
             <telerik:AjaxSetting AjaxControlID="ram">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="pnlFieldTripView" />
-                    <telerik:AjaxUpdatedControl ControlID="pnlRMS" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlRMS" LoadingPanelID="ralp" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="rddlWYs">
@@ -76,10 +77,11 @@
             </telerik:AjaxSetting>
         </AjaxSettings>
     </telerik:RadAjaxManager>
+    <telerik:RadAjaxLoadingPanel ID="ralp" runat="server" Skin="Bootstrap" />
     <telerik:RadWindowManager RenderMode="Lightweight" ID="rwm" ShowContentDuringLoad="false" VisibleStatusbar="false" ReloadOnShow="true" runat="server" EnableShadow="true">
         <Windows>
             <telerik:RadWindow RenderMode="Lightweight" ID="rwEditFieldTrips" runat="server" Behaviors="Close" OnClientClose="OnClientClose" Width="900" Height="400" />
-            <telerik:RadWindow RenderMode="Lightweight" ID="rwEditRecords" runat="server" Behaviors="Close" OnClientClose="OnClientClose" Width="900" Height="600" />
+            <telerik:RadWindow RenderMode="Lightweight" ID="rwEditRecords" runat="server" Behaviors="Close" OnClientClose="OnClientClose" Width="700" Height="600" />
         </Windows>
     </telerik:RadWindowManager>
     <asp:HiddenField ID="hfFieldTripIDs" runat="server" />
@@ -188,7 +190,7 @@
                                     <h4>Continuous Records Processing</h4>
                                     <asp:Panel ID="pnlRMS" runat="server" CssClass="RMSPanel">
                                         <div style="width:100%;text-align:right;font-size:9pt;">
-                                            &raquo; <asp:HyperLink ID="hlAutoReview" runat="server" target="_blank" Text="Click here to view Auto Review (if applicable)" />
+                                            <asp:HyperLink ID="hlAutoReview" runat="server" target="_blank" Text="Click here to view Auto Review (if applicable)" />
                                         </div> 
                                         <asp:DataList ID="dlRecords" runat="server" OnItemDataBound="dlRecords_ItemDataBound">
                                             <ItemTemplate>
@@ -204,7 +206,7 @@
                                                     <div>
                                                         Analyzer/Approver: <b><%# Eval("personnel") %></b><br />
                                                         Status: <b><%# Eval("published") %></b> | <b><%# Eval("active") %></b> 
-                                                        CRP Category: <b><%# Eval("cat_no") %></b><br />
+                                                        <%# Eval("cat_no") %><br />
                                                         Time-series: <b><%# Eval("time_series") %></b><br />
                                                         Responsible office: <b><%# Eval("office_cd") %></b><br />
                                                     </div>

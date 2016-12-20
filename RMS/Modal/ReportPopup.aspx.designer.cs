@@ -130,6 +130,15 @@ namespace RMS.Modal {
         protected global::System.Web.UI.WebControls.Literal ltlPeriod2;
         
         /// <summary>
+        /// dgDialog control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataGrid dgDialog;
+        
+        /// <summary>
         /// pnlWYAnalysisNotes control.
         /// </summary>
         /// <remarks>
@@ -137,5 +146,23 @@ namespace RMS.Modal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlWYAnalysisNotes;
+        
+        /// <summary>
+        /// dlWYAnalysisNotes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dlWYAnalysisNotes;
+        
+        /// <summary>
+        /// ltlNoPeriods control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlNoPeriods;
     }
 }

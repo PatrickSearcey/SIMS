@@ -114,9 +114,6 @@ namespace Data
     partial void InsertSiteElement(SiteElement instance);
     partial void UpdateSiteElement(SiteElement instance);
     partial void DeleteSiteElement(SiteElement instance);
-    partial void InsertPeriodSavedNote(PeriodSavedNote instance);
-    partial void UpdatePeriodSavedNote(PeriodSavedNote instance);
-    partial void DeletePeriodSavedNote(PeriodSavedNote instance);
     partial void InsertRecordType(RecordType instance);
     partial void UpdateRecordType(RecordType instance);
     partial void DeleteRecordType(RecordType instance);
@@ -443,14 +440,6 @@ namespace Data
 			}
 		}
 		
-		public System.Data.Linq.Table<PeriodSavedNote> PeriodSavedNotes
-		{
-			get
-			{
-				return this.GetTable<PeriodSavedNote>();
-			}
-		}
-		
 		public System.Data.Linq.Table<RecordType> RecordTypes
 		{
 			get
@@ -539,6 +528,14 @@ namespace Data
 			}
 		}
 		
+		public System.Data.Linq.Table<vTS_ID_CACHE> vTS_ID_CACHEs
+		{
+			get
+			{
+				return this.GetTable<vTS_ID_CACHE>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spz_GetDCPInfo")]
 		public ISingleResult<spz_GetDCPInfoResult> spz_GetDCPInfo([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> site_id)
 		{
@@ -574,6 +571,13 @@ namespace Data
 			return ((ISingleResult<SP_RMS_Periods_per_WYResult>)(result.ReturnValue));
 		}
 		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RMS_WYs_with_periods")]
+		public ISingleResult<SP_RMS_WYs_with_periodsResult> SP_RMS_WYs_with_periods([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> rms_record_id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), rms_record_id);
+			return ((ISingleResult<SP_RMS_WYs_with_periodsResult>)(result.ReturnValue));
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_Site_Analyzed_Doubles")]
 		public ISingleResult<SP_Site_Analyzed_DoublesResult> SP_Site_Analyzed_Doubles([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> rms_record_id)
 		{
@@ -581,11 +585,18 @@ namespace Data
 			return ((ISingleResult<SP_Site_Analyzed_DoublesResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RMS_WYs_with_periods")]
-		public ISingleResult<SP_RMS_WYs_with_periodsResult> SP_RMS_WYs_with_periods([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> rms_record_id)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_Personnel_by_WSC_office_or_user_id")]
+		public ISingleResult<SP_Personnel_by_WSC_office_or_user_idResult> SP_Personnel_by_WSC_office_or_user_id([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> wsc_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> office_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(30)")] string user_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(3)")] string show_reports, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(4)")] string status, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(3)")] string manage)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), rms_record_id);
-			return ((ISingleResult<SP_RMS_WYs_with_periodsResult>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), wsc_id, office_id, user_id, show_reports, status, manage);
+			return ((ISingleResult<SP_Personnel_by_WSC_office_or_user_idResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RMS_Get_Site_DDs")]
+		public ISingleResult<SP_RMS_Get_Site_DDsResult> SP_RMS_Get_Site_DDs([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> site_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(20)")] string options)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), site_id, options);
+			return ((ISingleResult<SP_RMS_Get_Site_DDsResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -10839,205 +10850,6 @@ namespace Data
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Saved_Notes")]
-	public partial class PeriodSavedNote : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _period_id;
-		
-		private string _record_type_va;
-		
-		private string _html_reanalyze_flag_va;
-		
-		private string _comments_va;
-		
-		private System.Nullable<System.DateTime> _entered_dt;
-		
-		private EntityRef<RecordAnalysisPeriod> _RecordAnalysisPeriod;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onperiod_idChanging(int value);
-    partial void Onperiod_idChanged();
-    partial void Onrecord_type_vaChanging(string value);
-    partial void Onrecord_type_vaChanged();
-    partial void Onhtml_reanalyze_flag_vaChanging(string value);
-    partial void Onhtml_reanalyze_flag_vaChanged();
-    partial void Oncomments_vaChanging(string value);
-    partial void Oncomments_vaChanged();
-    partial void Onentered_dtChanging(System.Nullable<System.DateTime> value);
-    partial void Onentered_dtChanged();
-    #endregion
-		
-		public PeriodSavedNote()
-		{
-			this._RecordAnalysisPeriod = default(EntityRef<RecordAnalysisPeriod>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_period_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int period_id
-		{
-			get
-			{
-				return this._period_id;
-			}
-			set
-			{
-				if ((this._period_id != value))
-				{
-					if (this._RecordAnalysisPeriod.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onperiod_idChanging(value);
-					this.SendPropertyChanging();
-					this._period_id = value;
-					this.SendPropertyChanged("period_id");
-					this.Onperiod_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_record_type_va", DbType="NVarChar(50)")]
-		public string record_type_va
-		{
-			get
-			{
-				return this._record_type_va;
-			}
-			set
-			{
-				if ((this._record_type_va != value))
-				{
-					this.Onrecord_type_vaChanging(value);
-					this.SendPropertyChanging();
-					this._record_type_va = value;
-					this.SendPropertyChanged("record_type_va");
-					this.Onrecord_type_vaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_html_reanalyze_flag_va", DbType="NVarChar(50)")]
-		public string html_reanalyze_flag_va
-		{
-			get
-			{
-				return this._html_reanalyze_flag_va;
-			}
-			set
-			{
-				if ((this._html_reanalyze_flag_va != value))
-				{
-					this.Onhtml_reanalyze_flag_vaChanging(value);
-					this.SendPropertyChanging();
-					this._html_reanalyze_flag_va = value;
-					this.SendPropertyChanged("html_reanalyze_flag_va");
-					this.Onhtml_reanalyze_flag_vaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_comments_va", DbType="NVarChar(MAX)")]
-		public string comments_va
-		{
-			get
-			{
-				return this._comments_va;
-			}
-			set
-			{
-				if ((this._comments_va != value))
-				{
-					this.Oncomments_vaChanging(value);
-					this.SendPropertyChanging();
-					this._comments_va = value;
-					this.SendPropertyChanged("comments_va");
-					this.Oncomments_vaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entered_dt", DbType="DateTime")]
-		public System.Nullable<System.DateTime> entered_dt
-		{
-			get
-			{
-				return this._entered_dt;
-			}
-			set
-			{
-				if ((this._entered_dt != value))
-				{
-					this.Onentered_dtChanging(value);
-					this.SendPropertyChanging();
-					this._entered_dt = value;
-					this.SendPropertyChanged("entered_dt");
-					this.Onentered_dtChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_PeriodSavedNote", Storage="_RecordAnalysisPeriod", ThisKey="period_id", OtherKey="period_id", IsForeignKey=true)]
-		public RecordAnalysisPeriod RecordAnalysisPeriod
-		{
-			get
-			{
-				return this._RecordAnalysisPeriod.Entity;
-			}
-			set
-			{
-				RecordAnalysisPeriod previousValue = this._RecordAnalysisPeriod.Entity;
-				if (((previousValue != value) 
-							|| (this._RecordAnalysisPeriod.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._RecordAnalysisPeriod.Entity = null;
-						previousValue.PeriodSavedNote = null;
-					}
-					this._RecordAnalysisPeriod.Entity = value;
-					if ((value != null))
-					{
-						value.PeriodSavedNote = this;
-						this._period_id = value.period_id;
-					}
-					else
-					{
-						this._period_id = default(int);
-					}
-					this.SendPropertyChanged("RecordAnalysisPeriod");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Record_Types")]
 	public partial class RecordType : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -13377,8 +13189,6 @@ namespace Data
 		
 		private System.Nullable<int> _period_id_old;
 		
-		private EntityRef<PeriodSavedNote> _PeriodSavedNote;
-		
 		private EntitySet<PeriodChangeLog> _PeriodChangeLogs;
 		
 		private EntitySet<PeriodDialog> _PeriodDialogs;
@@ -13419,7 +13229,6 @@ namespace Data
 		
 		public RecordAnalysisPeriod()
 		{
-			this._PeriodSavedNote = default(EntityRef<PeriodSavedNote>);
 			this._PeriodChangeLogs = new EntitySet<PeriodChangeLog>(new Action<PeriodChangeLog>(this.attach_PeriodChangeLogs), new Action<PeriodChangeLog>(this.detach_PeriodChangeLogs));
 			this._PeriodDialogs = new EntitySet<PeriodDialog>(new Action<PeriodDialog>(this.attach_PeriodDialogs), new Action<PeriodDialog>(this.detach_PeriodDialogs));
 			this._Record = default(EntityRef<Record>);
@@ -13690,35 +13499,6 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_PeriodSavedNote", Storage="_PeriodSavedNote", ThisKey="period_id", OtherKey="period_id", IsUnique=true, IsForeignKey=false)]
-		public PeriodSavedNote PeriodSavedNote
-		{
-			get
-			{
-				return this._PeriodSavedNote.Entity;
-			}
-			set
-			{
-				PeriodSavedNote previousValue = this._PeriodSavedNote.Entity;
-				if (((previousValue != value) 
-							|| (this._PeriodSavedNote.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._PeriodSavedNote.Entity = null;
-						previousValue.RecordAnalysisPeriod = null;
-					}
-					this._PeriodSavedNote.Entity = value;
-					if ((value != null))
-					{
-						value.RecordAnalysisPeriod = this;
-					}
-					this.SendPropertyChanged("PeriodSavedNote");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_PeriodChangeLog", Storage="_PeriodChangeLogs", ThisKey="period_id", OtherKey="period_id")]
 		public EntitySet<PeriodChangeLog> PeriodChangeLogs
 		{
@@ -13732,7 +13512,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_RMS_Dialog", Storage="_PeriodDialogs", ThisKey="period_id", OtherKey="period_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_PeriodDialog", Storage="_PeriodDialogs", ThisKey="period_id", OtherKey="period_id")]
 		public EntitySet<PeriodDialog> PeriodDialogs
 		{
 			get
@@ -14064,7 +13844,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_RMS_Dialog", Storage="_RecordAnalysisPeriod", ThisKey="period_id", OtherKey="period_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_PeriodDialog", Storage="_RecordAnalysisPeriod", ThisKey="period_id", OtherKey="period_id", IsForeignKey=true)]
 		public RecordAnalysisPeriod RecordAnalysisPeriod
 		{
 			get
@@ -14115,6 +13895,177 @@ namespace Data
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vTS_ID_CACHE")]
+	public partial class vTS_ID_CACHE
+	{
+		
+		private int _ts_id;
+		
+		private int _iv_ts_id;
+		
+		private int _site_id;
+		
+		private int _adaps_dd_nu;
+		
+		private string _parameter_cd;
+		
+		private string _ts_tx;
+		
+		private string _stat_cd;
+		
+		private string _gu_id;
+		
+		private System.Nullable<System.DateTime> _ts_id_md;
+		
+		public vTS_ID_CACHE()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ts_id", DbType="Int NOT NULL")]
+		public int ts_id
+		{
+			get
+			{
+				return this._ts_id;
+			}
+			set
+			{
+				if ((this._ts_id != value))
+				{
+					this._ts_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iv_ts_id", DbType="Int NOT NULL")]
+		public int iv_ts_id
+		{
+			get
+			{
+				return this._iv_ts_id;
+			}
+			set
+			{
+				if ((this._iv_ts_id != value))
+				{
+					this._iv_ts_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int NOT NULL")]
+		public int site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					this._site_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_adaps_dd_nu", DbType="Int NOT NULL")]
+		public int adaps_dd_nu
+		{
+			get
+			{
+				return this._adaps_dd_nu;
+			}
+			set
+			{
+				if ((this._adaps_dd_nu != value))
+				{
+					this._adaps_dd_nu = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_parameter_cd", DbType="NVarChar(5)")]
+		public string parameter_cd
+		{
+			get
+			{
+				return this._parameter_cd;
+			}
+			set
+			{
+				if ((this._parameter_cd != value))
+				{
+					this._parameter_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ts_tx", DbType="NVarChar(75)")]
+		public string ts_tx
+		{
+			get
+			{
+				return this._ts_tx;
+			}
+			set
+			{
+				if ((this._ts_tx != value))
+				{
+					this._ts_tx = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_stat_cd", DbType="NVarChar(5) NOT NULL", CanBeNull=false)]
+		public string stat_cd
+		{
+			get
+			{
+				return this._stat_cd;
+			}
+			set
+			{
+				if ((this._stat_cd != value))
+				{
+					this._stat_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gu_id", DbType="NVarChar(32)")]
+		public string gu_id
+		{
+			get
+			{
+				return this._gu_id;
+			}
+			set
+			{
+				if ((this._gu_id != value))
+				{
+					this._gu_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ts_id_md", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ts_id_md
+		{
+			get
+			{
+				return this._ts_id_md;
+			}
+			set
+			{
+				if ((this._ts_id_md != value))
+				{
+					this._ts_id_md = value;
+				}
 			}
 		}
 	}
@@ -14925,6 +14876,32 @@ namespace Data
 		}
 	}
 	
+	public partial class SP_RMS_WYs_with_periodsResult
+	{
+		
+		private System.Nullable<int> _WY;
+		
+		public SP_RMS_WYs_with_periodsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WY", DbType="Int")]
+		public System.Nullable<int> WY
+		{
+			get
+			{
+				return this._WY;
+			}
+			set
+			{
+				if ((this._WY != value))
+				{
+					this._WY = value;
+				}
+			}
+		}
+	}
+	
 	public partial class SP_Site_Analyzed_DoublesResult
 	{
 		
@@ -14951,10 +14928,6 @@ namespace Data
 		private System.Nullable<System.DateTime> _approved_dt;
 		
 		private string _analysis_notes_va;
-		
-		private string _html_reanalyze_flag_va;
-		
-		private string _sn_comments;
 		
 		public SP_Site_Analyzed_DoublesResult()
 		{
@@ -15151,61 +15124,361 @@ namespace Data
 				}
 			}
 		}
+	}
+	
+	public partial class SP_Personnel_by_WSC_office_or_user_idResult
+	{
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_html_reanalyze_flag_va", DbType="NVarChar(50)")]
-		public string html_reanalyze_flag_va
+		private string _office_cd;
+		
+		private string _office_nm;
+		
+		private string _user_id;
+		
+		private string _user_nm;
+		
+		private string _first_nm;
+		
+		private string _last_nm;
+		
+		private int _wsc_id;
+		
+		private System.Nullable<bool> _active;
+		
+		private System.Nullable<bool> _approver_va;
+		
+		private string _administrator_va;
+		
+		private string _pass_access;
+		
+		private System.Nullable<bool> _show_reports;
+		
+		public SP_Personnel_by_WSC_office_or_user_idResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_cd", DbType="NVarChar(10)")]
+		public string office_cd
 		{
 			get
 			{
-				return this._html_reanalyze_flag_va;
+				return this._office_cd;
 			}
 			set
 			{
-				if ((this._html_reanalyze_flag_va != value))
+				if ((this._office_cd != value))
 				{
-					this._html_reanalyze_flag_va = value;
+					this._office_cd = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sn_comments", DbType="NText", UpdateCheck=UpdateCheck.Never)]
-		public string sn_comments
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_nm", DbType="NVarChar(150)")]
+		public string office_nm
 		{
 			get
 			{
-				return this._sn_comments;
+				return this._office_nm;
 			}
 			set
 			{
-				if ((this._sn_comments != value))
+				if ((this._office_nm != value))
 				{
-					this._sn_comments = value;
+					this._office_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_user_id", DbType="NVarChar(15) NOT NULL", CanBeNull=false)]
+		public string user_id
+		{
+			get
+			{
+				return this._user_id;
+			}
+			set
+			{
+				if ((this._user_id != value))
+				{
+					this._user_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_user_nm", DbType="NVarChar(126)")]
+		public string user_nm
+		{
+			get
+			{
+				return this._user_nm;
+			}
+			set
+			{
+				if ((this._user_nm != value))
+				{
+					this._user_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_first_nm", DbType="NVarChar(75)")]
+		public string first_nm
+		{
+			get
+			{
+				return this._first_nm;
+			}
+			set
+			{
+				if ((this._first_nm != value))
+				{
+					this._first_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_last_nm", DbType="NVarChar(50)")]
+		public string last_nm
+		{
+			get
+			{
+				return this._last_nm;
+			}
+			set
+			{
+				if ((this._last_nm != value))
+				{
+					this._last_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_id", DbType="Int NOT NULL")]
+		public int wsc_id
+		{
+			get
+			{
+				return this._wsc_id;
+			}
+			set
+			{
+				if ((this._wsc_id != value))
+				{
+					this._wsc_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_active", DbType="Bit")]
+		public System.Nullable<bool> active
+		{
+			get
+			{
+				return this._active;
+			}
+			set
+			{
+				if ((this._active != value))
+				{
+					this._active = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approver_va", DbType="Bit")]
+		public System.Nullable<bool> approver_va
+		{
+			get
+			{
+				return this._approver_va;
+			}
+			set
+			{
+				if ((this._approver_va != value))
+				{
+					this._approver_va = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_administrator_va", DbType="NVarChar(50)")]
+		public string administrator_va
+		{
+			get
+			{
+				return this._administrator_va;
+			}
+			set
+			{
+				if ((this._administrator_va != value))
+				{
+					this._administrator_va = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pass_access", DbType="NVarChar(50)")]
+		public string pass_access
+		{
+			get
+			{
+				return this._pass_access;
+			}
+			set
+			{
+				if ((this._pass_access != value))
+				{
+					this._pass_access = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_show_reports", DbType="Bit")]
+		public System.Nullable<bool> show_reports
+		{
+			get
+			{
+				return this._show_reports;
+			}
+			set
+			{
+				if ((this._show_reports != value))
+				{
+					this._show_reports = value;
 				}
 			}
 		}
 	}
 	
-	public partial class SP_RMS_WYs_with_periodsResult
+	public partial class SP_RMS_Get_Site_DDsResult
 	{
 		
-		private System.Nullable<int> _WY;
+		private int _iv_ts_id;
 		
-		public SP_RMS_WYs_with_periodsResult()
+		private int _site_id;
+		
+		private int _dd_nu;
+		
+		private string _parm_cd;
+		
+		private string _parm_nm;
+		
+		private string _dd_ts_ds;
+		
+		private string _gu_id;
+		
+		public SP_RMS_Get_Site_DDsResult()
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WY", DbType="Int")]
-		public System.Nullable<int> WY
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iv_ts_id", DbType="Int NOT NULL")]
+		public int iv_ts_id
 		{
 			get
 			{
-				return this._WY;
+				return this._iv_ts_id;
 			}
 			set
 			{
-				if ((this._WY != value))
+				if ((this._iv_ts_id != value))
 				{
-					this._WY = value;
+					this._iv_ts_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int NOT NULL")]
+		public int site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					this._site_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dd_nu", DbType="Int NOT NULL")]
+		public int dd_nu
+		{
+			get
+			{
+				return this._dd_nu;
+			}
+			set
+			{
+				if ((this._dd_nu != value))
+				{
+					this._dd_nu = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_parm_cd", DbType="NVarChar(5)")]
+		public string parm_cd
+		{
+			get
+			{
+				return this._parm_cd;
+			}
+			set
+			{
+				if ((this._parm_cd != value))
+				{
+					this._parm_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_parm_nm", DbType="NVarChar(29)")]
+		public string parm_nm
+		{
+			get
+			{
+				return this._parm_nm;
+			}
+			set
+			{
+				if ((this._parm_nm != value))
+				{
+					this._parm_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dd_ts_ds", DbType="NVarChar(95)")]
+		public string dd_ts_ds
+		{
+			get
+			{
+				return this._dd_ts_ds;
+			}
+			set
+			{
+				if ((this._dd_ts_ds != value))
+				{
+					this._dd_ts_ds = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gu_id", DbType="NVarChar(32)")]
+		public string gu_id
+		{
+			get
+			{
+				return this._gu_id;
+			}
+			set
+			{
+				if ((this._gu_id != value))
+				{
+					this._gu_id = value;
 				}
 			}
 		}

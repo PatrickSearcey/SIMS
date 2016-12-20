@@ -133,6 +133,7 @@
     <Content Include="images\RMSTitle.png" />
     <Content Include="images\save_sm.png" />
     <Content Include="images\USGSHeaderLogoRMS.png" />
+    <Content Include="Modal\Instructions.aspx" />
     <Content Include="RecordAudit.aspx" />
     <Content Include="RecordProcess.aspx" />
     <Content Include="Modal\ReportPopup.aspx" />
@@ -156,6 +157,13 @@
     </Compile>
     <Compile Include="Handler\ClearLock.ashx.cs">
       <DependentUpon>ClearLock.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Modal\Instructions.aspx.cs">
+      <DependentUpon>Instructions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modal\Instructions.aspx.designer.cs">
+      <DependentUpon>Instructions.aspx</DependentUpon>
     </Compile>
     <Compile Include="RecordAudit.aspx.cs">
       <DependentUpon>RecordAudit.aspx</DependentUpon>

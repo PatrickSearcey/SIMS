@@ -147,6 +147,7 @@
     <Content Include="SIMSWSCHome.aspx" />
     <Content Include="scripts\scripts.js" />
     <Content Include="styles\default.css" />
+    <Content Include="styles\recordedit.css" />
     <Content Include="styles\stationinfo.css" />
   </ItemGroup>
   <ItemGroup>
@@ -291,7 +292,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
