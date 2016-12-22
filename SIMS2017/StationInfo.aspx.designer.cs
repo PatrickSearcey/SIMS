@@ -112,15 +112,6 @@ namespace SIMS2017 {
         protected global::System.Web.UI.WebControls.HyperLink hlNWISOpsRequest;
         
         /// <summary>
-        /// rpl1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadPageLayout rpl1;
-        
-        /// <summary>
         /// pnlPubNameView control.
         /// </summary>
         /// <remarks>
@@ -481,42 +472,6 @@ namespace SIMS2017 {
         protected global::System.Web.UI.WebControls.HyperLink hlTCPTrackStatus;
         
         /// <summary>
-        /// pnlRMS control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlRMS;
-        
-        /// <summary>
-        /// hlAutoReview control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlAutoReview;
-        
-        /// <summary>
-        /// dlRecords control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dlRecords;
-        
-        /// <summary>
-        /// lbNewRecordType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbNewRecordType;
-        
-        /// <summary>
         /// pnlDCPTable control.
         /// </summary>
         /// <remarks>
@@ -569,5 +524,41 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlNoDCP;
+        
+        /// <summary>
+        /// pnlRMS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlRMS;
+        
+        /// <summary>
+        /// hlAutoReview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlAutoReview;
+        
+        /// <summary>
+        /// dlRecords control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dlRecords;
+        
+        /// <summary>
+        /// lbNewRecordType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbNewRecordType;
     }
 }

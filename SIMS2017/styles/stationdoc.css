@@ -1,0 +1,114 @@
+﻿#wrapper .header {
+    padding: 10px 0;
+    margin: 0;
+    text-align: center;
+}
+
+#wrapper .header .RadMenu {
+    float: none;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#wrapper .logo {
+    padding: 10px 0;
+    display: block;
+    text-align: center;
+}
+
+#wrapper .jumbotron {
+    margin-bottom: 20px;
+    padding: 0 1.875em 1.875em 1.875em;
+    border: 1px solid transparent;
+    background-color: #e9eaea;
+    overflow: hidden;
+}
+
+#wrapper .jumbotron img {
+    float: right;
+    margin: 20px 0 0 0;
+    max-width: 100%;
+}
+
+#wrapper .jumbotron h1 {
+    border-bottom: 1px solid #767676;
+    display: inline-block;
+    padding-bottom: 20px;
+}
+
+#wrapper .grid_wrapper {
+    margin: 0 40px;
+}
+
+#wrapper .subheader {
+    text-align:right;
+    font-size: .8em;
+    font-style:italic;
+    padding-bottom:20px;
+}
+
+#wrapper .footer {
+    width:100%;
+    padding: 10px 15px;
+    line-height: 30px;
+}
+
+.selector {
+    width: 90%;
+    margin: auto;
+    padding-left:20px;
+    padding-right:20px;
+}
+
+.headers {
+    width: 70% !important;
+}
+
+.linkbar {
+    width: 90%;
+    margin: auto;
+    font-size:10pt;
+    padding-top:10px;
+    border-bottom:solid 1px #808080;
+    height:40px;
+}
+
+.mainContent {
+    margin:auto;
+    max-width:90% !important;
+    padding-top:20px;
+}
+
+h4 {
+    border-bottom: 1px solid #d4d4d5;
+    color: #314d93;
+}
+
+.LastRevised {
+    margin: 0 0 10px 0;
+    padding: 0;
+    height:100%;
+    width: 100%;
+    color: #314d93;
+    background: #d1ddf0; /* Old browsers */
+    -webkit-box-shadow: 0 0 5px 0 #d1ddf0;
+    box-shadow: 0 0 5px 0 #d1ddf0;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 9pt;
+}
+
+.RevisionHistory {
+    font-style:italic;
+    font-size: 9pt;
+}
+
+.multiPage {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    border:1px solid #d4d4d5;
+    padding:10px;
+    width:100%;
+}
+ 

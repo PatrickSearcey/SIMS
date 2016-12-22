@@ -354,6 +354,7 @@
       <Column Name="active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="ElementDetail_ElementJHA" Member="ElementJHAs" ThisKey="element_id" OtherKey="element_id" Type="ElementJHA" />
       <Association Name="ElementDetail_SiteElement" Member="SiteElements" ThisKey="element_id" OtherKey="element_id" Type="SiteElement" />
+      <Association Name="ElementDetail_Elem_Lut_ReportRef" Member="ElementReportRefs" ThisKey="element_id" OtherKey="element_id" Type="ElementReportRef" />
     </Type>
   </Table>
   <Table Name="dbo.TCP_Lut_PlanDetails" Member="TCPPlanDetails">
@@ -671,6 +672,52 @@
       <Column Name="stat_cd" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
       <Column Name="gu_id" Type="System.String" DbType="NVarChar(32)" CanBeNull="true" />
       <Column Name="ts_id_md" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.lut_map_by_huc" Member="HUCs">
+    <Type Name="HUC">
+      <Column Name="huc_cd" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
+      <Column Name="volume" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="map" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="basin" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Elem_Lut_ReportRef" Member="ElementReportRefs">
+    <Type Name="ElementReportRef">
+      <Column Name="element_ref_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="report_type_cd" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="element_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="ElementDetail_Elem_Lut_ReportRef" Member="ElementDetail" ThisKey="element_id" OtherKey="element_id" Type="ElementDetail" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vNWISSiteInfoForManu" Member="vNWISSiteInfoForManus">
+    <Type Name="vNWISSiteInfoForManu">
+      <Column Name="agency_cd" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="site_no" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="station_full_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="site_use_cd" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="well_depth_va" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="aqfr_book_nm" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="alt_datum_cd" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="alt_va" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="district_abbrev" Type="System.String" DbType="NVarChar(2)" CanBeNull="true" />
+      <Column Name="county_nm" Type="System.String" DbType="NVarChar(48)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="drain_area_va" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="contrib_drain_area_va" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="lat_va" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="long_va" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="land_net_ds" Type="System.String" DbType="VarChar(23)" CanBeNull="true" />
+      <Column Name="huc_cd" Type="System.String" DbType="VarChar(16)" CanBeNull="true" />
+      <Column Name="state_cd" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="upperCasingDia" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="openTopVa" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="openBottomVa" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="mpString" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="mpAltString" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="wellDepthVa" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="datum_desc" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="use_mpntalt" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">

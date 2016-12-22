@@ -74,7 +74,21 @@
 }
 
 .mainContent {
-    max-width:90% !important;
+    margin:auto;
+    max-width:1400px !important;
+    margin-bottom:20px;
+}
+
+.leftColumn {
+    float:left;
+    width:700px;
+    padding-left:15px;
+}
+
+.rightColumn {
+    width: 400px;
+    float:right;
+    padding-right:10px;
 }
 
 h4 {
@@ -83,10 +97,10 @@ h4 {
 }
 
 .DCPTable {
-    margin-top:5px;
+    margin: 5px 0 20px 0;
     padding:5px;
     height:100%;
-    width: 800px;
+    width: 700px;
     color: #f0f4c9;
     background: #149d49; /* Old browsers */
     -webkit-box-shadow: 0 0 5px 0 #149d49;
@@ -108,7 +122,7 @@ h4 {
     margin: 5px 0 0 0;
     padding:5px;
     height:100%;
-    width: 97%;
+    width: 700px;
     color: #a0865d;
     background: #d1ede5; /* Old browsers */
     -webkit-box-shadow: 0 0 5px 0 #d1ede5;

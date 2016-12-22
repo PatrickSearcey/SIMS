@@ -200,6 +200,9 @@
     <Compile Include="EmergencyInfo.aspx.designer.cs">
       <DependentUpon>EmergencyInfo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Helper\CreateSHA.ashx.cs">
+      <DependentUpon>CreateSHA.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Modal.Master.cs">
       <DependentUpon>Modal.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -281,6 +284,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Modal.Master" />
+    <Content Include="Helper\CreateSHA.ashx" />
     <None Include="Properties\PublishProfiles\Development Site.pubxml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
@@ -299,9 +303,7 @@
       <Name>Data</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helper\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
@@ -325,7 +327,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

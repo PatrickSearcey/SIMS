@@ -92,6 +92,10 @@ h6 {
 }
 
 /*template*/
+#imgUSGS {
+    padding-right:50px;
+    padding-bottom:5px;
+}
 #wrapper .t-container-fluid {
     max-width: 100%;
 }
