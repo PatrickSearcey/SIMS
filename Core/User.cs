@@ -35,9 +35,6 @@ namespace Core
             int pos = _id.IndexOf("\\");
             _id = _id.Substring(pos + 1);
 
-#if DEBUG
-            _id = "dterry";
-#endif
             //try to see if the user is in the database
             var user = db.Employees.FirstOrDefault(p => p.user_id == _id);
             //If the user isn't null it has Admin priveldges, or doesn't

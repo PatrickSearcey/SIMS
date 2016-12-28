@@ -111,7 +111,7 @@ namespace RMS.Modal
             dgChangeLog.DataSource = currPeriod.PeriodChangeLogs.Select(p => new Data.PeriodChangeLog {
                 edited_dt = p.edited_dt,
                 edited_by_uid = p.edited_by_uid,
-                new_va = p.new_va.Replace(System.Environment.NewLine, "<br />")
+                new_va = p.new_va.FormatParagraphOut()
             }).OrderByDescending(p => p.edited_dt).ToList();
             dgChangeLog.DataBind();
         }
@@ -128,7 +128,7 @@ namespace RMS.Modal
                 origin_va = p.origin_va,
                 dialog_by = p.dialog_by,
                 status_set_to_va = p.status_set_to_va,
-                comments_va = p.comments_va.Replace(System.Environment.NewLine, "<br />")
+                comments_va = p.comments_va.FormatParagraphOut()
             }).OrderByDescending(p => p.dialog_dt).ToList();
             dgDialog.DataBind();
         }
@@ -154,7 +154,7 @@ namespace RMS.Modal
                     AnalysisNotesItem ani = new AnalysisNotesItem
                     {
                         timespan = String.Format("{0:MM/dd/yyyy} to {1:MM/dd/yyyy}", period.period_end_dt, period.period_beg_dt),
-                        analysis_notes_va = period.analysis_notes_va.Replace(System.Environment.NewLine, "<br />"),
+                        analysis_notes_va = period.analysis_notes_va.FormatParagraphOut(),
                         edited_dt = String.Format("{0}", period.PeriodChangeLogs.OrderByDescending(b => b.edited_dt).FirstOrDefault().edited_dt),
                         edited_by_uid = period.PeriodChangeLogs.OrderByDescending(b => b.edited_dt).FirstOrDefault().edited_by_uid,
                         analyzed_by = period.analyzed_by,
@@ -174,7 +174,7 @@ namespace RMS.Modal
                 AnalysisNotesItem ani = new AnalysisNotesItem
                 {
                     timespan = String.Format("{0:MM/dd/yyyy} to {1:MM/dd/yyyy}", period.period_end_dt, period.period_beg_dt),
-                    analysis_notes_va = period.analysis_notes_va.Replace(System.Environment.NewLine, "<br />"),
+                    analysis_notes_va = period.analysis_notes_va.FormatParagraphOut(),
                     edited_dt = String.Format("{0}", period.PeriodChangeLogs.OrderByDescending(b => b.edited_dt).FirstOrDefault().edited_dt),
                     edited_by_uid = period.PeriodChangeLogs.OrderByDescending(b => b.edited_dt).FirstOrDefault().edited_by_uid,
                     analyzed_by = period.analyzed_by,

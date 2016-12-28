@@ -33,7 +33,7 @@
             <h3><asp:Literal ID="ltlRecordType" runat="server" /><br /><asp:Literal ID="ltlSite" runat="server" /></h3>
             <asp:Panel ID="pnlNewRecord" runat="server" CssClass="RecordPanel">
                 <p><asp:Literal ID="ltlTopNote" runat="server" /></p>
-                <telerik:RadCheckBoxList ID="rcblOptions" runat="server" OnSelectedIndexChanged="CreateNewRecord" 
+                <telerik:RadCheckBoxList ID="rcblOptions" runat="server" OnSelectedIndexChanged="CreateNewRecord" Direction="Horizontal"
                     DataBindings-DataValueField="option" DataBindings-DataTextField="description" AutoPostBack="true" />
                 <p><asp:Literal ID="ltlBottomNote" runat="server" /></p>
             </asp:Panel>
@@ -77,8 +77,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Analyzer <telerik:RadDropDownList ID="rddlAnalyzer" runat="server" Width="120px" DataValueField="user_id" DataTextField="user_id" /></td>
-                        <td>Approver <telerik:RadDropDownList ID="rddlApprover" runat="server" Width="120px" DataValueField="user_id" DataTextField="user_id"  /></td>
+                        <td>Operator <telerik:RadDropDownList ID="rddlOperator" runat="server" Width="120px" DataValueField="user_id" DataTextField="user_id" /></td>
+                        <td>
+                            Analyzer <telerik:RadDropDownList ID="rddlAnalyzer" runat="server" Width="120px" DataValueField="user_id" DataTextField="user_id" />
+                            Approver <telerik:RadDropDownList ID="rddlApprover" runat="server" Width="120px" DataValueField="user_id" DataTextField="user_id"  />
+                        </td>
                     </tr>
                     <tr>
                         <td colspan="2">
@@ -113,6 +116,7 @@
                     <asp:DataGrid ID="dgOtherRecords" runat="server" AutoGenerateColumns="false">
                         <Columns>
                             <asp:BoundColumn DataField="type_ds" HeaderText="Record-Type" ItemStyle-Width="200px" />
+                            <asp:BoundColumn DataField="operator_uid" HeaderText="Operator" ItemStyle-Width="100px" />
                             <asp:BoundColumn DataField="analyzer_uid" HeaderText="Analyzer" ItemStyle-Width="100px" />
                             <asp:BoundColumn DataField="approver_uid" HeaderText="Approver" ItemStyle-Width="100px" />
                             <asp:BoundColumn DataField="status" HeaderText="Status" ItemStyle-Width="80px" />

@@ -200,7 +200,7 @@
     <Compile Include="EmergencyInfo.aspx.designer.cs">
       <DependentUpon>EmergencyInfo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Helper\CreateSHA.ashx.cs">
+    <Compile Include="Handler\CreateSHA.ashx.cs">
       <DependentUpon>CreateSHA.ashx</DependentUpon>
     </Compile>
     <Compile Include="Modal.Master.cs">
@@ -284,7 +284,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Modal.Master" />
-    <Content Include="Helper\CreateSHA.ashx" />
+    <Content Include="Handler\CreateSHA.ashx" />
     <None Include="Properties\PublishProfiles\Development Site.pubxml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>

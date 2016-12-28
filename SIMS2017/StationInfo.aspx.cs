@@ -142,13 +142,13 @@ namespace SIMS2017
             dlRecords.DataSource = record.Select(p => new RecordItem
             {
                 rms_record_id = p.rms_record_id,
-                personnel = GetPersonnelAssignments(p.analyzer_uid, p.approver_uid),
+                personnel = GetPersonnelAssignments(p.operator_uid, p.analyzer_uid, p.approver_uid),
                 published = GetPublished(Convert.ToBoolean(p.not_published_fg)),
                 active = GetActive(Convert.ToBoolean(p.not_used_fg)),
                 cat_no = GetCategory(Convert.ToInt32(p.category_no)),
                 office_cd = GetOfficeCode(p),
                 time_series = GetTimeSeries(p),
-                type_ds = p.RecordType.type_ds,
+                type_ds = GetRecordType(p.RecordType.type_ds),
                 RMSURL = Config.RMSURL
             }).ToList();
             dlRecords.DataBind();
@@ -187,7 +187,7 @@ namespace SIMS2017
             {
                 pnlSHACreate.Visible = true;
                 pnlSHAEdit.Visible = false;
-                hlSHACreate.NavigateUrl = String.Format("{0}Helper/CreateSHA.ashx?site_id={1}", Config.SafetyURL, currSite.site_id);
+                hlSHACreate.NavigateUrl = String.Format("{0}Handler/CreateSHA.ashx?site_id={1}", Config.SafetyURL, currSite.site_id);
             }
             var TCPSite = currSite.TCPSite;
             if (TCPSite != null)
@@ -262,17 +262,19 @@ namespace SIMS2017
             
         }
 
-        private string GetPersonnelAssignments(string analyzer, string approver)
+        private string GetPersonnelAssignments(string operator_uid, string analyzer, string approver)
         {
             string ret = "<i>unassigned</i>";
 
-            if (!string.IsNullOrEmpty(analyzer) || !string.IsNullOrEmpty(approver))
+            if (!string.IsNullOrEmpty(operator_uid) || !string.IsNullOrEmpty(analyzer) || !string.IsNullOrEmpty(approver))
             {
+                string op;
                 string az;
                 string ap;
+                if (!string.IsNullOrEmpty(operator_uid)) op = operator_uid; else op = "<i>unassigned</i>";
                 if (!string.IsNullOrEmpty(analyzer)) az = analyzer; else az = "<i>unassigned</i>";
                 if (!string.IsNullOrEmpty(approver)) ap = approver; else ap = "<i>unassigned</i>";
-                ret = az + "/" + ap;
+                ret = op + "/" + az + "/" + ap;
             }
 
             return ret;
@@ -303,6 +305,19 @@ namespace SIMS2017
             if (catno > 0)
                 ret = "CRP Category: <b>" + catno.ToString() + "</b>";
 
+            return ret;
+        }
+
+        private string GetRecordType(string type_ds)
+        {
+            string ret = type_ds;
+
+            if (!string.IsNullOrEmpty(type_ds))
+            {
+                if (type_ds.Length > 24)
+                    ret = type_ds.Substring(0, 25) + "...";
+            }
+            
             return ret;
         }
 
@@ -1043,13 +1058,13 @@ namespace SIMS2017
                 dlRecords.DataSource = record.Select(p => new RecordItem
                 {
                     rms_record_id = p.rms_record_id,
-                    personnel = GetPersonnelAssignments(p.analyzer_uid, p.approver_uid),
+                    personnel = GetPersonnelAssignments(p.operator_uid, p.analyzer_uid, p.approver_uid),
                     published = GetPublished(Convert.ToBoolean(p.not_published_fg)),
                     active = GetActive(Convert.ToBoolean(p.not_used_fg)),
                     cat_no = GetCategory(Convert.ToInt32(p.category_no)),
                     office_cd = GetOfficeCode(p),
                     time_series = GetTimeSeries(p),
-                    type_ds = p.RecordType.type_ds,
+                    type_ds = GetRecordType(p.RecordType.type_ds),
                     RMSURL = Config.RMSURL
                 }).ToList();
                 dlRecords.DataBind();

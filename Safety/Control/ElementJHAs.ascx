@@ -133,14 +133,13 @@
         <telerik:RadEditor ID="reElemInfo" runat="server" Skin="Bootstrap" OnClientLoad="OnClientLoad">
             <Tools>
                 <telerik:EditorToolGroup>
-                    <telerik:EditorTool Name="AjaxSpellCheck" Visible="true" Enabled="true" />
+                    <telerik:EditorTool Name="InsertLink" Text="Insert Link Dialog" />
                     <telerik:EditorTool Name="Bold" Visible="true" /> 
                 </telerik:EditorToolGroup>
             </Tools>
-            <SpellCheckSettings DictionaryLanguage="en-GB" DictionaryPath="~/App_Data/RadSpell/" />
         </telerik:RadEditor>
         <br />
-        <asp:Button id="btnSubmitElemInfo" runat="server" Text="save changes and leave edit mode" OnCommand="btnSubmitElemInfo_Command" CommandArgument="editelement" />
+        <asp:Button id="btnSubmitElemInfo" runat="server" Text="save changes and leave edit mode" OnCommand="btnSubmitElemInfo_Command" CommandArgument="editelement" UseSubmitBehavior="false" />
         <asp:Button ID="btnCloseElemInfoEditing" runat="server" Text="cancel and leave edit mode without saving changes" OnCommand="btnSubmitElemInfo_Command" CommandArgument="closeediting" />
         <p><asp:Label ID="lblError1" runat="server" EnableViewState="False" Font-Bold="True" ForeColor="Red"></asp:Label>
         <asp:Label ID="lblSuccess1" runat="server" EnableViewState="False" Font-Bold="True" ForeColor="MediumOrchid"></asp:Label></p>

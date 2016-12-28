@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/RMSSingleMenu.Master" AutoEventWireup="true" CodeBehind="RecordProcess.aspx.cs" Inherits="RMS.RecordProcess" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/RMSSingleMenu.Master" AutoEventWireup="true" CodeBehind="RecordProcess.aspx.cs" Inherits="RMS.RecordProcess" ValidateRequest="false" %>
 <%@ Register Src="~/Control/RecordPageHeading.ascx" TagName="PageHeading" TagPrefix="uc" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -76,6 +76,19 @@
     <uc:PageHeading id="ph1" runat="server" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph2" runat="server">
+    <asp:Panel ID="pnlDiagnostics" runat="server" CssClass="pnlLocked" Visible="false">
+        <h4>Error Diagnostics</h4>
+        <p>There was an error accessing the period. Please send the below details to the system administrator: <a href="mailto:GS-W_Help_SIMS@usgs.gov">GS-W_Help_SIMS@usgs.gov</a></p>
+        <p>Error: <asp:Literal ID="ltlErrorMsg" runat="server" /></p>
+        <p>User ID: <asp:Literal ID="ltlUserID" runat="server" /></p>
+        <p>Site ID: <asp:Literal ID="ltlSite" runat="server" /></p>
+        <p>Record ID: <asp:Literal ID="ltlRecord" runat="server" /></p>
+        <p>Period ID: <asp:Literal ID="ltlPeriod" runat="server" /></p>
+        <p>Task: <asp:Literal ID="ltlTask" runat="server" /></p>
+        <p>User WSC(s): <asp:Literal ID="ltlUserWSC" runat="server" /></p>
+        <p>Site WSC: <asp:Literal ID="ltlSiteWSC" runat="server" /></p>
+        <p>User Access: <asp:Literal ID="ltlAccess" runat="server" /></p>
+    </asp:Panel>
     <asp:Panel ID="pnlErrors" runat="server" CssClass="pnlErrors" Visible="false">
         <h4>ACTION FAILED: Errors Found</h4>
         <p><asp:Literal ID="ltlError" runat="server" /></p>
@@ -120,19 +133,18 @@
                     <telerik:RadEditor ID="reAnalysisNotes" runat="server" Skin="Bootstrap" OnClientLoad="OnClientLoad" Width="100%" Height="300px">
                         <Tools>
                             <telerik:EditorToolGroup>
-                                <telerik:EditorTool Name="AjaxSpellCheck" Visible="true" Enabled="true" />
-                                <telerik:EditorTool Name="Bold" Visible="true" /> 
+                                <telerik:EditorTool Name="InsertLink" Text="Insert Link Dialog" />
+                                <telerik:EditorTool Name="Bold" Text="Bold" Visible="true" /> 
                             </telerik:EditorToolGroup>
                         </Tools>
-                        <SpellCheckSettings DictionaryLanguage="en-GB" DictionaryPath="~/App_Data/RadSpell/" />
                     </telerik:RadEditor>
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
                     <div style="text-align:center;">
-                        <telerik:RadButton ID="rbFinishAnalyze" runat="server" Text="Finish Analyzing" OnCommand="Button_Commands" CommandArgument="Finish" CommandName="Analyze" />
-                        <telerik:RadButton ID="rbSaveAnalyze" runat="server" Text="Save" OnCommand="Button_Commands" CommandArgument="Save" CommandName="Analyze" />
+                        <telerik:RadButton ID="rbFinishAnalyze" runat="server" Text="Finish Analyzing" OnCommand="Button_Commands" CommandArgument="Finish" CommandName="Analyze" UseSubmitBehavior="false" />
+                        <telerik:RadButton ID="rbSaveAnalyze" runat="server" Text="Save" OnCommand="Button_Commands" CommandArgument="Save" CommandName="Analyze" UseSubmitBehavior="false" />
                         <telerik:RadButton ID="rbCancelAnalyze" runat="server" Text="Cancel" OnCommand="Button_Commands" CommandName="Cancel" />
                     </div>
                 </td>
@@ -173,14 +185,13 @@
                         <telerik:RadEditor ID="reAnalysisNotes2" runat="server" Skin="Bootstrap" OnClientLoad="OnClientLoad" Width="100%" Height="300px">
                             <Tools>
                                 <telerik:EditorToolGroup>
-                                    <telerik:EditorTool Name="AjaxSpellCheck" Visible="true" Enabled="true" />
-                                    <telerik:EditorTool Name="Bold" Visible="true" /> 
+                                <telerik:EditorTool Name="InsertLink" Text="Insert Link Dialog" />
+                                <telerik:EditorTool Name="Bold" Text="Bold" Visible="true" /> 
                                 </telerik:EditorToolGroup>
                             </Tools>
-                            <SpellCheckSettings DictionaryLanguage="en-GB" DictionaryPath="~/App_Data/RadSpell/" />
                         </telerik:RadEditor>
                         <div style="text-align:center;padding-top:5px;">
-                            <telerik:RadButton ID="rbSaveAnalysisNotes" runat="server" Text="Save Changes" OnCommand="EditAnalysisNotes" CommandArgument="Save" /> 
+                            <telerik:RadButton ID="rbSaveAnalysisNotes" runat="server" Text="Save Changes" OnCommand="EditAnalysisNotes" CommandArgument="Save" UseSubmitBehavior="false" /> 
                             <telerik:RadButton ID="rbCancelAnalysisNotes" runat="server" Text="Cancel Without Saving" OnCommand="EditAnalysisNotes" CommandArgument="Cancel" />
                         </div>
                     </asp:Panel>
@@ -200,20 +211,19 @@
                     <telerik:RadEditor ID="reComments" runat="server" Skin="Bootstrap" OnClientLoad="OnClientLoad" Width="100%" Height="100px">
                         <Tools>
                             <telerik:EditorToolGroup>
-                                <telerik:EditorTool Name="AjaxSpellCheck" Visible="true" Enabled="true" />
-                                <telerik:EditorTool Name="Bold" Visible="true" /> 
+                                <telerik:EditorTool Name="InsertLink" Text="Insert Link Dialog" />
+                                <telerik:EditorTool Name="Bold" Text="Bold" Visible="true" /> 
                             </telerik:EditorToolGroup>
                         </Tools>
-                        <SpellCheckSettings DictionaryLanguage="en-GB" DictionaryPath="~/App_Data/RadSpell/" />
                     </telerik:RadEditor>
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
                     <div style="text-align:center;">
-                        <telerik:RadButton ID="rbReanalyze" runat="server" Text="Send Back for Reanalyzing" OnCommand="Button_Commands" CommandArgument="Reanalyze" CommandName="Approve" />
-                        <telerik:RadButton ID="rbFinish" runat="server" OnCommand="Button_Commands" CommandArgument="Finish" />
-                        <telerik:RadButton ID="rbSave" runat="server" Text="Save" OnCommand="Button_Commands" CommandArgument="Save" />
+                        <telerik:RadButton ID="rbReanalyze" runat="server" Text="Send Back for Reanalyzing" OnCommand="Button_Commands" CommandArgument="Reanalyze" CommandName="Approve" UseSubmitBehavior="false" />
+                        <telerik:RadButton ID="rbFinish" runat="server" OnCommand="Button_Commands" CommandArgument="Finish" UseSubmitBehavior="false" />
+                        <telerik:RadButton ID="rbSave" runat="server" Text="Save" OnCommand="Button_Commands" CommandArgument="Save" UseSubmitBehavior="false" />
                         <telerik:RadButton ID="rbCancel" runat="server" Text="Cancel" OnCommand="Button_Commands" CommandName="Cancel" />
                     </div>
                 </td>

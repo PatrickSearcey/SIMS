@@ -117,9 +117,6 @@ namespace Data
     partial void InsertRecordType(RecordType instance);
     partial void UpdateRecordType(RecordType instance);
     partial void DeleteRecordType(RecordType instance);
-    partial void InsertRecord(Record instance);
-    partial void UpdateRecord(Record instance);
-    partial void DeleteRecord(Record instance);
     partial void InsertRecordDD(RecordDD instance);
     partial void UpdateRecordDD(RecordDD instance);
     partial void DeleteRecordDD(RecordDD instance);
@@ -147,6 +144,9 @@ namespace Data
     partial void InsertElementReportRef(ElementReportRef instance);
     partial void UpdateElementReportRef(ElementReportRef instance);
     partial void DeleteElementReportRef(ElementReportRef instance);
+    partial void InsertRecord(Record instance);
+    partial void UpdateRecord(Record instance);
+    partial void DeleteRecord(Record instance);
     #endregion
 		
 		public SIMSDataContext() : 
@@ -451,14 +451,6 @@ namespace Data
 			}
 		}
 		
-		public System.Data.Linq.Table<Record> Records
-		{
-			get
-			{
-				return this.GetTable<Record>();
-			}
-		}
-		
 		public System.Data.Linq.Table<RecordDD> RecordDDs
 		{
 			get
@@ -560,6 +552,14 @@ namespace Data
 			get
 			{
 				return this.GetTable<vNWISSiteInfoForManu>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Record> Records
+		{
+			get
+			{
+				return this.GetTable<Record>();
 			}
 		}
 		
@@ -2624,7 +2624,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Record", Storage="_Records", ThisKey="site_id", OtherKey="site_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_RMS_Record_Master", Storage="_Records", ThisKey="site_id", OtherKey="site_id")]
 		public EntitySet<Record> Records
 		{
 			get
@@ -11117,7 +11117,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordType_Record", Storage="_Records", ThisKey="record_type_id", OtherKey="record_type_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordType_RMS_Record_Master", Storage="_Records", ThisKey="record_type_id", OtherKey="record_type_id")]
 		public EntitySet<Record> Records
 		{
 			get
@@ -11160,546 +11160,6 @@ namespace Data
 		{
 			this.SendPropertyChanging();
 			entity.RecordType = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Record_Master")]
-	public partial class Record : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _rms_record_id;
-		
-		private System.Nullable<int> _site_id;
-		
-		private string _analyzer_uid;
-		
-		private string _approver_uid;
-		
-		private System.Nullable<bool> _not_published_fg;
-		
-		private System.Nullable<bool> _not_used_fg;
-		
-		private System.Nullable<int> _record_type_id;
-		
-		private System.Nullable<int> _category_no;
-		
-		private string _cat_reason;
-		
-		private System.Nullable<int> _rms_record_id_old;
-		
-		private EntitySet<RecordDD> _RecordDDs;
-		
-		private EntityRef<RecordLock> _RecordLock;
-		
-		private EntitySet<RecordEOYStatus> _RecordEOYStatus;
-		
-		private EntityRef<RecordAnalysisStatus> _RecordAnalysisStatus;
-		
-		private EntityRef<RecordAltOffice> _RecordAltOffice;
-		
-		private EntitySet<RecordAnalysisPeriod> _RecordAnalysisPeriods;
-		
-		private EntityRef<RecordType> _RecordType;
-		
-		private EntityRef<Site> _Site;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onrms_record_idChanging(int value);
-    partial void Onrms_record_idChanged();
-    partial void Onsite_idChanging(System.Nullable<int> value);
-    partial void Onsite_idChanged();
-    partial void Onanalyzer_uidChanging(string value);
-    partial void Onanalyzer_uidChanged();
-    partial void Onapprover_uidChanging(string value);
-    partial void Onapprover_uidChanged();
-    partial void Onnot_published_fgChanging(System.Nullable<bool> value);
-    partial void Onnot_published_fgChanged();
-    partial void Onnot_used_fgChanging(System.Nullable<bool> value);
-    partial void Onnot_used_fgChanged();
-    partial void Onrecord_type_idChanging(System.Nullable<int> value);
-    partial void Onrecord_type_idChanged();
-    partial void Oncategory_noChanging(System.Nullable<int> value);
-    partial void Oncategory_noChanged();
-    partial void Oncat_reasonChanging(string value);
-    partial void Oncat_reasonChanged();
-    partial void Onrms_record_id_oldChanging(System.Nullable<int> value);
-    partial void Onrms_record_id_oldChanged();
-    #endregion
-		
-		public Record()
-		{
-			this._RecordDDs = new EntitySet<RecordDD>(new Action<RecordDD>(this.attach_RecordDDs), new Action<RecordDD>(this.detach_RecordDDs));
-			this._RecordLock = default(EntityRef<RecordLock>);
-			this._RecordEOYStatus = new EntitySet<RecordEOYStatus>(new Action<RecordEOYStatus>(this.attach_RecordEOYStatus), new Action<RecordEOYStatus>(this.detach_RecordEOYStatus));
-			this._RecordAnalysisStatus = default(EntityRef<RecordAnalysisStatus>);
-			this._RecordAltOffice = default(EntityRef<RecordAltOffice>);
-			this._RecordAnalysisPeriods = new EntitySet<RecordAnalysisPeriod>(new Action<RecordAnalysisPeriod>(this.attach_RecordAnalysisPeriods), new Action<RecordAnalysisPeriod>(this.detach_RecordAnalysisPeriods));
-			this._RecordType = default(EntityRef<RecordType>);
-			this._Site = default(EntityRef<Site>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int rms_record_id
-		{
-			get
-			{
-				return this._rms_record_id;
-			}
-			set
-			{
-				if ((this._rms_record_id != value))
-				{
-					this.Onrms_record_idChanging(value);
-					this.SendPropertyChanging();
-					this._rms_record_id = value;
-					this.SendPropertyChanged("rms_record_id");
-					this.Onrms_record_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int")]
-		public System.Nullable<int> site_id
-		{
-			get
-			{
-				return this._site_id;
-			}
-			set
-			{
-				if ((this._site_id != value))
-				{
-					if (this._Site.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onsite_idChanging(value);
-					this.SendPropertyChanging();
-					this._site_id = value;
-					this.SendPropertyChanged("site_id");
-					this.Onsite_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_analyzer_uid", DbType="NVarChar(50)")]
-		public string analyzer_uid
-		{
-			get
-			{
-				return this._analyzer_uid;
-			}
-			set
-			{
-				if ((this._analyzer_uid != value))
-				{
-					this.Onanalyzer_uidChanging(value);
-					this.SendPropertyChanging();
-					this._analyzer_uid = value;
-					this.SendPropertyChanged("analyzer_uid");
-					this.Onanalyzer_uidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approver_uid", DbType="NVarChar(50)")]
-		public string approver_uid
-		{
-			get
-			{
-				return this._approver_uid;
-			}
-			set
-			{
-				if ((this._approver_uid != value))
-				{
-					this.Onapprover_uidChanging(value);
-					this.SendPropertyChanging();
-					this._approver_uid = value;
-					this.SendPropertyChanged("approver_uid");
-					this.Onapprover_uidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_not_published_fg", DbType="Bit")]
-		public System.Nullable<bool> not_published_fg
-		{
-			get
-			{
-				return this._not_published_fg;
-			}
-			set
-			{
-				if ((this._not_published_fg != value))
-				{
-					this.Onnot_published_fgChanging(value);
-					this.SendPropertyChanging();
-					this._not_published_fg = value;
-					this.SendPropertyChanged("not_published_fg");
-					this.Onnot_published_fgChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_not_used_fg", DbType="Bit")]
-		public System.Nullable<bool> not_used_fg
-		{
-			get
-			{
-				return this._not_used_fg;
-			}
-			set
-			{
-				if ((this._not_used_fg != value))
-				{
-					this.Onnot_used_fgChanging(value);
-					this.SendPropertyChanging();
-					this._not_used_fg = value;
-					this.SendPropertyChanged("not_used_fg");
-					this.Onnot_used_fgChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_record_type_id", DbType="Int")]
-		public System.Nullable<int> record_type_id
-		{
-			get
-			{
-				return this._record_type_id;
-			}
-			set
-			{
-				if ((this._record_type_id != value))
-				{
-					if (this._RecordType.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onrecord_type_idChanging(value);
-					this.SendPropertyChanging();
-					this._record_type_id = value;
-					this.SendPropertyChanged("record_type_id");
-					this.Onrecord_type_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_category_no", DbType="Int")]
-		public System.Nullable<int> category_no
-		{
-			get
-			{
-				return this._category_no;
-			}
-			set
-			{
-				if ((this._category_no != value))
-				{
-					this.Oncategory_noChanging(value);
-					this.SendPropertyChanging();
-					this._category_no = value;
-					this.SendPropertyChanged("category_no");
-					this.Oncategory_noChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cat_reason", DbType="NVarChar(500)")]
-		public string cat_reason
-		{
-			get
-			{
-				return this._cat_reason;
-			}
-			set
-			{
-				if ((this._cat_reason != value))
-				{
-					this.Oncat_reasonChanging(value);
-					this.SendPropertyChanging();
-					this._cat_reason = value;
-					this.SendPropertyChanged("cat_reason");
-					this.Oncat_reasonChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id_old", DbType="Int")]
-		public System.Nullable<int> rms_record_id_old
-		{
-			get
-			{
-				return this._rms_record_id_old;
-			}
-			set
-			{
-				if ((this._rms_record_id_old != value))
-				{
-					this.Onrms_record_id_oldChanging(value);
-					this.SendPropertyChanging();
-					this._rms_record_id_old = value;
-					this.SendPropertyChanged("rms_record_id_old");
-					this.Onrms_record_id_oldChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordDD", Storage="_RecordDDs", ThisKey="rms_record_id", OtherKey="rms_record_id")]
-		public EntitySet<RecordDD> RecordDDs
-		{
-			get
-			{
-				return this._RecordDDs;
-			}
-			set
-			{
-				this._RecordDDs.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordLock", Storage="_RecordLock", ThisKey="rms_record_id", OtherKey="rms_record_id", IsUnique=true, IsForeignKey=false)]
-		public RecordLock RecordLock
-		{
-			get
-			{
-				return this._RecordLock.Entity;
-			}
-			set
-			{
-				RecordLock previousValue = this._RecordLock.Entity;
-				if (((previousValue != value) 
-							|| (this._RecordLock.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._RecordLock.Entity = null;
-						previousValue.Record = null;
-					}
-					this._RecordLock.Entity = value;
-					if ((value != null))
-					{
-						value.Record = this;
-					}
-					this.SendPropertyChanged("RecordLock");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordEOYStatus", Storage="_RecordEOYStatus", ThisKey="rms_record_id", OtherKey="rms_record_id")]
-		public EntitySet<RecordEOYStatus> RecordEOYStatus
-		{
-			get
-			{
-				return this._RecordEOYStatus;
-			}
-			set
-			{
-				this._RecordEOYStatus.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordAnalysisStatus", Storage="_RecordAnalysisStatus", ThisKey="rms_record_id", OtherKey="rms_record_id", IsUnique=true, IsForeignKey=false)]
-		public RecordAnalysisStatus RecordAnalysisStatus
-		{
-			get
-			{
-				return this._RecordAnalysisStatus.Entity;
-			}
-			set
-			{
-				RecordAnalysisStatus previousValue = this._RecordAnalysisStatus.Entity;
-				if (((previousValue != value) 
-							|| (this._RecordAnalysisStatus.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._RecordAnalysisStatus.Entity = null;
-						previousValue.Record = null;
-					}
-					this._RecordAnalysisStatus.Entity = value;
-					if ((value != null))
-					{
-						value.Record = this;
-					}
-					this.SendPropertyChanged("RecordAnalysisStatus");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordAltOffice", Storage="_RecordAltOffice", ThisKey="rms_record_id", OtherKey="rms_record_id", IsUnique=true, IsForeignKey=false)]
-		public RecordAltOffice RecordAltOffice
-		{
-			get
-			{
-				return this._RecordAltOffice.Entity;
-			}
-			set
-			{
-				RecordAltOffice previousValue = this._RecordAltOffice.Entity;
-				if (((previousValue != value) 
-							|| (this._RecordAltOffice.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._RecordAltOffice.Entity = null;
-						previousValue.Record = null;
-					}
-					this._RecordAltOffice.Entity = value;
-					if ((value != null))
-					{
-						value.Record = this;
-					}
-					this.SendPropertyChanged("RecordAltOffice");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordAnalysisPeriod", Storage="_RecordAnalysisPeriods", ThisKey="rms_record_id", OtherKey="rms_record_id")]
-		public EntitySet<RecordAnalysisPeriod> RecordAnalysisPeriods
-		{
-			get
-			{
-				return this._RecordAnalysisPeriods;
-			}
-			set
-			{
-				this._RecordAnalysisPeriods.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordType_Record", Storage="_RecordType", ThisKey="record_type_id", OtherKey="record_type_id", IsForeignKey=true)]
-		public RecordType RecordType
-		{
-			get
-			{
-				return this._RecordType.Entity;
-			}
-			set
-			{
-				RecordType previousValue = this._RecordType.Entity;
-				if (((previousValue != value) 
-							|| (this._RecordType.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._RecordType.Entity = null;
-						previousValue.Records.Remove(this);
-					}
-					this._RecordType.Entity = value;
-					if ((value != null))
-					{
-						value.Records.Add(this);
-						this._record_type_id = value.record_type_id;
-					}
-					else
-					{
-						this._record_type_id = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("RecordType");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Record", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
-		public Site Site
-		{
-			get
-			{
-				return this._Site.Entity;
-			}
-			set
-			{
-				Site previousValue = this._Site.Entity;
-				if (((previousValue != value) 
-							|| (this._Site.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Site.Entity = null;
-						previousValue.Records.Remove(this);
-					}
-					this._Site.Entity = value;
-					if ((value != null))
-					{
-						value.Records.Add(this);
-						this._site_id = value.site_id;
-					}
-					else
-					{
-						this._site_id = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Site");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_RecordDDs(RecordDD entity)
-		{
-			this.SendPropertyChanging();
-			entity.Record = this;
-		}
-		
-		private void detach_RecordDDs(RecordDD entity)
-		{
-			this.SendPropertyChanging();
-			entity.Record = null;
-		}
-		
-		private void attach_RecordEOYStatus(RecordEOYStatus entity)
-		{
-			this.SendPropertyChanging();
-			entity.Record = this;
-		}
-		
-		private void detach_RecordEOYStatus(RecordEOYStatus entity)
-		{
-			this.SendPropertyChanging();
-			entity.Record = null;
-		}
-		
-		private void attach_RecordAnalysisPeriods(RecordAnalysisPeriod entity)
-		{
-			this.SendPropertyChanging();
-			entity.Record = this;
-		}
-		
-		private void detach_RecordAnalysisPeriods(RecordAnalysisPeriod entity)
-		{
-			this.SendPropertyChanging();
-			entity.Record = null;
 		}
 	}
 	
@@ -11847,7 +11307,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordDD", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordDD", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
 		public Record Record
 		{
 			get
@@ -12046,7 +11506,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordLock", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordLock", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
 		public Record Record
 		{
 			get
@@ -12293,7 +11753,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordEOYStatus", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordEOYStatus", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
 		public Record Record
 		{
 			get
@@ -13006,7 +12466,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordAnalysisStatus", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordAnalysisStatus", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
 		public Record Record
 		{
 			get
@@ -13157,7 +12617,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordAltOffice", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordAltOffice", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
 		public Record Record
 		{
 			get
@@ -13580,7 +13040,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordAnalysisPeriod", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordAnalysisPeriod", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
 		public Record Record
 		{
 			get
@@ -14831,6 +14291,570 @@ namespace Data
 					this._use_mpntalt = value;
 				}
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Record_Master")]
+	public partial class Record : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _rms_record_id;
+		
+		private System.Nullable<int> _site_id;
+		
+		private string _operator_uid;
+		
+		private string _analyzer_uid;
+		
+		private string _approver_uid;
+		
+		private System.Nullable<bool> _not_published_fg;
+		
+		private System.Nullable<bool> _not_used_fg;
+		
+		private System.Nullable<int> _record_type_id;
+		
+		private System.Nullable<int> _category_no;
+		
+		private string _cat_reason;
+		
+		private System.Nullable<int> _rms_record_id_old;
+		
+		private EntitySet<RecordDD> _RecordDDs;
+		
+		private EntityRef<RecordLock> _RecordLock;
+		
+		private EntitySet<RecordEOYStatus> _RecordEOYStatus;
+		
+		private EntityRef<RecordAnalysisStatus> _RecordAnalysisStatus;
+		
+		private EntityRef<RecordAltOffice> _RecordAltOffice;
+		
+		private EntitySet<RecordAnalysisPeriod> _RecordAnalysisPeriods;
+		
+		private EntityRef<RecordType> _RecordType;
+		
+		private EntityRef<Site> _Site;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onrms_record_idChanging(int value);
+    partial void Onrms_record_idChanged();
+    partial void Onsite_idChanging(System.Nullable<int> value);
+    partial void Onsite_idChanged();
+    partial void Onoperator_uidChanging(string value);
+    partial void Onoperator_uidChanged();
+    partial void Onanalyzer_uidChanging(string value);
+    partial void Onanalyzer_uidChanged();
+    partial void Onapprover_uidChanging(string value);
+    partial void Onapprover_uidChanged();
+    partial void Onnot_published_fgChanging(System.Nullable<bool> value);
+    partial void Onnot_published_fgChanged();
+    partial void Onnot_used_fgChanging(System.Nullable<bool> value);
+    partial void Onnot_used_fgChanged();
+    partial void Onrecord_type_idChanging(System.Nullable<int> value);
+    partial void Onrecord_type_idChanged();
+    partial void Oncategory_noChanging(System.Nullable<int> value);
+    partial void Oncategory_noChanged();
+    partial void Oncat_reasonChanging(string value);
+    partial void Oncat_reasonChanged();
+    partial void Onrms_record_id_oldChanging(System.Nullable<int> value);
+    partial void Onrms_record_id_oldChanged();
+    #endregion
+		
+		public Record()
+		{
+			this._RecordDDs = new EntitySet<RecordDD>(new Action<RecordDD>(this.attach_RecordDDs), new Action<RecordDD>(this.detach_RecordDDs));
+			this._RecordLock = default(EntityRef<RecordLock>);
+			this._RecordEOYStatus = new EntitySet<RecordEOYStatus>(new Action<RecordEOYStatus>(this.attach_RecordEOYStatus), new Action<RecordEOYStatus>(this.detach_RecordEOYStatus));
+			this._RecordAnalysisStatus = default(EntityRef<RecordAnalysisStatus>);
+			this._RecordAltOffice = default(EntityRef<RecordAltOffice>);
+			this._RecordAnalysisPeriods = new EntitySet<RecordAnalysisPeriod>(new Action<RecordAnalysisPeriod>(this.attach_RecordAnalysisPeriods), new Action<RecordAnalysisPeriod>(this.detach_RecordAnalysisPeriods));
+			this._RecordType = default(EntityRef<RecordType>);
+			this._Site = default(EntityRef<Site>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					this.Onrms_record_idChanging(value);
+					this.SendPropertyChanging();
+					this._rms_record_id = value;
+					this.SendPropertyChanged("rms_record_id");
+					this.Onrms_record_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int")]
+		public System.Nullable<int> site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					if (this._Site.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onsite_idChanging(value);
+					this.SendPropertyChanging();
+					this._site_id = value;
+					this.SendPropertyChanged("site_id");
+					this.Onsite_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_operator_uid", DbType="NVarChar(50)")]
+		public string operator_uid
+		{
+			get
+			{
+				return this._operator_uid;
+			}
+			set
+			{
+				if ((this._operator_uid != value))
+				{
+					this.Onoperator_uidChanging(value);
+					this.SendPropertyChanging();
+					this._operator_uid = value;
+					this.SendPropertyChanged("operator_uid");
+					this.Onoperator_uidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_analyzer_uid", DbType="NVarChar(50)")]
+		public string analyzer_uid
+		{
+			get
+			{
+				return this._analyzer_uid;
+			}
+			set
+			{
+				if ((this._analyzer_uid != value))
+				{
+					this.Onanalyzer_uidChanging(value);
+					this.SendPropertyChanging();
+					this._analyzer_uid = value;
+					this.SendPropertyChanged("analyzer_uid");
+					this.Onanalyzer_uidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approver_uid", DbType="NVarChar(50)")]
+		public string approver_uid
+		{
+			get
+			{
+				return this._approver_uid;
+			}
+			set
+			{
+				if ((this._approver_uid != value))
+				{
+					this.Onapprover_uidChanging(value);
+					this.SendPropertyChanging();
+					this._approver_uid = value;
+					this.SendPropertyChanged("approver_uid");
+					this.Onapprover_uidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_not_published_fg", DbType="Bit")]
+		public System.Nullable<bool> not_published_fg
+		{
+			get
+			{
+				return this._not_published_fg;
+			}
+			set
+			{
+				if ((this._not_published_fg != value))
+				{
+					this.Onnot_published_fgChanging(value);
+					this.SendPropertyChanging();
+					this._not_published_fg = value;
+					this.SendPropertyChanged("not_published_fg");
+					this.Onnot_published_fgChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_not_used_fg", DbType="Bit")]
+		public System.Nullable<bool> not_used_fg
+		{
+			get
+			{
+				return this._not_used_fg;
+			}
+			set
+			{
+				if ((this._not_used_fg != value))
+				{
+					this.Onnot_used_fgChanging(value);
+					this.SendPropertyChanging();
+					this._not_used_fg = value;
+					this.SendPropertyChanged("not_used_fg");
+					this.Onnot_used_fgChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_record_type_id", DbType="Int")]
+		public System.Nullable<int> record_type_id
+		{
+			get
+			{
+				return this._record_type_id;
+			}
+			set
+			{
+				if ((this._record_type_id != value))
+				{
+					if (this._RecordType.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onrecord_type_idChanging(value);
+					this.SendPropertyChanging();
+					this._record_type_id = value;
+					this.SendPropertyChanged("record_type_id");
+					this.Onrecord_type_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_category_no", DbType="Int")]
+		public System.Nullable<int> category_no
+		{
+			get
+			{
+				return this._category_no;
+			}
+			set
+			{
+				if ((this._category_no != value))
+				{
+					this.Oncategory_noChanging(value);
+					this.SendPropertyChanging();
+					this._category_no = value;
+					this.SendPropertyChanged("category_no");
+					this.Oncategory_noChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cat_reason", DbType="NVarChar(500)")]
+		public string cat_reason
+		{
+			get
+			{
+				return this._cat_reason;
+			}
+			set
+			{
+				if ((this._cat_reason != value))
+				{
+					this.Oncat_reasonChanging(value);
+					this.SendPropertyChanging();
+					this._cat_reason = value;
+					this.SendPropertyChanged("cat_reason");
+					this.Oncat_reasonChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id_old", DbType="Int")]
+		public System.Nullable<int> rms_record_id_old
+		{
+			get
+			{
+				return this._rms_record_id_old;
+			}
+			set
+			{
+				if ((this._rms_record_id_old != value))
+				{
+					this.Onrms_record_id_oldChanging(value);
+					this.SendPropertyChanging();
+					this._rms_record_id_old = value;
+					this.SendPropertyChanged("rms_record_id_old");
+					this.Onrms_record_id_oldChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordDD", Storage="_RecordDDs", ThisKey="rms_record_id", OtherKey="rms_record_id")]
+		public EntitySet<RecordDD> RecordDDs
+		{
+			get
+			{
+				return this._RecordDDs;
+			}
+			set
+			{
+				this._RecordDDs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordLock", Storage="_RecordLock", ThisKey="rms_record_id", OtherKey="rms_record_id", IsUnique=true, IsForeignKey=false)]
+		public RecordLock RecordLock
+		{
+			get
+			{
+				return this._RecordLock.Entity;
+			}
+			set
+			{
+				RecordLock previousValue = this._RecordLock.Entity;
+				if (((previousValue != value) 
+							|| (this._RecordLock.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._RecordLock.Entity = null;
+						previousValue.Record = null;
+					}
+					this._RecordLock.Entity = value;
+					if ((value != null))
+					{
+						value.Record = this;
+					}
+					this.SendPropertyChanged("RecordLock");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordEOYStatus", Storage="_RecordEOYStatus", ThisKey="rms_record_id", OtherKey="rms_record_id")]
+		public EntitySet<RecordEOYStatus> RecordEOYStatus
+		{
+			get
+			{
+				return this._RecordEOYStatus;
+			}
+			set
+			{
+				this._RecordEOYStatus.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordAnalysisStatus", Storage="_RecordAnalysisStatus", ThisKey="rms_record_id", OtherKey="rms_record_id", IsUnique=true, IsForeignKey=false)]
+		public RecordAnalysisStatus RecordAnalysisStatus
+		{
+			get
+			{
+				return this._RecordAnalysisStatus.Entity;
+			}
+			set
+			{
+				RecordAnalysisStatus previousValue = this._RecordAnalysisStatus.Entity;
+				if (((previousValue != value) 
+							|| (this._RecordAnalysisStatus.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._RecordAnalysisStatus.Entity = null;
+						previousValue.Record = null;
+					}
+					this._RecordAnalysisStatus.Entity = value;
+					if ((value != null))
+					{
+						value.Record = this;
+					}
+					this.SendPropertyChanged("RecordAnalysisStatus");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordAltOffice", Storage="_RecordAltOffice", ThisKey="rms_record_id", OtherKey="rms_record_id", IsUnique=true, IsForeignKey=false)]
+		public RecordAltOffice RecordAltOffice
+		{
+			get
+			{
+				return this._RecordAltOffice.Entity;
+			}
+			set
+			{
+				RecordAltOffice previousValue = this._RecordAltOffice.Entity;
+				if (((previousValue != value) 
+							|| (this._RecordAltOffice.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._RecordAltOffice.Entity = null;
+						previousValue.Record = null;
+					}
+					this._RecordAltOffice.Entity = value;
+					if ((value != null))
+					{
+						value.Record = this;
+					}
+					this.SendPropertyChanged("RecordAltOffice");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordAnalysisPeriod", Storage="_RecordAnalysisPeriods", ThisKey="rms_record_id", OtherKey="rms_record_id")]
+		public EntitySet<RecordAnalysisPeriod> RecordAnalysisPeriods
+		{
+			get
+			{
+				return this._RecordAnalysisPeriods;
+			}
+			set
+			{
+				this._RecordAnalysisPeriods.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordType_RMS_Record_Master", Storage="_RecordType", ThisKey="record_type_id", OtherKey="record_type_id", IsForeignKey=true)]
+		public RecordType RecordType
+		{
+			get
+			{
+				return this._RecordType.Entity;
+			}
+			set
+			{
+				RecordType previousValue = this._RecordType.Entity;
+				if (((previousValue != value) 
+							|| (this._RecordType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._RecordType.Entity = null;
+						previousValue.Records.Remove(this);
+					}
+					this._RecordType.Entity = value;
+					if ((value != null))
+					{
+						value.Records.Add(this);
+						this._record_type_id = value.record_type_id;
+					}
+					else
+					{
+						this._record_type_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("RecordType");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_RMS_Record_Master", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		public Site Site
+		{
+			get
+			{
+				return this._Site.Entity;
+			}
+			set
+			{
+				Site previousValue = this._Site.Entity;
+				if (((previousValue != value) 
+							|| (this._Site.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Site.Entity = null;
+						previousValue.Records.Remove(this);
+					}
+					this._Site.Entity = value;
+					if ((value != null))
+					{
+						value.Records.Add(this);
+						this._site_id = value.site_id;
+					}
+					else
+					{
+						this._site_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Site");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_RecordDDs(RecordDD entity)
+		{
+			this.SendPropertyChanging();
+			entity.Record = this;
+		}
+		
+		private void detach_RecordDDs(RecordDD entity)
+		{
+			this.SendPropertyChanging();
+			entity.Record = null;
+		}
+		
+		private void attach_RecordEOYStatus(RecordEOYStatus entity)
+		{
+			this.SendPropertyChanging();
+			entity.Record = this;
+		}
+		
+		private void detach_RecordEOYStatus(RecordEOYStatus entity)
+		{
+			this.SendPropertyChanging();
+			entity.Record = null;
+		}
+		
+		private void attach_RecordAnalysisPeriods(RecordAnalysisPeriod entity)
+		{
+			this.SendPropertyChanging();
+			entity.Record = this;
+		}
+		
+		private void detach_RecordAnalysisPeriods(RecordAnalysisPeriod entity)
+		{
+			this.SendPropertyChanging();
+			entity.Record = null;
 		}
 	}
 	

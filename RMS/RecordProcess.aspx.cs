@@ -82,19 +82,23 @@ namespace RMS
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string period_id =  Request.QueryString["period_id"];
+            string period_id = Request.QueryString["period_id"];
             string rms_record_id = Request.QueryString["rms_record_id"];
             task = Request.QueryString["task"];
 
-            //If no rms_record_id or period_id was passed, then redirect back to the homepage
+            //If no rms_record_id or period_id was passed, then show the error diagnostics panel
             if (!string.IsNullOrEmpty(period_id) || !string.IsNullOrEmpty(rms_record_id))
             {
                 if (!string.IsNullOrEmpty(period_id)) PeriodID = Convert.ToInt32(period_id);
                 if (!string.IsNullOrEmpty(rms_record_id)) RecordID = Convert.ToInt32(rms_record_id);
-
-                if (RecordID == 0) RecordID = Convert.ToInt32(db.RecordAnalysisPeriods.FirstOrDefault(p => p.period_id == PeriodID).rms_record_id);
+                else RecordID = Convert.ToInt32(db.RecordAnalysisPeriods.FirstOrDefault(p => p.period_id == PeriodID).rms_record_id);
             }
-            else Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
+            else
+            {
+                PopulateErrorDiagnostics("No Period ID or Record ID was passed");
+                return;
+                //Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
+            }
 
             //Using the passed rms_record_id, setup the record data element, and reset the office and wsc to match that of the current record
             currRecord = db.Records.Where(p => p.rms_record_id == RecordID).FirstOrDefault();
@@ -114,8 +118,8 @@ namespace RMS
                 PopulatePageData();
                 if (!Locked)
                 {
-                    CreateLock(task);
                     SetupPermission();
+                    CreateLock(task);
                 }
             }
         }
@@ -179,6 +183,35 @@ namespace RMS
             }
         }
 
+        protected void PopulateErrorDiagnostics(string error_msg)
+        {
+            pnlDiagnostics.Visible = true;
+            pnlLocked.Visible = false;
+            pnlAnalyze.Visible = false;
+            pnlApprove.Visible = false;
+
+            ltlErrorMsg.Text = error_msg;
+            ltlUserID.Text = user.ID;
+            if (currRecord != null)
+            {
+                ltlSite.Text = currRecord.site_id.ToString();
+                ltlRecord.Text = currRecord.rms_record_id.ToString();
+                ltlSiteWSC.Text = currRecord.Site.Office.wsc_id.ToString();
+            }
+            else
+            {
+                ltlSite.Text = "record not referenced";
+                ltlRecord.Text = Request.QueryString["rms_record_id"];
+            }
+            ltlPeriod.Text = Request.QueryString["period_id"];
+            ltlTask.Text = Request.QueryString["task"];
+            ltlUserWSC.Text = "";
+            foreach (int wsc in user.WSCID)
+                ltlUserWSC.Text += wsc.ToString() + ", ";
+
+            ltlAccess.Text = HasEditAccess.ToString();
+        }
+
         protected void SetupLockedPanel()
         {
             var locks = currRecord.RecordLock;
@@ -221,9 +254,9 @@ namespace RMS
                 
                 //If a previous period is found, then populate the analysis notes from previous period
                 var prevPeriod = currRecord.RecordAnalysisPeriods.FirstOrDefault(p => p.period_end_dt == period.period_beg_dt);
-                if (prevPeriod != null) rtbPrevAnalysisNotes.Text = Format(prevPeriod.analysis_notes_va); else rtbPrevAnalysisNotes.Text = "No previous period found.";
+                if (prevPeriod != null) rtbPrevAnalysisNotes.Text = prevPeriod.analysis_notes_va.FormatParagraphTextBox(); else rtbPrevAnalysisNotes.Text = "No previous period found.";
 
-                reAnalysisNotes.Content = period.analysis_notes_va;
+                reAnalysisNotes.Content = period.analysis_notes_va.FormatParagraphEdit();
             }
             else
             {
@@ -233,7 +266,7 @@ namespace RMS
                 {
                     rdpBeginDateAnalyze.SelectedDate = analysis_status.analyzed_period_dt;
                     rdpBeginDateAnalyze.Enabled = false;
-                    rtbPrevAnalysisNotes.Text = Format(currRecord.RecordAnalysisPeriods.FirstOrDefault(p => p.period_end_dt == analysis_status.analyzed_period_dt).analysis_notes_va);
+                    rtbPrevAnalysisNotes.Text = currRecord.RecordAnalysisPeriods.FirstOrDefault(p => p.period_end_dt == analysis_status.analyzed_period_dt).analysis_notes_va.FormatParagraphTextBox();
                 }
                 else //Totally new, adding first period ever to record
                 {
@@ -250,8 +283,7 @@ namespace RMS
         {
             var currPeriod = currRecord.RecordAnalysisPeriods.FirstOrDefault(p => p.period_id == PeriodID);
 
-            if (currPeriod == null) 
-                Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
+            if (currPeriod == null) PopulateErrorDiagnostics("The Period could not be referenced.");
             else
             {
                 ltlAnalyzedBy.Text = "<b>" + currPeriod.analyzed_by + "</b>";
@@ -269,14 +301,14 @@ namespace RMS
                 else hlAutoReview2.Visible = false;
                 pnlAnalysisNotesEdit.Visible = false;
                 pnlAnalysisNotesReadOnly.Visible = true;
-                rtbAnalysisNotes.Text = Format(currPeriod.analysis_notes_va);
-                reAnalysisNotes2.Content = currPeriod.analysis_notes_va;
+                rtbAnalysisNotes.Text = currPeriod.analysis_notes_va.FormatParagraphTextBox();
+                reAnalysisNotes2.Content = currPeriod.analysis_notes_va.FormatParagraphEdit();
                 if (currPeriod.PeriodDialogs.FirstOrDefault(p => p.status_set_to_va == "Approving") != null)
-                    reComments.Content = currPeriod.PeriodDialogs.Where(p => p.status_set_to_va == "Approving").OrderByDescending(p => p.dialog_dt).FirstOrDefault().comments_va;
+                    reComments.Content = currPeriod.PeriodDialogs.Where(p => p.status_set_to_va == "Approving").OrderByDescending(p => p.dialog_dt).FirstOrDefault().comments_va.FormatParagraphEdit();
                 if (task == "Reanalyze")
                 {
                     if (currPeriod.PeriodDialogs.FirstOrDefault(p => p.status_set_to_va == "Reanalyze") != null)
-                        rtbApproverComments.Text = Format(currPeriod.PeriodDialogs.Where(p => p.status_set_to_va == "Reanalyze").OrderByDescending(p => p.dialog_dt).FirstOrDefault().comments_va);
+                        rtbApproverComments.Text = currPeriod.PeriodDialogs.Where(p => p.status_set_to_va == "Reanalyze").OrderByDescending(p => p.dialog_dt).FirstOrDefault().comments_va.FormatParagraphTextBox();
                     pnlApproverComments.Visible = true;
                     rbFinish.Text = "Finish Reanalyzing";
                     rbFinish.CommandName = "Reanalyze";
@@ -295,14 +327,9 @@ namespace RMS
 
         protected void SetupPermission()
         {
-            if (!HasEditAccess) Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
-        }
-        
-        private string Format(string text)
-        {
-            text = text.Replace("<br />", "\n").Replace("</p>", "\n").Replace("<p>", "").Replace("<strong>", "").Replace("</strong>", "");
-
-            return text;
+            if (!HasEditAccess)
+                PopulateErrorDiagnostics("The user does not have permission to access this page.");
+                //Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
         }
         #endregion
 
@@ -354,7 +381,7 @@ namespace RMS
                 case "Save":
                     //Save the analysis notes
                     var currPeriod = currRecord.RecordAnalysisPeriods.FirstOrDefault(p => p.period_id == PeriodID);
-                    currPeriod.analysis_notes_va = reAnalysisNotes2.Content;
+                    currPeriod.analysis_notes_va = reAnalysisNotes2.Content.FormatParagraphIn();
 
                     //Add an entry to the change log table
                     Data.PeriodChangeLog pcl = new Data.PeriodChangeLog
@@ -362,12 +389,12 @@ namespace RMS
                         period_id = currPeriod.period_id,
                         edited_by_uid = user.ID,
                         edited_dt = DateTime.Now,
-                        new_va = reAnalysisNotes2.Content
+                        new_va = reAnalysisNotes2.Content.FormatParagraphIn()
                     };
                     db.PeriodChangeLogs.InsertOnSubmit(pcl);
                     db.SubmitChanges();
 
-                    rtbAnalysisNotes.Text = Format(reAnalysisNotes2.Content);
+                    rtbAnalysisNotes.Text = reAnalysisNotes2.Content.FormatParagraphTextBox();
                     ltlNote.Visible = true;
                     pnlAnalysisNotesEdit.Visible = false;
                     pnlAnalysisNotesReadOnly.Visible = true;
@@ -411,11 +438,11 @@ namespace RMS
                     period.status_set_by_role_va = "Analyzer";
                     period.analyzed_by = user.ID;
                     period.analyzed_dt = DateTime.Now;
-                    period.analysis_notes_va = reAnalysisNotes.Content;
+                    period.analysis_notes_va = reAnalysisNotes.Content.FormatParagraphIn();
 
                     db.SubmitChanges();
                     AddDialog(period, "Analyzed", "Analyzer", "The period is finished being analyzed.");
-                    AddChangeLog(period.period_id, reAnalysisNotes.Content);
+                    AddChangeLog(period.period_id, reAnalysisNotes.Content.FormatParagraphIn());
                 }
                 else //Insert new period
                 {
@@ -429,13 +456,13 @@ namespace RMS
                         status_set_by_role_va = "Analyzer",
                         analyzed_by = user.ID,
                         analyzed_dt = DateTime.Now,
-                        analysis_notes_va = reAnalysisNotes.Content
+                        analysis_notes_va = reAnalysisNotes.Content.FormatParagraphIn()
                     };
                     db.RecordAnalysisPeriods.InsertOnSubmit(new_period);
                     db.SubmitChanges();
                     PeriodID = new_period.period_id;
                     AddDialog(new_period, "Analyzed", "Analyzer", "The period is finished being Analyzed.");
-                    AddChangeLog(new_period.period_id, reAnalysisNotes.Content);
+                    AddChangeLog(new_period.period_id, reAnalysisNotes.Content.FormatParagraphIn());
                 }
 
                 SendEmails("Analyzed", "", currRecord.RecordAnalysisPeriods.FirstOrDefault(p => p.period_id == PeriodID));
@@ -465,7 +492,7 @@ namespace RMS
                     period.status_set_by_role_va = "Analyzer";
                     period.analyzed_by = user.ID;
                     period.analyzed_dt = DateTime.Now;
-                    period.analysis_notes_va = reAnalysisNotes.Content;
+                    period.analysis_notes_va = reAnalysisNotes.Content.FormatParagraphIn();
 
                     db.SubmitChanges();
                     AddDialog(period, "Analyzing", "Analyzer", "The period was saved by the analyzer.");
@@ -482,7 +509,7 @@ namespace RMS
                         status_set_by_role_va = "Analyzer",
                         analyzed_by = user.ID,
                         analyzed_dt = DateTime.Now,
-                        analysis_notes_va = reAnalysisNotes.Content
+                        analysis_notes_va = reAnalysisNotes.Content.FormatParagraphIn()
                     };
                     db.RecordAnalysisPeriods.InsertOnSubmit(new_period);
                     db.SubmitChanges();
@@ -520,9 +547,9 @@ namespace RMS
 
                 db.SubmitChanges();
                 AddDialog(period, "", "Admin", "The period was reanalyzed and is ready for approval.");
-                AddDialog(period, "Analyzed", "Analyzer", reComments.Content);
-                
-                SendEmails("Reanalyzed", reComments.Content, period);
+                AddDialog(period, "Analyzed", "Analyzer", reComments.Content.FormatParagraphIn());
+
+                SendEmails("Reanalyzed", reComments.Content.FormatParagraphIn(), period);
                 CloseOutPage(true);
             }
             else
@@ -549,9 +576,9 @@ namespace RMS
 
                 db.SubmitChanges();
                 AddDialog(period, "", "Admin", "The period was set to approved by the approver.");
-                AddDialog(period, "Approved", "Approver", reComments.Content);
+                AddDialog(period, "Approved", "Approver", reComments.Content.FormatParagraphIn());
 
-                SendEmails("Approved", reComments.Content, period);
+                SendEmails("Approved", reComments.Content.FormatParagraphIn(), period);
                 CloseOutPage(true);
             }
             else
@@ -577,7 +604,7 @@ namespace RMS
                 period.approved_dt = DateTime.Now;
 
                 db.SubmitChanges();
-                AddDialog(period, "Approving", "Approver", reComments.Content);
+                AddDialog(period, "Approving", "Approver", reComments.Content.FormatParagraphIn());
 
                 //Change the lock to a save type
                 CreateLock("Approving");
@@ -608,9 +635,9 @@ namespace RMS
 
                 db.SubmitChanges();
                 AddDialog(period, "", "Admin", "The period was sent back for reanalyzing.");
-                AddDialog(period, "Reanalyze", "Approver", reComments.Content);
+                AddDialog(period, "Reanalyze", "Approver", reComments.Content.FormatParagraphIn());
 
-                SendEmails("Reanalyze", reComments.Content, period);
+                SendEmails("Reanalyze", reComments.Content.FormatParagraphIn(), period);
                 CloseOutPage(true);
             }
             else
@@ -644,6 +671,7 @@ namespace RMS
             else
             {
                 if (begin_dt > end_dt) ret = false;
+                if (begin_dt == end_dt) ret = false;
             }
 
             return ret;

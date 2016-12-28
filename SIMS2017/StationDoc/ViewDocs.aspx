@@ -86,7 +86,7 @@
                 <asp:Panel ID="pnlElements" runat="server">
                     <h3>Custom Report View</h3>
                     <p>Please choose the elements to be displayed on the report:</p>
-                    <telerik:RadCheckBoxList ID="rcblElements" runat="server" DataBindings-DataTextField="element_nm" DataBindings-DataValueField="element_id" OnDataBound="rcblElements_DataBound" Skin="Bootstrap" />
+                    <telerik:RadCheckBoxList ID="rcblElements" runat="server" DataBindings-DataTextField="element_nm" DataBindings-DataValueField="element_id" OnItemDataBound="rcblElements_ItemDataBound" Skin="Bootstrap" />
                     <p>Give your report a custom title:
                     <telerik:RadTextBox ID="rtbReportTitle" runat="server" Width="300px" Skin="Bootstrap" /></p>
                     <telerik:RadButton ID="rbCustom" runat="server" Text="Create Report" OnCommand="rbCustom_Command" Skin="Bootstrap" />

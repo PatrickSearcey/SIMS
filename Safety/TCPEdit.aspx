@@ -69,7 +69,7 @@
                                 <Content>
                                     <h4>Site Specific Information</h4>
                                     <asp:Panel ID="pnlEditSiteSpecificInfo" runat="server" CssClass="TCPInfo">
-                                        <table style="width:100%">
+                                        <table style="width:500px">
                                             <tr>
                                                 <td colspan="2" style="font-weight:bold;padding-bottom:10px;">
                                                     <asp:Literal ID="ltlLastUpdated" runat="server" />
@@ -219,7 +219,7 @@
                                             <tr>
                                                 <td>Site Specific Notes</td>
                                                 <td>
-                                                    <telerik:RadTextBox ID="rtbNotes" runat="server" TextMode="MultiLine" Width="400px" />
+                                                    <telerik:RadTextBox ID="rtbNotes" runat="server" TextMode="MultiLine" Width="300px" />
                                                 </td>
                                             </tr>
                                         </table>
@@ -266,7 +266,7 @@
                                                     <b>Work Area Activity:</b>
                                                     <telerik:RadTextBox id="rtbWAA" runat="server" Text='<%# Eval("WorkAreaActivity") %>' Font-Size="Small" /><br />
                                                     <b>Plan Specific Notes:</b><br />
-                                                    <telerik:RadTextBox id="rtbPlanRemarks" runat="server" TextMode="MultiLine" Text='<%# Eval("PlanRemarks") %>' Font-Size="Small" /><br /><asp:LinkButton ID="lbUpdateRemarks" runat="server" Text="save" CommandName="update" Font-Bold="true" /> |
+                                                    <telerik:RadTextBox id="rtbPlanRemarks" runat="server" TextMode="MultiLine" Text='<%# Eval("PlanRemarks") %>' Font-Size="Small" Width="200px" /><br /><asp:LinkButton ID="lbUpdateRemarks" runat="server" Text="save" CommandName="update" Font-Bold="true" /> |
                                                     <asp:LinkButton ID="lbCancel" runat="server" Text="cancel" CommandName="cancel" Font-Bold="true" />
                                                 </div>
                                             </EditItemTemplate>

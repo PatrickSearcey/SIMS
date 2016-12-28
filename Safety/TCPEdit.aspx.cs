@@ -96,7 +96,7 @@ namespace Safety
                     TCPID = p.TCPID,
                     TCPLink = String.Format("{0}TCPView.aspx?TCPID={1}", Config.SafetyURL, p.TCPID),
                     TCPName = String.Format("{0} - TCP, {1}", p.TCPPlanDetail.Number, p.TCPPlanDetail.SubName),
-                    PlanRemarks = p.Remarks,
+                    PlanRemarks = p.Remarks.FormatParagraphOut(),
                     WorkAreaActivity = p.WorkAreaActivity
                 }).ToList();
 
@@ -182,7 +182,7 @@ namespace Safety
             if (currSite.TCPSite.DividedHighway != null) rddlDividedHighway.SelectedValue = currSite.TCPSite.DividedHighway.ToString();
             if (currSite.TCPSite.Median != null) rddlMedian.SelectedValue = currSite.TCPSite.Median.ToString();
             if (currSite.TCPSite.Flaggers != null) rddlFlaggers.SelectedValue = currSite.TCPSite.Flaggers.ToString();
-            rtbNotes.Text = currSite.TCPSite.Notes;
+            rtbNotes.Text = currSite.TCPSite.Notes.FormatParagraphEdit();
 
             //Set control status
             if (currSite.TCPSite.ShoulderWidth != null)
@@ -333,7 +333,7 @@ namespace Safety
                             {
                                 site_id = currSite.site_id,
                                 RemoteSite = remotesite,
-                                Notes = rtbNotes.Text,
+                                Notes = rtbNotes.Text.FormatParagraphIn(),
                                 UpdatedBy = user.ID,
                                 UpdatedDt = DateTime.Now
                             };
@@ -357,7 +357,7 @@ namespace Safety
                             DividedHighway = dividedhighway,
                             Median = median,
                             Flaggers = flaggers,
-                            Notes = rtbNotes.Text,
+                            Notes = rtbNotes.Text.FormatParagraphIn(),
                             UpdatedBy = user.ID,
                             UpdatedDt = DateTime.Now
                         };
@@ -380,7 +380,7 @@ namespace Safety
                     currSite.TCPSite.DividedHighway = dividedhighway;
                     currSite.TCPSite.Median = median;
                     currSite.TCPSite.Flaggers = flaggers;
-                    currSite.TCPSite.Notes = rtbNotes.Text;
+                    currSite.TCPSite.Notes = rtbNotes.Text.FormatParagraphIn();
                     currSite.TCPSite.UpdatedBy = user.ID;
                     currSite.TCPSite.UpdatedDt = DateTime.Now;
                     newSite = currSite.TCPSite;
@@ -786,7 +786,7 @@ namespace Safety
             string waa = ((RadTextBox)e.Item.FindControl("rtbWAA")).Text;
 
             var TCP = db.TCPs.FirstOrDefault(p => p.TCPID == TCPID);
-            TCP.Remarks = plan_remarks;
+            TCP.Remarks = plan_remarks.FormatParagraphIn();
             TCP.WorkAreaActivity = waa;
             TCP.UpdatedBy = user.ID;
             TCP.UpdatedDt = DateTime.Now;

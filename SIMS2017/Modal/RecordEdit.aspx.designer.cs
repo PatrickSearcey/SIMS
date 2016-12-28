@@ -256,6 +256,15 @@ namespace SIMS2017.Modal {
         protected global::Telerik.Web.UI.RadTextBox rtbCatReason;
         
         /// <summary>
+        /// rddlOperator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDropDownList rddlOperator;
+        
+        /// <summary>
         /// rddlAnalyzer control.
         /// </summary>
         /// <remarks>

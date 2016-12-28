@@ -213,12 +213,15 @@ namespace SIMS2017.Modal
 
             //Analyzer & Approver
             var personnel = db.SP_Personnel_by_WSC_office_or_user_id(site.Office.wsc_id, 0, "", "no", "True", "no");
+            rddlOperator.DataSource = personnel;
+            rddlOperator.DataBind();
             rddlAnalyzer.DataSource = personnel;
             rddlAnalyzer.DataBind();
             rddlApprover.DataSource = personnel;
             rddlApprover.DataBind();
             if (option == "editcurrentrecord")
             {
+                if (!string.IsNullOrEmpty(record.operator_uid)) rddlOperator.SelectedValue = record.operator_uid; else rddlOperator.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
                 if (!string.IsNullOrEmpty(record.analyzer_uid)) rddlAnalyzer.SelectedValue = record.analyzer_uid; else rddlAnalyzer.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
                 if (!string.IsNullOrEmpty(record.approver_uid)) rddlApprover.SelectedValue = record.approver_uid; else rddlApprover.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
             }
@@ -261,6 +264,7 @@ namespace SIMS2017.Modal
             dgOtherRecords.DataSource = site.Records.Select(p => new
             {
                 type_ds = p.RecordType.type_ds,
+                operator_uid = p.operator_uid,
                 analyzer_uid = p.analyzer_uid,
                 approver_uid = p.approver_uid,
                 status = GetActive((bool)p.not_used_fg)
@@ -368,7 +372,8 @@ namespace SIMS2017.Modal
                         record.category_no = Convert.ToInt32(rddlCatNumber.SelectedValue);
                         record.cat_reason = rtbCatReason.Text;
                     }
-                    //Update the analyzer and approver
+                    //Update the operator, analyzer and approver
+                    record.operator_uid = rddlOperator.SelectedValue;
                     record.analyzer_uid = rddlAnalyzer.SelectedValue;
                     record.approver_uid = rddlApprover.SelectedValue;
                     //Update the responsible office
@@ -400,6 +405,7 @@ namespace SIMS2017.Modal
                     Data.Record new_record = new Data.Record();
 
                     new_record.site_id = site.site_id;
+                    new_record.operator_uid = rddlOperator.SelectedValue;
                     new_record.analyzer_uid = rddlAnalyzer.SelectedValue;
                     new_record.approver_uid = rddlApprover.SelectedValue;
                     new_record.not_published_fg = rcbNotPublished.Checked;

@@ -127,25 +127,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/18/2016 12:12:12</publishTime>
     </File>
     <File Include="bin/Core.dll">
-      <publishTime>12/20/2016 11:59:42</publishTime>
+      <publishTime>12/28/2016 16:06:06</publishTime>
     </File>
     <File Include="bin/Core.pdb">
-      <publishTime>12/20/2016 11:59:42</publishTime>
+      <publishTime>12/28/2016 16:06:06</publishTime>
     </File>
     <File Include="bin/Data.dll">
-      <publishTime>12/20/2016 11:59:42</publishTime>
+      <publishTime>12/28/2016 11:06:56</publishTime>
     </File>
     <File Include="bin/Data.pdb">
-      <publishTime>12/20/2016 11:59:42</publishTime>
+      <publishTime>12/28/2016 11:06:56</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>10/18/2016 11:37:46</publishTime>
     </File>
     <File Include="bin/Safety.dll">
-      <publishTime>12/20/2016 16:00:01</publishTime>
+      <publishTime>12/28/2016 16:20:27</publishTime>
     </File>
     <File Include="bin/Safety.pdb">
-      <publishTime>12/20/2016 16:00:01</publishTime>
+      <publishTime>12/28/2016 16:20:27</publishTime>
     </File>
     <File Include="bin/Telerik.Web.Spreadsheet.dll">
       <publishTime>10/18/2016 11:37:46</publishTime>
@@ -178,7 +178,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/17/2016 12:38:35</publishTime>
     </File>
     <File Include="Control/ElementJHAs.ascx">
-      <publishTime>11/30/2016 11:01:09</publishTime>
+      <publishTime>12/28/2016 16:23:56</publishTime>
     </File>
     <File Include="Control/SitePageHeading.ascx">
       <publishTime>11/18/2016 15:45:41</publishTime>
@@ -188,6 +188,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="EmergencyInfo.aspx">
       <publishTime>11/17/2016 12:21:03</publishTime>
+    </File>
+    <File Include="Handler/ClearLock.ashx">
+      <publishTime>12/27/2016 12:48:10</publishTime>
+    </File>
+    <File Include="Handler/CreateSHA.ashx">
+      <publishTime>12/20/2016 15:33:27</publishTime>
     </File>
     <File Include="Helper/CreateSHA.ashx">
       <publishTime>12/20/2016 15:33:27</publishTime>
@@ -259,7 +265,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/30/2016 10:19:12</publishTime>
     </File>
     <File Include="TCPEdit.aspx">
-      <publishTime>11/27/2016 10:33:25</publishTime>
+      <publishTime>12/28/2016 16:08:23</publishTime>
     </File>
     <File Include="TCPReport.aspx">
       <publishTime>11/17/2016 11:12:24</publishTime>

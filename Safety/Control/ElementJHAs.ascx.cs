@@ -103,7 +103,7 @@ namespace Safety.Control
             currSiteElem = db.SiteElements.FirstOrDefault(p => p.element_id == ElementID && p.site_id == SiteID);
             
 		    ltlElemRevisedInfo.Text = "Revised by: " + currSiteElem.revised_by + " &nbsp;&nbsp;Date revised: " + currSiteElem.revised_dt.ToString();
-            if (currSiteElem.element_info != null) ltlElemInfo.Text = currSiteElem.element_info.Replace("\n\n", "<br /><br />\n"); else ltlElemInfo.Text = "";
+            if (currSiteElem.element_info != null) ltlElemInfo.Text = currSiteElem.element_info.FormatParagraphOut(); else ltlElemInfo.Text = "";
 		    ltlElemName.Text = currSiteElem.ElementDetail.element_nm;
             ltlElemName2.Text = currSiteElem.ElementDetail.element_nm;
 
@@ -139,7 +139,7 @@ namespace Safety.Control
 			    hfToggleElementEditMode.Value = "true";
 			    lbToggleElementEditMode.Text = "leave element edit mode";
 
-			    reElemInfo.Content = currSiteElem.element_info;
+			    reElemInfo.Content = currSiteElem.element_info.FormatParagraphEdit();
 			    pnlEditElemInfo.Visible = true;
 			    pnlStaticElemInfo.Visible = false;
 		    } else {
@@ -201,7 +201,7 @@ namespace Safety.Control
                     }
 
                     //Update the element info
-                    currSiteElem.element_info = reElemInfo.Content;
+                    currSiteElem.element_info = reElemInfo.Content.FormatParagraphIn();
                     currSiteElem.revised_by = user.ID;
                     currSiteElem.revised_dt = DateTime.Now;
 
@@ -212,7 +212,7 @@ namespace Safety.Control
 
                     DisplayMessage(false, "The element information was updated!", "element");
 				    ltlElemRevisedInfo.Text = "Revised by: " + user.ID + " &nbsp;&nbsp;Date revised: " + System.DateTime.Now.ToString();
-				    ltlElemInfo.Text = reElemInfo.Content;
+				    ltlElemInfo.Text = reElemInfo.Content.FormatParagraphOut();
                 }
                 catch (Exception ex)
                 {
