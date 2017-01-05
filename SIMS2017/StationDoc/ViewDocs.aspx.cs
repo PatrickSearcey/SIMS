@@ -104,7 +104,7 @@ namespace SIMS2017.StationDoc
         protected void PopulateSDESCView()
         {
             var SDESCelems = currSite.ElementSite.SiteElements.Where(p => p.ElementDetail.priority < 200);
-            if (SDESCelems != null)
+            if (SDESCelems.Count() > 0)
             {
                 DateTime last_revised = Convert.ToDateTime(SDESCelems.OrderByDescending(p => p.revised_dt).FirstOrDefault().revised_dt);
                 ltlSDESCRevisedDt.Text = String.Format("{0:MM/dd/yyyy}", last_revised);
@@ -123,7 +123,7 @@ namespace SIMS2017.StationDoc
         protected void PopulateSANALView()
         {
             var SANALelems = currSite.ElementSite.SiteElements.Where(p => p.ElementDetail.priority > 199 && p.ElementDetail.priority < 300);
-            if (SANALelems != null)
+            if (SANALelems.Count() > 0)
             {
                 DateTime last_revised = Convert.ToDateTime(SANALelems.OrderByDescending(p => p.revised_dt).FirstOrDefault().revised_dt);
                 ltlSANALRevisedDt.Text = String.Format("{0:MM/dd/yyyy}", last_revised);
@@ -142,7 +142,7 @@ namespace SIMS2017.StationDoc
         protected void PopulateMANUView()
         {
             var MANUelems = currSite.ElementSite.SiteElements.Where(p => p.ElementDetail.priority > 299);
-            if (MANUelems != null)
+            if (MANUelems.Count() > 0)
             {
                 DateTime last_revised = Convert.ToDateTime(MANUelems.OrderByDescending(p => p.revised_dt).FirstOrDefault().revised_dt);
                 ltlMANURevisedDt.Text = String.Format("{0:MM/dd/yyyy}", last_revised);
@@ -211,7 +211,7 @@ namespace SIMS2017.StationDoc
                     ElementID = p.element_id.ToString(),
                     SiteID = p.site_id.ToString(),
                     ElementName = p.ElementDetail.element_nm,
-                    ElementInfo = p.element_info.FormatElementInfo(p.elem_site_id),
+                    ElementInfo = p.element_info.FormatElementInfo(id, currSite.site_id),
                     RevisedBy = p.revised_by,
                     RevisedDate = p.revised_dt.ToString()
                 }).FirstOrDefault());

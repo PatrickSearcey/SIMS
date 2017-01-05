@@ -8,14 +8,13 @@ namespace Core
 {
     public static class Extensions
     {
-        public static string FormatElementInfo(this string element_info, int elem_site_id)
+        public static string FormatElementInfo(this string element_info, int element_id, int site_id)
         {
             Data.SIMSDataContext db = new Data.SIMSDataContext();
 
             string elem_info = element_info;
-            int element_id = Convert.ToInt32(db.SiteElements.FirstOrDefault(p => p.elem_site_id == elem_site_id).element_id);
             string element_nm = db.ElementDetails.FirstOrDefault(p => p.element_id == element_id).element_nm;
-            string site_no = db.Sites.FirstOrDefault(p => p.site_id == db.SiteElements.FirstOrDefault(a => a.elem_site_id == elem_site_id).site_id).site_no;
+            string site_no = db.Sites.FirstOrDefault(p => p.site_id == site_id).site_no;
             string pOut = "";
 
             try
@@ -599,6 +598,31 @@ namespace Core
                         #endregion
 
                         break;
+                    case "DATE OF LAST LEVELS":
+                        var doll = db.OpsLevels.FirstOrDefault(p => p.site_id == site_id);
+                        if (doll != null)
+                        {
+                            DateTime? levels_dt = doll.levels_dt;
+
+                            string lastrun = "UNKNOWN";
+                            string nextrun = "UNKNOWN";
+                            string frequency = "UNKNOWN";
+                            string status = "OPEN";
+
+                            if (levels_dt != null)
+                            {
+                                lastrun = String.Format("{0:MM/dd/yyyy}", levels_dt);
+                                if (doll.levels_freq != null)
+                                    nextrun = String.Format("{0:MM/dd}/{1}", levels_dt, Convert.ToDateTime(levels_dt).Year + doll.levels_freq);
+                                else
+                                    nextrun = "unknown frequency, cannot be calculated";
+                            }
+                            if (doll.levels_freq != null) frequency = doll.levels_freq + " year(s)";
+                            if (Convert.ToBoolean(doll.levels_closed)) status = "CLOSED";
+
+                            elem_info = "Last run: " + lastrun + "; Next run: " + nextrun + "; Frequency: " + frequency + "; Status: " + status;
+                        }
+                        break;
                     default:
                         elem_info = element_info;
                         break;
@@ -620,11 +644,14 @@ namespace Core
         /// </summary>
         public static string FormatParagraphOut(this string text)
         {
-            text = text.Replace("\n", "<br />");
-            text = text.Replace(System.Environment.NewLine, "<br />");
-            text = text.Replace("`", "&#0176;"); //Degree symbol
-            text = text.Replace("mi2", "mi&#178;"); //Superscript 2
-            text = text.Replace("ft3", "ft&#179;"); //Superscript 3
+            if (text != null)
+            {
+                text = text.Replace("\n", "<br />");
+                text = text.Replace(System.Environment.NewLine, "<br />");
+                text = text.Replace("`", "&#0176;"); //Degree symbol
+                text = text.Replace("mi2", "mi&#178;"); //Superscript 2
+                text = text.Replace("ft3", "ft&#179;"); //Superscript 3
+            }
 
             return text;
         }
@@ -634,8 +661,11 @@ namespace Core
         /// </summary>
         public static string FormatParagraphEdit(this string text)
         {
-            text = text.Replace(System.Environment.NewLine, "<br />");
-            text = text.Replace("\n", "<br />");
+            if (text != null)
+            {
+                text = text.Replace(System.Environment.NewLine, "<br />");
+                text = text.Replace("\n", "<br />");
+            }
 
             return text;
         }
@@ -645,12 +675,15 @@ namespace Core
         /// </summary>
         public static string FormatParagraphTextBox(this string text)
         {
-            text = text.Replace("&nbsp;", " ");
-            text = text.Replace("</p>", "\n");
-            text = text.Replace("<p>", "");
-            text = text.Replace("<br />", "\n");
-            text = text.Replace("<strong>", "");
-            text = text.Replace("</strong>", "");
+            if (text != null)
+            {
+                text = text.Replace("&nbsp;", " ");
+                text = text.Replace("</p>", "\n");
+                text = text.Replace("<p>", "");
+                text = text.Replace("<br />", "\n");
+                text = text.Replace("<strong>", "");
+                text = text.Replace("</strong>", "");
+            }
 
             return text;
         }
@@ -660,9 +693,13 @@ namespace Core
         /// </summary>
         public static string FormatParagraphIn(this string text)
         {
-            text = text.Replace("<br />", "\n");
-            text = text.Replace("<p>", "");
-            text = text.Replace("</p>", "\n");
+            if (text != null)
+            {
+                text = text.Replace("<br />\n", "\n");
+                text = text.Replace("<br />", "\n");
+                text = text.Replace("<p>", "");
+                text = text.Replace("</p>", "\n");
+            }
 
             return text;
         }

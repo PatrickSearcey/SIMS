@@ -254,7 +254,7 @@ namespace Safety
             rfvDividedHighway.Enabled = EnableControl;
             rddlMedian.Enabled = EnableControl;
             rfvMedian.Enabled = EnableControl;
-            if (currSite.TCPSite.TCPs.FirstOrDefault() != null)
+            if (currSite.TCPSite != null)
             {
                 var tcps = currSite.TCPSite.TCPs;
                 if (tcps.FirstOrDefault(p => p.PlanID == 3) != null || tcps.FirstOrDefault(p => p.PlanID == 4) != null)
@@ -262,6 +262,11 @@ namespace Safety
                     rddlFlaggers.Enabled = EnableControl;
                     rfvFlaggers.Enabled = EnableControl;
                 }
+            }
+            else
+            {
+                rddlFlaggers.Enabled = EnableControl;
+                rfvFlaggers.Enabled = EnableControl;
             }
         }
 

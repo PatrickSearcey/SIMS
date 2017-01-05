@@ -86,7 +86,14 @@ namespace Safety.Control
         protected void SetupResponsibleOfficeInfo()
         {
             Office office = db.Offices.Where(p => p.office_id == OfficeID).FirstOrDefault();
-            ltlOfficeInfo.Text = String.Format("<a href='{0}SIMSWSCHome.aspx?wsc_id={1}&office_id={2}'>{3}</a><br />{4}<br />{5}<br />{6}", Config.SIMS2017URL, WSCID, OfficeID, office.office_nm, office.street_addrs, office.city_st_zip, office.ph_no);
+            if (office == null)
+                pnlOffice.Visible = false;
+            else
+            {
+                pnlOffice.Visible = true;
+                ltlOfficeInfo.Text = String.Format("<a href='{0}SIMSWSCHome.aspx?wsc_id={1}&office_id={2}'>{3}</a><br />{4}<br />{5}<br />{6}", Config.SIMS2017URL, WSCID, OfficeID, office.office_nm, office.street_addrs, office.city_st_zip, office.ph_no);
+            }
+            
         }
     }
 }

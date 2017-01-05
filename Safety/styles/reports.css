@@ -75,12 +75,35 @@
 
 .mainContent {
     max-width:90% !important;
+    margin:auto;
 }
 
 h4 {
     border-bottom: 1px solid #a0865d;
     color: #099b7a;
 }
+
+* + html .riSingle .riTextBox
+{
+    width: 10px !important;
+    height: 14px !important;
+}
+.multiPage
+{
+    display: -moz-inline-box;
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+    position: relative;
+    margin-bottom: -3px;
+    border: 1px solid #a0865d;
+    background-color: #f3efe9;
+}
+.selectedTab
+{
+    font-weight: bold !important;
+}
+
 
 .TCPInfo {
     margin-top:10px;
@@ -193,4 +216,8 @@ h5.sectionHeadings
     font-style:italic;
     color:#666666;
     font-size:smaller;
+}
+
+.riTextBox {
+    width: 100% !important;
 }

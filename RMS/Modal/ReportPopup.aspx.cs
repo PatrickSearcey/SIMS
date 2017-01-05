@@ -155,8 +155,8 @@ namespace RMS.Modal
                     {
                         timespan = String.Format("{0:MM/dd/yyyy} to {1:MM/dd/yyyy}", period.period_end_dt, period.period_beg_dt),
                         analysis_notes_va = period.analysis_notes_va.FormatParagraphOut(),
-                        edited_dt = String.Format("{0}", period.PeriodChangeLogs.OrderByDescending(b => b.edited_dt).FirstOrDefault().edited_dt),
-                        edited_by_uid = period.PeriodChangeLogs.OrderByDescending(b => b.edited_dt).FirstOrDefault().edited_by_uid,
+                        edited_dt = period.PeriodChangeLogs.Count() > 0 ? String.Format("{0}", period.PeriodChangeLogs.OrderByDescending(b => b.edited_dt).FirstOrDefault().edited_dt) : "unavailable",
+                        edited_by_uid = period.PeriodChangeLogs.Count() > 0 ? period.PeriodChangeLogs.OrderByDescending(b => b.edited_dt).FirstOrDefault().edited_by_uid : "unavailable",
                         analyzed_by = period.analyzed_by,
                         analyzed_dt = String.Format("{0:MM/dd/yyyy}", period.analyzed_dt),
                         approved_by = period.approved_by,

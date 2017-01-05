@@ -69,7 +69,7 @@
                                 <Content>
                                     <h4>Site Specific Information</h4>
                                     <asp:Panel ID="pnlEditSiteSpecificInfo" runat="server" CssClass="TCPInfo">
-                                        <table style="width:500px">
+                                        <table style="width:600px">
                                             <tr>
                                                 <td colspan="2" style="font-weight:bold;padding-bottom:10px;">
                                                     <asp:Literal ID="ltlLastUpdated" runat="server" />
@@ -219,7 +219,7 @@
                                             <tr>
                                                 <td>Site Specific Notes</td>
                                                 <td>
-                                                    <telerik:RadTextBox ID="rtbNotes" runat="server" TextMode="MultiLine" Width="300px" />
+                                                    <telerik:RadTextBox ID="rtbNotes" runat="server" TextMode="MultiLine" Width="400px" Height="100px" />
                                                 </td>
                                             </tr>
                                         </table>

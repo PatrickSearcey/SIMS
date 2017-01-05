@@ -187,7 +187,7 @@ namespace Safety.Control
                     {
                         //If element_info is not blank, then back up before updating
                         Data.SiteElementBackup backup = new Data.SiteElementBackup() {
-                            site_id = currSiteElem.site_id,
+                            site_id = Convert.ToInt32(currSiteElem.site_id),
                             element_id = currSiteElem.element_id,
                             element_info = currSiteElem.element_info,
                             entered_by = currSiteElem.entered_by,

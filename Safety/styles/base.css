@@ -196,3 +196,25 @@ div.RadGrid .rgAltRow td
 .rgActionButton:hover {
     background-color: #f3efe9 !important;
 }
+.rgCurrentPage {
+    background-color: #099b7a !important;
+}
+
+.rgFiltered {
+    background-color: #099b7a !important;
+    border-color:#d1ede5 !important;
+}
+
+.rgActionButton {
+    margin-left:2px !important;
+}
+
+/*RadTabStrip*/
+.rtsTxt {
+    color: #099b7a !important;
+}
+
+/*RadInput*/
+.RadInput_Bootstrap.RadInputFocused .riTextBox {
+    border-color: #099b7a !important;
+}

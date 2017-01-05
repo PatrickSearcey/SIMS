@@ -142,6 +142,7 @@
     <Content Include="images\SafetyTitle.png" />
     <Content Include="images\USGSHeaderLogo.png" />
     <Content Include="Modal\DeleteEmergencyInfo.aspx" />
+    <Content Include="Modal\TCPReview.aspx" />
     <Content Include="Safety.Master" />
     <Content Include="SafetySingleMenu.Master" />
     <Content Include="SHAEdit.aspx" />
@@ -216,6 +217,13 @@
     </Compile>
     <Compile Include="Modal\DeleteEmergencyInfo.aspx.designer.cs">
       <DependentUpon>DeleteEmergencyInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modal\TCPReview.aspx.cs">
+      <DependentUpon>TCPReview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modal\TCPReview.aspx.designer.cs">
+      <DependentUpon>TCPReview.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\JHAModel.cs" />
     <Compile Include="Models\RefLevelModel.cs" />
@@ -327,7 +335,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

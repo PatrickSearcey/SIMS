@@ -667,11 +667,16 @@ namespace Safety
                 {
                     elem_temp.site_id = SiteID;
                     elem_temp.element_id = element_id;
-                    elem_temp.element_info = "";
+                    elem_temp.element_info = "&nbsp;";
                     elem_temp.entered_by = user.ID;
                     elem_temp.entered_dt = DateTime.Now;
                     elem_temp.revised_by = user.ID;
                     elem_temp.revised_dt = DateTime.Now;
+                    
+                    if (currSHA.Site.ElementSite == null)
+                    {
+                        db.ElementSites.InsertOnSubmit(new Data.ElementSite() { site_id = SiteID });
+                    }
 
                     db.SiteElements.InsertOnSubmit(elem_temp);
                     db.SP_Report_Update_Site_LastEdited(SiteID);
@@ -763,7 +768,7 @@ namespace Safety
                         //If element_info is not blank, then back up before updating
                         Data.SiteElementBackup backup = new Data.SiteElementBackup()
                         {
-                            site_id = elem_temp.site_id,
+                            site_id = Convert.ToInt32(elem_temp.site_id),
                             element_id = elem_temp.element_id,
                             element_info = elem_temp.element_info,
                             entered_by = elem_temp.entered_by,
@@ -812,12 +817,12 @@ namespace Safety
 
         protected void SetupEmergencyInfoPanel()
         {
-            if ((bool)currSHA.emerg_service)
+            if (Convert.ToBoolean(currSHA.emerg_service))
                 lbl911Service.Text = "911 emergency service is available at this site.<br />";
             else
                 lbl911Service.Text = "911 emergency service is NOT available at this site.<br />";
 
-            if ((bool)currSHA.cell_service)
+            if (Convert.ToBoolean(currSHA.cell_service))
                 lblCellService.Text = "Cell service is available at this site.<br /><br />";
             else
                 lblCellService.Text = "Cell service is NOT available at this site.<br /><br />";
@@ -832,7 +837,7 @@ namespace Safety
 
             if (e.CommandArgument.ToString() == "911")
             {
-                if ((bool)currSHA.emerg_service)
+                if (Convert.ToBoolean(currSHA.emerg_service))
                 {
                     es = false;
                     lbl911Service.Text = "911 emergency service is NOT available at this site.<br />";
@@ -847,7 +852,7 @@ namespace Safety
             }
             else
             {
-                if ((bool)currSHA.cell_service)
+                if (Convert.ToBoolean(currSHA.cell_service))
                 {
                     es = false;
                     lblCellService.Text = "Cell service is NOT available at this site.<br /><br />";

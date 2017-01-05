@@ -229,9 +229,9 @@ namespace SIMS2017
                 pnlDCPTable.Visible = true;
                 ltlNoDCP.Visible = false;
 
-                ltlDCPOfficeTime.Text = String.Format("{0:dddd, MMMM dd, yyyy} ({1}), {0:h:mm:ss tt}", di.doffice, di.jdoffice.Substring(4,3));
-                ltlDCPSiteTime.Text = String.Format("{0:dddd, MMMM dd, yyyy} ({1}), {0:h:mm:ss tt}", di.dsite, di.jdsite.Substring(4, 3));
-                ltlDCPGMTTime.Text = String.Format("{0:dddd, MMMM dd, yyyy} ({1}), {0:h:mm:ss tt}", di.dutc, di.jdutc.Substring(4, 3));
+                ltlDCPOfficeTime.Text = String.Format("{0:dddd, MMMM dd, yyyy} ({1}), {0:h:mm:ss tt}", di.doffice, di.jdoffice.Substring(4));
+                ltlDCPSiteTime.Text = String.Format("{0:dddd, MMMM dd, yyyy} ({1}), {0:h:mm:ss tt}", di.dsite, di.jdsite.Substring(4));
+                ltlDCPGMTTime.Text = String.Format("{0:dddd, MMMM dd, yyyy} ({1}), {0:h:mm:ss tt}", di.dutc, di.jdutc.Substring(4));
 
                 dlDCPTable.DataSource = db.spz_GetDCPInfo(currSite.site_id).Select(p => new
                     {
