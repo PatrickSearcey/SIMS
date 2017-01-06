@@ -7,7 +7,8 @@
         function openWin(_id, _type) {
             if (_type == "field trip") var oWnd = radopen("Modal/FieldTripEdit.aspx?site_id=" + _id, "rwEditFieldTrips");
             else if (_type == "newrecord") var oWnd = radopen("Modal/RecordEdit.aspx?site_id=" + _id + "&type=" + _type, "rwEditRecords");
-            else var oWnd = radopen("Modal/RecordEdit.aspx?rms_record_id=" + _id + "&type=" + _type, "rwEditRecords");
+            else if (_type == "record") var oWnd = radopen("Modal/RecordEdit.aspx?rms_record_id=" + _id + "&type=" + _type, "rwEditRecords");
+            else var oWnd = radopen("http://simsdev.cr.usgs.gov/Safety/Modal/TCP.aspx?TCPID=" + _id + "&type=review", "rwTCPReview");
         }
 
         function OnClientClose(oWnd, args) {
@@ -19,8 +20,11 @@
                 hfFieldTripIDs.value = fieldTrips;
                 $find("<%= ram.ClientID %>").ajaxRequest("RebindFieldTrips");
             }
-            else {
+            else if (arg && arg.type == "record") {
                 $find("<%= ram.ClientID %>").ajaxRequest("RebindRecords");
+            }
+            else {
+                $find("<%= ram.ClientID %>").ajaxRequest("RebindSafety");
             }
         }
 
@@ -67,6 +71,7 @@
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="pnlFieldTripView" />
                     <telerik:AjaxUpdatedControl ControlID="pnlRMS" LoadingPanelID="ralp" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlSafety" LoadingPanelID="ralp" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="rddlWYs">
@@ -82,6 +87,7 @@
         <Windows>
             <telerik:RadWindow RenderMode="Lightweight" ID="rwEditFieldTrips" runat="server" Behaviors="Close" OnClientClose="OnClientClose" Width="900" Height="400" />
             <telerik:RadWindow RenderMode="Lightweight" ID="rwEditRecords" runat="server" Behaviors="Close" OnClientClose="OnClientClose" Width="700" Height="600" />
+            <telerik:RadWindow RenderMode="Lightweight" ID="rwTCPReview" runat="server" Behaviors="Close" OnClientClose="OnClientClose" Width="900" Height="900" Modal="true" />
         </Windows>
     </telerik:RadWindowManager>
     <asp:HiddenField ID="hfFieldTripIDs" runat="server" />
@@ -162,10 +168,10 @@
                         <b>Traffic Control Plans (last approved):</b>
                         <div style="padding-left:10px;font-size:10pt;">
                             <asp:HyperLink ID="hlTCPEdit" runat="server" Text="Edit/Add/Delete Traffic Control Plans" Font-Bold="true" /><br />
-                            <asp:DataList ID="dlTCPs" runat="server">
+                            <asp:DataList ID="dlTCPs" runat="server" OnItemDataBound="dlTCPs_ItemDataBound">
                                 <ItemTemplate>
                                     <asp:HyperLink ID="hlTCP" runat="server" Text='<%# Eval("TCPName") %>' NavigateUrl='<%# Eval("TCPURL") %>' /> (<%# Eval("LastApprovedDt") %>)<br />
-                                    <img src="images/underarrow.png" alt="look here!" style="padding-left:15px;" /> <%# Eval("TCPApprovalStatus") %>
+                                    <img src="images/underarrow.png" alt="look here!" style="padding-left:15px;" /> <asp:LinkButton ID="lbTCPReview" runat="server" />
                                 </ItemTemplate>
                             </asp:DataList>
                             <asp:HyperLink ID="hlTCPTrackStatus" runat="server" Text="Track Approval Status" Font-Bold="true" />

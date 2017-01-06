@@ -132,6 +132,18 @@ div.RadMenuPopup,
     text-align:right;
 }
 
+.pnlTCP {
+    margin-top:10px;
+    padding:10px;
+    height:100%;
+    background: #d1ede5; /* Old browsers */
+    -webkit-box-shadow: 0 0 5px 0 #d1ede5;
+    box-shadow: 0 0 5px 0 #d1ede5;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #099b7a;
+}
+
 /*-----------------------------------------*/
 /*----- CUSTOM TELERIK CONTROL STYLES -----*/
 /*-----------------------------------------*/

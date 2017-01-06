@@ -198,15 +198,16 @@ namespace SIMS2017
                     pnlTCPCreate.Visible = false;
                     pnlTCPEdit.Visible = true;
                     hlTCPEdit.NavigateUrl = String.Format("{0}TCPEdit.aspx?site_id={1}", Config.SafetyURL, currSite.site_id);
-                    dlTCPs.DataSource = currSite.TCPSite.TCPs.Select(p => new
+                    dlTCPs.DataSource = currSite.TCPSite.TCPs.Select(p => new TCPItem
                     {
+                        TCPID = p.TCPID,
                         TCPName = String.Format("{0} - TCP, {1}", p.TCPPlanDetail.Number, p.TCPPlanDetail.SubName),
-                        TCPURL = String.Format("{0}TCPView.aspx?tcp_id={1}", Config.SafetyURL, p.TCPID),
+                        TCPURL = String.Format("{0}TCPView.aspx?TCPID={1}", Config.SafetyURL, p.TCPID),
                         LastApprovedDt = TCPApprovedDate(p.ApprovedDt),
-                        TCPApprovalStatus = TCPApprovalStatus(p.ApprovalReady, p.TCPID)
+                        ApprovalReady = Convert.ToBoolean(p.ApprovalReady)
                     });
                     dlTCPs.DataBind();
-                    hlTCPTrackStatus.NavigateUrl = String.Format("{0}TCPReport.aspx", Config.SafetyURL);
+                    hlTCPTrackStatus.NavigateUrl = String.Format("{0}TCPReport.aspx?office_id={1}", Config.SafetyURL, OfficeID);
                 }
                 else
                 {
@@ -258,8 +259,6 @@ namespace SIMS2017
                 pnlDCPTable.Visible = false;
                 ltlNoDCP.Text = "No Package Contents";
             }
-            
-            
         }
 
         private string GetPersonnelAssignments(string operator_uid, string analyzer, string approver)
@@ -375,22 +374,6 @@ namespace SIMS2017
             return ret;
         }
 
-        private string TCPApprovalStatus(bool? approval_ready, int TCPID)
-        {
-            string ret = "";
-
-            if (approval_ready != null)
-            {
-                if ((bool)approval_ready) ret = "<i>TCP pending approval</i>"; else ret = String.Format("<a href='{0}TCPEdit.aspx?tcp_id={1}&action=Approve'><b>Submit for Approval</b></a>", Config.SafetyURL, TCPID);
-            }
-            else
-            {
-                ret = String.Format("<a href='{0}TCPEdit.aspx?tcp_id={1}&action=Approve'><b>Submit for Approval</b></a>", Config.SafetyURL, TCPID);
-            }
-
-            return ret;
-        }
-
         private string TCPApprovedDate(DateTime? approved_dt)
         {
             string ret = "";
@@ -447,6 +430,49 @@ namespace SIMS2017
         #endregion
 
         #region Internal Classes
+        internal class TCPItem
+        {
+            private int _TCPID;
+            private string _TCPName;
+            private string _TCPURL;
+            private string _LastApprovedDt;
+            private Boolean _ApprovalReady;
+
+            public int TCPID
+            {
+                get { return _TCPID; }
+                set { _TCPID = value; }
+            }
+            public string TCPName
+            {
+                get { return _TCPName; }
+                set { _TCPName = value; }
+            }
+            public string TCPURL
+            {
+                get { return _TCPURL; }
+                set { _TCPURL = value; }
+            }
+            public string LastApprovedDt
+            {
+                get { return _LastApprovedDt; }
+                set { _LastApprovedDt = value; }
+            }
+            public Boolean ApprovalReady
+            {
+                get { return _ApprovalReady; }
+                set { _ApprovalReady = value; }
+            }
+
+            public TCPItem()
+            {
+                _TCPID = TCPID;
+                _TCPName = TCPName;
+                _TCPURL = TCPURL;
+                _LastApprovedDt = LastApprovedDt;
+                _ApprovalReady = ApprovalReady;
+            }
+        }
         internal class RecordItem
         {
             private int _rms_record_id;
@@ -940,6 +966,31 @@ namespace SIMS2017
         }
         #endregion
 
+        #region Safety DataList Methods and Events
+        protected void dlTCPs_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                TCPItem tcp = e.Item.DataItem as TCPItem;
+                LinkButton lbTCPReview = (LinkButton)e.Item.FindControl("lbTCPReview");
+                Boolean ApprovalReady = tcp.ApprovalReady;
+                int TCPID = tcp.TCPID;
+
+                if (ApprovalReady)
+                {
+                    lbTCPReview.Text = "TCP pending approval";
+                    lbTCPReview.Font.Italic = true;
+                }
+                else
+                {
+                    lbTCPReview.Text = "Submit for Approval";
+                    lbTCPReview.Font.Bold = true;
+                    lbTCPReview.OnClientClick = String.Format("openWin('{0}','TCP'); return false;", TCPID);
+                }
+            }
+        }
+        #endregion
+
         #region Edit Events
         protected void Edit_Command(object sender, CommandEventArgs e)
         {
@@ -1068,6 +1119,18 @@ namespace SIMS2017
                     RMSURL = Config.RMSURL
                 }).ToList();
                 dlRecords.DataBind();
+            }
+            else if (e.Argument == "RebindSafety")
+            {
+                dlTCPs.DataSource = currSite.TCPSite.TCPs.Select(p => new TCPItem
+                {
+                    TCPID = p.TCPID,
+                    TCPName = String.Format("{0} - TCP, {1}", p.TCPPlanDetail.Number, p.TCPPlanDetail.SubName),
+                    TCPURL = String.Format("{0}TCPView.aspx?TCPID={1}", Config.SafetyURL, p.TCPID),
+                    LastApprovedDt = TCPApprovedDate(p.ApprovedDt),
+                    ApprovalReady = Convert.ToBoolean(p.ApprovalReady)
+                });
+                dlTCPs.DataBind();
             }
         }
         #endregion

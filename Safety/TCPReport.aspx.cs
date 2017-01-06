@@ -409,17 +409,18 @@ namespace Safety
                 GridDataItem item = (GridDataItem)e.Item;
 
                 string site_no = DataBinder.Eval(item.DataItem, "site_no").ToString();
+                string plan_no = DataBinder.Eval(item.DataItem, "plan_no").ToString();
                 var site = db.Sites.FirstOrDefault(p => p.site_no == site_no);
+                int tcp_id = site.TCPSite.TCPs.FirstOrDefault(p => p.TCPPlanDetail.Number == plan_no).TCPID;
 
                 HyperLink hlSite = (HyperLink)item.FindControl("hlSite");
-
-                hlSite.Attributes["target"] = "_blank";
                 hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site.site_id);
 
-                HyperLink hlAction = (HyperLink)item.FindControl("hlAction");
+                HyperLink hlPlan = (HyperLink)item.FindControl("hlPlan");
+                hlPlan.Attributes["href"] = String.Format("{0}TCPView.aspx?TCPID={1}", Config.SafetyURL, tcp_id);
 
-                hlAction.Attributes["target"] = "_blank";
-                hlAction.Attributes["href"] = String.Format("{0}TCPEdit.aspx?site_id={1}", Config.SafetyURL, site.site_id);
+                HyperLink hlAction = (HyperLink)item.FindControl("hlAction");
+                hlAction.Attributes["href"] = String.Format("{0}TCPView.aspx?TCPID={1}", Config.SafetyURL, tcp_id);
 
                 hlAction.Text = "View";
             }
@@ -461,17 +462,18 @@ namespace Safety
                 GridDataItem item = (GridDataItem)e.Item;
 
                 string site_no = DataBinder.Eval(item.DataItem, "site_no").ToString();
+                string plan_no = DataBinder.Eval(item.DataItem, "plan_no").ToString();
                 var site = db.Sites.FirstOrDefault(p => p.site_no == site_no);
+                int tcp_id = site.TCPSite.TCPs.FirstOrDefault(p => p.TCPPlanDetail.Number == plan_no).TCPID;
 
                 HyperLink hlSite = (HyperLink)item.FindControl("hlSite");
-
-                hlSite.Attributes["target"] = "_blank";
                 hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site.site_id);
 
-                HyperLink hlAction = (HyperLink)item.FindControl("hlAction");
+                HyperLink hlPlan = (HyperLink)item.FindControl("hlPlan");
+                hlPlan.Attributes["href"] = String.Format("{0}TCPView.aspx?TCPID={1}", Config.SafetyURL, tcp_id);
 
-                hlAction.Attributes["target"] = "_blank";
-                hlAction.Attributes["href"] = String.Format("{0}TCPEdit.aspx?site_id={1}", Config.SafetyURL, site.site_id);
+                HyperLink hlAction = (HyperLink)item.FindControl("hlAction");
+                hlAction.Attributes["href"] = String.Format("{0}TCPView.aspx?TCPID={1}", Config.SafetyURL, tcp_id);
 
                 hlAction.Text = "View";
             }
@@ -513,17 +515,18 @@ namespace Safety
                 GridDataItem item = (GridDataItem)e.Item;
 
                 string site_no = DataBinder.Eval(item.DataItem, "site_no").ToString();
+                string plan_no = DataBinder.Eval(item.DataItem, "plan_no").ToString();
                 var site = db.Sites.FirstOrDefault(p => p.site_no == site_no);
+                int tcp_id = site.TCPSite.TCPs.FirstOrDefault(p => p.TCPPlanDetail.Number == plan_no).TCPID;
 
                 HyperLink hlSite = (HyperLink)item.FindControl("hlSite");
-
-                hlSite.Attributes["target"] = "_blank";
                 hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site.site_id);
 
-                HyperLink hlAction = (HyperLink)item.FindControl("hlAction");
+                HyperLink hlPlan = (HyperLink)item.FindControl("hlPlan");
+                hlPlan.Attributes["href"] = String.Format("{0}TCPView.aspx?TCPID={1}", Config.SafetyURL, tcp_id);
 
-                hlAction.Attributes["target"] = "_blank";
-                hlAction.Attributes["href"] = String.Format("{0}TCPEdit.aspx?site_id={1}", Config.SafetyURL, site.site_id);
+                HyperLink hlAction = (HyperLink)item.FindControl("hlAction");
+                hlAction.Attributes["href"] = String.Format("{0}TCPView.aspx?TCPID={1}", Config.SafetyURL, tcp_id);
 
                 hlAction.Text = "View";
             }
@@ -621,22 +624,20 @@ namespace Safety
                 GridDataItem item = (GridDataItem)e.Item;
 
                 string site_no = DataBinder.Eval(item.DataItem, "site_no").ToString();
+                string plan_no = DataBinder.Eval(item.DataItem, "plan_no").ToString();
                 var site = db.Sites.FirstOrDefault(p => p.site_no == site_no);
+                int tcp_id = site.TCPSite.TCPs.FirstOrDefault(p => p.TCPPlanDetail.Number == plan_no).TCPID;
 
                 HyperLink hlSite = (HyperLink)item.FindControl("hlSite");
-
-                hlSite.Attributes["target"] = "_blank";
                 hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site.site_id);
 
-                HyperLink hlAction = (HyperLink)item.FindControl("hlAction");
+                HyperLink hlPlan = (HyperLink)item.FindControl("hlPlan");
+                hlPlan.Attributes["href"] = String.Format("{0}TCPView.aspx?TCPID={1}", Config.SafetyURL, tcp_id);
 
-                hlAction.Attributes["target"] = "_blank";
+                HyperLink hlAction = (HyperLink)item.FindControl("hlAction");
                 hlAction.Attributes["href"] = String.Format("{0}TCPEdit.aspx?site_id={1}", Config.SafetyURL, site.site_id);
 
-                if (Session["showapprove"].ToString() == "false" && hlAction.Text == "Approve")
-                {
-                    hlAction.Text = "View";
-                }
+                hlAction.Text = "Edit";
             }
         }
         #endregion
@@ -691,19 +692,20 @@ namespace Safety
                 GridDataItem item = (GridDataItem)e.Item;
 
                 string site_no = DataBinder.Eval(item.DataItem, "site_no").ToString();
+                string plan_no = DataBinder.Eval(item.DataItem, "plan_no").ToString();
                 var site = db.Sites.FirstOrDefault(p => p.site_no == site_no);
+                int tcp_id = site.TCPSite.TCPs.FirstOrDefault(p => p.TCPPlanDetail.Number == plan_no).TCPID;
 
                 HyperLink hlSite = (HyperLink)item.FindControl("hlSite");
-
-                hlSite.Attributes["target"] = "_blank";
                 hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site.site_id);
 
-                HyperLink hlAction = (HyperLink)item.FindControl("hlAction");
+                HyperLink hlPlan = (HyperLink)item.FindControl("hlPlan");
+                hlPlan.Attributes["href"] = String.Format("{0}TCPView.aspx?TCPID={1}", Config.SafetyURL, tcp_id);
 
-                hlAction.Attributes["target"] = "_blank";
-                hlAction.Attributes["href"] = String.Format("{0}TCPEdit.aspx?site_id={1}", Config.SafetyURL, site.site_id);
+                LinkButton lbAction = (LinkButton)item.FindControl("lbAction");
+                lbAction.OnClientClick = String.Format("openWin('{0}', 'review'); return false;", tcp_id);
 
-                hlAction.Text = "Review";
+                lbAction.Text = "Review";
 
             }
         }
@@ -759,22 +761,23 @@ namespace Safety
                 GridDataItem item = (GridDataItem)e.Item;
 
                 string site_no = DataBinder.Eval(item.DataItem, "site_no").ToString();
+                string plan_no = DataBinder.Eval(item.DataItem, "plan_no").ToString();
                 var site = db.Sites.FirstOrDefault(p => p.site_no == site_no);
+                int tcp_id = site.TCPSite.TCPs.FirstOrDefault(p => p.TCPPlanDetail.Number == plan_no).TCPID;
 
                 HyperLink hlSite = (HyperLink)item.FindControl("hlSite");
-
-                hlSite.Attributes["target"] = "_blank";
                 hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site.site_id);
 
-                HyperLink hlAction = (HyperLink)item.FindControl("hlAction");
+                HyperLink hlPlan = (HyperLink)item.FindControl("hlPlan");
+                hlPlan.Attributes["href"] = String.Format("{0}TCPView.aspx?TCPID={1}", Config.SafetyURL, tcp_id);
 
-                hlAction.Attributes["target"] = "_blank";
-                hlAction.Attributes["href"] = String.Format("{0}TCPEdit.aspx?site_id={1}", Config.SafetyURL, site.site_id);
+                LinkButton lbAction = (LinkButton)item.FindControl("lbAction");
+                lbAction.OnClientClick = String.Format("openWin('{0}', 'approve'); return false;", tcp_id);
 
                 if (Session["showapprove"].ToString() == "false")
-                    hlAction.Text = "View";
+                    lbAction.Text = "View";
                 else
-                    hlAction.Text = "Approve";
+                    lbAction.Text = "Approve";
             }
         }
         #endregion
@@ -975,5 +978,12 @@ namespace Safety
             }
         }
         #endregion
+
+        protected void ram_AjaxRequest(object sender, AjaxRequestEventArgs e)
+        {
+            rgStatus.Rebind();
+            rgApprove.Rebind();
+            rgReview.Rebind();
+        }
     }
 }

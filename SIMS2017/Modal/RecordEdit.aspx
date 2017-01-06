@@ -22,8 +22,13 @@
         }
 
         function CloseModal() {
+            //create the argument that will be returned to the parent page
+            var oArg = new Object();
+            oArg.type = "record";
+            //get a reference to the current RadWindow
             var oWnd = GetRadWindow();
-            if (oWnd) oWnd.close();
+            //Close the RadWindow and send the argument to the parent page
+            oWnd.close(oArg);
         }
     </script>
     <div>

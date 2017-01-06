@@ -58,6 +58,15 @@ namespace SIMS2017 {
         protected global::Telerik.Web.UI.RadWindow rwEditRecords;
         
         /// <summary>
+        /// rwTCPReview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadWindow rwTCPReview;
+        
+        /// <summary>
         /// hfFieldTripIDs control.
         /// </summary>
         /// <remarks>

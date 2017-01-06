@@ -152,9 +152,9 @@
                         <MasterTableView DataKeyNames="site_no" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" AllowFilteringByColumn="true">
                             <Columns>
                                 <telerik:GridBoundColumn DataField="site_no" UniqueName="site_no" Display="false" />
-                                <telerik:GridBoundColumn DataField="region_cd" UniqueName="region_cd" FilterControlWidth="25px" HeaderText="Region" HeaderStyle-Width="35px" />
-                                <telerik:GridBoundColumn DataField="wsc_cd" UniqueName="wsc_cd" FilterControlWidth="25px" HeaderText="WSC" HeaderStyle-Width="35px"  />
-                                <telerik:GridBoundColumn DataField="office_cd" UniqueName="office_cd" HeaderText="Office Code" FilterControlWidth="25px" HeaderStyle-Width="35px" />
+                                <telerik:GridBoundColumn DataField="region_cd" UniqueName="region_cd" FilterControlWidth="40px" HeaderText="Region" HeaderStyle-Width="45px" />
+                                <telerik:GridBoundColumn DataField="wsc_cd" UniqueName="wsc_cd" FilterControlWidth="40px" HeaderText="WSC" HeaderStyle-Width="45px"  />
+                                <telerik:GridBoundColumn DataField="office_cd" UniqueName="office_cd" HeaderText="Office Code" FilterControlWidth="40px" HeaderStyle-Width="45px" />
                                 <telerik:GridTemplateColumn DataField="site_no_nm" SortExpression="site_no" UniqueName="site_no_nm" HeaderText="Site" FilterControlWidth="150px" HeaderStyle-Width="400px">
                                     <ItemTemplate>
                                         <asp:HyperLink ID="hlSite" runat="server" Text='<%# Bind("site_no_nm") %>' Target="_blank" />&nbsp;
@@ -166,7 +166,7 @@
                                 <telerik:GridBoundColumn DataField="reviewed_dt" UniqueName="reviewed_dt" HeaderText="Reviewed Date" DataFormatString="{0:MM/dd/yyyy}" AllowFiltering="false" HeaderStyle-Width="80px" />
                                 <telerik:GridBoundColumn DataField="approved_by" UniqueName="approved_by" HeaderText="Approved by" FilterControlWidth="40px" HeaderStyle-Width="60px" />
                                 <telerik:GridBoundColumn DataField="approved_dt" UniqueName="approved_dt" HeaderText="Approved Date" DataFormatString="{0:MM/dd/yyyy}" AllowFiltering="false" HeaderStyle-Width="80px" />
-                                <telerik:GridBoundColumn DataField="site_tp_cd" UniqueName="site_tp_cd" HeaderText="Site Type" AllowFiltering="true" FilterControlWidth="25px" HeaderStyle-Width="35px" />
+                                <telerik:GridBoundColumn DataField="site_tp_cd" UniqueName="site_tp_cd" HeaderText="Site Type" AllowFiltering="false" HeaderStyle-Width="25px" />
                                 <telerik:GridTemplateColumn DataField="action" UniqueName="action" HeaderText="View SHA" HeaderStyle-Width="50px" AllowFiltering="false">
                                     <ItemTemplate>
                                         <asp:HyperLink ID="hlAction" runat="server" Text='<%# Bind("action") %>' Target="_blank" />&nbsp;
@@ -207,9 +207,9 @@
                         <MasterTableView DataKeyNames="site_no" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" AllowFilteringByColumn="true">
                             <Columns>
                                 <telerik:GridBoundColumn DataField="site_no" UniqueName="site_no" Display="false" />
-                                <telerik:GridBoundColumn DataField="region_cd" UniqueName="region_cd" FilterControlWidth="25px" HeaderText="Region" HeaderStyle-Width="35px" />
-                                <telerik:GridBoundColumn DataField="wsc_cd" UniqueName="wsc_cd" FilterControlWidth="25px" HeaderText="WSC" HeaderStyle-Width="35px"  />
-                                <telerik:GridBoundColumn DataField="office_cd" UniqueName="office_cd" HeaderText="Office Code" FilterControlWidth="25px" HeaderStyle-Width="35px" />
+                                <telerik:GridBoundColumn DataField="region_cd" UniqueName="region_cd" FilterControlWidth="40px" HeaderText="Region" HeaderStyle-Width="45px" />
+                                <telerik:GridBoundColumn DataField="wsc_cd" UniqueName="wsc_cd" FilterControlWidth="40px" HeaderText="WSC" HeaderStyle-Width="45px"  />
+                                <telerik:GridBoundColumn DataField="office_cd" UniqueName="office_cd" HeaderText="Office Code" FilterControlWidth="40px" HeaderStyle-Width="45px" />
                                 <telerik:GridTemplateColumn DataField="site_no_nm" SortExpression="site_no" UniqueName="site_no_nm" HeaderText="Site" FilterControlWidth="150px" HeaderStyle-Width="400px">
                                     <ItemTemplate>
                                         <asp:HyperLink ID="hlSite" runat="server" Text='<%# Bind("site_no_nm") %>' Target="_blank" />&nbsp;
@@ -221,7 +221,7 @@
                                 <telerik:GridBoundColumn DataField="reviewed_dt" UniqueName="reviewed_dt" HeaderText="Reviewed Date" DataFormatString="{0:MM/dd/yyyy}" AllowFiltering="false" HeaderStyle-Width="80px" />
                                 <telerik:GridBoundColumn DataField="approved_by" UniqueName="approved_by" HeaderText="Approved by" FilterControlWidth="40px" HeaderStyle-Width="60px" />
                                 <telerik:GridBoundColumn DataField="approved_dt" UniqueName="approved_dt" HeaderText="Approved Date" DataFormatString="{0:MM/dd/yyyy}" AllowFiltering="false" HeaderStyle-Width="80px" />
-                                <telerik:GridBoundColumn DataField="site_tp_cd" UniqueName="site_tp_cd" HeaderText="Site Type" AllowFiltering="true" FilterControlWidth="25px" HeaderStyle-Width="35px" />
+                                <telerik:GridBoundColumn DataField="site_tp_cd" UniqueName="site_tp_cd" HeaderText="Site Type" AllowFiltering="false" HeaderStyle-Width="25px" />
                                 <telerik:GridTemplateColumn DataField="action" UniqueName="action" HeaderText="View SHA" HeaderStyle-Width="50px" AllowFiltering="false">
                                     <ItemTemplate>
                                         <asp:HyperLink ID="hlAction" runat="server" Text='<%# Bind("action") %>' Target="_blank" />&nbsp;
@@ -262,9 +262,9 @@
                         <MasterTableView DataKeyNames="site_no" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" AllowFilteringByColumn="true">
                             <Columns>
                                 <telerik:GridBoundColumn DataField="site_no" UniqueName="site_no" Display="false" />
-                                <telerik:GridBoundColumn DataField="region_cd" UniqueName="region_cd" FilterControlWidth="25px" HeaderText="Region" HeaderStyle-Width="35px" />
-                                <telerik:GridBoundColumn DataField="wsc_cd" UniqueName="wsc_cd" FilterControlWidth="25px" HeaderText="WSC" HeaderStyle-Width="35px"  />
-                                <telerik:GridBoundColumn DataField="office_cd" UniqueName="office_cd" HeaderText="Office Code" FilterControlWidth="25px" HeaderStyle-Width="35px" />
+                                <telerik:GridBoundColumn DataField="region_cd" UniqueName="region_cd" FilterControlWidth="40px" HeaderText="Region" HeaderStyle-Width="45px" />
+                                <telerik:GridBoundColumn DataField="wsc_cd" UniqueName="wsc_cd" FilterControlWidth="40px" HeaderText="WSC" HeaderStyle-Width="45px"  />
+                                <telerik:GridBoundColumn DataField="office_cd" UniqueName="office_cd" HeaderText="Office Code" FilterControlWidth="40px" HeaderStyle-Width="45px" />
                                 <telerik:GridTemplateColumn DataField="site_no_nm" SortExpression="site_no" UniqueName="site_no_nm" HeaderText="Site" FilterControlWidth="150px" HeaderStyle-Width="400px">
                                     <ItemTemplate>
                                         <asp:HyperLink ID="hlSite" runat="server" Text='<%# Bind("site_no_nm") %>' Target="_blank" />&nbsp;
@@ -276,7 +276,7 @@
                                 <telerik:GridBoundColumn DataField="reviewed_dt" UniqueName="reviewed_dt" HeaderText="Reviewed Date" DataFormatString="{0:MM/dd/yyyy}" AllowFiltering="false" HeaderStyle-Width="80px" />
                                 <telerik:GridBoundColumn DataField="approved_by" UniqueName="approved_by" HeaderText="Approved by" FilterControlWidth="40px" HeaderStyle-Width="60px" />
                                 <telerik:GridBoundColumn DataField="approved_dt" UniqueName="approved_dt" HeaderText="Approved Date" DataFormatString="{0:MM/dd/yyyy}" AllowFiltering="false" HeaderStyle-Width="80px" />
-                                <telerik:GridBoundColumn DataField="site_tp_cd" UniqueName="site_tp_cd" HeaderText="Site Type" AllowFiltering="true" FilterControlWidth="25px" HeaderStyle-Width="35px" />
+                                <telerik:GridBoundColumn DataField="site_tp_cd" UniqueName="site_tp_cd" HeaderText="Site Type" AllowFiltering="false" HeaderStyle-Width="25px" />
                                 <telerik:GridTemplateColumn DataField="action" UniqueName="action" HeaderText="View SHA" HeaderStyle-Width="50px" AllowFiltering="false">
                                     <ItemTemplate>
                                         <asp:HyperLink ID="hlAction" runat="server" Text='<%# Bind("action") %>' Target="_blank" />&nbsp;
@@ -317,15 +317,15 @@
                         <MasterTableView DataKeyNames="site_no" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" AllowFilteringByColumn="true">
                             <Columns>
                                 <telerik:GridBoundColumn DataField="site_no" UniqueName="site_no" Display="false" />
-                                <telerik:GridBoundColumn DataField="region_cd" UniqueName="region_cd" FilterControlWidth="25px" HeaderText="Region" HeaderStyle-Width="35px" />
-                                <telerik:GridBoundColumn DataField="wsc_cd" UniqueName="wsc_cd" FilterControlWidth="25px" HeaderText="WSC" HeaderStyle-Width="35px"  />
-                                <telerik:GridBoundColumn DataField="office_cd" UniqueName="office_cd" HeaderText="Office Code" FilterControlWidth="25px" HeaderStyle-Width="35px" />
+                                <telerik:GridBoundColumn DataField="region_cd" UniqueName="region_cd" FilterControlWidth="40px" HeaderText="Region" HeaderStyle-Width="45px" />
+                                <telerik:GridBoundColumn DataField="wsc_cd" UniqueName="wsc_cd" FilterControlWidth="40px" HeaderText="WSC" HeaderStyle-Width="45px"  />
+                                <telerik:GridBoundColumn DataField="office_cd" UniqueName="office_cd" HeaderText="Office Code" FilterControlWidth="40px" HeaderStyle-Width="45px" />
                                 <telerik:GridTemplateColumn DataField="site_no_nm" SortExpression="site_no" UniqueName="site_no_nm" HeaderText="Site" FilterControlWidth="150px" HeaderStyle-Width="400px">
                                     <ItemTemplate>
                                         <asp:HyperLink ID="hlSite" runat="server" Text='<%# Bind("site_no_nm") %>' Target="_blank" />&nbsp;
                                     </ItemTemplate>
                                 </telerik:GridTemplateColumn>
-                                <telerik:GridBoundColumn DataField="site_tp_cd" UniqueName="site_tp_cd" HeaderText="Site Type" AllowFiltering="true" FilterControlWidth="25px" HeaderStyle-Width="35px" />
+                                <telerik:GridBoundColumn DataField="site_tp_cd" UniqueName="site_tp_cd" HeaderText="Site Type" AllowFiltering="false" HeaderStyle-Width="25px" />
                                 <telerik:GridBoundColumn DataField="wsc_id" UniqueName="wsc_id" Display="false" />
                             </Columns>
                         </MasterTableView>
@@ -376,7 +376,7 @@
                         <MasterTableView DataKeyNames="site_no" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" AllowFilteringByColumn="true">
                             <Columns>
                                 <telerik:GridBoundColumn DataField="site_no" UniqueName="site_no" Display="false" />
-                                <telerik:GridBoundColumn DataField="office_cd" UniqueName="office_cd" HeaderText="Office Code" FilterControlWidth="25px" HeaderStyle-Width="35px" />
+                                <telerik:GridBoundColumn DataField="office_cd" UniqueName="office_cd" HeaderText="Office Code" FilterControlWidth="40px" HeaderStyle-Width="45px" />
                                 <telerik:GridTemplateColumn DataField="site_no_nm" SortExpression="site_no" UniqueName="site_no_nm" HeaderText="Site" FilterControlWidth="150px" HeaderStyle-Width="400px">
                                     <ItemTemplate>
                                         <asp:HyperLink ID="hlSite" runat="server" Text='<%# Bind("site_no_nm") %>' Target="_blank" />&nbsp;
@@ -389,7 +389,7 @@
                                 <telerik:GridBoundColumn DataField="approved_by" UniqueName="approved_by" HeaderText="Approved by" FilterControlWidth="40px" HeaderStyle-Width="60px" />
                                 <telerik:GridBoundColumn DataField="approved_dt" UniqueName="approved_dt" HeaderText="Approved Date" DataFormatString="{0:MM/dd/yyyy}" AllowFiltering="false" HeaderStyle-Width="80px" />
                                 <telerik:GridBoundColumn DataField="reviewer_comments" UniqueName="reviewer_comments" HeaderText="Reviewer Comments" AllowFiltering="false" />
-                                <telerik:GridBoundColumn DataField="site_tp_cd" UniqueName="site_tp_cd" HeaderText="Site Type" AllowFiltering="true" FilterControlWidth="25px" HeaderStyle-Width="35px" />
+                                <telerik:GridBoundColumn DataField="site_tp_cd" UniqueName="site_tp_cd" HeaderText="Site Type" AllowFiltering="false" HeaderStyle-Width="25px" />
                                 <telerik:GridTemplateColumn DataField="action" UniqueName="action" HeaderText="View SHA" HeaderStyle-Width="50px" AllowFiltering="true" SortExpression="action" FilterControlWidth="40px">
                                     <ItemTemplate>
                                         <asp:HyperLink ID="hlAction" runat="server" Text='<%# Bind("action") %>' Target="_blank" />&nbsp;
@@ -429,7 +429,7 @@
                         <MasterTableView DataKeyNames="site_no" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" AllowFilteringByColumn="true">
                             <Columns>
                                 <telerik:GridBoundColumn DataField="site_no" UniqueName="site_no" Display="false" />
-                                <telerik:GridBoundColumn DataField="office_cd" UniqueName="office_cd" HeaderText="Office Code" FilterControlWidth="25px" HeaderStyle-Width="35px" />
+                                <telerik:GridBoundColumn DataField="office_cd" UniqueName="office_cd" HeaderText="Office Code" FilterControlWidth="40px" HeaderStyle-Width="45px" />
                                 <telerik:GridTemplateColumn DataField="site_no_nm" SortExpression="site_no" UniqueName="site_no_nm" HeaderText="Site" FilterControlWidth="150px" HeaderStyle-Width="400px">
                                     <ItemTemplate>
                                         <asp:HyperLink ID="hlSite" runat="server" Text='<%# Bind("site_no_nm") %>' Target="_blank" />&nbsp;
@@ -441,8 +441,7 @@
                                 <telerik:GridBoundColumn DataField="reviewed_dt" UniqueName="reviewed_dt" HeaderText="Reviewed Date" DataFormatString="{0:MM/dd/yyyy}" AllowFiltering="false" HeaderStyle-Width="80px" />
                                 <telerik:GridBoundColumn DataField="approved_by" UniqueName="approved_by" HeaderText="Approved by" FilterControlWidth="40px" HeaderStyle-Width="60px" />
                                 <telerik:GridBoundColumn DataField="approved_dt" UniqueName="approved_dt" HeaderText="Approved Date" DataFormatString="{0:MM/dd/yyyy}" AllowFiltering="false" HeaderStyle-Width="80px" />
-                                <telerik:GridBoundColumn DataField="reviewer_comments" UniqueName="reviewer_comments" HeaderText="Reviewer Comments" AllowFiltering="false" />
-                                <telerik:GridBoundColumn DataField="site_tp_cd" UniqueName="site_tp_cd" HeaderText="Site Type" AllowFiltering="true" FilterControlWidth="25px" HeaderStyle-Width="35px" />
+                                <telerik:GridBoundColumn DataField="site_tp_cd" UniqueName="site_tp_cd" HeaderText="Site Type" AllowFiltering="false" HeaderStyle-Width="25px" />
                                 <telerik:GridTemplateColumn DataField="action" UniqueName="action" HeaderText="Review SHA" HeaderStyle-Width="50px" AllowFiltering="false">
                                     <ItemTemplate>
                                         <asp:HyperLink ID="hlAction" runat="server" Text='<%# Bind("action") %>' Target="_blank" />&nbsp;
@@ -482,7 +481,7 @@
                         <MasterTableView DataKeyNames="site_no" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" AllowFilteringByColumn="true">
                             <Columns>
                                 <telerik:GridBoundColumn DataField="site_no" UniqueName="site_no" Display="false" />
-                                <telerik:GridBoundColumn DataField="office_cd" UniqueName="office_cd" HeaderText="Office Code" FilterControlWidth="25px" HeaderStyle-Width="35px" />
+                                <telerik:GridBoundColumn DataField="office_cd" UniqueName="office_cd" HeaderText="Office Code" FilterControlWidth="40px" HeaderStyle-Width="45px" />
                                 <telerik:GridTemplateColumn DataField="site_no_nm" SortExpression="site_no" UniqueName="site_no_nm" HeaderText="Site" FilterControlWidth="150px" HeaderStyle-Width="400px">
                                     <ItemTemplate>
                                         <asp:HyperLink ID="hlSite" runat="server" Text='<%# Bind("site_no_nm") %>' Target="_blank" />&nbsp;
@@ -495,7 +494,7 @@
                                 <telerik:GridBoundColumn DataField="approved_by" UniqueName="approved_by" HeaderText="Approved by" FilterControlWidth="40px" HeaderStyle-Width="60px" />
                                 <telerik:GridBoundColumn DataField="approved_dt" UniqueName="approved_dt" HeaderText="Approved Date" DataFormatString="{0:MM/dd/yyyy}" AllowFiltering="false" HeaderStyle-Width="80px" />
                                 <telerik:GridBoundColumn DataField="reviewer_comments" UniqueName="reviewer_comments" HeaderText="Reviewer Comments" AllowFiltering="false" />
-                                <telerik:GridBoundColumn DataField="site_tp_cd" UniqueName="site_tp_cd" HeaderText="Site Type" AllowFiltering="true" FilterControlWidth="25px" HeaderStyle-Width="35px" />
+                                <telerik:GridBoundColumn DataField="site_tp_cd" UniqueName="site_tp_cd" HeaderText="Site Type" AllowFiltering="false" HeaderStyle-Width="25px" />
                                 <telerik:GridTemplateColumn DataField="action" UniqueName="action" HeaderText="Approve SHA" HeaderStyle-Width="50px" AllowFiltering="false">
                                     <ItemTemplate>
                                         <asp:HyperLink ID="hlAction" runat="server" Text='<%# Bind("action") %>' Target="_blank" />&nbsp;
@@ -535,13 +534,13 @@
                         <MasterTableView DataKeyNames="site_no" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" AllowFilteringByColumn="true">
                             <Columns>
                                 <telerik:GridBoundColumn DataField="site_no" UniqueName="site_no" Display="false" />
-                                <telerik:GridBoundColumn DataField="office_cd" UniqueName="office_cd" HeaderText="Office Code" FilterControlWidth="25px" HeaderStyle-Width="35px" />
+                                <telerik:GridBoundColumn DataField="office_cd" UniqueName="office_cd" HeaderText="Office Code" FilterControlWidth="40px" HeaderStyle-Width="45px" />
                                 <telerik:GridTemplateColumn DataField="site_no_nm" SortExpression="site_no" UniqueName="site_no_nm" HeaderText="Site" FilterControlWidth="150px" HeaderStyle-Width="400px">
                                     <ItemTemplate>
                                         <asp:HyperLink ID="hlSite" runat="server" Text='<%# Bind("site_no_nm") %>' Target="_blank" />&nbsp;
                                     </ItemTemplate>
                                 </telerik:GridTemplateColumn>
-                                <telerik:GridBoundColumn DataField="site_tp_cd" UniqueName="site_tp_cd" HeaderText="Site Type" AllowFiltering="true" FilterControlWidth="25px" HeaderStyle-Width="35px" />
+                                <telerik:GridBoundColumn DataField="site_tp_cd" UniqueName="site_tp_cd" HeaderText="Site Type" AllowFiltering="false" HeaderStyle-Width="25px" />
                                 <telerik:GridTemplateColumn DataField="action" UniqueName="action" HeaderText="Create SHA" HeaderStyle-Width="50px" AllowFiltering="false">
                                     <ItemTemplate>
                                         <asp:HyperLink ID="hlAction" runat="server" Text='<%# Bind("action") %>' Target="_blank" />&nbsp;

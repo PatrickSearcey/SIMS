@@ -704,6 +704,23 @@ namespace Core
             return text;
         }
 
+        /// <summary>
+        /// Returns a yes for true or a no for false
+        /// </summary>
+        public static string ProcessBoolean(this Boolean? bit)
+        {
+            string ret;
+
+            if (bit == null)
+                ret = "<i>unknown</i>";
+            else if (Convert.ToBoolean(bit)) 
+                ret = "Yes"; 
+            else 
+                ret = "No";
+
+            return ret;
+        }
+
         public static bool IsNumeric(this object obj)
         {
             string strNum = obj.ToString();

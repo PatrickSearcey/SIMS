@@ -142,7 +142,7 @@
     <Content Include="images\SafetyTitle.png" />
     <Content Include="images\USGSHeaderLogo.png" />
     <Content Include="Modal\DeleteEmergencyInfo.aspx" />
-    <Content Include="Modal\TCPReview.aspx" />
+    <Content Include="Modal\TCP.aspx" />
     <Content Include="Safety.Master" />
     <Content Include="SafetySingleMenu.Master" />
     <Content Include="SHAEdit.aspx" />
@@ -218,12 +218,12 @@
     <Compile Include="Modal\DeleteEmergencyInfo.aspx.designer.cs">
       <DependentUpon>DeleteEmergencyInfo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Modal\TCPReview.aspx.cs">
-      <DependentUpon>TCPReview.aspx</DependentUpon>
+    <Compile Include="Modal\TCP.aspx.cs">
+      <DependentUpon>TCP.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Modal\TCPReview.aspx.designer.cs">
-      <DependentUpon>TCPReview.aspx</DependentUpon>
+    <Compile Include="Modal\TCP.aspx.designer.cs">
+      <DependentUpon>TCP.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\JHAModel.cs" />
     <Compile Include="Models\RefLevelModel.cs" />

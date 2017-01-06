@@ -10,393 +10,348 @@
 namespace Safety {
     
     
-    public partial class TCPReport {
+    public partial class TCP {
         
         /// <summary>
-        /// ram control.
+        /// ltlSiteNoName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadAjaxManager ram;
+        protected global::System.Web.UI.WebControls.Literal ltlSiteNoName;
         
         /// <summary>
-        /// ralp control.
+        /// ltlError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadAjaxLoadingPanel ralp;
+        protected global::System.Web.UI.WebControls.Literal ltlError;
         
         /// <summary>
-        /// rwm control.
+        /// pnlTCP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadWindowManager rwm;
+        protected global::System.Web.UI.WebControls.Panel pnlTCP;
         
         /// <summary>
-        /// rwTCPReview control.
+        /// ltlPlanTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadWindow rwTCPReview;
+        protected global::System.Web.UI.WebControls.Literal ltlPlanTitle;
         
         /// <summary>
-        /// ph1 control.
+        /// ltlPlanSubTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Safety.Control.SitePageHeading ph1;
+        protected global::System.Web.UI.WebControls.Literal ltlPlanSubTitle;
         
         /// <summary>
-        /// pnlNWReport control.
+        /// ltlWorkAreaActivity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlNWReport;
+        protected global::System.Web.UI.WebControls.Literal ltlWorkAreaActivity;
         
         /// <summary>
-        /// rts1 control.
+        /// ltlUpdated control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadTabStrip rts1;
+        protected global::System.Web.UI.WebControls.Literal ltlUpdated;
         
         /// <summary>
-        /// rmp1 control.
+        /// ltlReviewed control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadMultiPage rmp1;
+        protected global::System.Web.UI.WebControls.Literal ltlReviewed;
         
         /// <summary>
-        /// rpv0 control.
+        /// ltlApproved1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadPageView rpv0;
+        protected global::System.Web.UI.WebControls.Literal ltlApproved1;
         
         /// <summary>
-        /// ltlActiveSiteToggleNW1 control.
+        /// ltlRemoteSite control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlActiveSiteToggleNW1;
+        protected global::System.Web.UI.WebControls.Literal ltlRemoteSite;
         
         /// <summary>
-        /// lbActiveSiteToggleNW1 control.
+        /// ltlRoadName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbActiveSiteToggleNW1;
+        protected global::System.Web.UI.WebControls.Literal ltlRoadName;
         
         /// <summary>
-        /// rgNWStatus control.
+        /// ltlExpressway control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid rgNWStatus;
+        protected global::System.Web.UI.WebControls.Literal ltlExpressway;
         
         /// <summary>
-        /// rpv1 control.
+        /// ltlBridgeWidth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadPageView rpv1;
+        protected global::System.Web.UI.WebControls.Literal ltlBridgeWidth;
         
         /// <summary>
-        /// ltlActiveSiteToggleNW2 control.
+        /// ltlWorkZone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlActiveSiteToggleNW2;
+        protected global::System.Web.UI.WebControls.Literal ltlWorkZone;
         
         /// <summary>
-        /// lbActiveSiteToggleNW2 control.
+        /// ltlLaneWidth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbActiveSiteToggleNW2;
+        protected global::System.Web.UI.WebControls.Literal ltlLaneWidth;
         
         /// <summary>
-        /// rgNWReview control.
+        /// ltlShoulderWidth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid rgNWReview;
+        protected global::System.Web.UI.WebControls.Literal ltlShoulderWidth;
         
         /// <summary>
-        /// rpv2 control.
+        /// ltlSpeedLimit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadPageView rpv2;
+        protected global::System.Web.UI.WebControls.Literal ltlSpeedLimit;
         
         /// <summary>
-        /// ltlActiveSiteToggleNW3 control.
+        /// ltlLaneNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlActiveSiteToggleNW3;
+        protected global::System.Web.UI.WebControls.Literal ltlLaneNumber;
         
         /// <summary>
-        /// lbActiveSiteToggleNW3 control.
+        /// ltlFlow2Way control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbActiveSiteToggleNW3;
+        protected global::System.Web.UI.WebControls.Literal ltlFlow2Way;
         
         /// <summary>
-        /// rgNWApprove control.
+        /// ltlDividedHighway control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid rgNWApprove;
+        protected global::System.Web.UI.WebControls.Literal ltlDividedHighway;
         
         /// <summary>
-        /// rpv3 control.
+        /// ltlMedian control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadPageView rpv3;
+        protected global::System.Web.UI.WebControls.Literal ltlMedian;
         
         /// <summary>
-        /// ltlActiveSiteToggleNW4 control.
+        /// ltlFlaggers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlActiveSiteToggleNW4;
+        protected global::System.Web.UI.WebControls.Literal ltlFlaggers;
         
         /// <summary>
-        /// lbActiveSiteToggleNW4 control.
+        /// ltlTrafficVolume control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbActiveSiteToggleNW4;
+        protected global::System.Web.UI.WebControls.Literal ltlTrafficVolume;
         
         /// <summary>
-        /// rgNWSitesNoTCP control.
+        /// ltlSiteSpecificNotes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid rgNWSitesNoTCP;
+        protected global::System.Web.UI.WebControls.Literal ltlSiteSpecificNotes;
         
         /// <summary>
-        /// pnlWSCReport control.
+        /// ltlPlanSpecificNotes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlWSCReport;
+        protected global::System.Web.UI.WebControls.Literal ltlPlanSpecificNotes;
         
         /// <summary>
-        /// rts2 control.
+        /// pnlReview control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadTabStrip rts2;
+        protected global::System.Web.UI.WebControls.Panel pnlReview;
         
         /// <summary>
-        /// rmp2 control.
+        /// ltlApproved2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadMultiPage rmp2;
+        protected global::System.Web.UI.WebControls.Literal ltlApproved2;
         
         /// <summary>
-        /// rpv4 control.
+        /// cbNoChanges control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadPageView rpv4;
+        protected global::System.Web.UI.WebControls.CheckBox cbNoChanges;
         
         /// <summary>
-        /// ltlActiveSiteToggle1 control.
+        /// tbReviewerComments control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlActiveSiteToggle1;
+        protected global::System.Web.UI.WebControls.TextBox tbReviewerComments;
         
         /// <summary>
-        /// lbActiveSiteToggle1 control.
+        /// rbSubmit1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbActiveSiteToggle1;
+        protected global::Telerik.Web.UI.RadButton rbSubmit1;
         
         /// <summary>
-        /// rgStatus control.
+        /// rbCancel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid rgStatus;
+        protected global::Telerik.Web.UI.RadButton rbCancel1;
         
         /// <summary>
-        /// rpv5 control.
+        /// pnlApprove control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadPageView rpv5;
+        protected global::System.Web.UI.WebControls.Panel pnlApprove;
         
         /// <summary>
-        /// ltlActiveSiteToggle2 control.
+        /// ltlNoChanges control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlActiveSiteToggle2;
+        protected global::System.Web.UI.WebControls.Literal ltlNoChanges;
         
         /// <summary>
-        /// lbActiveSiteToggle2 control.
+        /// ltlReviewerComments control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbActiveSiteToggle2;
+        protected global::System.Web.UI.WebControls.Literal ltlReviewerComments;
         
         /// <summary>
-        /// rgReview control.
+        /// ltlApprovedDt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid rgReview;
+        protected global::System.Web.UI.WebControls.Literal ltlApprovedDt;
         
         /// <summary>
-        /// rpv6 control.
+        /// ltlApprovedBy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadPageView rpv6;
+        protected global::System.Web.UI.WebControls.Literal ltlApprovedBy;
         
         /// <summary>
-        /// ltlActiveSiteToggle3 control.
+        /// rbSubmit2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlActiveSiteToggle3;
+        protected global::Telerik.Web.UI.RadButton rbSubmit2;
         
         /// <summary>
-        /// lbActiveSiteToggle3 control.
+        /// rbCancel2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbActiveSiteToggle3;
-        
-        /// <summary>
-        /// rgApprove control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid rgApprove;
-        
-        /// <summary>
-        /// rpv7 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadPageView rpv7;
-        
-        /// <summary>
-        /// ltlActiveSiteToggle4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlActiveSiteToggle4;
-        
-        /// <summary>
-        /// lbActiveSiteToggle4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbActiveSiteToggle4;
-        
-        /// <summary>
-        /// rgSitesNoTCP control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid rgSitesNoTCP;
+        protected global::Telerik.Web.UI.RadButton rbCancel2;
     }
 }
