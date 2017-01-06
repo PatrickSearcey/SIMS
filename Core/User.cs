@@ -35,7 +35,7 @@ namespace Core
             int pos = _id.IndexOf("\\");
             _id = _id.Substring(pos + 1);
 #if DEBUG
-            _id = "dterry";
+            _id = "jhoegenauer";
 #endif
             //try to see if the user is in the database
             var user = db.Employees.FirstOrDefault(p => p.user_id == _id);
