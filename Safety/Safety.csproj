@@ -277,6 +277,13 @@
     <Compile Include="TCPReport.aspx.designer.cs">
       <DependentUpon>TCPReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TCPView.aspx.cs">
+      <DependentUpon>TCPView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TCPView.aspx.designer.cs">
+      <DependentUpon>TCPView.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\RadSpell\de-DE.tdf" />
@@ -288,6 +295,7 @@
     <Content Include="App_Data\RadSpell\fr-FR.tdf" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="TCPView.aspx" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
