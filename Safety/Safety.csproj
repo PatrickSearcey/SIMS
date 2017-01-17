@@ -140,6 +140,13 @@
     <Content Include="images\reports.png" />
     <Content Include="images\Safetylogo.png" />
     <Content Include="images\SafetyTitle.png" />
+    <Content Include="images\TCPPlanIa.png" />
+    <Content Include="images\TCPPlanIb.png" />
+    <Content Include="images\TCPPlanII.png" />
+    <Content Include="images\TCPPlanIII.png" />
+    <Content Include="images\TCPPlanIVa.png" />
+    <Content Include="images\TCPPlanIVb.png" />
+    <Content Include="images\TCPPlanV.png" />
     <Content Include="images\USGSHeaderLogo.png" />
     <Content Include="Modal\DeleteEmergencyInfo.aspx" />
     <Content Include="Modal\TCP.aspx" />
@@ -343,7 +350,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

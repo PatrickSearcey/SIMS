@@ -63,7 +63,7 @@ namespace Safety
         protected void Page_Load(object sender, EventArgs e)
         {
             //If no TCPID was passed, then redirect back to the homepage
-            string tcp_id = Request.QueryString["TCPID"];
+            string tcp_id = "2";// Request.QueryString["TCPID"];
             if (!string.IsNullOrEmpty(tcp_id)) TCPID = Convert.ToInt32(tcp_id); else Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
 
             //Using the passed TCPID, setup the TCP data element, and reset the office and wsc to match that of the current site
