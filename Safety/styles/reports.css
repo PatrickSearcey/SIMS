@@ -104,7 +104,6 @@ h4 {
     font-weight: bold !important;
 }
 
-
 .TCPInfo {
     margin-top:10px;
     padding:10px;
@@ -220,4 +219,10 @@ h5.sectionHeadings
 
 .riTextBox {
     width: 100% !important;
+}
+
+/* TRAFFIC CONTROL PLANS */
+.TCPPlanImage {
+    float:right;
+    width:60%;
 }

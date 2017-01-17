@@ -127,25 +127,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/18/2016 12:12:12</publishTime>
     </File>
     <File Include="bin/Core.dll">
-      <publishTime>01/06/2017 13:16:52</publishTime>
+      <publishTime>01/17/2017 14:20:44</publishTime>
     </File>
     <File Include="bin/Core.pdb">
-      <publishTime>01/06/2017 13:16:52</publishTime>
+      <publishTime>01/17/2017 14:20:44</publishTime>
     </File>
     <File Include="bin/Data.dll">
-      <publishTime>01/05/2017 09:12:20</publishTime>
+      <publishTime>01/17/2017 13:39:40</publishTime>
     </File>
     <File Include="bin/Data.pdb">
-      <publishTime>01/05/2017 09:12:20</publishTime>
+      <publishTime>01/17/2017 13:39:40</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>10/18/2016 11:37:46</publishTime>
     </File>
     <File Include="bin/Safety.dll">
-      <publishTime>01/06/2017 13:16:55</publishTime>
+      <publishTime>01/17/2017 15:19:24</publishTime>
     </File>
     <File Include="bin/Safety.pdb">
-      <publishTime>01/06/2017 13:16:55</publishTime>
+      <publishTime>01/17/2017 15:19:24</publishTime>
     </File>
     <File Include="bin/Telerik.Web.Spreadsheet.dll">
       <publishTime>10/18/2016 11:37:46</publishTime>
@@ -228,6 +228,27 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="images/SafetyTitle.png">
       <publishTime>11/18/2016 14:01:03</publishTime>
     </File>
+    <File Include="images/TCPPlanIa.png">
+      <publishTime>01/17/2017 13:37:57</publishTime>
+    </File>
+    <File Include="images/TCPPlanIb.png">
+      <publishTime>01/17/2017 13:37:57</publishTime>
+    </File>
+    <File Include="images/TCPPlanII.png">
+      <publishTime>01/17/2017 13:37:57</publishTime>
+    </File>
+    <File Include="images/TCPPlanIII.png">
+      <publishTime>01/17/2017 13:37:57</publishTime>
+    </File>
+    <File Include="images/TCPPlanIVa.png">
+      <publishTime>01/17/2017 13:37:57</publishTime>
+    </File>
+    <File Include="images/TCPPlanIVb.png">
+      <publishTime>01/17/2017 13:37:57</publishTime>
+    </File>
+    <File Include="images/TCPPlanV.png">
+      <publishTime>01/17/2017 13:37:57</publishTime>
+    </File>
     <File Include="images/USGSHeaderLogo.png">
       <publishTime>11/18/2016 14:48:39</publishTime>
     </File>
@@ -265,7 +286,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/16/2016 16:56:57</publishTime>
     </File>
     <File Include="styles/reports.css">
-      <publishTime>01/05/2017 10:14:27</publishTime>
+      <publishTime>01/17/2017 15:12:21</publishTime>
     </File>
     <File Include="TCPEdit.aspx">
       <publishTime>01/04/2017 13:20:14</publishTime>
@@ -274,7 +295,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/06/2017 10:46:35</publishTime>
     </File>
     <File Include="TCPView.aspx">
-      <publishTime>01/06/2017 13:10:43</publishTime>
+      <publishTime>01/17/2017 15:12:27</publishTime>
     </File>
     <File Include="web.config">
       <publishTime>12/29/2016 15:46:36</publishTime>
