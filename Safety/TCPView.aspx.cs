@@ -82,7 +82,47 @@ namespace Safety
 
         protected void PopulateReport()
         {
+            var site = db.Sites.FirstOrDefault(p => p.site_id == currTCP.site_id);
+            if (currTCP != null)
+            {
 
+                ltlTCPtitle.Text = currTCP.TCPPlanDetail.Number + " - " + currTCP.TCPPlanDetail.Name;
+                ltlName.Text = site.station_full_nm;
+                ltlNumber.Text = site.site_no;
+                ltlHighway.Text = currTCP.TCPSite.RoadName.ToStringSafe();
+                if (Convert.ToBoolean(currTCP.TCPSite.Expressway))
+                {
+                    ltlFreeway.Text = "Yes";
+                }
+                else
+                {
+                    ltlFreeway.Text = "No";
+                }
+                ltlWidth.Text = currTCP.TCPSite.BridgeWidth.ToString("N/A");
+                ltlWorkZone.Text = currTCP.TCPSite.WorkZone.ToString("N/A");
+                ltlLane.Text = currTCP.TCPSite.LaneWidth.ToString("N/A");
+                if (currTCP.TCPSite.ShoulderWidth < 1)
+                {
+                    ltlShoulder.Text = "<1";
+                }
+                else if (currTCP.TCPSite.ShoulderWidth <= 5)
+                {
+                    ltlShoulder.Text = "<=5";
+                }
+                else
+                {
+                    ltlShoulder.Text = ">5";
+                }
+                ltlSpeed.Text = currTCP.TCPSite.SpeedLimit.ToString("N/A");
+                ltlTraffic.Text = currTCP.TCPSite.TrafficVolume.ToString("N/A");
+                ltlCell.Text = site.SHAs.FirstOrDefault().cell_service.ToString();
+                ltlUpdated.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.UpdatedBy.ToStringSafe();
+                ltlReviewed.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.ReviewedBy.ToStringSafe();
+                ltlApproved.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.ApprovedBy.ToStringSafe();
+                ltlNotes.Text = currTCP.TCPSite.Notes.ToStringSafe();
+                ltlRemarks.Text = currTCP.TCPPlanDetail.Notes.ToStringSafe();
+
+            }
         }
     }
 }

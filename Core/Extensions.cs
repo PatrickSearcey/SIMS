@@ -815,5 +815,13 @@ namespace Core
 
             return pOut;
         }
+        public static String ToStringSafe(this object s)
+        {
+            if (s == null) return ""; else return s.ToString();
+        }
+        public static String ToString(this object s, String option)
+        {
+            if (s == null) return option; else return s.ToString();
+        }
     }
 }

@@ -66,10 +66,10 @@
 
             <label for="approved"><b>Plan Approved: </b><asp:Literal ID="ltlApproved" runat="server" /></label>           
 
-            <label for="notes"><b>Site Specific Notes</b></label>
+            <label for="notes"><b>Site Specific Notes:</b></label>
             <asp:Literal ID="ltlNotes" runat="server" />
 
-            <label for="remarks"><b>Remarks</b></label>
+            <label for="remarks"><b>Remarks:</b></label>
             <asp:Literal ID="ltlRemarks" runat="server" />
         </asp:Panel>
 
