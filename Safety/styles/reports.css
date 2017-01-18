@@ -225,4 +225,51 @@ h5.sectionHeadings
 .TCPPlanImage {
     float:right;
     width:60%;
+    border-radius: 15px;
+    border: 2px solid #4a9987;
+    padding: 10px
+}
+
+.pnlSiteInfo {
+    float:left;
+    width:35%;
+    height:500px;
+    border-radius: 5px;
+    border: 2px solid #000000;
+    padding: 5px
+}
+
+.pnlAllData {
+    float:left;
+    width:35%;
+    height:400px;
+    border-radius: 5px;
+    border: 2px solid #000000;
+    padding: 5px
+}
+
+.pnlIVbData {
+    float:left;
+    width:35%;
+    height:400px;
+    border-radius: 5px;
+    border: 2px solid #000000;
+    padding: 5px
+}
+
+.pnlLessData {
+    float:left;
+    width:35%;
+    height:200px;
+    border-radius: 5px;
+    border: 2px solid #000000;
+    padding: 5px
+}
+
+.pnlInstructions {
+    float:left;
+    width:35%;
+    border-radius: 5px;
+    border: 2px solid #000000;
+    padding: 5px
 }

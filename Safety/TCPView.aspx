@@ -15,7 +15,7 @@
         <asp:Image ID="imgPlanImage" runat="server" CssClass="TCPPlanImage" />
     </asp:Panel>
 
-    <asp:Panel ID="pnlSiteInfo" runat="server">
+    <asp:Panel ID="pnlSiteInfo" runat="server" CssClass="pnlSiteInfo">
         <h4>Site Specific Info</h4>
         <b>Site Name: </b><asp:Literal ID="ltlName" runat="server" /><br />
         <b>Station Number: </b><asp:Literal ID="ltlNumber" runat="server" /><br />
@@ -38,7 +38,7 @@
         <asp:Literal ID="ltlRemarks" runat="server" />
     </asp:Panel>
 
-    <asp:Panel ID="pnlAllData" runat="server">
+    <asp:Panel ID="pnlAllData" runat="server" CssClass="pnlAllData">
         <h4>TCP Calculator Data</h4>
         <b style='color:red;'>WS* &mdash; </b><b>Advanced</b> <b style='color:red;'> Warning Sign </b><b>Spacing per sign:</b> <asp:Literal ID="ltlWS" runat="server" /> feet<br />
         <b style='color:grey;'>F &mdash; Flagger</b> <b>Distance from the shoulder taper:</b> <asp:Literal ID="ltlFlagger" runat="server" /><br />
@@ -59,7 +59,7 @@
         <b style='color:limegreen;'>D &mdash; </b><b>Number of cones in the optional </b><b style='color:limegreen';>Downstream Taper</b><b>:</b> _____________<br />
     </asp:Panel>
 
-    <asp:Panel ID="pnlIVbData" runat="server">
+    <asp:Panel ID="pnlIVbData" runat="server" CssClass="pnlIVbData">
         <h4>TCP Calculator Data</h4>
         <b style='color:red;'>WS* &mdash; </b><b>Advanced</b> <b style='color:red;'> Warning Sign </b><b>Spacing per sign:</b> <asp:Literal ID="ltlWS1" runat="server" /><br />
         <b style='color:orange;'>WZ** &mdash; Work Zone </b><b>Length**:</b> <asp:Literal ID="ltlWZLength1" runat="server" /><br />
@@ -76,13 +76,13 @@
         <b style='color:limegreen;'>D &mdash; </b><b>Number of cones in the optional </b><b style='color:limegreen';>Downstream Taper</b><b>:</b> _____________<br />
     </asp:Panel>
 
-    <asp:Panel ID="pnlLessData" runat="server">
+    <asp:Panel ID="pnlLessData" runat="server" CssClass="pnlLessData">
         <h4>TCP Calculator Data</h4>
         <b style='color:red;'>WS* &mdash; </b><b>Optional Advanced</b> <b style='color:red;'>Warning Sign</b> <b>Spacing per sign:</b> <asp:Literal ID="ltlWS2" runat="server" /><br />
         <b style='color:orange;'>WZ** &mdash; Work Zone </b><b>Length**:</b> <asp:Literal ID="ltlWZLength2" runat="server" /><br />
     </asp:Panel>
          
-    <asp:Panel ID="pnlInstructions" runat="server">
+    <asp:Panel ID="pnlInstructions" runat="server" CssClass="pnlInstructions">
         <b>Instructions</b><br />
         <asp:Literal ID="ltlInstructions" runat="server" />
     </asp:Panel>
