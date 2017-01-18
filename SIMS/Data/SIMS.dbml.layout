@@ -20,7 +20,7 @@
         <elementListCompartment Id="9485fcd7-c431-4360-86ae-2e9e43b9bc81" absoluteBounds="12.39, 7.585, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(19.625 : 6.15945556640625); (18.8216148958333 : 6.15945556640625 : JumpStart); (18.6549482291667 : 6.15945556640625 : JumpEnd); (18.3899746145833 : 6.15945556640625 : JumpStart); (18.2233079479167 : 6.15945556640625 : JumpEnd); (17.7083333333333 : 6.15945556640625 : JumpStart); (17.5416666666667 : 6.15945556640625 : JumpEnd); (17.125 : 6.15945556640625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(19.625 : 6.15945556640625); (18.8216148958333 : 6.15945556640625 : JumpStart); (18.6549482291667 : 6.15945556640625 : JumpEnd); (17.7083333333333 : 6.15945556640625 : JumpStart); (17.5416666666667 : 6.15945556640625 : JumpEnd); (17.125 : 6.15945556640625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SIMSDataContext/WSC/WSC_Office" />
       <nodes>
         <classShapeMoniker Id="fc968d82-c264-49b6-8676-480db9bb550f" />
@@ -82,7 +82,7 @@
         <elementListCompartment Id="e8e2ab56-a6f1-4d9c-9ad9-844881c4424e" absoluteBounds="22.39, 5.46, 1.9700000000000002, 11.595174153645832" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(18.7382815625 : 9.125); (18.7382815625 : 4.7901025390625); (20.125 : 4.7901025390625); (20.125 : 3.23159912109375); (20.4166666666667 : 3.23159912109375 : JumpStart); (20.5833333333333 : 3.23159912109375 : JumpEnd); (20.625 : 3.23159912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(18.7382815625 : 9.125); (18.7382815625 : 4.7901025390625); (20.125 : 4.7901025390625); (20.125 : 3.23159912109375); (20.625 : 3.23159912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SIMSDataContext/Trip/Trip_TripSite" />
       <nodes>
         <classShapeMoniker Id="937af6a1-a434-429e-9e31-e760fba7192f" />
@@ -210,7 +210,7 @@
         <classShapeMoniker Id="85e66be6-3ca6-47c4-8c05-0f5bdc3537f0" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(32.375 : 24.8181469726563); (31.5833333333333 : 24.8181469726563 : JumpStart); (31.4166666666667 : 24.8181469726563 : JumpEnd); (30.9583333333333 : 24.8181469726563 : JumpStart); (30.7916666666667 : 24.8181469726563 : JumpEnd); (30.625 : 24.8181469726563)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(32.375 : 24.8181469726563); (30.625 : 24.8181469726563)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SIMSDataContext/ElementDetail/ElementDetail_ElementJHA" />
       <nodes>
         <classShapeMoniker Id="59982dc8-3306-4ea1-a116-3364d40a8bcb" />
@@ -238,7 +238,7 @@
         <classShapeMoniker Id="018d892b-93d1-4390-bfea-e91897b01738" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(22.625 : 23.2123527018229); (23.375 : 23.2123527018229)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(22.625 : 23.2123527018229); (22.9166666666667 : 23.2123527018229 : JumpStart); (23.0833333333333 : 23.2123527018229 : JumpEnd); (23.375 : 23.2123527018229)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SIMSDataContext/SHA/SHA_SHAHospital" />
       <nodes>
         <classShapeMoniker Id="38af6d94-41c3-4526-9118-d66dabf3cb99" />
@@ -273,7 +273,7 @@
         <classShapeMoniker Id="7316b330-86cf-4eb7-b789-7303c0900d16" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(28.375 : 21.25); (28.75 : 20.875); (28.75 : 19.4844246074219); (28.7916666666667 : 19.4844246074219 : JumpStart); (28.9583333333333 : 19.4844246074219 : JumpEnd); (29.125 : 19.4844246074219)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(28.375 : 21.25); (28.75 : 20.875); (28.75 : 19.4844246074219); (29.125 : 19.4844246074219)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SIMSDataContext/SHAJHA/SHAJHA_SHAReferenceLevel" />
       <nodes>
         <classShapeMoniker Id="aff7dcab-019a-4bf3-85ce-896b2b471aca" />
@@ -305,7 +305,7 @@
         <elementListCompartment Id="f2eb19d8-2cf5-49de-9381-067566679621" absoluteBounds="20.64, 28.585, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(22.875 : 29.9383048502604); (22.625 : 29.9383048502604)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(22.875 : 29.9383048502604); (22.625 : 29.9383048502604)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SIMSDataContext/TCPPlanDetail/TCPPlanDetail_TCP" />
       <nodes>
         <classShapeMoniker Id="010871fd-aa5f-4aeb-96cd-cdb0eb8a939f" />
@@ -318,14 +318,14 @@
         <elementListCompartment Id="6073b4bc-c667-4abc-bef7-1c5b9405d203" absoluteBounds="18.265, 28.335, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(20.25 : 29.8758048502604); (20.625 : 29.8758048502604)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(20.25 : 29.8758048502604); (20.625 : 29.8758048502604)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SIMSDataContext/TCPSite/TCPSite_TCP" />
       <nodes>
         <classShapeMoniker Id="b61b6996-3a92-4abc-b835-2e6b705179ac" />
         <classShapeMoniker Id="8fcb4869-f137-4568-9e11-1a9889669d97" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(17.875 : 3.66030160677083); (17.625 : 3.66030160677083); (17.625 : 8.875); (18.6549482291667 : 8.875 : JumpStart); (18.8216148958333 : 8.875 : JumpEnd); (20.125 : 8.875); (20.125 : 27.5); (19.25 : 27.5); (19.25 : 27.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(17.875 : 3.66030160677083); (17.625 : 3.66030160677083); (17.625 : 8.875); (18.6549482291667 : 8.875 : JumpStart); (18.8216148958333 : 8.875 : JumpEnd); (20.125 : 8.875); (20.125 : 27.5); (19.25 : 27.5); (19.25 : 27.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SIMSDataContext/Site/Site_TCPSite" />
       <nodes>
         <classShapeMoniker Id="5592f205-a65e-45de-8704-57de5b59bcd0" />
@@ -362,14 +362,14 @@
         <elementListCompartment Id="a7e8d556-896a-4b91-be06-15920c5071af" absoluteBounds="2.8900000000000006, 5.8350000000000009, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(19.46875 : 23.25); (19.46875 : 19.0709729589844); (20.0416666666667 : 19.0709729589844 : JumpStart); (20.2083333333333 : 19.0709729589844 : JumpEnd); (20.2916666666667 : 19.0709729589844 : JumpStart); (20.4583333333333 : 19.0709729589844 : JumpEnd); (21.5416666666667 : 19.0709729589844 : JumpStart); (21.7083333333333 : 19.0709729589844 : JumpEnd); (23.375 : 19.0709729589844)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(19.46875 : 23.25); (19.46875 : 19.0709729589844); (20.0416666666667 : 19.0709729589844 : JumpStart); (20.2083333333333 : 19.0709729589844 : JumpEnd); (20.2916666666667 : 19.0709729589844 : JumpStart); (20.4583333333333 : 19.0709729589844 : JumpEnd); (23.375 : 19.0709729589844)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SIMSDataContext/Contact/Contact_SHAContact" />
       <nodes>
         <classShapeMoniker Id="cf2dfe1f-28ff-4636-a3be-ed46827c0fa6" />
         <classShapeMoniker Id="8d05b6c1-2495-4bc1-b7ce-52a9776cf2d8" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(18.125 : 22.6074039713542); (18.125 : 22.9431469726563); (19.3854166666667 : 22.9431469726563 : JumpStart); (19.5520833333333 : 22.9431469726563 : JumpEnd); (20.0416666666667 : 22.9431469726563 : JumpStart); (20.2083333333333 : 22.9431469726563 : JumpEnd); (20.375 : 22.9431469726563); (20.375 : 23.6747054036458); (22.2916666666667 : 23.6747054036458 : JumpStart); (22.4583333333333 : 23.6747054036458 : JumpEnd); (23 : 23.6747054036458); (23 : 22.9431469726563); (23.375 : 22.9431469726563)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(18.125 : 22.6074039713542); (18.125 : 22.9431469726563); (20.0416666666667 : 22.9431469726563 : JumpStart); (20.2083333333333 : 22.9431469726563 : JumpEnd); (20.375 : 22.9431469726563); (20.375 : 23.6747054036458); (23 : 23.6747054036458); (23 : 22.9431469726563); (23.375 : 22.9431469726563)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SIMSDataContext/Hospital/Hospital_SHAHospital" />
       <nodes>
         <classShapeMoniker Id="5c44aba9-6b70-49f1-8c26-4c4bd02c853d" />
@@ -570,7 +570,7 @@
         <elementListCompartment Id="20c6a555-a83a-41ab-b75d-af4bb2ef2c8c" absoluteBounds="30.14, 28.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(19.875 : 2.61580006054688); (20.5 : 2.61580006054688); (20.5 : 4.4006982421875); (31.5 : 4.4006982421875); (31.5 : 27.25); (31.125 : 27.25); (31.125 : 27.625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(19.875 : 2.61580006054688); (20.5 : 2.61580006054688); (20.5 : 4.4006982421875); (27.6354166666667 : 4.4006982421875 : JumpStart); (27.8020833333333 : 4.4006982421875 : JumpEnd); (31.5 : 4.4006982421875); (31.5 : 27.25); (31.125 : 27.25); (31.125 : 27.625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SIMSDataContext/Site/Site_OpsLevel" />
       <nodes>
         <classShapeMoniker Id="5592f205-a65e-45de-8704-57de5b59bcd0" />
@@ -593,6 +593,12 @@
       <DataClassMoniker Name="/SIMSDataContext/vEval_FullSiteDiagnostic" />
       <nestedChildShapes>
         <elementListCompartment Id="cc0ae87a-7b78-4828-bb13-0c8164e19da9" absoluteBounds="0.51499999999999968, 0.96, 1.9700000000000002, 8.1337483723958321" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="04e42c7a-10fa-44ca-a52b-431c744c091c" absoluteBounds="6.5, 4.5, 2, 1.9631982421874996">
+      <DataClassMoniker Name="/SIMSDataContext/ArchivedElements" />
+      <nestedChildShapes>
+        <elementListCompartment Id="921b98cb-0490-41a2-8d50-51a355c17e66" absoluteBounds="6.515, 4.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

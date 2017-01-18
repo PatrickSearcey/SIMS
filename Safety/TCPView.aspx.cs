@@ -63,7 +63,7 @@ namespace Safety
         protected void Page_Load(object sender, EventArgs e)
         {
             //If no TCPID was passed, then redirect back to the homepage
-            string tcp_id = "7401";// Request.QueryString["TCPID"];
+            string tcp_id = Request.QueryString["TCPID"];
             if (!string.IsNullOrEmpty(tcp_id)) TCPID = Convert.ToInt32(tcp_id); else Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
 
             //Using the passed TCPID, setup the TCP data element, and reset the office and wsc to match that of the current site
@@ -123,43 +123,11 @@ namespace Safety
                 ltlRemarks.Text = currTCP.Remarks.ToStringSafe();
                 ltlInstructions.Text = currTCP.TCPPlanDetail.Notes.ToStringSafe();
 
-                ImageSelector();
+                imgPlanImage.ImageUrl = String.Format("{0}images/TCPPlan{1}.png", Config.SafetyURL, currTCP.TCPPlanDetail.Number);
                 CalculatorData();
             }
         }
 
-        /// <summary>
-        /// Chooses the image to display on the plan based on the plan number
-        /// </summary>
-        protected void ImageSelector()
-        {
-            switch (currTCP.TCPPlanDetail.Number)
-            {
-                case "Ia":
-                    imgPlanImage.ImageUrl = String.Format("{0}images/TCPPlanIa.png", Config.SafetyURL);
-                    break;
-                case "Ib":
-                    imgPlanImage.ImageUrl = String.Format("{0}images/TCPPlanIb.png", Config.SafetyURL);
-                    break;
-                case "II":
-                    imgPlanImage.ImageUrl = String.Format("{0}images/TCPPlanII.png", Config.SafetyURL);
-                    break;
-                case "III":
-                    imgPlanImage.ImageUrl = String.Format("{0}images/TCPPlanIII.png", Config.SafetyURL);
-                    break;
-                case "IVa":
-                    imgPlanImage.ImageUrl = String.Format("{0}images/TCPPlanIVa.png", Config.SafetyURL);
-                    break;
-                case "IVb":
-                    imgPlanImage.ImageUrl = String.Format("{0}images/TCPPlanIVb.png", Config.SafetyURL);
-                    break;
-                case "V":
-                    imgPlanImage.ImageUrl = String.Format("{0}images/TCPPlanV.png", Config.SafetyURL);
-                    break;
-
-            }
-        }
-        
         /// <summary>
         /// Determine which TCP Calculator Data panel to show based on plan number
         /// </summary>
@@ -198,21 +166,11 @@ namespace Safety
 
         protected void CalculateData()
         {
+            int? WarningSignSpacing = null, MinTaperLength = null, OptBufferLength = null, FlaggerDistance = null;
+            double? WZCones = null, TTCones = null, STMin = null, STCones = null, BZCones = null;
+            int? WZConeSpacing = null, TTConeSpacing = null, BZConeSpacing = null;
+
             var calcData = db.TCPCalculations.FirstOrDefault(p => p.Speed == currTCP.TCPSite.SpeedLimit);
-
-            int? WarningSignSpacing = null;
-            int? MinTaperLength = null;
-            int? OptBufferLength = null;
-            int? FlaggerDistance = null;
-
-            double? WZCones = null;
-            int? WZConeSpacing = null;
-            double? TTCones = null;
-            int? TTConeSpacing = null;
-            double? STMin = null;
-            double? STCones = null;
-            double? BZCones = null;
-            int? BZConeSpacing = null;
 
             if (calcData != null)
             {

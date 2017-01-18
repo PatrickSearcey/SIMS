@@ -130,6 +130,9 @@
     <Content Include="App_Data\RadCaptcha\Z.wav" />
     <Content Include="Control\OfficeSelector.ascx" />
     <Content Include="Control\SitePageHeading.ascx" />
+    <Content Include="images\keycolor0.gif" />
+    <Content Include="images\keycolor1.gif" />
+    <Content Include="images\keycolor2.gif" />
     <Content Include="images\SIMSLogo.png" />
     <Content Include="images\SIMSTitle.png" />
     <Content Include="images\underarrow.png" />
@@ -360,7 +363,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

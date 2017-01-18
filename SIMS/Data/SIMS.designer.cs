@@ -153,6 +153,9 @@ namespace Data
     partial void InsertSiteElementBackup(SiteElementBackup instance);
     partial void UpdateSiteElementBackup(SiteElementBackup instance);
     partial void DeleteSiteElementBackup(SiteElementBackup instance);
+    partial void InsertArchivedElements(ArchivedElements instance);
+    partial void UpdateArchivedElements(ArchivedElements instance);
+    partial void DeleteArchivedElements(ArchivedElements instance);
     #endregion
 		
 		public SIMSDataContext() : 
@@ -593,6 +596,14 @@ namespace Data
 			}
 		}
 		
+		public System.Data.Linq.Table<ArchivedElements> ArchivedElements
+		{
+			get
+			{
+				return this.GetTable<ArchivedElements>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spz_GetDCPInfo")]
 		public ISingleResult<spz_GetDCPInfoResult> spz_GetDCPInfo([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> site_id)
 		{
@@ -654,6 +665,20 @@ namespace Data
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), site_id, options);
 			return ((ISingleResult<SP_RMS_Get_Site_DDsResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_Element_Info_Archives")]
+		public ISingleResult<ArchivedElements> SP_Element_Info_Archives([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> site_id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), site_id);
+			return ((ISingleResult<ArchivedElements>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_Element_Info_Archives_by_element_id")]
+		public ISingleResult<SP_Element_Info_Archives_by_element_idResult> SP_Element_Info_Archives_by_element_id([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> site_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> element_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> begin_dt, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> end_dt)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), site_id, element_id, begin_dt, end_dt);
+			return ((ISingleResult<SP_Element_Info_Archives_by_element_idResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -16012,6 +16037,188 @@ namespace Data
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="")]
+	public partial class ArchivedElements : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _element_id;
+		
+		private string _element_nm;
+		
+		private short _priority;
+		
+		private string _first_revised;
+		
+		private string _last_revised;
+		
+		private int _revisions;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onelement_idChanging(int value);
+    partial void Onelement_idChanged();
+    partial void Onelement_nmChanging(string value);
+    partial void Onelement_nmChanged();
+    partial void OnpriorityChanging(short value);
+    partial void OnpriorityChanged();
+    partial void Onfirst_revisedChanging(string value);
+    partial void Onfirst_revisedChanged();
+    partial void Onlast_revisedChanging(string value);
+    partial void Onlast_revisedChanged();
+    partial void OnrevisionsChanging(int value);
+    partial void OnrevisionsChanged();
+    #endregion
+		
+		public ArchivedElements()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_element_id", DbType="int", IsPrimaryKey=true)]
+		public int element_id
+		{
+			get
+			{
+				return this._element_id;
+			}
+			set
+			{
+				if ((this._element_id != value))
+				{
+					this.Onelement_idChanging(value);
+					this.SendPropertyChanging();
+					this._element_id = value;
+					this.SendPropertyChanged("element_id");
+					this.Onelement_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_element_nm", DbType="nvarchar(60)", CanBeNull=false)]
+		public string element_nm
+		{
+			get
+			{
+				return this._element_nm;
+			}
+			set
+			{
+				if ((this._element_nm != value))
+				{
+					this.Onelement_nmChanging(value);
+					this.SendPropertyChanging();
+					this._element_nm = value;
+					this.SendPropertyChanged("element_nm");
+					this.Onelement_nmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_priority", DbType="smallint")]
+		public short priority
+		{
+			get
+			{
+				return this._priority;
+			}
+			set
+			{
+				if ((this._priority != value))
+				{
+					this.OnpriorityChanging(value);
+					this.SendPropertyChanging();
+					this._priority = value;
+					this.SendPropertyChanged("priority");
+					this.OnpriorityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_first_revised", CanBeNull=false)]
+		public string first_revised
+		{
+			get
+			{
+				return this._first_revised;
+			}
+			set
+			{
+				if ((this._first_revised != value))
+				{
+					this.Onfirst_revisedChanging(value);
+					this.SendPropertyChanging();
+					this._first_revised = value;
+					this.SendPropertyChanged("first_revised");
+					this.Onfirst_revisedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_last_revised", CanBeNull=false)]
+		public string last_revised
+		{
+			get
+			{
+				return this._last_revised;
+			}
+			set
+			{
+				if ((this._last_revised != value))
+				{
+					this.Onlast_revisedChanging(value);
+					this.SendPropertyChanging();
+					this._last_revised = value;
+					this.SendPropertyChanged("last_revised");
+					this.Onlast_revisedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_revisions")]
+		public int revisions
+		{
+			get
+			{
+				return this._revisions;
+			}
+			set
+			{
+				if ((this._revisions != value))
+				{
+					this.OnrevisionsChanging(value);
+					this.SendPropertyChanging();
+					this._revisions = value;
+					this.SendPropertyChanged("revisions");
+					this.OnrevisionsChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	public partial class spz_GetDCPInfoResult
 	{
 		
@@ -17421,6 +17628,86 @@ namespace Data
 				if ((this._gu_id != value))
 				{
 					this._gu_id = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_Element_Info_Archives_by_element_idResult
+	{
+		
+		private string _element_nm;
+		
+		private string _element_info;
+		
+		private string _userid;
+		
+		private string _date;
+		
+		public SP_Element_Info_Archives_by_element_idResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_element_nm", DbType="NVarChar(60)")]
+		public string element_nm
+		{
+			get
+			{
+				return this._element_nm;
+			}
+			set
+			{
+				if ((this._element_nm != value))
+				{
+					this._element_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_element_info", DbType="NVarChar(MAX)")]
+		public string element_info
+		{
+			get
+			{
+				return this._element_info;
+			}
+			set
+			{
+				if ((this._element_info != value))
+				{
+					this._element_info = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userid", DbType="NVarChar(20)")]
+		public string userid
+		{
+			get
+			{
+				return this._userid;
+			}
+			set
+			{
+				if ((this._userid != value))
+				{
+					this._userid = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_date", DbType="NVarChar(30)")]
+		public string date
+		{
+			get
+			{
+				return this._date;
+			}
+			set
+			{
+				if ((this._date != value))
+				{
+					this._date = value;
 				}
 			}
 		}

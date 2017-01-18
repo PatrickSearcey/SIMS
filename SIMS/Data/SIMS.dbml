@@ -784,6 +784,16 @@
       <Column Name="wsc_cd" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="" Member="ArchivedElements">
+    <Type Name="ArchivedElements" Id="ID1">
+      <Column Name="element_id" Type="System.Int32" DbType="int" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="element_nm" Type="System.String" DbType="nvarchar(60)" CanBeNull="false" />
+      <Column Name="priority" Type="System.Int16" DbType="smallint" CanBeNull="false" />
+      <Column Member="first_revised" Type="System.String" CanBeNull="false" />
+      <Column Member="last_revised" Type="System.String" CanBeNull="false" />
+      <Column Member="revisions" Type="System.Int32" CanBeNull="false" />
+    </Type>
+  </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">
     <Parameter Name="site_id" Type="System.Int32" DbType="Int" />
     <ElementType Name="spz_GetDCPInfoResult">
@@ -911,6 +921,22 @@
       <Column Name="parm_nm" Type="System.String" DbType="NVarChar(29)" CanBeNull="true" />
       <Column Name="dd_ts_ds" Type="System.String" DbType="NVarChar(95)" CanBeNull="true" />
       <Column Name="gu_id" Type="System.String" DbType="NVarChar(32)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_Element_Info_Archives" Method="SP_Element_Info_Archives">
+    <Parameter Name="site_id" Type="System.Int32" DbType="Int" />
+    <ElementType IdRef="ID1" />
+  </Function>
+  <Function Name="dbo.SP_Element_Info_Archives_by_element_id" Method="SP_Element_Info_Archives_by_element_id">
+    <Parameter Name="site_id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="element_id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="begin_dt" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="end_dt" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="SP_Element_Info_Archives_by_element_idResult">
+      <Column Name="element_nm" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="element_info" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="userid" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="date" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

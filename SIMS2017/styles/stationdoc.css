@@ -179,3 +179,8 @@ div.EditDocList {
 .riTextBox {
     width: 100% !important;
 }
+/*------------FOR GRIDVIEW--------------------------*/
+.hidden
+{
+    display: none;
+}
