@@ -223,6 +223,34 @@ h5.sectionHeadings
 
 /* TRAFFIC CONTROL PLANS */
 .TCPPlanImage {
+    width:50%;
     float:right;
-    width:60%;
+    max-width: 500px;
+    border-radius: 15px;
+    padding:10px;
+}
+
+.pnlSiteInfo {
+    width:50%;
+    border-radius: 5px;
+    border: 1px solid #4a9987;
+    padding: 10px;
+    margin-top:20px;
+    margin-bottom:5px;
+}
+
+.pnlCalcData {
+    width:50%;
+    border-radius: 5px;
+    border: 1px solid #4a9987;
+    padding: 10px;
+    margin-bottom:5px;
+}
+
+.pnlInstructions {
+    width:50%;
+    border-radius: 5px;
+    border: 1px solid #4a9987;
+    padding: 10px;
+    margin-bottom:350px;
 }
