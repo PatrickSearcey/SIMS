@@ -85,46 +85,77 @@ namespace Safety
         protected void PopulateReport()
         {
             var site = db.Sites.FirstOrDefault(p => p.site_id == currTCP.site_id);
+
             if (currTCP != null)
             {
-                ltlName.Text = site.station_full_nm;
-                ltlNumber.Text = site.site_no;
-                ltlHighway.Text = currTCP.TCPSite.RoadName.ToStringSafe();
-                if (Convert.ToBoolean(currTCP.TCPSite.Expressway))
+                if (currTCP.TCPPlanDetail.Number == "0")
                 {
-                    ltlFreeway.Text = "Yes";
-                }
-                else
-                {
-                    ltlFreeway.Text = "No";
-                }
-                ltlWidth.Text = currTCP.TCPSite.BridgeWidth.ToString("N/A");
-                ltlWorkZone.Text = currTCP.TCPSite.WorkZone.ToString("N/A");
-                ltlLane.Text = currTCP.TCPSite.LaneWidth.ToString("N/A");
-                if (currTCP.TCPSite.ShoulderWidth < 1)
-                {
-                    ltlShoulder.Text = "<1";
-                }
-                else if (currTCP.TCPSite.ShoulderWidth <= 5)
-                {
-                    ltlShoulder.Text = "<=5";
-                }
-                else
-                {
-                    ltlShoulder.Text = ">5";
-                }
-                ltlSpeed.Text = currTCP.TCPSite.SpeedLimit.ToString("N/A");
-                ltlTraffic.Text = currTCP.TCPSite.TrafficVolume.ToString("N/A");
-                ltlCell.Text = site.SHAs.FirstOrDefault().cell_service.ToString();
-                ltlUpdated.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.UpdatedBy.ToStringSafe();
-                ltlReviewed.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.ReviewedBy.ToStringSafe();
-                ltlApproved.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.ApprovedBy.ToStringSafe();
-                ltlNotes.Text = currTCP.TCPSite.Notes.ToStringSafe();
-                ltlRemarks.Text = currTCP.Remarks.ToStringSafe();
-                ltlInstructions.Text = currTCP.TCPPlanDetail.Notes.ToStringSafe();
+                    pnlPlanVI.Visible = false;
+                    pnlSiteInfo.Visible = false;
+                    pnlLessData.Visible = false;
+                    pnlIVbData.Visible = false;
+                    pnlInstructions.Visible = false;
+                    pnlImage.Visible = false;
+                    pnlAllData.Visible = false;
 
-                imgPlanImage.ImageUrl = String.Format("{0}images/TCPPlan{1}.png", Config.SafetyURL, currTCP.TCPPlanDetail.Number);
-                CalculatorData();
+                    ltlNotes0.Text = currTCP.TCPSite.Notes.ToStringSafe();
+                    ltlUpdated0.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.UpdatedBy.ToStringSafe();
+
+                }
+                else if (currTCP.TCPPlanDetail.Number == "VI")
+                {
+                    pnlPlan0.Visible = false;
+                    pnlSiteInfo.Visible = false;
+                    pnlLessData.Visible = false;
+                    pnlIVbData.Visible = false;
+                    pnlInstructions.Visible = false;
+                    pnlImage.Visible = false;
+                    pnlAllData.Visible = false;
+
+                    ltlHighwayVI.Text = currTCP.TCPSite.RoadName.ToStringSafe();
+                    ltlSpeedVI.Text = currTCP.TCPSite.SpeedLimit.ToString("unknown") + " mph";
+                    ltlTrafficVI.Text = currTCP.TCPSite.TrafficVolume.ToString("unknown");
+                    ltlWorkAreaActivityVI.Text = currTCP.WorkAreaActivity;
+                    ltlRemarksVI.Text = currTCP.Remarks.ToStringSafe();
+                    ltlUpdatedVI.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.UpdatedBy.ToStringSafe();
+                    ltlReviewedVI.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.ReviewedBy.ToStringSafe();
+                    ltlApprovedVI.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.ApprovedBy.ToStringSafe();
+                }
+                else
+                {
+                    pnlPlan0.Visible = false;
+                    pnlPlanVI.Visible = false;
+
+                    ltlHighway.Text = currTCP.TCPSite.RoadName.ToStringSafe();
+                    if (Convert.ToBoolean(currTCP.TCPSite.Expressway))
+                        ltlFreeway.Text = "Yes";
+                    else
+                        ltlFreeway.Text = "No";
+                    ltlWidth.Text = currTCP.TCPSite.BridgeWidth.ToString("unknown") + " feet";
+                    ltlWorkZone.Text = currTCP.TCPSite.WorkZone.ToString("unknown") + " feet";
+                    ltlLane.Text = currTCP.TCPSite.LaneWidth.ToString("unknown") + " feet";
+                    if (currTCP.TCPSite.ShoulderWidth < 1)
+                        ltlShoulder.Text = "< 1 foot";
+                    else if (currTCP.TCPSite.ShoulderWidth <= 5)
+                        ltlShoulder.Text = "<= 5 feet";
+                    else
+                        ltlShoulder.Text = "> 5 feet";
+                    ltlSpeed.Text = currTCP.TCPSite.SpeedLimit.ToString("unknown") + " mph";
+                    ltlTraffic.Text = currTCP.TCPSite.TrafficVolume.ToString("unknown");
+                    if (Convert.ToBoolean(site.SHAs.FirstOrDefault().cell_service))
+                        ltlCell.Text = "Yes";
+                    else
+                        ltlCell.Text = "No";
+                    ltlUpdated.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.UpdatedBy.ToStringSafe();
+                    ltlReviewed.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.ReviewedBy.ToStringSafe();
+                    ltlApproved.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.ApprovedBy.ToStringSafe();
+                    ltlNotes.Text = currTCP.TCPSite.Notes.ToStringSafe();
+                    ltlRemarks.Text = currTCP.Remarks.ToStringSafe();
+                    ltlInstructions.Text = currTCP.TCPPlanDetail.Notes.ToStringSafe();
+
+                    imgPlanImage.ImageUrl = String.Format("{0}images/TCPPlan{1}.png", Config.SafetyURL, currTCP.TCPPlanDetail.Number);
+                    CalculatorData();
+                }
             }
         }
 

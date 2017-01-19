@@ -22,6 +22,123 @@ namespace Safety {
         protected global::Safety.Control.SitePageHeading ph1;
         
         /// <summary>
+        /// pnlPlan0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlPlan0;
+        
+        /// <summary>
+        /// ltlUpdated0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlUpdated0;
+        
+        /// <summary>
+        /// ltlNotes0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlNotes0;
+        
+        /// <summary>
+        /// pnlPlanVI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlPlanVI;
+        
+        /// <summary>
+        /// ltlWorkAreaActivityVI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlWorkAreaActivityVI;
+        
+        /// <summary>
+        /// ltlHighwayVI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlHighwayVI;
+        
+        /// <summary>
+        /// ltlSpeedVI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlSpeedVI;
+        
+        /// <summary>
+        /// ltlTrafficVI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlTrafficVI;
+        
+        /// <summary>
+        /// ltlUpdatedVI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlUpdatedVI;
+        
+        /// <summary>
+        /// ltlReviewedVI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlReviewedVI;
+        
+        /// <summary>
+        /// ltlApprovedVI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlApprovedVI;
+        
+        /// <summary>
+        /// LltlNotesVI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal LltlNotesVI;
+        
+        /// <summary>
+        /// ltlRemarksVI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlRemarksVI;
+        
+        /// <summary>
         /// pnlImage control.
         /// </summary>
         /// <remarks>
@@ -49,22 +166,13 @@ namespace Safety {
         protected global::System.Web.UI.WebControls.Panel pnlSiteInfo;
         
         /// <summary>
-        /// ltlName control.
+        /// ltlWorkAreaActivity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlName;
-        
-        /// <summary>
-        /// ltlNumber control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlNumber;
+        protected global::System.Web.UI.WebControls.Literal ltlWorkAreaActivity;
         
         /// <summary>
         /// ltlHighway control.
