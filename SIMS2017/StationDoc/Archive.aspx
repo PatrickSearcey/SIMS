@@ -93,10 +93,8 @@
         </asp:Panel>
         
         <asp:Panel ID="pnlStep3" runat="server">
-            <asp:LinkButton ID="lbBack3" runat="server" Text="&laquo; choose a different element" 
-                OnCommand="Back_Command" CommandName="back3" /> &nbsp;&nbsp;
-            <asp:LinkButton ID="lbBack2" runat="server" Text="&laquo; modify dates" 
-                OnCommand="Back_Command" CommandName="back2" />
+            <asp:LinkButton ID="lbBack3" runat="server" Text="&laquo; choose a different element" OnCommand="Back_Command" CommandName="back3" /> &nbsp;&nbsp;
+            <asp:LinkButton ID="lbBack2" runat="server" Text="&laquo; modify dates" OnCommand="Back_Command" CommandName="back2" />
             
             <h4><asp:Label ID="lblElementName2" runat="server" /></h4>
             <asp:DataList ID="dlElementInfo" runat="server">

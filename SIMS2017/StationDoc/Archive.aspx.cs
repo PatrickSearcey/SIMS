@@ -54,7 +54,7 @@ namespace SIMS2017.StationDoc
         protected void Page_Load(object sender, EventArgs e)
         {
             //If no site_id was passed, then redirect back to the homepage
-            string site_id = "3000492";// Request.QueryString["site_id"];
+            string site_id = Request.QueryString["site_id"];
             if (!string.IsNullOrEmpty(site_id)) SiteID = Convert.ToInt32(site_id); else Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
 
             //Using the passed site_id, setup the site data element, and reset the office and wsc to match that of the current site
@@ -70,7 +70,7 @@ namespace SIMS2017.StationDoc
                 //If the user belongs to this site's WSC (or has an exception to work in the WSC), or is a SuperUser, then allow them to edit the page
                 if (user.WSCID.Contains(WSCID) || user.IsSuperUser) HasEditAccess = true;
 
-                gvElementList.DataSource = db.SP_Element_Info_Archives(currSite.site_id).ToList();
+                gvElementList.DataSource = db.SP_Element_Info_Archives(SiteID).ToList();
                 gvElementList.DataBind();
 
                 pnlStep1.Visible = true;
@@ -103,6 +103,9 @@ namespace SIMS2017.StationDoc
             }
             else
             {
+                gvElementList.DataSource = db.SP_Element_Info_Archives(SiteID).ToList();
+                gvElementList.DataBind();
+
                 pnlStep1.Visible = true;
                 pnlStep2.Visible = false;
                 pnlStep3.Visible = false;
