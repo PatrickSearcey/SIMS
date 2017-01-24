@@ -9,6 +9,7 @@
         <AjaxSettings>
             <telerik:AjaxSetting AjaxControlID="gvElementList">
                 <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="gvElementList" />
                     <telerik:AjaxUpdatedControl ControlID="pnlStep1" LoadingPanelID="ralp" />
                     <telerik:AjaxUpdatedControl ControlID="pnlStep2" />
                 </UpdatedControls>
@@ -19,13 +20,13 @@
                     <telerik:AjaxUpdatedControl ControlID="pnlStep1" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
-            <telerik:AjaxSetting AjaxControlID="btnBack2">
+            <telerik:AjaxSetting AjaxControlID="lbBack2">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="pnlStep3" LoadingPanelID="ralp" />
                     <telerik:AjaxUpdatedControl ControlID="pnlStep2" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
-            <telerik:AjaxSetting AjaxControlID="btnBack3">
+            <telerik:AjaxSetting AjaxControlID="lbBack3">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="pnlStep3" LoadingPanelID="ralp" />
                     <telerik:AjaxUpdatedControl ControlID="pnlStep1" />
@@ -48,25 +49,25 @@
         <asp:Panel ID="pnlStep1" runat="server">
             <h5>Begin by choosing an element from the list of possible choices:</h5>
             <asp:GridView ID="gvElementList" runat="server" AutoGenerateColumns="False" BorderColor="#314d93" BorderWidth="1px" 
-                CellPadding="5" GridLines="Horizontal" OnDataBound="gvElementList_Bound" AllowSorting="true">
+                CellPadding="5" OnDataBound="gvElementList_Bound">
                 <Columns>
-                    <asp:TemplateField ShowHeader="False">
+                    <asp:TemplateField HeaderStyle-ForeColor="#314d93" HeaderStyle-BorderColor="#314d93">
                         <ItemTemplate>
                             <asp:LinkButton ID="lbSelectElement" runat="server" CausesValidation="False" 
                                 CommandName='<%# DataBinder.Eval(Container.DataItem,"element_id") %>' 
-                                Text="Select" OnCommand="ElementSelected"></asp:LinkButton>
+                                Text="Select" OnCommand="ElementSelected" CssClass="SelectLink"></asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField DataField="element_nm" HeaderText="Element Name" SortExpression="element_nm" />
-                    <asp:BoundField DataField="first_revised" HeaderText="Earliest Revised Date" SortExpression="first_revised" ItemStyle-HorizontalAlign="Center" />
-                    <asp:BoundField DataField="last_revised" HeaderText="Last Revised Date" SortExpression="last_revised" ItemStyle-HorizontalAlign="Center" />
-                    <asp:BoundField DataField="revisions" HeaderText="No. of Revisions" SortExpression="revisions" ItemStyle-HorizontalAlign="Center" />
+                    <asp:BoundField DataField="element_nm" HeaderText="Element Name"  HeaderStyle-ForeColor="#314d93" HeaderStyle-BorderColor="#314d93" />
+                    <asp:BoundField DataField="first_revised" HeaderText="Earliest Revised Date" ItemStyle-HorizontalAlign="Center"  HeaderStyle-ForeColor="#314d93" HeaderStyle-BorderColor="#314d93" />
+                    <asp:BoundField DataField="last_revised" HeaderText="Last Revised Date" ItemStyle-HorizontalAlign="Center"  HeaderStyle-ForeColor="#314d93" HeaderStyle-BorderColor="#314d93" />
+                    <asp:BoundField DataField="revisions" HeaderText="No. of Revisions" ItemStyle-HorizontalAlign="Center"  HeaderStyle-ForeColor="#314d93" HeaderStyle-BorderColor="#314d93" />
                     <asp:BoundField DataField="priority" ShowHeader="false" ItemStyle-CssClass="hidden" HeaderStyle-CssClass="hidden" />
                 </Columns>
                 <EmptyDataTemplate>
                     <i>No elements have been archived yet.</i>
                 </EmptyDataTemplate>
-                <HeaderStyle Font-Bold="True" ForeColor="#d314d93" />
+                <HeaderStyle Font-Bold="True" ForeColor="#314d93" />
             </asp:GridView>
             <p style="font-weight:bold;">Note:&nbsp;&nbsp;SDESC, 
             <img src="../images/keycolor0.gif" alt="white color" /> = Station Description;
@@ -78,12 +79,10 @@
             <p>Click the Retrieve button when ready.</p>
             <p>Chosen element: <asp:Label ID="lblElementName" runat="server" Font-Bold="true" ForeColor="Red" /><br /><br />
 
-            <asp:TextBox ID="tbBeginDate" runat="server" Width="80" />
-            <asp:CompareValidator ID="cvBeginDate" Display="dynamic" ControlToValidate="tbBeginDate" Type="Date" Operator="DataTypeCheck" Text="*" ErrorMessage="Please enter a valid begin date" runat="server" />
+            <telerik:RadDatePicker ID="tbBeginDate" runat="server" Skin="Bootstrap" />
             <asp:RequiredFieldValidator ID="rfvBeginDate" runat="server" ErrorMessage="You must enter a begin date" Text="*" ControlToValidate="tbBeginDate"/>
             to &nbsp;&nbsp;
-            <asp:TextBox ID="tbEndDate" runat="server" Width="80" />
-            <asp:CompareValidator ID="cvEndDate" Display="dynamic" ControlToValidate="tbEndDate" Type="Date" Operator="DataTypeCheck" Text="*" ErrorMessage="Please enter a valid end date" runat="server" />
+            <telerik:RadDatePicker ID="tbEndDate" runat="server" Skin="Bootstrap" />
             <asp:RequiredFieldValidator ID="rfvEndDate" runat="server" ErrorMessage="You must enter an end date" Text="*" ControlToValidate="tbEndDate" />
             
             <asp:ValidationSummary ID="ValSummary" FormToValidate="form1" runat="server" /></p>
@@ -105,7 +104,7 @@
                     <hr />
                 </ItemTemplate>
             </asp:DataList>
-            <asp:Label ID="lblNothingReturned" runat="server" Visible="false" Text="No results returned. Please modify dates and try again." />
+            <asp:Label ID="lblNothingReturned" runat="server" Visible="false" Text="No results returned. Please modify dates and try again." Font-Bold="true" /><br />
         </asp:Panel>
     </div>
 </asp:Content>

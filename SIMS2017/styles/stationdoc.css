@@ -184,3 +184,7 @@ div.EditDocList {
 {
     display: none;
 }
+.SelectLink {
+    color: #314d93 !important;
+    font-weight:bold;
+}

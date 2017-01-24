@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SIMS2017.StationDoc {
+namespace RMS {
     
     
-    public partial class Archive {
+    public partial class AuditPeriod {
         
         /// <summary>
         /// ram control.
@@ -37,159 +37,213 @@ namespace SIMS2017.StationDoc {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::SIMS2017.Control.SitePageHeading ph1;
+        protected global::RMS.Control.RecordPageHeading ph1;
         
         /// <summary>
-        /// pnlStep1 control.
+        /// pnlNoAccess control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlStep1;
+        protected global::System.Web.UI.WebControls.Panel pnlNoAccess;
         
         /// <summary>
-        /// gvElementList control.
+        /// pnlNotice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvElementList;
+        protected global::System.Web.UI.WebControls.Panel pnlNotice;
         
         /// <summary>
-        /// pnlStep2 control.
+        /// ltlNotice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlStep2;
+        protected global::System.Web.UI.WebControls.Literal ltlNotice;
         
         /// <summary>
-        /// lblElementName control.
+        /// pnlHasAccess control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblElementName;
+        protected global::System.Web.UI.WebControls.Panel pnlHasAccess;
         
         /// <summary>
-        /// tbBeginDate control.
+        /// pnlSetupAuditPeriod control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadDatePicker tbBeginDate;
+        protected global::System.Web.UI.WebControls.Panel pnlSetupAuditPeriod;
         
         /// <summary>
-        /// rfvBeginDate control.
+        /// rdpBeginDt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvBeginDate;
+        protected global::Telerik.Web.UI.RadDatePicker rdpBeginDt;
         
         /// <summary>
-        /// tbEndDate control.
+        /// rdpEndDt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadDatePicker tbEndDate;
+        protected global::Telerik.Web.UI.RadDatePicker rdpEndDt;
         
         /// <summary>
-        /// rfvEndDate control.
+        /// rlbRecords control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEndDate;
+        protected global::Telerik.Web.UI.RadListBox rlbRecords;
         
         /// <summary>
-        /// ValSummary control.
+        /// rddlOffice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary ValSummary;
+        protected global::Telerik.Web.UI.RadDropDownList rddlOffice;
         
         /// <summary>
-        /// btnBack1 control.
+        /// rddlFieldTrip control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton btnBack1;
+        protected global::Telerik.Web.UI.RadDropDownList rddlFieldTrip;
         
         /// <summary>
-        /// btnRetrieve control.
+        /// rbSubmitRecords control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton btnRetrieve;
+        protected global::Telerik.Web.UI.RadButton rbSubmitRecords;
         
         /// <summary>
-        /// pnlStep3 control.
+        /// pnlAuditPeriod control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlStep3;
+        protected global::System.Web.UI.WebControls.Panel pnlAuditPeriod;
         
         /// <summary>
-        /// lbBack3 control.
+        /// ltlAuditDateRange control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbBack3;
+        protected global::System.Web.UI.WebControls.Literal ltlAuditDateRange;
         
         /// <summary>
-        /// lbBack2 control.
+        /// ltlAuditBy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbBack2;
+        protected global::System.Web.UI.WebControls.Literal ltlAuditBy;
         
         /// <summary>
-        /// lblElementName2 control.
+        /// rlbViewRecords control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblElementName2;
+        protected global::Telerik.Web.UI.RadListBox rlbViewRecords;
         
         /// <summary>
-        /// dlElementInfo control.
+        /// rtbSANAL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dlElementInfo;
+        protected global::Telerik.Web.UI.RadTextBox rtbSANAL;
         
         /// <summary>
-        /// lblNothingReturned control.
+        /// rddlAuditType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNothingReturned;
+        protected global::Telerik.Web.UI.RadDropDownList rddlAuditType;
+        
+        /// <summary>
+        /// rddlAuditResults control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDropDownList rddlAuditResults;
+        
+        /// <summary>
+        /// rtbAuditReason control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadTextBox rtbAuditReason;
+        
+        /// <summary>
+        /// rtbDataAudited control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadTextBox rtbDataAudited;
+        
+        /// <summary>
+        /// rtbAuditFindings control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadTextBox rtbAuditFindings;
+        
+        /// <summary>
+        /// rbCreateAudit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton rbCreateAudit;
+        
+        /// <summary>
+        /// rbStartOver control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton rbStartOver;
     }
 }

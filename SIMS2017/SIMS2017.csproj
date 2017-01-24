@@ -128,6 +128,7 @@
     <Content Include="App_Data\RadCaptcha\X.wav" />
     <Content Include="App_Data\RadCaptcha\Y.wav" />
     <Content Include="App_Data\RadCaptcha\Z.wav" />
+    <Content Include="Control\ApproveMANU.ascx" />
     <Content Include="Control\OfficeSelector.ascx" />
     <Content Include="Control\SitePageHeading.ascx" />
     <Content Include="images\keycolor0.gif" />
@@ -199,6 +200,13 @@
     </Compile>
     <Compile Include="Admin\Tasks.aspx.designer.cs">
       <DependentUpon>Tasks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ApproveMANU.ascx.cs">
+      <DependentUpon>ApproveMANU.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Control\ApproveMANU.ascx.designer.cs">
+      <DependentUpon>ApproveMANU.ascx</DependentUpon>
     </Compile>
     <Compile Include="Control\OfficeSelector.ascx.cs">
       <DependentUpon>OfficeSelector.ascx</DependentUpon>
@@ -363,7 +371,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

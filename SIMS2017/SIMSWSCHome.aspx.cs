@@ -156,7 +156,7 @@ namespace SIMS2017
             private string _SiteType;
             private string _Active;
             private string _tel_flag;
-            private int? _trip_id;
+            private List<int?> _trip_ids;
 
             public string site_id
             {
@@ -208,10 +208,10 @@ namespace SIMS2017
                 get { return _tel_flag; }
                 set { _tel_flag = value; }
             }
-            public int? trip_id
+            public List<int?> trip_ids
             {
-                get { return _trip_id; }
-                set { _trip_id = value; }
+                get { return _trip_ids; }
+                set { _trip_ids = value; }
             }
             public SiteDataItem()
             {
@@ -225,7 +225,7 @@ namespace SIMS2017
                 _SiteType = SiteType;
                 _Active = Active;
                 _tel_flag = TelFlag;
-                _trip_id = trip_id;
+                _trip_ids = trip_ids;
             }
         }
         #endregion
@@ -245,8 +245,19 @@ namespace SIMS2017
                 SiteType = p.sims_site_tp,
                 Active = GetActiveData(p.agency_use_cd.ToString()),
                 TelFlag = p.tel_fg,
-                trip_id = p.trip_id
+                trip_ids = GetTripIDs(p.site_id)
             }).OrderBy(p => p.site_no).ToList();
+
+            return ret;
+        }
+
+        private List<int?> GetTripIDs(int site_id)
+        {
+            List<int?> ret = new List<int?>();
+
+            var trips = db.TripSites.Where(p => p.site_id == site_id).ToList();
+            foreach (var trip in trips)
+                ret.Add(trip.trip_id);
 
             return ret;
         }
@@ -284,7 +295,7 @@ namespace SIMS2017
             }
             else
             {
-                if (ShowActiveSites) rgSites.DataSource = GetData().Where(p => p.trip_id == TripID && p.Active == "Active"); else rgSites.DataSource = GetData().Where(p => p.trip_id == TripID && p.Active == "Inactive");
+                if (ShowActiveSites) rgSites.DataSource = GetData().Where(p => p.trip_ids.Contains(TripID) && p.Active == "Active"); else rgSites.DataSource = GetData().Where(p => p.trip_ids.Contains(TripID) && p.Active == "Inactive");
             }
         }
 

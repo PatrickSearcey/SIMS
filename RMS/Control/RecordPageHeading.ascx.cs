@@ -70,9 +70,15 @@ namespace RMS.Control
                 hlPageSubTitle.Text = SubTitle;
                 ltlRecordType.Text = RecordType;
 
-                int SiteID = Convert.ToInt32(db.Records.FirstOrDefault(p => p.rms_record_id == RecordID).site_id);
-
-                hlPageSubTitle.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, SiteID);
+                if (RecordID > 0)
+                {
+                    int SiteID = Convert.ToInt32(db.Records.FirstOrDefault(p => p.rms_record_id == RecordID).site_id);
+                    hlPageSubTitle.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, SiteID);
+                }
+                else
+                {
+                    hlPageSubTitle.NavigateUrl = String.Format("{0}RMSWSCHome.aspx", Config.RMSURL);
+                }
 
                 SetupResponsibleOfficeInfo();
             }

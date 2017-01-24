@@ -75,9 +75,9 @@
             <b style='color:deeppink;'>B &mdash; </b><b>Optional </b><b style='color:deeppink';>Buffer Zone </b><b>length:</b> <asp:Literal ID="ltlBZLength" runat="server" /> feet<br />
             <b style='color:deeppink;'>B &mdash; </b><b>Optional </b><b style='color:deeppink';>Buffer Zone </b><b>cone spacing:</b> <asp:Literal ID="ltlBZConeSpacing" runat="server" /> feet<br />
             <b style='color:deeppink;'>B &mdash; </b><b>Number of cones in the optional </b><b style='color:deeppink';>Buffer Zone</b><b>:</b> <asp:Literal ID="ltlBZCones" runat="server" /><br />
-            <b style='color:limegreen;'>D &mdash; </b><b>Optional </b><b style='color:limegreen';>Downstream Taper </b><b>length:</b> _____________feet<br />
-            <b style='color:limegreen;'>D &mdash; </b><b>Optional </b><b style='color:limegreen';>Downstream Taper </b><b>cone spacing:</b> _____________feet<br />
-            <b style='color:limegreen;'>D &mdash; </b><b>Number of cones in the optional </b><b style='color:limegreen';>Downstream Taper</b><b>:</b> ____________<br />
+            <b style='color:limegreen;'>D &mdash; </b><b>Optional </b><b style='color:limegreen';>Downstream Taper </b><b>length:</b> 100 feet<br />
+            <b style='color:limegreen;'>D &mdash; </b><b>Optional </b><b style='color:limegreen';>Downstream Taper </b><b>cone spacing:</b> 20 feet<br />
+            <b style='color:limegreen;'>D &mdash; </b><b>Number of cones in the optional </b><b style='color:limegreen';>Downstream Taper</b><b>:</b> 5<br />
         </asp:Panel>
 
         <asp:Panel ID="pnlIVbData" runat="server" CssClass="pnlCalcData">
@@ -92,9 +92,9 @@
             <b style='color:deeppink;'>B &mdash; </b><b>Optional </b><b style='color:deeppink';>Buffer Zone </b><b>length:</b> <asp:Literal ID="ltlBZLength1" runat="server" /> feet<br />
             <b style='color:deeppink;'>B &mdash; </b><b>Optional </b><b style='color:deeppink';>Buffer Zone </b><b>cone spacing:</b> <asp:Literal ID="ltlBZConeSpacing1" runat="server" /> feet<br />
             <b style='color:deeppink;'>B &mdash; </b><b>Number of cones in the optional </b><b style='color:deeppink';>Buffer Zone</b><b>:</b> <asp:Literal ID="ltlBZCones1" runat="server" /><br />
-            <b style='color:limegreen;'>D &mdash; </b><b>Optional </b><b style='color:limegreen';>Downstream Taper </b><b>length:</b> _____________feet<br />
-            <b style='color:limegreen;'>D &mdash; </b><b>Optional </b><b style='color:limegreen';>Downstream Taper </b><b>cone spacing:</b> _____________feet<br />
-            <b style='color:limegreen;'>D &mdash; </b><b>Number of cones in the optional </b><b style='color:limegreen';>Downstream Taper</b><b>:</b> _____________<br />
+            <b style='color:limegreen;'>D &mdash; </b><b>Optional </b><b style='color:limegreen';>Downstream Taper </b><b>length:</b> 100 feet<br />
+            <b style='color:limegreen;'>D &mdash; </b><b>Optional </b><b style='color:limegreen';>Downstream Taper </b><b>cone spacing:</b> 20 feet<br />
+            <b style='color:limegreen;'>D &mdash; </b><b>Number of cones in the optional </b><b style='color:limegreen';>Downstream Taper</b><b>:</b> 5<br />
         </asp:Panel>
 
         <asp:Panel ID="pnlLessData" runat="server" CssClass="pnlCalcData">

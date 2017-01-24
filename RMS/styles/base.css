@@ -137,3 +137,28 @@ div.RadMenuPopup,
     float:right;
     text-align:right;
 }
+
+/*RadDropDownList*/
+.rddlItem {
+    font-size:10pt !important;
+}
+.rddlFakeInput {
+    font-size: 10pt !important;
+}
+.rddlItemSelected {
+    background-color: #b84626 !important;
+}
+.rddlItemHovered {
+    background-color: #f0eac8 !important;
+}
+
+/*RadListBox*/
+.rlbItem {
+    font-size: 10pt !important;
+}
+.rlbSelected {
+    background-color: #b84626 !important;
+}
+.rlbHovered {
+    background-color: #f0eac8 !important;
+}

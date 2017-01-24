@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RMS
+namespace SIMS2017.Control
 {
 
 
-    public partial class RecordAudit
+    public partial class ApproveMANU
     {
     }
 }

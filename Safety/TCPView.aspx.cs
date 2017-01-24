@@ -150,7 +150,10 @@ namespace Safety
                     ltlReviewed.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.ReviewedBy.ToStringSafe();
                     ltlApproved.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.ApprovedBy.ToStringSafe();
                     ltlNotes.Text = currTCP.TCPSite.Notes.ToStringSafe();
-                    ltlRemarks.Text = currTCP.Remarks.ToStringSafe();
+                    if (currTCP.TCPSite.TrafficVolume == "high")
+                        ltlRemarks.Text = "Because of high traffic volume, consider using a buffer zone.<br />" + currTCP.Remarks.ToStringSafe();
+                    else
+                        ltlRemarks.Text = currTCP.Remarks.ToStringSafe();
                     ltlInstructions.Text = currTCP.TCPPlanDetail.Notes.ToStringSafe();
 
                     imgPlanImage.ImageUrl = String.Format("{0}images/TCPPlan{1}.png", Config.SafetyURL, currTCP.TCPPlanDetail.Number);
@@ -226,7 +229,7 @@ namespace Safety
                 case "Ib":
                 case "II":
                 case "III":
-                    ltlWS.Text = WarningSignSpacing.ToString("unknown");
+                    if (Convert.ToBoolean(currTCP.TCPSite.Expressway)) ltlWS.Text = "1000, 1500, 2640"; else ltlWS.Text = WarningSignSpacing.ToString("unknown");
                     ltlFlagger.Text = FlaggerDistance.ToString("unknown");
                     ltlWZLength.Text = currTCP.TCPSite.WorkZone.ToString("unknown");
                     ltlWZCones.Text = WZCones.ToString("unknown");
@@ -243,11 +246,11 @@ namespace Safety
                     break;
                 case "IVa":
                 case "V":
-                    ltlWS2.Text = WarningSignSpacing.ToString("unknown");
+                    if (Convert.ToBoolean(currTCP.TCPSite.Expressway)) ltlWS2.Text = "1000, 1500, 2640"; else ltlWS2.Text = WarningSignSpacing.ToString("unknown");
                     ltlWZLength2.Text = currTCP.TCPSite.WorkZone.ToString("unknown");
                     break;
                 case "IVb":
-                    ltlWS1.Text = WarningSignSpacing.ToString("unknown");
+                    if (Convert.ToBoolean(currTCP.TCPSite.Expressway)) ltlWS1.Text = "1000, 1500, 2640"; else ltlWS1.Text = WarningSignSpacing.ToString("unknown");
                     ltlWZLength1.Text = currTCP.TCPSite.WorkZone.ToString("unknown");
                     ltlWZCones1.Text = WZCones.ToString("unknown");
                     ltlWZConeSpacing1.Text = WZConeSpacing.ToString("unknown");

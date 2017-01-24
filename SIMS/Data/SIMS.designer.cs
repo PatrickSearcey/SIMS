@@ -42,9 +42,6 @@ namespace Data
     partial void InsertTrip(Trip instance);
     partial void UpdateTrip(Trip instance);
     partial void DeleteTrip(Trip instance);
-    partial void InsertTripSite(TripSite instance);
-    partial void UpdateTripSite(TripSite instance);
-    partial void DeleteTripSite(TripSite instance);
     partial void InsertSite(Site instance);
     partial void UpdateSite(Site instance);
     partial void DeleteSite(Site instance);
@@ -156,6 +153,21 @@ namespace Data
     partial void InsertArchivedElements(ArchivedElements instance);
     partial void UpdateArchivedElements(ArchivedElements instance);
     partial void DeleteArchivedElements(ArchivedElements instance);
+    partial void InsertAudit(Audit instance);
+    partial void UpdateAudit(Audit instance);
+    partial void DeleteAudit(Audit instance);
+    partial void InsertAuditRecord(AuditRecord instance);
+    partial void UpdateAuditRecord(AuditRecord instance);
+    partial void DeleteAuditRecord(AuditRecord instance);
+    partial void InsertAuditResult(AuditResult instance);
+    partial void UpdateAuditResult(AuditResult instance);
+    partial void DeleteAuditResult(AuditResult instance);
+    partial void InsertAuditType(AuditType instance);
+    partial void UpdateAuditType(AuditType instance);
+    partial void DeleteAuditType(AuditType instance);
+    partial void InsertTripSite(TripSite instance);
+    partial void UpdateTripSite(TripSite instance);
+    partial void DeleteTripSite(TripSite instance);
     #endregion
 		
 		public SIMSDataContext() : 
@@ -220,27 +232,11 @@ namespace Data
 			}
 		}
 		
-		public System.Data.Linq.Table<TripSite> TripSites
-		{
-			get
-			{
-				return this.GetTable<TripSite>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Site> Sites
 		{
 			get
 			{
 				return this.GetTable<Site>();
-			}
-		}
-		
-		public System.Data.Linq.Table<vSiteMasterList> vSiteMasterLists
-		{
-			get
-			{
-				return this.GetTable<vSiteMasterList>();
 			}
 		}
 		
@@ -601,6 +597,54 @@ namespace Data
 			get
 			{
 				return this.GetTable<ArchivedElements>();
+			}
+		}
+		
+		public System.Data.Linq.Table<vSiteMasterList> vSiteMasterLists
+		{
+			get
+			{
+				return this.GetTable<vSiteMasterList>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Audit> Audits
+		{
+			get
+			{
+				return this.GetTable<Audit>();
+			}
+		}
+		
+		public System.Data.Linq.Table<AuditRecord> AuditRecords
+		{
+			get
+			{
+				return this.GetTable<AuditRecord>();
+			}
+		}
+		
+		public System.Data.Linq.Table<AuditResult> AuditResults
+		{
+			get
+			{
+				return this.GetTable<AuditResult>();
+			}
+		}
+		
+		public System.Data.Linq.Table<AuditType> AuditTypes
+		{
+			get
+			{
+				return this.GetTable<AuditType>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TripSite> TripSites
+		{
+			get
+			{
+				return this.GetTable<TripSite>();
 			}
 		}
 		
@@ -1998,7 +2042,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Trip_TripSite", Storage="_TripSites", ThisKey="trip_id", OtherKey="trip_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Trip_Trip_Site_Master", Storage="_TripSites", ThisKey="trip_id", OtherKey="trip_id")]
 		public EntitySet<TripSite> TripSites
 		{
 			get
@@ -2044,270 +2088,6 @@ namespace Data
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Trip_Site_Master")]
-	public partial class TripSite : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _trip_site_id;
-		
-		private System.Nullable<int> _trip_id;
-		
-		private System.Nullable<int> _site_id;
-		
-		private string _station_type_cd;
-		
-		private string _index_map_cd;
-		
-		private string _remarks;
-		
-		private EntityRef<Trip> _Trip;
-		
-		private EntityRef<Site> _Site;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Ontrip_site_idChanging(int value);
-    partial void Ontrip_site_idChanged();
-    partial void Ontrip_idChanging(System.Nullable<int> value);
-    partial void Ontrip_idChanged();
-    partial void Onsite_idChanging(System.Nullable<int> value);
-    partial void Onsite_idChanged();
-    partial void Onstation_type_cdChanging(string value);
-    partial void Onstation_type_cdChanged();
-    partial void Onindex_map_cdChanging(string value);
-    partial void Onindex_map_cdChanged();
-    partial void OnremarksChanging(string value);
-    partial void OnremarksChanged();
-    #endregion
-		
-		public TripSite()
-		{
-			this._Trip = default(EntityRef<Trip>);
-			this._Site = default(EntityRef<Site>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_trip_site_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int trip_site_id
-		{
-			get
-			{
-				return this._trip_site_id;
-			}
-			set
-			{
-				if ((this._trip_site_id != value))
-				{
-					this.Ontrip_site_idChanging(value);
-					this.SendPropertyChanging();
-					this._trip_site_id = value;
-					this.SendPropertyChanged("trip_site_id");
-					this.Ontrip_site_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_trip_id", DbType="Int")]
-		public System.Nullable<int> trip_id
-		{
-			get
-			{
-				return this._trip_id;
-			}
-			set
-			{
-				if ((this._trip_id != value))
-				{
-					if (this._Trip.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Ontrip_idChanging(value);
-					this.SendPropertyChanging();
-					this._trip_id = value;
-					this.SendPropertyChanged("trip_id");
-					this.Ontrip_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int")]
-		public System.Nullable<int> site_id
-		{
-			get
-			{
-				return this._site_id;
-			}
-			set
-			{
-				if ((this._site_id != value))
-				{
-					if (this._Site.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onsite_idChanging(value);
-					this.SendPropertyChanging();
-					this._site_id = value;
-					this.SendPropertyChanged("site_id");
-					this.Onsite_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_type_cd", DbType="NVarChar(4)")]
-		public string station_type_cd
-		{
-			get
-			{
-				return this._station_type_cd;
-			}
-			set
-			{
-				if ((this._station_type_cd != value))
-				{
-					this.Onstation_type_cdChanging(value);
-					this.SendPropertyChanging();
-					this._station_type_cd = value;
-					this.SendPropertyChanged("station_type_cd");
-					this.Onstation_type_cdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_index_map_cd", DbType="NVarChar(50)")]
-		public string index_map_cd
-		{
-			get
-			{
-				return this._index_map_cd;
-			}
-			set
-			{
-				if ((this._index_map_cd != value))
-				{
-					this.Onindex_map_cdChanging(value);
-					this.SendPropertyChanging();
-					this._index_map_cd = value;
-					this.SendPropertyChanged("index_map_cd");
-					this.Onindex_map_cdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_remarks", DbType="NVarChar(255)")]
-		public string remarks
-		{
-			get
-			{
-				return this._remarks;
-			}
-			set
-			{
-				if ((this._remarks != value))
-				{
-					this.OnremarksChanging(value);
-					this.SendPropertyChanging();
-					this._remarks = value;
-					this.SendPropertyChanged("remarks");
-					this.OnremarksChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Trip_TripSite", Storage="_Trip", ThisKey="trip_id", OtherKey="trip_id", IsForeignKey=true)]
-		public Trip Trip
-		{
-			get
-			{
-				return this._Trip.Entity;
-			}
-			set
-			{
-				Trip previousValue = this._Trip.Entity;
-				if (((previousValue != value) 
-							|| (this._Trip.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Trip.Entity = null;
-						previousValue.TripSites.Remove(this);
-					}
-					this._Trip.Entity = value;
-					if ((value != null))
-					{
-						value.TripSites.Add(this);
-						this._trip_id = value.trip_id;
-					}
-					else
-					{
-						this._trip_id = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Trip");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_TripSite", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
-		public Site Site
-		{
-			get
-			{
-				return this._Site.Entity;
-			}
-			set
-			{
-				Site previousValue = this._Site.Entity;
-				if (((previousValue != value) 
-							|| (this._Site.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Site.Entity = null;
-						previousValue.TripSites.Remove(this);
-					}
-					this._Site.Entity = value;
-					if ((value != null))
-					{
-						value.TripSites.Add(this);
-						this._site_id = value.site_id;
-					}
-					else
-					{
-						this._site_id = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Site");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SIMS_Site_Master")]
 	public partial class Site : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2332,8 +2112,6 @@ namespace Data
 		
 		private string _alt_basin_nm;
 		
-		private EntitySet<TripSite> _TripSites;
-		
 		private EntitySet<ElemReportApprove> _ElemReportApproves;
 		
 		private EntitySet<ElemReportSum> _ElemReportSums;
@@ -2347,6 +2125,8 @@ namespace Data
 		private EntitySet<Record> _Records;
 		
 		private EntityRef<OpsLevel> _OpsLevel;
+		
+		private EntitySet<TripSite> _TripSites;
 		
 		private EntityRef<Office> _Office;
 		
@@ -2376,7 +2156,6 @@ namespace Data
 		
 		public Site()
 		{
-			this._TripSites = new EntitySet<TripSite>(new Action<TripSite>(this.attach_TripSites), new Action<TripSite>(this.detach_TripSites));
 			this._ElemReportApproves = new EntitySet<ElemReportApprove>(new Action<ElemReportApprove>(this.attach_ElemReportApproves), new Action<ElemReportApprove>(this.detach_ElemReportApproves));
 			this._ElemReportSums = new EntitySet<ElemReportSum>(new Action<ElemReportSum>(this.attach_ElemReportSums), new Action<ElemReportSum>(this.detach_ElemReportSums));
 			this._SHAs = new EntitySet<SHA>(new Action<SHA>(this.attach_SHAs), new Action<SHA>(this.detach_SHAs));
@@ -2384,6 +2163,7 @@ namespace Data
 			this._ElementSite = default(EntityRef<ElementSite>);
 			this._Records = new EntitySet<Record>(new Action<Record>(this.attach_Records), new Action<Record>(this.detach_Records));
 			this._OpsLevel = default(EntityRef<OpsLevel>);
+			this._TripSites = new EntitySet<TripSite>(new Action<TripSite>(this.attach_TripSites), new Action<TripSite>(this.detach_TripSites));
 			this._Office = default(EntityRef<Office>);
 			OnCreated();
 		}
@@ -2572,19 +2352,6 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_TripSite", Storage="_TripSites", ThisKey="site_id", OtherKey="site_id")]
-		public EntitySet<TripSite> TripSites
-		{
-			get
-			{
-				return this._TripSites;
-			}
-			set
-			{
-				this._TripSites.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_ElemReportApprove", Storage="_ElemReportApproves", ThisKey="site_id", OtherKey="site_id")]
 		public EntitySet<ElemReportApprove> ElemReportApproves
 		{
@@ -2724,6 +2491,19 @@ namespace Data
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Trip_Site_Master", Storage="_TripSites", ThisKey="site_id", OtherKey="site_id")]
+		public EntitySet<TripSite> TripSites
+		{
+			get
+			{
+				return this._TripSites;
+			}
+			set
+			{
+				this._TripSites.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Office_Site", Storage="_Office", ThisKey="office_id", OtherKey="office_id", IsForeignKey=true)]
 		public Office Office
 		{
@@ -2778,18 +2558,6 @@ namespace Data
 			}
 		}
 		
-		private void attach_TripSites(TripSite entity)
-		{
-			this.SendPropertyChanging();
-			entity.Site = this;
-		}
-		
-		private void detach_TripSites(TripSite entity)
-		{
-			this.SendPropertyChanging();
-			entity.Site = null;
-		}
-		
 		private void attach_ElemReportApproves(ElemReportApprove entity)
 		{
 			this.SendPropertyChanging();
@@ -2837,194 +2605,17 @@ namespace Data
 			this.SendPropertyChanging();
 			entity.Site = null;
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vSiteMasterList")]
-	public partial class vSiteMasterList
-	{
 		
-		private string _site_no;
-		
-		private string _agency_cd;
-		
-		private string _station_nm;
-		
-		private int _site_id;
-		
-		private System.Nullable<int> _office_id;
-		
-		private string _tel_fg;
-		
-		private System.Nullable<char> _agency_use_cd;
-		
-		private System.Nullable<int> _wsc_id;
-		
-		private string _sims_site_tp;
-		
-		private System.Nullable<int> _trip_id;
-		
-		public vSiteMasterList()
+		private void attach_TripSites(TripSite entity)
 		{
+			this.SendPropertyChanging();
+			entity.Site = this;
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_no", DbType="VarChar(15) NOT NULL", CanBeNull=false)]
-		public string site_no
+		private void detach_TripSites(TripSite entity)
 		{
-			get
-			{
-				return this._site_no;
-			}
-			set
-			{
-				if ((this._site_no != value))
-				{
-					this._site_no = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_agency_cd", DbType="VarChar(5) NOT NULL", CanBeNull=false)]
-		public string agency_cd
-		{
-			get
-			{
-				return this._agency_cd;
-			}
-			set
-			{
-				if ((this._agency_cd != value))
-				{
-					this._agency_cd = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_nm", DbType="VarChar(50)")]
-		public string station_nm
-		{
-			get
-			{
-				return this._station_nm;
-			}
-			set
-			{
-				if ((this._station_nm != value))
-				{
-					this._station_nm = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int NOT NULL")]
-		public int site_id
-		{
-			get
-			{
-				return this._site_id;
-			}
-			set
-			{
-				if ((this._site_id != value))
-				{
-					this._site_id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_id", DbType="Int")]
-		public System.Nullable<int> office_id
-		{
-			get
-			{
-				return this._office_id;
-			}
-			set
-			{
-				if ((this._office_id != value))
-				{
-					this._office_id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tel_fg", DbType="VarChar(3)")]
-		public string tel_fg
-		{
-			get
-			{
-				return this._tel_fg;
-			}
-			set
-			{
-				if ((this._tel_fg != value))
-				{
-					this._tel_fg = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_agency_use_cd", DbType="Char(1)")]
-		public System.Nullable<char> agency_use_cd
-		{
-			get
-			{
-				return this._agency_use_cd;
-			}
-			set
-			{
-				if ((this._agency_use_cd != value))
-				{
-					this._agency_use_cd = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_id", DbType="Int")]
-		public System.Nullable<int> wsc_id
-		{
-			get
-			{
-				return this._wsc_id;
-			}
-			set
-			{
-				if ((this._wsc_id != value))
-				{
-					this._wsc_id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sims_site_tp", DbType="NVarChar(5)")]
-		public string sims_site_tp
-		{
-			get
-			{
-				return this._sims_site_tp;
-			}
-			set
-			{
-				if ((this._sims_site_tp != value))
-				{
-					this._sims_site_tp = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_trip_id", DbType="Int")]
-		public System.Nullable<int> trip_id
-		{
-			get
-			{
-				return this._trip_id;
-			}
-			set
-			{
-				if ((this._trip_id != value))
-				{
-					this._trip_id = value;
-				}
-			}
+			this.SendPropertyChanging();
+			entity.Site = null;
 		}
 	}
 	
@@ -14250,6 +13841,8 @@ namespace Data
 		
 		private EntitySet<RecordAnalysisPeriod> _RecordAnalysisPeriods;
 		
+		private EntitySet<AuditRecord> _AuditRecords;
+		
 		private EntityRef<RecordType> _RecordType;
 		
 		private EntityRef<Site> _Site;
@@ -14290,6 +13883,7 @@ namespace Data
 			this._RecordAnalysisStatus = default(EntityRef<RecordAnalysisStatus>);
 			this._RecordAltOffice = default(EntityRef<RecordAltOffice>);
 			this._RecordAnalysisPeriods = new EntitySet<RecordAnalysisPeriod>(new Action<RecordAnalysisPeriod>(this.attach_RecordAnalysisPeriods), new Action<RecordAnalysisPeriod>(this.detach_RecordAnalysisPeriods));
+			this._AuditRecords = new EntitySet<AuditRecord>(new Action<AuditRecord>(this.attach_AuditRecords), new Action<AuditRecord>(this.detach_AuditRecords));
 			this._RecordType = default(EntityRef<RecordType>);
 			this._Site = default(EntityRef<Site>);
 			OnCreated();
@@ -14649,6 +14243,19 @@ namespace Data
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RMS_Audit_Record", Storage="_AuditRecords", ThisKey="rms_record_id", OtherKey="rms_record_id")]
+		public EntitySet<AuditRecord> AuditRecords
+		{
+			get
+			{
+				return this._AuditRecords;
+			}
+			set
+			{
+				this._AuditRecords.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordType_Record", Storage="_RecordType", ThisKey="record_type_id", OtherKey="record_type_id", IsForeignKey=true)]
 		public RecordType RecordType
 		{
@@ -14768,6 +14375,18 @@ namespace Data
 		}
 		
 		private void detach_RecordAnalysisPeriods(RecordAnalysisPeriod entity)
+		{
+			this.SendPropertyChanging();
+			entity.Record = null;
+		}
+		
+		private void attach_AuditRecords(AuditRecord entity)
+		{
+			this.SendPropertyChanging();
+			entity.Record = this;
+		}
+		
+		private void detach_AuditRecords(AuditRecord entity)
 		{
 			this.SendPropertyChanging();
 			entity.Record = null;
@@ -16194,6 +15813,1177 @@ namespace Data
 					this._revisions = value;
 					this.SendPropertyChanged("revisions");
 					this.OnrevisionsChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vSiteMasterList")]
+	public partial class vSiteMasterList
+	{
+		
+		private string _site_no;
+		
+		private string _agency_cd;
+		
+		private string _station_nm;
+		
+		private int _site_id;
+		
+		private System.Nullable<int> _office_id;
+		
+		private string _tel_fg;
+		
+		private System.Nullable<char> _agency_use_cd;
+		
+		private System.Nullable<int> _wsc_id;
+		
+		private string _sims_site_tp;
+		
+		public vSiteMasterList()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_no", DbType="VarChar(15) NOT NULL", CanBeNull=false)]
+		public string site_no
+		{
+			get
+			{
+				return this._site_no;
+			}
+			set
+			{
+				if ((this._site_no != value))
+				{
+					this._site_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_agency_cd", DbType="VarChar(5) NOT NULL", CanBeNull=false)]
+		public string agency_cd
+		{
+			get
+			{
+				return this._agency_cd;
+			}
+			set
+			{
+				if ((this._agency_cd != value))
+				{
+					this._agency_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_nm", DbType="VarChar(50)")]
+		public string station_nm
+		{
+			get
+			{
+				return this._station_nm;
+			}
+			set
+			{
+				if ((this._station_nm != value))
+				{
+					this._station_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int NOT NULL")]
+		public int site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					this._site_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_id", DbType="Int")]
+		public System.Nullable<int> office_id
+		{
+			get
+			{
+				return this._office_id;
+			}
+			set
+			{
+				if ((this._office_id != value))
+				{
+					this._office_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tel_fg", DbType="VarChar(3)")]
+		public string tel_fg
+		{
+			get
+			{
+				return this._tel_fg;
+			}
+			set
+			{
+				if ((this._tel_fg != value))
+				{
+					this._tel_fg = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_agency_use_cd", DbType="Char(1)")]
+		public System.Nullable<char> agency_use_cd
+		{
+			get
+			{
+				return this._agency_use_cd;
+			}
+			set
+			{
+				if ((this._agency_use_cd != value))
+				{
+					this._agency_use_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_id", DbType="Int")]
+		public System.Nullable<int> wsc_id
+		{
+			get
+			{
+				return this._wsc_id;
+			}
+			set
+			{
+				if ((this._wsc_id != value))
+				{
+					this._wsc_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sims_site_tp", DbType="NVarChar(5)")]
+		public string sims_site_tp
+		{
+			get
+			{
+				return this._sims_site_tp;
+			}
+			set
+			{
+				if ((this._sims_site_tp != value))
+				{
+					this._sims_site_tp = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Audit_Master")]
+	public partial class Audit : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _rms_audit_id;
+		
+		private System.Nullable<System.DateTime> _audit_beg_dt;
+		
+		private System.Nullable<System.DateTime> _audit_end_dt;
+		
+		private string _audit_by;
+		
+		private System.Nullable<System.DateTime> _audit_dt;
+		
+		private System.Nullable<int> _audit_type_id;
+		
+		private System.Nullable<int> _audit_results_id;
+		
+		private string _audit_reason;
+		
+		private string _audit_data;
+		
+		private string _audit_findings;
+		
+		private EntitySet<AuditRecord> _AuditRecords;
+		
+		private EntityRef<AuditResult> _AuditResult;
+		
+		private EntityRef<AuditType> _AuditType;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onrms_audit_idChanging(int value);
+    partial void Onrms_audit_idChanged();
+    partial void Onaudit_beg_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onaudit_beg_dtChanged();
+    partial void Onaudit_end_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onaudit_end_dtChanged();
+    partial void Onaudit_byChanging(string value);
+    partial void Onaudit_byChanged();
+    partial void Onaudit_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onaudit_dtChanged();
+    partial void Onaudit_type_idChanging(System.Nullable<int> value);
+    partial void Onaudit_type_idChanged();
+    partial void Onaudit_results_idChanging(System.Nullable<int> value);
+    partial void Onaudit_results_idChanged();
+    partial void Onaudit_reasonChanging(string value);
+    partial void Onaudit_reasonChanged();
+    partial void Onaudit_dataChanging(string value);
+    partial void Onaudit_dataChanged();
+    partial void Onaudit_findingsChanging(string value);
+    partial void Onaudit_findingsChanged();
+    #endregion
+		
+		public Audit()
+		{
+			this._AuditRecords = new EntitySet<AuditRecord>(new Action<AuditRecord>(this.attach_AuditRecords), new Action<AuditRecord>(this.detach_AuditRecords));
+			this._AuditResult = default(EntityRef<AuditResult>);
+			this._AuditType = default(EntityRef<AuditType>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_audit_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int rms_audit_id
+		{
+			get
+			{
+				return this._rms_audit_id;
+			}
+			set
+			{
+				if ((this._rms_audit_id != value))
+				{
+					this.Onrms_audit_idChanging(value);
+					this.SendPropertyChanging();
+					this._rms_audit_id = value;
+					this.SendPropertyChanged("rms_audit_id");
+					this.Onrms_audit_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_beg_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> audit_beg_dt
+		{
+			get
+			{
+				return this._audit_beg_dt;
+			}
+			set
+			{
+				if ((this._audit_beg_dt != value))
+				{
+					this.Onaudit_beg_dtChanging(value);
+					this.SendPropertyChanging();
+					this._audit_beg_dt = value;
+					this.SendPropertyChanged("audit_beg_dt");
+					this.Onaudit_beg_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_end_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> audit_end_dt
+		{
+			get
+			{
+				return this._audit_end_dt;
+			}
+			set
+			{
+				if ((this._audit_end_dt != value))
+				{
+					this.Onaudit_end_dtChanging(value);
+					this.SendPropertyChanging();
+					this._audit_end_dt = value;
+					this.SendPropertyChanged("audit_end_dt");
+					this.Onaudit_end_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_by", DbType="NVarChar(20)")]
+		public string audit_by
+		{
+			get
+			{
+				return this._audit_by;
+			}
+			set
+			{
+				if ((this._audit_by != value))
+				{
+					this.Onaudit_byChanging(value);
+					this.SendPropertyChanging();
+					this._audit_by = value;
+					this.SendPropertyChanged("audit_by");
+					this.Onaudit_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> audit_dt
+		{
+			get
+			{
+				return this._audit_dt;
+			}
+			set
+			{
+				if ((this._audit_dt != value))
+				{
+					this.Onaudit_dtChanging(value);
+					this.SendPropertyChanging();
+					this._audit_dt = value;
+					this.SendPropertyChanged("audit_dt");
+					this.Onaudit_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_type_id", DbType="Int")]
+		public System.Nullable<int> audit_type_id
+		{
+			get
+			{
+				return this._audit_type_id;
+			}
+			set
+			{
+				if ((this._audit_type_id != value))
+				{
+					if (this._AuditType.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onaudit_type_idChanging(value);
+					this.SendPropertyChanging();
+					this._audit_type_id = value;
+					this.SendPropertyChanged("audit_type_id");
+					this.Onaudit_type_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_results_id", DbType="Int")]
+		public System.Nullable<int> audit_results_id
+		{
+			get
+			{
+				return this._audit_results_id;
+			}
+			set
+			{
+				if ((this._audit_results_id != value))
+				{
+					if (this._AuditResult.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onaudit_results_idChanging(value);
+					this.SendPropertyChanging();
+					this._audit_results_id = value;
+					this.SendPropertyChanged("audit_results_id");
+					this.Onaudit_results_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_reason", DbType="NVarChar(MAX)")]
+		public string audit_reason
+		{
+			get
+			{
+				return this._audit_reason;
+			}
+			set
+			{
+				if ((this._audit_reason != value))
+				{
+					this.Onaudit_reasonChanging(value);
+					this.SendPropertyChanging();
+					this._audit_reason = value;
+					this.SendPropertyChanged("audit_reason");
+					this.Onaudit_reasonChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_data", DbType="NVarChar(MAX)")]
+		public string audit_data
+		{
+			get
+			{
+				return this._audit_data;
+			}
+			set
+			{
+				if ((this._audit_data != value))
+				{
+					this.Onaudit_dataChanging(value);
+					this.SendPropertyChanging();
+					this._audit_data = value;
+					this.SendPropertyChanged("audit_data");
+					this.Onaudit_dataChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_findings", DbType="NVarChar(MAX)")]
+		public string audit_findings
+		{
+			get
+			{
+				return this._audit_findings;
+			}
+			set
+			{
+				if ((this._audit_findings != value))
+				{
+					this.Onaudit_findingsChanging(value);
+					this.SendPropertyChanging();
+					this._audit_findings = value;
+					this.SendPropertyChanged("audit_findings");
+					this.Onaudit_findingsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Audit_Master_RMS_Audit_Record", Storage="_AuditRecords", ThisKey="rms_audit_id", OtherKey="rms_audit_id")]
+		public EntitySet<AuditRecord> AuditRecords
+		{
+			get
+			{
+				return this._AuditRecords;
+			}
+			set
+			{
+				this._AuditRecords.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_lut_AuditResult_RMS_Audit_Master", Storage="_AuditResult", ThisKey="audit_results_id", OtherKey="audit_results_id", IsForeignKey=true)]
+		public AuditResult AuditResult
+		{
+			get
+			{
+				return this._AuditResult.Entity;
+			}
+			set
+			{
+				AuditResult previousValue = this._AuditResult.Entity;
+				if (((previousValue != value) 
+							|| (this._AuditResult.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._AuditResult.Entity = null;
+						previousValue.Audits.Remove(this);
+					}
+					this._AuditResult.Entity = value;
+					if ((value != null))
+					{
+						value.Audits.Add(this);
+						this._audit_results_id = value.audit_results_id;
+					}
+					else
+					{
+						this._audit_results_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("AuditResult");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_lut_AuditType_RMS_Audit_Master", Storage="_AuditType", ThisKey="audit_type_id", OtherKey="audit_type_id", IsForeignKey=true)]
+		public AuditType AuditType
+		{
+			get
+			{
+				return this._AuditType.Entity;
+			}
+			set
+			{
+				AuditType previousValue = this._AuditType.Entity;
+				if (((previousValue != value) 
+							|| (this._AuditType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._AuditType.Entity = null;
+						previousValue.Audits.Remove(this);
+					}
+					this._AuditType.Entity = value;
+					if ((value != null))
+					{
+						value.Audits.Add(this);
+						this._audit_type_id = value.audit_type_id;
+					}
+					else
+					{
+						this._audit_type_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("AuditType");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_AuditRecords(AuditRecord entity)
+		{
+			this.SendPropertyChanging();
+			entity.Audit = this;
+		}
+		
+		private void detach_AuditRecords(AuditRecord entity)
+		{
+			this.SendPropertyChanging();
+			entity.Audit = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Audit_Record")]
+	public partial class AuditRecord : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _rms_audit_record_id;
+		
+		private System.Nullable<int> _rms_audit_id;
+		
+		private System.Nullable<int> _rms_record_id;
+		
+		private EntityRef<Audit> _Audit;
+		
+		private EntityRef<Record> _Record;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onrms_audit_record_idChanging(int value);
+    partial void Onrms_audit_record_idChanged();
+    partial void Onrms_audit_idChanging(System.Nullable<int> value);
+    partial void Onrms_audit_idChanged();
+    partial void Onrms_record_idChanging(System.Nullable<int> value);
+    partial void Onrms_record_idChanged();
+    #endregion
+		
+		public AuditRecord()
+		{
+			this._Audit = default(EntityRef<Audit>);
+			this._Record = default(EntityRef<Record>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_audit_record_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int rms_audit_record_id
+		{
+			get
+			{
+				return this._rms_audit_record_id;
+			}
+			set
+			{
+				if ((this._rms_audit_record_id != value))
+				{
+					this.Onrms_audit_record_idChanging(value);
+					this.SendPropertyChanging();
+					this._rms_audit_record_id = value;
+					this.SendPropertyChanged("rms_audit_record_id");
+					this.Onrms_audit_record_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_audit_id", DbType="Int")]
+		public System.Nullable<int> rms_audit_id
+		{
+			get
+			{
+				return this._rms_audit_id;
+			}
+			set
+			{
+				if ((this._rms_audit_id != value))
+				{
+					if (this._Audit.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onrms_audit_idChanging(value);
+					this.SendPropertyChanging();
+					this._rms_audit_id = value;
+					this.SendPropertyChanged("rms_audit_id");
+					this.Onrms_audit_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int")]
+		public System.Nullable<int> rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					if (this._Record.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onrms_record_idChanging(value);
+					this.SendPropertyChanging();
+					this._rms_record_id = value;
+					this.SendPropertyChanged("rms_record_id");
+					this.Onrms_record_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Audit_Master_RMS_Audit_Record", Storage="_Audit", ThisKey="rms_audit_id", OtherKey="rms_audit_id", IsForeignKey=true)]
+		public Audit Audit
+		{
+			get
+			{
+				return this._Audit.Entity;
+			}
+			set
+			{
+				Audit previousValue = this._Audit.Entity;
+				if (((previousValue != value) 
+							|| (this._Audit.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Audit.Entity = null;
+						previousValue.AuditRecords.Remove(this);
+					}
+					this._Audit.Entity = value;
+					if ((value != null))
+					{
+						value.AuditRecords.Add(this);
+						this._rms_audit_id = value.rms_audit_id;
+					}
+					else
+					{
+						this._rms_audit_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Audit");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RMS_Audit_Record", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		public Record Record
+		{
+			get
+			{
+				return this._Record.Entity;
+			}
+			set
+			{
+				Record previousValue = this._Record.Entity;
+				if (((previousValue != value) 
+							|| (this._Record.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Record.Entity = null;
+						previousValue.AuditRecords.Remove(this);
+					}
+					this._Record.Entity = value;
+					if ((value != null))
+					{
+						value.AuditRecords.Add(this);
+						this._rms_record_id = value.rms_record_id;
+					}
+					else
+					{
+						this._rms_record_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Record");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_lut_AuditResults")]
+	public partial class AuditResult : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _audit_results_id;
+		
+		private string _description;
+		
+		private EntitySet<Audit> _Audits;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onaudit_results_idChanging(int value);
+    partial void Onaudit_results_idChanged();
+    partial void OndescriptionChanging(string value);
+    partial void OndescriptionChanged();
+    #endregion
+		
+		public AuditResult()
+		{
+			this._Audits = new EntitySet<Audit>(new Action<Audit>(this.attach_Audits), new Action<Audit>(this.detach_Audits));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_results_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int audit_results_id
+		{
+			get
+			{
+				return this._audit_results_id;
+			}
+			set
+			{
+				if ((this._audit_results_id != value))
+				{
+					this.Onaudit_results_idChanging(value);
+					this.SendPropertyChanging();
+					this._audit_results_id = value;
+					this.SendPropertyChanged("audit_results_id");
+					this.Onaudit_results_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="NVarChar(MAX)")]
+		public string description
+		{
+			get
+			{
+				return this._description;
+			}
+			set
+			{
+				if ((this._description != value))
+				{
+					this.OndescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._description = value;
+					this.SendPropertyChanged("description");
+					this.OndescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_lut_AuditResult_RMS_Audit_Master", Storage="_Audits", ThisKey="audit_results_id", OtherKey="audit_results_id")]
+		public EntitySet<Audit> Audits
+		{
+			get
+			{
+				return this._Audits;
+			}
+			set
+			{
+				this._Audits.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Audits(Audit entity)
+		{
+			this.SendPropertyChanging();
+			entity.AuditResult = this;
+		}
+		
+		private void detach_Audits(Audit entity)
+		{
+			this.SendPropertyChanging();
+			entity.AuditResult = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_lut_AuditType")]
+	public partial class AuditType : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _audit_type_id;
+		
+		private string _description;
+		
+		private EntitySet<Audit> _Audits;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onaudit_type_idChanging(int value);
+    partial void Onaudit_type_idChanged();
+    partial void OndescriptionChanging(string value);
+    partial void OndescriptionChanged();
+    #endregion
+		
+		public AuditType()
+		{
+			this._Audits = new EntitySet<Audit>(new Action<Audit>(this.attach_Audits), new Action<Audit>(this.detach_Audits));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_type_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int audit_type_id
+		{
+			get
+			{
+				return this._audit_type_id;
+			}
+			set
+			{
+				if ((this._audit_type_id != value))
+				{
+					this.Onaudit_type_idChanging(value);
+					this.SendPropertyChanging();
+					this._audit_type_id = value;
+					this.SendPropertyChanged("audit_type_id");
+					this.Onaudit_type_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="NVarChar(MAX)")]
+		public string description
+		{
+			get
+			{
+				return this._description;
+			}
+			set
+			{
+				if ((this._description != value))
+				{
+					this.OndescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._description = value;
+					this.SendPropertyChanged("description");
+					this.OndescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_lut_AuditType_RMS_Audit_Master", Storage="_Audits", ThisKey="audit_type_id", OtherKey="audit_type_id")]
+		public EntitySet<Audit> Audits
+		{
+			get
+			{
+				return this._Audits;
+			}
+			set
+			{
+				this._Audits.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Audits(Audit entity)
+		{
+			this.SendPropertyChanging();
+			entity.AuditType = this;
+		}
+		
+		private void detach_Audits(Audit entity)
+		{
+			this.SendPropertyChanging();
+			entity.AuditType = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Trip_Site_Master")]
+	public partial class TripSite : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _trip_site_id;
+		
+		private System.Nullable<int> _trip_id;
+		
+		private System.Nullable<int> _site_id;
+		
+		private EntityRef<Site> _Site;
+		
+		private EntityRef<Trip> _Trip;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Ontrip_site_idChanging(int value);
+    partial void Ontrip_site_idChanged();
+    partial void Ontrip_idChanging(System.Nullable<int> value);
+    partial void Ontrip_idChanged();
+    partial void Onsite_idChanging(System.Nullable<int> value);
+    partial void Onsite_idChanged();
+    #endregion
+		
+		public TripSite()
+		{
+			this._Site = default(EntityRef<Site>);
+			this._Trip = default(EntityRef<Trip>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_trip_site_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int trip_site_id
+		{
+			get
+			{
+				return this._trip_site_id;
+			}
+			set
+			{
+				if ((this._trip_site_id != value))
+				{
+					this.Ontrip_site_idChanging(value);
+					this.SendPropertyChanging();
+					this._trip_site_id = value;
+					this.SendPropertyChanged("trip_site_id");
+					this.Ontrip_site_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_trip_id", DbType="Int")]
+		public System.Nullable<int> trip_id
+		{
+			get
+			{
+				return this._trip_id;
+			}
+			set
+			{
+				if ((this._trip_id != value))
+				{
+					if (this._Trip.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Ontrip_idChanging(value);
+					this.SendPropertyChanging();
+					this._trip_id = value;
+					this.SendPropertyChanged("trip_id");
+					this.Ontrip_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int")]
+		public System.Nullable<int> site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					if (this._Site.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onsite_idChanging(value);
+					this.SendPropertyChanging();
+					this._site_id = value;
+					this.SendPropertyChanged("site_id");
+					this.Onsite_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Trip_Site_Master", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		public Site Site
+		{
+			get
+			{
+				return this._Site.Entity;
+			}
+			set
+			{
+				Site previousValue = this._Site.Entity;
+				if (((previousValue != value) 
+							|| (this._Site.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Site.Entity = null;
+						previousValue.TripSites.Remove(this);
+					}
+					this._Site.Entity = value;
+					if ((value != null))
+					{
+						value.TripSites.Add(this);
+						this._site_id = value.site_id;
+					}
+					else
+					{
+						this._site_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Site");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Trip_Trip_Site_Master", Storage="_Trip", ThisKey="trip_id", OtherKey="trip_id", IsForeignKey=true)]
+		public Trip Trip
+		{
+			get
+			{
+				return this._Trip.Entity;
+			}
+			set
+			{
+				Trip previousValue = this._Trip.Entity;
+				if (((previousValue != value) 
+							|| (this._Trip.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Trip.Entity = null;
+						previousValue.TripSites.Remove(this);
+					}
+					this._Trip.Entity = value;
+					if ((value != null))
+					{
+						value.TripSites.Add(this);
+						this._trip_id = value.trip_id;
+					}
+					else
+					{
+						this._trip_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Trip");
 				}
 			}
 		}

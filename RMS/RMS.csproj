@@ -125,6 +125,7 @@
     <Content Include="App_Data\RadCaptcha\X.wav" />
     <Content Include="App_Data\RadCaptcha\Y.wav" />
     <Content Include="App_Data\RadCaptcha\Z.wav" />
+    <Content Include="AuditReport.aspx" />
     <Content Include="Control\RecordPageHeading.ascx" />
     <Content Include="images\lock.png" />
     <Content Include="images\lock_sm.png" />
@@ -134,11 +135,12 @@
     <Content Include="images\save_sm.png" />
     <Content Include="images\USGSHeaderLogoRMS.png" />
     <Content Include="Modal\Instructions.aspx" />
-    <Content Include="RecordAudit.aspx" />
+    <Content Include="AuditPeriod.aspx" />
     <Content Include="RecordProcess.aspx" />
     <Content Include="Modal\ReportPopup.aspx" />
     <Content Include="RMS.Master" />
     <Content Include="RMSSingleMenu.Master" />
+    <Content Include="styles\audit.css" />
     <Content Include="styles\recordprocess.css" />
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +150,13 @@
     <Content Include="styles\default.css" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuditReport.aspx.cs">
+      <DependentUpon>AuditReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AuditReport.aspx.designer.cs">
+      <DependentUpon>AuditReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Control\RecordPageHeading.ascx.cs">
       <DependentUpon>RecordPageHeading.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -165,12 +174,12 @@
     <Compile Include="Modal\Instructions.aspx.designer.cs">
       <DependentUpon>Instructions.aspx</DependentUpon>
     </Compile>
-    <Compile Include="RecordAudit.aspx.cs">
-      <DependentUpon>RecordAudit.aspx</DependentUpon>
+    <Compile Include="AuditPeriod.aspx.cs">
+      <DependentUpon>AuditPeriod.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="RecordAudit.aspx.designer.cs">
-      <DependentUpon>RecordAudit.aspx</DependentUpon>
+    <Compile Include="AuditPeriod.aspx.designer.cs">
+      <DependentUpon>AuditPeriod.aspx</DependentUpon>
     </Compile>
     <Compile Include="RecordProcess.aspx.cs">
       <DependentUpon>RecordProcess.aspx</DependentUpon>
@@ -267,7 +276,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

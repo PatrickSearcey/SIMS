@@ -61,19 +61,7 @@
       <Column Name="user_id" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="trip_desc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="gen_trip_desc" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Trip_TripSite" Member="TripSites" ThisKey="trip_id" OtherKey="trip_id" Type="TripSite" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Trip_Site_Master" Member="TripSites">
-    <Type Name="TripSite">
-      <Column Name="trip_site_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="trip_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="station_type_cd" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
-      <Column Name="index_map_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="remarks" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Association Name="Trip_TripSite" Member="Trip" ThisKey="trip_id" OtherKey="trip_id" Type="Trip" IsForeignKey="true" />
-      <Association Name="Site_TripSite" Member="Site" ThisKey="site_id" OtherKey="site_id" Type="Site" IsForeignKey="true" />
+      <Association Name="Trip_Trip_Site_Master" Member="TripSites" ThisKey="trip_id" OtherKey="trip_id" Type="TripSite" />
     </Type>
   </Table>
   <Table Name="dbo.SIMS_Site_Master" Member="Sites">
@@ -87,7 +75,6 @@
       <Column Name="station_full_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
       <Column Name="office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="alt_basin_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Association Name="Site_TripSite" Member="TripSites" ThisKey="site_id" OtherKey="site_id" Type="TripSite" />
       <Association Name="Site_ElemReportApprove" Member="ElemReportApproves" ThisKey="site_id" OtherKey="site_id" Type="ElemReportApprove" />
       <Association Name="Site_ElemReportSum" Member="ElemReportSums" ThisKey="site_id" OtherKey="site_id" Type="ElemReportSum" />
       <Association Name="Site_SHA" Member="SHAs" ThisKey="site_id" OtherKey="site_id" Type="SHA" />
@@ -95,21 +82,8 @@
       <Association Name="Site_ElementSite" Member="ElementSite" ThisKey="site_id" OtherKey="site_id" Type="ElementSite" Cardinality="One" />
       <Association Name="Site_Record" Member="Records" ThisKey="site_id" OtherKey="site_id" Type="Record" />
       <Association Name="Site_OpsLevel" Member="OpsLevel" ThisKey="site_id" OtherKey="site_id" Type="OpsLevel" Cardinality="One" />
+      <Association Name="Site_Trip_Site_Master" Member="TripSites" ThisKey="site_id" OtherKey="site_id" Type="TripSite" />
       <Association Name="Office_Site" Member="Office" ThisKey="office_id" OtherKey="office_id" Type="Office" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.vSiteMasterList" Member="vSiteMasterLists">
-    <Type Name="vSiteMasterList">
-      <Column Name="site_no" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
-      <Column Name="agency_cd" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
-      <Column Name="station_nm" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="site_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="tel_fg" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
-      <Column Name="agency_use_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
-      <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="sims_site_tp" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
-      <Column Name="trip_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.lut_Exception" Member="Exceptions">
@@ -705,6 +679,7 @@
       <Association Name="Record_RecordAnalysisStatus" Member="RecordAnalysisStatus" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="RecordAnalysisStatus" Cardinality="One" />
       <Association Name="Record_RecordAltOffice" Member="RecordAltOffice" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="RecordAltOffice" Cardinality="One" />
       <Association Name="Record_RecordAnalysisPeriod" Member="RecordAnalysisPeriods" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="RecordAnalysisPeriod" />
+      <Association Name="Record_RMS_Audit_Record" Member="AuditRecords" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="AuditRecord" />
       <Association Name="RecordType_Record" Member="RecordType" ThisKey="record_type_id" OtherKey="record_type_id" Type="RecordType" IsForeignKey="true" />
       <Association Name="Site_Record" Member="Site" ThisKey="site_id" OtherKey="site_id" Type="Site" IsForeignKey="true" />
     </Type>
@@ -789,9 +764,71 @@
       <Column Name="element_id" Type="System.Int32" DbType="int" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="element_nm" Type="System.String" DbType="nvarchar(60)" CanBeNull="false" />
       <Column Name="priority" Type="System.Int16" DbType="smallint" CanBeNull="false" />
-      <Column Member="first_revised" Type="System.String" CanBeNull="false" />
-      <Column Member="last_revised" Type="System.String" CanBeNull="false" />
-      <Column Member="revisions" Type="System.Int32" CanBeNull="false" />
+      <Column Name="first_revised" Type="System.String" CanBeNull="false" />
+      <Column Name="last_revised" Type="System.String" CanBeNull="false" />
+      <Column Name="revisions" Type="System.Int32" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vSiteMasterList" Member="vSiteMasterLists">
+    <Type Name="vSiteMasterList">
+      <Column Name="site_no" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="agency_cd" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="station_nm" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="site_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tel_fg" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Column Name="agency_use_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sims_site_tp" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RMS_Audit_Master" Member="Audits">
+    <Type Name="Audit">
+      <Column Name="rms_audit_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="audit_beg_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="audit_end_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="audit_by" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="audit_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="audit_type_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="audit_results_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="audit_reason" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="audit_data" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="audit_findings" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="RMS_Audit_Master_RMS_Audit_Record" Member="AuditRecords" ThisKey="rms_audit_id" OtherKey="rms_audit_id" Type="AuditRecord" />
+      <Association Name="RMS_lut_AuditResult_RMS_Audit_Master" Member="AuditResult" ThisKey="audit_results_id" OtherKey="audit_results_id" Type="AuditResult" IsForeignKey="true" />
+      <Association Name="RMS_lut_AuditType_RMS_Audit_Master" Member="AuditType" ThisKey="audit_type_id" OtherKey="audit_type_id" Type="AuditType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RMS_Audit_Record" Member="AuditRecords">
+    <Type Name="AuditRecord">
+      <Column Name="rms_audit_record_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="rms_audit_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="rms_record_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="RMS_Audit_Master_RMS_Audit_Record" Member="Audit" ThisKey="rms_audit_id" OtherKey="rms_audit_id" Type="Audit" IsForeignKey="true" />
+      <Association Name="Record_RMS_Audit_Record" Member="Record" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="Record" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RMS_lut_AuditResults" Member="AuditResults">
+    <Type Name="AuditResult">
+      <Column Name="audit_results_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="RMS_lut_AuditResult_RMS_Audit_Master" Member="Audits" ThisKey="audit_results_id" OtherKey="audit_results_id" Type="Audit" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RMS_lut_AuditType" Member="AuditTypes">
+    <Type Name="AuditType">
+      <Column Name="audit_type_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="RMS_lut_AuditType_RMS_Audit_Master" Member="Audits" ThisKey="audit_type_id" OtherKey="audit_type_id" Type="Audit" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Trip_Site_Master" Member="TripSites">
+    <Type Name="TripSite">
+      <Column Name="trip_site_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="trip_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Site_Trip_Site_Master" Member="Site" ThisKey="site_id" OtherKey="site_id" Type="Site" IsForeignKey="true" />
+      <Association Name="Trip_Trip_Site_Master" Member="Trip" ThisKey="trip_id" OtherKey="trip_id" Type="Trip" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">
