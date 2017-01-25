@@ -39,7 +39,6 @@ img {
 
 button,
 input {
-  -webkit-appearance: none; 
   cursor: pointer; 
 }
 
@@ -161,4 +160,19 @@ div.RadMenuPopup,
 }
 .rlbHovered {
     background-color: #f0eac8 !important;
+}
+
+/*RadDateSelector*/
+.RadCalendarMonthView_Bootstrap #rcMView_OK {
+    border-color: #f0eac8 !important;
+    background-color: #f0eac8 !important;
+}
+
+.RadCalendarMonthView_Bootstrap .rcSelected a {
+    background: #f0eac8 !important;
+}
+
+.RadCalendar_Bootstrap .rcMain .rcRow .rcSelected a {
+    border-color: #f0eac8 !important;
+    background: #f0eac8 !important;
 }

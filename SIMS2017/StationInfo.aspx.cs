@@ -606,7 +606,7 @@ namespace SIMS2017
                     pnlRecord.Visible = true;
                     pnlInactive.Visible = false;
 
-                    hlAuditRecord.NavigateUrl = String.Format("{0}RecordAudit.aspx?rms_record_id={1}", Config.RMSURL, rec.rms_record_id);
+                    hlAuditRecord.NavigateUrl = String.Format("{0}AuditPeriod.aspx?rms_record_id={1}", Config.RMSURL, rec.rms_record_id);
 
                     //Grab all the years with a record period
                     var years = db.SP_RMS_WYs_with_periods(rec.rms_record_id).ToList();

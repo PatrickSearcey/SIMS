@@ -212,12 +212,12 @@ namespace SIMS2017.StationDoc
                         break;
                     case "Edit":
                         //Populate fields
-                        ltlRevisedBy.Text = String.Format("Last Revised By: {0} &nbsp;&nbsp;Date Last Revised: {1:MM/dd/yyyy}", currSite.ElementSite.SiteElements.FirstOrDefault(p => p.element_id == element_id).revised_by, currSite.ElementSite.SiteElements.FirstOrDefault(p => p.element_id == element_id).revised_dt);
+                        ltlRevisedBy.Text = String.Format("Last Revised By: {0} &nbsp;&nbsp;Date Last Revised: {1:MM/dd/yyyy}", currSite.SiteElements.FirstOrDefault(p => p.element_id == element_id).revised_by, currSite.SiteElements.FirstOrDefault(p => p.element_id == element_id).revised_dt);
                         hlArchives.NavigateUrl = String.Format("Archive.aspx?element_id={0}&site_id={1}", element_id, currSite.site_id);
                         ltlResultHeading.Text = "Edit element: " + element.element_nm;
                         rtbRevisedBy.Text = user.ID;
                         rtbRevisedDate.Text = String.Format("{0:MM/dd/yyyy}", DateTime.Now);
-                        reElementInfo.Content = currSite.ElementSite.SiteElements.FirstOrDefault(p => p.element_id == element_id).element_info.FormatParagraphEdit();
+                        reElementInfo.Content = currSite.SiteElements.FirstOrDefault(p => p.element_id == element_id).element_info.FormatParagraphEdit();
                         //DATE OF LAST LEVELS
                         if (element_id == 9)
                         {
@@ -240,7 +240,7 @@ namespace SIMS2017.StationDoc
                                 rbReset.Visible = false;
                                 rbCancel1.Visible = false;
                                 //DOLL Specific
-                                ltlDOLLInfo.Text = currSite.ElementSite.SiteElements.FirstOrDefault(p => p.element_id == element_id).element_info.FormatParagraphOut();
+                                ltlDOLLInfo.Text = currSite.SiteElements.FirstOrDefault(p => p.element_id == element_id).element_info.FormatParagraphOut();
                                 ltlSLAP.Text = "<p style='font-weight:bold;'><b>DATE OF LAST LEVELS is auto-generated from information managed in SLAP. ";
                                 hlSLAP.Text = "Go to SLAP now!</p>";
                                 hlSLAP.NavigateUrl = String.Format("{0}EventManager.aspx?sims_site_id={1}", Config.SLAPURL, currSite.site_id);
@@ -260,7 +260,7 @@ namespace SIMS2017.StationDoc
                     case "Delete":
                         //Populate fields
                         ltlResultHeading.Text = "Delete element: " + element.element_nm;
-                        rtbElementInfo.Text = currSite.ElementSite.SiteElements.FirstOrDefault(p => p.element_id == element_id).element_info.FormatParagraphTextBox();
+                        rtbElementInfo.Text = currSite.SiteElements.FirstOrDefault(p => p.element_id == element_id).element_info.FormatParagraphTextBox();
 
                         //Setup control visibility
                         ltlRevisedBy.Visible = false;
@@ -294,7 +294,7 @@ namespace SIMS2017.StationDoc
                     break;
                 case "Reset":
                     //Replace the element info inside of the reElementInfo content with the element info in the database
-                    reElementInfo.Content = currSite.ElementSite.SiteElements.FirstOrDefault(p => p.element_id == element_id).element_info;
+                    reElementInfo.Content = currSite.SiteElements.FirstOrDefault(p => p.element_id == element_id).element_info;
                     break;
                 case "Delete":
                     //Back up and delete the element from the database for this site
@@ -344,7 +344,7 @@ namespace SIMS2017.StationDoc
         protected void EditElement()
         {
             //Grab the element object using the element_id from the rddlElement drop down
-            var elem = currSite.ElementSite.SiteElements.FirstOrDefault(p => p.element_id == element_id);
+            var elem = currSite.SiteElements.FirstOrDefault(p => p.element_id == element_id);
 
             string element_info = "&nbsp;";
             if (!string.IsNullOrEmpty(reElementInfo.Content))
@@ -407,7 +407,7 @@ namespace SIMS2017.StationDoc
         /// </summary>
         protected void BackupElement()
         {
-            var oldElem = currSite.ElementSite.SiteElements.FirstOrDefault(p => p.element_id == element_id);
+            var oldElem = currSite.SiteElements.FirstOrDefault(p => p.element_id == element_id);
 
             Data.SiteElementBackup backup = new Data.SiteElementBackup();
 
@@ -434,7 +434,7 @@ namespace SIMS2017.StationDoc
         protected void DeleteElement()
         {
             //Delete the element from the Elem_Site_Element table
-            db.SiteElements.DeleteOnSubmit(currSite.ElementSite.SiteElements.FirstOrDefault(p => p.element_id == element_id));
+            db.SiteElements.DeleteOnSubmit(currSite.SiteElements.FirstOrDefault(p => p.element_id == element_id));
 
             //If this is the Date Of Last Levels element, make sure to remove the record from the Ops Levels table
             if (element_id == 9)
@@ -468,7 +468,7 @@ namespace SIMS2017.StationDoc
                 //If deleting or editing, then just grab the list of currently assigned elements for the site
                 if (rrblAction.SelectedValue == "Delete" || rrblAction.SelectedValue == "Edit")
                 {
-                    rddlElements.DataSource = currSite.ElementSite.SiteElements.Select(p => new { element_id = p.element_id, element_nm = p.ElementDetail.element_nm }).OrderBy(p => p.element_nm).ToList();
+                    rddlElements.DataSource = currSite.SiteElements.Select(p => new { element_id = p.element_id, element_nm = p.ElementDetail.element_nm }).OrderBy(p => p.element_nm).ToList();
                     
                 }
                 else //If adding new elements, have to figure out which elements are available to add
@@ -477,7 +477,7 @@ namespace SIMS2017.StationDoc
                     int site_type_id = Convert.ToInt32(db.SiteTypes.FirstOrDefault(p => p.site_tp_cd == db.vSITEFILEs.FirstOrDefault(s => s.site_id == currSite.nwisweb_site_id).site_tp_cd).sims_site_tp_id);
                     string site_type = GetSiteType(site_type_id);
                     //Grab all of the elements currently assigned to the site and put them into a list of ElementDetail objects
-                    var currElems = currSite.ElementSite.SiteElements.Select(p => new Data.ElementDetail {
+                    var currElems = currSite.SiteElements.Select(p => new Data.ElementDetail {
                             element_id = Convert.ToInt32(p.element_id),
                             element_nm = p.ElementDetail.element_nm,
                             priority = p.ElementDetail.priority,

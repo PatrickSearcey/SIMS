@@ -104,7 +104,7 @@ table.RecordProcess  {
     width: 1000px;
     margin: 20px auto 0;
     padding:10px;
-    height:80px;
+    height:70px;
     background: #b84626; /* Old browsers */
     -webkit-box-shadow: 0 0 5px 0 #b84626;
     box-shadow: 0 0 5px 0 #b84626;
@@ -117,6 +117,10 @@ table.RecordProcess  {
     color: #f0eac8;
     margin-bottom:0;
     margin-top:0;
+}
+
+.pnlNotice a {
+    color: white !important;
 }
 
 p.AuditList {
@@ -136,7 +140,7 @@ div.Records {
 }
 
 .Records h5 {
-    color: #f0eac8;
+    color: #b84626;
 }
 
 div.RecordList {
@@ -148,12 +152,12 @@ div.RecordFilters {
     width: 315px;
     margin-left:420px;
     padding: 0 0 10px 10px;
-    background: #b84626; /* Old browsers */
-    -webkit-box-shadow: 0 0 5px 0 #b84626;
-    box-shadow: 0 0 5px 0 #b84626;
+    background: #f0eac8; /* Old browsers */
+    -webkit-box-shadow: 0 0 5px 0 #f0eac8;
+    box-shadow: 0 0 5px 0 #f0eac8;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    color: #f0eac8;
+    color: #b84626;
 }
 
 div.RecordSubmit {

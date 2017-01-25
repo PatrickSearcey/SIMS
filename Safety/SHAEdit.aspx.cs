@@ -673,11 +673,6 @@ namespace Safety
                     elem_temp.revised_by = user.ID;
                     elem_temp.revised_dt = DateTime.Now;
                     
-                    if (currSHA.Site.ElementSite == null)
-                    {
-                        db.ElementSites.InsertOnSubmit(new Data.ElementSite() { site_id = SiteID });
-                    }
-
                     db.SiteElements.InsertOnSubmit(elem_temp);
                     db.SP_Report_Update_Site_LastEdited(SiteID);
                     db.SubmitChanges();

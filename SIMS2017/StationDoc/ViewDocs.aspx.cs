@@ -103,7 +103,7 @@ namespace SIMS2017.StationDoc
 
         protected void PopulateSDESCView()
         {
-            var SDESCelems = currSite.ElementSite.SiteElements.Where(p => p.ElementDetail.priority < 200);
+            var SDESCelems = currSite.SiteElements.Where(p => p.ElementDetail.priority < 200);
             if (SDESCelems.Count() > 0)
             {
                 DateTime last_revised = Convert.ToDateTime(SDESCelems.OrderByDescending(p => p.revised_dt).FirstOrDefault().revised_dt);
@@ -122,7 +122,7 @@ namespace SIMS2017.StationDoc
 
         protected void PopulateSANALView()
         {
-            var SANALelems = currSite.ElementSite.SiteElements.Where(p => p.ElementDetail.priority > 199 && p.ElementDetail.priority < 300);
+            var SANALelems = currSite.SiteElements.Where(p => p.ElementDetail.priority > 199 && p.ElementDetail.priority < 300);
             if (SANALelems.Count() > 0)
             {
                 DateTime last_revised = Convert.ToDateTime(SANALelems.OrderByDescending(p => p.revised_dt).FirstOrDefault().revised_dt);
@@ -141,7 +141,7 @@ namespace SIMS2017.StationDoc
 
         protected void PopulateMANUView()
         {
-            var MANUelems = currSite.ElementSite.SiteElements.Where(p => p.ElementDetail.priority > 299);
+            var MANUelems = currSite.SiteElements.Where(p => p.ElementDetail.priority > 299);
             if (MANUelems.Count() > 0)
             {
                 DateTime last_revised = Convert.ToDateTime(MANUelems.OrderByDescending(p => p.revised_dt).FirstOrDefault().revised_dt);
@@ -169,7 +169,7 @@ namespace SIMS2017.StationDoc
 
         protected void PopulateCustomView()
         {
-            rcblElements.DataSource = currSite.ElementSite.SiteElements.Select(p => new { element_id = p.element_id, element_nm = p.ElementDetail.element_nm, priority = p.ElementDetail.priority }).OrderBy(p => p.priority).ToList();
+            rcblElements.DataSource = currSite.SiteElements.Select(p => new { element_id = p.element_id, element_nm = p.ElementDetail.element_nm, priority = p.ElementDetail.priority }).OrderBy(p => p.priority).ToList();
             rcblElements.DataBind();
 
             pnlElements.Visible = true;
@@ -206,7 +206,7 @@ namespace SIMS2017.StationDoc
             List<ElementItem> elements = new List<ElementItem>();
             foreach (int id in element_ids)
             {
-                elements.Add(currSite.ElementSite.SiteElements.Where(p => p.element_id == id).Select(p => new ElementItem
+                elements.Add(currSite.SiteElements.Where(p => p.element_id == id).Select(p => new ElementItem
                 {
                     ElementID = p.element_id.ToString(),
                     SiteID = p.site_id.ToString(),

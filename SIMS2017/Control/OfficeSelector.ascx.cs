@@ -113,7 +113,14 @@ namespace SIMS2017.Control
 
         protected void btnSiteNo_Command(object sender, CommandEventArgs e)
         {
-            Response.Redirect(String.Format("{0}StationInfo.asp?site_no={1}&agency_cd={2}", Config.SIMSClassicURL, tbSiteNo.Text, tbAgencyCd.Text));
+            if (!string.IsNullOrEmpty(tbSiteNo.Text))
+            {
+                var site = db.Sites.FirstOrDefault(p => p.site_no == tbSiteNo.Text && p.agency_cd == tbAgencyCd.Text);
+                if (site != null)
+                {
+                    Response.Redirect(String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site.site_id));
+                }
+            }
         }
     }
 }

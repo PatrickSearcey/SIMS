@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/RMSSingleMenu.Master" AutoEventWireup="true" CodeBehind="AuditPeriod.aspx.cs" Inherits="RMS.AuditPeriod" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/RMSSingleMenu.Master" AutoEventWireup="true" CodeBehind="AuditPeriod.aspx.cs" Inherits="RMS.AuditPeriod" ValidateRequest="false" %>
 <%@ Register Src="~/Control/RecordPageHeading.ascx" TagName="PageHeading" TagPrefix="uc" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -24,6 +24,7 @@
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="pnlAuditPeriod" LoadingPanelID="ralp" />
                     <telerik:AjaxUpdatedControl ControlID="pnlSetupAuditPeriod" LoadingPanelID="ralp" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlNotice" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="rlbViewRecords">
@@ -40,6 +41,7 @@
             <telerik:AjaxSetting AjaxControlID="rbCreateAudit">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="pnlNotice" LoadingPanelID="ralp" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlError" />
                     <telerik:AjaxUpdatedControl ControlID="pnlAuditPeriod" LoadingPanelID="ralp" />
                     <telerik:AjaxUpdatedControl ControlID="pnlSetupAuditPeriod" LoadingPanelID="ralp" />
                 </UpdatedControls>
@@ -74,7 +76,7 @@
                 <p class="AuditList">2. Select at least one record from the list below for which to audit:</p>
                 <div class="Records">
                     <div class="RecordList">
-                        <telerik:RadListBox RenderMode="Lightweight" ID="rlbRecords" runat="server" CheckBoxes="true" ShowCheckAll="true" Width="400px" Height="200px" 
+                        <telerik:RadListBox ID="rlbRecords" runat="server" CheckBoxes="true" ShowCheckAll="true" Width="400px" Height="200px" 
                             Skin="Bootstrap" DataValueField="rms_record_id" DataTextField="record_nm" />
                     </div>
                     <div class="RecordFilters">
@@ -100,19 +102,19 @@
                     <b>Records Included in Audit:</b><br />
                     <p>Select a record from the list to view the station analyses that relate to the audit date range.</p>
                     <telerik:RadListBox RenderMode="Lightweight" ID="rlbViewRecords" runat="server" Skin="Bootstrap" OnSelectedIndexChanged="rlbViewRecords_SelectedIndexChanged" 
-                        Height="300px" SelectionMode="Single" Width="300px" AutoPostBack="true" />
-                    <telerik:RadTextBox ID="rtbSANAL" runat="server" Height="300px" Width="700px" ReadOnly="true" Skin="Bootstrap" />
+                        Height="80px" SelectionMode="Single" Width="1000px" AutoPostBack="true" DataValueField="rms_record_id" DataTextField="record_nm" /><br />
+                    <telerik:RadTextBox ID="rtbSANAL" runat="server" Height="250px" Width="1000px" ReadOnly="true" Skin="Bootstrap" TextMode="MultiLine" />
                 </div>
                 <h4>Audit the Period</h4>
                 <div class="AuditList">
                     <table cellpadding="5" width="100%">
                         <tr>
-                            <td><b>Type of Audit:</b></td>
-                            <td><telerik:RadDropDownList ID="rddlAuditType" runat="server" Skin="Bootstrap" DataTextField="description" DataValueField="audit_type_id" /></td>
+                            <td width="200px"><b>Type of Audit:</b></td>
+                            <td><telerik:RadDropDownList ID="rddlAuditType" runat="server" Skin="Bootstrap" DataTextField="description" DataValueField="audit_type_id" Width="600px" /></td>
                         </tr>
                         <tr>
                             <td><b>Audit Results:</b></td>
-                            <td><telerik:RadDropDownList ID="rddlAuditResults" runat="server" Skin="Bootstrap" DataTextField="description" DataValueField="audit_result_id" /></td>
+                            <td><telerik:RadDropDownList ID="rddlAuditResults" runat="server" Skin="Bootstrap" DataTextField="description" DataValueField="audit_results_id" Width="600px" /></td>
                         </tr>
                         <tr>
                             <td><b>Reason for Audit:</b></td>
@@ -128,8 +130,14 @@
                         </tr>
                     </table>
                 </div>
+                <hr />
                 <telerik:RadButton ID="rbCreateAudit" runat="server" Skin="Bootstrap" Text="Create Audit" OnCommand="CreateAudit" AutoPostBack="true" />
                 <telerik:RadButton ID="rbStartOver" runat="server" Skin="Bootstrap" Text="Start Over" OnCommand="StartOver" AutoPostBack="true" />
+                
+                <asp:Panel ID="pnlError" runat="server" CssClass="pnlNotice" Visible="false">
+                    <h4>Error</h4>
+                    <p><asp:Literal ID="ltlError" runat="server" /></p>
+                </asp:Panel>
             </asp:Panel>
 
         </asp:Panel>

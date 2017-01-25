@@ -287,7 +287,7 @@ namespace Safety
 
         protected void PopulateDischargeMeasJHA()
         {
-            var element = currSHA.Site.ElementSite.SiteElements.FirstOrDefault(p => p.element_id == Config.DischargeMeasElem);
+            var element = currSHA.Site.SiteElements.FirstOrDefault(p => p.element_id == Config.DischargeMeasElem);
 
             ltlDMRevisedBy.Text = element.revised_by;
             ltlDMRevisedDate.Text = String.Format("{0:MM/dd/yyyy}", element.revised_dt);
@@ -301,7 +301,7 @@ namespace Safety
 
         protected void PopulateQWMeasJHA()
         {
-            var element = currSHA.Site.ElementSite.SiteElements.FirstOrDefault(p => p.element_id == Config.QWMeasElem);
+            var element = currSHA.Site.SiteElements.FirstOrDefault(p => p.element_id == Config.QWMeasElem);
 
             ltlQWRevisedBy.Text = element.revised_by;
             ltlQWRevisedDate.Text = String.Format("{0:MM/dd/yyyy}", element.revised_dt);
@@ -315,7 +315,7 @@ namespace Safety
 
         protected void PopulateGWMeasJHA()
         {
-            var element = currSHA.Site.ElementSite.SiteElements.FirstOrDefault(p => p.element_id == Config.GWMeasElem);
+            var element = currSHA.Site.SiteElements.FirstOrDefault(p => p.element_id == Config.GWMeasElem);
 
             ltlGWRevisedBy.Text = element.revised_by;
             ltlGWRevisedDate.Text = String.Format("{0:MM/dd/yyyy}", element.revised_dt);
@@ -329,7 +329,7 @@ namespace Safety
 
         protected void PopulateLakeMeasJHA()
         {
-            var element = currSHA.Site.ElementSite.SiteElements.FirstOrDefault(p => p.element_id == Config.LakeMeasElem);
+            var element = currSHA.Site.SiteElements.FirstOrDefault(p => p.element_id == Config.LakeMeasElem);
 
             ltlLakeRevisedBy.Text = element.revised_by;
             ltlLakeRevisedDate.Text = String.Format("{0:MM/dd/yyyy}", element.revised_dt);
@@ -343,7 +343,7 @@ namespace Safety
 
         protected void PopulateEcoMeasJHA()
         {
-            var element = currSHA.Site.ElementSite.SiteElements.FirstOrDefault(p => p.element_id == Config.EcoMeasElem);
+            var element = currSHA.Site.SiteElements.FirstOrDefault(p => p.element_id == Config.EcoMeasElem);
 
             ltlEcoRevisedBy.Text = element.revised_by;
             ltlEcoRevisedDate.Text = String.Format("{0:MM/dd/yyyy}", element.revised_dt);
@@ -357,7 +357,7 @@ namespace Safety
 
         protected void PopulateAtmMeasJHA()
         {
-            var element = currSHA.Site.ElementSite.SiteElements.FirstOrDefault(p => p.element_id == Config.AtmMeasElem);
+            var element = currSHA.Site.SiteElements.FirstOrDefault(p => p.element_id == Config.AtmMeasElem);
 
             ltlAtmRevisedBy.Text = element.revised_by;
             ltlAtmRevisedDate.Text = String.Format("{0:MM/dd/yyyy}", element.revised_dt);

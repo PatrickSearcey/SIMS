@@ -16,7 +16,18 @@ namespace RMS
         #region Local Variables
         private Data.SIMSDataContext db = new Data.SIMSDataContext();
         public WindowsAuthenticationUser user = new WindowsAuthenticationUser();
-        private int RecordID { get; set; }
+        private Data.Record currRecord;
+        private int RecordID
+        {
+            get
+            {
+                if (Session["RecordID"] == null) return 0; else return (int)Session["RecordID"];
+            }
+            set
+            {
+                Session["RecordID"] = value;
+            }
+        }
         private int WSCID
         {
             get
@@ -43,16 +54,17 @@ namespace RMS
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string rms_record_id = "32045";// Request.QueryString["rms_record_id"];
+            string rms_record_id = Request.QueryString["rms_record_id"];
 
             //If rms_record_id was passed, then set the RecordID variable and make sure the WSCID and OfficeID are changed to match the RecordIDs office and WSC
             if (!string.IsNullOrEmpty(rms_record_id))
             {
                 RecordID = Convert.ToInt32(rms_record_id);
-                var Record = db.Records.Where(p => p.rms_record_id == RecordID).FirstOrDefault();
-                if (Record.RecordAltOffice == null) OfficeID = (int)Record.Site.office_id; else OfficeID = (int)Record.RecordAltOffice.alt_office_id;
+                currRecord = db.Records.Where(p => p.rms_record_id == RecordID).FirstOrDefault();
+                if (currRecord.RecordAltOffice == null) OfficeID = (int)currRecord.Site.office_id; else OfficeID = (int)currRecord.RecordAltOffice.alt_office_id;
                 WSCID = (int)db.Offices.Where(p => p.office_id == OfficeID).FirstOrDefault().wsc_id;
             }
+            else RecordID = 0;
 
             UserControlSetup();
 
@@ -79,8 +91,16 @@ namespace RMS
         {
             string wsc_nm = db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID).wsc_nm;
             ph1.Title = "Create a New Audit Period";
-            ph1.SubTitle = "For the " + wsc_nm + " WSC";
-            ph1.RecordType = "&nbsp;";
+            if (RecordID == 0)
+            {
+                ph1.SubTitle = "For the " + wsc_nm + " WSC";
+                ph1.RecordType = "&nbsp;";
+            }
+            else
+            {
+                ph1.SubTitle = currRecord.Site.site_no + " " + currRecord.Site.station_full_nm;
+                ph1.RecordType = currRecord.RecordType.type_ds + " Record for";
+            }
         }
 
         protected void InitialView()
@@ -89,6 +109,10 @@ namespace RMS
             pnlAuditPeriod.Visible = false;
             rdpBeginDt.SelectedDate = null;
             rdpEndDt.SelectedDate = null;
+            rtbAuditReason.Text = "";
+            rtbDataAudited.Text = "";
+            rtbAuditFindings.Text = "";
+            rtbSANAL.Text = "";
 
             LoadOfficeList();
             LoadFieldTripList();
@@ -131,8 +155,20 @@ namespace RMS
                 }).ToList();
             }
 
-            
             rlbRecords.DataBind();
+
+            if (RecordID > 0)
+            {
+                RadListBoxItem item = rlbRecords.Items.Where(p => p.Value == RecordID.ToString()).FirstOrDefault();
+
+                if (item != null)
+                {
+                    item.Checked = true;
+                    rlbRecords.Items.Remove(item);
+                    rlbRecords.Items.Insert(0, item);
+                    rlbRecords.SelectedIndex = 0;
+                }
+            }
         }
 
         protected void LoadOfficeList()
@@ -176,25 +212,133 @@ namespace RMS
 
         protected void rbSubmitRecords_Command(object sender, CommandEventArgs e)
         {
-
+            if (rlbRecords.CheckedItems.Count > 0)
+            {
+                if (rdpBeginDt.SelectedDate != null && rdpEndDt.SelectedDate != null && rdpBeginDt.SelectedDate < rdpEndDt.SelectedDate)
+                {
+                    pnlNotice.Visible = false;
+                    pnlSetupAuditPeriod.Visible = false;
+                    pnlAuditPeriod.Visible = true;
+                    SetupAuditForm();
+                }
+                else
+                {
+                    pnlNotice.Visible = true;
+                    ltlNotice.Text = "You must enter both a begin and end date for the audit period date range, and the begin date must be before the end date.";
+                }
+            }
+            else
+            {
+                pnlNotice.Visible = true;
+                ltlNotice.Text = "You must check the box next to at least one record!";
+            }
         }
 
         protected void rlbViewRecords_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(rlbViewRecords.SelectedValue))
+            {
+                string pOut = "", edited_dt, edited_by_uid;
+                var record = db.Records.FirstOrDefault(p => p.rms_record_id == Convert.ToInt32(rlbViewRecords.SelectedValue));
+                var periods = record.RecordAnalysisPeriods.Where(p => p.period_end_dt >= rdpBeginDt.SelectedDate && p.period_end_dt <= rdpEndDt.SelectedDate).OrderByDescending(p => p.period_beg_dt).ToList();
 
+                pOut = "Station Analyses for " + record.Site.site_no.Trim() + " " + record.Site.station_full_nm + "\n" + record.RecordType.type_ds + "\n" +
+                        "------------------------------------------------------------------------------------------------------------------------------------------------------------------\n" +
+                        "------------------------------------------------------------------------------------------------------------------------------------------------------------------\n\n";
+
+                foreach (var period in periods)
+                {
+                    edited_dt = period.PeriodChangeLogs.Count() > 0 ? String.Format("{0}", period.PeriodChangeLogs.OrderByDescending(b => b.edited_dt).FirstOrDefault().edited_dt) : "unavailable";
+                    edited_by_uid = period.PeriodChangeLogs.Count() > 0 ? period.PeriodChangeLogs.OrderByDescending(b => b.edited_dt).FirstOrDefault().edited_by_uid : "unavailable";
+
+                    pOut += "Analysis Period: " + String.Format("{0:MM/dd/yyyy} to {1:MM/dd/yyyy}", period.period_beg_dt, period.period_end_dt) + "\n" +
+                        "Analysis Notes:\n\n" +
+                        period.analysis_notes_va.FormatParagraphTextBox() +
+                        "Analysis notes for this period last updated " + edited_dt + " by " + edited_by_uid + "\n" +
+                        "Analyzed By: " + period.analyzed_by + " Date: " + String.Format("{0:MM/dd/yyyy}", period.analyzed_dt) + "\n" +
+                        "Approved By: " + period.approved_by + " Date: " + String.Format("{0:MM/dd/yyyy}", period.approved_dt) + "\n" +
+                        "------------------------------------------------------------------------------------------------------------------------------------------------------------------\n" +
+                        "------------------------------------------------------------------------------------------------------------------------------------------------------------------\n";
+                }
+
+                rtbSANAL.Text = pOut;
+            }
         }
 
         protected void CreateAudit(object sender, CommandEventArgs e)
         {
-            pnlNotice.Visible = true;
-            ltlNotice.Text = "The audit was saved.  To view audited periods, visit the <a href='AuditReport.aspx'>Audit Report</a>.";
-            InitialView();
+            int audit_type_id, audit_results_id;
+            if (!string.IsNullOrEmpty(rddlAuditType.SelectedValue)) audit_type_id = Convert.ToInt32(rddlAuditType.SelectedValue); else audit_type_id = 0;
+            if (!string.IsNullOrEmpty(rddlAuditResults.SelectedValue)) audit_results_id = Convert.ToInt32(rddlAuditResults.SelectedValue); else audit_results_id = 0;
+            string audit_reason = rtbAuditReason.Text;
+            string audit_data = rtbDataAudited.Text;
+            string audit_findings = rtbAuditFindings.Text;
+
+            if (audit_type_id == 0 || audit_results_id == 0 || string.IsNullOrEmpty(audit_reason) || string.IsNullOrEmpty(audit_data) || string.IsNullOrEmpty(audit_findings))
+            {
+                pnlError.Visible = true;
+                ltlError.Text = "You must complete all form fields under the 'Audit the Period' section!";
+            }
+            else
+            {
+                Data.Audit new_audit = new Data.Audit()
+                {
+                    audit_beg_dt = rdpBeginDt.SelectedDate,
+                    audit_end_dt = rdpEndDt.SelectedDate,
+                    audit_by = user.ID,
+                    audit_dt = DateTime.Now,
+                    audit_type_id = audit_type_id,
+                    audit_results_id = audit_results_id,
+                    audit_reason = audit_reason,
+                    audit_data = audit_data,
+                    audit_findings = audit_findings
+                };
+                db.Audits.InsertOnSubmit(new_audit);
+                db.SubmitChanges();
+
+                foreach (RadListBoxItem item in rlbViewRecords.Items)
+                {
+                    Data.AuditRecord new_audit_rec = new Data.AuditRecord()
+                    {
+                        rms_audit_id = new_audit.rms_audit_id,
+                        rms_record_id = Convert.ToInt32(item.Value)
+                    };
+                    db.AuditRecords.InsertOnSubmit(new_audit_rec);
+                    db.SubmitChanges();
+                }
+
+                pnlError.Visible = false;
+                pnlNotice.Visible = true;
+                ltlNotice.Text = "The audit was saved.  To view audited periods, visit the <a href='AuditReport.aspx'>Audit Report</a>.";
+                InitialView();
+            }
         }
 
         protected void StartOver(object sender, CommandEventArgs e)
         {
             pnlNotice.Visible = false;
+            pnlError.Visible = false;
             InitialView();
+        }
+        #endregion
+
+        #region Page Methods
+        protected void SetupAuditForm()
+        {
+            ltlAuditDateRange.Text = String.Format("{0:MM/dd/yyyy} - {1:MM/dd/yyyy}", rdpBeginDt.SelectedDate, rdpEndDt.SelectedDate);
+            ltlAuditBy.Text = user.ID;
+            rlbViewRecords.DataSource = rlbRecords.CheckedItems.Select(p => new { rms_record_id = p.Value, record_nm = p.Text });
+            rlbViewRecords.DataBind();
+
+            rddlAuditType.DataSource = db.AuditTypes.ToList();
+            rddlAuditType.DataBind();
+            rddlAuditType.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
+            rddlAuditType.SelectedIndex = 0;
+
+            rddlAuditResults.DataSource = db.AuditResults.ToList();
+            rddlAuditResults.DataBind();
+            rddlAuditResults.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
+            rddlAuditResults.SelectedIndex = 0;
         }
         #endregion
     }
