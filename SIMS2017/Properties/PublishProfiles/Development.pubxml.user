@@ -130,16 +130,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/18/2016 12:12:12</publishTime>
     </File>
     <File Include="bin/Core.dll">
-      <publishTime>01/25/2017 13:42:48</publishTime>
+      <publishTime>01/27/2017 13:42:11</publishTime>
     </File>
     <File Include="bin/Core.pdb">
-      <publishTime>01/25/2017 13:42:48</publishTime>
+      <publishTime>01/27/2017 13:42:11</publishTime>
     </File>
     <File Include="bin/Data.dll">
-      <publishTime>01/25/2017 12:50:47</publishTime>
+      <publishTime>01/27/2017 13:42:11</publishTime>
     </File>
     <File Include="bin/Data.pdb">
-      <publishTime>01/25/2017 12:50:47</publishTime>
+      <publishTime>01/27/2017 13:42:11</publishTime>
+    </File>
+    <File Include="bin/DotNetZip.dll">
+      <publishTime>01/27/2017 12:28:42</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>10/18/2016 11:37:46</publishTime>
@@ -151,10 +154,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/01/2016 16:26:44</publishTime>
     </File>
     <File Include="bin/SIMS2017.dll">
-      <publishTime>01/25/2017 13:42:50</publishTime>
+      <publishTime>01/27/2017 13:52:50</publishTime>
     </File>
     <File Include="bin/SIMS2017.pdb">
-      <publishTime>01/25/2017 13:42:49</publishTime>
+      <publishTime>01/27/2017 13:52:50</publishTime>
     </File>
     <File Include="bin/Telerik.Web.Spreadsheet.dll">
       <publishTime>10/18/2016 11:37:46</publishTime>
@@ -181,7 +184,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/18/2016 11:37:46</publishTime>
     </File>
     <File Include="Control/ApproveMANU.ascx">
-      <publishTime>01/20/2017 13:29:51</publishTime>
+      <publishTime>01/26/2017 14:32:07</publishTime>
     </File>
     <File Include="Control/OfficeSelector.ascx">
       <publishTime>10/31/2016 15:46:23</publishTime>
@@ -191,6 +194,30 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Handler/ClearLock.ashx">
       <publishTime>12/27/2016 12:29:21</publishTime>
+    </File>
+    <File Include="Handler/DocHandler.ashx">
+      <publishTime>01/27/2017 10:22:32</publishTime>
+    </File>
+    <File Include="Handler/StationDoc/Archive.aspx">
+      <publishTime>01/20/2017 11:55:26</publishTime>
+    </File>
+    <File Include="Handler/StationDoc/EditDocs.aspx">
+      <publishTime>01/04/2017 12:50:55</publishTime>
+    </File>
+    <File Include="Handler/StationDoc/MAI.aspx">
+      <publishTime>01/26/2017 14:21:32</publishTime>
+    </File>
+    <File Include="Handler/StationDoc/ViewDocs.aspx">
+      <publishTime>12/23/2016 05:48:43</publishTime>
+    </File>
+    <File Include="images/approve.png">
+      <publishTime>01/25/2017 16:28:26</publishTime>
+    </File>
+    <File Include="images/cleanicon.png">
+      <publishTime>01/25/2017 16:28:26</publishTime>
+    </File>
+    <File Include="images/faqicon.png">
+      <publishTime>01/25/2017 16:28:26</publishTime>
     </File>
     <File Include="images/HomepageTitle.png">
       <publishTime>05/20/2015 12:07:44</publishTime>
@@ -203,6 +230,15 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="images/keycolor2.gif">
       <publishTime>01/19/2017 10:44:49</publishTime>
+    </File>
+    <File Include="images/nofootnoteicon.png">
+      <publishTime>01/25/2017 16:28:26</publishTime>
+    </File>
+    <File Include="images/refresh_custom1.png">
+      <publishTime>01/25/2017 16:28:26</publishTime>
+    </File>
+    <File Include="images/review.png">
+      <publishTime>01/25/2017 16:28:26</publishTime>
     </File>
     <File Include="images/RMSlogo.png">
       <publishTime>11/18/2016 13:54:52</publishTime>
@@ -231,8 +267,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Modal/FieldTripEdit.aspx">
       <publishTime>12/01/2016 16:25:27</publishTime>
     </File>
+    <File Include="Modal/GWElems.aspx">
+      <publishTime>01/26/2017 13:10:38</publishTime>
+    </File>
     <File Include="Modal/RecordEdit.aspx">
       <publishTime>01/06/2017 10:52:12</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>01/27/2017 12:28:43</publishTime>
     </File>
     <File Include="RMS.Master">
       <publishTime>10/28/2016 15:18:48</publishTime>
@@ -265,7 +307,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/22/2016 13:51:22</publishTime>
     </File>
     <File Include="SIMSWSCHome.aspx">
-      <publishTime>11/18/2016 13:56:50</publishTime>
+      <publishTime>01/26/2017 10:47:12</publishTime>
     </File>
     <File Include="StationDoc/Archive.aspx">
       <publishTime>01/20/2017 11:55:26</publishTime>
@@ -276,6 +318,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="StationDoc/EditDocs.aspx">
       <publishTime>01/04/2017 12:50:55</publishTime>
     </File>
+    <File Include="StationDoc/MAI.aspx">
+      <publishTime>01/26/2017 14:21:32</publishTime>
+    </File>
     <File Include="StationDoc/ViewDocs.aspx">
       <publishTime>12/23/2016 05:48:43</publishTime>
     </File>
@@ -283,7 +328,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/06/2017 11:36:39</publishTime>
     </File>
     <File Include="styles/base.css">
-      <publishTime>12/21/2016 14:11:46</publishTime>
+      <publishTime>01/26/2017 14:06:53</publishTime>
     </File>
     <File Include="styles/default.css">
       <publishTime>11/02/2016 13:15:50</publishTime>
@@ -307,7 +352,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/22/2016 14:18:19</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>12/21/2016 14:46:37</publishTime>
+      <publishTime>01/27/2017 12:50:05</publishTime>
     </File>
   </ItemGroup>
 </Project>

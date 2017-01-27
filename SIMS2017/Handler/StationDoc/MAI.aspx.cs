@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Telerik.Web.UI;
+using System.Data;
 
 namespace SIMS2017.StationDoc
 {
@@ -15,8 +16,30 @@ namespace SIMS2017.StationDoc
         private Data.SIMSDataContext db = new Data.SIMSDataContext();
         private SIMSDevService.SIMSServiceClient svcSIMS = new SIMSDevService.SIMSServiceClient();
         public WindowsAuthenticationUser user = new WindowsAuthenticationUser();
-        public Boolean HasApproveAccess { get; set; }
-        private Data.SiteElement currSiteElement;
+        private int SiteID;
+        private Boolean ApproveOnly = false;
+        private Boolean HasApproveAccess
+        {
+            get
+            {
+                if (Session["HasApproveAccess"] == null) return false; else return Convert.ToBoolean(Session["HasApproveAccess"]);
+            }
+            set
+            {
+                Session["HasApproveAccess"] = value;
+            }
+        }
+        private int ActiveOnly
+        {
+            get
+            {
+                if (Session["ActiveOnly"] == null) return 1; else return (int)Session["ActiveOnly"];
+            }
+            set
+            {
+                Session["ActiveOnly"] = value;
+            }
+        }
         private int WSCID
         {
             get
@@ -39,17 +62,6 @@ namespace SIMS2017.StationDoc
                 Session["OfficeID"] = value;
             }
         }
-        private int SiteID
-        {
-            get
-            {
-                if (Session["SiteID"] == null) return 0; else return (int)Session["SiteID"];
-            }
-            set
-            {
-                Session["SiteID"] = value;
-            }
-        }
 
         protected void Page_Load(object sender, System.EventArgs e)
         {
@@ -69,65 +81,38 @@ namespace SIMS2017.StationDoc
 
             if (!Page.IsPostBack)
             {
-                //--PAGE ACCESS SECTION-------------------------------------------------------------
-                try
-                {
-                    Master.CheckAccessLevel(w.ID, "None");
-
-                    if (Master.NoAccessPanel == false & (u.AccessLevel == "WSC" | u.AccessLevel == "SuperUser"))
-                    {
-                        Session["showapprove"] = "true";
-                    }
-                    else
-                    {
-                        Session["showapprove"] = "false";
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Session["showapprove"] = "false";
-                }
-                //--END PAGE ACCESS SECTION---------------------------------------------------------
+                //If the user belongs to this site's WSC (or has an exception to work in the WSC) and is a WSC level users, or is a SuperUser, then allow them to approve MANUs
+                if ((user.WSCID.Contains(WSCID) && user.IsAdmin) || user.IsSuperUser) HasApproveAccess = true; else HasApproveAccess = false;
             }
         }
 
-        #region "Properties"
+        #region Properties
         /// <summary>
-        /// Gets the DataTable used for the RadGrids on the page
+        /// Gets the list of data used for the RadGrids on the page
         /// </summary>
-        /// <param name="approveonly">Send "1" for MANUs needing approval only, and "0" for status of all</param>
-        /// <param name="activeonly">Send 0 for all sites, 1 for active only, and 2 for inactive only</param>
-        private DataTable MANUStatus
+        private List<Data.ElementApprovalItem> MANUStatus
         {
             get
             {
-                DataTable dt = new DataTable();
+                List<Data.ElementApprovalItem> dt = new List<Data.ElementApprovalItem>();
 
-                using (SqlConnection cnx = new SqlConnection(Config.ConnectionInfo))
-                {
-                    cnx.Open();
-                    SqlCommand cmd = new SqlCommand("SP_Elem_Approval_Report", cnx);
-                    cmd.CommandType = Data.CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@report_type", SqlDbType.NVarChar).Value = "MANU";
-                    cmd.Parameters.Add("@activeonly", SqlDbType.Int).Value = activeonly;
-                    cmd.Parameters.Add("@wsc_id", SqlDbType.Int).Value = w.ID;
-                    cmd.Parameters.Add("@site_id", SqlDbType.Int).Value = site_id;
-                    cmd.Parameters.Add("@approveonly", SqlDbType.Bit).Value = approveonly;
+                //ActiveOnly: Send 0 for all sites, 1 for active only, and 2 for inactive only
+                //ApproveOnly: Send true for MANUs needing approval only, and false for status of all
+                dt = db.SP_Elem_Approval_Report("MANU", ActiveOnly, WSCID, SiteID, ApproveOnly).ToList();
 
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-
-                    cnx.Close();
-                }
                 return dt;
             }
         }
         #endregion
 
-        #region "Approve MANU RadGrid"
+        #region Approve MANU RadGrid
         protected void rgApprove_NeedDataSource(object source, GridNeedDataSourceEventArgs e)
         {
-            rgApprove.DataSource = MANUStatus[1, 1, 0];
+            ApproveOnly = true;
+            ActiveOnly = 1;
+            SiteID = 0;
+
+            rgApprove.DataSource = MANUStatus;
         }
 
         //Specify which items appear in FilterMenu
@@ -137,7 +122,7 @@ namespace SIMS2017.StationDoc
             int i = 0;
             while (i < menu.Items.Count)
             {
-                if (menu.Items(i).Text == "NoFilter" | menu.Items(i).Text == "Contains" | menu.Items(i).Text == "EqualTo" | menu.Items(i).Text == "DoesNotContain")
+                if (menu.Items[i].Text == "NoFilter" | menu.Items[i].Text == "Contains" | menu.Items[i].Text == "EqualTo" | menu.Items[i].Text == "DoesNotContain")
                 {
                     i = i + 1;
                 }
@@ -155,11 +140,11 @@ namespace SIMS2017.StationDoc
             {
                 GridDataItem item = (GridDataItem)e.Item;
 
-                string site_no = (DataRowView)item.DataItem("site_no").ToString().Trim();
+                int site_id = Convert.ToInt32(item.GetDataKeyValue("site_id"));
                 HyperLink hlSiteNo = (HyperLink)item.FindControl("hlSiteNo");
 
-                hlSiteNo.Attributes("target") = "_blank";
-                hlSiteNo.Attributes("href") = Config.SitePath + "StationInfo.asp?site_no=" + site_no + "&agency_cd=USGS";
+                hlSiteNo.Attributes["target"] = "_blank";
+                hlSiteNo.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site_id);
             }
 
             //Set custom column header tooltips
@@ -167,17 +152,20 @@ namespace SIMS2017.StationDoc
             {
                 GridHeaderItem header = (GridHeaderItem)e.Item;
 
-                header("sitefile_md").ToolTip = "The date when data in the NWISWeb SITEFILE was last modified.";
-                header("revised_dt").ToolTip = "The date when an element in the manuscript was last modified.";
-                header("approved_dt").ToolTip = "The date when the manuscript was last approved.";
+                header["sitefile_md"].ToolTip = "The date when data in the NWISWeb SITEFILE was last modified.";
+                header["revised_dt"].ToolTip = "The date when an element in the manuscript was last modified.";
+                header["approved_dt"].ToolTip = "The date when the manuscript was last approved.";
             }
         }
         #endregion
 
-        #region "All Sites Status RadGrid"
+        #region All Sites Status RadGrid
         protected void rgAllSites_NeedDataSource(object source, GridNeedDataSourceEventArgs e)
         {
-            rgAllSites.DataSource = MANUStatus[0, Session["activeonly"], 0];
+            ApproveOnly = false;
+            SiteID = 0;
+
+            rgAllSites.DataSource = MANUStatus;
         }
 
         //Specify which items appear in FilterMenu
@@ -187,7 +175,7 @@ namespace SIMS2017.StationDoc
             int i = 0;
             while (i < menu.Items.Count)
             {
-                if (menu.Items(i).Text == "NoFilter" | menu.Items(i).Text == "Contains" | menu.Items(i).Text == "EqualTo" | menu.Items(i).Text == "DoesNotContain")
+                if (menu.Items[i].Text == "NoFilter" | menu.Items[i].Text == "Contains" | menu.Items[i].Text == "EqualTo" | menu.Items[i].Text == "DoesNotContain")
                 {
                     i = i + 1;
                 }
@@ -205,11 +193,12 @@ namespace SIMS2017.StationDoc
             {
                 GridDataItem item = (GridDataItem)e.Item;
 
-                string site_no = (DataRowView)item.DataItem("site_no").ToString().Trim();
+                int site_id = Convert.ToInt32(item.GetDataKeyValue("site_id"));
                 HyperLink hlSiteNo = (HyperLink)item.FindControl("hlSiteNo");
+                Button btnNWISWebSend = (Button)item.FindControl("btnNWISWebSend");
 
-                hlSiteNo.Attributes("target") = "_blank";
-                hlSiteNo.Attributes("href") = Config.SitePath + "StationInfo.asp?site_no=" + site_no + "&agency_cd=USGS";
+                hlSiteNo.Attributes["target"] = "_blank";
+                hlSiteNo.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site_id);
             }
 
             //Set custom column header tooltips
@@ -217,43 +206,31 @@ namespace SIMS2017.StationDoc
             {
                 GridHeaderItem header = (GridHeaderItem)e.Item;
 
-                header("sitefile_md").ToolTip = "The date when data in the NWISWeb SITEFILE was last modified.";
-                header("revised_dt").ToolTip = "The date when an element in the manuscript was last modified.";
-                header("approved_dt").ToolTip = "The date when the manuscript was last approved.";
-                header("needs_approval").ToolTip = "A Manuscript requires approval when a manuscript element has been changed since the last approval date.";
-                header("SendToNWISWeb").ToolTip = "The Go! button allows a manual push of an approved manuscript to NWISWeb. A user may want this if the manuscript is not showing on NWISWeb or if autogenerated fields from NWIS have been changed and need to be updated.";
+                header["sitefile_md"].ToolTip = "The date when data in the NWISWeb SITEFILE was last modified.";
+                header["revised_dt"].ToolTip = "The date when an element in the manuscript was last modified.";
+                header["approved_dt"].ToolTip = "The date when the manuscript was last approved.";
+                header["needs_approval"].ToolTip = "A Manuscript requires approval when a manuscript element has been changed since the last approval date.";
+                header["SendToNWISWeb"].ToolTip = "The Go! button allows a manual push of an approved manuscript to NWISWeb. A user may want this if the manuscript is not showing on NWISWeb or if autogenerated fields from NWIS have been changed and need to be updated.";
             }
         }
 
         protected void btnNWISWebSend_Command(object sender, CommandEventArgs e)
         {
-            using (SqlConnection cnx = new SqlConnection(Config.ConnectionInfo))
-            {
-                cnx.Open();
+            SiteID = Convert.ToInt32(e.CommandArgument);
+            var era = db.ElemReportApproves.FirstOrDefault(p => p.site_id == SiteID && p.report_type_cd == "MANU");
+            era.publish_complete = "N";
+            db.SubmitChanges();
 
-                try
-                {
-                    string sql = "UPDATE Elem_Report_Approve" + " SET publish_complete = 'N'" + " WHERE site_id = " + e.CommandArgument.ToString() + " And report_type_cd = 'MANU'";
-                    SqlCommand cmd = new SqlCommand(sql, cnx);
-                    cmd.ExecuteNonQuery();
-
-                    rgAllSites.Rebind();
-                }
-                catch (Exception ex)
-                {
-                }
-
-                cnx.Close();
-            }
+            rgAllSites.Rebind();
         }
 
-        public string GetVisibleValue(string publish_complete)
+        public bool GetVisibleValue(string publish_complete)
         {
-            string visible_va = "True";
+            bool visible_va = true;
 
             if (publish_complete == "N")
             {
-                visible_va = "False";
+                visible_va = false;
             }
 
             return visible_va;
@@ -267,7 +244,7 @@ namespace SIMS2017.StationDoc
         protected void rts1_TabClick(object sender, RadTabStripEventArgs e)
         {
             //Reset the initial view of the grid to show active sites
-            Session["activeonly"] = 1;
+            ActiveOnly = 1;
             lbActiveSiteToggle.CommandArgument = "viewInactive";
             lbActiveSiteToggle.Text = "Click to view inactive sites";
             ltlActiveSiteToggle.Text = "Viewing active sites only";
@@ -279,16 +256,16 @@ namespace SIMS2017.StationDoc
 
         public void lbActiveSiteToggle_Command(object sender, CommandEventArgs e)
         {
-            if (e.CommandArgument == "viewInactive")
+            if (e.CommandArgument.ToString() == "viewInactive")
             {
-                Session["activeonly"] = 2;
+                ActiveOnly = 2;
                 lbActiveSiteToggle.CommandArgument = "viewActive";
                 lbActiveSiteToggle.Text = "Click to view active sites";
                 ltlActiveSiteToggle.Text = "Viewing inactive sites only";
             }
             else
             {
-                Session["activeonly"] = 1;
+                ActiveOnly = 1;
                 lbActiveSiteToggle.CommandArgument = "viewInactive";
                 lbActiveSiteToggle.Text = "Click to view inactive sites";
                 ltlActiveSiteToggle.Text = "Viewing active sites only";

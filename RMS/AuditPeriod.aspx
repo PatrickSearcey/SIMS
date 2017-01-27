@@ -38,12 +38,23 @@
                     <telerik:AjaxUpdatedControl ControlID="pnlSetupAuditPeriod" LoadingPanelID="ralp" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="rbDone">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="pnlUploadDocs" LoadingPanelID="ralp" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlSetupAuditPeriod" LoadingPanelID="ralp" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="rbCreateAudit">
                 <UpdatedControls>
-                    <telerik:AjaxUpdatedControl ControlID="pnlNotice" LoadingPanelID="ralp" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlUploadDocs" LoadingPanelID="ralp" />
                     <telerik:AjaxUpdatedControl ControlID="pnlError" />
                     <telerik:AjaxUpdatedControl ControlID="pnlAuditPeriod" LoadingPanelID="ralp" />
                     <telerik:AjaxUpdatedControl ControlID="pnlSetupAuditPeriod" LoadingPanelID="ralp" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="rbSubmit">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="pnlUploadDocs" LoadingPanelID="ralp" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
         </AjaxSettings>
@@ -128,6 +139,11 @@
                             <td><b>Description of Audit Findings:</b></td>
                             <td><telerik:RadTextBox ID="rtbAuditFindings" runat="server" Skin="Bootstrap" Width="600px" Height="200px" TextMode="MultiLine" /></td>
                         </tr>
+                        <tr>
+                            <td colspan="2">
+                                <b>After clicking the Create Audit button, you will be given the option to upload related documents for this audit.</b>
+                            </td>
+                        </tr>
                     </table>
                 </div>
                 <hr />
@@ -140,6 +156,70 @@
                 </asp:Panel>
             </asp:Panel>
 
+            <asp:Panel ID="pnlUploadDocs" runat="server">
+                <div class="pnlNotice">
+                    <h4>Audit Period Created!</h4>
+                    <p>Use the form below to upload documents pertaining to this audit.  File types accepted are .TXT, .PDF, .XLSX, .DOCX, .GIF, .JPEG, and .PNG.  If you wish to 
+                        view all audit periods for your WSC, visit the <a href="AuditReport.aspx">Audit Report</a>. To return and create a new audit period, click the "Done" button
+                        at the bottom of the page.
+                    </p>
+                </div>
+                <br />
+                <table width="1000" class="DocBoxes" cellpadding="10">
+                    <tr>
+                        <td valign="top" width="500">
+                            <h5>Upload Related Documents</h5>
+                            <table>
+                                <tr>
+                                    <td align="right" nowrap><b>Select Document</b></td>
+                                    <td valign="bottom">
+                                        <telerik:RadAsyncUpload runat="server" ID="rauAuditDoc" TemporaryFolder="~/Doc/Temp/" AllowedFileExtensions="pdf,docx,xlsx,txt,gif,jpeg,png" 
+                                            MaxFileInputsCount="1" MaxFileSize="10000000" DisableChunkUpload="true" MultipleFileSelection="Disabled" Skin="Bootstrap" 
+                                            PostbackTriggers="rbSubmit" Localization-Select="Browse" ToolTip="File types accepted are .TXT, .PDF, .XLSX, .DOCX, .GIF, .JPEG, and .PNG" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right"><b>Document Title</b></td>
+                                    <td><telerik:RadTextBox runat="server" ID="rtbName" Skin="Bootstrap" Width="300px" /></td>
+                                </tr>
+                                <tr>
+                                    <td align="right" valign="top"><b>Description</b></td>
+                                    <td><telerik:RadTextBox runat="server" ID="rtbDescription" TextMode="MultiLine" Skin="Bootstrap" Width="300px" Height="50px" /></td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td><telerik:RadButton ID="rbSubmit" runat="server" OnCommand="UploadDocument" CommandName="UploadDoc" Text="Upload Document" Skin="Bootstrap" />
+                                        <telerik:RadButton ID="rbDone" runat="server" OnCommand="StartOver" AutoPostBack="true" Text="Done" Skin="Bootstrap" /><br />
+                                        <asp:Literal ID="ltlAlert" runat="server" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td valign="top" width="500">
+                            <div class="DocBox">
+                                <h5>Currently Uploaded Documents for this Audit</h5>
+                                <div style="padding: 10px 0 10px 20px;">
+                                    <telerik:RadListView ID="rlvAuditDocs" runat="server" ItemPlaceholderID="DocsHolder" Skin="Bootstrap">
+                                        <LayoutTemplate>
+                                            <asp:Panel ID="DocsHolder" runat="server">
+                                            </asp:Panel>
+                                        </LayoutTemplate>
+                                        <ItemTemplate>
+                                            <a href='<%# String.Format("{0}Handler/DocHandler.ashx?task=get&ID={1}", System.Configuration.ConfigurationManager.AppSettings["SIMS2017URL"], Eval("rms_audit_document_id")) %>' target="_blank"><%# Eval("document_nm") %></a>
+                                        </ItemTemplate>
+                                        <ItemSeparatorTemplate>
+                                            <br />
+                                        </ItemSeparatorTemplate>
+                                        <EmptyDataTemplate>
+                                            <i>No audit documents have been uploaded.</i>
+                                        </EmptyDataTemplate>
+                                    </telerik:RadListView>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </asp:Panel>
         </asp:Panel>
 
     </div>

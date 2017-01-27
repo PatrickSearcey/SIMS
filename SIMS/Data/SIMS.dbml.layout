@@ -640,5 +640,43 @@
         <classShapeMoniker Id="4da17564-38f5-4fe4-89cb-b4600e28d3f4" />
       </nodes>
     </associationConnector>
+    <classShape Id="0b041afe-81e7-49d5-bd9f-1c19e5755916" absoluteBounds="26.375, 12.375, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/SIMSDataContext/ElementApprovalItem" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b3e64d42-3f39-4cb3-ab2a-ab60e9dfe0b7" absoluteBounds="26.39, 12.835, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8a80d5e1-6365-420c-828b-5a1c8155ed13" absoluteBounds="34.75, 2, 2, 2.5401025390625">
+      <DataClassMoniker Name="/SIMSDataContext/ElementReportApproveBackup" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a9817802-ab9f-4b2f-9aba-7d2c41069ffb" absoluteBounds="34.765, 2.46, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d53902eb-e575-4be3-81cb-374c09ebe1f3" absoluteBounds="6.25, 11.25, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/SIMSDataContext/AuditDocument" />
+      <nestedChildShapes>
+        <elementListCompartment Id="19cc32b9-4191-4ec2-a980-11b6c93b80b8" absoluteBounds="6.265, 11.71, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="85c56713-832a-4633-9f72-a79105438ef4" absoluteBounds="9, 11.625, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/SIMSDataContext/AuditDocumentFile" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ecba9573-cdd9-46fb-8d3d-9f6fa7e516b9" absoluteBounds="9.015, 12.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 12.3277498372396); (5.66666666666667 : 12.3277498372396 : JumpStart); (5.83333333333333 : 12.3277498372396 : JumpEnd); (6.25 : 12.3277498372396)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIMSDataContext/Audit/Audit_RMS_Audit_Document" />
+      <nodes>
+        <classShapeMoniker Id="58e548f8-3cc4-43fd-a402-48861d8f3336" />
+        <classShapeMoniker Id="d53902eb-e575-4be3-81cb-374c09ebe1f3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 12.3181469726562); (9 : 12.3181469726562)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIMSDataContext/AuditDocument/RMS_Audit_Document_RMS_Audit_DocumentFile" />
+      <nodes>
+        <classShapeMoniker Id="d53902eb-e575-4be3-81cb-374c09ebe1f3" />
+        <classShapeMoniker Id="85c56713-832a-4633-9f72-a79105438ef4" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

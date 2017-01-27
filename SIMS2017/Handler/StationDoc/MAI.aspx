@@ -38,9 +38,9 @@
     <uc:PageHeading id="ph1" runat="server" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph2" runat="server">
+    <div class="mainContent">
     <asp:Panel ID="pnlSystem" runat="server">
-        <telerik:RadTabStrip runat="server" ID="rts1" Orientation="HorizontalTop" 
-            SelectedIndex="0" MultiPageID="rmp1" Skin="Bootstrap" OnTabClick="rts1_TabClick">
+        <telerik:RadTabStrip runat="server" ID="rts1" Orientation="HorizontalTop" SelectedIndex="0" MultiPageID="rmp1" Skin="Bootstrap" OnTabClick="rts1_TabClick">
             <Tabs>
                 <telerik:RadTab Text="Manuscripts Ready for Approval for Active Sites" SelectedCssClass="selectedTab" SelectedIndex="0" />
                 <telerik:RadTab Text="Lookup Manuscripts for All Sites" SelectedCssClass="selectedTab" />
@@ -106,19 +106,19 @@
                         <MasterTableView DataKeyNames="site_id" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" AllowFilteringByColumn="true">
                             <Columns>
                                 <telerik:GridEditCommandColumn UniqueName="EditCommandColumn" HeaderStyle-Width="25px" ButtonType="ImageButton" EditImageUrl="~/Images/approve.png" />
-                                <telerik:GridBoundColumn DataField="office_cd" UniqueName="office_cd" HeaderText="Office Code" FilterControlWidth="25px" HeaderStyle-Width="35px" />
-                                <telerik:GridTemplateColumn DataField="site_no" SortExpression="site_no" UniqueName="site_no" HeaderText="Site No." FilterControlWidth="50px" HeaderStyle-Width="55px">
+                                <telerik:GridBoundColumn DataField="office_cd" UniqueName="office_cd" HeaderText="Office Code" FilterControlWidth="40px" HeaderStyle-Width="40px" />
+                                <telerik:GridTemplateColumn DataField="site_no" SortExpression="site_no" UniqueName="site_no" HeaderText="Site No." FilterControlWidth="60px" HeaderStyle-Width="65px">
                                     <ItemTemplate>
                                         <asp:HyperLink ID="hlSiteNo" runat="server" Text='<%# Bind("site_no")%>' Target="_blank" />&nbsp;
                                     </ItemTemplate>
                                 </telerik:GridTemplateColumn>
-                                <telerik:GridBoundColumn DataField="station_nm" SortExpression="station_nm" UniqueName="station_nm" HeaderText="Station Name" FilterControlWidth="150px" HeaderStyle-Width="260px" />
-                                <telerik:GridBoundColumn DataField="revised_dt" UniqueName="revised_dt" HeaderText="Last Revised" DataFormatString="{0:MM/dd/yyyy}" AllowFiltering="false" HeaderStyle-Width="80px" />
-                                <telerik:GridBoundColumn DataField="sitefile_md" UniqueName="sitefile_md" HeaderText="SITEFILE Last Modified" DataFormatString="{0:MM/dd/yyyy}" AllowFiltering="false" HeaderStyle-Width="80px" />
-                                <telerik:GridBoundColumn DataField="approved_dt" UniqueName="approved_dt" HeaderText="Approved Date" DataFormatString="{0:MM/dd/yyyy}" AllowFiltering="false" HeaderStyle-Width="80px" />
-                                <telerik:GridBoundColumn DataField="approved_by" UniqueName="approved_by" HeaderText="Approved By" FilterControlWidth="40px" HeaderStyle-Width="60px" />
-                                <telerik:GridBoundColumn DataField="approver_comments" UniqueName="approver_comments" HeaderText="Approver Comments" AllowFiltering="false" HeaderStyle-Width="150px" />
-                                <telerik:GridBoundColumn DataField="days_since_last_approved" UniqueName="days_since" HeaderText="Days Since Last Approved" AllowFiltering="false" HeaderStyle-Width="40px" />
+                                <telerik:GridBoundColumn DataField="station_nm" SortExpression="station_nm" UniqueName="station_nm" HeaderText="Station Name" FilterControlWidth="150px" HeaderStyle-Width="300px" />
+                                <telerik:GridBoundColumn DataField="revised_dt" UniqueName="revised_dt" HeaderText="Last Revised" DataFormatString="{0:MM/dd/yyyy}" AllowFiltering="false" HeaderStyle-Width="60px" />
+                                <telerik:GridBoundColumn DataField="sitefile_md" UniqueName="sitefile_md" HeaderText="SITEFILE Last Modified" DataFormatString="{0:MM/dd/yyyy}" AllowFiltering="false" HeaderStyle-Width="60px" />
+                                <telerik:GridBoundColumn DataField="approved_dt" UniqueName="approved_dt" HeaderText="Approved Date" DataFormatString="{0:MM/dd/yyyy}" AllowFiltering="false" HeaderStyle-Width="60px" />
+                                <telerik:GridBoundColumn DataField="approved_by" UniqueName="approved_by" HeaderText="Approved By" FilterControlWidth="50px" HeaderStyle-Width="60px" />
+                                <telerik:GridBoundColumn DataField="approver_comments" UniqueName="approver_comments" HeaderText="Approver Comments" AllowFiltering="false"  />
+                                <telerik:GridBoundColumn DataField="days_since_last_approved" UniqueName="days_since" HeaderText="Days Since Last Approved" AllowFiltering="false" HeaderStyle-Width="25px" />
                                 <telerik:GridBoundColumn DataField="publish_complete" UniqueName="publish_complete" Display="false" />
                             </Columns>
                             <EditFormSettings UserControlName="~/Control/ApproveMANU.ascx" EditFormType="WebUserControl">
@@ -203,23 +203,23 @@
                         <MasterTableView DataKeyNames="site_id" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" AllowFilteringByColumn="true">
                             <Columns>
                                 <telerik:GridEditCommandColumn UniqueName="EditCommandColumn" HeaderStyle-Width="25px" ButtonType="ImageButton" EditImageUrl="~/Images/review.png" />
-                                <telerik:GridBoundColumn DataField="office_cd" UniqueName="office_cd" HeaderText="Office Code" FilterControlWidth="25px" HeaderStyle-Width="35px" />
-                                <telerik:GridTemplateColumn DataField="site_no" SortExpression="site_no" UniqueName="site_no" HeaderText="Site No." FilterControlWidth="50px" HeaderStyle-Width="55px">
+                                <telerik:GridBoundColumn DataField="office_cd" UniqueName="office_cd" HeaderText="Office Code" FilterControlWidth="40px" HeaderStyle-Width="40px" />
+                                <telerik:GridTemplateColumn DataField="site_no" SortExpression="site_no" UniqueName="site_no" HeaderText="Site No." FilterControlWidth="60px" HeaderStyle-Width="65px">
                                     <ItemTemplate>
                                         <asp:HyperLink ID="hlSiteNo" runat="server" Text='<%# Bind("site_no")%>' Target="_blank" />&nbsp;
                                     </ItemTemplate>
                                 </telerik:GridTemplateColumn>
                                 <telerik:GridBoundColumn DataField="station_nm" SortExpression="station_nm" UniqueName="station_nm" HeaderText="Station Name" FilterControlWidth="150px" HeaderStyle-Width="260px" />
-                                <telerik:GridBoundColumn DataField="revised_dt" UniqueName="revised_dt" HeaderText="Last Revised" DataFormatString="{0:MM/dd/yyyy}" AllowFiltering="false" HeaderStyle-Width="80px" />
-                                <telerik:GridBoundColumn DataField="sitefile_md" UniqueName="sitefile_md" HeaderText="SITEFILE Last Modified" DataFormatString="{0:MM/dd/yyyy}" AllowFiltering="false" HeaderStyle-Width="80px" />
-                                <telerik:GridBoundColumn DataField="approved_dt" UniqueName="approved_dt" HeaderText="Approved Date" DataFormatString="{0:MM/dd/yyyy}" AllowFiltering="false" HeaderStyle-Width="80px" />
-                                <telerik:GridBoundColumn DataField="approved_by" UniqueName="approved_by" HeaderText="Approved By" FilterControlWidth="40px" HeaderStyle-Width="60px" />
-                                <telerik:GridBoundColumn DataField="approver_comments" UniqueName="approver_comments" HeaderText="Approver Comments" HeaderStyle-Width="120px" FilterControlWidth="100px" />
-                                <telerik:GridBoundColumn DataField="needs_approval" UniqueName="needs_approval" HeaderText="Needs Approval" HeaderStyle-Width="30px" FilterControlWidth="25px" />
-                                <telerik:GridBoundColumn DataField="days_since_last_approved" UniqueName="days_since" HeaderText="Days Since Last Approved" AllowFiltering="false" HeaderStyle-Width="30px" />
+                                <telerik:GridBoundColumn DataField="revised_dt" UniqueName="revised_dt" HeaderText="Last Revised" DataFormatString="{0:MM/dd/yyyy}" AllowFiltering="false" HeaderStyle-Width="60px" />
+                                <telerik:GridBoundColumn DataField="sitefile_md" UniqueName="sitefile_md" HeaderText="SITEFILE Last Modified" DataFormatString="{0:MM/dd/yyyy}" AllowFiltering="false" HeaderStyle-Width="60px" />
+                                <telerik:GridBoundColumn DataField="approved_dt" UniqueName="approved_dt" HeaderText="Approved Date" DataFormatString="{0:MM/dd/yyyy}" AllowFiltering="false" HeaderStyle-Width="60px" />
+                                <telerik:GridBoundColumn DataField="approved_by" UniqueName="approved_by" HeaderText="Approved By" FilterControlWidth="50px" HeaderStyle-Width="60px" />
+                                <telerik:GridBoundColumn DataField="approver_comments" UniqueName="approver_comments" HeaderText="Approver Comments" AllowFiltering="false" />
+                                <telerik:GridBoundColumn DataField="needs_approval" UniqueName="needs_approval" HeaderText="Needs Approval" HeaderStyle-Width="40px" FilterControlWidth="40px" />
+                                <telerik:GridBoundColumn DataField="days_since_last_approved" UniqueName="days_since" HeaderText="Days Since Last Approved" AllowFiltering="false" HeaderStyle-Width="25px" />
                                 <telerik:GridTemplateColumn UniqueName="SendToNWISWeb" HeaderText="Manual NWIS Web Send" HeaderStyle-Width="25px" AllowFiltering="false">
                                     <ItemTemplate>
-                                        <asp:Button ID="btnNWISWebSend" runat="server" Text="Go!" OnCommand="btnNWISWebSend_Command" CommandArgument='<%# Bind("site_id") %>' Visible='<%# GetVisibleValue(Eval("publish_complete"))%>' />
+                                        <asp:Button ID="btnNWISWebSend" runat="server" Text="Go!" OnCommand="btnNWISWebSend_Command" Width="20px" CommandArgument='<%# Bind("site_id") %>' Visible='<%# GetVisibleValue(Eval("publish_complete").ToString()) %>' />
                                     </ItemTemplate>
                                 </telerik:GridTemplateColumn>
                                 <telerik:GridBoundColumn DataField="publish_complete" UniqueName="publish_complete" Display="false" />
@@ -233,4 +233,5 @@
             </telerik:RadPageView>
         </telerik:RadMultiPage>
     </asp:Panel>
+    </div>
 </asp:Content>

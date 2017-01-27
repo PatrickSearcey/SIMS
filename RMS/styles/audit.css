@@ -104,7 +104,7 @@ table.RecordProcess  {
     width: 1000px;
     margin: 20px auto 0;
     padding:10px;
-    height:70px;
+    height:100px;
     background: #b84626; /* Old browsers */
     -webkit-box-shadow: 0 0 5px 0 #b84626;
     box-shadow: 0 0 5px 0 #b84626;
@@ -163,3 +163,22 @@ div.RecordFilters {
 div.RecordSubmit {
     margin-top:40px;
 }
+
+.DocBox {
+    padding: 10px !important;
+    width: 500px !important;
+    float:right;
+    background: #f7f4f0; /* Old browsers */
+    -webkit-box-shadow: 0 0 5px 0 #f7f4f0;
+    box-shadow: 0 0 5px 0 #f7f4f0;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.DocBoxes h5 {
+    color: #b84626;
+    margin-top:0;
+    margin-bottom:10px;
+    border-bottom:1px #c2bebd solid;
+}
+

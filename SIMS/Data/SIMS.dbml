@@ -750,6 +750,7 @@
       <Column Name="audit_data" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="audit_findings" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="Audit_AuditRecord" Member="AuditRecords" ThisKey="rms_audit_id" OtherKey="rms_audit_id" Type="AuditRecord" />
+      <Association Name="Audit_RMS_Audit_Document" Member="AuditDocuments" ThisKey="rms_audit_id" OtherKey="rms_audit_id" Type="AuditDocument" />
       <Association Name="AuditResult_Audit" Member="AuditResult" ThisKey="audit_results_id" OtherKey="audit_results_id" Type="AuditResult" IsForeignKey="true" />
       <Association Name="AuditType_Audit" Member="AuditType" ThisKey="audit_type_id" OtherKey="audit_type_id" Type="AuditType" IsForeignKey="true" />
     </Type>
@@ -820,6 +821,57 @@
       <Column Name="entered_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="ElementDetail_Elem_Site_Element" Member="ElementDetail" ThisKey="element_id" OtherKey="element_id" Type="ElementDetail" IsForeignKey="true" />
       <Association Name="Site_Elem_Site_Element" Member="Site" ThisKey="site_id" OtherKey="site_id" Type="Site" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="ElementApprovalItems">
+    <Type Name="ElementApprovalItem" Id="ID2">
+      <Column Member="office_cd" Type="System.String" CanBeNull="false" />
+      <Column Member="site_id" Type="System.Int32" CanBeNull="true" />
+      <Column Member="agency_cd" Type="System.String" CanBeNull="false" />
+      <Column Member="site_no" Type="System.String" CanBeNull="false" />
+      <Column Member="station_nm" Type="System.String" CanBeNull="false" />
+      <Column Member="revised_dt" Type="System.DateTime" CanBeNull="true" />
+      <Column Member="sitefile_md" Type="System.DateTime" CanBeNull="true" />
+      <Column Member="approved_dt" Type="System.DateTime" CanBeNull="true" />
+      <Column Member="approved_by" Type="System.String" CanBeNull="false" />
+      <Column Member="approver_comments" Type="System.String" CanBeNull="false" />
+      <Column Member="days_since_last_approved" Type="System.Int32" CanBeNull="true" />
+      <Column Member="publish_complete" Type="System.String" CanBeNull="false" />
+      <Column Member="needs_approval" Type="System.String" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Elem_Report_Approve_Backup" Member="ElementReportApproveBackups">
+    <Type Name="ElementReportApproveBackup">
+      <Column Name="elem_report_approve_backup_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="report_type_cd" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="approved_by" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="approved_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="approver_comments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="publish_complete" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="backup_by" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="backup_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RMS_Audit_Document" Member="AuditDocuments">
+    <Type Name="AuditDocument">
+      <Column Name="rms_audit_document_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="rms_audit_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="document_nm" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="document_desc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="document_content_tp" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="entered_by" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="entered_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="RMS_Audit_Document_RMS_Audit_DocumentFile" Member="AuditDocumentFiles" ThisKey="rms_audit_document_id" OtherKey="rms_audit_document_id" Type="AuditDocumentFile" />
+      <Association Name="Audit_RMS_Audit_Document" Member="Audit" ThisKey="rms_audit_id" OtherKey="rms_audit_id" Type="Audit" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RMS_Audit_DocumentFile" Member="AuditDocumentFiles">
+    <Type Name="AuditDocumentFile">
+      <Column Name="rms_audit_documentfile_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="rms_audit_document_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="document_file" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="RMS_Audit_Document_RMS_Audit_DocumentFile" Member="AuditDocument" ThisKey="rms_audit_document_id" OtherKey="rms_audit_document_id" Type="AuditDocument" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">
@@ -966,5 +1018,13 @@
       <Column Name="userid" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="date" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.SP_Elem_Approval_Report" Method="SP_Elem_Approval_Report">
+    <Parameter Name="report_type" Type="System.String" DbType="NVarChar(5)" />
+    <Parameter Name="activeonly" Type="System.Int32" DbType="Int" />
+    <Parameter Name="wsc_id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="site_id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="approveonly" Type="System.Boolean" DbType="Bit" />
+    <ElementType IdRef="ID2" />
   </Function>
 </Database>

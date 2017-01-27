@@ -165,6 +165,15 @@ namespace Data
     partial void InsertSiteElement(SiteElement instance);
     partial void UpdateSiteElement(SiteElement instance);
     partial void DeleteSiteElement(SiteElement instance);
+    partial void InsertElementReportApproveBackup(ElementReportApproveBackup instance);
+    partial void UpdateElementReportApproveBackup(ElementReportApproveBackup instance);
+    partial void DeleteElementReportApproveBackup(ElementReportApproveBackup instance);
+    partial void InsertAuditDocument(AuditDocument instance);
+    partial void UpdateAuditDocument(AuditDocument instance);
+    partial void DeleteAuditDocument(AuditDocument instance);
+    partial void InsertAuditDocumentFile(AuditDocumentFile instance);
+    partial void UpdateAuditDocumentFile(AuditDocumentFile instance);
+    partial void DeleteAuditDocumentFile(AuditDocumentFile instance);
     #endregion
 		
 		public SIMSDataContext() : 
@@ -637,6 +646,38 @@ namespace Data
 			}
 		}
 		
+		public System.Data.Linq.Table<ElementApprovalItem> ElementApprovalItems
+		{
+			get
+			{
+				return this.GetTable<ElementApprovalItem>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ElementReportApproveBackup> ElementReportApproveBackups
+		{
+			get
+			{
+				return this.GetTable<ElementReportApproveBackup>();
+			}
+		}
+		
+		public System.Data.Linq.Table<AuditDocument> AuditDocuments
+		{
+			get
+			{
+				return this.GetTable<AuditDocument>();
+			}
+		}
+		
+		public System.Data.Linq.Table<AuditDocumentFile> AuditDocumentFiles
+		{
+			get
+			{
+				return this.GetTable<AuditDocumentFile>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spz_GetDCPInfo")]
 		public ISingleResult<spz_GetDCPInfoResult> spz_GetDCPInfo([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> site_id)
 		{
@@ -712,6 +753,13 @@ namespace Data
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), site_id, element_id, begin_dt, end_dt);
 			return ((ISingleResult<SP_Element_Info_Archives_by_element_idResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_Elem_Approval_Report")]
+		public ISingleResult<ElementApprovalItem> SP_Elem_Approval_Report([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(5)")] string report_type, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> activeonly, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> wsc_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> site_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] System.Nullable<bool> approveonly)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), report_type, activeonly, wsc_id, site_id, approveonly);
+			return ((ISingleResult<ElementApprovalItem>)(result.ReturnValue));
 		}
 	}
 	
@@ -15004,6 +15052,8 @@ namespace Data
 		
 		private EntitySet<AuditRecord> _AuditRecords;
 		
+		private EntitySet<AuditDocument> _AuditDocuments;
+		
 		private EntityRef<AuditResult> _AuditResult;
 		
 		private EntityRef<AuditType> _AuditType;
@@ -15037,6 +15087,7 @@ namespace Data
 		public Audit()
 		{
 			this._AuditRecords = new EntitySet<AuditRecord>(new Action<AuditRecord>(this.attach_AuditRecords), new Action<AuditRecord>(this.detach_AuditRecords));
+			this._AuditDocuments = new EntitySet<AuditDocument>(new Action<AuditDocument>(this.attach_AuditDocuments), new Action<AuditDocument>(this.detach_AuditDocuments));
 			this._AuditResult = default(EntityRef<AuditResult>);
 			this._AuditType = default(EntityRef<AuditType>);
 			OnCreated();
@@ -15263,6 +15314,19 @@ namespace Data
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Audit_RMS_Audit_Document", Storage="_AuditDocuments", ThisKey="rms_audit_id", OtherKey="rms_audit_id")]
+		public EntitySet<AuditDocument> AuditDocuments
+		{
+			get
+			{
+				return this._AuditDocuments;
+			}
+			set
+			{
+				this._AuditDocuments.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AuditResult_Audit", Storage="_AuditResult", ThisKey="audit_results_id", OtherKey="audit_results_id", IsForeignKey=true)]
 		public AuditResult AuditResult
 		{
@@ -15358,6 +15422,18 @@ namespace Data
 		}
 		
 		private void detach_AuditRecords(AuditRecord entity)
+		{
+			this.SendPropertyChanging();
+			entity.Audit = null;
+		}
+		
+		private void attach_AuditDocuments(AuditDocument entity)
+		{
+			this.SendPropertyChanging();
+			entity.Audit = this;
+		}
+		
+		private void detach_AuditDocuments(AuditDocument entity)
 		{
 			this.SendPropertyChanging();
 			entity.Audit = null;
@@ -16790,6 +16866,929 @@ namespace Data
 						this._site_id = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Site");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="")]
+	public partial class ElementApprovalItem
+	{
+		
+		private string _office_cd;
+		
+		private System.Nullable<int> _site_id;
+		
+		private string _agency_cd;
+		
+		private string _site_no;
+		
+		private string _station_nm;
+		
+		private System.Nullable<System.DateTime> _revised_dt;
+		
+		private System.Nullable<System.DateTime> _sitefile_md;
+		
+		private System.Nullable<System.DateTime> _approved_dt;
+		
+		private string _approved_by;
+		
+		private string _approver_comments;
+		
+		private System.Nullable<int> _days_since_last_approved;
+		
+		private string _publish_complete;
+		
+		private string _needs_approval;
+		
+		public ElementApprovalItem()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_cd", CanBeNull=false)]
+		public string office_cd
+		{
+			get
+			{
+				return this._office_cd;
+			}
+			set
+			{
+				if ((this._office_cd != value))
+				{
+					this._office_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id")]
+		public System.Nullable<int> site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					this._site_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_agency_cd", CanBeNull=false)]
+		public string agency_cd
+		{
+			get
+			{
+				return this._agency_cd;
+			}
+			set
+			{
+				if ((this._agency_cd != value))
+				{
+					this._agency_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_no", CanBeNull=false)]
+		public string site_no
+		{
+			get
+			{
+				return this._site_no;
+			}
+			set
+			{
+				if ((this._site_no != value))
+				{
+					this._site_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_nm", CanBeNull=false)]
+		public string station_nm
+		{
+			get
+			{
+				return this._station_nm;
+			}
+			set
+			{
+				if ((this._station_nm != value))
+				{
+					this._station_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_revised_dt")]
+		public System.Nullable<System.DateTime> revised_dt
+		{
+			get
+			{
+				return this._revised_dt;
+			}
+			set
+			{
+				if ((this._revised_dt != value))
+				{
+					this._revised_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sitefile_md")]
+		public System.Nullable<System.DateTime> sitefile_md
+		{
+			get
+			{
+				return this._sitefile_md;
+			}
+			set
+			{
+				if ((this._sitefile_md != value))
+				{
+					this._sitefile_md = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved_dt")]
+		public System.Nullable<System.DateTime> approved_dt
+		{
+			get
+			{
+				return this._approved_dt;
+			}
+			set
+			{
+				if ((this._approved_dt != value))
+				{
+					this._approved_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved_by", CanBeNull=false)]
+		public string approved_by
+		{
+			get
+			{
+				return this._approved_by;
+			}
+			set
+			{
+				if ((this._approved_by != value))
+				{
+					this._approved_by = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approver_comments", CanBeNull=false)]
+		public string approver_comments
+		{
+			get
+			{
+				return this._approver_comments;
+			}
+			set
+			{
+				if ((this._approver_comments != value))
+				{
+					this._approver_comments = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_days_since_last_approved")]
+		public System.Nullable<int> days_since_last_approved
+		{
+			get
+			{
+				return this._days_since_last_approved;
+			}
+			set
+			{
+				if ((this._days_since_last_approved != value))
+				{
+					this._days_since_last_approved = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_publish_complete", CanBeNull=false)]
+		public string publish_complete
+		{
+			get
+			{
+				return this._publish_complete;
+			}
+			set
+			{
+				if ((this._publish_complete != value))
+				{
+					this._publish_complete = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_needs_approval", CanBeNull=false)]
+		public string needs_approval
+		{
+			get
+			{
+				return this._needs_approval;
+			}
+			set
+			{
+				if ((this._needs_approval != value))
+				{
+					this._needs_approval = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Elem_Report_Approve_Backup")]
+	public partial class ElementReportApproveBackup : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _elem_report_approve_backup_id;
+		
+		private System.Nullable<int> _site_id;
+		
+		private string _report_type_cd;
+		
+		private string _approved_by;
+		
+		private System.Nullable<System.DateTime> _approved_dt;
+		
+		private string _approver_comments;
+		
+		private string _publish_complete;
+		
+		private string _backup_by;
+		
+		private System.Nullable<System.DateTime> _backup_dt;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onelem_report_approve_backup_idChanging(int value);
+    partial void Onelem_report_approve_backup_idChanged();
+    partial void Onsite_idChanging(System.Nullable<int> value);
+    partial void Onsite_idChanged();
+    partial void Onreport_type_cdChanging(string value);
+    partial void Onreport_type_cdChanged();
+    partial void Onapproved_byChanging(string value);
+    partial void Onapproved_byChanged();
+    partial void Onapproved_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onapproved_dtChanged();
+    partial void Onapprover_commentsChanging(string value);
+    partial void Onapprover_commentsChanged();
+    partial void Onpublish_completeChanging(string value);
+    partial void Onpublish_completeChanged();
+    partial void Onbackup_byChanging(string value);
+    partial void Onbackup_byChanged();
+    partial void Onbackup_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onbackup_dtChanged();
+    #endregion
+		
+		public ElementReportApproveBackup()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_elem_report_approve_backup_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int elem_report_approve_backup_id
+		{
+			get
+			{
+				return this._elem_report_approve_backup_id;
+			}
+			set
+			{
+				if ((this._elem_report_approve_backup_id != value))
+				{
+					this.Onelem_report_approve_backup_idChanging(value);
+					this.SendPropertyChanging();
+					this._elem_report_approve_backup_id = value;
+					this.SendPropertyChanged("elem_report_approve_backup_id");
+					this.Onelem_report_approve_backup_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int")]
+		public System.Nullable<int> site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					this.Onsite_idChanging(value);
+					this.SendPropertyChanging();
+					this._site_id = value;
+					this.SendPropertyChanged("site_id");
+					this.Onsite_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_report_type_cd", DbType="NVarChar(5)")]
+		public string report_type_cd
+		{
+			get
+			{
+				return this._report_type_cd;
+			}
+			set
+			{
+				if ((this._report_type_cd != value))
+				{
+					this.Onreport_type_cdChanging(value);
+					this.SendPropertyChanging();
+					this._report_type_cd = value;
+					this.SendPropertyChanged("report_type_cd");
+					this.Onreport_type_cdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved_by", DbType="NVarChar(15)")]
+		public string approved_by
+		{
+			get
+			{
+				return this._approved_by;
+			}
+			set
+			{
+				if ((this._approved_by != value))
+				{
+					this.Onapproved_byChanging(value);
+					this.SendPropertyChanging();
+					this._approved_by = value;
+					this.SendPropertyChanged("approved_by");
+					this.Onapproved_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> approved_dt
+		{
+			get
+			{
+				return this._approved_dt;
+			}
+			set
+			{
+				if ((this._approved_dt != value))
+				{
+					this.Onapproved_dtChanging(value);
+					this.SendPropertyChanging();
+					this._approved_dt = value;
+					this.SendPropertyChanged("approved_dt");
+					this.Onapproved_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approver_comments", DbType="NVarChar(MAX)")]
+		public string approver_comments
+		{
+			get
+			{
+				return this._approver_comments;
+			}
+			set
+			{
+				if ((this._approver_comments != value))
+				{
+					this.Onapprover_commentsChanging(value);
+					this.SendPropertyChanging();
+					this._approver_comments = value;
+					this.SendPropertyChanged("approver_comments");
+					this.Onapprover_commentsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_publish_complete", DbType="NVarChar(1)")]
+		public string publish_complete
+		{
+			get
+			{
+				return this._publish_complete;
+			}
+			set
+			{
+				if ((this._publish_complete != value))
+				{
+					this.Onpublish_completeChanging(value);
+					this.SendPropertyChanging();
+					this._publish_complete = value;
+					this.SendPropertyChanged("publish_complete");
+					this.Onpublish_completeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_backup_by", DbType="NVarChar(15)")]
+		public string backup_by
+		{
+			get
+			{
+				return this._backup_by;
+			}
+			set
+			{
+				if ((this._backup_by != value))
+				{
+					this.Onbackup_byChanging(value);
+					this.SendPropertyChanging();
+					this._backup_by = value;
+					this.SendPropertyChanged("backup_by");
+					this.Onbackup_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_backup_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> backup_dt
+		{
+			get
+			{
+				return this._backup_dt;
+			}
+			set
+			{
+				if ((this._backup_dt != value))
+				{
+					this.Onbackup_dtChanging(value);
+					this.SendPropertyChanging();
+					this._backup_dt = value;
+					this.SendPropertyChanged("backup_dt");
+					this.Onbackup_dtChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Audit_Document")]
+	public partial class AuditDocument : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _rms_audit_document_id;
+		
+		private System.Nullable<int> _rms_audit_id;
+		
+		private string _document_nm;
+		
+		private string _document_desc;
+		
+		private string _document_content_tp;
+		
+		private string _entered_by;
+		
+		private System.Nullable<System.DateTime> _entered_dt;
+		
+		private EntitySet<AuditDocumentFile> _AuditDocumentFiles;
+		
+		private EntityRef<Audit> _Audit;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onrms_audit_document_idChanging(int value);
+    partial void Onrms_audit_document_idChanged();
+    partial void Onrms_audit_idChanging(System.Nullable<int> value);
+    partial void Onrms_audit_idChanged();
+    partial void Ondocument_nmChanging(string value);
+    partial void Ondocument_nmChanged();
+    partial void Ondocument_descChanging(string value);
+    partial void Ondocument_descChanged();
+    partial void Ondocument_content_tpChanging(string value);
+    partial void Ondocument_content_tpChanged();
+    partial void Onentered_byChanging(string value);
+    partial void Onentered_byChanged();
+    partial void Onentered_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onentered_dtChanged();
+    #endregion
+		
+		public AuditDocument()
+		{
+			this._AuditDocumentFiles = new EntitySet<AuditDocumentFile>(new Action<AuditDocumentFile>(this.attach_AuditDocumentFiles), new Action<AuditDocumentFile>(this.detach_AuditDocumentFiles));
+			this._Audit = default(EntityRef<Audit>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_audit_document_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int rms_audit_document_id
+		{
+			get
+			{
+				return this._rms_audit_document_id;
+			}
+			set
+			{
+				if ((this._rms_audit_document_id != value))
+				{
+					this.Onrms_audit_document_idChanging(value);
+					this.SendPropertyChanging();
+					this._rms_audit_document_id = value;
+					this.SendPropertyChanged("rms_audit_document_id");
+					this.Onrms_audit_document_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_audit_id", DbType="Int")]
+		public System.Nullable<int> rms_audit_id
+		{
+			get
+			{
+				return this._rms_audit_id;
+			}
+			set
+			{
+				if ((this._rms_audit_id != value))
+				{
+					if (this._Audit.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onrms_audit_idChanging(value);
+					this.SendPropertyChanging();
+					this._rms_audit_id = value;
+					this.SendPropertyChanged("rms_audit_id");
+					this.Onrms_audit_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_document_nm", DbType="NVarChar(255)")]
+		public string document_nm
+		{
+			get
+			{
+				return this._document_nm;
+			}
+			set
+			{
+				if ((this._document_nm != value))
+				{
+					this.Ondocument_nmChanging(value);
+					this.SendPropertyChanging();
+					this._document_nm = value;
+					this.SendPropertyChanged("document_nm");
+					this.Ondocument_nmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_document_desc", DbType="NVarChar(MAX)")]
+		public string document_desc
+		{
+			get
+			{
+				return this._document_desc;
+			}
+			set
+			{
+				if ((this._document_desc != value))
+				{
+					this.Ondocument_descChanging(value);
+					this.SendPropertyChanging();
+					this._document_desc = value;
+					this.SendPropertyChanged("document_desc");
+					this.Ondocument_descChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_document_content_tp", DbType="NVarChar(5)")]
+		public string document_content_tp
+		{
+			get
+			{
+				return this._document_content_tp;
+			}
+			set
+			{
+				if ((this._document_content_tp != value))
+				{
+					this.Ondocument_content_tpChanging(value);
+					this.SendPropertyChanging();
+					this._document_content_tp = value;
+					this.SendPropertyChanged("document_content_tp");
+					this.Ondocument_content_tpChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entered_by", DbType="NVarChar(20)")]
+		public string entered_by
+		{
+			get
+			{
+				return this._entered_by;
+			}
+			set
+			{
+				if ((this._entered_by != value))
+				{
+					this.Onentered_byChanging(value);
+					this.SendPropertyChanging();
+					this._entered_by = value;
+					this.SendPropertyChanged("entered_by");
+					this.Onentered_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entered_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> entered_dt
+		{
+			get
+			{
+				return this._entered_dt;
+			}
+			set
+			{
+				if ((this._entered_dt != value))
+				{
+					this.Onentered_dtChanging(value);
+					this.SendPropertyChanging();
+					this._entered_dt = value;
+					this.SendPropertyChanged("entered_dt");
+					this.Onentered_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Audit_Document_RMS_Audit_DocumentFile", Storage="_AuditDocumentFiles", ThisKey="rms_audit_document_id", OtherKey="rms_audit_document_id")]
+		public EntitySet<AuditDocumentFile> AuditDocumentFiles
+		{
+			get
+			{
+				return this._AuditDocumentFiles;
+			}
+			set
+			{
+				this._AuditDocumentFiles.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Audit_RMS_Audit_Document", Storage="_Audit", ThisKey="rms_audit_id", OtherKey="rms_audit_id", IsForeignKey=true)]
+		public Audit Audit
+		{
+			get
+			{
+				return this._Audit.Entity;
+			}
+			set
+			{
+				Audit previousValue = this._Audit.Entity;
+				if (((previousValue != value) 
+							|| (this._Audit.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Audit.Entity = null;
+						previousValue.AuditDocuments.Remove(this);
+					}
+					this._Audit.Entity = value;
+					if ((value != null))
+					{
+						value.AuditDocuments.Add(this);
+						this._rms_audit_id = value.rms_audit_id;
+					}
+					else
+					{
+						this._rms_audit_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Audit");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_AuditDocumentFiles(AuditDocumentFile entity)
+		{
+			this.SendPropertyChanging();
+			entity.AuditDocument = this;
+		}
+		
+		private void detach_AuditDocumentFiles(AuditDocumentFile entity)
+		{
+			this.SendPropertyChanging();
+			entity.AuditDocument = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Audit_DocumentFile")]
+	public partial class AuditDocumentFile : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _rms_audit_documentfile_id;
+		
+		private System.Nullable<int> _rms_audit_document_id;
+		
+		private System.Data.Linq.Binary _document_file;
+		
+		private EntityRef<AuditDocument> _AuditDocument;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onrms_audit_documentfile_idChanging(int value);
+    partial void Onrms_audit_documentfile_idChanged();
+    partial void Onrms_audit_document_idChanging(System.Nullable<int> value);
+    partial void Onrms_audit_document_idChanged();
+    partial void Ondocument_fileChanging(System.Data.Linq.Binary value);
+    partial void Ondocument_fileChanged();
+    #endregion
+		
+		public AuditDocumentFile()
+		{
+			this._AuditDocument = default(EntityRef<AuditDocument>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_audit_documentfile_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int rms_audit_documentfile_id
+		{
+			get
+			{
+				return this._rms_audit_documentfile_id;
+			}
+			set
+			{
+				if ((this._rms_audit_documentfile_id != value))
+				{
+					this.Onrms_audit_documentfile_idChanging(value);
+					this.SendPropertyChanging();
+					this._rms_audit_documentfile_id = value;
+					this.SendPropertyChanged("rms_audit_documentfile_id");
+					this.Onrms_audit_documentfile_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_audit_document_id", DbType="Int")]
+		public System.Nullable<int> rms_audit_document_id
+		{
+			get
+			{
+				return this._rms_audit_document_id;
+			}
+			set
+			{
+				if ((this._rms_audit_document_id != value))
+				{
+					if (this._AuditDocument.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onrms_audit_document_idChanging(value);
+					this.SendPropertyChanging();
+					this._rms_audit_document_id = value;
+					this.SendPropertyChanged("rms_audit_document_id");
+					this.Onrms_audit_document_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_document_file", DbType="VarBinary(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary document_file
+		{
+			get
+			{
+				return this._document_file;
+			}
+			set
+			{
+				if ((this._document_file != value))
+				{
+					this.Ondocument_fileChanging(value);
+					this.SendPropertyChanging();
+					this._document_file = value;
+					this.SendPropertyChanged("document_file");
+					this.Ondocument_fileChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Audit_Document_RMS_Audit_DocumentFile", Storage="_AuditDocument", ThisKey="rms_audit_document_id", OtherKey="rms_audit_document_id", IsForeignKey=true)]
+		public AuditDocument AuditDocument
+		{
+			get
+			{
+				return this._AuditDocument.Entity;
+			}
+			set
+			{
+				AuditDocument previousValue = this._AuditDocument.Entity;
+				if (((previousValue != value) 
+							|| (this._AuditDocument.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._AuditDocument.Entity = null;
+						previousValue.AuditDocumentFiles.Remove(this);
+					}
+					this._AuditDocument.Entity = value;
+					if ((value != null))
+					{
+						value.AuditDocumentFiles.Add(this);
+						this._rms_audit_document_id = value.rms_audit_document_id;
+					}
+					else
+					{
+						this._rms_audit_document_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("AuditDocument");
 				}
 			}
 		}

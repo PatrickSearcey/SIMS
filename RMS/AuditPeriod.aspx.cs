@@ -1,6 +1,7 @@
 ﻿using Core;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -107,6 +108,7 @@ namespace RMS
         {
             pnlSetupAuditPeriod.Visible = true;
             pnlAuditPeriod.Visible = false;
+            pnlUploadDocs.Visible = false;
             rdpBeginDt.SelectedDate = null;
             rdpEndDt.SelectedDate = null;
             rtbAuditReason.Text = "";
@@ -166,6 +168,13 @@ namespace RMS
                     item.Checked = true;
                     rlbRecords.Items.Remove(item);
                     rlbRecords.Items.Insert(0, item);
+                    rlbRecords.SelectedIndex = 0;
+                }
+                else
+                {
+                    RadListBoxItem i = new RadListBoxItem() { Value = RecordID.ToString(), Text = currRecord.Site.site_no + " - " + currRecord.RecordType.type_ds };
+                    i.Checked = true;
+                    rlbRecords.Items.Insert(0, i);
                     rlbRecords.SelectedIndex = 0;
                 }
             }
@@ -307,10 +316,13 @@ namespace RMS
                     db.SubmitChanges();
                 }
 
+                rbSubmit.CommandArgument = new_audit.rms_audit_id.ToString();
+
                 pnlError.Visible = false;
-                pnlNotice.Visible = true;
-                ltlNotice.Text = "The audit was saved.  To view audited periods, visit the <a href='AuditReport.aspx'>Audit Report</a>.";
-                InitialView();
+                pnlAuditPeriod.Visible = false;
+                pnlUploadDocs.Visible = true;
+                rlvAuditDocs.Visible = false;
+                ltlAlert.Text = "";
             }
         }
 
@@ -318,7 +330,53 @@ namespace RMS
         {
             pnlNotice.Visible = false;
             pnlError.Visible = false;
+            pnlUploadDocs.Visible = false;
             InitialView();
+        }
+
+        protected void UploadDocument(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName.ToString() == "UploadDoc")
+            {
+                var audit = db.Audits.FirstOrDefault(p => p.rms_audit_id == Convert.ToInt32(e.CommandArgument));
+
+                if (rauAuditDoc.UploadedFiles.Count >= 1)
+                {
+                    var doc = new Data.AuditDocument();
+                    var ud = rauAuditDoc.UploadedFiles[0];
+                    doc.rms_audit_id = audit.rms_audit_id;
+                    if (!string.IsNullOrEmpty(rtbName.Text)) doc.document_nm = rtbName.Text; else doc.document_nm = ud.FileName;
+                    doc.document_desc = rtbDescription.Text;
+                    doc.entered_dt = DateTime.Now;
+                    doc.entered_by = user.ID;
+                    doc.document_content_tp = ud.GetExtension().ToLower().Replace(".", "");
+                    var file = doc.AuditDocumentFiles.FirstOrDefault();
+                    //It's being added for the first time
+                    if (file == null)
+                    {
+                        file = new Data.AuditDocumentFile();
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            ud.InputStream.CopyTo(ms);
+                            file.document_file = ms.ToArray();
+                        }
+                        doc.AuditDocumentFiles.Add(file);
+                    }
+                    db.AuditDocuments.InsertOnSubmit(doc);
+                    db.SubmitChanges();
+
+                    ltlAlert.Text = "<span style=\"color:green;font-weight:bold;\">The document was successfully uploaded!</span>";
+                    //Update the list of uploaded documents
+                    rlvAuditDocs.Visible = true;
+                    rlvAuditDocs.DataSource = audit.AuditDocuments.Select(p => new { rms_audit_document_id = p.rms_audit_document_id, document_nm = p.document_nm }).OrderBy(p => p.document_nm);
+                    rlvAuditDocs.DataBind();
+                    ClearFormFields();
+                }
+                else
+                {
+                    ltlAlert.Text = "<span style=\"color:red;font-weight:bold;\">A document is required!</span>";
+                }
+            }
         }
         #endregion
 
@@ -339,6 +397,12 @@ namespace RMS
             rddlAuditResults.DataBind();
             rddlAuditResults.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
             rddlAuditResults.SelectedIndex = 0;
+        }
+
+        protected void ClearFormFields()
+        {
+            rtbName.Text = "";
+            rtbDescription.Text = "";
         }
         #endregion
     }

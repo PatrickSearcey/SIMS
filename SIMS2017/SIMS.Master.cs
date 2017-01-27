@@ -75,7 +75,7 @@ namespace SIMS2017
             hlSHAReport.NavigateUrl = String.Format("{0}SHAReport.aspx?office_id={1}", Config.SafetyURL, OfficeID, WSCID);
             hlTCPReport.NavigateUrl = String.Format("{0}TCPReport.aspx?office_id={1}", Config.SafetyURL, OfficeID, WSCID);
             hlEmergencyInfo.NavigateUrl = String.Format("{0}EmergencyInfo.aspx?office_id={1}", Config.SafetyURL, OfficeID);
-            hlMAI.NavigateUrl = String.Format("{0}ElemReport.aspx?wsc_id={1}", Config.SIMSURL, WSCID);
+            hlMAI.NavigateUrl = String.Format("{0}StationDoc/MAI.aspx?office_id={1}", Config.SIMS2017URL, OfficeID);
             hlWYSummaryReport.NavigateUrl = String.Format("{0}WY/wys_details.html", Config.SIMSServerURL);
             hlPubsList.NavigateUrl = String.Format("{0}StationsList.asp?office_id={1}&wy=2013", Config.SIMSClassicURL, OfficeID);
             hlADRStatus.NavigateUrl = String.Format("{0}StationsCount.asp?wsc_id={1}", Config.SIMSClassicURL, WSCID);

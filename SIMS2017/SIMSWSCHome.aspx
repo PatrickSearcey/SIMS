@@ -4,20 +4,6 @@
 
 <asp:Content ID="Content0" ContentPlaceHolderID="head" Runat="Server">
     <link href="styles/default.css" rel="stylesheet" />
-    <style type="text/css">
-        div.RadGrid .rgRow td,
-        div.RadGrid .rgAltRow td
-        {
-            padding:10px;
-            font-size: 10pt;
-        }
-        .RadGrid {
-            line-height: 1.2 !important;
-        }
-        .RadGrid_Bootstrap .rgRow {
-            height: 0.8em !important;
-        }
-    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="cph1" runat="Server">

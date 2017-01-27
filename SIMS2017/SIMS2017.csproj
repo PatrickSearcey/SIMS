@@ -47,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DotNetZip">
+      <HintPath>..\SIMS\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -131,15 +134,22 @@
     <Content Include="Control\ApproveMANU.ascx" />
     <Content Include="Control\OfficeSelector.ascx" />
     <Content Include="Control\SitePageHeading.ascx" />
+    <Content Include="images\approve.png" />
+    <Content Include="images\cleanicon.png" />
+    <Content Include="images\faqicon.png" />
     <Content Include="images\keycolor0.gif" />
     <Content Include="images\keycolor1.gif" />
     <Content Include="images\keycolor2.gif" />
+    <Content Include="images\nofootnoteicon.png" />
+    <Content Include="images\refresh_custom1.png" />
+    <Content Include="images\review.png" />
     <Content Include="images\SIMSLogo.png" />
     <Content Include="images\SIMSTitle.png" />
     <Content Include="images\underarrow.png" />
     <Content Include="images\USGSHeaderLogo.png" />
     <Content Include="images\USGSHeaderLogoSIMS.png" />
     <Content Include="Modal\FieldTripEdit.aspx" />
+    <Content Include="Modal\GWElems.aspx" />
     <Content Include="Modal\RecordEdit.aspx" />
     <Content Include="Service References\SIMSDevService\SIMS2017.SIMSDevService.Element.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -147,6 +157,8 @@
     <Content Include="Service References\SIMSDevService\SIMS2017.SIMSDevService.Site.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Handler\DocHandler.ashx" />
+    <Content Include="packages.config" />
     <None Include="Service References\SIMSDevService\SIMSService.wsdl" />
     <None Include="Service References\SIMSDevService\WCFServices.disco" />
     <None Include="Service References\SIMSDevService\configuration91.svcinfo" />
@@ -179,9 +191,10 @@
     </None>
     <Content Include="SIMS.Master" />
     <Content Include="SIMSSingleMenu.Master" />
-    <Content Include="StationDoc\Archive.aspx" />
-    <Content Include="StationDoc\EditDocs.aspx" />
-    <Content Include="StationDoc\ViewDocs.aspx" />
+    <Content Include="Handler\StationDoc\Archive.aspx" />
+    <Content Include="Handler\StationDoc\EditDocs.aspx" />
+    <Content Include="Handler\StationDoc\MAI.aspx" />
+    <Content Include="Handler\StationDoc\ViewDocs.aspx" />
     <Content Include="StationInfo.aspx" />
     <Content Include="styles\base.css" />
   </ItemGroup>
@@ -222,12 +235,22 @@
     <Compile Include="Control\SitePageHeading.ascx.designer.cs">
       <DependentUpon>SitePageHeading.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Handler\DocHandler.ashx.cs">
+      <DependentUpon>DocHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Modal\FieldTripEdit.aspx.cs">
       <DependentUpon>FieldTripEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modal\FieldTripEdit.aspx.designer.cs">
       <DependentUpon>FieldTripEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modal\GWElems.aspx.cs">
+      <DependentUpon>GWElems.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modal\GWElems.aspx.designer.cs">
+      <DependentUpon>GWElems.aspx</DependentUpon>
     </Compile>
     <Compile Include="Modal\RecordEdit.aspx.cs">
       <DependentUpon>RecordEdit.aspx</DependentUpon>
@@ -268,25 +291,32 @@
       <DependentUpon>SIMSSingleMenu.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StationDoc\Archive.aspx.cs">
+    <Compile Include="Handler\StationDoc\Archive.aspx.cs">
       <DependentUpon>Archive.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="StationDoc\Archive.aspx.designer.cs">
+    <Compile Include="Handler\StationDoc\Archive.aspx.designer.cs">
       <DependentUpon>Archive.aspx</DependentUpon>
     </Compile>
-    <Compile Include="StationDoc\EditDocs.aspx.cs">
+    <Compile Include="Handler\StationDoc\EditDocs.aspx.cs">
       <DependentUpon>EditDocs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="StationDoc\EditDocs.aspx.designer.cs">
+    <Compile Include="Handler\StationDoc\EditDocs.aspx.designer.cs">
       <DependentUpon>EditDocs.aspx</DependentUpon>
     </Compile>
-    <Compile Include="StationDoc\ViewDocs.aspx.cs">
+    <Compile Include="Handler\StationDoc\MAI.aspx.cs">
+      <DependentUpon>MAI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Handler\StationDoc\MAI.aspx.designer.cs">
+      <DependentUpon>MAI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\StationDoc\ViewDocs.aspx.cs">
       <DependentUpon>ViewDocs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="StationDoc\ViewDocs.aspx.designer.cs">
+    <Compile Include="Handler\StationDoc\ViewDocs.aspx.designer.cs">
       <DependentUpon>ViewDocs.aspx</DependentUpon>
     </Compile>
     <Compile Include="StationInfo.aspx.cs">
@@ -348,9 +378,7 @@
     <WCFMetadataStorage Include="Service References\SIMSDevService\" />
     <WCFMetadataStorage Include="Service References\SIMSService\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Handler\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
@@ -371,7 +399,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
