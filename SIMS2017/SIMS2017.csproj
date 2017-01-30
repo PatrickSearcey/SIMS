@@ -191,10 +191,10 @@
     </None>
     <Content Include="SIMS.Master" />
     <Content Include="SIMSSingleMenu.Master" />
-    <Content Include="Handler\StationDoc\Archive.aspx" />
-    <Content Include="Handler\StationDoc\EditDocs.aspx" />
-    <Content Include="Handler\StationDoc\MAI.aspx" />
-    <Content Include="Handler\StationDoc\ViewDocs.aspx" />
+    <Content Include="StationDoc\Archive.aspx" />
+    <Content Include="StationDoc\EditDocs.aspx" />
+    <Content Include="StationDoc\MAI.aspx" />
+    <Content Include="StationDoc\ViewDocs.aspx" />
     <Content Include="StationInfo.aspx" />
     <Content Include="styles\base.css" />
   </ItemGroup>
@@ -291,32 +291,32 @@
       <DependentUpon>SIMSSingleMenu.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Handler\StationDoc\Archive.aspx.cs">
+    <Compile Include="StationDoc\Archive.aspx.cs">
       <DependentUpon>Archive.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Handler\StationDoc\Archive.aspx.designer.cs">
+    <Compile Include="StationDoc\Archive.aspx.designer.cs">
       <DependentUpon>Archive.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Handler\StationDoc\EditDocs.aspx.cs">
+    <Compile Include="StationDoc\EditDocs.aspx.cs">
       <DependentUpon>EditDocs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Handler\StationDoc\EditDocs.aspx.designer.cs">
+    <Compile Include="StationDoc\EditDocs.aspx.designer.cs">
       <DependentUpon>EditDocs.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Handler\StationDoc\MAI.aspx.cs">
+    <Compile Include="StationDoc\MAI.aspx.cs">
       <DependentUpon>MAI.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Handler\StationDoc\MAI.aspx.designer.cs">
+    <Compile Include="StationDoc\MAI.aspx.designer.cs">
       <DependentUpon>MAI.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Handler\StationDoc\ViewDocs.aspx.cs">
+    <Compile Include="StationDoc\ViewDocs.aspx.cs">
       <DependentUpon>ViewDocs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Handler\StationDoc\ViewDocs.aspx.designer.cs">
+    <Compile Include="StationDoc\ViewDocs.aspx.designer.cs">
       <DependentUpon>ViewDocs.aspx</DependentUpon>
     </Compile>
     <Compile Include="StationInfo.aspx.cs">

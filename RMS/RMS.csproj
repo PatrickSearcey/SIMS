@@ -127,13 +127,16 @@
     <Content Include="App_Data\RadCaptcha\Z.wav" />
     <Content Include="AuditReport.aspx" />
     <Content Include="Control\RecordPageHeading.ascx" />
+    <Content Include="Doc\Temp\placeholder.txt" />
     <Content Include="images\lock.png" />
     <Content Include="images\lock_sm.png" />
     <Content Include="images\approved.gif" />
     <Content Include="images\RMSlogo.png" />
     <Content Include="images\RMSTitle.png" />
     <Content Include="images\save_sm.png" />
+    <Content Include="images\tooltip.png" />
     <Content Include="images\USGSHeaderLogoRMS.png" />
+    <Content Include="images\viewdoc.png" />
     <Content Include="Modal\Instructions.aspx" />
     <Content Include="AuditPeriod.aspx" />
     <Content Include="RecordProcess.aspx" />
@@ -254,7 +257,6 @@
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Doc\Temp\" />
     <Folder Include="Report\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

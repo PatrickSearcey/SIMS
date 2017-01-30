@@ -144,18 +144,9 @@ namespace Data
     partial void InsertArchivedElements(ArchivedElements instance);
     partial void UpdateArchivedElements(ArchivedElements instance);
     partial void DeleteArchivedElements(ArchivedElements instance);
-    partial void InsertAudit(Audit instance);
-    partial void UpdateAudit(Audit instance);
-    partial void DeleteAudit(Audit instance);
     partial void InsertAuditRecord(AuditRecord instance);
     partial void UpdateAuditRecord(AuditRecord instance);
     partial void DeleteAuditRecord(AuditRecord instance);
-    partial void InsertAuditResult(AuditResult instance);
-    partial void UpdateAuditResult(AuditResult instance);
-    partial void DeleteAuditResult(AuditResult instance);
-    partial void InsertAuditType(AuditType instance);
-    partial void UpdateAuditType(AuditType instance);
-    partial void DeleteAuditType(AuditType instance);
     partial void InsertTripSite(TripSite instance);
     partial void UpdateTripSite(TripSite instance);
     partial void DeleteTripSite(TripSite instance);
@@ -174,6 +165,15 @@ namespace Data
     partial void InsertAuditDocumentFile(AuditDocumentFile instance);
     partial void UpdateAuditDocumentFile(AuditDocumentFile instance);
     partial void DeleteAuditDocumentFile(AuditDocumentFile instance);
+    partial void InsertAuditResult(AuditResult instance);
+    partial void UpdateAuditResult(AuditResult instance);
+    partial void DeleteAuditResult(AuditResult instance);
+    partial void InsertAuditType(AuditType instance);
+    partial void UpdateAuditType(AuditType instance);
+    partial void DeleteAuditType(AuditType instance);
+    partial void InsertAudit(Audit instance);
+    partial void UpdateAudit(Audit instance);
+    partial void DeleteAudit(Audit instance);
     #endregion
 		
 		public SIMSDataContext() : 
@@ -590,35 +590,11 @@ namespace Data
 			}
 		}
 		
-		public System.Data.Linq.Table<Audit> Audits
-		{
-			get
-			{
-				return this.GetTable<Audit>();
-			}
-		}
-		
 		public System.Data.Linq.Table<AuditRecord> AuditRecords
 		{
 			get
 			{
 				return this.GetTable<AuditRecord>();
-			}
-		}
-		
-		public System.Data.Linq.Table<AuditResult> AuditResults
-		{
-			get
-			{
-				return this.GetTable<AuditResult>();
-			}
-		}
-		
-		public System.Data.Linq.Table<AuditType> AuditTypes
-		{
-			get
-			{
-				return this.GetTable<AuditType>();
 			}
 		}
 		
@@ -675,6 +651,30 @@ namespace Data
 			get
 			{
 				return this.GetTable<AuditDocumentFile>();
+			}
+		}
+		
+		public System.Data.Linq.Table<AuditResult> AuditResults
+		{
+			get
+			{
+				return this.GetTable<AuditResult>();
+			}
+		}
+		
+		public System.Data.Linq.Table<AuditType> AuditTypes
+		{
+			get
+			{
+				return this.GetTable<AuditType>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Audit> Audits
+		{
+			get
+			{
+				return this.GetTable<Audit>();
 			}
 		}
 		
@@ -15024,422 +15024,6 @@ namespace Data
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Audit_Master")]
-	public partial class Audit : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _rms_audit_id;
-		
-		private System.Nullable<System.DateTime> _audit_beg_dt;
-		
-		private System.Nullable<System.DateTime> _audit_end_dt;
-		
-		private string _audit_by;
-		
-		private System.Nullable<System.DateTime> _audit_dt;
-		
-		private System.Nullable<int> _audit_type_id;
-		
-		private System.Nullable<int> _audit_results_id;
-		
-		private string _audit_reason;
-		
-		private string _audit_data;
-		
-		private string _audit_findings;
-		
-		private EntitySet<AuditRecord> _AuditRecords;
-		
-		private EntitySet<AuditDocument> _AuditDocuments;
-		
-		private EntityRef<AuditResult> _AuditResult;
-		
-		private EntityRef<AuditType> _AuditType;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onrms_audit_idChanging(int value);
-    partial void Onrms_audit_idChanged();
-    partial void Onaudit_beg_dtChanging(System.Nullable<System.DateTime> value);
-    partial void Onaudit_beg_dtChanged();
-    partial void Onaudit_end_dtChanging(System.Nullable<System.DateTime> value);
-    partial void Onaudit_end_dtChanged();
-    partial void Onaudit_byChanging(string value);
-    partial void Onaudit_byChanged();
-    partial void Onaudit_dtChanging(System.Nullable<System.DateTime> value);
-    partial void Onaudit_dtChanged();
-    partial void Onaudit_type_idChanging(System.Nullable<int> value);
-    partial void Onaudit_type_idChanged();
-    partial void Onaudit_results_idChanging(System.Nullable<int> value);
-    partial void Onaudit_results_idChanged();
-    partial void Onaudit_reasonChanging(string value);
-    partial void Onaudit_reasonChanged();
-    partial void Onaudit_dataChanging(string value);
-    partial void Onaudit_dataChanged();
-    partial void Onaudit_findingsChanging(string value);
-    partial void Onaudit_findingsChanged();
-    #endregion
-		
-		public Audit()
-		{
-			this._AuditRecords = new EntitySet<AuditRecord>(new Action<AuditRecord>(this.attach_AuditRecords), new Action<AuditRecord>(this.detach_AuditRecords));
-			this._AuditDocuments = new EntitySet<AuditDocument>(new Action<AuditDocument>(this.attach_AuditDocuments), new Action<AuditDocument>(this.detach_AuditDocuments));
-			this._AuditResult = default(EntityRef<AuditResult>);
-			this._AuditType = default(EntityRef<AuditType>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_audit_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int rms_audit_id
-		{
-			get
-			{
-				return this._rms_audit_id;
-			}
-			set
-			{
-				if ((this._rms_audit_id != value))
-				{
-					this.Onrms_audit_idChanging(value);
-					this.SendPropertyChanging();
-					this._rms_audit_id = value;
-					this.SendPropertyChanged("rms_audit_id");
-					this.Onrms_audit_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_beg_dt", DbType="DateTime")]
-		public System.Nullable<System.DateTime> audit_beg_dt
-		{
-			get
-			{
-				return this._audit_beg_dt;
-			}
-			set
-			{
-				if ((this._audit_beg_dt != value))
-				{
-					this.Onaudit_beg_dtChanging(value);
-					this.SendPropertyChanging();
-					this._audit_beg_dt = value;
-					this.SendPropertyChanged("audit_beg_dt");
-					this.Onaudit_beg_dtChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_end_dt", DbType="DateTime")]
-		public System.Nullable<System.DateTime> audit_end_dt
-		{
-			get
-			{
-				return this._audit_end_dt;
-			}
-			set
-			{
-				if ((this._audit_end_dt != value))
-				{
-					this.Onaudit_end_dtChanging(value);
-					this.SendPropertyChanging();
-					this._audit_end_dt = value;
-					this.SendPropertyChanged("audit_end_dt");
-					this.Onaudit_end_dtChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_by", DbType="NVarChar(20)")]
-		public string audit_by
-		{
-			get
-			{
-				return this._audit_by;
-			}
-			set
-			{
-				if ((this._audit_by != value))
-				{
-					this.Onaudit_byChanging(value);
-					this.SendPropertyChanging();
-					this._audit_by = value;
-					this.SendPropertyChanged("audit_by");
-					this.Onaudit_byChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_dt", DbType="DateTime")]
-		public System.Nullable<System.DateTime> audit_dt
-		{
-			get
-			{
-				return this._audit_dt;
-			}
-			set
-			{
-				if ((this._audit_dt != value))
-				{
-					this.Onaudit_dtChanging(value);
-					this.SendPropertyChanging();
-					this._audit_dt = value;
-					this.SendPropertyChanged("audit_dt");
-					this.Onaudit_dtChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_type_id", DbType="Int")]
-		public System.Nullable<int> audit_type_id
-		{
-			get
-			{
-				return this._audit_type_id;
-			}
-			set
-			{
-				if ((this._audit_type_id != value))
-				{
-					if (this._AuditType.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onaudit_type_idChanging(value);
-					this.SendPropertyChanging();
-					this._audit_type_id = value;
-					this.SendPropertyChanged("audit_type_id");
-					this.Onaudit_type_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_results_id", DbType="Int")]
-		public System.Nullable<int> audit_results_id
-		{
-			get
-			{
-				return this._audit_results_id;
-			}
-			set
-			{
-				if ((this._audit_results_id != value))
-				{
-					if (this._AuditResult.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onaudit_results_idChanging(value);
-					this.SendPropertyChanging();
-					this._audit_results_id = value;
-					this.SendPropertyChanged("audit_results_id");
-					this.Onaudit_results_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_reason", DbType="NVarChar(MAX)")]
-		public string audit_reason
-		{
-			get
-			{
-				return this._audit_reason;
-			}
-			set
-			{
-				if ((this._audit_reason != value))
-				{
-					this.Onaudit_reasonChanging(value);
-					this.SendPropertyChanging();
-					this._audit_reason = value;
-					this.SendPropertyChanged("audit_reason");
-					this.Onaudit_reasonChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_data", DbType="NVarChar(MAX)")]
-		public string audit_data
-		{
-			get
-			{
-				return this._audit_data;
-			}
-			set
-			{
-				if ((this._audit_data != value))
-				{
-					this.Onaudit_dataChanging(value);
-					this.SendPropertyChanging();
-					this._audit_data = value;
-					this.SendPropertyChanged("audit_data");
-					this.Onaudit_dataChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_findings", DbType="NVarChar(MAX)")]
-		public string audit_findings
-		{
-			get
-			{
-				return this._audit_findings;
-			}
-			set
-			{
-				if ((this._audit_findings != value))
-				{
-					this.Onaudit_findingsChanging(value);
-					this.SendPropertyChanging();
-					this._audit_findings = value;
-					this.SendPropertyChanged("audit_findings");
-					this.Onaudit_findingsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Audit_AuditRecord", Storage="_AuditRecords", ThisKey="rms_audit_id", OtherKey="rms_audit_id")]
-		public EntitySet<AuditRecord> AuditRecords
-		{
-			get
-			{
-				return this._AuditRecords;
-			}
-			set
-			{
-				this._AuditRecords.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Audit_RMS_Audit_Document", Storage="_AuditDocuments", ThisKey="rms_audit_id", OtherKey="rms_audit_id")]
-		public EntitySet<AuditDocument> AuditDocuments
-		{
-			get
-			{
-				return this._AuditDocuments;
-			}
-			set
-			{
-				this._AuditDocuments.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AuditResult_Audit", Storage="_AuditResult", ThisKey="audit_results_id", OtherKey="audit_results_id", IsForeignKey=true)]
-		public AuditResult AuditResult
-		{
-			get
-			{
-				return this._AuditResult.Entity;
-			}
-			set
-			{
-				AuditResult previousValue = this._AuditResult.Entity;
-				if (((previousValue != value) 
-							|| (this._AuditResult.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._AuditResult.Entity = null;
-						previousValue.Audits.Remove(this);
-					}
-					this._AuditResult.Entity = value;
-					if ((value != null))
-					{
-						value.Audits.Add(this);
-						this._audit_results_id = value.audit_results_id;
-					}
-					else
-					{
-						this._audit_results_id = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("AuditResult");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AuditType_Audit", Storage="_AuditType", ThisKey="audit_type_id", OtherKey="audit_type_id", IsForeignKey=true)]
-		public AuditType AuditType
-		{
-			get
-			{
-				return this._AuditType.Entity;
-			}
-			set
-			{
-				AuditType previousValue = this._AuditType.Entity;
-				if (((previousValue != value) 
-							|| (this._AuditType.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._AuditType.Entity = null;
-						previousValue.Audits.Remove(this);
-					}
-					this._AuditType.Entity = value;
-					if ((value != null))
-					{
-						value.Audits.Add(this);
-						this._audit_type_id = value.audit_type_id;
-					}
-					else
-					{
-						this._audit_type_id = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("AuditType");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_AuditRecords(AuditRecord entity)
-		{
-			this.SendPropertyChanging();
-			entity.Audit = this;
-		}
-		
-		private void detach_AuditRecords(AuditRecord entity)
-		{
-			this.SendPropertyChanging();
-			entity.Audit = null;
-		}
-		
-		private void attach_AuditDocuments(AuditDocument entity)
-		{
-			this.SendPropertyChanging();
-			entity.Audit = this;
-		}
-		
-		private void detach_AuditDocuments(AuditDocument entity)
-		{
-			this.SendPropertyChanging();
-			entity.Audit = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Audit_Record")]
 	public partial class AuditRecord : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -15452,9 +15036,9 @@ namespace Data
 		
 		private System.Nullable<int> _rms_record_id;
 		
-		private EntityRef<Audit> _Audit;
-		
 		private EntityRef<Record> _Record;
+		
+		private EntityRef<Audit> _Audit;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -15470,8 +15054,8 @@ namespace Data
 		
 		public AuditRecord()
 		{
-			this._Audit = default(EntityRef<Audit>);
 			this._Record = default(EntityRef<Record>);
+			this._Audit = default(EntityRef<Audit>);
 			OnCreated();
 		}
 		
@@ -15543,40 +15127,6 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Audit_AuditRecord", Storage="_Audit", ThisKey="rms_audit_id", OtherKey="rms_audit_id", IsForeignKey=true)]
-		public Audit Audit
-		{
-			get
-			{
-				return this._Audit.Entity;
-			}
-			set
-			{
-				Audit previousValue = this._Audit.Entity;
-				if (((previousValue != value) 
-							|| (this._Audit.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Audit.Entity = null;
-						previousValue.AuditRecords.Remove(this);
-					}
-					this._Audit.Entity = value;
-					if ((value != null))
-					{
-						value.AuditRecords.Add(this);
-						this._rms_audit_id = value.rms_audit_id;
-					}
-					else
-					{
-						this._rms_audit_id = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Audit");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_AuditRecord", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
 		public Record Record
 		{
@@ -15611,105 +15161,37 @@ namespace Data
 			}
 		}
 		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_lut_AuditResults")]
-	public partial class AuditResult : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _audit_results_id;
-		
-		private string _description;
-		
-		private EntitySet<Audit> _Audits;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onaudit_results_idChanging(int value);
-    partial void Onaudit_results_idChanged();
-    partial void OndescriptionChanging(string value);
-    partial void OndescriptionChanged();
-    #endregion
-		
-		public AuditResult()
-		{
-			this._Audits = new EntitySet<Audit>(new Action<Audit>(this.attach_Audits), new Action<Audit>(this.detach_Audits));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_results_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int audit_results_id
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Audit_Master_AuditRecord", Storage="_Audit", ThisKey="rms_audit_id", OtherKey="rms_audit_id", IsForeignKey=true)]
+		public Audit Audit
 		{
 			get
 			{
-				return this._audit_results_id;
+				return this._Audit.Entity;
 			}
 			set
 			{
-				if ((this._audit_results_id != value))
+				Audit previousValue = this._Audit.Entity;
+				if (((previousValue != value) 
+							|| (this._Audit.HasLoadedOrAssignedValue == false)))
 				{
-					this.Onaudit_results_idChanging(value);
 					this.SendPropertyChanging();
-					this._audit_results_id = value;
-					this.SendPropertyChanged("audit_results_id");
-					this.Onaudit_results_idChanged();
+					if ((previousValue != null))
+					{
+						this._Audit.Entity = null;
+						previousValue.AuditRecords.Remove(this);
+					}
+					this._Audit.Entity = value;
+					if ((value != null))
+					{
+						value.AuditRecords.Add(this);
+						this._rms_audit_id = value.rms_audit_id;
+					}
+					else
+					{
+						this._rms_audit_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Audit");
 				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="NVarChar(MAX)")]
-		public string description
-		{
-			get
-			{
-				return this._description;
-			}
-			set
-			{
-				if ((this._description != value))
-				{
-					this.OndescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._description = value;
-					this.SendPropertyChanged("description");
-					this.OndescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AuditResult_Audit", Storage="_Audits", ThisKey="audit_results_id", OtherKey="audit_results_id")]
-		public EntitySet<Audit> Audits
-		{
-			get
-			{
-				return this._Audits;
-			}
-			set
-			{
-				this._Audits.Assign(value);
 			}
 		}
 		
@@ -15731,132 +15213,6 @@ namespace Data
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Audits(Audit entity)
-		{
-			this.SendPropertyChanging();
-			entity.AuditResult = this;
-		}
-		
-		private void detach_Audits(Audit entity)
-		{
-			this.SendPropertyChanging();
-			entity.AuditResult = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_lut_AuditType")]
-	public partial class AuditType : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _audit_type_id;
-		
-		private string _description;
-		
-		private EntitySet<Audit> _Audits;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onaudit_type_idChanging(int value);
-    partial void Onaudit_type_idChanged();
-    partial void OndescriptionChanging(string value);
-    partial void OndescriptionChanged();
-    #endregion
-		
-		public AuditType()
-		{
-			this._Audits = new EntitySet<Audit>(new Action<Audit>(this.attach_Audits), new Action<Audit>(this.detach_Audits));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_type_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int audit_type_id
-		{
-			get
-			{
-				return this._audit_type_id;
-			}
-			set
-			{
-				if ((this._audit_type_id != value))
-				{
-					this.Onaudit_type_idChanging(value);
-					this.SendPropertyChanging();
-					this._audit_type_id = value;
-					this.SendPropertyChanged("audit_type_id");
-					this.Onaudit_type_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="NVarChar(MAX)")]
-		public string description
-		{
-			get
-			{
-				return this._description;
-			}
-			set
-			{
-				if ((this._description != value))
-				{
-					this.OndescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._description = value;
-					this.SendPropertyChanged("description");
-					this.OndescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AuditType_Audit", Storage="_Audits", ThisKey="audit_type_id", OtherKey="audit_type_id")]
-		public EntitySet<Audit> Audits
-		{
-			get
-			{
-				return this._Audits;
-			}
-			set
-			{
-				this._Audits.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Audits(Audit entity)
-		{
-			this.SendPropertyChanging();
-			entity.AuditType = this;
-		}
-		
-		private void detach_Audits(Audit entity)
-		{
-			this.SendPropertyChanging();
-			entity.AuditType = null;
 		}
 	}
 	
@@ -17596,7 +16952,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Audit_RMS_Audit_Document", Storage="_Audit", ThisKey="rms_audit_id", OtherKey="rms_audit_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Audit_Master_AuditDocument", Storage="_Audit", ThisKey="rms_audit_id", OtherKey="rms_audit_id", IsForeignKey=true)]
 		public Audit Audit
 		{
 			get
@@ -17811,6 +17167,722 @@ namespace Data
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_lut_AuditResults")]
+	public partial class AuditResult : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _audit_results_id;
+		
+		private string _result;
+		
+		private string _description;
+		
+		private EntitySet<Audit> _Audits;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onaudit_results_idChanging(int value);
+    partial void Onaudit_results_idChanged();
+    partial void OnresultChanging(string value);
+    partial void OnresultChanged();
+    partial void OndescriptionChanging(string value);
+    partial void OndescriptionChanged();
+    #endregion
+		
+		public AuditResult()
+		{
+			this._Audits = new EntitySet<Audit>(new Action<Audit>(this.attach_Audits), new Action<Audit>(this.detach_Audits));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_results_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int audit_results_id
+		{
+			get
+			{
+				return this._audit_results_id;
+			}
+			set
+			{
+				if ((this._audit_results_id != value))
+				{
+					this.Onaudit_results_idChanging(value);
+					this.SendPropertyChanging();
+					this._audit_results_id = value;
+					this.SendPropertyChanged("audit_results_id");
+					this.Onaudit_results_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_result", DbType="NVarChar(100)")]
+		public string result
+		{
+			get
+			{
+				return this._result;
+			}
+			set
+			{
+				if ((this._result != value))
+				{
+					this.OnresultChanging(value);
+					this.SendPropertyChanging();
+					this._result = value;
+					this.SendPropertyChanged("result");
+					this.OnresultChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="NVarChar(MAX)")]
+		public string description
+		{
+			get
+			{
+				return this._description;
+			}
+			set
+			{
+				if ((this._description != value))
+				{
+					this.OndescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._description = value;
+					this.SendPropertyChanged("description");
+					this.OndescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AuditResult_RMS_Audit_Master", Storage="_Audits", ThisKey="audit_results_id", OtherKey="audit_results_id")]
+		public EntitySet<Audit> Audits
+		{
+			get
+			{
+				return this._Audits;
+			}
+			set
+			{
+				this._Audits.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Audits(Audit entity)
+		{
+			this.SendPropertyChanging();
+			entity.AuditResult = this;
+		}
+		
+		private void detach_Audits(Audit entity)
+		{
+			this.SendPropertyChanging();
+			entity.AuditResult = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_lut_AuditType")]
+	public partial class AuditType : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _audit_type_id;
+		
+		private string _type;
+		
+		private string _description;
+		
+		private EntitySet<Audit> _Audits;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onaudit_type_idChanging(int value);
+    partial void Onaudit_type_idChanged();
+    partial void OntypeChanging(string value);
+    partial void OntypeChanged();
+    partial void OndescriptionChanging(string value);
+    partial void OndescriptionChanged();
+    #endregion
+		
+		public AuditType()
+		{
+			this._Audits = new EntitySet<Audit>(new Action<Audit>(this.attach_Audits), new Action<Audit>(this.detach_Audits));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_type_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int audit_type_id
+		{
+			get
+			{
+				return this._audit_type_id;
+			}
+			set
+			{
+				if ((this._audit_type_id != value))
+				{
+					this.Onaudit_type_idChanging(value);
+					this.SendPropertyChanging();
+					this._audit_type_id = value;
+					this.SendPropertyChanged("audit_type_id");
+					this.Onaudit_type_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type", DbType="NVarChar(50)")]
+		public string type
+		{
+			get
+			{
+				return this._type;
+			}
+			set
+			{
+				if ((this._type != value))
+				{
+					this.OntypeChanging(value);
+					this.SendPropertyChanging();
+					this._type = value;
+					this.SendPropertyChanged("type");
+					this.OntypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="NVarChar(MAX)")]
+		public string description
+		{
+			get
+			{
+				return this._description;
+			}
+			set
+			{
+				if ((this._description != value))
+				{
+					this.OndescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._description = value;
+					this.SendPropertyChanged("description");
+					this.OndescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AuditType_RMS_Audit_Master", Storage="_Audits", ThisKey="audit_type_id", OtherKey="audit_type_id")]
+		public EntitySet<Audit> Audits
+		{
+			get
+			{
+				return this._Audits;
+			}
+			set
+			{
+				this._Audits.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Audits(Audit entity)
+		{
+			this.SendPropertyChanging();
+			entity.AuditType = this;
+		}
+		
+		private void detach_Audits(Audit entity)
+		{
+			this.SendPropertyChanging();
+			entity.AuditType = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Audit_Master")]
+	public partial class Audit : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _rms_audit_id;
+		
+		private System.Nullable<System.DateTime> _audit_beg_dt;
+		
+		private System.Nullable<System.DateTime> _audit_end_dt;
+		
+		private string _audit_by;
+		
+		private System.Nullable<System.DateTime> _audit_dt;
+		
+		private System.Nullable<int> _audit_type_id;
+		
+		private System.Nullable<int> _audit_results_id;
+		
+		private string _audit_reason;
+		
+		private string _audit_data;
+		
+		private string _audit_findings;
+		
+		private System.Nullable<int> _wsc_id;
+		
+		private EntitySet<AuditRecord> _AuditRecords;
+		
+		private EntitySet<AuditDocument> _AuditDocuments;
+		
+		private EntityRef<AuditResult> _AuditResult;
+		
+		private EntityRef<AuditType> _AuditType;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onrms_audit_idChanging(int value);
+    partial void Onrms_audit_idChanged();
+    partial void Onaudit_beg_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onaudit_beg_dtChanged();
+    partial void Onaudit_end_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onaudit_end_dtChanged();
+    partial void Onaudit_byChanging(string value);
+    partial void Onaudit_byChanged();
+    partial void Onaudit_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onaudit_dtChanged();
+    partial void Onaudit_type_idChanging(System.Nullable<int> value);
+    partial void Onaudit_type_idChanged();
+    partial void Onaudit_results_idChanging(System.Nullable<int> value);
+    partial void Onaudit_results_idChanged();
+    partial void Onaudit_reasonChanging(string value);
+    partial void Onaudit_reasonChanged();
+    partial void Onaudit_dataChanging(string value);
+    partial void Onaudit_dataChanged();
+    partial void Onaudit_findingsChanging(string value);
+    partial void Onaudit_findingsChanged();
+    partial void Onwsc_idChanging(System.Nullable<int> value);
+    partial void Onwsc_idChanged();
+    #endregion
+		
+		public Audit()
+		{
+			this._AuditRecords = new EntitySet<AuditRecord>(new Action<AuditRecord>(this.attach_AuditRecords), new Action<AuditRecord>(this.detach_AuditRecords));
+			this._AuditDocuments = new EntitySet<AuditDocument>(new Action<AuditDocument>(this.attach_AuditDocuments), new Action<AuditDocument>(this.detach_AuditDocuments));
+			this._AuditResult = default(EntityRef<AuditResult>);
+			this._AuditType = default(EntityRef<AuditType>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_audit_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int rms_audit_id
+		{
+			get
+			{
+				return this._rms_audit_id;
+			}
+			set
+			{
+				if ((this._rms_audit_id != value))
+				{
+					this.Onrms_audit_idChanging(value);
+					this.SendPropertyChanging();
+					this._rms_audit_id = value;
+					this.SendPropertyChanged("rms_audit_id");
+					this.Onrms_audit_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_beg_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> audit_beg_dt
+		{
+			get
+			{
+				return this._audit_beg_dt;
+			}
+			set
+			{
+				if ((this._audit_beg_dt != value))
+				{
+					this.Onaudit_beg_dtChanging(value);
+					this.SendPropertyChanging();
+					this._audit_beg_dt = value;
+					this.SendPropertyChanged("audit_beg_dt");
+					this.Onaudit_beg_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_end_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> audit_end_dt
+		{
+			get
+			{
+				return this._audit_end_dt;
+			}
+			set
+			{
+				if ((this._audit_end_dt != value))
+				{
+					this.Onaudit_end_dtChanging(value);
+					this.SendPropertyChanging();
+					this._audit_end_dt = value;
+					this.SendPropertyChanged("audit_end_dt");
+					this.Onaudit_end_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_by", DbType="NVarChar(20)")]
+		public string audit_by
+		{
+			get
+			{
+				return this._audit_by;
+			}
+			set
+			{
+				if ((this._audit_by != value))
+				{
+					this.Onaudit_byChanging(value);
+					this.SendPropertyChanging();
+					this._audit_by = value;
+					this.SendPropertyChanged("audit_by");
+					this.Onaudit_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> audit_dt
+		{
+			get
+			{
+				return this._audit_dt;
+			}
+			set
+			{
+				if ((this._audit_dt != value))
+				{
+					this.Onaudit_dtChanging(value);
+					this.SendPropertyChanging();
+					this._audit_dt = value;
+					this.SendPropertyChanged("audit_dt");
+					this.Onaudit_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_type_id", DbType="Int")]
+		public System.Nullable<int> audit_type_id
+		{
+			get
+			{
+				return this._audit_type_id;
+			}
+			set
+			{
+				if ((this._audit_type_id != value))
+				{
+					if (this._AuditType.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onaudit_type_idChanging(value);
+					this.SendPropertyChanging();
+					this._audit_type_id = value;
+					this.SendPropertyChanged("audit_type_id");
+					this.Onaudit_type_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_results_id", DbType="Int")]
+		public System.Nullable<int> audit_results_id
+		{
+			get
+			{
+				return this._audit_results_id;
+			}
+			set
+			{
+				if ((this._audit_results_id != value))
+				{
+					if (this._AuditResult.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onaudit_results_idChanging(value);
+					this.SendPropertyChanging();
+					this._audit_results_id = value;
+					this.SendPropertyChanged("audit_results_id");
+					this.Onaudit_results_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_reason", DbType="NVarChar(MAX)")]
+		public string audit_reason
+		{
+			get
+			{
+				return this._audit_reason;
+			}
+			set
+			{
+				if ((this._audit_reason != value))
+				{
+					this.Onaudit_reasonChanging(value);
+					this.SendPropertyChanging();
+					this._audit_reason = value;
+					this.SendPropertyChanged("audit_reason");
+					this.Onaudit_reasonChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_data", DbType="NVarChar(MAX)")]
+		public string audit_data
+		{
+			get
+			{
+				return this._audit_data;
+			}
+			set
+			{
+				if ((this._audit_data != value))
+				{
+					this.Onaudit_dataChanging(value);
+					this.SendPropertyChanging();
+					this._audit_data = value;
+					this.SendPropertyChanged("audit_data");
+					this.Onaudit_dataChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_findings", DbType="NVarChar(MAX)")]
+		public string audit_findings
+		{
+			get
+			{
+				return this._audit_findings;
+			}
+			set
+			{
+				if ((this._audit_findings != value))
+				{
+					this.Onaudit_findingsChanging(value);
+					this.SendPropertyChanging();
+					this._audit_findings = value;
+					this.SendPropertyChanged("audit_findings");
+					this.Onaudit_findingsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_id", DbType="Int")]
+		public System.Nullable<int> wsc_id
+		{
+			get
+			{
+				return this._wsc_id;
+			}
+			set
+			{
+				if ((this._wsc_id != value))
+				{
+					this.Onwsc_idChanging(value);
+					this.SendPropertyChanging();
+					this._wsc_id = value;
+					this.SendPropertyChanged("wsc_id");
+					this.Onwsc_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Audit_Master_AuditRecord", Storage="_AuditRecords", ThisKey="rms_audit_id", OtherKey="rms_audit_id")]
+		public EntitySet<AuditRecord> AuditRecords
+		{
+			get
+			{
+				return this._AuditRecords;
+			}
+			set
+			{
+				this._AuditRecords.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Audit_Master_AuditDocument", Storage="_AuditDocuments", ThisKey="rms_audit_id", OtherKey="rms_audit_id")]
+		public EntitySet<AuditDocument> AuditDocuments
+		{
+			get
+			{
+				return this._AuditDocuments;
+			}
+			set
+			{
+				this._AuditDocuments.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AuditResult_RMS_Audit_Master", Storage="_AuditResult", ThisKey="audit_results_id", OtherKey="audit_results_id", IsForeignKey=true)]
+		public AuditResult AuditResult
+		{
+			get
+			{
+				return this._AuditResult.Entity;
+			}
+			set
+			{
+				AuditResult previousValue = this._AuditResult.Entity;
+				if (((previousValue != value) 
+							|| (this._AuditResult.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._AuditResult.Entity = null;
+						previousValue.Audits.Remove(this);
+					}
+					this._AuditResult.Entity = value;
+					if ((value != null))
+					{
+						value.Audits.Add(this);
+						this._audit_results_id = value.audit_results_id;
+					}
+					else
+					{
+						this._audit_results_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("AuditResult");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AuditType_RMS_Audit_Master", Storage="_AuditType", ThisKey="audit_type_id", OtherKey="audit_type_id", IsForeignKey=true)]
+		public AuditType AuditType
+		{
+			get
+			{
+				return this._AuditType.Entity;
+			}
+			set
+			{
+				AuditType previousValue = this._AuditType.Entity;
+				if (((previousValue != value) 
+							|| (this._AuditType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._AuditType.Entity = null;
+						previousValue.Audits.Remove(this);
+					}
+					this._AuditType.Entity = value;
+					if ((value != null))
+					{
+						value.Audits.Add(this);
+						this._audit_type_id = value.audit_type_id;
+					}
+					else
+					{
+						this._audit_type_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("AuditType");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_AuditRecords(AuditRecord entity)
+		{
+			this.SendPropertyChanging();
+			entity.Audit = this;
+		}
+		
+		private void detach_AuditRecords(AuditRecord entity)
+		{
+			this.SendPropertyChanging();
+			entity.Audit = null;
+		}
+		
+		private void attach_AuditDocuments(AuditDocument entity)
+		{
+			this.SendPropertyChanging();
+			entity.Audit = this;
+		}
+		
+		private void detach_AuditDocuments(AuditDocument entity)
+		{
+			this.SendPropertyChanging();
+			entity.Audit = null;
 		}
 	}
 	

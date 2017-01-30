@@ -137,6 +137,11 @@ div.RadMenuPopup,
     text-align:right;
 }
 
+.MyImageButton
+{
+    cursor: hand;
+}
+
 /*RadDropDownList*/
 .rddlItem {
     font-size:10pt !important;
@@ -175,4 +180,25 @@ div.RadMenuPopup,
 .RadCalendar_Bootstrap .rcMain .rcRow .rcSelected a {
     border-color: #f0eac8 !important;
     background: #f0eac8 !important;
+}
+
+/*TELERIK RAD GRID*/
+div.RadGrid .rgRow td,
+div.RadGrid .rgAltRow td,
+div.RadGrid .rgEditRow td {
+    padding:5px !important;
+    font-size: 10pt !important;
+}
+.RadGrid {
+    line-height: 1.2em !important;
+}
+.RadGrid_Bootstrap .rgRow,
+.RadGrid_Bootstrap .rgAltRow,
+.RadGrid_Bootstrap .rgEditRow {
+    height: 0.8em !important;
+}
+.RadGrid_Bootstrap .rgEditForm [type="image"] {
+    padding:0 !important;
+    border: none !important;
+    background: none !important;
 }

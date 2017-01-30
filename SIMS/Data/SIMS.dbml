@@ -737,45 +737,13 @@
       <Column Name="sims_site_tp" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.RMS_Audit_Master" Member="Audits">
-    <Type Name="Audit">
-      <Column Name="rms_audit_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="audit_beg_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="audit_end_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="audit_by" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="audit_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="audit_type_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="audit_results_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="audit_reason" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="audit_data" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="audit_findings" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Association Name="Audit_AuditRecord" Member="AuditRecords" ThisKey="rms_audit_id" OtherKey="rms_audit_id" Type="AuditRecord" />
-      <Association Name="Audit_RMS_Audit_Document" Member="AuditDocuments" ThisKey="rms_audit_id" OtherKey="rms_audit_id" Type="AuditDocument" />
-      <Association Name="AuditResult_Audit" Member="AuditResult" ThisKey="audit_results_id" OtherKey="audit_results_id" Type="AuditResult" IsForeignKey="true" />
-      <Association Name="AuditType_Audit" Member="AuditType" ThisKey="audit_type_id" OtherKey="audit_type_id" Type="AuditType" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.RMS_Audit_Record" Member="AuditRecords">
     <Type Name="AuditRecord">
       <Column Name="rms_audit_record_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="rms_audit_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="rms_record_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Audit_AuditRecord" Member="Audit" ThisKey="rms_audit_id" OtherKey="rms_audit_id" Type="Audit" IsForeignKey="true" />
       <Association Name="Record_AuditRecord" Member="Record" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="Record" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.RMS_lut_AuditResults" Member="AuditResults">
-    <Type Name="AuditResult">
-      <Column Name="audit_results_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Association Name="AuditResult_Audit" Member="Audits" ThisKey="audit_results_id" OtherKey="audit_results_id" Type="Audit" />
-    </Type>
-  </Table>
-  <Table Name="dbo.RMS_lut_AuditType" Member="AuditTypes">
-    <Type Name="AuditType">
-      <Column Name="audit_type_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Association Name="AuditType_Audit" Member="Audits" ThisKey="audit_type_id" OtherKey="audit_type_id" Type="Audit" />
+      <Association Name="RMS_Audit_Master_AuditRecord" Member="Audit" ThisKey="rms_audit_id" OtherKey="rms_audit_id" Type="Audit" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Trip_Site_Master" Member="TripSites">
@@ -863,7 +831,7 @@
       <Column Name="entered_by" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="entered_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="RMS_Audit_Document_RMS_Audit_DocumentFile" Member="AuditDocumentFiles" ThisKey="rms_audit_document_id" OtherKey="rms_audit_document_id" Type="AuditDocumentFile" />
-      <Association Name="Audit_RMS_Audit_Document" Member="Audit" ThisKey="rms_audit_id" OtherKey="rms_audit_id" Type="Audit" IsForeignKey="true" />
+      <Association Name="RMS_Audit_Master_AuditDocument" Member="Audit" ThisKey="rms_audit_id" OtherKey="rms_audit_id" Type="Audit" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.RMS_Audit_DocumentFile" Member="AuditDocumentFiles">
@@ -872,6 +840,41 @@
       <Column Name="rms_audit_document_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="document_file" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
       <Association Name="RMS_Audit_Document_RMS_Audit_DocumentFile" Member="AuditDocument" ThisKey="rms_audit_document_id" OtherKey="rms_audit_document_id" Type="AuditDocument" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RMS_lut_AuditResults" Member="AuditResults">
+    <Type Name="AuditResult">
+      <Column Name="audit_results_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="result" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="AuditResult_RMS_Audit_Master" Member="Audits" ThisKey="audit_results_id" OtherKey="audit_results_id" Type="Audit" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RMS_lut_AuditType" Member="AuditTypes">
+    <Type Name="AuditType">
+      <Column Name="audit_type_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="AuditType_RMS_Audit_Master" Member="Audits" ThisKey="audit_type_id" OtherKey="audit_type_id" Type="Audit" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RMS_Audit_Master" Member="Audits">
+    <Type Name="Audit">
+      <Column Name="rms_audit_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="audit_beg_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="audit_end_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="audit_by" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="audit_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="audit_type_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="audit_results_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="audit_reason" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="audit_data" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="audit_findings" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="RMS_Audit_Master_AuditRecord" Member="AuditRecords" ThisKey="rms_audit_id" OtherKey="rms_audit_id" Type="AuditRecord" />
+      <Association Name="RMS_Audit_Master_AuditDocument" Member="AuditDocuments" ThisKey="rms_audit_id" OtherKey="rms_audit_id" Type="AuditDocument" />
+      <Association Name="AuditResult_RMS_Audit_Master" Member="AuditResult" ThisKey="audit_results_id" OtherKey="audit_results_id" Type="AuditResult" IsForeignKey="true" />
+      <Association Name="AuditType_RMS_Audit_Master" Member="AuditType" ThisKey="audit_type_id" OtherKey="audit_type_id" Type="AuditType" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">

@@ -115,8 +115,8 @@ table.RecordProcess  {
 
 .pnlNotice h4 {
     color: #f0eac8;
-    margin-bottom:0;
-    margin-top:0;
+    margin-bottom:-12px;
+    margin-top:-5px;
 }
 
 .pnlNotice a {
@@ -180,5 +180,12 @@ div.RecordSubmit {
     margin-top:0;
     margin-bottom:10px;
     border-bottom:1px #c2bebd solid;
+}
+table.DocBoxes {
+    margin:auto;
+}
+
+label {
+    font-weight:bold;
 }
 

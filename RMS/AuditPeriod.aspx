@@ -44,7 +44,7 @@
                     <telerik:AjaxUpdatedControl ControlID="pnlSetupAuditPeriod" LoadingPanelID="ralp" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
-            <telerik:AjaxSetting AjaxControlID="rbCreateAudit">
+            <telerik:AjaxSetting AjaxControlID="rbCreateEditAudit">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="pnlUploadDocs" LoadingPanelID="ralp" />
                     <telerik:AjaxUpdatedControl ControlID="pnlError" />
@@ -141,13 +141,13 @@
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <b>After clicking the Create Audit button, you will be given the option to upload related documents for this audit.</b>
+                                <b>After clicking the Create/Edit Audit button, you will be given the option to upload related documents for this audit.</b>
                             </td>
                         </tr>
                     </table>
                 </div>
                 <hr />
-                <telerik:RadButton ID="rbCreateAudit" runat="server" Skin="Bootstrap" Text="Create Audit" OnCommand="CreateAudit" AutoPostBack="true" />
+                <telerik:RadButton ID="rbCreateEditAudit" runat="server" Skin="Bootstrap" OnCommand="CreateEditAudit" AutoPostBack="true" />
                 <telerik:RadButton ID="rbStartOver" runat="server" Skin="Bootstrap" Text="Start Over" OnCommand="StartOver" AutoPostBack="true" />
                 
                 <asp:Panel ID="pnlError" runat="server" CssClass="pnlNotice" Visible="false">
@@ -158,11 +158,10 @@
 
             <asp:Panel ID="pnlUploadDocs" runat="server">
                 <div class="pnlNotice">
-                    <h4>Audit Period Created!</h4>
-                    <p>Use the form below to upload documents pertaining to this audit.  File types accepted are .TXT, .PDF, .XLSX, .DOCX, .GIF, .JPEG, and .PNG.  If you wish to 
-                        view all audit periods for your WSC, visit the <a href="AuditReport.aspx">Audit Report</a>. To return and create a new audit period, click the "Done" button
-                        at the bottom of the page.
-                    </p>
+                    <h4><asp:Literal ID="ltlConfirm" runat="server" /></h4>
+                    <p>Use the form below to upload documents pertaining to this audit.  File types accepted are .TXT, .PDF, .XLSX, .DOCX, .GIF, .JPG, and .PNG.  If you wish to 
+                        view all audit periods for your WSC, visit the <a href="AuditReport.aspx">Audit Report</a>.</p>
+                    <p style="font-weight:bold;"><asp:Literal ID="ltlDone" runat="server" /></p>
                 </div>
                 <br />
                 <table width="1000" class="DocBoxes" cellpadding="10">
@@ -173,9 +172,9 @@
                                 <tr>
                                     <td align="right" nowrap><b>Select Document</b></td>
                                     <td valign="bottom">
-                                        <telerik:RadAsyncUpload runat="server" ID="rauAuditDoc" TemporaryFolder="~/Doc/Temp/" AllowedFileExtensions="pdf,docx,xlsx,txt,gif,jpeg,png" 
+                                        <telerik:RadAsyncUpload runat="server" ID="rauAuditDoc" TemporaryFolder="~/Doc/Temp/" AllowedFileExtensions="pdf,docx,xlsx,txt,gif,jpg,png" 
                                             MaxFileInputsCount="1" MaxFileSize="10000000" DisableChunkUpload="true" MultipleFileSelection="Disabled" Skin="Bootstrap" 
-                                            PostbackTriggers="rbSubmit" Localization-Select="Browse" ToolTip="File types accepted are .TXT, .PDF, .XLSX, .DOCX, .GIF, .JPEG, and .PNG" />
+                                            PostbackTriggers="rbSubmit" Localization-Select="Browse" ToolTip="File types accepted are .TXT, .PDF, .XLSX, .DOCX, .GIF, .JPG, and .PNG" />
                                     </td>
                                 </tr>
                                 <tr>

@@ -18,6 +18,7 @@ namespace RMS
         private Data.SIMSDataContext db = new Data.SIMSDataContext();
         public WindowsAuthenticationUser user = new WindowsAuthenticationUser();
         private Data.Record currRecord;
+        private Data.Audit currAudit;
         private int RecordID
         {
             get
@@ -27,6 +28,17 @@ namespace RMS
             set
             {
                 Session["RecordID"] = value;
+            }
+        }
+        private int AuditID
+        {
+            get
+            {
+                if (Session["AuditID"] == null) return 0; else return (int)Session["AuditID"];
+            }
+            set
+            {
+                Session["AuditID"] = value;
             }
         }
         private int WSCID
@@ -56,6 +68,7 @@ namespace RMS
         protected void Page_Load(object sender, EventArgs e)
         {
             string rms_record_id = Request.QueryString["rms_record_id"];
+            string rms_audit_id = Request.QueryString["rms_audit_id"];
 
             //If rms_record_id was passed, then set the RecordID variable and make sure the WSCID and OfficeID are changed to match the RecordIDs office and WSC
             if (!string.IsNullOrEmpty(rms_record_id))
@@ -66,6 +79,15 @@ namespace RMS
                 WSCID = (int)db.Offices.Where(p => p.office_id == OfficeID).FirstOrDefault().wsc_id;
             }
             else RecordID = 0;
+
+            if (!string.IsNullOrEmpty(rms_audit_id))
+            {
+                AuditID = Convert.ToInt32(rms_audit_id);
+                currAudit = db.Audits.Where(p => p.rms_audit_id == AuditID).FirstOrDefault();
+                WSCID = (int)currAudit.wsc_id;
+                OfficeID = db.Offices.FirstOrDefault(p => p.wsc_id == WSCID).office_id;
+            }
+            else AuditID = 0;
 
             UserControlSetup();
 
@@ -91,7 +113,8 @@ namespace RMS
         protected void UserControlSetup()
         {
             string wsc_nm = db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID).wsc_nm;
-            ph1.Title = "Create a New Audit Period";
+            if (AuditID == 0) ph1.Title = "Create a New Audit Period"; else ph1.Title = "Modify an Audit Period";
+
             if (RecordID == 0)
             {
                 ph1.SubTitle = "For the " + wsc_nm + " WSC";
@@ -109,12 +132,25 @@ namespace RMS
             pnlSetupAuditPeriod.Visible = true;
             pnlAuditPeriod.Visible = false;
             pnlUploadDocs.Visible = false;
-            rdpBeginDt.SelectedDate = null;
-            rdpEndDt.SelectedDate = null;
-            rtbAuditReason.Text = "";
-            rtbDataAudited.Text = "";
-            rtbAuditFindings.Text = "";
-            rtbSANAL.Text = "";
+
+            if (currAudit == null)
+            {
+                rdpBeginDt.SelectedDate = null;
+                rdpEndDt.SelectedDate = null;
+                rtbAuditReason.Text = "";
+                rtbDataAudited.Text = "";
+                rtbAuditFindings.Text = "";
+                rtbSANAL.Text = "";
+            }
+            else
+            {
+                rdpBeginDt.SelectedDate = currAudit.audit_beg_dt;
+                rdpEndDt.SelectedDate = currAudit.audit_end_dt;
+                rtbAuditReason.Text = currAudit.audit_reason;
+                rtbDataAudited.Text = currAudit.audit_data;
+                rtbAuditFindings.Text = currAudit.audit_findings;
+                rtbSANAL.Text = "";
+            }
 
             LoadOfficeList();
             LoadFieldTripList();
@@ -161,21 +197,44 @@ namespace RMS
 
             if (RecordID > 0)
             {
-                RadListBoxItem item = rlbRecords.Items.Where(p => p.Value == RecordID.ToString()).FirstOrDefault();
+                RadListBoxItem item1 = rlbRecords.Items.Where(p => p.Value == RecordID.ToString()).FirstOrDefault();
 
-                if (item != null)
+                if (item1 != null)
                 {
-                    item.Checked = true;
-                    rlbRecords.Items.Remove(item);
-                    rlbRecords.Items.Insert(0, item);
-                    rlbRecords.SelectedIndex = 0;
+                    item1.Checked = true;
+                    rlbRecords.Items.Remove(item1);
+                    rlbRecords.Items.Insert(0, item1);
                 }
                 else
                 {
-                    RadListBoxItem i = new RadListBoxItem() { Value = RecordID.ToString(), Text = currRecord.Site.site_no + " - " + currRecord.RecordType.type_ds };
-                    i.Checked = true;
-                    rlbRecords.Items.Insert(0, i);
-                    rlbRecords.SelectedIndex = 0;
+                    RadListBoxItem item2 = new RadListBoxItem() { Value = RecordID.ToString(), Text = currRecord.Site.site_no + " - " + currRecord.RecordType.type_ds };
+                    item2.Checked = true;
+                    rlbRecords.Items.Insert(0, item2);
+                }
+                rlbRecords.SelectedIndex = 0;
+            }
+
+            if (currAudit != null)
+            {
+                int x = 0;
+                foreach (var rec in currAudit.AuditRecords)
+                {
+                    RadListBoxItem item3 = rlbRecords.Items.Where(p => p.Value == rec.rms_record_id.ToString()).FirstOrDefault();
+
+                    if (item3 != null)
+                    {
+                        item3.Checked = true;
+                        rlbRecords.Items.Remove(item3);
+                        rlbRecords.Items.Insert(x, item3);
+                    }
+                    else
+                    {
+                        var record = db.Records.FirstOrDefault(p => p.rms_record_id == rec.rms_record_id);
+                        RadListBoxItem item4 = new RadListBoxItem() { Value = rec.rms_record_id.ToString(), Text = record.Site.site_no + " - " + record.RecordType.type_ds };
+                        item4.Checked = true;
+                        rlbRecords.Items.Insert(x, item4);
+                    }
+                    x += 1;
                 }
             }
         }
@@ -274,7 +333,7 @@ namespace RMS
             }
         }
 
-        protected void CreateAudit(object sender, CommandEventArgs e)
+        protected void CreateEditAudit(object sender, CommandEventArgs e)
         {
             int audit_type_id, audit_results_id;
             if (!string.IsNullOrEmpty(rddlAuditType.SelectedValue)) audit_type_id = Convert.ToInt32(rddlAuditType.SelectedValue); else audit_type_id = 0;
@@ -290,48 +349,101 @@ namespace RMS
             }
             else
             {
-                Data.Audit new_audit = new Data.Audit()
+                if (e.CommandArgument.ToString() == "Add")
                 {
-                    audit_beg_dt = rdpBeginDt.SelectedDate,
-                    audit_end_dt = rdpEndDt.SelectedDate,
-                    audit_by = user.ID,
-                    audit_dt = DateTime.Now,
-                    audit_type_id = audit_type_id,
-                    audit_results_id = audit_results_id,
-                    audit_reason = audit_reason,
-                    audit_data = audit_data,
-                    audit_findings = audit_findings
-                };
-                db.Audits.InsertOnSubmit(new_audit);
-                db.SubmitChanges();
-
-                foreach (RadListBoxItem item in rlbViewRecords.Items)
-                {
-                    Data.AuditRecord new_audit_rec = new Data.AuditRecord()
+                    Data.Audit new_audit = new Data.Audit()
                     {
-                        rms_audit_id = new_audit.rms_audit_id,
-                        rms_record_id = Convert.ToInt32(item.Value)
+                        audit_beg_dt = rdpBeginDt.SelectedDate,
+                        audit_end_dt = rdpEndDt.SelectedDate,
+                        audit_by = user.ID,
+                        audit_dt = DateTime.Now,
+                        audit_type_id = audit_type_id,
+                        audit_results_id = audit_results_id,
+                        audit_reason = audit_reason,
+                        audit_data = audit_data,
+                        audit_findings = audit_findings
                     };
-                    db.AuditRecords.InsertOnSubmit(new_audit_rec);
+                    db.Audits.InsertOnSubmit(new_audit);
                     db.SubmitChanges();
+
+                    foreach (RadListBoxItem item in rlbViewRecords.Items)
+                    {
+                        Data.AuditRecord new_audit_rec = new Data.AuditRecord()
+                        {
+                            rms_audit_id = new_audit.rms_audit_id,
+                            rms_record_id = Convert.ToInt32(item.Value)
+                        };
+                        db.AuditRecords.InsertOnSubmit(new_audit_rec);
+                        db.SubmitChanges();
+                    }
+
+                    rbSubmit.CommandArgument = new_audit.rms_audit_id.ToString();
+
+                    //Setup the rest of the page
+                    pnlError.Visible = false;
+                    pnlAuditPeriod.Visible = false;
+                    ltlConfirm.Text = "Audit Period Created!";
+                    ltlDone.Text = "To return and create a new audit period, click the 'Done' button at the bottom of the page.";
+                    rbDone.CommandArgument = "stay";
+                    pnlUploadDocs.Visible = true;
+                    rlvAuditDocs.Visible = false;
+                    ltlAlert.Text = "";
                 }
+                else
+                {
+                    currAudit.audit_beg_dt = rdpBeginDt.SelectedDate;
+                    currAudit.audit_end_dt = rdpEndDt.SelectedDate;
+                    currAudit.audit_by = user.ID;
+                    currAudit.audit_dt = DateTime.Now;
+                    currAudit.audit_type_id = audit_type_id;
+                    currAudit.audit_results_id = audit_results_id;
+                    currAudit.audit_reason = audit_reason;
+                    currAudit.audit_data = audit_data;
+                    currAudit.audit_findings = audit_findings;
 
-                rbSubmit.CommandArgument = new_audit.rms_audit_id.ToString();
+                    db.AuditRecords.DeleteAllOnSubmit(currAudit.AuditRecords);
+                    db.SubmitChanges();
 
-                pnlError.Visible = false;
-                pnlAuditPeriod.Visible = false;
-                pnlUploadDocs.Visible = true;
-                rlvAuditDocs.Visible = false;
-                ltlAlert.Text = "";
+                    foreach (RadListBoxItem item in rlbViewRecords.Items)
+                    {
+                        Data.AuditRecord new_audit_rec = new Data.AuditRecord()
+                        {
+                            rms_audit_id = currAudit.rms_audit_id,
+                            rms_record_id = Convert.ToInt32(item.Value)
+                        };
+                        db.AuditRecords.InsertOnSubmit(new_audit_rec);
+                        db.SubmitChanges();
+                    }
+
+                    rbSubmit.CommandArgument = currAudit.rms_audit_id.ToString();
+
+                    //Setup the rest of the page
+                    pnlError.Visible = false;
+                    pnlAuditPeriod.Visible = false;
+                    ltlConfirm.Text = "Audit Period Updated!";
+                    ltlDone.Text = "When finished uploading documents, clicking the 'Done' button below will return you to the Audit Report.";
+                    rbDone.CommandArgument = "leave";
+                    pnlUploadDocs.Visible = true;
+                    //Create the list of uploaded documents
+                    rlvAuditDocs.Visible = true;
+                    rlvAuditDocs.DataSource = currAudit.AuditDocuments.Select(p => new { rms_audit_document_id = p.rms_audit_document_id, document_nm = p.document_nm }).OrderBy(p => p.document_nm);
+                    rlvAuditDocs.DataBind();
+                    ltlAlert.Text = "";
+                }
             }
         }
 
         protected void StartOver(object sender, CommandEventArgs e)
         {
-            pnlNotice.Visible = false;
-            pnlError.Visible = false;
-            pnlUploadDocs.Visible = false;
-            InitialView();
+            if (e.CommandArgument.ToString() == "leave")
+                Response.Redirect(String.Format("{0}AuditReport.aspx", Config.RMSURL));
+            else
+            {
+                pnlNotice.Visible = false;
+                pnlError.Visible = false;
+                pnlUploadDocs.Visible = false;
+                InitialView();
+            }
         }
 
         protected void UploadDocument(object sender, CommandEventArgs e)
@@ -388,15 +500,30 @@ namespace RMS
             rlbViewRecords.DataSource = rlbRecords.CheckedItems.Select(p => new { rms_record_id = p.Value, record_nm = p.Text });
             rlbViewRecords.DataBind();
 
-            rddlAuditType.DataSource = db.AuditTypes.ToList();
+            rddlAuditType.DataSource = db.AuditTypes.Select(p => new { audit_type_id = p.audit_type_id, description = p.type + ": " + p.description }).ToList();
             rddlAuditType.DataBind();
             rddlAuditType.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
-            rddlAuditType.SelectedIndex = 0;
 
-            rddlAuditResults.DataSource = db.AuditResults.ToList();
+            rddlAuditResults.DataSource = db.AuditResults.Select(p => new { audit_results_id = p.audit_results_id, description = p.result + p.description }).ToList();
             rddlAuditResults.DataBind();
             rddlAuditResults.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
-            rddlAuditResults.SelectedIndex = 0;
+
+            if (currAudit != null)
+            {
+                rddlAuditResults.SelectedValue = currAudit.audit_results_id.ToString();
+                rddlAuditType.SelectedValue = currAudit.audit_type_id.ToString();
+
+                rbCreateEditAudit.Text = "Edit Audit Period";
+                rbCreateEditAudit.CommandArgument = "Edit";
+            }
+            else
+            {
+                rddlAuditType.SelectedIndex = 0;
+                rddlAuditResults.SelectedIndex = 0;
+
+                rbCreateEditAudit.Text = "Create Audit";
+                rbCreateEditAudit.CommandArgument = "Add";
+            }
         }
 
         protected void ClearFormFields()

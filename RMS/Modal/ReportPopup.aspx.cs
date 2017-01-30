@@ -16,6 +16,7 @@ namespace RMS.Modal
         private string View { get; set; }
         private Data.Record currRecord { get; set; }
         private Data.RecordAnalysisPeriod currPeriod { get; set; }
+        private DateTime? beg_dt, end_dt;
         private int? RecordID
         {
             get
@@ -67,6 +68,8 @@ namespace RMS.Modal
             View = Request.QueryString["view"];
             string rms_record_id = Request.QueryString["rms_record_id"];
             string period_id = Request.QueryString["period_id"];
+            beg_dt = Convert.ToDateTime(Request.QueryString["beg_dt"]);
+            end_dt = Convert.ToDateTime(Request.QueryString["end_dt"]);
 
             if (!string.IsNullOrEmpty(rms_record_id) || !string.IsNullOrEmpty(period_id))
             {
@@ -89,6 +92,7 @@ namespace RMS.Modal
                         break;
                     case "wyanalysisnotes":
                     case "analysisbyperiod":
+                    case "analysisnotesbydaterange":
                         SetupWYAnalysisNotesPanel();
                         break;
                 }
@@ -140,14 +144,17 @@ namespace RMS.Modal
             if (PeriodID == 0)
             {
                 //Figure out the begin and end dates to use for the WY timespan
-                DateTime currDate = DateTime.Now;
-                int currWY;
-                if (currDate.Month < 4) currWY = DateTime.Now.Year - 2; else currWY = DateTime.Now.Year - 1;
-                DateTime begdate = Convert.ToDateTime("10/1/" + currWY.ToString());
-                DateTime enddate = DateTime.Now;
+                if (beg_dt == null && end_dt == null)
+                {
+                    DateTime currDate = DateTime.Now;
+                    int currWY;
+                    if (currDate.Month < 4) currWY = DateTime.Now.Year - 2; else currWY = DateTime.Now.Year - 1;
+                    beg_dt = Convert.ToDateTime("10/1/" + currWY.ToString());
+                    end_dt = DateTime.Now;
+                }
 
                 //Grab all analysis periods within this timespan
-                var periods = currRecord.RecordAnalysisPeriods.Where(p => p.period_end_dt >= begdate && p.period_beg_dt <= enddate).OrderByDescending(p => p.period_beg_dt).ToList();
+                var periods = currRecord.RecordAnalysisPeriods.Where(p => p.period_end_dt >= beg_dt && p.period_beg_dt <= end_dt).OrderByDescending(p => p.period_beg_dt).ToList();
 
                 foreach (var period in periods)
                 {

@@ -229,13 +229,13 @@ namespace RMS {
         protected global::Telerik.Web.UI.RadTextBox rtbAuditFindings;
         
         /// <summary>
-        /// rbCreateAudit control.
+        /// rbCreateEditAudit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton rbCreateAudit;
+        protected global::Telerik.Web.UI.RadButton rbCreateEditAudit;
         
         /// <summary>
         /// rbStartOver control.
@@ -272,6 +272,24 @@ namespace RMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlUploadDocs;
+        
+        /// <summary>
+        /// ltlConfirm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlConfirm;
+        
+        /// <summary>
+        /// ltlDone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlDone;
         
         /// <summary>
         /// rauAuditDoc control.
