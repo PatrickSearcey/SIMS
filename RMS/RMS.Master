@@ -23,7 +23,7 @@
                         <%--Logo--%>
                         <telerik:LayoutColumn Span="2" SpanMd="3" SpanSm="12" SpanXs="12">
                             <a href="#" class="logo">
-                                <img src="images/USGSHeaderLogoRMS.png" alt="site logo"/>
+                                <img src="images/USGSHeaderLogo.png" alt="site logo"/>
                             </a>
                         </telerik:LayoutColumn>
 
@@ -54,7 +54,13 @@
                                     <telerik:RadMenuItem IsSeparator="true" />
                                     <telerik:RadMenuItem Text="CRP Tools" />
                                     <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="Reports" />
+                                    <telerik:RadMenuItem Text="Reports">
+                                        <ContentTemplate>
+                                            <div style="padding:10px;">
+                                                <b><a href="AuditReport.aspx">Audit Report</a></b><br />
+                                            </div>
+                                        </ContentTemplate>
+                                    </telerik:RadMenuItem>
                                     <telerik:RadMenuItem IsSeparator="true" />
                                     <telerik:RadMenuItem Text="Station Analyses" />
                                     <telerik:RadMenuItem IsSeparator="true" />
@@ -82,7 +88,7 @@
                     <Columns>
                         <telerik:LayoutColumn CssClass="footer">
                             <hr />
-                            U.S. Geological Survey, <a href="mailto:GS-W_Help_SIMS@usgs.gov">GS-W Help SIMS@usgs.gov</a>, Page Last Updated: 10/28/2016
+                            U.S. Geological Survey, <a href="mailto:GS-W_Help_SIMS@usgs.gov">GS-W Help SIMS@usgs.gov</a>, Page Last Updated: 1/31/2017
                         </telerik:LayoutColumn>
                     </Columns>
                 </telerik:LayoutRow>

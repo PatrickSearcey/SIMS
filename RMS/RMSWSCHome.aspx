@@ -1,9 +1,23 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/RMS.Master" AutoEventWireup="true" CodeBehind="RMSWSCHome.aspx.cs" Inherits="RMS.RMSWSCHome" %>
+<%@ Register Src="~/Control/OfficeSelector.ascx" TagName="OfficeSelector" TagPrefix="uc" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="styles/default.css" rel="stylesheet" />
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="cph1" runat="server">
-    <telerik:RadPageLayout runat="server" ID="RadPageLayout1">
+    <telerik:RadAjaxManager ID="ram" runat="server">
+        <AjaxSettings>
+            <telerik:AjaxSetting AjaxControlID="osHome">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="osHome" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
+        </AjaxSettings>
+    </telerik:RadAjaxManager>
+    <telerik:RadAjaxLoadingPanel ID="ralp" runat="server" Skin="Bootstrap" />
+
+    <telerik:RadPageLayout runat="server" ID="rplTop">
         <Rows>
             <telerik:LayoutRow>
                 <Columns>
@@ -16,13 +30,14 @@
             <telerik:LayoutRow>
                 <Columns>
                     <telerik:LayoutColumn HiddenMd="true" HiddenSm="true" HiddenXs="true">
-                        <h3>H3 text, font size 24 px </h3>
-                        Ut aliquam elit eget quam tincidunt, et aliquam libero congue. Phasellus aliquet sed quam vitae dictum. Aliquam erat volutpat. Morbi accumsan a mi quis pretium. 
+                        <uc:OfficeSelector id="osHome" runat="server" />
                     </telerik:LayoutColumn>
                 </Columns>
             </telerik:LayoutRow>
         </Rows>
     </telerik:RadPageLayout>
 </asp:Content>
+
 <asp:Content ID="Content3" ContentPlaceHolderID="cph2" runat="server">
+
 </asp:Content>

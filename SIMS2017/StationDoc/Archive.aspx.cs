@@ -13,7 +13,11 @@ namespace SIMS2017.StationDoc
     {
         #region Local Variables
         private Data.SIMSDataContext db = new Data.SIMSDataContext();
+#if DEBUG
         private SIMSDevService.SIMSServiceClient svcSIMS = new SIMSDevService.SIMSServiceClient();
+#else
+        private SIMSService.SIMSServiceClient svcSIMS = new SIMSService.SIMSServiceClient();
+#endif
         public WindowsAuthenticationUser user = new WindowsAuthenticationUser();
         public Boolean HasEditAccess { get; set; }
         private Data.Site currSite;
@@ -71,6 +75,7 @@ namespace SIMS2017.StationDoc
             else ph1.Title = "Archives for " + db.ElementDetails.FirstOrDefault(p => p.element_id == element_id).element_nm;
 
             ph1.SubTitle = currSite.site_no + " " + currSite.station_full_nm;
+            ph1.ShowOfficeInfoPanel = true;
 
             if (!Page.IsPostBack)
             {

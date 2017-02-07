@@ -15,7 +15,11 @@ namespace SIMS2017.Control
     {
         #region Local Variables
         private Data.SIMSDataContext db = new Data.SIMSDataContext();
+#if DEBUG
         private SIMSDevService.SIMSServiceClient svcSIMS = new SIMSDevService.SIMSServiceClient();
+#else
+        private SIMSService.SIMSServiceClient svcSIMS = new SIMSService.SIMSServiceClient();
+#endif
         public WindowsAuthenticationUser user = new WindowsAuthenticationUser();
         private Data.Site currSite;
         private int SiteID
@@ -95,7 +99,6 @@ namespace SIMS2017.Control
         protected void rlvElem_NeedDataSource(object source, RadListViewNeedDataSourceEventArgs e)
         {
 #if DEBUG
-            SIMSDevService.SIMSServiceClient svcSIMS = new SIMSDevService.SIMSServiceClient();
             List<SIMSDevService.Element> lstElems = new List<SIMSDevService.Element>();
 
             lstElems = svcSIMS.GetElementsBySiteAndReport(currSite.site_no, currSite.agency_cd, "MANU").Select(p => new SIMSDevService.Element
@@ -110,7 +113,6 @@ namespace SIMS2017.Control
                 Priority = p.Priority
             }).ToList();
 #else
-            SIMSService.SIMSServiceClient svcSIMS = new SIMSService.SIMSServiceClient();
             List<SIMSService.Element> lstElems = new List<SIMSService.Element>();
             
             lstElems = svcSIMS.GetElementsBySiteAndReport(currSite.site_no, currSite.agency_cd, "MANU").Select(p => new SIMSService.Element {

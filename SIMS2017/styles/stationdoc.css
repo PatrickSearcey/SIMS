@@ -70,7 +70,7 @@
     font-size:9pt;
     padding-top:10px;
     border-bottom:solid 1px #808080;
-    height:40px;
+    height:30px;
 }
 
 .mainContent {
@@ -187,4 +187,37 @@ div.EditDocList {
 .SelectLink {
     color: #314d93 !important;
     font-weight:bold;
+}
+
+/*----------FOR BACKGROUND COLORS-------------------*/
+.SANAL{
+    background-color:lightgray !important;
+    margin:-16px 0 0 0 !important;
+    padding:15px 5px 0 5px !important;
+}
+.MANU{
+    background-color:lightsteelblue !important;
+    margin:-16px 0 0 0 !important;
+    padding:15px 5px 0 5px !important;
+}
+.SDESC {
+    background-color:white !important;
+    margin:-16px 0 0 0 !important;
+    padding:10px 5px 5px 5px !important;
+}
+.SANAL_DDL{
+    background-color:lightgray !important;
+}
+.MANU_DDL{
+    background-color:lightsteelblue !important;
+}
+.SDESC_DDL {
+    background-color:white !important;
+}
+/*------------FOR CUSTOM REPORT--------------------*/
+.RadForm_Bootstrap h5.rfdHeading { 
+    margin-bottom:20px !important;
+}
+.rbVerticalList {
+    width: 550px;
 }

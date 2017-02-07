@@ -13,13 +13,31 @@ namespace RMS {
     public partial class RMSWSCHome {
         
         /// <summary>
-        /// RadPageLayout1 control.
+        /// ram control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadPageLayout RadPageLayout1;
+        protected global::Telerik.Web.UI.RadAjaxManager ram;
+        
+        /// <summary>
+        /// ralp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadAjaxLoadingPanel ralp;
+        
+        /// <summary>
+        /// rplTop control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPageLayout rplTop;
         
         /// <summary>
         /// ltlWSCName control.
@@ -29,5 +47,14 @@ namespace RMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlWSCName;
+        
+        /// <summary>
+        /// osHome control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::RMS.Control.OfficeSelector osHome;
     }
 }

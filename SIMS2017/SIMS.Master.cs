@@ -66,19 +66,19 @@ namespace SIMS2017
             rmTop.Items.Add(new RadMenuItem { IsSeparator = true });
             rmTop.Items.Add(new RadMenuItem { Text = "Contact", NavigateUrl = String.Format("{0}NWISOpsRequest.aspx", Config.SIMS2017URL) });
 
-            hlDCPIDInfo.NavigateUrl = String.Format("{0}NessInfo3.asp?office_id={1}&wsc_id={2}", Config.SIMSClassicURL, OfficeID, WSCID);
+            rmSide.FindItemByText("RMS").NavigateUrl = String.Format("{0}RMSWSCHome.aspx", Config.RMSURL);
+
+            hlDCPIDInfo.NavigateUrl = String.Format("{0}DCPIDReport.aspx?office_id={1}", Config.SIMS2017URL, OfficeID);
             hlPASS.NavigateUrl = Config.PASSURL;
             hlStationLevels.NavigateUrl = String.Format("{0}StationLevels.aspx?wsc_id={1}", Config.SLAPURL, WSCID);
-            hlOfficeReport.NavigateUrl = String.Format("{0}StationElemRpt.asp?office_id={1}&wsc_id={2}", Config.SIMSClassicURL, OfficeID, WSCID);
+            hlOfficeReport.NavigateUrl = String.Format("{0}StationDoc/CustomReport.aspx?type={1}&office_id={2}", Config.SIMS2017URL, "office", OfficeID);
             hlCableway.NavigateUrl = String.Format("{0}CablewayReport.aspx?tp=status&wsc_id={1}", Config.SafetyURL, WSCID);
             hlEditCableway.NavigateUrl = String.Format("{0}Cableways.aspx?wsc_id={1}", Config.SafetyURL, WSCID);
             hlSHAReport.NavigateUrl = String.Format("{0}SHAReport.aspx?office_id={1}", Config.SafetyURL, OfficeID, WSCID);
             hlTCPReport.NavigateUrl = String.Format("{0}TCPReport.aspx?office_id={1}", Config.SafetyURL, OfficeID, WSCID);
             hlEmergencyInfo.NavigateUrl = String.Format("{0}EmergencyInfo.aspx?office_id={1}", Config.SafetyURL, OfficeID);
             hlMAI.NavigateUrl = String.Format("{0}StationDoc/MAI.aspx?office_id={1}", Config.SIMS2017URL, OfficeID);
-            hlWYSummaryReport.NavigateUrl = String.Format("{0}WY/wys_details.html", Config.SIMSServerURL);
-            hlPubsList.NavigateUrl = String.Format("{0}StationsList.asp?office_id={1}&wy=2013", Config.SIMSClassicURL, OfficeID);
-            hlADRStatus.NavigateUrl = String.Format("{0}StationsCount.asp?wsc_id={1}", Config.SIMSClassicURL, WSCID);
+            hlWYSummaryReport.NavigateUrl = String.Format("{0}SIMSReports/WY/wys_details.html", Config.SIMSServerURL);
             hlMapFieldTrips.NavigateUrl = String.Format("{0}fieldtripmap.aspx?office_id={1}&trip_id=0&wsc_id={2}", Config.SIMSURL, OfficeID, WSCID);
             hlKMLWSC.NavigateUrl = String.Format("{0}KMLHandler.ashx?wsc_id={1}", Config.SIMSURL, WSCID);
             hlKMLOffice.NavigateUrl = String.Format("{0}KMLHandler.ashx?office_id={1}", Config.SIMSURL, OfficeID);
@@ -98,24 +98,27 @@ namespace SIMS2017
         //Handles Info By Site link redirects
         protected void SiteInfo_Command(object sender, CommandEventArgs e)
         {
+            int waterbodytype = 1;
             switch (e.CommandArgument.ToString())
             {
                 case "Spring":
-                    Response.Redirect(Config.SIMSClassicURL + "StationElemRpt.asp?waterbody_type=5&wsc_id=" + WSCID.ToString());
+                    waterbodytype = 5;
                     break;
                 case "Estuary":
-                    Response.Redirect(Config.SIMSClassicURL + "StationElemRpt.asp?waterbody_type=3&wsc_id=" + WSCID.ToString());
+                    waterbodytype = 3;
                     break;
                 case "Lake":
-                    Response.Redirect(Config.SIMSClassicURL + "StationElemRpt.asp?waterbody_type=2&wsc_id=" + WSCID.ToString());
+                    waterbodytype = 2;
                     break;
                 case "Stream":
-                    Response.Redirect(Config.SIMSClassicURL + "StationElemRpt.asp?waterbody_type=1&wsc_id=" + WSCID.ToString());
+                    waterbodytype = 1;
                     break;
                 case "Groundwater":
-                    Response.Redirect(Config.SIMSClassicURL + "StationElemRpt.asp?waterbody_type=6&wsc_id=" + WSCID.ToString());
+                    waterbodytype = 6;
                     break;
             }
+
+            Response.Redirect(String.Format("{0}StationDoc/CustomReport.aspx?type={1}&office_id={2}", Config.SIMS2017URL, waterbodytype, OfficeID));
         }
     }
 }

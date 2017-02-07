@@ -93,7 +93,7 @@
 
 h4 {
     border-bottom: 1px solid #d4d4d5;
-    color: #314d93;
+    color: #314d93 !important;
 }
 
 .DCPTable {

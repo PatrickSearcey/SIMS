@@ -62,12 +62,26 @@
                     <telerik:AjaxUpdatedControl ControlID="pnlChooseAction" LoadingPanelID="ralp" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="rlvElements">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="pnlResult" LoadingPanelID="ralp" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlChooseElement" />
+                    <telerik:AjaxUpdatedControl ControlID="hfElementID" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlNote" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
         </AjaxSettings>
     </telerik:RadAjaxManager>
     <telerik:RadAjaxLoadingPanel ID="ralp" runat="server" Skin="Bootstrap" />
 
     <uc:PageHeading id="ph1" runat="server" />
     <div class="linkbar">
+        <div style="float:left;">
+            <span style="font-weight:bold;">Note:&nbsp;&nbsp;SDESC, 
+            <img src="../images/keycolor0.gif" alt="white color" /> = Station Description;
+            &nbsp;&nbsp;SANAL, <img src="../images/keycolor1.gif" alt="gray color" /> = Station Analysis;
+            &nbsp;&nbsp;MANU, <img src="../images/keycolor2.gif" alt="purple color" /> = Manuscripts</span>
+        </div>
         <div style="float:right;">
             <asp:HyperLink ID="hlAutoReview" runat="server" target="_blank" Text="Click here to view Auto Review (if applicable)" />
         </div>
@@ -100,12 +114,26 @@
         <asp:Panel ID="pnlChooseElement" runat="server">
             <p class="EditDocList">2. Choose the element on which to perform the action</p>
             <div class="EditDocList">
-                <telerik:RadDropDownList ID="rddlElements" runat="server" Skin="Bootstrap" Width="400px" DropDownHeight="400px"
+                <telerik:RadDropDownList ID="rddlElements" runat="server" Skin="Bootstrap" Width="400px" DropDownHeight="400px" OnItemDataBound="rddlElements_ItemDataBound"
                     DataValueField="element_id" DataTextField="element_nm" OnSelectedIndexChanged="UpdateControls" AutoPostBack="true" />
+                <telerik:RadListView ID="rlvElements" runat="server" Skin="Bootstrap">
+                    <ItemTemplate>
+                        <div class='<%# Eval("ReportType") %>'>
+                            <div class="RevisionHistory">
+                                Revised By: <%# Eval("RevisedBy") %> Date Revised: <%# String.Format("{0:MM/dd/yyyy}", Eval("RevisedDate")) %> 
+                                (<a href='<%# String.Format("Archive.aspx?element_id={0}&site_id={1}", Eval("ElementID"), Eval("SiteID")) %>' target="_blank">revision history</a>)
+                            </div>
+                            <b><asp:LinkButton ID="lbElement" runat="server" Text='<%# Eval("ElementName") %>' OnCommand="lbElement_Command" CommandArgument='<%# Eval("ElementID") %>' />.--</b> 
+                            <%# Eval("ElementInfo") %>
+                            <p></p>
+                        </div>
+                    </ItemTemplate>
+                </telerik:RadListView>
             </div>
         </asp:Panel>
 
         <asp:Panel ID="pnlResult" runat="server" CssClass="ResultPanel">
+            <asp:HiddenField ID="hfElementID" runat="server" />
             <p class="EditDocList"><asp:Literal ID="ltlResultHeading" runat="server" /></p>
             <div class="RevisionHistory">
                 <asp:Literal ID="ltlRevisedBy" runat="server" /><!-- Last Revised By: userid    Date Last Revised: date -->
@@ -155,4 +183,5 @@
             </asp:Panel>
         </asp:Panel>
     </div>
+    <br /><br /><br />
 </asp:Content>

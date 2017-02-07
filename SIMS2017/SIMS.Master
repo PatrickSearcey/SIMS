@@ -51,7 +51,7 @@
                         <telerik:LayoutColumn Span="2" HiddenMd="true" HiddenSm="true" HiddenXs="true">
                             <telerik:RadMenu ID="rmSide" CssClass="sidebar" Flow="Vertical" runat="server" Skin="Bootstrap">
                                 <Items>
-                                    <telerik:RadMenuItem Text="RMS" NavigateUrl="~/RMSWSCHome.aspx" />
+                                    <telerik:RadMenuItem Text="RMS" />
                                     <telerik:RadMenuItem IsSeparator="true" />
                                     <telerik:RadMenuItem Text="Info By Site">
                                         <ContentTemplate>
@@ -97,8 +97,7 @@
                                                 <b><a href="https://collaboration.usgs.gov/wg/owi/specialprojects/SIMS/Shared%20Documents/PADRE/FAQ.html" target="_blank">MAI FAQ</a></b><br />
                                                 <b><a href="http://water.usgs.gov/usgs/adr/index.php" target="_blank">ADR Transition Site</a></b><br />
                                                 <b><a href="mailto:GS-W_Help_ADR_Transition@usgs.gov" target="_blank">GS-W Help ADR Transition</a></b><br />
-                                                <b><a href="mailto:GS-W Help SIMS@usgs.gov" target="_blank">GS-W Help SIMS</a></b><br /><br />
-                                                <b>Legacy ADR: <asp:HyperLink ID="hlPubsList" runat="server" Text="pubs list" />/<asp:HyperLink ID="hlADRStatus" runat="server" Text="status" />/<a href="http://wdr.water.usgs.gov/allsearch.php" target="_blank">search</a></b>
+                                                <b><a href="mailto:GS-W Help SIMS@usgs.gov" target="_blank">GS-W Help SIMS</a></b>
                                             </div>
                                         </ContentTemplate>
                                     </telerik:RadMenuItem>
@@ -135,7 +134,7 @@
                     <Columns>
                         <telerik:LayoutColumn CssClass="footer">
                             <hr />
-                            U.S. Geological Survey, <a href="mailto:GS-W_Help_SIMS@usgs.gov">GS-W Help SIMS@usgs.gov</a>, Page Last Updated: 10/28/2016
+                            U.S. Geological Survey, <a href="mailto:GS-W_Help_SIMS@usgs.gov">GS-W Help SIMS@usgs.gov</a>, Page Last Updated: 1/31/2017
                         </telerik:LayoutColumn>
                     </Columns>
                 </telerik:LayoutRow>

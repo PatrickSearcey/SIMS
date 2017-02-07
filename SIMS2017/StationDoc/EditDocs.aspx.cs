@@ -1,6 +1,8 @@
 ﻿using Core;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -13,7 +15,11 @@ namespace SIMS2017.StationDoc
     {
         #region Local Variables
         private Data.SIMSDataContext db = new Data.SIMSDataContext();
+#if DEBUG
         private SIMSDevService.SIMSServiceClient svcSIMS = new SIMSDevService.SIMSServiceClient();
+#else
+        private SIMSService.SIMSServiceClient svcSIMS = new SIMSService.SIMSServiceClient();
+#endif
         public WindowsAuthenticationUser user = new WindowsAuthenticationUser();
         public Boolean HasEditAccess { get; set; }
         private Data.Site currSite;
@@ -66,6 +72,7 @@ namespace SIMS2017.StationDoc
 
             ph1.Title = "Edit Station Documents";
             ph1.SubTitle = currSite.site_no + " " + currSite.station_full_nm;
+            ph1.ShowOfficeInfoPanel = true;
 
             if (!Page.IsPostBack)
             {
@@ -75,6 +82,37 @@ namespace SIMS2017.StationDoc
                 InitialPageSetup();
             }
         }
+
+        #region Data
+        private List<Data.SiteElementItem> SiteElements()
+        {
+            List<Data.SiteElementItem> data = currSite.SiteElements.Select(p => new Data.SiteElementItem
+            {
+                ElementID = Convert.ToInt32(p.element_id),
+                ElementInfo = p.element_info.FormatElementInfo(Convert.ToInt32(p.element_id), Convert.ToInt32(p.site_id)),
+                ElementName = p.ElementDetail.element_nm,
+                RevisedBy = p.revised_by,
+                RevisedDate = p.revised_dt,
+                SiteID = Convert.ToInt32(p.site_id),
+                Priority = Convert.ToInt16(p.ElementDetail.priority),
+                ReportType = GetReportType(Convert.ToInt16(p.ElementDetail.priority))
+            }).OrderBy(p => p.Priority).ToList();
+
+            return data;
+        }
+
+        private string GetReportType(short priority)
+        {
+            string ret = "SDESC";
+
+            if (priority > 199 && priority < 300)
+                ret = "SANAL";
+            else if (priority > 299)
+                ret = "MANU";
+
+            return ret;
+        }
+        #endregion
 
         #region Page Methods
         protected void InitialPageSetup()
@@ -107,7 +145,8 @@ namespace SIMS2017.StationDoc
             rddlElements.SelectedIndex = 0;
 
             pnlResult.Visible = false;
-            rddlElements.Enabled = false;
+            rddlElements.Visible = false;
+            rlvElements.Visible = false;
             pnlNoAccess.Visible = false;
         }
 
@@ -256,6 +295,7 @@ namespace SIMS2017.StationDoc
                         //Setup control visibility
                         pnlEditAddElementInfo.Visible = true;
                         pnlDeleteElement.Visible = false;
+                        rlvElements.Visible = false;
                         break;
                     case "Delete":
                         //Populate fields
@@ -272,24 +312,48 @@ namespace SIMS2017.StationDoc
             }
         }
 
+        protected void rddlElements_ItemDataBound(object sender, DropDownListItemEventArgs e)
+        {
+            Data.ElementDetail dataItem = (Data.ElementDetail)e.Item.DataItem;
+
+            short priority = (short)dataItem.priority;
+
+            if (priority > 199 && priority < 300)
+                e.Item.CssClass = "SANAL_DDL";
+            else if (priority > 299)
+                e.Item.CssClass = "MANU_DDL";
+            else
+                e.Item.CssClass = "SDESC_DDL";
+        }
+
         protected void ButtonCommand(object sender, CommandEventArgs e)
         {
-            element_id = Convert.ToInt32(rddlElements.SelectedValue);
+            if (!string.IsNullOrEmpty(rddlElements.SelectedValue))
+                element_id = Convert.ToInt32(rddlElements.SelectedValue);
+            else
+                element_id = Convert.ToInt32(hfElementID.Value);
 
             switch (e.CommandArgument.ToString())
             {
                 case "Submit":
-                    if (element_id == 0) DisplayError("You must select an element from the drop-down list above.");
-                    else if (string.IsNullOrEmpty(rtbRevisedBy.Text)) DisplayError("You must enter a user ID into the Revised By field.");
+                    if (string.IsNullOrEmpty(rtbRevisedBy.Text)) DisplayError("You must enter a user ID into the Revised By field.");
                     else
                     {
+                        DisplayNote(rrblAction.SelectedValue);
                         //Submit the modified or added element info to the database
                         if (rrblAction.SelectedValue == "Add")
+                        {
                             AddElement();
+                            ResetPanels();
+                        }
                         else if (rrblAction.SelectedValue == "Edit")
+                        {
                             EditElement();
-                        DisplayNote(rrblAction.SelectedValue);
-                        ResetPanels();
+                            pnlResult.Visible = false;
+                            rlvElements.Visible = true;
+                            rlvElements.DataSource = SiteElements();
+                            rlvElements.DataBind();
+                        }
                     }
                     break;
                 case "Reset":
@@ -306,9 +370,30 @@ namespace SIMS2017.StationDoc
                     ResetPanels();
                     break;
                 case "Cancel":
-                    ResetPanels();
+                    if (rrblAction.SelectedValue == "Edit")
+                    {
+                        pnlResult.Visible = false;
+                        rlvElements.Visible = true;
+                        rlvElements.DataSource = SiteElements();
+                        rlvElements.DataBind();
+                    }
+                    else
+                        ResetPanels();
                     break;
             }
+        }
+
+        protected void lbElement_Command(object sender, CommandEventArgs e)
+        {
+            pnlNote.Visible = false;
+
+            int element_id = Convert.ToInt32(e.CommandArgument);
+            hfElementID.Value = element_id.ToString();
+
+            RadDropDownList rddl = new RadDropDownList();
+            rddl.Items.Add(new DropDownListItem() { Value = element_id.ToString(), Selected = true });
+
+            DropDownList_Logic(rddl);
         }
         #endregion
 
@@ -334,9 +419,7 @@ namespace SIMS2017.StationDoc
             db.SubmitChanges();
 
             if (element_id == 9)
-            {
                 UpdateDateOfLastLevels();
-            }
 
             UpdateMaxRevisedDate();
         }
@@ -357,9 +440,7 @@ namespace SIMS2017.StationDoc
             db.SubmitChanges();
 
             if (element_id == 9)
-            {
                 UpdateDateOfLastLevels();
-            }
 
             UpdateMaxRevisedDate();
         }
@@ -438,9 +519,7 @@ namespace SIMS2017.StationDoc
 
             //If this is the Date Of Last Levels element, make sure to remove the record from the Ops Levels table
             if (element_id == 9)
-            {
                 db.OpsLevels.DeleteOnSubmit(currSite.OpsLevel);
-            }
 
             db.SubmitChanges();
         }
@@ -465,11 +544,20 @@ namespace SIMS2017.StationDoc
         {
             if (!string.IsNullOrEmpty(rrblAction.SelectedValue))
             {
-                //If deleting or editing, then just grab the list of currently assigned elements for the site
-                if (rrblAction.SelectedValue == "Delete" || rrblAction.SelectedValue == "Edit")
+                //If deleting, then just grab the list of currently assigned elements for the site
+                if (rrblAction.SelectedValue == "Delete")
                 {
-                    rddlElements.DataSource = currSite.SiteElements.Select(p => new { element_id = p.element_id, element_nm = p.ElementDetail.element_nm }).OrderBy(p => p.element_nm).ToList();
-                    
+                    rddlElements.DataSource = currSite.SiteElements.Select(p => new Data.ElementDetail 
+                    { 
+                        element_id = Convert.ToInt32(p.element_id), 
+                        element_nm = p.ElementDetail.element_nm, 
+                        priority = p.ElementDetail.priority 
+                    }).OrderBy(p => p.priority).ToList();
+                }
+                else if (rrblAction.SelectedValue == "Edit") //If editing element, then display all elements with their info
+                {
+                    rlvElements.DataSource = SiteElements();
+                    rlvElements.DataBind();
                 }
                 else //If adding new elements, have to figure out which elements are available to add
                 {
@@ -520,20 +608,34 @@ namespace SIMS2017.StationDoc
                     //For the final list, remove the currently assigned elements from the full list of elements
                     foreach (var elem in currElems)
                         addElems.RemoveAll(p => p.element_id == elem.element_id);
-                    rddlElements.DataSource = addElems.OrderBy(p => p.element_nm);
+                    rddlElements.DataSource = addElems;
                 }
 
-                rddlElements.DataBind();
-                rddlElements.Enabled = true;
-                //Remove the LOCATION element from the list of elements possible to delete
-                if (rrblAction.SelectedValue == "Delete") rddlElements.Items.RemoveAt(rddlElements.FindItemByValue("28").Index);
-                //Add a blank item to the top of the drop down, and select it by default
-                rddlElements.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
-                rddlElements.SelectedIndex = 0;
+                //If adding or deleting do more work setting up the dropdownlist of elements, and display
+                if (rrblAction.SelectedValue != "Edit")
+                {
+                    //Do not show the radlistview of elements
+                    rlvElements.Visible = false;
+
+                    rddlElements.DataBind();
+                    rddlElements.Visible = true;
+                    //Remove the LOCATION element from the list of elements possible to delete
+                    if (rrblAction.SelectedValue == "Delete") rddlElements.Items.RemoveAt(rddlElements.FindItemByValue("28").Index);
+                    //Add a blank item to the top of the drop down, and select it by default
+                    rddlElements.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
+                    rddlElements.SelectedIndex = 0;
+                }
+                else //If editing, hide the dropdownlist and show the radlistview of elements and their info
+                {
+                    rddlElements.Visible = false;
+                    rlvElements.Visible = true;
+                }
+                
             }
             else
             {
-                rddlElements.Enabled = false;
+                rlvElements.Visible = false;
+                rddlElements.Visible = false;
             }
         }
         #endregion

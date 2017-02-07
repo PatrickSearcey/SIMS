@@ -63,6 +63,7 @@ namespace SIMS2017.Control
         #region Public Properties
         public string Title { get; set; }
         public string SubTitle { get; set; }
+        public Boolean ShowOfficeInfoPanel { get; set; }
         public void RefreshHeadingData()
         {
             hlPageSubTitle.Text = SubTitle;
@@ -77,7 +78,8 @@ namespace SIMS2017.Control
             {
                 ltlPageTitle.Text = Title;
                 hlPageSubTitle.Text = SubTitle;
-                hlPageSubTitle.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, SiteID);
+                if (SiteID == 0) hlPageSubTitle.NavigateUrl = String.Format("{0}SIMSWSCHome.aspx", Config.SIMS2017URL);
+                else hlPageSubTitle.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, SiteID);
 
                 SetupResponsibleOfficeInfo();
             }
@@ -85,8 +87,13 @@ namespace SIMS2017.Control
 
         protected void SetupResponsibleOfficeInfo()
         {
-            Office office = db.Offices.Where(p => p.office_id == OfficeID).FirstOrDefault();
-            ltlOfficeInfo.Text = String.Format("<a href='{0}SIMSWSCHome.aspx?wsc_id={1}&office_id={2}'>{3}</a><br />{4}<br />{5}<br />{6}", Config.SIMS2017URL, WSCID, OfficeID, office.office_nm, office.street_addrs, office.city_st_zip, office.ph_no);
+            if (ShowOfficeInfoPanel)
+            {
+                pnlOfficeInfo.Visible = true;
+                Office office = db.Offices.Where(p => p.office_id == OfficeID).FirstOrDefault();
+                ltlOfficeInfo.Text = String.Format("<a href='{0}SIMSWSCHome.aspx?wsc_id={1}&office_id={2}'>{3}</a><br />{4}<br />{5}<br />{6}", Config.SIMS2017URL, WSCID, OfficeID, office.office_nm, office.street_addrs, office.city_st_zip, office.ph_no);
+            }
+            else pnlOfficeInfo.Visible = false;
         }
     }
 }

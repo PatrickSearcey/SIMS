@@ -26,6 +26,8 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="cph2" runat="server">
     <br />
     <div class="mainContent">
+        <p style="font-weight:bold">To view records included in the audit, click on the arrow in the far left column of the row.  To view audit details and download documents, click on 
+            the <img src="images/viewdoc.png" alt="view audit" /> icon under the View column.  Clicking the Edit link in the far right column will take you to the modify audit period page.</p>
         <telerik:RadGrid ID="rgAudits" runat="server" AutoGenerateColumns="false" Skin="Bootstrap" 
             GridLines="None" ShowStatusBar="true" PageSize="50"
             AllowSorting="true" 

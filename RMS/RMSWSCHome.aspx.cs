@@ -35,13 +35,48 @@ namespace RMS
                 Session["OfficeID"] = value;
             }
         }
+        private int TripID
+        {
+            get
+            {
+                if (Session["TripID"] == null) return 0; else return (int)Session["TripID"];
+            }
+            set
+            {
+                Session["TripID"] = value;
+            }
+        }
         #endregion
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (OfficeID == 0) OfficeID = user.OfficeID;
             if (WSCID == 0) WSCID = (int)db.Offices.Where(p => p.office_id == OfficeID).FirstOrDefault().wsc_id;
-            ltlWSCName.Text = db.WSCs.Where(p => p.wsc_id == WSCID).FirstOrDefault().wsc_nm + " Water Science Center";
+            osHome.SelectorChanged += new EventHandler(osHome_SelectorChanged);
+
+            if (!Page.IsPostBack)
+            {
+                var wsc = db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID);
+                ltlWSCName.Text = wsc.wsc_nm + " Water Science Center";
+            }
+        }
+
+        private void osHome_SelectorChanged(object sender, EventArgs e)
+        {
+            //If the office was the only thing changed, reset to the office site list
+            if (TripID == 0)
+            {
+                //ltlOfficeName.Text = "USGS Master Station List for " + db.Offices.Where(p => p.office_id == OfficeID).Select(p => p.office_nm).First();
+                //pnlFieldTrip.Visible = false;
+            }
+            else //Switch to the field trip site list
+            {
+                //ltlOfficeName.Text = "USGS Field Trip Station List";
+                //pnlFieldTrip.Visible = true;
+                //SetupFieldTripPanel();
+            }
+
+            //rgSites.Rebind();
         }
     }
 }

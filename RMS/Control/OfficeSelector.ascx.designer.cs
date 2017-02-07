@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SIMS2017.Control {
+namespace RMS.Control {
     
     
     public partial class OfficeSelector {
@@ -29,42 +29,6 @@ namespace SIMS2017.Control {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadDropDownList rddlFieldTrip;
-        
-        /// <summary>
-        /// ltlSiteNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlSiteNo;
-        
-        /// <summary>
-        /// tbSiteNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbSiteNo;
-        
-        /// <summary>
-        /// tbAgencyCd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbAgencyCd;
-        
-        /// <summary>
-        /// btnSiteNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSiteNo;
         
         /// <summary>
         /// ltlOfficeInfo control.

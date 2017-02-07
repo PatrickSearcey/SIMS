@@ -7,72 +7,90 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SIMS2017.Control {
+namespace SIMS2017 {
     
     
-    public partial class OfficeSelector {
+    public partial class DCPIDReport {
         
         /// <summary>
-        /// rddlOffice control.
+        /// ram control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadDropDownList rddlOffice;
+        protected global::Telerik.Web.UI.RadAjaxManager ram;
         
         /// <summary>
-        /// rddlFieldTrip control.
+        /// ralp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadDropDownList rddlFieldTrip;
+        protected global::Telerik.Web.UI.RadAjaxLoadingPanel ralp;
         
         /// <summary>
-        /// ltlSiteNo control.
+        /// phDCPReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlSiteNo;
+        protected global::SIMS2017.Control.SitePageHeading phDCPReport;
         
         /// <summary>
-        /// tbSiteNo control.
+        /// osDCPReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbSiteNo;
+        protected global::SIMS2017.Control.OfficeSelector osDCPReport;
         
         /// <summary>
-        /// tbAgencyCd control.
+        /// ltlOfficeName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbAgencyCd;
+        protected global::System.Web.UI.WebControls.Literal ltlOfficeName;
         
         /// <summary>
-        /// btnSiteNo control.
+        /// pnlFieldTrip control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSiteNo;
+        protected global::System.Web.UI.WebControls.Panel pnlFieldTrip;
         
         /// <summary>
-        /// ltlOfficeInfo control.
+        /// ltlFieldTrip control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlOfficeInfo;
+        protected global::System.Web.UI.WebControls.Literal ltlFieldTrip;
+        
+        /// <summary>
+        /// lbNotAssignedToggle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbNotAssignedToggle;
+        
+        /// <summary>
+        /// rgDCPIDs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid rgDCPIDs;
     }
 }

@@ -65,6 +65,7 @@ namespace SIMS2017
 
             ph1.Title = "Station Information Page";
             ph1.SubTitle = currSite.site_no + " " + currSite.station_full_nm;
+            ph1.ShowOfficeInfoPanel = true;
 
             if (!Page.IsPostBack)
             {

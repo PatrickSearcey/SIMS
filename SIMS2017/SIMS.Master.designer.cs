@@ -211,24 +211,6 @@ namespace SIMS2017 {
         protected global::System.Web.UI.WebControls.HyperLink hlWYSummaryReport;
         
         /// <summary>
-        /// hlPubsList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlPubsList;
-        
-        /// <summary>
-        /// hlADRStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlADRStatus;
-        
-        /// <summary>
         /// hlMapFieldTrips control.
         /// </summary>
         /// <remarks>

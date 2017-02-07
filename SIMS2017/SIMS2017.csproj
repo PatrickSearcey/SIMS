@@ -134,6 +134,7 @@
     <Content Include="Control\ApproveMANU.ascx" />
     <Content Include="Control\OfficeSelector.ascx" />
     <Content Include="Control\SitePageHeading.ascx" />
+    <Content Include="DCPIDReport.aspx" />
     <Content Include="images\approve.png" />
     <Content Include="images\cleanicon.png" />
     <Content Include="images\faqicon.png" />
@@ -192,6 +193,7 @@
     <Content Include="SIMS.Master" />
     <Content Include="SIMSSingleMenu.Master" />
     <Content Include="StationDoc\Archive.aspx" />
+    <Content Include="StationDoc\CustomReport.aspx" />
     <Content Include="StationDoc\EditDocs.aspx" />
     <Content Include="StationDoc\MAI.aspx" />
     <Content Include="StationDoc\ViewDocs.aspx" />
@@ -234,6 +236,13 @@
     </Compile>
     <Compile Include="Control\SitePageHeading.ascx.designer.cs">
       <DependentUpon>SitePageHeading.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DCPIDReport.aspx.cs">
+      <DependentUpon>DCPIDReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DCPIDReport.aspx.designer.cs">
+      <DependentUpon>DCPIDReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Handler\DocHandler.ashx.cs">
       <DependentUpon>DocHandler.ashx</DependentUpon>
@@ -297,6 +306,13 @@
     </Compile>
     <Compile Include="StationDoc\Archive.aspx.designer.cs">
       <DependentUpon>Archive.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StationDoc\CustomReport.aspx.cs">
+      <DependentUpon>CustomReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StationDoc\CustomReport.aspx.designer.cs">
+      <DependentUpon>CustomReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="StationDoc\EditDocs.aspx.cs">
       <DependentUpon>EditDocs.aspx</DependentUpon>
@@ -399,7 +415,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

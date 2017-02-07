@@ -13,7 +13,7 @@ namespace SIMS2017.StationDoc
     {
         #region Local Variables
         private Data.SIMSDataContext db = new Data.SIMSDataContext();
-        private SIMSDevService.SIMSServiceClient svcSIMS = new SIMSDevService.SIMSServiceClient();
+        private SIMSService.SIMSServiceClient svcSIMS = new SIMSService.SIMSServiceClient();
         public WindowsAuthenticationUser user = new WindowsAuthenticationUser();
         public Boolean HasEditAccess { get; set; }
         private Data.Site currSite;
@@ -68,6 +68,7 @@ namespace SIMS2017.StationDoc
 
             ph1.Title = "Station Documents";
             ph1.SubTitle = currSite.site_no + " " + currSite.station_full_nm;
+            ph1.ShowOfficeInfoPanel = true;
 
             if (!Page.IsPostBack)
             {

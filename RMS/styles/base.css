@@ -127,6 +127,11 @@ div.RadMenuPopup,
     margin-top:0;
 }
 
+.filters {
+    width: 60%;
+    float:left;
+}
+
 .headers {
     width: 60%;
     float:left;

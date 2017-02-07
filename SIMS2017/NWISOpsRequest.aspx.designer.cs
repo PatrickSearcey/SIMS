@@ -7,360 +7,315 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SIMS2017.StationDoc {
+namespace SIMS2017 {
     
     
-    public partial class EditDocs {
+    public partial class NWISOpsRequest {
         
         /// <summary>
-        /// ram control.
+        /// pnlStep1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadAjaxManager ram;
+        protected global::System.Web.UI.WebControls.Panel pnlStep1;
         
         /// <summary>
-        /// ralp control.
+        /// lblName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadAjaxLoadingPanel ralp;
+        protected global::System.Web.UI.WebControls.Label lblName;
         
         /// <summary>
-        /// ph1 control.
+        /// lblEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::SIMS2017.Control.SitePageHeading ph1;
+        protected global::System.Web.UI.WebControls.Label lblEmail;
         
         /// <summary>
-        /// hlAutoReview control.
+        /// lblPhone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlAutoReview;
+        protected global::System.Web.UI.WebControls.Label lblPhone;
         
         /// <summary>
-        /// pnlNoAccess control.
+        /// lblSiteNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlNoAccess;
+        protected global::System.Web.UI.WebControls.Label lblSiteNo;
         
         /// <summary>
-        /// pnlNote control.
+        /// tbSiteNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlNote;
+        protected global::System.Web.UI.WebControls.TextBox tbSiteNo;
         
         /// <summary>
-        /// ltlNote control.
+        /// lblOptional control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlNote;
+        protected global::System.Web.UI.WebControls.Label lblOptional;
         
         /// <summary>
-        /// pnlChooseAction control.
+        /// lblWarning control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlChooseAction;
+        protected global::System.Web.UI.WebControls.Label lblWarning;
         
         /// <summary>
-        /// rrblAction control.
+        /// btnNext1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadRadioButtonList rrblAction;
+        protected global::System.Web.UI.WebControls.Button btnNext1;
         
         /// <summary>
-        /// pnlChooseElement control.
+        /// pnlStep2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlChooseElement;
+        protected global::System.Web.UI.WebControls.Panel pnlStep2;
         
         /// <summary>
-        /// rddlElements control.
+        /// lblTest control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadDropDownList rddlElements;
+        protected global::System.Web.UI.WebControls.Label lblTest;
         
         /// <summary>
-        /// rlvElements control.
+        /// rblRequestType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadListView rlvElements;
+        protected global::System.Web.UI.WebControls.RadioButtonList rblRequestType;
         
         /// <summary>
-        /// pnlResult control.
+        /// rfvRequestType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlResult;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvRequestType;
         
         /// <summary>
-        /// hfElementID control.
+        /// lblReqTypesHeading control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfElementID;
+        protected global::System.Web.UI.WebControls.Label lblReqTypesHeading;
         
         /// <summary>
-        /// ltlResultHeading control.
+        /// rblRTReqTypes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlResultHeading;
+        protected global::System.Web.UI.WebControls.RadioButtonList rblRTReqTypes;
         
         /// <summary>
-        /// ltlRevisedBy control.
+        /// rblNWISReqTypes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlRevisedBy;
+        protected global::System.Web.UI.WebControls.RadioButtonList rblNWISReqTypes;
         
         /// <summary>
-        /// hlArchives control.
+        /// rblADRReqTypes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlArchives;
+        protected global::System.Web.UI.WebControls.RadioButtonList rblADRReqTypes;
         
         /// <summary>
-        /// pnlAutoGenerated control.
+        /// rblOtherReqTypes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlAutoGenerated;
+        protected global::System.Web.UI.WebControls.RadioButtonList rblOtherReqTypes;
         
         /// <summary>
-        /// ltlAutoGenerated control.
+        /// btnBack2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlAutoGenerated;
+        protected global::System.Web.UI.WebControls.Button btnBack2;
         
         /// <summary>
-        /// pnlEditAddElementInfo control.
+        /// btnNext2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlEditAddElementInfo;
+        protected global::System.Web.UI.WebControls.Button btnNext2;
         
         /// <summary>
-        /// rtbRevisedBy control.
+        /// pnlStep3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadTextBox rtbRevisedBy;
+        protected global::System.Web.UI.WebControls.Panel pnlStep3;
         
         /// <summary>
-        /// rtbRevisedDate control.
+        /// lblSubject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadTextBox rtbRevisedDate;
+        protected global::System.Web.UI.WebControls.Label lblSubject;
         
         /// <summary>
-        /// pnlDOLL control.
+        /// tbRequest control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlDOLL;
+        protected global::System.Web.UI.WebControls.TextBox tbRequest;
         
         /// <summary>
-        /// rdpLastRunDt control.
+        /// rfvRequest control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadDatePicker rdpLastRunDt;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvRequest;
         
         /// <summary>
-        /// rntbFrequency control.
+        /// btnBack3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadNumericTextBox rntbFrequency;
+        protected global::System.Web.UI.WebControls.Button btnBack3;
         
         /// <summary>
-        /// cbCloseLevels control.
+        /// btnNext3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbCloseLevels;
+        protected global::System.Web.UI.WebControls.Button btnNext3;
         
         /// <summary>
-        /// ltlDOLLInfo control.
+        /// pnlStep4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlDOLLInfo;
+        protected global::System.Web.UI.WebControls.Panel pnlStep4;
         
         /// <summary>
-        /// ltlSLAP control.
+        /// ltlCompleteRequest control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlSLAP;
+        protected global::System.Web.UI.WebControls.Literal ltlCompleteRequest;
         
         /// <summary>
-        /// hlSLAP control.
+        /// ltlEmails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlSLAP;
+        protected global::System.Web.UI.WebControls.Literal ltlEmails;
         
         /// <summary>
-        /// reElementInfo control.
+        /// tbCCEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadEditor reElementInfo;
+        protected global::System.Web.UI.WebControls.TextBox tbCCEmail;
         
         /// <summary>
-        /// rbSubmit control.
+        /// btnBack4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton rbSubmit;
+        protected global::System.Web.UI.WebControls.Button btnBack4;
         
         /// <summary>
-        /// rbReset control.
+        /// btnSend control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton rbReset;
+        protected global::System.Web.UI.WebControls.Button btnSend;
         
         /// <summary>
-        /// rbCancel1 control.
+        /// lbReset control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton rbCancel1;
+        protected global::System.Web.UI.WebControls.LinkButton lbReset;
         
         /// <summary>
-        /// ltlError1 control.
+        /// pnlConfirmSend control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlError1;
-        
-        /// <summary>
-        /// pnlDeleteElement control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlDeleteElement;
-        
-        /// <summary>
-        /// rtbElementInfo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadTextBox rtbElementInfo;
-        
-        /// <summary>
-        /// rbDelete control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadButton rbDelete;
-        
-        /// <summary>
-        /// rbCancel2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadButton rbCancel2;
-        
-        /// <summary>
-        /// ltlError2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlError2;
+        protected global::System.Web.UI.WebControls.Panel pnlConfirmSend;
     }
 }

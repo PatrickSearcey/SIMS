@@ -678,6 +678,14 @@ namespace Data
 			}
 		}
 		
+		public System.Data.Linq.Table<SiteElementItem> SiteElementItems
+		{
+			get
+			{
+				return this.GetTable<SiteElementItem>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spz_GetDCPInfo")]
 		public ISingleResult<spz_GetDCPInfoResult> spz_GetDCPInfo([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> site_id)
 		{
@@ -760,6 +768,13 @@ namespace Data
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), report_type, activeonly, wsc_id, site_id, approveonly);
 			return ((ISingleResult<ElementApprovalItem>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_DCPID_Report")]
+		public ISingleResult<SP_DCPID_ReportResult> SP_DCPID_Report([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> wsc_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> office_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> trip_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(15)")] string site_no, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(10)")] string status)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), wsc_id, office_id, trip_id, site_no, status);
+			return ((ISingleResult<SP_DCPID_ReportResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -1166,7 +1181,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Office_SIMS_Site_Master", Storage="_Sites", ThisKey="office_id", OtherKey="office_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Office_Site", Storage="_Sites", ThisKey="office_id", OtherKey="office_id")]
 		public EntitySet<Site> Sites
 		{
 			get
@@ -2509,7 +2524,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SIMS_Site_Master_ElemReportApprove", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_ElemReportApprove", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
 		public Site Site
 		{
 			get
@@ -2684,7 +2699,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SIMS_Site_Master_ElemReportSum", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_ElemReportSum", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
 		public Site Site
 		{
 			get
@@ -5944,7 +5959,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SIMS_Site_Master_SHA", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_SHA", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
 		public Site Site
 		{
 			get
@@ -7006,7 +7021,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ElementDetail_Elem_Site_Element", Storage="_SiteElements", ThisKey="element_id", OtherKey="element_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ElementDetail_SiteElement", Storage="_SiteElements", ThisKey="element_id", OtherKey="element_id")]
 		public EntitySet<SiteElement> SiteElements
 		{
 			get
@@ -8625,7 +8640,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SIMS_Site_Master_TCPSite", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_TCPSite", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
 		public Site Site
 		{
 			get
@@ -13305,7 +13320,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SIMS_Site_Master_Record", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Record", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
 		public Site Site
 		{
 			get
@@ -13528,7 +13543,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SIMS_Site_Master_OpsLevel", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_OpsLevel", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
 		public Site Site
 		{
 			get
@@ -15161,7 +15176,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Audit_Master_AuditRecord", Storage="_Audit", ThisKey="rms_audit_id", OtherKey="rms_audit_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Audit_AuditRecord", Storage="_Audit", ThisKey="rms_audit_id", OtherKey="rms_audit_id", IsForeignKey=true)]
 		public Audit Audit
 		{
 			get
@@ -15353,7 +15368,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SIMS_Site_Master_TripSite", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_TripSite", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
 		public Site Site
 		{
 			get
@@ -15672,7 +15687,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SIMS_Site_Master_ElemReportApprove", Storage="_ElemReportApproves", ThisKey="site_id", OtherKey="site_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_ElemReportApprove", Storage="_ElemReportApproves", ThisKey="site_id", OtherKey="site_id")]
 		public EntitySet<ElemReportApprove> ElemReportApproves
 		{
 			get
@@ -15685,7 +15700,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SIMS_Site_Master_ElemReportSum", Storage="_ElemReportSums", ThisKey="site_id", OtherKey="site_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_ElemReportSum", Storage="_ElemReportSums", ThisKey="site_id", OtherKey="site_id")]
 		public EntitySet<ElemReportSum> ElemReportSums
 		{
 			get
@@ -15698,7 +15713,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SIMS_Site_Master_SHA", Storage="_SHAs", ThisKey="site_id", OtherKey="site_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_SHA", Storage="_SHAs", ThisKey="site_id", OtherKey="site_id")]
 		public EntitySet<SHA> SHAs
 		{
 			get
@@ -15711,7 +15726,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SIMS_Site_Master_TCPSite", Storage="_TCPSite", ThisKey="site_id", OtherKey="site_id", IsUnique=true, IsForeignKey=false)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_TCPSite", Storage="_TCPSite", ThisKey="site_id", OtherKey="site_id", IsUnique=true, IsForeignKey=false)]
 		public TCPSite TCPSite
 		{
 			get
@@ -15740,7 +15755,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SIMS_Site_Master_Record", Storage="_Records", ThisKey="site_id", OtherKey="site_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Record", Storage="_Records", ThisKey="site_id", OtherKey="site_id")]
 		public EntitySet<Record> Records
 		{
 			get
@@ -15753,7 +15768,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SIMS_Site_Master_OpsLevel", Storage="_OpsLevel", ThisKey="site_id", OtherKey="site_id", IsUnique=true, IsForeignKey=false)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_OpsLevel", Storage="_OpsLevel", ThisKey="site_id", OtherKey="site_id", IsUnique=true, IsForeignKey=false)]
 		public OpsLevel OpsLevel
 		{
 			get
@@ -15782,7 +15797,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SIMS_Site_Master_TripSite", Storage="_TripSites", ThisKey="site_id", OtherKey="site_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_TripSite", Storage="_TripSites", ThisKey="site_id", OtherKey="site_id")]
 		public EntitySet<TripSite> TripSites
 		{
 			get
@@ -15795,7 +15810,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Elem_Site_Element", Storage="_SiteElements", ThisKey="site_id", OtherKey="site_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_SiteElement", Storage="_SiteElements", ThisKey="site_id", OtherKey="site_id")]
 		public EntitySet<SiteElement> SiteElements
 		{
 			get
@@ -15808,7 +15823,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Office_SIMS_Site_Master", Storage="_Office", ThisKey="office_id", OtherKey="office_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Office_Site", Storage="_Office", ThisKey="office_id", OtherKey="office_id", IsForeignKey=true)]
 		public Office Office
 		{
 			get
@@ -16158,7 +16173,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ElementDetail_Elem_Site_Element", Storage="_ElementDetail", ThisKey="element_id", OtherKey="element_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ElementDetail_SiteElement", Storage="_ElementDetail", ThisKey="element_id", OtherKey="element_id", IsForeignKey=true)]
 		public ElementDetail ElementDetail
 		{
 			get
@@ -16192,7 +16207,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Elem_Site_Element", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_SiteElement", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
 		public Site Site
 		{
 			get
@@ -16939,7 +16954,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Audit_Document_RMS_Audit_DocumentFile", Storage="_AuditDocumentFiles", ThisKey="rms_audit_document_id", OtherKey="rms_audit_document_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AuditDocument_AuditDocumentFile", Storage="_AuditDocumentFiles", ThisKey="rms_audit_document_id", OtherKey="rms_audit_document_id")]
 		public EntitySet<AuditDocumentFile> AuditDocumentFiles
 		{
 			get
@@ -16952,7 +16967,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Audit_Master_AuditDocument", Storage="_Audit", ThisKey="rms_audit_id", OtherKey="rms_audit_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Audit_AuditDocument", Storage="_Audit", ThisKey="rms_audit_id", OtherKey="rms_audit_id", IsForeignKey=true)]
 		public Audit Audit
 		{
 			get
@@ -17115,7 +17130,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Audit_Document_RMS_Audit_DocumentFile", Storage="_AuditDocument", ThisKey="rms_audit_document_id", OtherKey="rms_audit_document_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AuditDocument_AuditDocumentFile", Storage="_AuditDocument", ThisKey="rms_audit_document_id", OtherKey="rms_audit_document_id", IsForeignKey=true)]
 		public AuditDocument AuditDocument
 		{
 			get
@@ -17262,7 +17277,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AuditResult_RMS_Audit_Master", Storage="_Audits", ThisKey="audit_results_id", OtherKey="audit_results_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AuditResult_Audit", Storage="_Audits", ThisKey="audit_results_id", OtherKey="audit_results_id")]
 		public EntitySet<Audit> Audits
 		{
 			get
@@ -17400,7 +17415,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AuditType_RMS_Audit_Master", Storage="_Audits", ThisKey="audit_type_id", OtherKey="audit_type_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AuditType_Audit", Storage="_Audits", ThisKey="audit_type_id", OtherKey="audit_type_id")]
 		public EntitySet<Audit> Audits
 		{
 			get
@@ -17747,7 +17762,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Audit_Master_AuditRecord", Storage="_AuditRecords", ThisKey="rms_audit_id", OtherKey="rms_audit_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Audit_AuditRecord", Storage="_AuditRecords", ThisKey="rms_audit_id", OtherKey="rms_audit_id")]
 		public EntitySet<AuditRecord> AuditRecords
 		{
 			get
@@ -17760,7 +17775,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Audit_Master_AuditDocument", Storage="_AuditDocuments", ThisKey="rms_audit_id", OtherKey="rms_audit_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Audit_AuditDocument", Storage="_AuditDocuments", ThisKey="rms_audit_id", OtherKey="rms_audit_id")]
 		public EntitySet<AuditDocument> AuditDocuments
 		{
 			get
@@ -17773,7 +17788,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AuditResult_RMS_Audit_Master", Storage="_AuditResult", ThisKey="audit_results_id", OtherKey="audit_results_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AuditResult_Audit", Storage="_AuditResult", ThisKey="audit_results_id", OtherKey="audit_results_id", IsForeignKey=true)]
 		public AuditResult AuditResult
 		{
 			get
@@ -17807,7 +17822,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AuditType_RMS_Audit_Master", Storage="_AuditType", ThisKey="audit_type_id", OtherKey="audit_type_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AuditType_Audit", Storage="_AuditType", ThisKey="audit_type_id", OtherKey="audit_type_id", IsForeignKey=true)]
 		public AuditType AuditType
 		{
 			get
@@ -17883,6 +17898,159 @@ namespace Data
 		{
 			this.SendPropertyChanging();
 			entity.Audit = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="")]
+	public partial class SiteElementItem
+	{
+		
+		private int _SiteID;
+		
+		private int _ElementID;
+		
+		private string _ElementName;
+		
+		private string _ElementInfo;
+		
+		private string _RevisedBy;
+		
+		private System.Nullable<System.DateTime> _RevisedDate;
+		
+		private short _Priority;
+		
+		private string _ReportType;
+		
+		public SiteElementItem()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SiteID")]
+		public int SiteID
+		{
+			get
+			{
+				return this._SiteID;
+			}
+			set
+			{
+				if ((this._SiteID != value))
+				{
+					this._SiteID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ElementID")]
+		public int ElementID
+		{
+			get
+			{
+				return this._ElementID;
+			}
+			set
+			{
+				if ((this._ElementID != value))
+				{
+					this._ElementID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ElementName", CanBeNull=false)]
+		public string ElementName
+		{
+			get
+			{
+				return this._ElementName;
+			}
+			set
+			{
+				if ((this._ElementName != value))
+				{
+					this._ElementName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ElementInfo")]
+		public string ElementInfo
+		{
+			get
+			{
+				return this._ElementInfo;
+			}
+			set
+			{
+				if ((this._ElementInfo != value))
+				{
+					this._ElementInfo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RevisedBy")]
+		public string RevisedBy
+		{
+			get
+			{
+				return this._RevisedBy;
+			}
+			set
+			{
+				if ((this._RevisedBy != value))
+				{
+					this._RevisedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RevisedDate")]
+		public System.Nullable<System.DateTime> RevisedDate
+		{
+			get
+			{
+				return this._RevisedDate;
+			}
+			set
+			{
+				if ((this._RevisedDate != value))
+				{
+					this._RevisedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Priority")]
+		public short Priority
+		{
+			get
+			{
+				return this._Priority;
+			}
+			set
+			{
+				if ((this._Priority != value))
+				{
+					this._Priority = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReportType", CanBeNull=false)]
+		public string ReportType
+		{
+			get
+			{
+				return this._ReportType;
+			}
+			set
+			{
+				if ((this._ReportType != value))
+				{
+					this._ReportType = value;
+				}
+			}
 		}
 	}
 	
@@ -19375,6 +19543,374 @@ namespace Data
 				if ((this._date != value))
 				{
 					this._date = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_DCPID_ReportResult
+	{
+		
+		private string _dcp_id;
+		
+		private System.Nullable<int> _site_id;
+		
+		private string _site_no;
+		
+		private string _assigned_time;
+		
+		private string _trans_interval;
+		
+		private string _window;
+		
+		private System.Nullable<int> _primary_ch;
+		
+		private System.Nullable<int> _primary_bd;
+		
+		private System.Nullable<int> _random_ch;
+		
+		private System.Nullable<int> _random_bd;
+		
+		private string _satellite;
+		
+		private string _contact_id;
+		
+		private string _contact_nm;
+		
+		private string _pass_station_nm;
+		
+		private System.Nullable<short> _ant_azimuth;
+		
+		private System.Nullable<short> _ant_elev;
+		
+		private string _remark;
+		
+		private System.Nullable<int> _wsc_id;
+		
+		private string _station_nm;
+		
+		private string _agency_cd;
+		
+		public SP_DCPID_ReportResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dcp_id", DbType="NVarChar(8)")]
+		public string dcp_id
+		{
+			get
+			{
+				return this._dcp_id;
+			}
+			set
+			{
+				if ((this._dcp_id != value))
+				{
+					this._dcp_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int")]
+		public System.Nullable<int> site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					this._site_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_no", DbType="NVarChar(16)")]
+		public string site_no
+		{
+			get
+			{
+				return this._site_no;
+			}
+			set
+			{
+				if ((this._site_no != value))
+				{
+					this._site_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_assigned_time", DbType="NVarChar(6)")]
+		public string assigned_time
+		{
+			get
+			{
+				return this._assigned_time;
+			}
+			set
+			{
+				if ((this._assigned_time != value))
+				{
+					this._assigned_time = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_trans_interval", DbType="NVarChar(10)")]
+		public string trans_interval
+		{
+			get
+			{
+				return this._trans_interval;
+			}
+			set
+			{
+				if ((this._trans_interval != value))
+				{
+					this._trans_interval = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_window", DbType="NVarChar(10)")]
+		public string window
+		{
+			get
+			{
+				return this._window;
+			}
+			set
+			{
+				if ((this._window != value))
+				{
+					this._window = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_primary_ch", DbType="Int")]
+		public System.Nullable<int> primary_ch
+		{
+			get
+			{
+				return this._primary_ch;
+			}
+			set
+			{
+				if ((this._primary_ch != value))
+				{
+					this._primary_ch = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_primary_bd", DbType="Int")]
+		public System.Nullable<int> primary_bd
+		{
+			get
+			{
+				return this._primary_bd;
+			}
+			set
+			{
+				if ((this._primary_bd != value))
+				{
+					this._primary_bd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_random_ch", DbType="Int")]
+		public System.Nullable<int> random_ch
+		{
+			get
+			{
+				return this._random_ch;
+			}
+			set
+			{
+				if ((this._random_ch != value))
+				{
+					this._random_ch = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_random_bd", DbType="Int")]
+		public System.Nullable<int> random_bd
+		{
+			get
+			{
+				return this._random_bd;
+			}
+			set
+			{
+				if ((this._random_bd != value))
+				{
+					this._random_bd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_satellite", DbType="NVarChar(1)")]
+		public string satellite
+		{
+			get
+			{
+				return this._satellite;
+			}
+			set
+			{
+				if ((this._satellite != value))
+				{
+					this._satellite = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contact_id", DbType="NVarChar(20)")]
+		public string contact_id
+		{
+			get
+			{
+				return this._contact_id;
+			}
+			set
+			{
+				if ((this._contact_id != value))
+				{
+					this._contact_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contact_nm", DbType="NVarChar(50)")]
+		public string contact_nm
+		{
+			get
+			{
+				return this._contact_nm;
+			}
+			set
+			{
+				if ((this._contact_nm != value))
+				{
+					this._contact_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pass_station_nm", DbType="NVarChar(100)")]
+		public string pass_station_nm
+		{
+			get
+			{
+				return this._pass_station_nm;
+			}
+			set
+			{
+				if ((this._pass_station_nm != value))
+				{
+					this._pass_station_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ant_azimuth", DbType="SmallInt")]
+		public System.Nullable<short> ant_azimuth
+		{
+			get
+			{
+				return this._ant_azimuth;
+			}
+			set
+			{
+				if ((this._ant_azimuth != value))
+				{
+					this._ant_azimuth = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ant_elev", DbType="SmallInt")]
+		public System.Nullable<short> ant_elev
+		{
+			get
+			{
+				return this._ant_elev;
+			}
+			set
+			{
+				if ((this._ant_elev != value))
+				{
+					this._ant_elev = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_remark", DbType="NVarChar(255)")]
+		public string remark
+		{
+			get
+			{
+				return this._remark;
+			}
+			set
+			{
+				if ((this._remark != value))
+				{
+					this._remark = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_id", DbType="Int")]
+		public System.Nullable<int> wsc_id
+		{
+			get
+			{
+				return this._wsc_id;
+			}
+			set
+			{
+				if ((this._wsc_id != value))
+				{
+					this._wsc_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_nm", DbType="VarChar(50)")]
+		public string station_nm
+		{
+			get
+			{
+				return this._station_nm;
+			}
+			set
+			{
+				if ((this._station_nm != value))
+				{
+					this._station_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_agency_cd", DbType="VarChar(5) NOT NULL", CanBeNull=false)]
+		public string agency_cd
+		{
+			get
+			{
+				return this._agency_cd;
+			}
+			set
+			{
+				if ((this._agency_cd != value))
+				{
+					this._agency_cd = value;
 				}
 			}
 		}

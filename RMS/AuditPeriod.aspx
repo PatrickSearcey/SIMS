@@ -80,7 +80,7 @@
         <asp:Panel ID="pnlHasAccess" runat="server">
 
             <asp:Panel ID="pnlSetupAuditPeriod" runat="server">
-                <p class="AuditList">1. Enter the date range of the new audit period:</p>
+                <p class="AuditList">1. Enter the date range of the audit period:</p>
                 <div class="AuditList">
                     <telerik:RadDatePicker ID="rdpBeginDt" runat="server" Skin="Bootstrap" /> - to - <telerik:RadDatePicker ID="rdpEndDt" runat="server" Skin="Bootstrap" />
                 </div>

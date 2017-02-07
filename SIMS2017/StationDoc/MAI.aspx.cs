@@ -14,7 +14,11 @@ namespace SIMS2017.StationDoc
     public partial class MAI : System.Web.UI.Page
     {
         private Data.SIMSDataContext db = new Data.SIMSDataContext();
+#if DEBUG
         private SIMSDevService.SIMSServiceClient svcSIMS = new SIMSDevService.SIMSServiceClient();
+#else
+        private SIMSService.SIMSServiceClient svcSIMS = new SIMSService.SIMSServiceClient();
+#endif
         public WindowsAuthenticationUser user = new WindowsAuthenticationUser();
         private int SiteID;
         private Boolean ApproveOnly = false;
@@ -78,6 +82,7 @@ namespace SIMS2017.StationDoc
             Page.Title = "SIMS - Site Manuscript Approval Interface";
             ph1.Title = "Site Manuscript Approval Interface";
             ph1.SubTitle = "Viewing Manuscripts for the " + db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID).wsc_nm + " WSC";
+            ph1.ShowOfficeInfoPanel = true;
 
             if (!Page.IsPostBack)
             {
