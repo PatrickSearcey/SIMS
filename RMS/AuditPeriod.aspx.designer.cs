@@ -85,22 +85,76 @@ namespace RMS {
         protected global::System.Web.UI.WebControls.Panel pnlSetupAuditPeriod;
         
         /// <summary>
-        /// rdpBeginDt control.
+        /// rlbRecordPeriods control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadDatePicker rdpBeginDt;
+        protected global::Telerik.Web.UI.RadListBox rlbRecordPeriods;
         
         /// <summary>
-        /// rdpEndDt control.
+        /// rdpBeginDt1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadDatePicker rdpEndDt;
+        protected global::Telerik.Web.UI.RadDatePicker rdpBeginDt1;
+        
+        /// <summary>
+        /// rdpEndDt1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDatePicker rdpEndDt1;
+        
+        /// <summary>
+        /// rbSubmitRecord control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton rbSubmitRecord;
+        
+        /// <summary>
+        /// lbMultiple control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbMultiple;
+        
+        /// <summary>
+        /// pnlSetupAuditPeriodForMultiples control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlSetupAuditPeriodForMultiples;
+        
+        /// <summary>
+        /// rdpBeginDt2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDatePicker rdpBeginDt2;
+        
+        /// <summary>
+        /// rdpEndDt2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDatePicker rdpEndDt2;
         
         /// <summary>
         /// rlbRecords control.
@@ -137,6 +191,15 @@ namespace RMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadButton rbSubmitRecords;
+        
+        /// <summary>
+        /// rbReturnToSingle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton rbReturnToSingle;
         
         /// <summary>
         /// pnlAuditPeriod control.

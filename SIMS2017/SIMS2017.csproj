@@ -152,6 +152,7 @@
     <Content Include="Modal\FieldTripEdit.aspx" />
     <Content Include="Modal\GWElems.aspx" />
     <Content Include="Modal\RecordEdit.aspx" />
+    <Content Include="NWISOpsRequest.aspx" />
     <Content Include="Service References\SIMSDevService\SIMS2017.SIMSDevService.Element.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -267,6 +268,13 @@
     </Compile>
     <Compile Include="Modal\RecordEdit.aspx.designer.cs">
       <DependentUpon>RecordEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NWISOpsRequest.aspx.cs">
+      <DependentUpon>NWISOpsRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NWISOpsRequest.aspx.designer.cs">
+      <DependentUpon>NWISOpsRequest.aspx</DependentUpon>
     </Compile>
     <Compile Include="Service References\SIMSDevService\Reference.cs">
       <AutoGen>True</AutoGen>

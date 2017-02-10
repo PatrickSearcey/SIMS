@@ -23,7 +23,7 @@
             <telerik:AjaxSetting AjaxControlID="rbSubmitRecords">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="pnlAuditPeriod" LoadingPanelID="ralp" />
-                    <telerik:AjaxUpdatedControl ControlID="pnlSetupAuditPeriod" LoadingPanelID="ralp" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlSetupAuditPeriodForMultiples" LoadingPanelID="ralp" />
                     <telerik:AjaxUpdatedControl ControlID="pnlNotice" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
@@ -35,13 +35,15 @@
             <telerik:AjaxSetting AjaxControlID="rbStartOver">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="pnlAuditPeriod" LoadingPanelID="ralp" />
-                    <telerik:AjaxUpdatedControl ControlID="pnlSetupAuditPeriod" LoadingPanelID="ralp" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlSetupAuditPeriodForMultiples" LoadingPanelID="ralp" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlSetupAuditPeriod" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlNotice" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="rbDone">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="pnlUploadDocs" LoadingPanelID="ralp" />
-                    <telerik:AjaxUpdatedControl ControlID="pnlSetupAuditPeriod" LoadingPanelID="ralp" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlSetupAuditPeriodForMultiples" LoadingPanelID="ralp" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="rbCreateEditAudit">
@@ -49,12 +51,31 @@
                     <telerik:AjaxUpdatedControl ControlID="pnlUploadDocs" LoadingPanelID="ralp" />
                     <telerik:AjaxUpdatedControl ControlID="pnlError" />
                     <telerik:AjaxUpdatedControl ControlID="pnlAuditPeriod" LoadingPanelID="ralp" />
-                    <telerik:AjaxUpdatedControl ControlID="pnlSetupAuditPeriod" LoadingPanelID="ralp" />
+                    <telerik:AjaxUpdatedControl ControlID="ppnlSetupAuditPeriodForMultiples" LoadingPanelID="ralp" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="rbSubmit">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="pnlUploadDocs" LoadingPanelID="ralp" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="rbReturnToSingle">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="pnlSetupAuditPeriodForMultiples" LoadingPanelID="ralp" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlSetupAuditPeriod" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="lbMultiple">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="pnlSetupAuditPeriod" LoadingPanelID="ralp" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlSetupAuditPeriodForMultiples" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="rbSubmitRecord">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="pnlAuditPeriod" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlSetupAuditPeriod" LoadingPanelID="ralp" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlNotice" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
         </AjaxSettings>
@@ -80,11 +101,31 @@
         <asp:Panel ID="pnlHasAccess" runat="server">
 
             <asp:Panel ID="pnlSetupAuditPeriod" runat="server">
+                <p class="AuditList">Select the approved periods for this record to audit, <b>OR</b> enter the date range of the audit period:</p>
+                <div class="Records">
+                    <div class="RecordList">
+                        <telerik:RadListBox ID="rlbRecordPeriods" runat="server" CheckBoxes="true" ShowCheckAll="true" Width="400px" Height="200px" 
+                            Skin="Bootstrap" DataValueField="period_id" DataTextField="PeriodDates" />
+                    </div>
+                    <div class="DateRange">
+                        <h5>OR enter a begin and end date:</h5>
+                        <telerik:RadDatePicker ID="rdpBeginDt1" runat="server" Skin="Bootstrap" DateInput-EmptyMessage="begin date" /> - to - <telerik:RadDatePicker ID="rdpEndDt1" runat="server" Skin="Bootstrap" DateInput-EmptyMessage="end date" />
+                    </div> 
+                    <div class="RecordSubmit">
+                        <br /><br /><br /><br />
+                        <telerik:RadButton ID="rbSubmitRecord" runat="server" AutoPostBack="true" Text="Continue with audit" Skin="Bootstrap" OnCommand="rbSubmitRecords_Command" CommandArgument="single" />
+                        <p><b><img src="images/arrowbullet.png" alt="arrow" style="float:left;padding: 2px 3px 0 0;" /> Click <asp:LinkButton ID="lbMultiple" runat="server" OnCommand="lbMultiple_Command" Text="here" /> to select multiple records to audit.</b></p>
+                    </div>
+                </div>
+
+            </asp:Panel>
+
+            <asp:Panel ID="pnlSetupAuditPeriodForMultiples" runat="server">
                 <p class="AuditList">1. Enter the date range of the audit period:</p>
                 <div class="AuditList">
-                    <telerik:RadDatePicker ID="rdpBeginDt" runat="server" Skin="Bootstrap" /> - to - <telerik:RadDatePicker ID="rdpEndDt" runat="server" Skin="Bootstrap" />
+                    <telerik:RadDatePicker ID="rdpBeginDt2" runat="server" Skin="Bootstrap" DateInput-EmptyMessage="begin date" /> - to - <telerik:RadDatePicker ID="rdpEndDt2" runat="server" Skin="Bootstrap" DateInput-EmptyMessage="end date" />
                 </div>
-                <p class="AuditList">2. Select at least one record from the list below for which to audit:</p>
+                <p class="AuditList">2. Select multiple records from the list below for which to audit:</p>
                 <div class="Records">
                     <div class="RecordList">
                         <telerik:RadListBox ID="rlbRecords" runat="server" CheckBoxes="true" ShowCheckAll="true" Width="400px" Height="200px" 
@@ -100,7 +141,8 @@
                             OnSelectedIndexChanged="FilterRecordList" DataValueField="trip_id" DataTextField="trip_nm" />
                     </div> 
                     <div class="RecordSubmit">
-                        <telerik:RadButton ID="rbSubmitRecords" runat="server" AutoPostBack="true" Text="Audit these records" Skin="Bootstrap" OnCommand="rbSubmitRecords_Command" />
+                        <telerik:RadButton ID="rbSubmitRecords" runat="server" AutoPostBack="true" Text="Audit these records" Skin="Bootstrap" OnCommand="rbSubmitRecords_Command" CommandArgument="multiple" />
+                        <telerik:RadButton ID="rbReturnToSingle" runat="server" AutoPostBack="true" Text="Return to audit single record" Skin="Bootstrap" OnCommand="rbReturnToSingle_Command" />
                     </div>
                 </div>
             </asp:Panel>
@@ -159,8 +201,8 @@
             <asp:Panel ID="pnlUploadDocs" runat="server">
                 <div class="pnlNotice">
                     <h4><asp:Literal ID="ltlConfirm" runat="server" /></h4>
-                    <p>Use the form below to upload documents pertaining to this audit.  File types accepted are .TXT, .PDF, .XLSX, .DOCX, .GIF, .JPG, and .PNG.  If you wish to 
-                        view all audit periods for your WSC, visit the <a href="AuditReport.aspx">Audit Report</a>.</p>
+                    <p>Use the form below to upload documents pertaining to this audit.  File types accepted are .TXT, .PDF, .XLSX, .DOCX, .GIF, .JPG, and .PNG.  
+                        If you wish to view all audit periods for your WSC, visit the <a href="AuditReport.aspx">Audit Report</a>.</p>
                     <p style="font-weight:bold;"><asp:Literal ID="ltlDone" runat="server" /></p>
                 </div>
                 <br />

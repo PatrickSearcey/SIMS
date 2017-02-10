@@ -79,6 +79,22 @@
     margin:auto;
 }
 
+.multiPage
+{
+    display: -moz-inline-box;
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+    position: relative;
+    margin-bottom: -3px;
+    border: 1px solid #a0865d;
+    background-color: #f0eac8;
+}
+.selectedTab
+{
+    font-weight: bold !important;
+}
+
 h4 {
     border-bottom: 1px solid #a0865d;
     color: #b84626;
@@ -158,6 +174,11 @@ div.RecordFilters {
     -webkit-border-radius: 5px;
     border-radius: 5px;
     color: #b84626;
+}
+
+div.DateRange {
+    margin-left:420px;
+    padding: 0 0 10px 10px;
 }
 
 div.RecordSubmit {

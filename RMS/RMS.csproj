@@ -129,6 +129,7 @@
     <Content Include="Control\OfficeSelector.ascx" />
     <Content Include="Control\RecordPageHeading.ascx" />
     <Content Include="Doc\Temp\placeholder.txt" />
+    <Content Include="images\arrowbullet.png" />
     <Content Include="images\lock.png" />
     <Content Include="images\lock_sm.png" />
     <Content Include="images\approved.gif" />
@@ -288,7 +289,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

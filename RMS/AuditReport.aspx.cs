@@ -66,7 +66,7 @@ namespace RMS
         {
             string rms_record_id = Request.QueryString["rms_record_id"];
             string rms_audit_id = Request.QueryString["rms_audit_id"];
-            string office_id = Request.QueryString["office_id"];
+            string office_id = "348";// Request.QueryString["office_id"];
 
             if (!string.IsNullOrEmpty(office_id))
             {
@@ -105,7 +105,7 @@ namespace RMS
         protected void UserControlSetup()
         {
             string wsc_nm = db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID).wsc_nm;
-            ph1.Title = "Audit Periods";
+            ph1.Title = "Audit Periods Report";
 
             if (RecordID == 0)
             {
@@ -120,8 +120,7 @@ namespace RMS
         }
         #endregion
 
-
-        #region Audits RadGrid
+        #region Audits by Date RadGrid
         protected void rgAudits_NeedDataSource(object source, GridNeedDataSourceEventArgs e)
         {
             if (!e.IsFromDetailTable)
@@ -221,6 +220,111 @@ namespace RMS
                     ltlReason.Text = audit.audit_reason;
                     ltlData.Text = audit.audit_data;
                     ltlFindings.Text = audit.audit_findings;
+                }
+            }
+        }
+        #endregion
+
+        #region Audits By Record RadGrid
+        protected void rgAuditByRecord_NeedDataSource(object source, GridNeedDataSourceEventArgs e)
+        {
+            if (!e.IsFromDetailTable)
+            {
+                rgAuditByRecord.DataSource = db.AuditRecords.Where(p => p.Audit.wsc_id == WSCID).Select(p => new {
+                    rms_record_id = p.rms_record_id,
+                    site_no = p.Record.Site.site_no,
+                    station_nm = p.Record.Site.station_full_nm,
+                    type_ds = p.Record.RecordType.type_ds
+                }).Distinct().ToList();
+            }
+        }
+
+        protected void rgAuditByRecord_DetailTableDataBind(object source, GridDetailTableDataBindEventArgs e)
+        {
+            GridDataItem dataItem = (GridDataItem)e.DetailTableView.ParentItem;
+            switch (e.DetailTableView.Name)
+            {
+                case "Audits":
+                    int rms_record_id = Convert.ToInt32(dataItem.GetDataKeyValue("rms_record_id"));
+                    e.DetailTableView.DataSource = db.AuditRecords.Where(p => p.rms_record_id == rms_record_id).Select(p => new {
+                        rms_record_id = rms_record_id,
+                        rms_audit_id = p.rms_audit_id,
+                        date_range = String.Format("{0:MM/dd/yyyy} - {1:MM/dd/yyyy}", p.Audit.audit_beg_dt, p.Audit.audit_end_dt),
+                        audit_by = p.Audit.audit_by,
+                        audit_type = p.Audit.AuditType.type,
+                        audit_results = p.Audit.AuditResult.result
+                    }).ToList();
+                    break;
+            }
+        }
+
+        protected void rgAuditByRecord_PreRender(object sender, EventArgs e)
+        {
+            GridFilterMenu menu = rgAuditByRecord.FilterMenu;
+            int i = 0;
+            while (i < menu.Items.Count)
+            {
+                if (menu.Items[i].Text == "NoFilter" | menu.Items[i].Text == "Contains" | menu.Items[i].Text == "EqualTo" | menu.Items[i].Text == "DoesNotContain")
+                {
+                    i = i + 1;
+                }
+                else
+                {
+                    menu.Items.RemoveAt(i);
+                }
+            }
+        }
+
+        protected void rgAuditByRecord_ItemDataBound(object sender, GridItemEventArgs e)
+        {
+            if ("Records".Equals(e.Item.OwnerTableView.Name))
+            {
+                if (e.Item is GridDataItem)
+                {
+                    GridDataItem item = (GridDataItem)e.Item;
+
+                    //int rms_audit_record_id = Convert.ToInt32(item.GetDataKeyValue("rms_audit_record_id"));
+                    //var audit_rec = db.AuditRecords.FirstOrDefault(p => p.rms_audit_record_id == rms_audit_record_id);
+
+                    //HyperLink hlAnalysisNotes = (HyperLink)item.FindControl("hlAnalysisNotes");
+                    //hlAnalysisNotes.NavigateUrl = String.Format("javascript:OpenPopup('Modal/ReportPopup.aspx?view=analysisnotesbydaterange&rms_record_id={0}&beg_dt={1}&end_dt={2}')", audit_rec.rms_record_id, audit_rec.Audit.audit_beg_dt, audit_rec.Audit.audit_end_dt);
+                }
+            }
+            else
+            {
+                if (e.Item is GridDataItem)
+                {
+                    GridDataItem item = (GridDataItem)e.Item;
+
+                    //int rms_audit_id = Convert.ToInt32(item.GetDataKeyValue("rms_audit_id"));
+                    //var audit = db.Audits.FirstOrDefault(p => p.rms_audit_id == rms_audit_id);
+                    //HyperLink hlEditAudit = (HyperLink)item.FindControl("hlEditAudit");
+
+                    //hlEditAudit.NavigateUrl = String.Format("AuditPeriod.aspx?rms_audit_id={0}", rms_audit_id);
+                }
+
+                if (e.Item.IsInEditMode)
+                {
+                    GridEditableItem edititem = (GridEditableItem)e.Item;
+
+                    //int rms_audit_id = Convert.ToInt32(edititem.GetDataKeyValue("rms_audit_id"));
+                    //var audit = db.Audits.FirstOrDefault(p => p.rms_audit_id == rms_audit_id);
+
+                    //Literal ltlType = (Literal)edititem.FindControl("ltlAuditType");
+                    //Literal ltlResults = (Literal)edititem.FindControl("ltlAuditResults");
+                    //Literal ltlReason = (Literal)edititem.FindControl("ltlReason");
+                    //Literal ltlData = (Literal)edititem.FindControl("ltlData");
+                    //Literal ltlFindings = (Literal)edititem.FindControl("ltlFindings");
+                    //RadListView rlvAuditDocs = (RadListView)edititem.FindControl("rlvAuditDocs");
+
+                    //rlvAuditDocs.DataSource = audit.AuditDocuments.Select(p => new { rms_audit_document_id = p.rms_audit_document_id, document_nm = p.document_nm }).OrderBy(p => p.document_nm);
+                    //rlvAuditDocs.DataBind();
+
+                    //ltlType.Text = audit.AuditType.type + ": " + audit.AuditType.description;
+                    //ltlResults.Text = audit.AuditResult.result + audit.AuditResult.description;
+                    //ltlReason.Text = audit.audit_reason;
+                    //ltlData.Text = audit.audit_data;
+                    //ltlFindings.Text = audit.audit_findings;
                 }
             }
         }

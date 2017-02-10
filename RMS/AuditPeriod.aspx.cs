@@ -109,6 +109,30 @@ namespace RMS
             }
         }
 
+        #region Internal Classes
+        internal class RecordItem
+        {
+            private string _rms_record_id;
+            private string _record_nm;
+
+            public string rms_record_id
+            {
+                get { return _rms_record_id; }
+                set { _rms_record_id = value; }
+            }
+            public string record_nm
+            {
+                get { return _record_nm; }
+                set { _record_nm = value; }
+            }
+            public RecordItem()
+            {
+                _rms_record_id = rms_record_id;
+                _record_nm = record_nm;
+            }
+        }
+        #endregion
+
         #region Page Load Events
         protected void UserControlSetup()
         {
@@ -130,13 +154,16 @@ namespace RMS
         protected void InitialView()
         {
             pnlSetupAuditPeriod.Visible = true;
+            pnlSetupAuditPeriodForMultiples.Visible = false;
             pnlAuditPeriod.Visible = false;
             pnlUploadDocs.Visible = false;
 
             if (currAudit == null)
             {
-                rdpBeginDt.SelectedDate = null;
-                rdpEndDt.SelectedDate = null;
+                rdpBeginDt1.SelectedDate = null;
+                rdpEndDt1.SelectedDate = null;
+                rdpBeginDt2.SelectedDate = null;
+                rdpEndDt2.SelectedDate = null;
                 rtbAuditReason.Text = "";
                 rtbDataAudited.Text = "";
                 rtbAuditFindings.Text = "";
@@ -144,17 +171,41 @@ namespace RMS
             }
             else
             {
-                rdpBeginDt.SelectedDate = currAudit.audit_beg_dt;
-                rdpEndDt.SelectedDate = currAudit.audit_end_dt;
+                rdpBeginDt1.SelectedDate = currAudit.audit_beg_dt;
+                rdpEndDt1.SelectedDate = currAudit.audit_end_dt;
+                rdpBeginDt2.SelectedDate = currAudit.audit_beg_dt;
+                rdpEndDt2.SelectedDate = currAudit.audit_end_dt;
                 rtbAuditReason.Text = currAudit.audit_reason;
                 rtbDataAudited.Text = currAudit.audit_data;
                 rtbAuditFindings.Text = currAudit.audit_findings;
                 rtbSANAL.Text = "";
             }
 
+            LoadPeriodList();
             LoadOfficeList();
             LoadFieldTripList();
             LoadRecordList();
+        }
+
+        protected void LoadPeriodList()
+        {
+            if (currRecord == null)
+            {
+                //If coming to this interface without passing a rms_record_id, then we have no way of knowing the single record for which the audit period is being created
+                //So do not allow the option for selecting record periods to include in the audit
+                pnlSetupAuditPeriodForMultiples.Visible = true;
+                pnlSetupAuditPeriod.Visible = false;
+                rbReturnToSingle.Visible = false;
+            }
+            else
+            {
+                //Grab all of the approved periods for the record
+                rlbRecordPeriods.DataSource = currRecord.RecordAnalysisPeriods
+                    .Where(p => p.status_va == "Approved")
+                    .Select(p => new { period_id = p.period_id, PeriodDates = String.Format("{0:MM/dd/yyyy} - {1:MM/dd/yyyy}", p.period_beg_dt, p.period_end_dt), period_beg_dt = p.period_beg_dt })
+                    .OrderBy(p => p.period_beg_dt).ToList();
+                rlbRecordPeriods.DataBind();
+            }
         }
 
         protected void LoadRecordList()
@@ -264,6 +315,18 @@ namespace RMS
         #endregion
 
         #region In Page Events
+        protected void lbMultiple_Command(object sender, CommandEventArgs e)
+        {
+            pnlSetupAuditPeriod.Visible = false;
+            pnlSetupAuditPeriodForMultiples.Visible = true;
+        }
+
+        protected void rbReturnToSingle_Command(object sender, CommandEventArgs e)
+        {
+            pnlSetupAuditPeriod.Visible = true;
+            pnlSetupAuditPeriodForMultiples.Visible = false;
+        }
+
         protected void FilterRecordList(object sender, EventArgs e)
         {
             RadDropDownList rddl = (RadDropDownList)sender;
@@ -280,25 +343,43 @@ namespace RMS
 
         protected void rbSubmitRecords_Command(object sender, CommandEventArgs e)
         {
-            if (rlbRecords.CheckedItems.Count > 0)
+            if (e.CommandArgument.ToString() == "multiple")
             {
-                if (rdpBeginDt.SelectedDate != null && rdpEndDt.SelectedDate != null && rdpBeginDt.SelectedDate < rdpEndDt.SelectedDate)
+                if (rlbRecords.CheckedItems.Count > 0)
                 {
-                    pnlNotice.Visible = false;
-                    pnlSetupAuditPeriod.Visible = false;
-                    pnlAuditPeriod.Visible = true;
-                    SetupAuditForm();
+                    if (rdpBeginDt2.SelectedDate != null && rdpEndDt2.SelectedDate != null && rdpBeginDt2.SelectedDate < rdpEndDt2.SelectedDate)
+                    {
+                        pnlNotice.Visible = false;
+                        pnlSetupAuditPeriodForMultiples.Visible = false;
+                        pnlAuditPeriod.Visible = true;
+                        SetupAuditForm("multiple");
+                    }
+                    else
+                    {
+                        pnlNotice.Visible = true;
+                        ltlNotice.Text = "You must enter both a begin and end date for the audit period date range, and the begin date must be before the end date.";
+                    }
                 }
                 else
                 {
                     pnlNotice.Visible = true;
-                    ltlNotice.Text = "You must enter both a begin and end date for the audit period date range, and the begin date must be before the end date.";
+                    ltlNotice.Text = "You must check the box next to at least one record!";
                 }
             }
             else
             {
-                pnlNotice.Visible = true;
-                ltlNotice.Text = "You must check the box next to at least one record!";
+                if ((rdpBeginDt1.SelectedDate != null && rdpEndDt1.SelectedDate != null && rdpBeginDt1.SelectedDate < rdpEndDt1.SelectedDate) || rlbRecordPeriods.CheckedItems.Count > 0)
+                {
+                    pnlNotice.Visible = false;
+                    pnlSetupAuditPeriod.Visible = false;
+                    pnlAuditPeriod.Visible = true;
+                    SetupAuditForm("single");
+                }
+                else
+                {
+                    pnlNotice.Visible = true;
+                    ltlNotice.Text = "You must either select a record period, or enter a valid begin and end date for the date range!";
+                }
             }
         }
 
@@ -308,7 +389,7 @@ namespace RMS
             {
                 string pOut = "", edited_dt, edited_by_uid;
                 var record = db.Records.FirstOrDefault(p => p.rms_record_id == Convert.ToInt32(rlbViewRecords.SelectedValue));
-                var periods = record.RecordAnalysisPeriods.Where(p => p.period_end_dt >= rdpBeginDt.SelectedDate && p.period_end_dt <= rdpEndDt.SelectedDate).OrderByDescending(p => p.period_beg_dt).ToList();
+                var periods = record.RecordAnalysisPeriods.Where(p => p.period_end_dt >= rdpBeginDt2.SelectedDate && p.period_end_dt <= rdpEndDt2.SelectedDate).OrderByDescending(p => p.period_beg_dt).ToList();
 
                 pOut = "Station Analyses for " + record.Site.site_no.Trim() + " " + record.Site.station_full_nm + "\n" + record.RecordType.type_ds + "\n" +
                         "------------------------------------------------------------------------------------------------------------------------------------------------------------------\n" +
@@ -349,19 +430,37 @@ namespace RMS
             }
             else
             {
+                DateTime? beg_dt, end_dt;
+                if (rdpBeginDt1.SelectedDate != null)
+                {
+                    beg_dt = rdpBeginDt1.SelectedDate;
+                    end_dt = rdpEndDt1.SelectedDate;
+                }
+                else if (rdpBeginDt2.SelectedDate != null)
+                {
+                    beg_dt = rdpBeginDt2.SelectedDate;
+                    end_dt = rdpEndDt2.SelectedDate;
+                }
+                else
+                {
+                    beg_dt = PeriodDate("begin");
+                    end_dt = PeriodDate("end");
+                }
+
                 if (e.CommandArgument.ToString() == "Add")
                 {
                     Data.Audit new_audit = new Data.Audit()
                     {
-                        audit_beg_dt = rdpBeginDt.SelectedDate,
-                        audit_end_dt = rdpEndDt.SelectedDate,
+                        audit_beg_dt = beg_dt,
+                        audit_end_dt = end_dt,
                         audit_by = user.ID,
                         audit_dt = DateTime.Now,
                         audit_type_id = audit_type_id,
                         audit_results_id = audit_results_id,
                         audit_reason = audit_reason,
                         audit_data = audit_data,
-                        audit_findings = audit_findings
+                        audit_findings = audit_findings,
+                        wsc_id = Convert.ToInt32(WSCID)
                     };
                     db.Audits.InsertOnSubmit(new_audit);
                     db.SubmitChanges();
@@ -391,8 +490,8 @@ namespace RMS
                 }
                 else
                 {
-                    currAudit.audit_beg_dt = rdpBeginDt.SelectedDate;
-                    currAudit.audit_end_dt = rdpEndDt.SelectedDate;
+                    currAudit.audit_beg_dt = beg_dt;
+                    currAudit.audit_end_dt = end_dt;
                     currAudit.audit_by = user.ID;
                     currAudit.audit_dt = DateTime.Now;
                     currAudit.audit_type_id = audit_type_id;
@@ -400,6 +499,7 @@ namespace RMS
                     currAudit.audit_reason = audit_reason;
                     currAudit.audit_data = audit_data;
                     currAudit.audit_findings = audit_findings;
+                    currAudit.wsc_id = Convert.ToInt32(WSCID);
 
                     db.AuditRecords.DeleteAllOnSubmit(currAudit.AuditRecords);
                     db.SubmitChanges();
@@ -493,13 +593,52 @@ namespace RMS
         #endregion
 
         #region Page Methods
-        protected void SetupAuditForm()
+        protected void SetupAuditForm(string type)
         {
-            ltlAuditDateRange.Text = String.Format("{0:MM/dd/yyyy} - {1:MM/dd/yyyy}", rdpBeginDt.SelectedDate, rdpEndDt.SelectedDate);
-            ltlAuditBy.Text = user.ID;
-            rlbViewRecords.DataSource = rlbRecords.CheckedItems.Select(p => new { rms_record_id = p.Value, record_nm = p.Text });
-            rlbViewRecords.DataBind();
+            if (type == "single")
+            {
+                if (rlbRecordPeriods.CheckedItems.Count == 0)
+                    ltlAuditDateRange.Text = String.Format("{0:MM/dd/yyyy} - {1:MM/dd/yyyy}", rdpBeginDt1.SelectedDate, rdpEndDt1.SelectedDate);
+                else
+                {
+                    ltlAuditDateRange.Text = String.Format("{0:MM/dd/yyyy} - {1:MM/dd/yyyy}", PeriodDate("begin"), PeriodDate("end"));
 
+                    bool consecutive = false;
+                    bool theend = false;
+                    foreach (RadListBoxItem item in rlbRecordPeriods.Items)
+                    {
+                        if (item.Checked && !consecutive) //will enter this part of the statement upon reaching the first checked item
+                            consecutive = true;
+                        else if (!item.Checked && consecutive) //will enter this part of the statement upon reaching the first unchecked item after a checked item
+                            theend = true;
+                        else if (item.Checked && consecutive && theend) //will enter this part of the statement if another checked period is found after a series of checked and unchecked - non-consecutive periods were selected!!
+                        {
+                            consecutive = false;
+                            break;
+                        }
+                    }
+
+                    if (!consecutive)
+                    {
+                        pnlNotice.Visible = true;
+                        ltlNotice.Text = "<b>You did not select consecutive periods.</b> The audit date range is determined by the earliest selected period begin date and " +
+                            "latest selected period end date, and this audit includes all periods within the audit date range.";
+                    }
+                }
+                List<RecordItem> rec = new List<RecordItem>();
+                rec.Add(new RecordItem() { rms_record_id = RecordID.ToString(), record_nm = currRecord.Site.site_no + " - " + currRecord.RecordType.type_ds });
+                rlbViewRecords.DataSource = rec;
+                rlbViewRecords.DataBind();
+            }
+            else
+            {
+                ltlAuditDateRange.Text = String.Format("{0:MM/dd/yyyy} - {1:MM/dd/yyyy}", rdpBeginDt2.SelectedDate, rdpEndDt2.SelectedDate);
+                rlbViewRecords.DataSource = rlbRecords.CheckedItems.Select(p => new { rms_record_id = p.Value, record_nm = p.Text });
+                rlbViewRecords.DataBind();
+            }
+            
+            ltlAuditBy.Text = user.ID;
+            
             rddlAuditType.DataSource = db.AuditTypes.Select(p => new { audit_type_id = p.audit_type_id, description = p.type + ": " + p.description }).ToList();
             rddlAuditType.DataBind();
             rddlAuditType.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
@@ -524,6 +663,29 @@ namespace RMS
                 rbCreateEditAudit.Text = "Create Audit";
                 rbCreateEditAudit.CommandArgument = "Add";
             }
+        }
+
+        private DateTime? PeriodDate(string type)
+        {
+            DateTime? ret_dt;
+
+            List<Data.RecordAnalysisPeriod> periods = new List<Data.RecordAnalysisPeriod>();
+            foreach (RadListBoxItem item in rlbRecordPeriods.CheckedItems)
+            {
+                periods.Add(new Data.RecordAnalysisPeriod()
+                {
+                    period_id = Convert.ToInt32(item.Value),
+                    period_beg_dt = db.RecordAnalysisPeriods.FirstOrDefault(p => p.period_id == Convert.ToInt32(item.Value)).period_beg_dt,
+                    period_end_dt = db.RecordAnalysisPeriods.FirstOrDefault(p => p.period_id == Convert.ToInt32(item.Value)).period_end_dt
+                });
+            }
+
+            if (type == "begin")
+                ret_dt = periods.OrderBy(p => p.period_beg_dt).First().period_beg_dt;
+            else
+                ret_dt = periods.OrderByDescending(p => p.period_end_dt).First().period_end_dt;
+
+            return ret_dt;
         }
 
         protected void ClearFormFields()

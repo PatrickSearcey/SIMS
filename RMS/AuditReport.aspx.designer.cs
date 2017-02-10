@@ -40,6 +40,51 @@ namespace RMS {
         protected global::RMS.Control.RecordPageHeading ph1;
         
         /// <summary>
+        /// rts1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadTabStrip rts1;
+        
+        /// <summary>
+        /// rmp1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadMultiPage rmp1;
+        
+        /// <summary>
+        /// rpv0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPageView rpv0;
+        
+        /// <summary>
+        /// rgAuditByRecord control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid rgAuditByRecord;
+        
+        /// <summary>
+        /// rpv1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPageView rpv1;
+        
+        /// <summary>
         /// rgAudits control.
         /// </summary>
         /// <remarks>
