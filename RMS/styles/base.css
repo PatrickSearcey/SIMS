@@ -99,7 +99,7 @@ h6 {
     text-align:right;
     font-size: .8em;
     font-style:italic;
-    margin-top:-40px;
+    margin-top:0;
     padding-bottom:20px;
 }
 
@@ -191,7 +191,7 @@ div.RadMenuPopup,
 div.RadGrid .rgRow td,
 div.RadGrid .rgAltRow td,
 div.RadGrid .rgEditRow td {
-    padding:5px !important;
+    padding: 0 5px 0 5px !important;
     font-size: 10pt !important;
 }
 .RadGrid {
@@ -206,4 +206,13 @@ div.RadGrid .rgEditRow td {
     padding:0 !important;
     border: none !important;
     background: none !important;
+}
+.RadGrid_Bootstrap .rgPagerCell .rgNumPart a.rgCurrentPage {
+    border-color: #f0eac8 !important;
+    background-color: #f0eac8 !important;
+}
+
+/*TELERIK RAD TAB STRIP*/
+.RadTabStrip_Bootstrap .rtsLevel1 .rtsLink {
+    color:#ec562c !important;
 }

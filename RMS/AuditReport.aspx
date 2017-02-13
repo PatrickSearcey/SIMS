@@ -38,7 +38,7 @@
             </Tabs>
         </telerik:RadTabStrip><telerik:RadMultiPage ID="rmp1" runat="server" SelectedIndex="0" Width="100%" CssClass="multiPage">
             <telerik:RadPageView runat="server" ID="rpv0">
-                <p style="font-weight:bold">To view audits for the record, click on the arrow in the far left column of the row.  To view audit details and download documents, click on 
+                <p style="font-weight:bold; padding: 0 5px 0 5px;">To view audits for the record, click on the arrow in the far left column of the row.  To view audit details and download documents, click on 
                     the <img src="images/viewdoc.png" alt="view audit" /> icon under the View column.  Clicking the Edit link in the far right column will take you to the modify audit period page.</p>
                 <telerik:RadGrid ID="rgAuditByRecord" runat="server" AutoGenerateColumns="false" Skin="Bootstrap" 
                     GridLines="None" ShowStatusBar="true" PageSize="50"
@@ -53,7 +53,7 @@
                     <MasterTableView DataKeyNames="rms_record_id" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" 
                         Name="Records" AllowFilteringByColumn="true">
                         <DetailTables>
-                            <telerik:GridTableView DataKeyNames="rms_audit_id" Width="100%" runat="server" CommandItemDisplay="None"
+                            <telerik:GridTableView DataKeyNames="rms_record_id, rms_audit_id" Width="100%" runat="server" CommandItemDisplay="None"
                                 Name="Audits" AllowFilteringByColumn="false">
                                 <ParentTableRelation>
                                     <telerik:GridRelationFields DetailKeyField="rms_record_id" MasterKeyField="rms_record_id" />
@@ -180,7 +180,6 @@
                                         </telerik:RadToolTip>
                                     </FormTemplate>
                                 </EditFormSettings>
-                                <EditItemStyle BackColor="#c7806c" />
                             </telerik:GridTableView>
                         </DetailTables>
                         <Columns>
@@ -193,7 +192,7 @@
             </telerik:RadPageView>
 
             <telerik:RadPageView runat="server" ID="rpv1">
-                <p style="font-weight:bold">To view records included in the audit, click on the arrow in the far left column of the row.  To view audit details and download documents, click on 
+                <p style="font-weight:bold;padding: 0 5px 0 5px;">To view records included in the audit, click on the arrow in the far left column of the row.  To view audit details and download documents, click on 
                     the <img src="images/viewdoc.png" alt="view audit" /> icon under the View column.  Clicking the Edit link in the far right column will take you to the modify audit period page.</p>
                 <telerik:RadGrid ID="rgAudits" runat="server" AutoGenerateColumns="false" Skin="Bootstrap" 
                     GridLines="None" ShowStatusBar="true" PageSize="50"
@@ -347,7 +346,6 @@
                                 </telerik:RadToolTip>
                             </FormTemplate>
                         </EditFormSettings>
-                        <EditItemStyle BackColor="#c7806c" />
                     </MasterTableView>
                 </telerik:RadGrid>
             </telerik:RadPageView>
