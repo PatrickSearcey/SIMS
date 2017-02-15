@@ -94,6 +94,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\RegisterSite.aspx" />
     <Content Include="Admin\Tasks.aspx" />
     <Content Include="App_Data\RadCaptcha\0.wav" />
     <Content Include="App_Data\RadCaptcha\1.wav" />
@@ -146,6 +147,7 @@
     <Content Include="images\review.png" />
     <Content Include="images\SIMSLogo.png" />
     <Content Include="images\SIMSTitle.png" />
+    <Content Include="images\tooltip.png" />
     <Content Include="images\underarrow.png" />
     <Content Include="images\USGSHeaderLogo.png" />
     <Content Include="images\USGSHeaderLogoSIMS.png" />
@@ -206,10 +208,18 @@
     <Content Include="scripts\scripts.js" />
     <Content Include="styles\default.css" />
     <Content Include="styles\recordedit.css" />
+    <Content Include="styles\admin.css" />
     <Content Include="styles\stationdoc.css" />
     <Content Include="styles\stationinfo.css" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\RegisterSite.aspx.cs">
+      <DependentUpon>RegisterSite.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\RegisterSite.aspx.designer.cs">
+      <DependentUpon>RegisterSite.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Tasks.aspx.cs">
       <DependentUpon>Tasks.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -423,7 +433,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

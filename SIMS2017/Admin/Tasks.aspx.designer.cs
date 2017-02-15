@@ -7,27 +7,144 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SIMS2._0.Admin {
+namespace SIMS2017.Admin {
     
     
     public partial class Tasks {
         
         /// <summary>
-        /// JumbotronLayout control.
+        /// ram control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadPageLayout JumbotronLayout;
+        protected global::Telerik.Web.UI.RadAjaxManager ram;
         
         /// <summary>
-        /// RadButton0 control.
+        /// ralp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton RadButton0;
+        protected global::Telerik.Web.UI.RadAjaxLoadingPanel ralp;
+        
+        /// <summary>
+        /// ph1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SIMS2017.Control.SitePageHeading ph1;
+        
+        /// <summary>
+        /// pnlNoAccess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlNoAccess;
+        
+        /// <summary>
+        /// pnlHasAccess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlHasAccess;
+        
+        /// <summary>
+        /// hlRegisterSite control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlRegisterSite;
+        
+        /// <summary>
+        /// hlManageOffices control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlManageOffices;
+        
+        /// <summary>
+        /// hlManagePersonnel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlManagePersonnel;
+        
+        /// <summary>
+        /// hlManageFieldTrips control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlManageFieldTrips;
+        
+        /// <summary>
+        /// hlManageRecords control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlManageRecords;
+        
+        /// <summary>
+        /// hlManageRecordTypes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlManageRecordTypes;
+        
+        /// <summary>
+        /// hlPeriodDates control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlPeriodDates;
+        
+        /// <summary>
+        /// hlPeriodStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlPeriodStatus;
+        
+        /// <summary>
+        /// hlSANAL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlSANAL;
+        
+        /// <summary>
+        /// hlUnlock control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlUnlock;
     }
 }
