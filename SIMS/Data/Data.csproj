@@ -46,6 +46,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="SIMS.cs">
+      <DependentUpon>SIMS.dbml</DependentUpon>
+    </Compile>
     <Compile Include="SIMS.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -879,14 +879,87 @@
   </Table>
   <Table Name="" Member="SiteElementItems">
     <Type Name="SiteElementItem">
-      <Column Member="SiteID" Type="System.Int32" CanBeNull="false" />
-      <Column Member="ElementID" Type="System.Int32" CanBeNull="false" />
-      <Column Member="ElementName" Type="System.String" CanBeNull="false" />
-      <Column Member="ElementInfo" Type="System.String" CanBeNull="true" />
-      <Column Member="RevisedBy" Type="System.String" CanBeNull="true" />
-      <Column Member="RevisedDate" Type="System.DateTime" CanBeNull="true" />
-      <Column Member="Priority" Type="System.Int16" CanBeNull="false" />
-      <Column Member="ReportType" Type="System.String" CanBeNull="false" />
+      <Column Name="SiteID" Type="System.Int32" CanBeNull="false" />
+      <Column Name="ElementID" Type="System.Int32" CanBeNull="false" />
+      <Column Name="ElementName" Type="System.String" CanBeNull="false" />
+      <Column Name="ElementInfo" Type="System.String" CanBeNull="true" />
+      <Column Name="RevisedBy" Type="System.String" CanBeNull="true" />
+      <Column Name="RevisedDate" Type="System.DateTime" CanBeNull="true" />
+      <Column Name="Priority" Type="System.Int16" CanBeNull="false" />
+      <Column Name="ReportType" Type="System.String" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vSITEFILEUNUSED" Member="vSITEFILEUNUSEDs">
+    <Type Name="vSITEFILEUNUSED">
+      <Column Name="site_id" Type="System.Decimal" DbType="Decimal(10,0) NOT NULL" CanBeNull="false" />
+      <Column Name="agency_cd" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="site_no" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="nwis_host" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="db_no" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Column Name="station_nm" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="lat_va" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="long_va" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="dec_lat_va" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="dec_long_va" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="coord_meth_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="coord_acy_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="coord_datum_cd" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="district_cd" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="country_cd" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="state_cd" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="county_cd" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="land_net_ds" Type="System.String" DbType="VarChar(23)" CanBeNull="true" />
+      <Column Name="map_nm" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="map_scale_fc" Type="System.String" DbType="VarChar(7)" CanBeNull="true" />
+      <Column Name="alt_va" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="alt_meth_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="alt_acy_va" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="alt_datum_cd" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="huc_cd" Type="System.String" DbType="VarChar(16)" CanBeNull="true" />
+      <Column Name="basin_cd" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="topo_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="site_tp_cd" Type="System.String" DbType="VarChar(7)" CanBeNull="true" />
+      <Column Name="agency_use_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="data_types_cd" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="instruments_cd" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="site_rmks_tx" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="inventory_dt" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="drain_area_va" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="contrib_drain_area_va" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="tz_cd" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="reliability_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="gw_file_cd" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="construction_dt" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="site_use_1_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="site_use_2_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="site_use_3_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="water_use_1_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="water_use_2_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="water_use_3_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="nat_water_use_cd" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="aqfr_type_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="aqfr_cd" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="nat_aqfr_cd" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="well_depth_va" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="hole_depth_va" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="depth_src_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="project_no" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="local_time_fg" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="site_web_cd" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="site_cn" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="site_mn" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="sitefile_md" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="dec_coord_datum_cd" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="ADUserInfos">
+    <Type Name="ADUserInfo" Id="ADUserInfoID">
+      <Column Member="primaryOU" Type="System.String" CanBeNull="true" />
+      <Column Member="regionOU" Type="System.String" CanBeNull="true" />
+      <Column Member="Name" Type="System.String" CanBeNull="true" />
+      <Column Member="SN" Type="System.String" CanBeNull="true" />
+      <Column Member="givenName" Type="System.String" CanBeNull="true" />
+      <Column Member="samAccountName" Type="System.String" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">
@@ -1069,6 +1142,16 @@
       <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="station_nm" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="agency_cd" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spz_GetUserInfoFromAD" Method="spz_GetUserInfoFromAD">
+    <Parameter Name="user_id" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType IdRef="ADUserInfoID" />
+  </Function>
+  <Function Name="dbo.spz_GetUserWSCID" Method="spz_GetUserWSCID">
+    <Parameter Name="PrimaryOU" Parameter="primaryOU" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="spz_GetUserWSCIDResult">
+      <Column Name="wsc_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>

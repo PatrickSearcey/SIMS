@@ -41,7 +41,7 @@ namespace SIMS2017.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string office_id = "348";// Request.QueryString["office_id"];
+            string office_id = Request.QueryString["office_id"];
             if (!string.IsNullOrEmpty(office_id)) OfficeID = Convert.ToInt32(office_id); else if (OfficeID == 0) Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
 
             WSCID = Convert.ToInt32(db.Offices.FirstOrDefault(p => p.office_id == OfficeID).wsc_id);

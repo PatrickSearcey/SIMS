@@ -58,6 +58,24 @@ namespace SIMS2017.Admin {
         protected global::System.Web.UI.WebControls.Panel pnlHasAccess;
         
         /// <summary>
+        /// pnlError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlError;
+        
+        /// <summary>
+        /// ltlError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlError;
+        
+        /// <summary>
         /// pnlEnterSite control.
         /// </summary>
         /// <remarks>
@@ -67,13 +85,13 @@ namespace SIMS2017.Admin {
         protected global::System.Web.UI.WebControls.Panel pnlEnterSite;
         
         /// <summary>
-        /// rntbSiteNo control.
+        /// rtbSiteNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadNumericTextBox rntbSiteNo;
+        protected global::Telerik.Web.UI.RadTextBox rtbSiteNo;
         
         /// <summary>
         /// rtbAgencyCode control.
@@ -218,23 +236,5 @@ namespace SIMS2017.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadButton rbAddSite2;
-        
-        /// <summary>
-        /// pnlError control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlError;
-        
-        /// <summary>
-        /// ltlError control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlError;
     }
 }

@@ -160,3 +160,7 @@ div.RadGrid .rgEditRow td {
     border: none !important;
     background: none !important;
 }
+/*TELERIK RAD DROP DOWN LIST*/
+.rddlItem {
+    font-size:10pt !important;
+}
