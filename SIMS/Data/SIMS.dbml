@@ -19,6 +19,7 @@
       <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Office_Employee" Member="Employees" ThisKey="office_id" OtherKey="office_id" Type="Employee" />
       <Association Name="Office_Site" Member="Sites" ThisKey="office_id" OtherKey="office_id" Type="Site" />
+      <Association Name="Office_Trip_Lut_Trip" Member="Trips" ThisKey="office_id" OtherKey="office_id" Type="Trip" />
       <Association Name="WSC_Office" Member="WSC" ThisKey="wsc_id" OtherKey="wsc_id" Type="WSC" IsForeignKey="true" />
     </Type>
   </Table>
@@ -50,18 +51,6 @@
       <Column Name="show_reports" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="Employee_Exception" Member="Exceptions" ThisKey="user_id" OtherKey="user_id" Type="Exception" />
       <Association Name="Office_Employee" Member="Office" ThisKey="office_id" OtherKey="office_id" Type="Office" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Trip_Lut_Trip" Member="Trips">
-    <Type Name="Trip">
-      <Column Name="trip_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="trip_nu" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="trip_nm" Type="System.String" DbType="NVarChar(210)" CanBeNull="true" />
-      <Column Name="user_id" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="trip_desc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="gen_trip_desc" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Trip_TripSite" Member="TripSites" ThisKey="trip_id" OtherKey="trip_id" Type="TripSite" />
     </Type>
   </Table>
   <Table Name="dbo.lut_Exception" Member="Exceptions">
@@ -751,8 +740,8 @@
       <Column Name="trip_site_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="trip_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Trip_TripSite" Member="Trip" ThisKey="trip_id" OtherKey="trip_id" Type="Trip" IsForeignKey="true" />
       <Association Name="Site_TripSite" Member="Site" ThisKey="site_id" OtherKey="site_id" Type="Site" IsForeignKey="true" />
+      <Association Name="Trip_Lut_Trip_TripSite" Member="Trip" ThisKey="trip_id" OtherKey="trip_id" Type="Trip" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.SIMS_Site_Master" Member="Sites">
@@ -953,13 +942,23 @@
     </Type>
   </Table>
   <Table Name="" Member="ADUserInfos">
-    <Type Name="ADUserInfo" Id="ADUserInfoID">
-      <Column Member="primaryOU" Type="System.String" CanBeNull="true" />
-      <Column Member="regionOU" Type="System.String" CanBeNull="true" />
-      <Column Member="Name" Type="System.String" CanBeNull="true" />
-      <Column Member="SN" Type="System.String" CanBeNull="true" />
-      <Column Member="givenName" Type="System.String" CanBeNull="true" />
-      <Column Member="samAccountName" Type="System.String" CanBeNull="true" />
+    <Type Name="ADUserInfo" Id="ID3">
+      <Column Name="primaryOU" Type="System.String" CanBeNull="true" />
+      <Column Name="regionOU" Type="System.String" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" CanBeNull="true" />
+      <Column Name="SN" Type="System.String" CanBeNull="true" />
+      <Column Name="givenName" Type="System.String" CanBeNull="true" />
+      <Column Name="samAccountName" Type="System.String" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Trip_Lut_Trip" Member="Trips">
+    <Type Name="Trip">
+      <Column Name="trip_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="trip_nm" Type="System.String" DbType="NVarChar(210)" CanBeNull="true" />
+      <Column Name="user_id" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Trip_Lut_Trip_TripSite" Member="TripSites" ThisKey="trip_id" OtherKey="trip_id" Type="TripSite" />
+      <Association Name="Office_Trip_Lut_Trip" Member="Office" ThisKey="office_id" OtherKey="office_id" Type="Office" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">
@@ -1146,7 +1145,7 @@
   </Function>
   <Function Name="dbo.spz_GetUserInfoFromAD" Method="spz_GetUserInfoFromAD">
     <Parameter Name="user_id" Type="System.String" DbType="NVarChar(50)" />
-    <ElementType IdRef="ADUserInfoID" />
+    <ElementType IdRef="ID3" />
   </Function>
   <Function Name="dbo.spz_GetUserWSCID" Method="spz_GetUserWSCID">
     <Parameter Name="PrimaryOU" Parameter="primaryOU" Type="System.String" DbType="NVarChar(50)" />

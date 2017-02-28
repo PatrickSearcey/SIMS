@@ -391,13 +391,9 @@ namespace Safety
             while (i < menu.Items.Count)
             {
                 if (menu.Items[i].Text == "NoFilter" | menu.Items[i].Text == "Contains" | menu.Items[i].Text == "EqualTo" | menu.Items[i].Text == "DoesNotContain")
-                {
                     i = i + 1;
-                }
                 else
-                {
                     menu.Items.RemoveAt(i);
-                }
             }
         }
 
@@ -444,13 +440,9 @@ namespace Safety
             while (i < menu.Items.Count)
             {
                 if (menu.Items[i].Text == "NoFilter" | menu.Items[i].Text == "Contains" | menu.Items[i].Text == "EqualTo" | menu.Items[i].Text == "DoesNotContain")
-                {
                     i = i + 1;
-                }
                 else
-                {
                     menu.Items.RemoveAt(i);
-                }
             }
         }
 
@@ -497,13 +489,9 @@ namespace Safety
             while (i < menu.Items.Count)
             {
                 if (menu.Items[i].Text == "NoFilter" | menu.Items[i].Text == "Contains" | menu.Items[i].Text == "EqualTo" | menu.Items[i].Text == "DoesNotContain")
-                {
                     i = i + 1;
-                }
                 else
-                {
                     menu.Items.RemoveAt(i);
-                }
             }
         }
 
@@ -550,13 +538,9 @@ namespace Safety
             while (i < menu.Items.Count)
             {
                 if (menu.Items[i].Text == "NoFilter" | menu.Items[i].Text == "Contains" | menu.Items[i].Text == "EqualTo" | menu.Items[i].Text == "DoesNotContain")
-                {
                     i = i + 1;
-                }
                 else
-                {
                     menu.Items.RemoveAt(i);
-                }
             }
         }
 
@@ -607,13 +591,9 @@ namespace Safety
             while (i < menu.Items.Count)
             {
                 if (menu.Items[i].Text == "NoFilter" | menu.Items[i].Text == "Contains" | menu.Items[i].Text == "EqualTo" | menu.Items[i].Text == "DoesNotContain")
-                {
                     i = i + 1;
-                }
                 else
-                {
                     menu.Items.RemoveAt(i);
-                }
             }
         }
 
@@ -674,13 +654,9 @@ namespace Safety
             while (i < menu.Items.Count)
             {
                 if (menu.Items[i].Text == "NoFilter" | menu.Items[i].Text == "Contains" | menu.Items[i].Text == "EqualTo" | menu.Items[i].Text == "DoesNotContain")
-                {
                     i = i + 1;
-                }
                 else
-                {
                     menu.Items.RemoveAt(i);
-                }
             }
         }
 
@@ -743,13 +719,9 @@ namespace Safety
             while (i < menu.Items.Count)
             {
                 if (menu.Items[i].Text == "NoFilter" | menu.Items[i].Text == "Contains" | menu.Items[i].Text == "EqualTo" | menu.Items[i].Text == "DoesNotContain")
-                {
                     i = i + 1;
-                }
                 else
-                {
                     menu.Items.RemoveAt(i);
-                }
             }
         }
 

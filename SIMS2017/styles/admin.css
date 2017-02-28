@@ -200,6 +200,14 @@ div.EditDocList {
     background-color:#ebe2c0;
 }
 
+.APexptext {
+    font-size: 10pt;
+    font-weight: bold;
+    color: #314d93;   
+    padding-top:10px;
+    padding-bottom:0;
+    margin-bottom:0;
+}
 /*------------FOR GRIDVIEW--------------------------*/
 .hidden
 {

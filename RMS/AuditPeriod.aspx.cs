@@ -389,7 +389,24 @@ namespace RMS
             {
                 string pOut = "", edited_dt, edited_by_uid;
                 var record = db.Records.FirstOrDefault(p => p.rms_record_id == Convert.ToInt32(rlbViewRecords.SelectedValue));
-                var periods = record.RecordAnalysisPeriods.Where(p => p.period_end_dt >= rdpBeginDt2.SelectedDate && p.period_end_dt <= rdpEndDt2.SelectedDate).OrderByDescending(p => p.period_beg_dt).ToList();
+
+                DateTime? beg_dt, end_dt;
+                if (rdpBeginDt1.SelectedDate != null)
+                {
+                    beg_dt = rdpBeginDt1.SelectedDate;
+                    end_dt = rdpEndDt1.SelectedDate;
+                }
+                else if (rdpBeginDt2.SelectedDate != null)
+                {
+                    beg_dt = rdpBeginDt2.SelectedDate;
+                    end_dt = rdpEndDt2.SelectedDate;
+                }
+                else
+                {
+                    beg_dt = PeriodDate("begin");
+                    end_dt = PeriodDate("end");
+                }
+                var periods = record.RecordAnalysisPeriods.Where(p => p.period_end_dt >= beg_dt && p.period_end_dt <= end_dt).OrderByDescending(p => p.period_beg_dt).ToList();
 
                 pOut = "Station Analyses for " + record.Site.site_no.Trim() + " " + record.Site.station_full_nm + "\n" + record.RecordType.type_ds + "\n" +
                         "------------------------------------------------------------------------------------------------------------------------------------------------------------------\n" +

@@ -9,6 +9,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <_PublishTargetUrl>\\igskiacwvmgs012\wwwroot\SIMS2017</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
+    <File Include="Admin/FieldTrips.aspx">
+      <publishTime>02/28/2017 15:25:53</publishTime>
+    </File>
     <File Include="Admin/Offices.aspx">
       <publishTime>02/21/2017 14:05:35</publishTime>
     </File>
@@ -139,16 +142,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/18/2016 12:12:12</publishTime>
     </File>
     <File Include="bin/Core.dll">
-      <publishTime>02/24/2017 10:09:28</publishTime>
+      <publishTime>02/28/2017 15:35:34</publishTime>
     </File>
     <File Include="bin/Core.pdb">
-      <publishTime>02/24/2017 10:09:28</publishTime>
+      <publishTime>02/28/2017 15:35:34</publishTime>
     </File>
     <File Include="bin/Data.dll">
-      <publishTime>02/21/2017 16:15:37</publishTime>
+      <publishTime>02/27/2017 15:08:54</publishTime>
     </File>
     <File Include="bin/Data.pdb">
-      <publishTime>02/21/2017 16:15:37</publishTime>
+      <publishTime>02/27/2017 15:08:54</publishTime>
     </File>
     <File Include="bin/DotNetZip.dll">
       <publishTime>01/27/2017 12:28:42</publishTime>
@@ -163,10 +166,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/01/2016 16:26:44</publishTime>
     </File>
     <File Include="bin/SIMS2017.dll">
-      <publishTime>02/24/2017 10:09:31</publishTime>
+      <publishTime>02/28/2017 15:36:01</publishTime>
     </File>
     <File Include="bin/SIMS2017.pdb">
-      <publishTime>02/24/2017 10:09:31</publishTime>
+      <publishTime>02/28/2017 15:36:01</publishTime>
     </File>
     <File Include="bin/Telerik.Web.Spreadsheet.dll">
       <publishTime>10/18/2016 11:37:46</publishTime>
@@ -279,6 +282,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="images/USGSHeaderLogoSIMS.png">
       <publishTime>10/26/2016 15:58:50</publishTime>
     </File>
+    <File Include="Modal/ConfirmDelete.aspx">
+      <publishTime>02/28/2017 15:28:58</publishTime>
+    </File>
+    <File Include="Modal/FieldTrip.aspx">
+      <publishTime>02/28/2017 15:14:22</publishTime>
+    </File>
     <File Include="Modal/FieldTripEdit.aspx">
       <publishTime>12/01/2016 16:25:27</publishTime>
     </File>
@@ -349,7 +358,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/06/2017 11:36:39</publishTime>
     </File>
     <File Include="styles/admin.css">
-      <publishTime>02/23/2017 09:51:44</publishTime>
+      <publishTime>02/24/2017 14:21:12</publishTime>
     </File>
     <File Include="styles/base.css">
       <publishTime>02/24/2017 10:07:30</publishTime>

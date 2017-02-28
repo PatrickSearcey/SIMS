@@ -48,7 +48,7 @@ namespace SIMS2017.Admin
             WSCID = Convert.ToInt32(db.Offices.FirstOrDefault(p => p.office_id == OfficeID).wsc_id);
             currWSC = db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID);
 
-            ph1.Title = "Modify Personnel";
+            ph1.Title = "Manage Personnel";
             ph1.SubTitle = currWSC.wsc_nm + " Water Science Center";
             ph1.ShowOfficeInfoPanel = true;
 
@@ -384,6 +384,5 @@ namespace SIMS2017.Admin
         }
         #endregion
 
-        
     }
 }
