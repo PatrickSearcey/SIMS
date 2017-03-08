@@ -154,6 +154,7 @@
     <Content Include="images\underarrow.png" />
     <Content Include="images\USGSHeaderLogo.png" />
     <Content Include="images\USGSHeaderLogoSIMS.png" />
+    <Content Include="images\usmap.gif" />
     <Content Include="Modal\ConfirmDelete.aspx" />
     <Content Include="Modal\FieldTrip.aspx" />
     <Content Include="Modal\FieldTripEdit.aspx" />
@@ -199,6 +200,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="SIMS.Master" />
+    <Content Include="SIMSHome.aspx" />
     <Content Include="SIMSSingleMenu.Master" />
     <Content Include="StationDoc\Archive.aspx" />
     <Content Include="StationDoc\CustomReport.aspx" />
@@ -212,6 +214,7 @@
     <Content Include="SIMSWSCHome.aspx" />
     <Content Include="scripts\scripts.js" />
     <Content Include="styles\default.css" />
+    <Content Include="styles\home.css" />
     <Content Include="styles\recordedit.css" />
     <Content Include="styles\admin.css" />
     <Content Include="styles\stationdoc.css" />
@@ -335,6 +338,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="SIMSHome.aspx.cs">
+      <DependentUpon>SIMSHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SIMSHome.aspx.designer.cs">
+      <DependentUpon>SIMSHome.aspx</DependentUpon>
     </Compile>
     <Compile Include="SIMSWSCHome.aspx.cs">
       <DependentUpon>SIMSWSCHome.aspx</DependentUpon>

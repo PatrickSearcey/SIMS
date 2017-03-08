@@ -10,7 +10,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="Admin/FieldTrips.aspx">
-      <publishTime>02/28/2017 15:25:53</publishTime>
+      <publishTime>02/28/2017 15:40:41</publishTime>
     </File>
     <File Include="Admin/Offices.aspx">
       <publishTime>02/21/2017 14:05:35</publishTime>
@@ -142,16 +142,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/18/2016 12:12:12</publishTime>
     </File>
     <File Include="bin/Core.dll">
-      <publishTime>02/28/2017 15:35:34</publishTime>
+      <publishTime>03/01/2017 15:36:39</publishTime>
     </File>
     <File Include="bin/Core.pdb">
-      <publishTime>02/28/2017 15:35:34</publishTime>
+      <publishTime>03/01/2017 15:36:39</publishTime>
     </File>
     <File Include="bin/Data.dll">
-      <publishTime>02/27/2017 15:08:54</publishTime>
+      <publishTime>03/01/2017 15:25:02</publishTime>
     </File>
     <File Include="bin/Data.pdb">
-      <publishTime>02/27/2017 15:08:54</publishTime>
+      <publishTime>03/01/2017 15:25:02</publishTime>
     </File>
     <File Include="bin/DotNetZip.dll">
       <publishTime>01/27/2017 12:28:42</publishTime>
@@ -166,10 +166,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/01/2016 16:26:44</publishTime>
     </File>
     <File Include="bin/SIMS2017.dll">
-      <publishTime>02/28/2017 15:36:01</publishTime>
+      <publishTime>03/01/2017 15:39:50</publishTime>
     </File>
     <File Include="bin/SIMS2017.pdb">
-      <publishTime>02/28/2017 15:36:01</publishTime>
+      <publishTime>03/01/2017 15:39:50</publishTime>
     </File>
     <File Include="bin/Telerik.Web.Spreadsheet.dll">
       <publishTime>10/18/2016 11:37:46</publishTime>
@@ -282,6 +282,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="images/USGSHeaderLogoSIMS.png">
       <publishTime>10/26/2016 15:58:50</publishTime>
     </File>
+    <File Include="images/usmap.gif">
+      <publishTime>02/28/2017 16:39:23</publishTime>
+    </File>
     <File Include="Modal/ConfirmDelete.aspx">
       <publishTime>02/28/2017 15:28:58</publishTime>
     </File>
@@ -330,6 +333,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="SIMS.Master">
       <publishTime>02/06/2017 14:07:04</publishTime>
     </File>
+    <File Include="SIMSHome.aspx">
+      <publishTime>03/01/2017 12:32:53</publishTime>
+    </File>
     <File Include="SIMSSingleMenu.Master">
       <publishTime>01/31/2017 09:45:34</publishTime>
     </File>
@@ -355,7 +361,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/23/2016 05:48:43</publishTime>
     </File>
     <File Include="StationInfo.aspx">
-      <publishTime>01/06/2017 11:36:39</publishTime>
+      <publishTime>03/01/2017 15:39:39</publishTime>
     </File>
     <File Include="styles/admin.css">
       <publishTime>02/24/2017 14:21:12</publishTime>
@@ -368,6 +374,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="styles/grid.css">
       <publishTime>10/27/2016 16:41:26</publishTime>
+    </File>
+    <File Include="styles/home.css">
+      <publishTime>03/01/2017 12:01:17</publishTime>
     </File>
     <File Include="styles/recordedit.css">
       <publishTime>12/20/2016 13:39:08</publishTime>

@@ -158,25 +158,23 @@
                                         </div>
                                         <telerik:RadToolTip runat="server" ID="rtt3" RelativeTo="Element" Width="300px" AutoCloseDelay="10000" Skin="Bootstrap"
                                             Height="50px" TargetControlID="imgTypeHelp" IsClientID="false" Animation="Fade" Position="TopRight">
-                                            Only sites that already exist in SIMS are listed.  If you do not see your site, you must first add it to SIMS.  
+                                            The type of audit.  
                                         </telerik:RadToolTip>
                                         <telerik:RadToolTip runat="server" ID="rrt5" RelativeTo="Element" Width="300px" AutoCloseDelay="10000" Skin="Bootstrap"
                                             Height="50px" TargetControlID="imgResultsHelp" IsClientID="false" Animation="Fade" Position="TopRight">
-                                            Enter a short descriptive phrase or word for this cableway. This is useful for setting your cableways apart if you have multiples at a site.
+                                            The audit results.
                                         </telerik:RadToolTip>
                                         <telerik:RadToolTip runat="server" ID="rtt6" RelativeTo="Element" Width="300px" AutoCloseDelay="10000" Skin="Bootstrap"
                                             Height="50px" TargetControlID="imgReasonHelp" IsClientID="false" Animation="Fade" Position="TopRight">
-                                            <b>Bank Operated Cableway</b> A manually operated "loop" cableway<br />
-                                            <b>Manned Cableway</b> Traditional cableway with cable car and operator<br />
-                                            <b>Type Unknown</b> You just don't know
+                                            The audit reason
                                         </telerik:RadToolTip>
                                         <telerik:RadToolTip runat="server" ID="rtt7" RelativeTo="Element" Width="300px" AutoCloseDelay="10000" Skin="Bootstrap"
                                             Height="50px" TargetControlID="imgDataHelp" IsClientID="false" Animation="Fade" Position="TopRight">
-                                            Enter in years the frequency of inspection visits. This is a requirement to operate the cableway.
+                                            The data audited.
                                         </telerik:RadToolTip>
                                         <telerik:RadToolTip runat="server" ID="rtt8" RelativeTo="Element" Width="300px" AutoCloseDelay="10000" Skin="Bootstrap"
                                             height="50px" TargetControlID="imgFindingsHelp" IsClientID="false" Animation="Fade" Position="TopRight">
-                                            Select yes if an aerial marker is required for this cableway, or no if it is not.
+                                            The audit findings.
                                         </telerik:RadToolTip>
                                     </FormTemplate>
                                 </EditFormSettings>
@@ -324,25 +322,23 @@
                                 </div>
                                 <telerik:RadToolTip runat="server" ID="rtt3" RelativeTo="Element" Width="300px" AutoCloseDelay="10000" Skin="Bootstrap"
                                     Height="50px" TargetControlID="imgTypeHelp" IsClientID="false" Animation="Fade" Position="TopRight">
-                                    Only sites that already exist in SIMS are listed.  If you do not see your site, you must first add it to SIMS.  
+                                    The type of audit. 
                                 </telerik:RadToolTip>
                                 <telerik:RadToolTip runat="server" ID="rrt5" RelativeTo="Element" Width="300px" AutoCloseDelay="10000" Skin="Bootstrap"
                                     Height="50px" TargetControlID="imgResultsHelp" IsClientID="false" Animation="Fade" Position="TopRight">
-                                    Enter a short descriptive phrase or word for this cableway. This is useful for setting your cableways apart if you have multiples at a site.
+                                    The audit results.
                                 </telerik:RadToolTip>
                                 <telerik:RadToolTip runat="server" ID="rtt6" RelativeTo="Element" Width="300px" AutoCloseDelay="10000" Skin="Bootstrap"
                                     Height="50px" TargetControlID="imgReasonHelp" IsClientID="false" Animation="Fade" Position="TopRight">
-                                    <b>Bank Operated Cableway</b> A manually operated "loop" cableway<br />
-                                    <b>Manned Cableway</b> Traditional cableway with cable car and operator<br />
-                                    <b>Type Unknown</b> You just don't know
+                                    The audit reason.
                                 </telerik:RadToolTip>
                                 <telerik:RadToolTip runat="server" ID="rtt7" RelativeTo="Element" Width="300px" AutoCloseDelay="10000" Skin="Bootstrap"
                                     Height="50px" TargetControlID="imgDataHelp" IsClientID="false" Animation="Fade" Position="TopRight">
-                                    Enter in years the frequency of inspection visits. This is a requirement to operate the cableway.
+                                    The data audited.
                                 </telerik:RadToolTip>
                                 <telerik:RadToolTip runat="server" ID="rtt8" RelativeTo="Element" Width="300px" AutoCloseDelay="10000" Skin="Bootstrap"
                                     height="50px" TargetControlID="imgFindingsHelp" IsClientID="false" Animation="Fade" Position="TopRight">
-                                    Select yes if an aerial marker is required for this cableway, or no if it is not.
+                                    The audit findings.
                                 </telerik:RadToolTip>
                             </FormTemplate>
                         </EditFormSettings>

@@ -36,6 +36,11 @@
             var SAUrl = '/RMS/Modal/ReportPopup.aspx?view=analysisbyperiod&period_id=' + period_id;
             open(SAUrl, 'SAPU', 'toolbar=yes, menubar=no, width=740, height=500, scrollbars=yes');
         }
+
+        function ShowAuditPopup(period_id) {
+            var AudUrl = '/RMS/Modal/ViewAudit.aspx?period_id=' + period_id;
+            open(AudUrl, 'SAudPU', 'toolbar=yes, menubar=no, width=900, height=600, scrollbar=yes');
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph1" runat="server">

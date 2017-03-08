@@ -44,12 +44,14 @@
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="pnlUploadDocs" LoadingPanelID="ralp" />
                     <telerik:AjaxUpdatedControl ControlID="pnlSetupAuditPeriodForMultiples" LoadingPanelID="ralp" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlSetupAuditPeriod" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="rbCreateEditAudit">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="pnlUploadDocs" LoadingPanelID="ralp" />
                     <telerik:AjaxUpdatedControl ControlID="pnlError" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlNotice" />
                     <telerik:AjaxUpdatedControl ControlID="pnlAuditPeriod" LoadingPanelID="ralp" />
                     <telerik:AjaxUpdatedControl ControlID="ppnlSetupAuditPeriodForMultiples" LoadingPanelID="ralp" />
                 </UpdatedControls>

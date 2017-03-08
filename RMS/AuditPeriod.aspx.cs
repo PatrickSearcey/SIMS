@@ -497,6 +497,7 @@ namespace RMS
 
                     //Setup the rest of the page
                     pnlError.Visible = false;
+                    pnlNotice.Visible = false;
                     pnlAuditPeriod.Visible = false;
                     ltlConfirm.Text = "Audit Period Created!";
                     ltlDone.Text = "To return and create a new audit period, click the 'Done' button at the bottom of the page.";
@@ -536,6 +537,7 @@ namespace RMS
 
                     //Setup the rest of the page
                     pnlError.Visible = false;
+                    pnlNotice.Visible = false;
                     pnlAuditPeriod.Visible = false;
                     ltlConfirm.Text = "Audit Period Updated!";
                     ltlDone.Text = "When finished uploading documents, clicking the 'Done' button below will return you to the Audit Report.";

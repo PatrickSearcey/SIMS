@@ -722,6 +722,9 @@ namespace SIMS2017
             string showlockpng = ShowLockPNG(rms_record_id);
             string showsavepng = ShowLocks("save", rms_record_id);
 
+            //Check to see if there are any audits for this record
+            var audits = db.Audits.Where(p => p.AuditRecords.Where(a => a.rms_record_id == rms_record_id ).ToList().Count > 0).ToList();
+
             foreach (var period in periods)
             {
                 string imgApproved = "";
@@ -730,6 +733,17 @@ namespace SIMS2017
                 string note = "";
                 string showlock = "";
                 string showsave = "";
+                string showaudit = "";
+
+                //If there is an audit for this record, check to see if any of them involve the current period, but only if the period has been approved
+                if (audits != null && period.status_va == "Approved")
+                {
+                    foreach (var audit in audits)
+                    {
+                        if ((period.period_beg_dt == audit.audit_beg_dt || period.period_beg_dt > audit.audit_beg_dt) && (period.period_end_dt == audit.audit_end_dt || period.period_end_dt < audit.audit_end_dt))
+                            showaudit = String.Format("<a href='javascript:ShowAuditPopup({0})'><img src='{1}images/viewdoc.png' alt='View audit details' /></a>", period.period_id, Config.RMSURL);
+                    }
+                }
 
                 if (period.status_va == "Analyzing")
                 {
@@ -838,7 +852,7 @@ namespace SIMS2017
                     }
                 }
 
-                currPeriods += String.Format("<p class='periods'>{0} {1}{2:MM/dd/yyyy}-{3:MM/dd/yyyy}{4} {5}{6}{7}</p>", imgApproved, hlStart, period.period_beg_dt, period.period_end_dt, hlEnd, note, showlock, showsave);
+                currPeriods += String.Format("<p class='periods'>{0} {1}{2:MM/dd/yyyy}-{3:MM/dd/yyyy}{4} {5}{6}{7}{8}</p>", imgApproved, hlStart, period.period_beg_dt, period.period_end_dt, hlEnd, note, showlock, showsave, showaudit);
 
                 prev_level = level;
                 prev_status = period.status_va;

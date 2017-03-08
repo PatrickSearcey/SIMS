@@ -18,7 +18,7 @@ namespace Safety
         {
             ltlUserID.Text = user.ID;
 
-            rmTop.Items.Add(new RadMenuItem { Text = "SIMS National Home", NavigateUrl = String.Format("{0}Default.aspx", Config.SIMS2017URL) });
+            rmTop.Items.Add(new RadMenuItem { Text = "SIMS National Home", NavigateUrl = String.Format("{0}SIMSHome.aspx", Config.SIMS2017URL) });
             rmTop.Items.Add(new RadMenuItem { IsSeparator = true });
             rmTop.Items.Add(new RadMenuItem { Text = "SIMS WSC Home", NavigateUrl = String.Format("{0}SIMSWSCHome.aspx", Config.SIMS2017URL) });
             rmTop.Items.Add(new RadMenuItem { IsSeparator = true });
