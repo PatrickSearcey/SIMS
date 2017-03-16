@@ -30,7 +30,8 @@
             <asp:Literal ID="LltlNotesVI" runat="server" />
             <br />
             <b>Plan Specific Remarks:</b><br />
-            <asp:Literal ID="ltlRemarksVI" runat="server" />
+            <asp:Literal ID="ltlRemarksVI" runat="server" /><br />
+            <b>Plan is for daylight hours ONLY.</b>
         </asp:Panel>
 
         <asp:Panel ID="pnlImage" runat="server">
@@ -56,7 +57,8 @@
             <asp:Literal ID="ltlNotes" runat="server" />
             <br />
             <b>Plan Specific Remarks:</b><br />
-            <asp:Literal ID="ltlRemarks" runat="server" />
+            <asp:Literal ID="ltlRemarks" runat="server" /><br />
+            <b>Plan is for daylight hours ONLY.</b>
         </asp:Panel>
 
         <asp:Panel ID="pnlAllData" runat="server" CssClass="pnlCalcData">
@@ -71,7 +73,9 @@
             <b style='color:mediumpurple;'>T &mdash; </b><b>Maximum spacing for cones in the </b><b style='color:mediumpurple';>Transition Taper:</b> <asp:Literal ID="ltlTTConeSpacing" runat="server" /> feet<br />
             <b style='color:cornflowerblue;'>S &mdash; </b><b>Minimum </b><b style='color:cornflowerblue';>Shoulder Taper:</b> <asp:Literal ID="ltlSTMin" runat="server" /> feet<br />
             <b style='color:cornflowerblue;'>S &mdash; </b><b>Number of cones in </b><b style='color:cornflowerblue'>Shoulder Taper:</b> <asp:Literal ID="ltlSTCones" runat="server" /><br />
-            <b> &mdash; TOTAL NUMBER OF CONES REQUIRED:</b> <asp:Literal ID="ltlConesReq" runat="server" /><br />
+            <b style='color:cornflowerblue;'>S &mdash; </b><b style='color:cornflowerblue'>Shoulder Taper</b> <b>cone spacing:</b> <asp:Literal ID="ltlSTConeSpacing" runat="server" /><br /><br />
+            <b> &mdash; TOTAL NUMBER OF CONES REQUIRED:</b> <asp:Literal ID="ltlConesReq" runat="server" /><br /><br />
+            <h5>Optional</h5>
             <b style='color:deeppink;'>B &mdash; </b><b>Optional </b><b style='color:deeppink';>Buffer Zone </b><b>length:</b> <asp:Literal ID="ltlBZLength" runat="server" /> feet<br />
             <b style='color:deeppink;'>B &mdash; </b><b>Optional </b><b style='color:deeppink';>Buffer Zone </b><b>cone spacing:</b> <asp:Literal ID="ltlBZConeSpacing" runat="server" /> feet<br />
             <b style='color:deeppink;'>B &mdash; </b><b>Number of cones in the optional </b><b style='color:deeppink';>Buffer Zone</b><b>:</b> <asp:Literal ID="ltlBZCones" runat="server" /><br />
@@ -88,7 +92,9 @@
             <b style='color:orange;'>WZ** &mdash; Work Zone </b><b>cone spacing:</b> <asp:Literal ID="ltlWZConeSpacing1" runat="server" /> feet<br />
             <b style='color:cornflowerblue;'>S &mdash; </b><b>Minimum </b><b style='color:cornflowerblue';>Shoulder Taper:</b> <asp:Literal ID="ltlSTMin1" runat="server" /> feet<br />
             <b style='color:cornflowerblue;'>S &mdash; </b><b>Number of cones in </b><b style='color:cornflowerblue'>Shoulder Taper:</b> <asp:Literal ID="ltlSTCones1" runat="server" /><br />
-            <b> &mdash; TOTAL NUMBER OF CONES REQUIRED:</b> <asp:Literal ID="ltlConesReq1" runat="server" /><br />
+            <b style='color:cornflowerblue;'>S &mdash; </b><b style='color:cornflowerblue'>Shoulder Taper</b> <b>cone spacing:</b> <asp:Literal ID="ltlSTConeSpacing1" runat="server" /><br /><br />
+            <b> &mdash; TOTAL NUMBER OF CONES REQUIRED:</b> <asp:Literal ID="ltlConesReq1" runat="server" /><br /><br />
+            <h5>Optional</h5>
             <b style='color:deeppink;'>B &mdash; </b><b>Optional </b><b style='color:deeppink';>Buffer Zone </b><b>length:</b> <asp:Literal ID="ltlBZLength1" runat="server" /> feet<br />
             <b style='color:deeppink;'>B &mdash; </b><b>Optional </b><b style='color:deeppink';>Buffer Zone </b><b>cone spacing:</b> <asp:Literal ID="ltlBZConeSpacing1" runat="server" /> feet<br />
             <b style='color:deeppink;'>B &mdash; </b><b>Number of cones in the optional </b><b style='color:deeppink';>Buffer Zone</b><b>:</b> <asp:Literal ID="ltlBZCones1" runat="server" /><br />

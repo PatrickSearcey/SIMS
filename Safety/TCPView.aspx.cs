@@ -202,7 +202,7 @@ namespace Safety
         {
             int? WarningSignSpacing = null, MinTaperLength = null, OptBufferLength = null, FlaggerDistance = null;
             double? WZCones = null, TTCones = null, STMin = null, STCones = null, BZCones = null;
-            int? WZConeSpacing = null, TTConeSpacing = null, BZConeSpacing = null;
+            int? WZConeSpacing = null, TTConeSpacing = null, BZConeSpacing = null, STConeSpacing = null;
 
             var calcData = db.TCPCalculations.FirstOrDefault(p => p.Speed == currTCP.TCPSite.SpeedLimit);
 
@@ -219,6 +219,7 @@ namespace Safety
                 TTConeSpacing = currTCP.TCPSite.SpeedLimit;
                 STMin = Math.Ceiling(0.33 * Convert.ToDouble(MinTaperLength));
                 STCones = Math.Ceiling(Convert.ToDouble(STMin) / Convert.ToDouble(currTCP.TCPSite.SpeedLimit));
+                STConeSpacing = Convert.ToInt32(STMin) / Convert.ToInt32(STCones);
                 BZCones = Math.Ceiling(Convert.ToDouble(calcData.OptBufferLength) / Convert.ToDouble(currTCP.TCPSite.SpeedLimit) * 2);
                 BZConeSpacing = currTCP.TCPSite.SpeedLimit * 2;
             }
@@ -239,6 +240,7 @@ namespace Safety
                     ltlTTConeSpacing.Text = TTConeSpacing.ToString("unknown");
                     ltlSTMin.Text = STMin.ToString("unknown");
                     ltlSTCones.Text = STCones.ToString("unknown");
+                    ltlSTConeSpacing.Text = STConeSpacing.ToString("unknown");
                     ltlBZLength.Text = OptBufferLength.ToString("unknown");
                     ltlConesReq.Text = String.Format("{0}", WZCones + TTCones + STCones);
                     ltlBZCones.Text = BZCones.ToString("unknown");
@@ -256,6 +258,7 @@ namespace Safety
                     ltlWZConeSpacing1.Text = WZConeSpacing.ToString("unknown");
                     ltlSTMin1.Text = STMin.ToString("unknown");
                     ltlSTCones1.Text = STCones.ToString("unknown");
+                    ltlSTConeSpacing1.Text = STConeSpacing.ToString("unknown");
                     ltlBZLength1.Text = OptBufferLength.ToString("unknown");
                     ltlConesReq1.Text = String.Format("{0}", WZCones + STCones);
                     ltlBZCones1.Text = BZCones.ToString("unknown");

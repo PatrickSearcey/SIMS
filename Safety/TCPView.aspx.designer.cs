@@ -400,6 +400,15 @@ namespace Safety {
         protected global::System.Web.UI.WebControls.Literal ltlSTCones;
         
         /// <summary>
+        /// ltlSTConeSpacing control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlSTConeSpacing;
+        
+        /// <summary>
         /// ltlConesReq control.
         /// </summary>
         /// <remarks>
@@ -497,6 +506,15 @@ namespace Safety {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlSTCones1;
+        
+        /// <summary>
+        /// ltlSTConeSpacing1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlSTConeSpacing1;
         
         /// <summary>
         /// ltlConesReq1 control.
