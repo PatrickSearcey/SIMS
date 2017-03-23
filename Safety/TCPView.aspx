@@ -17,20 +17,19 @@
             <asp:Literal ID="ltlNotes0" runat="server" />
         </asp:Panel>
 
-        <asp:Panel ID="pnlPlanVI" runat="server" CssClass="pnlSiteInfo">
+        <asp:Panel ID="pnlPlanV" runat="server" CssClass="pnlSiteInfo">
             <h4>Site and Plan Info</h4>
-            <b>Work Area Activity: </b><asp:Literal ID="ltlWorkAreaActivityVI" runat="server" /><br />
-            <b>Highway/Road: </b><asp:Literal ID="ltlHighwayVI" runat="server" /><br />
-            <b>Speed Limit: </b><asp:Literal ID="ltlSpeedVI" runat="server" /><br /> 
-            <b>Traffic Volume: </b><asp:Literal ID="ltlTrafficVI" runat="server" /><br />
-            <b>Plan Updated: </b><asp:Literal ID="ltlUpdatedVI" runat="server" /><br /> 
-            <b>Plan Reviewed: </b><asp:Literal ID="ltlReviewedVI" runat="server" /><br />
-            <b>Plan Approved: </b><asp:Literal ID="ltlApprovedVI" runat="server" /><br /> 
+            <b>Highway/Road: </b><asp:Literal ID="ltlHighwayV" runat="server" /><br />
+            <b>Speed Limit: </b><asp:Literal ID="ltlSpeedV" runat="server" /><br /> 
+            <b>Traffic Volume: </b><asp:Literal ID="ltlTrafficV" runat="server" /><br />
+            <b>Plan Updated: </b><asp:Literal ID="ltlUpdatedV" runat="server" /><br /> 
+            <b>Plan Reviewed: </b><asp:Literal ID="ltlReviewedV" runat="server" /><br />
+            <b>Plan Approved: </b><asp:Literal ID="ltlApprovedV" runat="server" /><br /> 
             <b>Site Specific Notes:</b><br />
-            <asp:Literal ID="LltlNotesVI" runat="server" />
+            <asp:Literal ID="LltlNotesV" runat="server" />
             <br />
             <b>Plan Specific Remarks:</b><br />
-            <asp:Literal ID="ltlRemarksVI" runat="server" /><br />
+            <asp:Literal ID="ltlRemarksV" runat="server" /><br />
             <b>Plan is for daylight hours ONLY.</b>
         </asp:Panel>
 
@@ -40,7 +39,6 @@
 
         <asp:Panel ID="pnlSiteInfo" runat="server" CssClass="pnlSiteInfo">
             <h4>Site and Plan Info</h4>
-            <b>Work Area Activity: </b><asp:Literal ID="ltlWorkAreaActivity" runat="server" /><br />
             <b>Highway/Road: </b><asp:Literal ID="ltlHighway" runat="server" /><br />
             <b>Freeway or Expressway: </b><asp:Literal ID="ltlFreeway" runat="server" /><br />
             <b>Bridge Width: </b><asp:Literal ID="ltlWidth" runat="server" /><br />

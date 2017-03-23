@@ -424,7 +424,7 @@
       <Column Name="dd_nu" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="iv_ts_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="gu_id" Type="System.String" DbType="NVarChar(32)" CanBeNull="true" />
-      <Association Name="RMS_Record_Master_RecordDD" Member="Record" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="Record" IsForeignKey="true" />
+      <Association Name="Record_RecordDD" Member="Record" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="Record" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.RMS_Locks" Member="RecordLocks">
@@ -434,7 +434,7 @@
       <Column Name="lock_uid" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="lock_dt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="period_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="RMS_Record_Master_RecordLock" Member="Record" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="Record" IsForeignKey="true" />
+      <Association Name="Record_RecordLock" Member="Record" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="Record" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.RMS_EOY_Status" Member="RecordEOYStatus">
@@ -446,7 +446,7 @@
       <Column Name="status_set_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="analyzed_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="approved_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="RMS_Record_Master_RecordEOYStatus" Member="Record" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="Record" IsForeignKey="true" />
+      <Association Name="Record_RecordEOYStatus" Member="Record" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="Record" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.RMS_Change_Log" Member="PeriodChangeLogs">
@@ -456,7 +456,7 @@
       <Column Name="edited_by_uid" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="edited_dt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="new_va" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Association Name="RMS_Analysis_Period_PeriodChangeLog" Member="RecordAnalysisPeriod" ThisKey="period_id" OtherKey="period_id" Type="RecordAnalysisPeriod" IsForeignKey="true" />
+      <Association Name="RecordAnalysisPeriod_PeriodChangeLog" Member="RecordAnalysisPeriod" ThisKey="period_id" OtherKey="period_id" Type="RecordAnalysisPeriod" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.RMS_Approval_Status" Member="RecordApprovalStatus">
@@ -487,7 +487,7 @@
       <Column Name="analyzed_period_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="approved_period_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="approved_period_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="RMS_Record_Master_RecordAnalysisStatus" Member="Record" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="Record" IsForeignKey="true" />
+      <Association Name="Record_RecordAnalysisStatus" Member="Record" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="Record" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.RMS_Alt_Office" Member="RecordAltOffices">
@@ -495,7 +495,7 @@
       <Column Name="rms_record_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="alt_office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="RMS_Record_Master_RecordAltOffice" Member="Record" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="Record" IsForeignKey="true" />
+      <Association Name="Record_RecordAltOffice" Member="Record" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="Record" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.vTS_ID_CACHE" Member="vTS_ID_CACHEs">
@@ -661,7 +661,7 @@
       <Column Name="rms_audit_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="rms_record_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Audit_AuditRecord" Member="Audit" ThisKey="rms_audit_id" OtherKey="rms_audit_id" Type="Audit" IsForeignKey="true" />
-      <Association Name="RMS_Record_Master_AuditRecord" Member="Record" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="Record" IsForeignKey="true" />
+      <Association Name="Record_AuditRecord" Member="Record" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="Record" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Trip_Site_Master" Member="TripSites">
@@ -691,7 +691,7 @@
       <Association Name="Site_OpsLevel" Member="OpsLevel" ThisKey="site_id" OtherKey="site_id" Type="OpsLevel" Cardinality="One" />
       <Association Name="Site_TripSite" Member="TripSites" ThisKey="site_id" OtherKey="site_id" Type="TripSite" />
       <Association Name="Site_SiteElement" Member="SiteElements" ThisKey="site_id" OtherKey="site_id" Type="SiteElement" />
-      <Association Name="Site_RMS_Record_Master" Member="Records" ThisKey="site_id" OtherKey="site_id" Type="Record" />
+      <Association Name="Site_Record" Member="Records" ThisKey="site_id" OtherKey="site_id" Type="Record" />
       <Association Name="Office_Site" Member="Office" ThisKey="office_id" OtherKey="office_id" Type="Office" IsForeignKey="true" />
     </Type>
   </Table>
@@ -902,15 +902,15 @@
       <Column Name="record_type_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="category_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="cat_reason" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Association Name="RMS_Record_Master_RecordDD" Member="RecordDDs" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="RecordDD" />
-      <Association Name="RMS_Record_Master_RecordLock" Member="RecordLock" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="RecordLock" Cardinality="One" />
-      <Association Name="RMS_Record_Master_RecordEOYStatus" Member="RecordEOYStatus" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="RecordEOYStatus" />
-      <Association Name="RMS_Record_Master_RecordAnalysisStatus" Member="RecordAnalysisStatus" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="RecordAnalysisStatus" Cardinality="One" />
-      <Association Name="RMS_Record_Master_RecordAltOffice" Member="RecordAltOffice" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="RecordAltOffice" Cardinality="One" />
-      <Association Name="RMS_Record_Master_AuditRecord" Member="AuditRecords" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="AuditRecord" />
-      <Association Name="Record_RMS_Analysis_Period" Member="RecordAnalysisPeriods" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="RecordAnalysisPeriod" />
-      <Association Name="Site_RMS_Record_Master" Member="Site" ThisKey="site_id" OtherKey="site_id" Type="Site" IsForeignKey="true" />
-      <Association Name="RMS_Record_Type_Record" Member="RecordType" ThisKey="record_type_id" OtherKey="record_type_id" Type="RecordType" IsForeignKey="true" />
+      <Association Name="Record_RecordDD" Member="RecordDDs" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="RecordDD" />
+      <Association Name="Record_RecordLock" Member="RecordLock" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="RecordLock" Cardinality="One" />
+      <Association Name="Record_RecordEOYStatus" Member="RecordEOYStatus" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="RecordEOYStatus" />
+      <Association Name="Record_RecordAnalysisStatus" Member="RecordAnalysisStatus" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="RecordAnalysisStatus" Cardinality="One" />
+      <Association Name="Record_RecordAltOffice" Member="RecordAltOffice" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="RecordAltOffice" Cardinality="One" />
+      <Association Name="Record_AuditRecord" Member="AuditRecords" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="AuditRecord" />
+      <Association Name="Record_RecordAnalysisPeriod" Member="RecordAnalysisPeriods" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="RecordAnalysisPeriod" />
+      <Association Name="Site_Record" Member="Site" ThisKey="site_id" OtherKey="site_id" Type="Site" IsForeignKey="true" />
+      <Association Name="RecordType_Record" Member="RecordType" ThisKey="record_type_id" OtherKey="record_type_id" Type="RecordType" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.RMS_Record_Types" Member="RecordTypes">
@@ -922,7 +922,7 @@
       <Column Name="approve_html_va" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="ts_fg" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="RMS_Record_Type_Record" Member="Records" ThisKey="record_type_id" OtherKey="record_type_id" Type="Record" />
+      <Association Name="RecordType_Record" Member="Records" ThisKey="record_type_id" OtherKey="record_type_id" Type="Record" />
     </Type>
   </Table>
   <Table Name="dbo.RMS_Analysis_Periods" Member="RecordAnalysisPeriods">
@@ -943,9 +943,9 @@
       <Column Name="rework_status_set_by_role_va" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="checked_by_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="checked_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="RMS_Analysis_Period_PeriodChangeLog" Member="PeriodChangeLogs" ThisKey="period_id" OtherKey="period_id" Type="PeriodChangeLog" />
-      <Association Name="RecordAnalysisPeriod_RMS_Dialog" Member="PeriodDialogs" ThisKey="period_id" OtherKey="period_id" Type="PeriodDialog" />
-      <Association Name="Record_RMS_Analysis_Period" Member="Record" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="Record" IsForeignKey="true" />
+      <Association Name="RecordAnalysisPeriod_PeriodChangeLog" Member="PeriodChangeLogs" ThisKey="period_id" OtherKey="period_id" Type="PeriodChangeLog" />
+      <Association Name="RecordAnalysisPeriod_PeriodDialog" Member="PeriodDialogs" ThisKey="period_id" OtherKey="period_id" Type="PeriodDialog" />
+      <Association Name="Record_RecordAnalysisPeriod" Member="Record" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="Record" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.RMS_Dialog" Member="PeriodDialogs">
@@ -958,7 +958,14 @@
       <Column Name="origin_va" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Column Name="comments_va" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="period_end_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="RecordAnalysisPeriod_RMS_Dialog" Member="RecordAnalysisPeriod" ThisKey="period_id" OtherKey="period_id" Type="RecordAnalysisPeriod" IsForeignKey="true" />
+      <Association Name="RecordAnalysisPeriod_PeriodDialog" Member="RecordAnalysisPeriod" ThisKey="period_id" OtherKey="period_id" Type="RecordAnalysisPeriod" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TCP_Lut_ShoulderRule" Member="TCPShoulderRules">
+    <Type Name="TCPShoulderRule">
+      <Column Name="ShoulderRuleID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StateCode" Type="System.String" DbType="NVarChar(2)" CanBeNull="true" />
+      <Column Name="ShoulderRule" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">

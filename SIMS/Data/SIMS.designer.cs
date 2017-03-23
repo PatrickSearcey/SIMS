@@ -174,6 +174,9 @@ namespace Data
     partial void InsertPeriodDialog(PeriodDialog instance);
     partial void UpdatePeriodDialog(PeriodDialog instance);
     partial void DeletePeriodDialog(PeriodDialog instance);
+    partial void InsertTCPShoulderRule(TCPShoulderRule instance);
+    partial void UpdateTCPShoulderRule(TCPShoulderRule instance);
+    partial void DeleteTCPShoulderRule(TCPShoulderRule instance);
     #endregion
 		
 		public SIMSDataContext() : 
@@ -699,6 +702,14 @@ namespace Data
 			get
 			{
 				return this.GetTable<PeriodDialog>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TCPShoulderRule> TCPShoulderRules
+		{
+			get
+			{
+				return this.GetTable<TCPShoulderRule>();
 			}
 		}
 		
@@ -9410,7 +9421,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordDD", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordDD", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
 		public Record Record
 		{
 			get
@@ -9609,7 +9620,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordLock", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordLock", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
 		public Record Record
 		{
 			get
@@ -9856,7 +9867,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordEOYStatus", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordEOYStatus", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
 		public Record Record
 		{
 			get
@@ -10055,7 +10066,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Analysis_Period_PeriodChangeLog", Storage="_RecordAnalysisPeriod", ThisKey="period_id", OtherKey="period_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_PeriodChangeLog", Storage="_RecordAnalysisPeriod", ThisKey="period_id", OtherKey="period_id", IsForeignKey=true)]
 		public RecordAnalysisPeriod RecordAnalysisPeriod
 		{
 			get
@@ -10569,7 +10580,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordAnalysisStatus", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordAnalysisStatus", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
 		public Record Record
 		{
 			get
@@ -10720,7 +10731,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordAltOffice", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordAltOffice", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
 		public Record Record
 		{
 			get
@@ -13408,7 +13419,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_AuditRecord", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_AuditRecord", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
 		public Record Record
 		{
 			get
@@ -14042,7 +14053,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_RMS_Record_Master", Storage="_Records", ThisKey="site_id", OtherKey="site_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Record", Storage="_Records", ThisKey="site_id", OtherKey="site_id")]
 		public EntitySet<Record> Records
 		{
 			get
@@ -17969,7 +17980,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordDD", Storage="_RecordDDs", ThisKey="rms_record_id", OtherKey="rms_record_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordDD", Storage="_RecordDDs", ThisKey="rms_record_id", OtherKey="rms_record_id")]
 		public EntitySet<RecordDD> RecordDDs
 		{
 			get
@@ -17982,7 +17993,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordLock", Storage="_RecordLock", ThisKey="rms_record_id", OtherKey="rms_record_id", IsUnique=true, IsForeignKey=false)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordLock", Storage="_RecordLock", ThisKey="rms_record_id", OtherKey="rms_record_id", IsUnique=true, IsForeignKey=false)]
 		public RecordLock RecordLock
 		{
 			get
@@ -18011,7 +18022,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordEOYStatus", Storage="_RecordEOYStatus", ThisKey="rms_record_id", OtherKey="rms_record_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordEOYStatus", Storage="_RecordEOYStatus", ThisKey="rms_record_id", OtherKey="rms_record_id")]
 		public EntitySet<RecordEOYStatus> RecordEOYStatus
 		{
 			get
@@ -18024,7 +18035,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordAnalysisStatus", Storage="_RecordAnalysisStatus", ThisKey="rms_record_id", OtherKey="rms_record_id", IsUnique=true, IsForeignKey=false)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordAnalysisStatus", Storage="_RecordAnalysisStatus", ThisKey="rms_record_id", OtherKey="rms_record_id", IsUnique=true, IsForeignKey=false)]
 		public RecordAnalysisStatus RecordAnalysisStatus
 		{
 			get
@@ -18053,7 +18064,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordAltOffice", Storage="_RecordAltOffice", ThisKey="rms_record_id", OtherKey="rms_record_id", IsUnique=true, IsForeignKey=false)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordAltOffice", Storage="_RecordAltOffice", ThisKey="rms_record_id", OtherKey="rms_record_id", IsUnique=true, IsForeignKey=false)]
 		public RecordAltOffice RecordAltOffice
 		{
 			get
@@ -18082,7 +18093,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_AuditRecord", Storage="_AuditRecords", ThisKey="rms_record_id", OtherKey="rms_record_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_AuditRecord", Storage="_AuditRecords", ThisKey="rms_record_id", OtherKey="rms_record_id")]
 		public EntitySet<AuditRecord> AuditRecords
 		{
 			get
@@ -18095,7 +18106,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RMS_Analysis_Period", Storage="_RecordAnalysisPeriods", ThisKey="rms_record_id", OtherKey="rms_record_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordAnalysisPeriod", Storage="_RecordAnalysisPeriods", ThisKey="rms_record_id", OtherKey="rms_record_id")]
 		public EntitySet<RecordAnalysisPeriod> RecordAnalysisPeriods
 		{
 			get
@@ -18108,7 +18119,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_RMS_Record_Master", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Record", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
 		public Site Site
 		{
 			get
@@ -18142,7 +18153,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Type_Record", Storage="_RecordType", ThisKey="record_type_id", OtherKey="record_type_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordType_Record", Storage="_RecordType", ThisKey="record_type_id", OtherKey="record_type_id", IsForeignKey=true)]
 		public RecordType RecordType
 		{
 			get
@@ -18433,7 +18444,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Type_Record", Storage="_Records", ThisKey="record_type_id", OtherKey="record_type_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordType_Record", Storage="_Records", ThisKey="record_type_id", OtherKey="record_type_id")]
 		public EntitySet<Record> Records
 		{
 			get
@@ -18893,7 +18904,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Analysis_Period_PeriodChangeLog", Storage="_PeriodChangeLogs", ThisKey="period_id", OtherKey="period_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_PeriodChangeLog", Storage="_PeriodChangeLogs", ThisKey="period_id", OtherKey="period_id")]
 		public EntitySet<PeriodChangeLog> PeriodChangeLogs
 		{
 			get
@@ -18906,7 +18917,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_RMS_Dialog", Storage="_PeriodDialogs", ThisKey="period_id", OtherKey="period_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_PeriodDialog", Storage="_PeriodDialogs", ThisKey="period_id", OtherKey="period_id")]
 		public EntitySet<PeriodDialog> PeriodDialogs
 		{
 			get
@@ -18919,7 +18930,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RMS_Analysis_Period", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordAnalysisPeriod", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
 		public Record Record
 		{
 			get
@@ -19214,7 +19225,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_RMS_Dialog", Storage="_RecordAnalysisPeriod", ThisKey="period_id", OtherKey="period_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_PeriodDialog", Storage="_RecordAnalysisPeriod", ThisKey="period_id", OtherKey="period_id", IsForeignKey=true)]
 		public RecordAnalysisPeriod RecordAnalysisPeriod
 		{
 			get
@@ -19244,6 +19255,116 @@ namespace Data
 						this._period_id = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("RecordAnalysisPeriod");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TCP_Lut_ShoulderRule")]
+	public partial class TCPShoulderRule : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ShoulderRuleID;
+		
+		private string _StateCode;
+		
+		private System.Nullable<int> _ShoulderRule;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnShoulderRuleIDChanging(int value);
+    partial void OnShoulderRuleIDChanged();
+    partial void OnStateCodeChanging(string value);
+    partial void OnStateCodeChanged();
+    partial void OnShoulderRuleChanging(System.Nullable<int> value);
+    partial void OnShoulderRuleChanged();
+    #endregion
+		
+		public TCPShoulderRule()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShoulderRuleID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ShoulderRuleID
+		{
+			get
+			{
+				return this._ShoulderRuleID;
+			}
+			set
+			{
+				if ((this._ShoulderRuleID != value))
+				{
+					this.OnShoulderRuleIDChanging(value);
+					this.SendPropertyChanging();
+					this._ShoulderRuleID = value;
+					this.SendPropertyChanged("ShoulderRuleID");
+					this.OnShoulderRuleIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StateCode", DbType="NVarChar(2)")]
+		public string StateCode
+		{
+			get
+			{
+				return this._StateCode;
+			}
+			set
+			{
+				if ((this._StateCode != value))
+				{
+					this.OnStateCodeChanging(value);
+					this.SendPropertyChanging();
+					this._StateCode = value;
+					this.SendPropertyChanged("StateCode");
+					this.OnStateCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShoulderRule", DbType="Int")]
+		public System.Nullable<int> ShoulderRule
+		{
+			get
+			{
+				return this._ShoulderRule;
+			}
+			set
+			{
+				if ((this._ShoulderRule != value))
+				{
+					this.OnShoulderRuleChanging(value);
+					this.SendPropertyChanging();
+					this._ShoulderRule = value;
+					this.SendPropertyChanged("ShoulderRule");
+					this.OnShoulderRuleChanged();
 				}
 			}
 		}

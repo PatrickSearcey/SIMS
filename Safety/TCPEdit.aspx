@@ -245,15 +245,16 @@
                                     <h4>Traffic Control Plans</h4>
                                     <asp:Panel ID="pnlTCPs" runat="server" CssClass="TCPInfo">
                                         <asp:DataList ID="dlTCPs" runat="server" DataKeyField="TCPID" 
-                                            OnEditCommand="dlTCPs_EditCommand" 
+                                            OnEditCommand="dlTCPs_EditCommand"
                                             OnCancelCommand="dlTCPs_CancelCommand"
                                             OnUpdateCommand="dlTCPs_UpdateCommand" 
                                             OnItemCreated="dlTCPs_ItemCreated" 
-                                            OnDeleteCommand="dlTCPs_DeleteCommand">
+                                            OnDeleteCommand="dlTCPs_DeleteCommand"
+                                            OnItemDataBound="dlTCPs_ItemDataBound">
                                             <ItemTemplate>
                                                 <a href='<%# Eval("TCPLink") %>'><%# Eval("TCPName") %></a><br />
                                                 <div class="PlanInfo">
-                                                    <b>Work Area Activity:</b><br />
+                                                    <b>Plan Specific Activity:</b><br />
                                                     <%# Eval("WorkAreaActivity") %><br />
                                                     <b>Plan Specific Notes:</b><br />
                                                     <%# Eval("PlanRemarks") %><br /><asp:LinkButton ID="lbPlanRemarks" runat="server" Text="edit plan info" CommandName="edit" Font-Bold="true" /> |
@@ -263,10 +264,22 @@
                                             <EditItemTemplate>
                                                 <a href='<%# Eval("TCPLink") %>'><%# Eval("TCPName") %></a><br />
                                                 <div class="PlanInfo">
-                                                    <b>Work Area Activity:</b>
-                                                    <telerik:RadTextBox id="rtbWAA" runat="server" Text='<%# Eval("WorkAreaActivity") %>' Font-Size="Small" /><br />
+                                                    <b>Plan Specific Activity:</b>
+                                                    <telerik:RadDropDownList ID="rddlWAA" runat="server">
+                                                        <Items>
+                                                            <telerik:DropDownListItem Value="" />
+                                                            <telerik:DropDownListItem Value="ADCP" Text="ADCP" />
+                                                            <telerik:DropDownListItem Value="Bridge Board" Text="Bridge Board" />
+                                                            <telerik:DropDownListItem Value="Wire Weight" Text="Wire Weight" />
+                                                            <telerik:DropDownListItem Value="Power Equipment" Text="Power Equipment" />
+                                                            <telerik:DropDownListItem Value="QW Monitor" Text="QW Monitor" />
+                                                            <telerik:DropDownListItem Value="QW Sampling" Text="QW Sampling" />
+                                                            <telerik:DropDownListItem Value="Construction" Text="Construction" />
+                                                            <telerik:DropDownListItem Value="Other" Text="Other" />
+                                                        </Items>
+                                                    </telerik:RadDropDownList><br />
                                                     <b>Plan Specific Notes:</b><br />
-                                                    <telerik:RadTextBox id="rtbPlanRemarks" runat="server" TextMode="MultiLine" Text='<%# Eval("PlanRemarks") %>' Font-Size="Small" Width="200px" /><br /><asp:LinkButton ID="lbUpdateRemarks" runat="server" Text="save" CommandName="update" Font-Bold="true" /> |
+                                                    <telerik:RadTextBox id="rtbPlanRemarks" runat="server" TextMode="MultiLine" Text='<%# Eval("PlanRemarks") %>' Font-Size="Small" Width="300px" /><br /><asp:LinkButton ID="lbUpdateRemarks" runat="server" Text="save" CommandName="update" Font-Bold="true" /> |
                                                     <asp:LinkButton ID="lbCancel" runat="server" Text="cancel" CommandName="cancel" Font-Bold="true" />
                                                 </div>
                                             </EditItemTemplate>

@@ -17,6 +17,7 @@ namespace Safety
         public Boolean HasEditAccess { get; set; }
         public Boolean EnableControl { get; set; }
         private Data.Site currSite;
+        private int ShoulderRule { get; set; }
         private int WSCID
         {
             get
@@ -76,6 +77,9 @@ namespace Safety
 
             ph1.Title = "Manage Traffic Control Safety Plans";
             ph1.SubTitle = currSite.site_no + " " + currSite.station_full_nm;
+
+            //Find and set the shoulder rule based on the physical (which state) location of the site
+            ShoulderRule = Convert.ToInt32(db.TCPShoulderRules.FirstOrDefault(p => p.StateCode == db.vSITEFILEs.FirstOrDefault(s => s.site_id == currSite.nwisweb_site_id).state_cd).ShoulderRule);
 
             if (!Page.IsPostBack)
             {
@@ -187,7 +191,7 @@ namespace Safety
             //Set control status
             if (currSite.TCPSite.ShoulderWidth != null)
             {
-                if (currSite.TCPSite.ShoulderWidth < 5)
+                if (currSite.TCPSite.ShoulderWidth < ShoulderRule)
                 {
                     if (currSite.TCPSite.LaneNumber == 2 && (bool)currSite.TCPSite.Flow2Way)
                     {
@@ -704,7 +708,7 @@ namespace Safety
                     {
                         if (!string.IsNullOrEmpty(rntbLaneNumber.Text) && !string.IsNullOrEmpty(rddlFlow2Way.SelectedValue))
                         {
-                            if (Convert.ToInt32(rntb.Text) < 5)
+                            if (Convert.ToInt32(rntb.Text) < ShoulderRule)
                             {
                                 if (Convert.ToInt32(rntbLaneNumber.Text) == 2 && Convert.ToBoolean(rddlFlow2Way.SelectedValue))
                                 {
@@ -728,7 +732,7 @@ namespace Safety
                     {
                         if (!string.IsNullOrEmpty(rntbShoulderWidth.Text) && !string.IsNullOrEmpty(rddlFlow2Way.SelectedValue))
                         {
-                            if (Convert.ToInt32(rntbShoulderWidth.Text) < 5)
+                            if (Convert.ToInt32(rntbShoulderWidth.Text) < ShoulderRule)
                             {
                                 if (Convert.ToInt32(rntb.Text) == 2 && Convert.ToBoolean(rddlFlow2Way.SelectedValue))
                                 {
@@ -750,7 +754,7 @@ namespace Safety
                     //If changing the traffic flow
                     if (!string.IsNullOrEmpty(rntbShoulderWidth.Text) && !string.IsNullOrEmpty(rntbLaneNumber.Text))
                     {
-                        if (Convert.ToInt32(rntbShoulderWidth.Text) < 5)
+                        if (Convert.ToInt32(rntbShoulderWidth.Text) < ShoulderRule)
                         {
                             if (Convert.ToInt32(rntbLaneNumber.Text) == 2 && Convert.ToBoolean(rddl.SelectedValue))
                             {
@@ -788,7 +792,7 @@ namespace Safety
         {
             int TCPID = (int)dlTCPs.DataKeys[e.Item.ItemIndex];
             string plan_remarks = ((RadTextBox)e.Item.FindControl("rtbPlanRemarks")).Text;
-            string waa = ((RadTextBox)e.Item.FindControl("rtbWAA")).Text;
+            string waa = ((RadDropDownList)e.Item.FindControl("rddlWAA")).SelectedValue.ToString();
 
             var TCP = db.TCPs.FirstOrDefault(p => p.TCPID == TCPID);
             TCP.Remarks = plan_remarks.FormatParagraphIn();
@@ -834,6 +838,20 @@ namespace Safety
                     break;
             }
         }
+
+        protected void dlTCPs_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+            int TCPID = (int)dlTCPs.DataKeys[e.Item.ItemIndex];
+            var TCP = db.TCPs.FirstOrDefault(p => p.TCPID == TCPID);
+
+            if (e.Item.ItemType == ListItemType.EditItem)
+            {
+                RadDropDownList rddlWAA = (RadDropDownList)e.Item.FindControl("rddlWAA");
+
+                if (!string.IsNullOrEmpty(TCP.WorkAreaActivity))
+                    rddlWAA.SelectedValue = TCP.WorkAreaActivity;
+            }
+        }
         #endregion
 
         #region Functions
@@ -848,11 +866,7 @@ namespace Safety
             if ((bool)ts.RemoteSite) 
                 ret = 1; //If remote site, then use plan 0
             else
-                if (ts.ShoulderWidth == 0) //If work is beyond shoulder, use plan V
-                {
-                    ret = 9; 
-                }
-                else if (ts.ShoulderWidth < 5)
+                if (ts.ShoulderWidth < ShoulderRule)
                 {
                     if (ts.LaneNumber == 4 && (bool)ts.Flow2Way) //If 4-lane, 2-way, use plan II
                     {
@@ -866,12 +880,12 @@ namespace Safety
                     {
                         ret = 7;
                     }
-                    else //Plan is too complicated, use plan VI
+                    else //Plan is too complicated, use plan V
                     {
                         ret = 8;
                     }
                 }
-                else //If shoulder is > 5ft and short duration (time < 1 hr) is true, use plan IVa, else use plan IVb
+                else //If shoulder is > ShoulderRule and short duration (time < 1 hr) is true, use plan IVa, else use plan IVb
                 {
                     //Add both plan 5 and 6
                     ret = 5;

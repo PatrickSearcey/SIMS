@@ -90,7 +90,7 @@ namespace Safety
             {
                 if (currTCP.TCPPlanDetail.Number == "0")
                 {
-                    pnlPlanVI.Visible = false;
+                    pnlPlanV.Visible = false;
                     pnlSiteInfo.Visible = false;
                     pnlLessData.Visible = false;
                     pnlIVbData.Visible = false;
@@ -102,7 +102,7 @@ namespace Safety
                     ltlUpdated0.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.UpdatedBy.ToStringSafe();
 
                 }
-                else if (currTCP.TCPPlanDetail.Number == "VI")
+                else if (currTCP.TCPPlanDetail.Number == "V")
                 {
                     pnlPlan0.Visible = false;
                     pnlSiteInfo.Visible = false;
@@ -112,19 +112,18 @@ namespace Safety
                     pnlImage.Visible = false;
                     pnlAllData.Visible = false;
 
-                    ltlHighwayVI.Text = currTCP.TCPSite.RoadName.ToStringSafe();
-                    ltlSpeedVI.Text = currTCP.TCPSite.SpeedLimit.ToString("unknown") + " mph";
-                    ltlTrafficVI.Text = currTCP.TCPSite.TrafficVolume.ToString("unknown");
-                    ltlWorkAreaActivityVI.Text = currTCP.WorkAreaActivity;
-                    ltlRemarksVI.Text = currTCP.Remarks.ToStringSafe();
-                    ltlUpdatedVI.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.UpdatedBy.ToStringSafe();
-                    ltlReviewedVI.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.ReviewedBy.ToStringSafe();
-                    ltlApprovedVI.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.ApprovedBy.ToStringSafe();
+                    ltlHighwayV.Text = currTCP.TCPSite.RoadName.ToStringSafe();
+                    ltlSpeedV.Text = currTCP.TCPSite.SpeedLimit.ToString("unknown") + " mph";
+                    ltlTrafficV.Text = currTCP.TCPSite.TrafficVolume.ToString("unknown");
+                    ltlRemarksV.Text = currTCP.WorkAreaActivity + "<br />" + currTCP.Remarks.ToStringSafe();
+                    ltlUpdatedV.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.UpdatedBy.ToStringSafe();
+                    ltlReviewedV.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.ReviewedBy.ToStringSafe();
+                    ltlApprovedV.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.ApprovedBy.ToStringSafe();
                 }
                 else
                 {
                     pnlPlan0.Visible = false;
-                    pnlPlanVI.Visible = false;
+                    pnlPlanV.Visible = false;
 
                     ltlHighway.Text = currTCP.TCPSite.RoadName.ToStringSafe();
                     if (Convert.ToBoolean(currTCP.TCPSite.Expressway))
@@ -151,9 +150,9 @@ namespace Safety
                     ltlApproved.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.ApprovedBy.ToStringSafe();
                     ltlNotes.Text = currTCP.TCPSite.Notes.ToStringSafe();
                     if (currTCP.TCPSite.TrafficVolume == "high")
-                        ltlRemarks.Text = "Because of high traffic volume, consider using a buffer zone.<br />" + currTCP.Remarks.ToStringSafe();
+                        ltlRemarks.Text = currTCP.WorkAreaActivity + "<br />Because of high traffic volume, consider using a buffer zone.<br />" + currTCP.Remarks.ToStringSafe();
                     else
-                        ltlRemarks.Text = currTCP.Remarks.ToStringSafe();
+                        ltlRemarks.Text = currTCP.WorkAreaActivity + "<br />" + currTCP.Remarks.ToStringSafe();
                     ltlInstructions.Text = currTCP.TCPPlanDetail.Notes.ToStringSafe();
 
                     imgPlanImage.ImageUrl = String.Format("{0}images/TCPPlan{1}.png", Config.SafetyURL, currTCP.TCPPlanDetail.Number);
@@ -179,7 +178,6 @@ namespace Safety
                     CalculateData();
                     break;
                 case "IVa":
-                case "V":
                     pnlAllData.Visible = false;
                     pnlLessData.Visible = true;
                     pnlIVbData.Visible = false;
@@ -193,7 +191,7 @@ namespace Safety
                     break;
                 case "0":
                     break;
-                case "VI":
+                case "V":
                     break;
             }
         }
@@ -213,15 +211,15 @@ namespace Safety
                 OptBufferLength = calcData.OptBufferLength;
                 FlaggerDistance = calcData.FlaggerDistance;
 
-                WZCones = Math.Ceiling(Convert.ToDouble(currTCP.TCPSite.WorkZone) / (Convert.ToDouble(currTCP.TCPSite.SpeedLimit) * 2));
                 WZConeSpacing = currTCP.TCPSite.SpeedLimit * 2;
+                WZCones = Math.Ceiling(Convert.ToDouble(currTCP.TCPSite.WorkZone) / Convert.ToDouble(WZConeSpacing));
                 TTCones = Math.Ceiling(Convert.ToDouble(MinTaperLength) / Convert.ToDouble(currTCP.TCPSite.SpeedLimit));
                 TTConeSpacing = currTCP.TCPSite.SpeedLimit;
                 STMin = Math.Ceiling(0.33 * Convert.ToDouble(MinTaperLength));
                 STCones = Math.Ceiling(Convert.ToDouble(STMin) / Convert.ToDouble(currTCP.TCPSite.SpeedLimit));
                 STConeSpacing = Convert.ToInt32(STMin) / Convert.ToInt32(STCones);
-                BZCones = Math.Ceiling(Convert.ToDouble(calcData.OptBufferLength) / Convert.ToDouble(currTCP.TCPSite.SpeedLimit) * 2);
                 BZConeSpacing = currTCP.TCPSite.SpeedLimit * 2;
+                BZCones = Math.Ceiling(Convert.ToDouble(calcData.OptBufferLength) / Convert.ToDouble(BZConeSpacing));
             }
 
             switch (currTCP.TCPPlanDetail.Number)
@@ -247,7 +245,6 @@ namespace Safety
                     ltlBZConeSpacing.Text = BZConeSpacing.ToString("unknown");
                     break;
                 case "IVa":
-                case "V":
                     if (Convert.ToBoolean(currTCP.TCPSite.Expressway)) ltlWS2.Text = "1000, 1500, 2640"; else ltlWS2.Text = WarningSignSpacing.ToString("unknown");
                     ltlWZLength2.Text = currTCP.TCPSite.WorkZone.ToString("unknown");
                     break;
