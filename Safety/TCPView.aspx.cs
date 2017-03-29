@@ -86,6 +86,8 @@ namespace Safety
         {
             var site = db.Sites.FirstOrDefault(p => p.site_id == currTCP.site_id);
 
+            hlEditPlan.NavigateUrl = String.Format("TCPEdit.aspx?site_id={0}", site.site_id);
+
             if (currTCP != null)
             {
                 if (currTCP.TCPPlanDetail.Number == "0")
@@ -115,6 +117,7 @@ namespace Safety
                     ltlHighwayV.Text = currTCP.TCPSite.RoadName.ToStringSafe();
                     ltlSpeedV.Text = currTCP.TCPSite.SpeedLimit.ToString("unknown") + " mph";
                     ltlTrafficV.Text = currTCP.TCPSite.TrafficVolume.ToString("unknown");
+                    ltlNotesV.Text = currTCP.TCPSite.Notes.ToStringSafe();
                     ltlRemarksV.Text = currTCP.WorkAreaActivity + "<br />" + currTCP.Remarks.ToStringSafe();
                     ltlUpdatedV.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.UpdatedBy.ToStringSafe();
                     ltlReviewedV.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.ReviewedBy.ToStringSafe();

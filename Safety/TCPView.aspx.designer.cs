@@ -22,6 +22,15 @@ namespace Safety {
         protected global::Safety.Control.SitePageHeading ph1;
         
         /// <summary>
+        /// hlEditPlan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlEditPlan;
+        
+        /// <summary>
         /// pnlPlan0 control.
         /// </summary>
         /// <remarks>
@@ -112,13 +121,13 @@ namespace Safety {
         protected global::System.Web.UI.WebControls.Literal ltlApprovedV;
         
         /// <summary>
-        /// LltlNotesV control.
+        /// ltlNotesV control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal LltlNotesV;
+        protected global::System.Web.UI.WebControls.Literal ltlNotesV;
         
         /// <summary>
         /// ltlRemarksV control.

@@ -43,26 +43,34 @@ namespace Safety
         {
             ltlPlanTitle.Text = tcp.TCPPlanDetail.Number + " - " + tcp.TCPPlanDetail.Name;
             ltlPlanSubTitle.Text = tcp.TCPPlanDetail.SubName;
-            ltlWorkAreaActivity.Text = tcp.WorkAreaActivity;
             ltlUpdated.Text = String.Format("{0:MM/dd/yyyy} ({1})", tcp.UpdatedDt, tcp.UpdatedBy);
             ltlReviewed.Text = String.Format("{0:MM/dd/yyyy} ({1})", tcp.ReviewedDt, tcp.ReviewedBy);
             ltlApproved1.Text = String.Format("{0:MM/dd/yyyy} ({1})", tcp.ApprovedDt, tcp.ApprovedBy);
             ltlRemoteSite.Text = tcp.TCPSite.RemoteSite.ProcessBoolean();
             ltlRoadName.Text = tcp.TCPSite.RoadName;
-            ltlExpressway.Text = tcp.TCPSite.Expressway.ProcessBoolean();
-            ltlBridgeWidth.Text = tcp.TCPSite.BridgeWidth.ToString() + " feet";
-            ltlWorkZone.Text = tcp.TCPSite.WorkZone.ToString() + " feet";
-            ltlLaneWidth.Text = tcp.TCPSite.LaneWidth.ToString() + " feet";
-            ltlShoulderWidth.Text = tcp.TCPSite.ShoulderWidth.ToString() + " feet";
-            ltlSpeedLimit.Text = tcp.TCPSite.SpeedLimit.ToString() + " mph";
-            ltlLaneNumber.Text = tcp.TCPSite.LaneNumber.ToString();
-            ltlFlow2Way.Text = tcp.TCPSite.Flow2Way.ProcessBoolean();
-            ltlDividedHighway.Text = tcp.TCPSite.DividedHighway.ProcessBoolean();
-            ltlMedian.Text = tcp.TCPSite.Median.ProcessBoolean();
-            ltlFlaggers.Text = tcp.TCPSite.Flaggers.ProcessBoolean();
+
+            if (tcp.TCPPlanDetail.Number == "0")
+                pnlPlanInfo.Visible = false;
+            else
+            {
+                pnlPlanInfo.Visible = true;
+                ltlExpressway.Text = tcp.TCPSite.Expressway.ProcessBoolean();
+                ltlBridgeWidth.Text = tcp.TCPSite.BridgeWidth.ToString() + " feet";
+                ltlWorkZone.Text = tcp.TCPSite.WorkZone.ToString() + " feet";
+                ltlLaneWidth.Text = tcp.TCPSite.LaneWidth.ToString() + " feet";
+                ltlShoulderWidth.Text = tcp.TCPSite.ShoulderWidth.ToString() + " feet";
+                ltlSpeedLimit.Text = tcp.TCPSite.SpeedLimit.ToString() + " mph";
+                ltlLaneNumber.Text = tcp.TCPSite.LaneNumber.ToString();
+                ltlFlow2Way.Text = tcp.TCPSite.Flow2Way.ProcessBoolean();
+                ltlDividedHighway.Text = tcp.TCPSite.DividedHighway.ProcessBoolean();
+                ltlMedian.Text = tcp.TCPSite.Median.ProcessBoolean();
+                ltlFlaggers.Text = tcp.TCPSite.Flaggers.ProcessBoolean();
+            }
+            
             ltlTrafficVolume.Text = tcp.TCPSite.TrafficVolume;
             ltlSiteSpecificNotes.Text = tcp.TCPSite.Notes;
-            ltlPlanSpecificNotes.Text = tcp.Remarks;
+            if (!string.IsNullOrEmpty(tcp.WorkAreaActivity)) ltlPlanSpecificNotes.Text = tcp.WorkAreaActivity + "<br />" + tcp.Remarks;
+            else ltlPlanSpecificNotes.Text = tcp.Remarks;
         }
 
         protected void SetupApprovePanel()

@@ -24,7 +24,6 @@
     <asp:Literal ID="ltlError" runat="server" />
     <asp:Panel ID="pnlTCP" runat="server" CssClass="pnlTCP">
         <h3><asp:Literal ID="ltlPlanTitle" runat="server" /></h3><h4><asp:Literal ID="ltlPlanSubTitle" runat="server" /></h4>
-        <h5><b>Work Area Activity:</b> <asp:Literal ID="ltlWorkAreaActivity" runat="server" /></h5>
         <div>
             <table width="100%">
                 <tr>
@@ -42,17 +41,19 @@
         </div>
         <b>Remote Site:</b> <asp:Literal ID="ltlRemoteSite" runat="server" /><br />
         <b>Highway or Road:</b> <asp:Literal ID="ltlRoadName" runat="server" /><br />
-        <b>Expressway:</b> <asp:Literal ID="ltlExpressway" runat="server" /><br />
-        <b>Bridge Width:</b> <asp:Literal ID="ltlBridgeWidth" runat="server" /><br />
-        <b>Work Zone (Bridge Length):</b> <asp:Literal ID="ltlWorkZone" runat="server" /><br />
-        <b>Lane Width:</b> <asp:Literal ID="ltlLaneWidth" runat="server" /><br />
-        <b>Shoulder Width:</b> <asp:Literal ID="ltlShoulderWidth" runat="server" /><br />
-        <b>Speed Limit:</b> <asp:Literal ID="ltlSpeedLimit" runat="server" /><br />
-        <b>Lane Number:</b> <asp:Literal ID="ltlLaneNumber" runat="server" /><br />
-        <b>Traffic Flow Two-Way:</b> <asp:Literal ID="ltlFlow2Way" runat="server" /><br />
-        <b>Divided Highway:</b> <asp:Literal ID="ltlDividedHighway" runat="server" /><br />
-        <b>Median:</b> <asp:Literal ID="ltlMedian" runat="server" /><br />
-        <b>Flaggers:</b> <asp:Literal ID="ltlFlaggers" runat="server" /><br />
+        <asp:Panel ID="pnlPlanInfo" runat="server">
+            <b>Expressway:</b> <asp:Literal ID="ltlExpressway" runat="server" /><br />
+            <b>Bridge Width:</b> <asp:Literal ID="ltlBridgeWidth" runat="server" /><br />
+            <b>Work Zone (Bridge Length):</b> <asp:Literal ID="ltlWorkZone" runat="server" /><br />
+            <b>Lane Width:</b> <asp:Literal ID="ltlLaneWidth" runat="server" /><br />
+            <b>Shoulder Width:</b> <asp:Literal ID="ltlShoulderWidth" runat="server" /><br />
+            <b>Speed Limit:</b> <asp:Literal ID="ltlSpeedLimit" runat="server" /><br />
+            <b>Lane Number:</b> <asp:Literal ID="ltlLaneNumber" runat="server" /><br />
+            <b>Traffic Flow Two-Way:</b> <asp:Literal ID="ltlFlow2Way" runat="server" /><br />
+            <b>Divided Highway:</b> <asp:Literal ID="ltlDividedHighway" runat="server" /><br />
+            <b>Median:</b> <asp:Literal ID="ltlMedian" runat="server" /><br />
+            <b>Flaggers:</b> <asp:Literal ID="ltlFlaggers" runat="server" /><br />
+        </asp:Panel>
         <b>Traffic Volume:</b> <asp:Literal ID="ltlTrafficVolume" runat="server" /><br />
         <b>Site Specific Notes:</b><br />
         <asp:Literal ID="ltlSiteSpecificNotes" runat="server" /><br />

@@ -4,6 +4,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="styles/reports.css" rel="stylesheet" />
+    <style type="text/css">
+        .RadWindow_Bootstrap {
+            z-index: 8000 !important;
+        }
+    </style>
     <script type="text/javascript">
         function openWin(_id, _type) {
             var oWnd = radopen("Modal/TCP.aspx?TCPID=" + _id + "&type=" + _type, "rwTCPReview");

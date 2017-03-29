@@ -23,7 +23,7 @@
                     <telerik:AjaxUpdatedControl ControlID="pnlEditSiteSpecificInfo" LoadingPanelID="ralp" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
-            <telerik:AjaxSetting AjaxControlID="lbAddPlanVI">
+            <telerik:AjaxSetting AjaxControlID="lbAddPlanV">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="pnlTCPs" LoadingPanelID="ralp" />
                 </UpdatedControls>
@@ -285,7 +285,7 @@
                                             </EditItemTemplate>
                                         </asp:DataList>
                                         <br />
-                                        <asp:Image ID="imgBullet" runat="server" ImageUrl="~/images/bullet.png" AlternateText="bullet" /> <asp:LinkButton ID="lbAddPlanVI" runat="server" Text="Click here to add TCP VI - Plan Too Complicated" OnCommand="lbAddPlanVI_Command" CommandArgument="AddVI" />
+                                        <asp:Image ID="imgBullet" runat="server" ImageUrl="~/images/bullet.png" AlternateText="bullet" /> <asp:LinkButton ID="lbAddPlanV" runat="server" Text="Click here to add TCP V - Plan Too Complicated" OnCommand="lbAddPlanV_Command" CommandArgument="AddV" />
                                     </asp:Panel>
                                 </Content>
                             </telerik:LayoutRow>

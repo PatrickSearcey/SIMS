@@ -10,6 +10,10 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph2" runat="server">
     <div class="mainContent">
+        <p style="line-height:8pt;">
+            <img src="images/bullet.png" alt="bullet" style="float:left;" /> <asp:HyperLink ID="hlEditPlan" runat="server" Text="Edit TCP site and plan info" Font-Bold="true" />
+        </p>
+
         <asp:Panel ID="pnlPlan0" runat="server" CssClass="pnlSiteInfo">
             <h4>Site and Plan Info</h4>
             <b>Plan Updated: </b><asp:Literal ID="ltlUpdated0" runat="server" /><br /> 
@@ -26,7 +30,7 @@
             <b>Plan Reviewed: </b><asp:Literal ID="ltlReviewedV" runat="server" /><br />
             <b>Plan Approved: </b><asp:Literal ID="ltlApprovedV" runat="server" /><br /> 
             <b>Site Specific Notes:</b><br />
-            <asp:Literal ID="LltlNotesV" runat="server" />
+            <asp:Literal ID="ltlNotesV" runat="server" />
             <br />
             <b>Plan Specific Remarks:</b><br />
             <asp:Literal ID="ltlRemarksV" runat="server" /><br />

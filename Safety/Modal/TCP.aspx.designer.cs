@@ -58,15 +58,6 @@ namespace Safety {
         protected global::System.Web.UI.WebControls.Literal ltlPlanSubTitle;
         
         /// <summary>
-        /// ltlWorkAreaActivity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlWorkAreaActivity;
-        
-        /// <summary>
         /// ltlUpdated control.
         /// </summary>
         /// <remarks>
@@ -110,6 +101,15 @@ namespace Safety {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlRoadName;
+        
+        /// <summary>
+        /// pnlPlanInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlPlanInfo;
         
         /// <summary>
         /// ltlExpressway control.

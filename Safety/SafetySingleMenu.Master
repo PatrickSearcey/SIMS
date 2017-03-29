@@ -20,7 +20,7 @@
                <img src="images/USGSHeaderLogo.png" alt="USGS" style="padding-right:50px;padding-bottom:5px" /><img src="images/SafetyLogo.png" alt="site logo" />
             </a>
             <div class="header">
-                <telerik:RadMenu ID="rmTop" CssClass="mainMenu" runat="server" RenderMode="Auto">
+                <telerik:RadMenu ID="rmTop" CssClass="mainMenu" runat="server" RenderMode="Auto" EnableOverlay="false">
                 </telerik:RadMenu>
             </div>
 

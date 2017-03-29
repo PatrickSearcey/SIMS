@@ -156,6 +156,9 @@ namespace Safety
         #region Methods
         protected void PopulatePageData()
         {
+            //Find out if there is a plan V already in the database
+            var planV = currSite.TCPSite.TCPs.FirstOrDefault(p => p.PlanID == 8);
+
             //Site Specific Information
             ltlLastUpdated.Text = "This information was lasted updated on " + String.Format("{0:MM/dd/yyyy}", currSite.TCPSite.UpdatedDt) + " at " + String.Format("{0:h:mm tt}", currSite.TCPSite.UpdatedDt) + " by " + currSite.TCPSite.UpdatedBy + "."; 
             if (currSite.TCPSite.RemoteSite != null)
@@ -170,6 +173,9 @@ namespace Safety
                     //Plan Specific Information
                     dlTCPs.DataSource = TCPDataSource();
                     dlTCPs.DataBind();
+                    //If there is already a plan VI in the database, do not show the link button to add it
+                    if (planV != null) lbAddPlanV.Visible = false; else lbAddPlanV.Visible = true;
+                    if (planV != null) imgBullet.Visible = false; else imgBullet.Visible = true;
                     return;
                 }
             }
@@ -221,9 +227,8 @@ namespace Safety
             dlTCPs.DataBind();
 
             //If there is already a plan VI in the database, do not show the link button to add it
-            var planVI = currSite.TCPSite.TCPs.FirstOrDefault(p => p.PlanID == 8);
-            if (planVI != null) lbAddPlanVI.Visible = false; else lbAddPlanVI.Visible = true;
-            if (planVI != null) imgBullet.Visible = false; else imgBullet.Visible = true;
+            if (planV != null) lbAddPlanV.Visible = false; else lbAddPlanV.Visible = true;
+            if (planV != null) imgBullet.Visible = false; else imgBullet.Visible = true;
         }
 
         protected void SetupPermission()
@@ -407,7 +412,7 @@ namespace Safety
                     var tcps = newSite.TCPs;
                     int i = 1;
                     int currPlanIndex = 0; //The index for the existing plan that matches the determined plan
-                    int plan8Index = 0; //The index for plan IV (too complicated)
+                    int plan8Index = 0; //The index for plan V (too complicated)
                     //Setup the indexes
                     foreach (Data.TCP tcp in tcps)
                     {
@@ -427,10 +432,10 @@ namespace Safety
                     List<int> idsToDelete = new List<int>();
                     foreach (Data.TCP tcp in tcps)
                     {
-                        //If there is no plan that matches the determined plan_id, then update the first plan that isn't plan VI (too complicated), and delete the rest of the plans
+                        //If there is no plan that matches the determined plan_id, then update the first plan that isn't plan V (too complicated), and delete the rest of the plans
                         if (currPlanIndex == 0)
                         {
-                            if (x == 1 && x != plan8Index) //Update the first plan, unless it's plan VI (too complicated)
+                            if (x == 1 && x != plan8Index) //Update the first plan, unless it's plan V (too complicated)
                             {
                                 if (plan_id == 5 && tcp.PlanID == 6) tcp.PlanID = tcp.PlanID; else tcp.PlanID = plan_id; //If the determined plan is IVa, then do not update the plan ID for IVb
                                 tcp.UpdatedBy = user.ID;
@@ -439,7 +444,7 @@ namespace Safety
                                 db.SubmitChanges();
                                 note = "<br /><b>ALERT:</b> Based on your submitted site specific information, the assigned TCP has been updated to " + tcp.TCPPlanDetail.Number + " - " + tcp.TCPPlanDetail.SubName + ".";
                             }
-                            else if (x == 2 && plan8Index == 1) //If the first plan was plan VI (too complicated), update the second plan
+                            else if (x == 2 && plan8Index == 1) //If the first plan was plan V (too complicated), update the second plan
                             {
                                 if (plan_id == 5 && tcp.PlanID == 6) tcp.PlanID = tcp.PlanID; else tcp.PlanID = plan_id; //If the determined plan is IVa, then do not update the plan ID for IVb
                                 tcp.UpdatedBy = user.ID;
@@ -519,7 +524,7 @@ namespace Safety
                 #region If there is only one TCP
                 else if (newSite.TCPs.Count == 1) 
                 {
-                    //Check to see if the one TCP is plan VI (too complicated)
+                    //Check to see if the one TCP is plan V (too complicated)
                     if (newSite.TCPs.FirstOrDefault().PlanID == 8)
                     {
                         //If the determined planID is 8, then update the plan VI
@@ -676,9 +681,9 @@ namespace Safety
             }
         }
 
-        protected void lbAddPlanVI_Command(object sender, CommandEventArgs e)
+        protected void lbAddPlanV_Command(object sender, CommandEventArgs e)
         {
-            Data.TCP newTCPVI = new Data.TCP()
+            Data.TCP newTCPV = new Data.TCP()
             {
                 site_id = currSite.site_id,
                 PlanID = 8,
@@ -686,13 +691,13 @@ namespace Safety
                 UpdatedDt = DateTime.Now,
                 ApprovalReady = false
             };
-            db.TCPs.InsertOnSubmit(newTCPVI);
+            db.TCPs.InsertOnSubmit(newTCPV);
             db.SubmitChanges();
 
             dlTCPs.DataSource = TCPDataSource();
             dlTCPs.DataBind();
 
-            lbAddPlanVI.Visible = false;
+            lbAddPlanV.Visible = false;
             imgBullet.Visible = false;
         }
 
