@@ -17,7 +17,7 @@
                     <img src="images/bullet.png" alt="bullet" style="float:left;" /> <asp:HyperLink ID="hlEditPlan" runat="server" Text="Edit TCP site and plan info" Font-Bold="true" />
                 </p>
                 <p style="float:right;">
-                    <img src="images/bullet.png" alt="bullet" style="float:left;" /> <asp:HyperLink ID="hlPrintVersion" runat="server" Text="View print ready version" Font-Bold="true" />
+                    <img src="images/bullet.png" alt="bullet" style="float:left;" /> <asp:HyperLink ID="hlPrintVersion" runat="server" Text="View print ready version" Font-Bold="true" Target="_blank" />
                 </p>
             </div>
             <asp:Panel ID="pnlPlan0" runat="server" CssClass="pnlSiteInfo" ClientIDMode="Static">
