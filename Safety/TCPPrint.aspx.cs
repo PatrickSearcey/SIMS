@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace Safety
 {
-    public partial class TCPView : System.Web.UI.Page
+    public partial class TCPPrint : System.Web.UI.Page
     {
         #region Local Variables
         private Data.SIMSDataContext db = new Data.SIMSDataContext();
@@ -85,9 +85,6 @@ namespace Safety
         protected void PopulateReport()
         {
             var site = db.Sites.FirstOrDefault(p => p.site_id == currTCP.site_id);
-
-            hlEditPlan.NavigateUrl = String.Format("TCPEdit.aspx?site_id={0}", site.site_id);
-            hlPrintVersion.NavigateUrl = String.Format("TCPPrint.aspx?TCPID={0}", currTCP.TCPID);
 
             if (currTCP != null)
             {

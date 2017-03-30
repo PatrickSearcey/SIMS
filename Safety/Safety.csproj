@@ -155,6 +155,7 @@
     <Content Include="SHAEdit.aspx" />
     <Content Include="SHAView.aspx" />
     <Content Include="TCPEdit.aspx" />
+    <Content Include="TCPPrint.aspx" />
     <Content Include="TCPReport.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -277,6 +278,13 @@
     <Compile Include="TCPEdit.aspx.designer.cs">
       <DependentUpon>TCPEdit.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TCPPrint.aspx.cs">
+      <DependentUpon>TCPPrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TCPPrint.aspx.designer.cs">
+      <DependentUpon>TCPPrint.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TCPReport.aspx.cs">
       <DependentUpon>TCPReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -350,7 +358,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

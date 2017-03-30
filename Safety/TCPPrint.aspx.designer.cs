@@ -10,7 +10,16 @@
 namespace Safety {
     
     
-    public partial class TCPView {
+    public partial class TCPPrint {
+        
+        /// <summary>
+        /// form1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
         /// ph1 control.
@@ -20,24 +29,6 @@ namespace Safety {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Safety.Control.SitePageHeading ph1;
-        
-        /// <summary>
-        /// hlEditPlan control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlEditPlan;
-        
-        /// <summary>
-        /// hlPrintVersion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlPrintVersion;
         
         /// <summary>
         /// pnlPlan0 control.
@@ -281,6 +272,24 @@ namespace Safety {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlRemarks;
+        
+        /// <summary>
+        /// pnlInstructions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlInstructions;
+        
+        /// <summary>
+        /// ltlInstructions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlInstructions;
         
         /// <summary>
         /// pnlAllData control.
@@ -560,24 +569,6 @@ namespace Safety {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlWZLength2;
-        
-        /// <summary>
-        /// pnlInstructions control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlInstructions;
-        
-        /// <summary>
-        /// ltlInstructions control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlInstructions;
         
         /// <summary>
         /// pnlImage control.

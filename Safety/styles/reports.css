@@ -51,6 +51,11 @@
     width:100%;
     padding: 10px 15px;
     line-height: 30px;
+    float:left;
+}
+
+.PrintView {
+    font-size:9pt !important;
 }
 
 .selector {
@@ -75,6 +80,11 @@
 
 .mainContent {
     max-width:90% !important;
+    margin:auto;
+}
+
+.mainContentTCP {
+    max-width:80% !important;
     margin:auto;
 }
 
@@ -223,15 +233,12 @@ h5.sectionHeadings
 
 /* TRAFFIC CONTROL PLANS */
 .TCPPlanImage {
-    width:50%;
-    float:right;
-    max-width: 500px;
+    max-width: 450px;
     border-radius: 15px;
     padding:10px;
 }
 
 .pnlSiteInfo {
-    width:50%;
     border-radius: 5px;
     border: 1px solid #4a9987;
     padding: 10px;
@@ -240,7 +247,6 @@ h5.sectionHeadings
 }
 
 .pnlCalcData {
-    width:50%;
     border-radius: 5px;
     border: 1px solid #4a9987;
     padding: 10px;
@@ -248,9 +254,46 @@ h5.sectionHeadings
 }
 
 .pnlInstructions {
-    width:50%;
     border-radius: 5px;
     border: 1px solid #4a9987;
     padding: 10px;
     margin-bottom:480px;
+}
+
+.TCPRightSide {
+    float:right;
+    width:450px;
+    margin-top:30px;
+}
+.TCPLeftSide {
+    float:left;
+    width:50%;
+}
+
+.TCPPlanImagePrint {
+    max-width: 400px;
+    border-radius: 15px;
+    padding:10px;
+}
+
+.pnlSiteInfoPrint {
+    border-radius: 5px;
+    border: 1px solid #4a9987;
+    padding: 10px;
+    margin-top:10px;
+    margin-bottom:5px;
+}
+
+.pnlCalcDataPrint {
+    border-radius: 5px;
+    border: 1px solid #4a9987;
+    padding: 10px;
+    margin-bottom:5px;
+}
+
+.pnlInstructionsPrint {
+    border-radius: 5px;
+    border: 1px solid #4a9987;
+    padding: 10px;
+    margin-top:10px;
 }
