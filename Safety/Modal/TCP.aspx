@@ -84,6 +84,9 @@
         <p><b>After approving, please submit the following:</b><br />
             Approved time: <asp:Literal id="ltlApprovedDt" runat="server" />
             Approved by: <asp:Literal ID="ltlApprovedBy" runat="server" /> &nbsp;&nbsp;&nbsp;
+            <span style="color:red;font-weight:bold;">
+                <asp:Literal ID="ltlNotApprover" runat="server" Text="You are not a safety approver and therefore cannot approve the TCP." />
+            </span>
             <telerik:RadButton ID="rbSubmit2" runat="server" Text="Submit Approval" OnClick="ApproveClicked" />
             <telerik:RadButton ID="rbCancel2" runat="server" Text="Cancel" OnClick="Cancel" />
         </p>

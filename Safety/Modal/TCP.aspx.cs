@@ -83,6 +83,18 @@ namespace Safety
             ltlReviewerComments.Text = tcp.ReviewerComments;
             ltlApprovedDt.Text = String.Format("<b>{0:MM/dd/yyyy}</b>", DateTime.Now);
             ltlApprovedBy.Text = "<b>" + user.ID + "</b>";
+
+            int WSCID = Convert.ToInt32(tcp.TCPSite.Site.Office.wsc_id);
+            if (user.IsSuperUser || user.WSCID.Contains(WSCID) && user.IsSafetyApprover)
+            {
+                rbSubmit2.Visible = true;
+                ltlNotApprover.Visible = false;
+            }
+            else
+            {
+                rbSubmit2.Visible = false;
+                ltlNotApprover.Visible = true;
+            }
         }
 
         protected void ReviewClicked(object sender, EventArgs e)
