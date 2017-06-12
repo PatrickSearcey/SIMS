@@ -170,6 +170,7 @@ namespace Safety
                     rfvFlaggers.Enabled = false;
                     EnableControl = false;
                     SetControlStatus();
+                    lblRemoteSiteNote.Visible = true;
                     //Plan Specific Information
                     dlTCPs.DataSource = TCPDataSource();
                     dlTCPs.DataBind();
@@ -179,6 +180,7 @@ namespace Safety
                     return;
                 }
             }
+            lblRemoteSiteNote.Visible = false;
             rtbRoadName.Text = currSite.TCPSite.RoadName;
             if (currSite.TCPSite.Expressway != null) rddlExpressway.SelectedValue = currSite.TCPSite.Expressway.ToString();
             rntbBridgeWidth.Text = currSite.TCPSite.BridgeWidth.ToString();
@@ -673,11 +675,13 @@ namespace Safety
             {
                 EnableControl = false;
                 SetControlStatus();
+                lblRemoteSiteNote.Visible = true;
             }
             else
             {
                 EnableControl = true;
                 SetControlStatus();
+                lblRemoteSiteNote.Visible = false;
             }
         }
 

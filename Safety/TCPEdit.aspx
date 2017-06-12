@@ -217,7 +217,9 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Site Specific Notes</td>
+                                                <td valign="top">Site Specific Notes<br />
+                                                    <asp:Label ID="lblRemoteSiteNote" runat="server" Text="please explain why you chose Remote Site" Font-Bold="true" ForeColor="Red" Font-Italic="true" />
+                                                </td>
                                                 <td>
                                                     <telerik:RadTextBox ID="rtbNotes" runat="server" TextMode="MultiLine" Width="400px" Height="100px" />
                                                 </td>

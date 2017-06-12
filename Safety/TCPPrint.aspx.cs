@@ -134,12 +134,7 @@ namespace Safety
                     ltlWidth.Text = currTCP.TCPSite.BridgeWidth.ToString("unknown") + " feet";
                     ltlWorkZone.Text = currTCP.TCPSite.WorkZone.ToString("unknown") + " feet";
                     ltlLane.Text = currTCP.TCPSite.LaneWidth.ToString("unknown") + " feet";
-                    if (currTCP.TCPSite.ShoulderWidth < 1)
-                        ltlShoulder.Text = "< 1 foot";
-                    else if (currTCP.TCPSite.ShoulderWidth <= 5)
-                        ltlShoulder.Text = "<= 5 feet";
-                    else
-                        ltlShoulder.Text = "> 5 feet";
+                    ltlShoulder.Text = currTCP.TCPSite.ShoulderWidth.ToString("unknown") + " feet";
                     ltlSpeed.Text = currTCP.TCPSite.SpeedLimit.ToString("unknown") + " mph";
                     ltlTraffic.Text = currTCP.TCPSite.TrafficVolume.ToString("unknown");
                     if (Convert.ToBoolean(site.SHAs.FirstOrDefault().cell_service))
@@ -154,7 +149,9 @@ namespace Safety
                         ltlRemarks.Text = currTCP.WorkAreaActivity + "<br />Because of high traffic volume, consider using a buffer zone.<br />" + currTCP.Remarks.ToStringSafe();
                     else
                         ltlRemarks.Text = currTCP.WorkAreaActivity + "<br />" + currTCP.Remarks.ToStringSafe();
-                    ltlInstructions.Text = currTCP.TCPPlanDetail.Notes.ToStringSafe();
+                    string state_cd = db.vSITEFILEs.FirstOrDefault(p => p.site_id == currTCP.TCPSite.Site.nwisweb_site_id).state_cd;
+                    string shoulder_rule = db.TCPShoulderRules.FirstOrDefault(p => p.StateCode == state_cd).ShoulderRule.ToString();
+                    ltlInstructions.Text = currTCP.TCPPlanDetail.Notes.ToStringSafe().Replace("$", shoulder_rule);
 
                     imgPlanImage.ImageUrl = String.Format("{0}images/TCPPlan{1}.png", Config.SafetyURL, currTCP.TCPPlanDetail.Number);
                     CalculatorData();
