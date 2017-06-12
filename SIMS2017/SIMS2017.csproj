@@ -169,6 +169,7 @@
     </Content>
     <Content Include="Handler\DocHandler.ashx" />
     <Content Include="packages.config" />
+    <Content Include="Handler\MANUDump_v1.ashx" />
     <None Include="Service References\SIMSDevService\SIMSService.wsdl" />
     <None Include="Service References\SIMSDevService\WCFServices.disco" />
     <None Include="Service References\SIMSDevService\configuration91.svcinfo" />
@@ -286,6 +287,9 @@
     </Compile>
     <Compile Include="Handler\DocHandler.ashx.cs">
       <DependentUpon>DocHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\MANUDump_v1.ashx.cs">
+      <DependentUpon>MANUDump_v1.ashx</DependentUpon>
     </Compile>
     <Compile Include="Modal\ConfirmDelete.aspx.cs">
       <DependentUpon>ConfirmDelete.aspx</DependentUpon>
@@ -483,7 +487,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

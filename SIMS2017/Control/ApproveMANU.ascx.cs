@@ -15,11 +15,6 @@ namespace SIMS2017.Control
     {
         #region Local Variables
         private Data.SIMSDataContext db = new Data.SIMSDataContext();
-#if DEBUG
-        private SIMSDevService.SIMSServiceClient svcSIMS = new SIMSDevService.SIMSServiceClient();
-#else
-        private SIMSService.SIMSServiceClient svcSIMS = new SIMSService.SIMSServiceClient();
-#endif
         public WindowsAuthenticationUser user = new WindowsAuthenticationUser();
         private Data.Site currSite;
         private int SiteID
@@ -98,37 +93,19 @@ namespace SIMS2017.Control
         #region RadListView Events
         protected void rlvElem_NeedDataSource(object source, RadListViewNeedDataSourceEventArgs e)
         {
-#if DEBUG
-            List<SIMSDevService.Element> lstElems = new List<SIMSDevService.Element>();
 
-            lstElems = svcSIMS.GetElementsBySiteAndReport(currSite.site_no, currSite.agency_cd, "MANU").Select(p => new SIMSDevService.Element
+            List<ElementItem> lstElems = currSite.SiteElements.Select(p => new ElementItem
             {
-                ElementID = p.ElementID,
-                ElementName = p.ElementName.Replace(" (MANU)", ""),
-                ElementInfo = p.ElementInfo,
-                RevisedBy = p.RevisedBy,
-                RevisedDate = p.RevisedDate,
-                Remark = p.Remark,
-                ReportTypeCd = p.ReportTypeCd,
-                Priority = p.Priority
-            }).ToList();
-#else
-            List<SIMSService.Element> lstElems = new List<SIMSService.Element>();
-            
-            lstElems = svcSIMS.GetElementsBySiteAndReport(currSite.site_no, currSite.agency_cd, "MANU").Select(p => new SIMSService.Element {
-                ElementID = p.ElementID,
-                ElementName = p.ElementName.Replace(" (MANU)", ""),
-                ElementInfo = p.ElementInfo,
-                RevisedBy = p.RevisedBy,
-                RevisedDate = p.RevisedDate,
-                Remark = p.Remark,
-                ReportTypeCd = p.ReportTypeCd,
-                Priority = p.Priority
+                ElementID = p.element_id.ToString(),
+                SiteID = p.site_id.ToString(),
+                ElementName = p.ElementDetail.element_nm,
+                ElementInfo = p.element_info.FormatElementInfo(Convert.ToInt32(p.element_id), currSite.site_id),
+                ReportType = db.ElementReportRefs.OrderBy(r => r.report_type_cd).FirstOrDefault(r => r.element_id == p.element_id).report_type_cd,
+                RevisedBy = p.revised_by,
+                RevisedDate = p.revised_dt.ToString()
             }).ToList();
 
-#endif
-
-            rlvElem.DataSource = lstElems;
+            rlvElem.DataSource = lstElems.Where(p => p.ReportType == "MANU");
         }
 
         protected void rlvElem_ItemDataBound(object sender, RadListViewItemEventArgs e)
@@ -241,5 +218,63 @@ namespace SIMS2017.Control
 
             if (SubmitEvent != null) SubmitEvent(this, e);
         }
+
+        #region Internal Classes
+        internal class ElementItem
+        {
+            private string _ElementID;
+            private string _SiteID;
+            private string _ElementName;
+            private string _ElementInfo;
+            private string _ReportType;
+            private string _RevisedBy;
+            private string _RevisedDate;
+
+            public string ElementID
+            {
+                get { return _ElementID; }
+                set { _ElementID = value; }
+            }
+            public string SiteID
+            {
+                get { return _SiteID; }
+                set { _SiteID = value; }
+            }
+            public string ElementName
+            {
+                get { return _ElementName; }
+                set { _ElementName = value; }
+            }
+            public string ElementInfo
+            {
+                get { return _ElementInfo; }
+                set { _ElementInfo = value; }
+            }
+            public string ReportType
+            {
+                get { return _ReportType; }
+                set { _ReportType = value; }
+            }
+            public string RevisedBy
+            {
+                get { return _RevisedBy; }
+                set { _RevisedBy = value; }
+            }
+            public string RevisedDate
+            {
+                get { return _RevisedDate; }
+                set { _RevisedDate = value; }
+            }
+            public ElementItem()
+            {
+                _ElementID = ElementID;
+                _SiteID = SiteID;
+                _ElementName = ElementName;
+                _ElementInfo = ElementInfo;
+                _RevisedBy = RevisedBy;
+                _RevisedDate = RevisedDate;
+            }
+        }
+        #endregion
     }
 }
