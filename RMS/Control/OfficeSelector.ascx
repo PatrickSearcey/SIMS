@@ -10,6 +10,10 @@
                 <td><b>By field trip</b></td>
                 <td><telerik:RadDropDownList ID="rddlFieldTrip" runat="server" AutoPostBack="true" DataValueField="trip_id" DataTextField="TripName" OnSelectedIndexChanged="Filter_SelectedIndexChanged" Width="345px" /></td>
             </tr>
+            <tr>
+                <td><b><asp:Literal ID="ltlSiteNo" runat="server" Text="By site number" /></b></td>
+                <td><asp:TextBox ID="tbSiteNo" runat="server" /> <asp:TextBox ID="tbAgencyCd" runat="server" Text="USGS" Width="80px" /> <asp:Button ID="btnSiteNo" runat="server" OnCommand="btnSiteNo_Command" Text="Go!" /></td>
+            </tr>
         </table>
     </div>
     <div class="officeinfo">

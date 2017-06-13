@@ -47,10 +47,22 @@ namespace RMS.Control
                 Session["TripID"] = value;
             }
         }
+        private int SiteID
+        {
+            get
+            {
+                if (Session["SiteID"] == null) return 0; else return (int)Session["SiteID"];
+            }
+            set
+            {
+                Session["SiteID"] = value;
+            }
+        }
         private WindowsAuthenticationUser user = new WindowsAuthenticationUser();
         #endregion
 
         #region Public Properties
+        public Boolean HideSiteFields { get; set; }
         public String SelSiteNo { get; set; }
         public Office SelOffice { get; set; }
         public Trip SelTrip { get; set; }
@@ -63,6 +75,14 @@ namespace RMS.Control
             {
                 SetupDropDownLists();
                 SetupResponsibleOfficeInfo();
+
+                if (HideSiteFields)
+                {
+                    ltlSiteNo.Visible = false;
+                    tbSiteNo.Visible = false;
+                    tbAgencyCd.Visible = false;
+                    btnSiteNo.Visible = false;
+                }
             }
         }
 
@@ -95,6 +115,7 @@ namespace RMS.Control
 
         protected void Filter_SelectedIndexChanged(object sender, EventArgs e)
         {
+            SiteID = 0;
             RadDropDownList ddl = (RadDropDownList)sender;
             switch (ddl.ID)
             {
@@ -111,5 +132,17 @@ namespace RMS.Control
             OnSelectorChanged();
         }
 
+        protected void btnSiteNo_Command(object sender, CommandEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(tbSiteNo.Text))
+            {
+                var site = db.Sites.FirstOrDefault(p => p.site_no == tbSiteNo.Text && p.agency_cd == tbAgencyCd.Text);
+                if (site != null)
+                {
+                    SiteID = site.site_id;
+                }
+            }
+            OnSelectorChanged();
+        }
     }
 }
