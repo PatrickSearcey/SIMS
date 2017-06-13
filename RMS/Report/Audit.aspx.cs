@@ -7,9 +7,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Telerik.Web.UI;
 
-namespace RMS
+namespace RMS.Report
 {
-    public partial class AuditReport : System.Web.UI.Page
+    public partial class Audit : System.Web.UI.Page
     {
         #region Local Variables
         private Data.SIMSDataContext db = new Data.SIMSDataContext();
@@ -197,7 +197,7 @@ namespace RMS
                     var audit = db.Audits.FirstOrDefault(p => p.rms_audit_id == rms_audit_id);
                     HyperLink hlEditAudit = (HyperLink)item.FindControl("hlEditAudit");
 
-                    hlEditAudit.NavigateUrl = String.Format("AuditPeriod.aspx?rms_audit_id={0}", rms_audit_id);
+                    hlEditAudit.NavigateUrl = String.Format("../Task/Audit.aspx?rms_audit_id={0}", rms_audit_id);
                 }
 
                 if (e.Item.IsInEditMode)
@@ -288,7 +288,7 @@ namespace RMS
                     hlAnalysisNotes.NavigateUrl = String.Format("javascript:OpenPopup('Modal/ReportPopup.aspx?view=analysisnotesbydaterange&rms_record_id={0}&beg_dt={1:MM/dd/yyyy}&end_dt={2:MM/dd/yyyy}')", rms_record_id, audit.audit_beg_dt, audit.audit_end_dt);
 
                     HyperLink hlEditAudit = (HyperLink)item.FindControl("hlEditAudit");
-                    hlEditAudit.NavigateUrl = String.Format("AuditPeriod.aspx?rms_audit_id={0}", rms_audit_id);
+                    hlEditAudit.NavigateUrl = String.Format("../Task/Audit.aspx?rms_audit_id={0}", rms_audit_id);
                 }
 
                 if (e.Item.IsInEditMode)

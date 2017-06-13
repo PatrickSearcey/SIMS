@@ -7,81 +7,90 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RMS {
+namespace RMS.Report {
     
     
-    public partial class MasterPageSingleMenu {
+    public partial class Audit {
         
         /// <summary>
-        /// head control.
+        /// ram control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::Telerik.Web.UI.RadAjaxManager ram;
         
         /// <summary>
-        /// form1 control.
+        /// ralp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::Telerik.Web.UI.RadAjaxLoadingPanel ralp;
         
         /// <summary>
-        /// imgUSGS control.
+        /// ph1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgUSGS;
+        protected global::RMS.Control.RecordPageHeading ph1;
         
         /// <summary>
-        /// imgRMS control.
+        /// rts1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgRMS;
+        protected global::Telerik.Web.UI.RadTabStrip rts1;
         
         /// <summary>
-        /// rmTop control.
+        /// rmp1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadMenu rmTop;
+        protected global::Telerik.Web.UI.RadMultiPage rmp1;
         
         /// <summary>
-        /// ltlUserID control.
+        /// rpv0 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlUserID;
+        protected global::Telerik.Web.UI.RadPageView rpv0;
         
         /// <summary>
-        /// cph1 control.
+        /// rgAuditByRecord control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder cph1;
+        protected global::Telerik.Web.UI.RadGrid rgAuditByRecord;
         
         /// <summary>
-        /// cph2 control.
+        /// rpv1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder cph2;
+        protected global::Telerik.Web.UI.RadPageView rpv1;
+        
+        /// <summary>
+        /// rgAudits control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid rgAudits;
     }
 }

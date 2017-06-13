@@ -15,7 +15,7 @@
         <telerik:RadScriptManager runat="server"></telerik:RadScriptManager>
         <div id="wrapper">
             <a href="#" class="logo">
-                <img src="images/USGSHeaderLogoRMS.png" alt="USGS" style="padding-right:50px;padding-bottom:5px" /><img src="images/RMSLogo.png" alt="site logo" />
+                <asp:Image ID="imgUSGS" runat="server" ImageUrl="~/images/USGSHeaderLogoRMS.png" AlternateText="USGS" /><asp:Image ID="imgRMS" runat="server" ImageUrl="~/images/RMSLogo.png" AlternateText="site logo" />
             </a>
             <div class="header">
                 <telerik:RadMenu ID="rmTop" CssClass="mainMenu" runat="server" RenderMode="Auto">

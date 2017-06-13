@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RMS {
+namespace RMS.Task {
     
     
-    public partial class AuditPeriod {
+    public partial class Audit {
         
         /// <summary>
         /// ram control.

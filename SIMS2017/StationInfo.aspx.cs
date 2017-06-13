@@ -607,7 +607,7 @@ namespace SIMS2017
                     pnlRecord.Visible = true;
                     pnlInactive.Visible = false;
 
-                    hlAuditRecord.NavigateUrl = String.Format("{0}AuditPeriod.aspx?rms_record_id={1}", Config.RMSURL, rec.rms_record_id);
+                    hlAuditRecord.NavigateUrl = String.Format("{0}Task/Audit.aspx?rms_record_id={1}", Config.RMSURL, rec.rms_record_id);
 
                     //Grab all the years with a record period
                     var years = db.SP_RMS_WYs_with_periods(rec.rms_record_id).ToList();
@@ -747,12 +747,12 @@ namespace SIMS2017
 
                 if (period.status_va == "Analyzing")
                 {
-                    hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=Analyze' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
+                    hlStart = String.Format("<a href='{0}Task/RecordProcess.aspx?period_id={1}&task=Analyze' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
                     level = 2;
                 }
                 else if (period.status_va == "Reanalyze")
                 {
-                    hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=Reanalyze' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
+                    hlStart = String.Format("<a href='{0}Task/RecordProcess.aspx?period_id={1}&task=Reanalyze' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
                     note = " <i>(reanalyze)</i>";
                     level = 0;
                     if (!string.IsNullOrEmpty(showsavepng))
@@ -769,7 +769,7 @@ namespace SIMS2017
                         hlStart = "&nbsp;&nbsp;&nbsp;&nbsp;";
                         hlEnd = "";
                     }
-                    else hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=Approve' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
+                    else hlStart = String.Format("<a href='{0}Task/RecordProcess.aspx?period_id={1}&task=Approve' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
                     level = 3;
                     if (!string.IsNullOrEmpty(showsavepng))
                     {
@@ -779,7 +779,7 @@ namespace SIMS2017
                 }
                 else if (period.status_va == "Approving")
                 {
-                    hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=Approve' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
+                    hlStart = String.Format("<a href='{0}Task/RecordProcess.aspx?period_id={1}&task=Approve' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
                     level = 4;
                 }
                 else if (period.status_va == "Approved")
@@ -790,7 +790,7 @@ namespace SIMS2017
                 }
                 else
                 {
-                    hlStart = String.Format("<a href='{0}RecordProcess.aspx?period_id={1}&task=Analyze' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
+                    hlStart = String.Format("<a href='{0}Task/RecordProcess.aspx?period_id={1}&task=Analyze' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
                     if (!string.IsNullOrEmpty(showsavepng))
                     {
                         hlStart = "&nbsp;&nbsp;&nbsp;&nbsp;";
@@ -886,7 +886,7 @@ namespace SIMS2017
                         switch (type)
                         {
                             case "URL":
-                                pOut = String.Format("{0}RecordProcess.aspx?task=Analyze&rms_record_id={1}", Config.RMSURL, rms_record_id);
+                                pOut = String.Format("{0}Task/RecordProcess.aspx?task=Analyze&rms_record_id={1}", Config.RMSURL, rms_record_id);
                                 break;
                             case "alt":
                                 if (!string.IsNullOrEmpty(showlockpng))
@@ -904,7 +904,7 @@ namespace SIMS2017
                 switch (type)
                 {
                     case "URL":
-                        pOut = String.Format("{0}RecordProcess.aspx?task=Analyze&rms_record_id={1}", Config.RMSURL, rms_record_id);
+                        pOut = String.Format("{0}Task/RecordProcess.aspx?task=Analyze&rms_record_id={1}", Config.RMSURL, rms_record_id);
                         break;
                     case "alt":
                         pOut = "";

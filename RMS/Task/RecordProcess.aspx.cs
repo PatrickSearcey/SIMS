@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace RMS
+namespace RMS.Task
 {
     public partial class RecordProcess : System.Web.UI.Page
     {

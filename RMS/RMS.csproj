@@ -125,7 +125,7 @@
     <Content Include="App_Data\RadCaptcha\X.wav" />
     <Content Include="App_Data\RadCaptcha\Y.wav" />
     <Content Include="App_Data\RadCaptcha\Z.wav" />
-    <Content Include="AuditReport.aspx" />
+    <Content Include="Report\Audit.aspx" />
     <Content Include="Control\OfficeSelector.ascx" />
     <Content Include="Control\RecordPageHeading.ascx" />
     <Content Include="Doc\Temp\placeholder.txt" />
@@ -141,9 +141,10 @@
     <Content Include="images\USGSHeaderLogoRMS.png" />
     <Content Include="images\viewdoc.png" />
     <Content Include="Modal\Instructions.aspx" />
-    <Content Include="AuditPeriod.aspx" />
+    <Content Include="Report\RecordProcess.aspx" />
+    <Content Include="Task\Audit.aspx" />
     <Content Include="Modal\ViewAudit.aspx" />
-    <Content Include="RecordProcess.aspx" />
+    <Content Include="Task\RecordProcess.aspx" />
     <Content Include="Modal\ReportPopup.aspx" />
     <Content Include="RMS.Master" />
     <Content Include="RMSSingleMenu.Master" />
@@ -157,12 +158,12 @@
     <Content Include="styles\default.css" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuditReport.aspx.cs">
-      <DependentUpon>AuditReport.aspx</DependentUpon>
+    <Compile Include="Report\Audit.aspx.cs">
+      <DependentUpon>Audit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AuditReport.aspx.designer.cs">
-      <DependentUpon>AuditReport.aspx</DependentUpon>
+    <Compile Include="Report\Audit.aspx.designer.cs">
+      <DependentUpon>Audit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Control\OfficeSelector.ascx.cs">
       <DependentUpon>OfficeSelector.ascx</DependentUpon>
@@ -188,12 +189,19 @@
     <Compile Include="Modal\Instructions.aspx.designer.cs">
       <DependentUpon>Instructions.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AuditPeriod.aspx.cs">
-      <DependentUpon>AuditPeriod.aspx</DependentUpon>
+    <Compile Include="Report\RecordProcess.aspx.cs">
+      <DependentUpon>RecordProcess.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AuditPeriod.aspx.designer.cs">
-      <DependentUpon>AuditPeriod.aspx</DependentUpon>
+    <Compile Include="Report\RecordProcess.aspx.designer.cs">
+      <DependentUpon>RecordProcess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Task\Audit.aspx.cs">
+      <DependentUpon>Audit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Task\Audit.aspx.designer.cs">
+      <DependentUpon>Audit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Modal\ViewAudit.aspx.cs">
       <DependentUpon>ViewAudit.aspx</DependentUpon>
@@ -202,11 +210,11 @@
     <Compile Include="Modal\ViewAudit.aspx.designer.cs">
       <DependentUpon>ViewAudit.aspx</DependentUpon>
     </Compile>
-    <Compile Include="RecordProcess.aspx.cs">
+    <Compile Include="Task\RecordProcess.aspx.cs">
       <DependentUpon>RecordProcess.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="RecordProcess.aspx.designer.cs">
+    <Compile Include="Task\RecordProcess.aspx.designer.cs">
       <DependentUpon>RecordProcess.aspx</DependentUpon>
     </Compile>
     <Compile Include="Modal\ReportPopup.aspx.cs">
@@ -276,7 +284,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\" />
-    <Folder Include="Report\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
@@ -298,7 +305,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

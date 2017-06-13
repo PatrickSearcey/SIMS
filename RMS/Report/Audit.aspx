@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/RMSSingleMenu.Master" AutoEventWireup="true" CodeBehind="AuditReport.aspx.cs" Inherits="RMS.AuditReport" ValidateRequest="false" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/RMSSingleMenu.Master" AutoEventWireup="true" CodeBehind="Audit.aspx.cs" Inherits="RMS.Report.Audit" ValidateRequest="false" %>
 <%@ Register Src="~/Control/RecordPageHeading.ascx" TagName="PageHeading" TagPrefix="uc" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="styles/audit.css" rel="stylesheet" />
+    <link href="../styles/audit.css" rel="stylesheet" />
     <script type="text/javascript">
         function OpenPopup(_URL) {
             open(_URL, 'Popup', 'toolbar=yes, menubar=no, width=840, height=500, scrollbars=yes');
@@ -39,7 +39,7 @@
         </telerik:RadTabStrip><telerik:RadMultiPage ID="rmp1" runat="server" SelectedIndex="0" Width="100%" CssClass="multiPage">
             <telerik:RadPageView runat="server" ID="rpv0">
                 <p style="font-weight:bold; padding: 0 5px 0 5px;">To view audits for the record, click on the arrow in the far left column of the row.  To view audit details and download documents, click on 
-                    the <img src="images/viewdoc.png" alt="view audit" /> icon under the View column.  Clicking the Edit link in the far right column will take you to the modify audit period page.</p>
+                    the <img src="../images/viewdoc.png" alt="view audit" /> icon under the View column.  Clicking the Edit link in the far right column will take you to the modify audit period page.</p>
                 <telerik:RadGrid ID="rgAuditByRecord" runat="server" AutoGenerateColumns="false" Skin="Bootstrap" 
                     GridLines="None" ShowStatusBar="true" PageSize="50"
                     AllowSorting="true" 
@@ -191,7 +191,7 @@
 
             <telerik:RadPageView runat="server" ID="rpv1">
                 <p style="font-weight:bold;padding: 0 5px 0 5px;">To view records included in the audit, click on the arrow in the far left column of the row.  To view audit details and download documents, click on 
-                    the <img src="images/viewdoc.png" alt="view audit" /> icon under the View column.  Clicking the Edit link in the far right column will take you to the modify audit period page.</p>
+                    the <img src="../images/viewdoc.png" alt="view audit" /> icon under the View column.  Clicking the Edit link in the far right column will take you to the modify audit period page.</p>
                 <telerik:RadGrid ID="rgAudits" runat="server" AutoGenerateColumns="false" Skin="Bootstrap" 
                     GridLines="None" ShowStatusBar="true" PageSize="50"
                     AllowSorting="true" 

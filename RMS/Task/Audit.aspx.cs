@@ -10,9 +10,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Telerik.Web.UI;
 
-namespace RMS
+namespace RMS.Task
 {
-    public partial class AuditPeriod : System.Web.UI.Page
+    public partial class Audit : System.Web.UI.Page
     {
         #region Local Variables
         private Data.SIMSDataContext db = new Data.SIMSDataContext();
@@ -555,7 +555,7 @@ namespace RMS
         protected void StartOver(object sender, CommandEventArgs e)
         {
             if (e.CommandArgument.ToString() == "leave")
-                Response.Redirect(String.Format("{0}AuditReport.aspx", Config.RMSURL));
+                Response.Redirect(String.Format("{0}Report/Audit.aspx", Config.RMSURL));
             else
             {
                 pnlNotice.Visible = false;

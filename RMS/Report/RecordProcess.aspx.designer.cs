@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RMS {
+namespace RMS.Report {
     
     
-    public partial class AuditReport {
+    public partial class RecordProcess {
         
         /// <summary>
         /// ram control.
@@ -67,13 +67,13 @@ namespace RMS {
         protected global::Telerik.Web.UI.RadPageView rpv0;
         
         /// <summary>
-        /// rgAuditByRecord control.
+        /// rgAnalyzeRecords control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid rgAuditByRecord;
+        protected global::Telerik.Web.UI.RadGrid rgAnalyzeRecords;
         
         /// <summary>
         /// rpv1 control.
@@ -85,12 +85,12 @@ namespace RMS {
         protected global::Telerik.Web.UI.RadPageView rpv1;
         
         /// <summary>
-        /// rgAudits control.
+        /// rgApproveRecords control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid rgAudits;
+        protected global::Telerik.Web.UI.RadGrid rgApproveRecords;
     }
 }

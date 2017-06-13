@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/RMSSingleMenu.Master" AutoEventWireup="true" CodeBehind="AuditPeriod.aspx.cs" Inherits="RMS.AuditPeriod" ValidateRequest="false" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/RMSSingleMenu.Master" AutoEventWireup="true" CodeBehind="Audit.aspx.cs" Inherits="RMS.Task.Audit" ValidateRequest="false" %>
 <%@ Register Src="~/Control/RecordPageHeading.ascx" TagName="PageHeading" TagPrefix="uc" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -204,7 +204,7 @@
                 <div class="pnlNotice">
                     <h4><asp:Literal ID="ltlConfirm" runat="server" /></h4>
                     <p>Use the form below to upload documents pertaining to this audit.  File types accepted are .TXT, .PDF, .XLSX, .DOCX, .GIF, .JPG, and .PNG.  
-                        If you wish to view all audit periods for your WSC, visit the <a href="AuditReport.aspx">Audit Report</a>.</p>
+                        If you wish to view all audit periods for your WSC, visit the <a href="../Report/Audit.aspx">Audit Report</a>.</p>
                     <p style="font-weight:bold;"><asp:Literal ID="ltlDone" runat="server" /></p>
                 </div>
                 <br />

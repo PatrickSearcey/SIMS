@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RMS {
+namespace RMS.Task {
     
     
     public partial class RecordProcess {
