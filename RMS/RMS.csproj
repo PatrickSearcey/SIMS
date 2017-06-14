@@ -125,6 +125,7 @@
     <Content Include="App_Data\RadCaptcha\X.wav" />
     <Content Include="App_Data\RadCaptcha\Y.wav" />
     <Content Include="App_Data\RadCaptcha\Z.wav" />
+    <Content Include="images\save_icon.gif" />
     <Content Include="Report\Audit.aspx" />
     <Content Include="Control\OfficeSelector.ascx" />
     <Content Include="Control\RecordPageHeading.ascx" />

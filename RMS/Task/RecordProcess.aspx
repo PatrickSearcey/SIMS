@@ -2,7 +2,7 @@
 <%@ Register Src="~/Control/RecordPageHeading.ascx" TagName="PageHeading" TagPrefix="uc" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="styles/recordprocess.css" rel="stylesheet" />
+    <link href="../styles/recordprocess.css" rel="stylesheet" />
     <script type="text/javascript">
         function OpenPopup(_URL) {
             open(_URL, 'Popup', 'toolbar=yes, menubar=no, width=840, height=500, scrollbars=yes');

@@ -986,6 +986,52 @@
       <Column Name="type_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.vRMSRecordsToBeAnalyzed" Member="vRMSRecordsToBeAnalyzeds">
+    <Type Name="vRMSRecordsToBeAnalyzed">
+      <Column Name="rms_record_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="analyzer_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lock_type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lock_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lock_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="reanalyze_status" Type="System.String" DbType="NVarChar(6)" CanBeNull="true" />
+      <Column Name="LastAnalyzedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="station_full_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="site_no" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="type_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="type_ds" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="record_office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="category_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="record_type_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vRMSRecordsToBeApproved" Member="vRMSRecordsToBeApproveds">
+    <Type Name="vRMSRecordsToBeApproved">
+      <Column Name="rms_record_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="site_no" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="analyzer_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="approver_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lock_type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lock_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lock_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="status_va" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="period_beg_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="period_end_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="analyzed_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="approved_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="station_full_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="type_ds" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="type_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="record_type_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="record_office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="category_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">
     <Parameter Name="site_id" Type="System.Int32" DbType="Int" />
     <ElementType Name="spz_GetDCPInfoResult">
