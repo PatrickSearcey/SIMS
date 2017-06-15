@@ -53,8 +53,8 @@
                                     <telerik:RadMenuItem Text="CRP Tasks">
                                         <ContentTemplate>
                                             <div style="padding:10px;">
-                                                <b><a href="AnalyzeRecords.aspx">Records Ready for Analyzing</a></b><br />
-                                                <b><a href="ApproveRecords.aspx">Records Ready for Approving</a></b>
+                                                <b><a href="Report/RecordProcess.aspx">Records Ready for Analyzing</a></b><br />
+                                                <b><a href="Report/RecordProcess.aspx">Records Ready for Approving</a></b>
                                             </div>
                                         </ContentTemplate>
                                     </telerik:RadMenuItem>

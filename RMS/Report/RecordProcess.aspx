@@ -12,14 +12,24 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="cph1" runat="server">
     <telerik:RadAjaxManager ID="ram" runat="server">
         <AjaxSettings>
-            <telerik:AjaxSetting AjaxControlID="rgAudits">
+            <telerik:AjaxSetting AjaxControlID="rgAnalyzeMyRecords">
                 <UpdatedControls>
-                    <telerik:AjaxUpdatedControl ControlID="rgAudits" LoadingPanelID="ralp" />
+                    <telerik:AjaxUpdatedControl ControlID="rgAnalyzeMyRecords" LoadingPanelID="ralp" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
-            <telerik:AjaxSetting AjaxControlID="rgAuditByRecord">
+            <telerik:AjaxSetting AjaxControlID="rgAnalyzeRecords">
                 <UpdatedControls>
-                    <telerik:AjaxUpdatedControl ControlID="rgAuditByRecord" LoadingPanelID="ralp" />
+                    <telerik:AjaxUpdatedControl ControlID="rgAnalyzeRecords" LoadingPanelID="ralp" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="rgApproveMyRecords">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="rgApproveMyRecords" LoadingPanelID="ralp" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="rgApproveRecords">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="rgApproveRecords" LoadingPanelID="ralp" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
         </AjaxSettings>
@@ -43,6 +53,52 @@
                     <img src="../images/save_icon.gif" alt="save" /> Updates pending <br />
                     Click on the Record-Type to analyze the record. Click on the station number to navigate to the Station Information page. 
                 </p>
+                <h4>&nbsp;&nbsp;&nbsp;Records Assigned To Me</h4>
+                <telerik:RadGrid ID="rgAnalyzeMyRecords" runat="server" AutoGenerateColumns="false" Skin="Bootstrap" 
+                    GridLines="None" ShowStatusBar="true" PageSize="50"
+                    AllowSorting="true" 
+                    AllowMultiRowSelection="false" 
+                    AllowFiltering="true"
+                    AllowPaging="false"
+                    AllowAutomaticDeletes="true" OnNeedDataSource="rgAnalyzeMyRecords_NeedDataSource"
+                    OnItemDataBound="rgAnalyzeMyRecords_ItemDataBound"
+                    OnPreRender="rgAnalyzeMyRecords_PreRender">
+                    <MasterTableView DataKeyNames="rms_record_id" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" Name="Records" AllowFilteringByColumn="true">
+                        <Columns>
+                            <telerik:GridTemplateColumn AllowFiltering="false" AllowSorting="false" UniqueName="LockIcon" HeaderText="Lck">
+                                <ItemTemplate>
+                                    <asp:Image ID="imgLockIcon" runat="server" />
+                                </ItemTemplate>
+                            </telerik:GridTemplateColumn>
+                            <telerik:GridTemplateColumn AllowSorting="true" AllowFiltering="true" SortExpression="site_no" HeaderText="Site Number" FilterControlWidth="90px">
+                                <ItemTemplate>
+                                    <b><a href='<%# String.Format("{0}StationInfo.aspx?site_id={1}", Eval("SIMS2017URL"), Eval("site_id")) %>'><%# Eval("site_no") %></a></b>
+                                </ItemTemplate>
+                            </telerik:GridTemplateColumn>
+                            <telerik:GridBoundColumn DataField="station_full_nm" HeaderText="Station Name" UniqueName="station_full_nm" HeaderStyle-Width="500px" SortExpression="station_full_nm" FilterControlWidth="200px"/>
+                            <telerik:GridBoundColumn DataField="category_no" HeaderText="Category" UniqueName="category_no" SortExpression="category_no" AllowFiltering="false" />
+                            <telerik:GridTemplateColumn AllowSorting="true" AllowFiltering="true" SortExpression="type_ds" HeaderText="Record-Type" FilterControlWidth="90px">
+                                <ItemTemplate>
+                                    <b><asp:HyperLink ID="hlRecordType" runat="server" Target="_blank"><%# Eval("type_ds") %></asp:HyperLink></b>
+                                </ItemTemplate>
+                            </telerik:GridTemplateColumn>
+                            <telerik:GridBoundColumn DataField="analyzer_uid" HeaderText="Assigned To" UniqueName="analyzer_uid" FilterControlWidth="90px" SortExpression="analyzer_uid" />
+                            <telerik:GridTemplateColumn AllowSorting="true" SortExpression="status_va" HeaderText="Reanalyze Status" AllowFiltering="false">
+                                <ItemTemplate>
+                                    <%# Eval("reanalyze_status") %>
+                                </ItemTemplate>
+                            </telerik:GridTemplateColumn>
+                            <telerik:GridBoundColumn DataField="LastAnalyzedDate" UniqueName="LastAnalyzedDate" DataFormatString="{0:MM/dd/yyyy}" HeaderText="Analyzed Through" SortExpression="LastAnalyzedDate" AllowFiltering="false" />
+                            <telerik:GridBoundColumn DataField="DaysSinceAging" UniqueName="DaysSinceAging" HeaderText="Days Since Last Approved in Aquarius" SortExpression="DaysSinceAging" 
+                                AllowFiltering="false" HeaderStyle-Width="150px" />
+                            <telerik:GridBoundColumn DataField="lock_type" UniqueName="lock_type" Display="false" />
+                            <telerik:GridBoundColumn DataField="lock_dt" UniqueName="lock_dt" Display="false" />
+                            <telerik:GridBoundColumn DataField="lock_uid" UniqueName="lock_uid" Display="false" />
+                            <telerik:GridBoundColumn DataField="reanalyze_status" UniqueName="reanalyze_status" Display="false" />
+                        </Columns>
+                    </MasterTableView>
+                </telerik:RadGrid>
+                <h4>&nbsp;&nbsp;&nbsp;All Other Records</h4>
                 <telerik:RadGrid ID="rgAnalyzeRecords" runat="server" AutoGenerateColumns="false" Skin="Bootstrap" 
                     GridLines="None" ShowStatusBar="true" PageSize="50"
                     AllowSorting="true" 
@@ -64,7 +120,7 @@
                                     <b><a href='<%# String.Format("{0}StationInfo.aspx?site_id={1}", Eval("SIMS2017URL"), Eval("site_id")) %>'><%# Eval("site_no") %></a></b>
                                 </ItemTemplate>
                             </telerik:GridTemplateColumn>
-                            <telerik:GridBoundColumn DataField="station_nm" HeaderText="Staiton Name" UniqueName="station_nm" HeaderStyle-Width="500px" SortExpression="station_nm" FilterControlWidth="200px"/>
+                            <telerik:GridBoundColumn DataField="station_full_nm" HeaderText="Station Name" UniqueName="station_full_nm" HeaderStyle-Width="500px" SortExpression="station_full_nm" FilterControlWidth="200px"/>
                             <telerik:GridBoundColumn DataField="category_no" HeaderText="Category" UniqueName="category_no" SortExpression="category_no" AllowFiltering="false" />
                             <telerik:GridTemplateColumn AllowSorting="true" AllowFiltering="true" SortExpression="type_ds" HeaderText="Record-Type" FilterControlWidth="90px">
                                 <ItemTemplate>
@@ -77,9 +133,13 @@
                                     <%# Eval("reanalyze_status") %>
                                 </ItemTemplate>
                             </telerik:GridTemplateColumn>
-                            <telerik:GridBoundColumn DataField="analyzed_dt" UniqueName="analyzed_dt" HeaderText="Analyzed Through" SortExpression="analzyed_dt" AllowFiltering="false" />
-                            <telerik:GridBoundColumn DataField="aq_approved_dt" UniqueName="aq_approved_dt" HeaderText="Days Since Last Approved in Aquarius" SortExpression="aq_approved_dt" 
-                                AllowFiltering="false" />
+                            <telerik:GridBoundColumn DataField="LastAnalyzedDate" UniqueName="LastAnalyzedDate" DataFormatString="{0:MM/dd/yyyy}" HeaderText="Analyzed Through" SortExpression="LastAnalyzedDate" AllowFiltering="false" />
+                            <telerik:GridBoundColumn DataField="DaysSinceAging" UniqueName="DaysSinceAging" HeaderText="Days Since Last Approved in Aquarius" SortExpression="DaysSinceAging" 
+                                AllowFiltering="false" HeaderStyle-Width="150px" />
+                            <telerik:GridBoundColumn DataField="lock_type" UniqueName="lock_type" Display="false" />
+                            <telerik:GridBoundColumn DataField="lock_dt" UniqueName="lock_dt" Display="false" />
+                            <telerik:GridBoundColumn DataField="lock_uid" UniqueName="lock_uid" Display="false" />
+                            <telerik:GridBoundColumn DataField="reanalyze_status" UniqueName="reanalyze_status" Display="false" />
                         </Columns>
                     </MasterTableView>
                 </telerik:RadGrid>
@@ -88,9 +148,54 @@
             <telerik:RadPageView runat="server" ID="rpv1">
                 <p style="font-weight:bold; padding: 0 5px 0 5px;">
                     <img src="../images/lock.png" alt="lock" /> Record is currently locked
-                    <img src="../images/save_icon.png" alt="save" /> Updates pending <br />
+                    <img src="../images/save_icon.gif" alt="save" /> Updates pending <br />
                     Click on the Record-Type to approve the record. Click on the station number to navigate to the Station Information page. 
                 </p>
+                <h4>&nbsp;&nbsp;&nbsp;Records Assigned To Me</h4>
+                <telerik:RadGrid ID="rgApproveMyRecords" runat="server" AutoGenerateColumns="false" Skin="Bootstrap" 
+                    GridLines="None" ShowStatusBar="true" PageSize="50"
+                    AllowSorting="true" 
+                    AllowMultiRowSelection="false" 
+                    AllowFiltering="true"
+                    AllowPaging="false"
+                    AllowAutomaticDeletes="true" OnNeedDataSource="rgApproveMyRecords_NeedDataSource"
+                    OnItemDataBound="rgApproveMyRecords_ItemDataBound"
+                    OnPreRender="rgApproveMyRecords_PreRender">
+                    <MasterTableView DataKeyNames="rms_record_id" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" 
+                        Name="Records" AllowFilteringByColumn="true">
+                        <Columns>
+                            <telerik:GridTemplateColumn AllowFiltering="false" AllowSorting="false" UniqueName="LockIcon" HeaderText="Lck">
+                                <ItemTemplate>
+                                    <asp:Image ID="imgLockIcon" runat="server" />
+                                </ItemTemplate>
+                            </telerik:GridTemplateColumn>
+                            <telerik:GridTemplateColumn AllowSorting="true" AllowFiltering="true" SortExpression="site_no" HeaderText="Site Number" FilterControlWidth="90px">
+                                <ItemTemplate>
+                                    <b><a href='<%# String.Format("{0}StationInfo.aspx?site_id={1}", Eval("SIMS2017URL"), Eval("site_id")) %>'><%# Eval("site_no") %></a></b>
+                                </ItemTemplate>
+                            </telerik:GridTemplateColumn>
+                            <telerik:GridBoundColumn DataField="station_full_nm" HeaderText="Station Name" UniqueName="station_full_nm" HeaderStyle-Width="450px" SortExpression="station_nm" 
+                                FilterControlWidth="200px"/>
+                            <telerik:GridBoundColumn DataField="category_no" HeaderText="Category" UniqueName="category_no" SortExpression="category_no" AllowFiltering="false" />
+                            <telerik:GridTemplateColumn AllowSorting="true" AllowFiltering="true" SortExpression="type_ds" HeaderText="Record-Type" FilterControlWidth="90px">
+                                <ItemTemplate>
+                                    <b><asp:HyperLink ID="hlRecordType" runat="server" Target="_blank"><%# Eval("type_ds") %></asp:HyperLink></b>
+                                </ItemTemplate>
+                            </telerik:GridTemplateColumn>
+                            <telerik:GridBoundColumn DataField="approver_uid" HeaderText="Assigned To" UniqueName="approver_uid" FilterControlWidth="90px" SortExpression="approver_uid" />
+                            <telerik:GridBoundColumn DataField="approved_by" HeaderText="Previously Approved By" UniqueName="approved_by" SortExpression="approved_by" 
+                                AllowFiltering="false" />
+                            <telerik:GridBoundColumn DataField="period" AllowSorting="true" SortExpression="period" HeaderText="Period" AllowFiltering="false" HeaderStyle-Width="180px" />
+                            <telerik:GridBoundColumn DataField="DaysSinceAging" UniqueName="DaysSinceAging" HeaderText="Days Since Last Approved in Aquarius" SortExpression="DaysSinceAging" 
+                                AllowFiltering="false" HeaderStyle-Width="150px" />
+                            <telerik:GridBoundColumn DataField="lock_type" UniqueName="lock_type" Display="false" />
+                            <telerik:GridBoundColumn DataField="lock_dt" UniqueName="lock_dt" Display="false" />
+                            <telerik:GridBoundColumn DataField="lock_uid" UniqueName="lock_uid" Display="false" />
+                            <telerik:GridBoundColumn DataField="period_id" UniqueName="period_id" Display="false" />
+                        </Columns>
+                    </MasterTableView>
+                </telerik:RadGrid>
+                <h4>&nbsp;&nbsp;&nbsp;All Other Records</h4>
                 <telerik:RadGrid ID="rgApproveRecords" runat="server" AutoGenerateColumns="false" Skin="Bootstrap" 
                     GridLines="None" ShowStatusBar="true" PageSize="50"
                     AllowSorting="true" 
@@ -113,7 +218,7 @@
                                     <b><a href='<%# String.Format("{0}StationInfo.aspx?site_id={1}", Eval("SIMS2017URL"), Eval("site_id")) %>'><%# Eval("site_no") %></a></b>
                                 </ItemTemplate>
                             </telerik:GridTemplateColumn>
-                            <telerik:GridBoundColumn DataField="station_nm" HeaderText="Staiton Name" UniqueName="station_nm" HeaderStyle-Width="400px" SortExpression="station_nm" 
+                            <telerik:GridBoundColumn DataField="station_full_nm" HeaderText="Station Name" UniqueName="station_full_nm" HeaderStyle-Width="450px" SortExpression="station_nm" 
                                 FilterControlWidth="200px"/>
                             <telerik:GridBoundColumn DataField="category_no" HeaderText="Category" UniqueName="category_no" SortExpression="category_no" AllowFiltering="false" />
                             <telerik:GridTemplateColumn AllowSorting="true" AllowFiltering="true" SortExpression="type_ds" HeaderText="Record-Type" FilterControlWidth="90px">
@@ -122,15 +227,15 @@
                                 </ItemTemplate>
                             </telerik:GridTemplateColumn>
                             <telerik:GridBoundColumn DataField="approver_uid" HeaderText="Assigned To" UniqueName="approver_uid" FilterControlWidth="90px" SortExpression="approver_uid" />
-                            <telerik:GridBoundColumn DataField="prev_approved_by" HeaderText="Previously Approved By" UniqueName="prev_approved_by" SortExpression="prev_approved_by" 
+                            <telerik:GridBoundColumn DataField="approved_by" HeaderText="Previously Approved By" UniqueName="approved_by" SortExpression="approved_by" 
                                 AllowFiltering="false" />
-                            <telerik:GridTemplateColumn AllowSorting="true" SortExpression="period" HeaderText="Period" AllowFiltering="false">
-                                <ItemTemplate>
-                                    <asp:Literal ID="ltlPeriod" runat="server" />
-                                </ItemTemplate>
-                            </telerik:GridTemplateColumn>
-                            <telerik:GridBoundColumn DataField="aq_approved_dt" UniqueName="aq_approved_dt" HeaderText="Days Since Last Approved in Aquarius" SortExpression="aq_approved_dt" 
-                                AllowFiltering="false" />
+                            <telerik:GridBoundColumn DataField="period" AllowSorting="true" SortExpression="period" HeaderText="Period" AllowFiltering="false" HeaderStyle-Width="180px" />
+                            <telerik:GridBoundColumn DataField="DaysSinceAging" UniqueName="DaysSinceAging" HeaderText="Days Since Last Approved in Aquarius" SortExpression="DaysSinceAging" 
+                                AllowFiltering="false" HeaderStyle-Width="150px" />
+                            <telerik:GridBoundColumn DataField="lock_type" UniqueName="lock_type" Display="false" />
+                            <telerik:GridBoundColumn DataField="lock_dt" UniqueName="lock_dt" Display="false" />
+                            <telerik:GridBoundColumn DataField="lock_uid" UniqueName="lock_uid" Display="false" />
+                            <telerik:GridBoundColumn DataField="period_id" UniqueName="period_id" Display="false" />
                         </Columns>
                     </MasterTableView>
                 </telerik:RadGrid>

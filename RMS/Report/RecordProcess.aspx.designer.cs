@@ -67,6 +67,15 @@ namespace RMS.Report {
         protected global::Telerik.Web.UI.RadPageView rpv0;
         
         /// <summary>
+        /// rgAnalyzeMyRecords control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid rgAnalyzeMyRecords;
+        
+        /// <summary>
         /// rgAnalyzeRecords control.
         /// </summary>
         /// <remarks>
@@ -83,6 +92,15 @@ namespace RMS.Report {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadPageView rpv1;
+        
+        /// <summary>
+        /// rgApproveMyRecords control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid rgApproveMyRecords;
         
         /// <summary>
         /// rgApproveRecords control.
