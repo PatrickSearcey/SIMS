@@ -148,10 +148,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/12/2017 12:07:25</publishTime>
     </File>
     <File Include="bin/RMS.dll">
-      <publishTime>06/16/2017 06:44:44</publishTime>
+      <publishTime>06/16/2017 10:27:00</publishTime>
     </File>
     <File Include="bin/RMS.pdb">
-      <publishTime>06/16/2017 06:44:44</publishTime>
+      <publishTime>06/16/2017 10:27:00</publishTime>
     </File>
     <File Include="bin/Telerik.Web.Spreadsheet.dll">
       <publishTime>06/12/2017 12:07:25</publishTime>
@@ -243,6 +243,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Report/Audit.aspx">
       <publishTime>06/13/2017 16:19:21</publishTime>
     </File>
+    <File Include="Report/PeriodDetails.aspx">
+      <publishTime>06/16/2017 10:26:51</publishTime>
+    </File>
     <File Include="Report/RecordProcess.aspx">
       <publishTime>06/15/2017 20:47:33</publishTime>
     </File>
@@ -274,7 +277,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/12/2017 12:07:25</publishTime>
     </File>
     <File Include="Task/Audit.aspx">
-      <publishTime>06/13/2017 15:47:51</publishTime>
+      <publishTime>06/16/2017 10:26:14</publishTime>
     </File>
     <File Include="Task/RecordProcess.aspx">
       <publishTime>06/14/2017 16:34:28</publishTime>

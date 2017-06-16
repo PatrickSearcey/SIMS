@@ -142,6 +142,7 @@
     <Content Include="images\USGSHeaderLogoRMS.png" />
     <Content Include="images\viewdoc.png" />
     <Content Include="Modal\Instructions.aspx" />
+    <Content Include="Report\PeriodDetails.aspx" />
     <Content Include="Report\RecordProcess.aspx" />
     <Content Include="Task\Audit.aspx" />
     <Content Include="Modal\ViewAudit.aspx" />
@@ -189,6 +190,13 @@
     </Compile>
     <Compile Include="Modal\Instructions.aspx.designer.cs">
       <DependentUpon>Instructions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\PeriodDetails.aspx.cs">
+      <DependentUpon>PeriodDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\PeriodDetails.aspx.designer.cs">
+      <DependentUpon>PeriodDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Report\RecordProcess.aspx.cs">
       <DependentUpon>RecordProcess.aspx</DependentUpon>
@@ -306,7 +314,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

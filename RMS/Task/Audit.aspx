@@ -2,7 +2,7 @@
 <%@ Register Src="~/Control/RecordPageHeading.ascx" TagName="PageHeading" TagPrefix="uc" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="styles/audit.css" rel="stylesheet" />
+    <link href="../styles/audit.css" rel="stylesheet" />
     <script type="text/javascript">
     </script>
 </asp:Content>
