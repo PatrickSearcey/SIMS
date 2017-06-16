@@ -83,6 +83,12 @@ namespace RMS.Report
 
             ph1.Title = "Records Ready For Analyzing and Approving";
             ph1.SubTitle = "For " + office_nm;
+
+            if (processTask == "approve")
+            {
+                rmp1.SelectedIndex = 1;
+                rts1.SelectedIndex = 1; 
+            }
         }
         #endregion
 
@@ -98,7 +104,7 @@ namespace RMS.Report
         #region Analyze Records RadGrid
         protected void rgAnalyzeRecords_NeedDataSource(object source, GridNeedDataSourceEventArgs e)
         {
-            rgAnalyzeRecords.DataSource = db.SP_RMS_Record_List_for_analyze_approve("analyze", "0", OfficeID).Select(p => new Data.RecordProcessDataItem
+            rgAnalyzeRecords.DataSource = db.SP_RMS_Record_List_for_analyze_approve("analyze", user.ID, OfficeID).Select(p => new Data.RecordProcessDataItem
             {
                 rms_record_id = p.rms_record_id,
                 lock_dt = p.lock_dt,
@@ -175,7 +181,7 @@ namespace RMS.Report
         #region Analyze My Records RadGrid
         protected void rgAnalyzeMyRecords_NeedDataSource(object source, GridNeedDataSourceEventArgs e)
         {
-            rgAnalyzeMyRecords.DataSource = db.SP_RMS_Record_List_for_analyze_approve("analyze", user.ID, OfficeID).Select(p => new Data.RecordProcessDataItem
+            rgAnalyzeMyRecords.DataSource = db.SP_RMS_Record_List_for_analyze_approve("analyzeByUser", user.ID, OfficeID).Select(p => new Data.RecordProcessDataItem
             {
                 rms_record_id = p.rms_record_id,
                 lock_dt = p.lock_dt,
@@ -252,7 +258,7 @@ namespace RMS.Report
         #region Approve Records RadGrid
         protected void rgApproveRecords_NeedDataSource(object source, GridNeedDataSourceEventArgs e)
         {
-            rgApproveRecords.DataSource = db.SP_RMS_Record_List_for_analyze_approve("approve", "0", OfficeID).Select(p => new Data.RecordProcessDataItem
+            rgApproveRecords.DataSource = db.SP_RMS_Record_List_for_analyze_approve("approve", user.ID, OfficeID).Select(p => new Data.RecordProcessDataItem
             {
                 rms_record_id = p.rms_record_id,
                 lock_dt = p.lock_dt,
@@ -315,7 +321,10 @@ namespace RMS.Report
                     imgLockIcon.Visible = false;
                 }
 
-                hlRecordType.NavigateUrl = String.Format("../Task/RecordProcess.aspx?period_id={0}&task=Approve", period_id);
+                if (lock_type == "Analyze" || lock_type == "Analyzing")
+                    hlRecordType.Enabled = false;
+                else
+                    hlRecordType.NavigateUrl = String.Format("../Task/RecordProcess.aspx?period_id={0}&task=Approve", period_id);
             }
         }
         #endregion
@@ -323,7 +332,7 @@ namespace RMS.Report
         #region Approve Records RadGrid
         protected void rgApproveMyRecords_NeedDataSource(object source, GridNeedDataSourceEventArgs e)
         {
-            rgApproveMyRecords.DataSource = db.SP_RMS_Record_List_for_analyze_approve("approve", user.ID, OfficeID).Select(p => new Data.RecordProcessDataItem
+            rgApproveMyRecords.DataSource = db.SP_RMS_Record_List_for_analyze_approve("approveByUser", user.ID, OfficeID).Select(p => new Data.RecordProcessDataItem
             {
                 rms_record_id = p.rms_record_id,
                 lock_dt = p.lock_dt,
@@ -385,7 +394,10 @@ namespace RMS.Report
                     imgLockIcon.Visible = false;
                 }
 
-                hlRecordType.NavigateUrl = String.Format("../Task/RecordProcess.aspx?period_id={0}&task=Approve", period_id);
+                if (lock_type == "Analyze" || lock_type == "Analyzing")
+                    hlRecordType.Enabled = false;
+                else
+                    hlRecordType.NavigateUrl = String.Format("../Task/RecordProcess.aspx?period_id={0}&task=Approve", period_id);
             }
         }
         #endregion

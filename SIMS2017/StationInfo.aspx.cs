@@ -745,12 +745,14 @@ namespace SIMS2017
                     }
                 }
 
+                //A period with a status of 'Analyzing' means that it was saved to be finished later
                 if (period.status_va == "Analyzing")
                 {
                     hlStart = String.Format("<a href='{0}Task/RecordProcess.aspx?period_id={1}&task=Analyze' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
                     level = 2;
                 }
-                else if (period.status_va == "Reanalyze")
+                //A period with a status of 'Reanalyze' means that it was sent back for reanalyzing by the approver
+                else if (period.status_va == "Reanalyze")  
                 {
                     hlStart = String.Format("<a href='{0}Task/RecordProcess.aspx?period_id={1}&task=Reanalyze' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
                     note = " <i>(reanalyze)</i>";
@@ -761,6 +763,7 @@ namespace SIMS2017
                         hlEnd = "";
                     }
                 }
+                //A period with a status of 'Analyzed' means that it's ready to be approved
                 else if (period.status_va == "Analyzed")
                 {
                     var doubles = db.SP_Site_Analyzed_Doubles(rms_record_id).FirstOrDefault();
@@ -777,17 +780,20 @@ namespace SIMS2017
                         hlEnd = "";
                     }
                 }
+                //A period with a status of 'Approving' means that it was saved to be finished later
                 else if (period.status_va == "Approving")
                 {
                     hlStart = String.Format("<a href='{0}Task/RecordProcess.aspx?period_id={1}&task=Approve' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
                     level = 4;
                 }
+                //A period with a status of 'Approved' means that it is done, and they can only view the station analysis in a pop-up
                 else if (period.status_va == "Approved")
                 {
                     imgApproved = String.Format("<img src='{0}images/approved.gif' alt='Approved' style='float:left;padding: 0 2px 2px 0;' />", Config.RMSURL);
                     hlStart = String.Format("<a href='javascript:ShowAnalysisPopup({0})'>", period.period_id);
                     level = 5;
                 }
+                //Otherwise, they are trying to start a new period for analyzing
                 else
                 {
                     hlStart = String.Format("<a href='{0}Task/RecordProcess.aspx?period_id={1}&task=Analyze' style='padding-left:14px;'>", Config.RMSURL, period.period_id);

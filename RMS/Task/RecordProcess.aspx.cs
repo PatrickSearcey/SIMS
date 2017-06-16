@@ -72,6 +72,7 @@ namespace RMS.Task
                 //If there is a record in the Record Lock table, then go ahead and compare the lock_uid to the user.ID
                 if (locks != null)
                 {
+                    //The lock was set by the current user, so they can access the period to process
                     if (user.ID != locks.lock_uid) ret = true;
                 }
 
@@ -90,6 +91,13 @@ namespace RMS.Task
             if (!string.IsNullOrEmpty(period_id) || !string.IsNullOrEmpty(rms_record_id))
             {
                 if (!string.IsNullOrEmpty(period_id)) PeriodID = Convert.ToInt32(period_id);
+                else
+                {
+                    //If no period_id was passed, then try to figure it out based on the rms_record_id and the task
+                    //Only really necessary when trying to analyze a record coming from the Report/RecordProcess.aspx page - because we don't get a period_id from that page
+                    period_id = GetPeriodID(rms_record_id);
+                    if (!string.IsNullOrEmpty(period_id)) PeriodID = Convert.ToInt32(period_id);
+                }
                 if (!string.IsNullOrEmpty(rms_record_id)) RecordID = Convert.ToInt32(rms_record_id);
                 else RecordID = Convert.ToInt32(db.RecordAnalysisPeriods.FirstOrDefault(p => p.period_id == PeriodID).rms_record_id);
             }
@@ -130,6 +138,25 @@ namespace RMS.Task
             ph1.Title = task + " Record";
             ph1.SubTitle = currRecord.Site.site_no + " " + currRecord.Site.station_full_nm;
             ph1.RecordType = currRecord.RecordType.type_ds + " Record for";
+        }
+
+        /// <summary>
+        /// Only necessary when coming from the Record Process Report, and trying to analyze - this is because it's too difficult to get the period_id to put in the URL on the report page
+        /// </summary>
+        private string GetPeriodID(string rms_record_id)
+        {
+            string ret = "";
+
+            if (task == "Analyze")
+            {
+                var period = db.RecordAnalysisPeriods.FirstOrDefault(p => p.rms_record_id.ToString() == rms_record_id && p.status_va == "Analyzing");
+                if (period != null)
+                {
+                    ret = period.period_id.ToString();
+                }
+            }
+
+            return ret;
         }
 
         protected void CreateLock(string lock_type)
@@ -413,9 +440,26 @@ namespace RMS.Task
             string all = "true";
             if (!finished) all = "false";
 
-            //Clear Locks
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(String.Format("{0}Handler/ClearLock.ashx?user_id={1}&all={2}", Config.RMSURL, user.ID, all));
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            //Clear Locks, but only if no period exists with a status of "Approving" or "Analyzing".  If this is the case, then need to update the lock to be "Approving" or "Analyzing"
+            var period = currRecord.RecordAnalysisPeriods.FirstOrDefault(p => p.period_id == PeriodID);
+            if (period != null)
+            {
+                //Update the lock from "Approve"/"Analyze" to "Approving"/"Analyzing"
+                if (period.status_va == "Approving" || period.status_va == "Analyzing")
+                {
+                    CreateLock(period.status_va);
+                }
+                else //Otherwise, clear the lock
+                {
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(String.Format("{0}Handler/ClearLock.ashx?user_id={1}&all={2}", Config.RMSURL, user.ID, all));
+                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                }
+            }
+            else //Otherwise, clear the lock
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(String.Format("{0}Handler/ClearLock.ashx?user_id={1}&all={2}", Config.RMSURL, user.ID, all));
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            }
             //Redirect back to Station Info page
             Response.Redirect(String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, currRecord.Site.site_id));
         }
