@@ -1032,7 +1032,7 @@
       <Column Name="approved_by" Type="System.String" CanBeNull="true" />
       <Column Name="SIMS2017URL" Type="System.String" CanBeNull="true" />
       <Column Name="period" Type="System.String" CanBeNull="true" />
-      <Column Member="period_id" Type="System.Int32" CanBeNull="true" />
+      <Column Name="period_id" Type="System.Int32" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.vRMSRecordsToBeAnalyzed" Member="vRMSRecordsToBeAnalyzeds">
@@ -1054,6 +1054,12 @@
       <Column Name="record_type_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="record_office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vRMSRecordOfficeIDs" Member="vRMSRecordOfficeIDs">
+    <Type Name="vRMSRecordOfficeID">
+      <Column Name="record_office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="rms_record_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">

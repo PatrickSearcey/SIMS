@@ -745,6 +745,14 @@ namespace Data
 			}
 		}
 		
+		public System.Data.Linq.Table<vRMSRecordOfficeID> vRMSRecordOfficeIDs
+		{
+			get
+			{
+				return this.GetTable<vRMSRecordOfficeID>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spz_GetDCPInfo")]
 		public ISingleResult<spz_GetDCPInfoResult> spz_GetDCPInfo([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> site_id)
 		{
@@ -20756,6 +20764,51 @@ namespace Data
 				if ((this._record_office_id != value))
 				{
 					this._record_office_id = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vRMSRecordOfficeIDs")]
+	public partial class vRMSRecordOfficeID
+	{
+		
+		private System.Nullable<int> _record_office_id;
+		
+		private int _rms_record_id;
+		
+		public vRMSRecordOfficeID()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_record_office_id", DbType="Int")]
+		public System.Nullable<int> record_office_id
+		{
+			get
+			{
+				return this._record_office_id;
+			}
+			set
+			{
+				if ((this._record_office_id != value))
+				{
+					this._record_office_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int NOT NULL")]
+		public int rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					this._rms_record_id = value;
 				}
 			}
 		}
