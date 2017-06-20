@@ -10,7 +10,7 @@
 namespace RMS.Report {
     
     
-    public partial class PeriodDetails {
+    public partial class RecordProgress {
         
         /// <summary>
         /// ram control.
@@ -49,24 +49,6 @@ namespace RMS.Report {
         protected global::Telerik.Web.UI.RadDropDownList rddlOffice;
         
         /// <summary>
-        /// rddlRecords control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadDropDownList rddlRecords;
-        
-        /// <summary>
-        /// rdpBeginDt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadDatePicker rdpBeginDt;
-        
-        /// <summary>
         /// rdpEndDt control.
         /// </summary>
         /// <remarks>
@@ -94,102 +76,39 @@ namespace RMS.Report {
         protected global::System.Web.UI.WebControls.Literal ltlError;
         
         /// <summary>
-        /// rts1 control.
+        /// ltlAllRecordsTR control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadTabStrip rts1;
+        protected global::System.Web.UI.WebControls.Literal ltlAllRecordsTR;
         
         /// <summary>
-        /// rmp1 control.
+        /// rhcAllRecords control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadMultiPage rmp1;
+        protected global::Telerik.Web.UI.RadHtmlChart rhcAllRecords;
         
         /// <summary>
-        /// rpv0 control.
+        /// ltlTSRecordsTR control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadPageView rpv0;
+        protected global::System.Web.UI.WebControls.Literal ltlTSRecordsTR;
         
         /// <summary>
-        /// ltlNotice1 control.
+        /// rhcTSRecords control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlNotice1;
-        
-        /// <summary>
-        /// dlOuterSANAL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dlOuterSANAL;
-        
-        /// <summary>
-        /// rpv1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadPageView rpv1;
-        
-        /// <summary>
-        /// ltlNotice2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlNotice2;
-        
-        /// <summary>
-        /// dlOuterChangeLogs control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dlOuterChangeLogs;
-        
-        /// <summary>
-        /// rpv2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadPageView rpv2;
-        
-        /// <summary>
-        /// ltlNotice3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlNotice3;
-        
-        /// <summary>
-        /// dlOuterDialogs control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dlOuterDialogs;
+        protected global::Telerik.Web.UI.RadHtmlChart rhcTSRecords;
     }
 }

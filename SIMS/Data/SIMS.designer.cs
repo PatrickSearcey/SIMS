@@ -864,6 +864,13 @@ namespace Data
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), listtype, user_id, office_id);
 			return ((ISingleResult<RecordProcessDataItem>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_TOTALS_Current_by_region_or_WSC")]
+		public ISingleResult<SP_TOTALS_Current_by_region_or_WSCResult> SP_TOTALS_Current_by_region_or_WSC([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string region_cd, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> wsc_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> querydate)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), region_cd, wsc_id, querydate);
+			return ((ISingleResult<SP_TOTALS_Current_by_region_or_WSCResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.lut_Office")]
@@ -22697,6 +22704,68 @@ namespace Data
 				if ((this._wsc_id != value))
 				{
 					this._wsc_id = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_TOTALS_Current_by_region_or_WSCResult
+	{
+		
+		private System.Nullable<int> _TotalSites;
+		
+		private System.Nullable<int> _Analyzed;
+		
+		private System.Nullable<int> _Approved;
+		
+		public SP_TOTALS_Current_by_region_or_WSCResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalSites", DbType="Int")]
+		public System.Nullable<int> TotalSites
+		{
+			get
+			{
+				return this._TotalSites;
+			}
+			set
+			{
+				if ((this._TotalSites != value))
+				{
+					this._TotalSites = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Analyzed", DbType="Int")]
+		public System.Nullable<int> Analyzed
+		{
+			get
+			{
+				return this._Analyzed;
+			}
+			set
+			{
+				if ((this._Analyzed != value))
+				{
+					this._Analyzed = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Approved", DbType="Int")]
+		public System.Nullable<int> Approved
+		{
+			get
+			{
+				return this._Approved;
+			}
+			set
+			{
+				if ((this._Approved != value))
+				{
+					this._Approved = value;
 				}
 			}
 		}

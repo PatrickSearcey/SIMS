@@ -64,16 +64,15 @@
                                     <telerik:RadMenuItem Text="Reports">
                                         <ContentTemplate>
                                             <div style="padding:10px;">
-                                                <b><a href="Report/Audit.aspx">Audit Report</a></b><br />
+                                                <b><a href="Report/RecordProgressWSC.aspx">Record Progress For The WSC</a></b><br />
+                                                <b><a href="Report/RecordProgress.aspx">Record Progress By User</a></b><br />
+                                                <b><a href="Report/RecordTypeProgress.aspx">Record Progress By Record Type</a></b><br /><br />
+                                                <b><a href="Report/Audit.aspx">Audit Report</a></b>
                                             </div>
                                         </ContentTemplate>
                                     </telerik:RadMenuItem>
                                     <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="Station Analyses" />
-                                    <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="Dialogs" />
-                                    <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="Change Logs" />
+                                    <telerik:RadMenuItem Text="Period Details" NavigateUrl="Report/PeriodDetails.aspx" />
                                 </Items>
                             </telerik:RadMenu>
                         </telerik:LayoutColumn>

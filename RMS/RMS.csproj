@@ -144,6 +144,9 @@
     <Content Include="Modal\Instructions.aspx" />
     <Content Include="Report\PeriodDetails.aspx" />
     <Content Include="Report\RecordProcess.aspx" />
+    <Content Include="Report\RecordProgress.aspx" />
+    <Content Include="styles\recordprogress.css" />
+    <Content Include="styles\perioddetails.css" />
     <Content Include="Task\Audit.aspx" />
     <Content Include="Modal\ViewAudit.aspx" />
     <Content Include="Task\RecordProcess.aspx" />
@@ -204,6 +207,13 @@
     </Compile>
     <Compile Include="Report\RecordProcess.aspx.designer.cs">
       <DependentUpon>RecordProcess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\RecordProgress.aspx.cs">
+      <DependentUpon>RecordProgress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\RecordProgress.aspx.designer.cs">
+      <DependentUpon>RecordProgress.aspx</DependentUpon>
     </Compile>
     <Compile Include="Task\Audit.aspx.cs">
       <DependentUpon>Audit.aspx</DependentUpon>
@@ -314,7 +324,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

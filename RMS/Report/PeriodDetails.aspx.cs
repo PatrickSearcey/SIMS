@@ -53,8 +53,7 @@ namespace RMS.Report
         #region Page Load Events
         protected void Page_Load(object sender, EventArgs e)
         {
-            string office_id = "348";// Request.QueryString["office_id"];
-
+            string office_id = Request.QueryString["office_id"];
 
             if (!string.IsNullOrEmpty(office_id))
             {
@@ -113,6 +112,10 @@ namespace RMS.Report
             rdpBeginDt.SelectedDate = Convert.ToDateTime("10/1/" + (DateTime.Now.Year - 1).ToString());
             rdpEndDt.SelectedDate = DateTime.Now;
 
+            ltlNotice1.Visible = true;
+            ltlNotice2.Visible = true;
+            ltlNotice3.Visible = true;
+            ltlError.Visible = false;
         }
         #endregion
 
@@ -168,9 +171,10 @@ namespace RMS.Report
         #region Submit Event
         protected void UpdateDetails(object sender, CommandEventArgs e)
         {
+            ltlError.Visible = false;
             List<int> records = new List<int>();
             //If all records were chosen, or no records were chosen, then add all the rms_record_ids in the dropdown list to the records list
-            if (rddlRecords.SelectedText == "All Records" || rddlRecords.SelectedText == "")
+            if (rddlRecords.SelectedText == "All Records" || rddlRecords.SelectedText == "" && rddlOffice.SelectedIndex > 0)
             {
                 foreach (DropDownListItem record in rddlRecords.Items)
                 {
@@ -178,22 +182,34 @@ namespace RMS.Report
                 }
             }
             //Otherwise, add just the one, chosen rms_record_id
-            else
+            else if (rddlRecords.SelectedText != "")
             {
                 records.Add(Convert.ToInt32(rddlRecords.SelectedValue));
             }
+            else
+            {
+                ltlError.Text = "You must select at least one record!";
+                ltlError.Visible = true;
+                return;
+            }
 
-            dlOuterSANAL.DataSource = db.Records
+            var recordData = db.Records
                     .Where(p => records.Contains(p.rms_record_id))
                     .Select(p => new { rms_record_id = p.rms_record_id, site_no = p.Site.site_no, station_full_nm = p.Site.station_full_nm, type_ds = p.RecordType.type_ds })
                     .OrderBy(p => p.site_no).ThenBy(p => p.type_ds).ToList();
+
+            dlOuterSANAL.DataSource = recordData;
             dlOuterSANAL.DataBind();
 
-            dlOuterDialogs.DataSource = db.Records
-                    .Where(p => records.Contains(p.rms_record_id))
-                    .Select(p => new { rms_record_id = p.rms_record_id, site_no = p.Site.site_no, station_full_nm = p.Site.station_full_nm, type_ds = p.RecordType.type_ds })
-                    .OrderBy(p => p.site_no).ThenBy(p => p.type_ds).ToList();
+            dlOuterChangeLogs.DataSource = recordData;
+            dlOuterChangeLogs.DataBind();
+
+            dlOuterDialogs.DataSource = recordData;
             dlOuterDialogs.DataBind();
+
+            ltlNotice1.Visible = false;
+            ltlNotice2.Visible = false;
+            ltlNotice3.Visible = false;
         }
         #endregion
 
@@ -210,10 +226,14 @@ namespace RMS.Report
 
                 if (tRecord != null)
                 {
+                    DateTime period_beg_dt, period_end_dt;
+                    if (rdpBeginDt.SelectedDate == null) period_beg_dt = Convert.ToDateTime(String.Format("10/01/{0}", DateTime.Now.Year - 1)); else period_beg_dt = Convert.ToDateTime(rdpBeginDt.SelectedDate);
+                    if (rdpEndDt.SelectedDate == null) period_end_dt = DateTime.Now; else period_end_dt = Convert.ToDateTime(rdpEndDt.SelectedDate);
+
                     List<AnalysisNotesItem> lani = new List<AnalysisNotesItem>();
                     //Grab all analysis periods within this timespan
                     var periods = tRecord.RecordAnalysisPeriods
-                        .Where(p => p.period_end_dt >= rdpBeginDt.SelectedDate && p.period_beg_dt <= rdpEndDt.SelectedDate)
+                        .Where(p => p.period_end_dt >= period_beg_dt && p.period_beg_dt <= period_end_dt)
                         .OrderByDescending(p => p.period_beg_dt).ToList();
 
                     foreach (var period in periods)
@@ -240,6 +260,56 @@ namespace RMS.Report
         #endregion
 
         #region ChangeLogs
+        protected void dlOuterChangeLogs_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item)
+            {
+                DataList dlInnerChangeLogs = e.Item.FindControl("dlInnerChangeLogs") as DataList;
+                HiddenField hfRecordID = e.Item.FindControl("hfRecordID") as HiddenField;
+
+                //Make sure a record is found from the current row's rms_record_id
+                var tRecord = db.Records.FirstOrDefault(p => p.rms_record_id.ToString() == hfRecordID.Value.ToString());
+
+                if (tRecord != null)
+                {
+                    DateTime period_beg_dt, period_end_dt;
+                    if (rdpBeginDt.SelectedDate == null) period_beg_dt = Convert.ToDateTime(String.Format("10/01/{0}", DateTime.Now.Year - 1)); else period_beg_dt = Convert.ToDateTime(rdpBeginDt.SelectedDate);
+                    if (rdpEndDt.SelectedDate == null) period_end_dt = DateTime.Now; else period_end_dt = Convert.ToDateTime(rdpEndDt.SelectedDate);
+
+                    //Grab all analysis periods within this timespan
+                    var periods = tRecord.RecordAnalysisPeriods
+                        .Where(p => p.period_end_dt >= period_beg_dt && p.period_beg_dt <= period_end_dt)
+                        .Select(p => new { period_id = p.period_id, timespan = String.Format("{0:MM/dd/yyyy} to {1:MM/dd/yyyy}", p.period_beg_dt, p.period_end_dt), period_beg_dt = p.period_beg_dt })
+                        .OrderByDescending(p => p.period_beg_dt).ToList();
+
+                    dlInnerChangeLogs.DataSource = periods;
+                    dlInnerChangeLogs.DataBind();
+                }
+            }
+        }
+
+        protected void dlInnerChangeLogs_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item)
+            {
+                DataGrid dgChangeLog = e.Item.FindControl("dgChangeLog") as DataGrid;
+                HiddenField hfPeriodID = e.Item.FindControl("hfPeriodID") as HiddenField;
+
+                //Make sure a period is found from the current row's period_id
+                var currPeriod = db.RecordAnalysisPeriods.FirstOrDefault(p => p.period_id == Convert.ToInt32(hfPeriodID.Value));
+
+                if (currPeriod != null)
+                {
+                    dgChangeLog.DataSource = currPeriod.PeriodChangeLogs.Select(p => new Data.PeriodChangeLog
+                    {
+                        edited_dt = p.edited_dt,
+                        edited_by_uid = p.edited_by_uid,
+                        new_va = p.new_va.FormatParagraphOut()
+                    }).OrderByDescending(p => p.edited_dt).ToList();
+                    dgChangeLog.DataBind();
+                }
+            }
+        }
         #endregion
 
         #region Dialogs
@@ -255,10 +325,13 @@ namespace RMS.Report
 
                 if (tRecord != null)
                 {
-                    List<AnalysisNotesItem> lani = new List<AnalysisNotesItem>();
+                    DateTime period_beg_dt, period_end_dt;
+                    if (rdpBeginDt.SelectedDate == null) period_beg_dt = Convert.ToDateTime(String.Format("10/01/{0}", DateTime.Now.Year - 1)); else period_beg_dt = Convert.ToDateTime(rdpBeginDt.SelectedDate);
+                    if (rdpEndDt.SelectedDate == null) period_end_dt = DateTime.Now; else period_end_dt = Convert.ToDateTime(rdpEndDt.SelectedDate);
+
                     //Grab all analysis periods within this timespan
                     var periods = tRecord.RecordAnalysisPeriods
-                        .Where(p => p.period_end_dt >= rdpBeginDt.SelectedDate && p.period_beg_dt <= rdpEndDt.SelectedDate)
+                        .Where(p => p.period_end_dt >= period_beg_dt && p.period_beg_dt <= period_end_dt)
                         .Select(p => new { period_id = p.period_id, timespan = String.Format("{0:MM/dd/yyyy} to {1:MM/dd/yyyy}", p.period_beg_dt, p.period_end_dt), period_beg_dt = p.period_beg_dt })
                         .OrderByDescending(p => p.period_beg_dt).ToList();
 
