@@ -865,11 +865,32 @@ namespace Data
 			return ((ISingleResult<RecordProcessDataItem>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_TOTALS_Current_by_region_or_WSC")]
-		public ISingleResult<SP_TOTALS_Current_by_region_or_WSCResult> SP_TOTALS_Current_by_region_or_WSC([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string region_cd, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> wsc_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> querydate)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RMS_Progress_Report_by_region_or_WSC")]
+		public ISingleResult<SP_RMS_Progress_Report_by_region_or_WSCResult> SP_RMS_Progress_Report_by_region_or_WSC([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string region_cd, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> wsc_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> querydate, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] System.Nullable<bool> ts, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(3)")] string use_ts)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), region_cd, wsc_id, querydate);
-			return ((ISingleResult<SP_TOTALS_Current_by_region_or_WSCResult>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), region_cd, wsc_id, querydate, ts, use_ts);
+			return ((ISingleResult<SP_RMS_Progress_Report_by_region_or_WSCResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RMS_Progress_Report_by_office_id")]
+		public ISingleResult<SP_RMS_Progress_Report_by_office_idResult> SP_RMS_Progress_Report_by_office_id([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> office_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> querydate, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Bit")] System.Nullable<bool> ts, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(3)")] string use_ts)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), office_id, querydate, ts, use_ts);
+			return ((ISingleResult<SP_RMS_Progress_Report_by_office_idResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RMS_Progress_Counts_for_analyzer")]
+		public ISingleResult<SP_RMS_Progress_Counts_for_analyzerResult> SP_RMS_Progress_Counts_for_analyzer([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(20)")] string user_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> querydate, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(10)")] string report_type)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), user_id, querydate, report_type);
+			return ((ISingleResult<SP_RMS_Progress_Counts_for_analyzerResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RMS_Progress_Counts_for_approver")]
+		public ISingleResult<SP_RMS_Progress_Counts_for_approverResult> SP_RMS_Progress_Counts_for_approver([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(20)")] string user_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> querydate, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(10)")] string report_type)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), user_id, querydate, report_type);
+			return ((ISingleResult<SP_RMS_Progress_Counts_for_approverResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -22709,7 +22730,7 @@ namespace Data
 		}
 	}
 	
-	public partial class SP_TOTALS_Current_by_region_or_WSCResult
+	public partial class SP_RMS_Progress_Report_by_region_or_WSCResult
 	{
 		
 		private System.Nullable<int> _TotalSites;
@@ -22718,7 +22739,7 @@ namespace Data
 		
 		private System.Nullable<int> _Approved;
 		
-		public SP_TOTALS_Current_by_region_or_WSCResult()
+		public SP_RMS_Progress_Report_by_region_or_WSCResult()
 		{
 		}
 		
@@ -22766,6 +22787,192 @@ namespace Data
 				if ((this._Approved != value))
 				{
 					this._Approved = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_RMS_Progress_Report_by_office_idResult
+	{
+		
+		private System.Nullable<int> _TotalSites;
+		
+		private System.Nullable<int> _Analyzed;
+		
+		private System.Nullable<int> _Approved;
+		
+		public SP_RMS_Progress_Report_by_office_idResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalSites", DbType="Int")]
+		public System.Nullable<int> TotalSites
+		{
+			get
+			{
+				return this._TotalSites;
+			}
+			set
+			{
+				if ((this._TotalSites != value))
+				{
+					this._TotalSites = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Analyzed", DbType="Int")]
+		public System.Nullable<int> Analyzed
+		{
+			get
+			{
+				return this._Analyzed;
+			}
+			set
+			{
+				if ((this._Analyzed != value))
+				{
+					this._Analyzed = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Approved", DbType="Int")]
+		public System.Nullable<int> Approved
+		{
+			get
+			{
+				return this._Approved;
+			}
+			set
+			{
+				if ((this._Approved != value))
+				{
+					this._Approved = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_RMS_Progress_Counts_for_analyzerResult
+	{
+		
+		private System.Nullable<int> _total_sites;
+		
+		private System.Nullable<int> _analyzed;
+		
+		private System.Nullable<int> _approved;
+		
+		public SP_RMS_Progress_Counts_for_analyzerResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_sites", DbType="Int")]
+		public System.Nullable<int> total_sites
+		{
+			get
+			{
+				return this._total_sites;
+			}
+			set
+			{
+				if ((this._total_sites != value))
+				{
+					this._total_sites = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_analyzed", DbType="Int")]
+		public System.Nullable<int> analyzed
+		{
+			get
+			{
+				return this._analyzed;
+			}
+			set
+			{
+				if ((this._analyzed != value))
+				{
+					this._analyzed = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved", DbType="Int")]
+		public System.Nullable<int> approved
+		{
+			get
+			{
+				return this._approved;
+			}
+			set
+			{
+				if ((this._approved != value))
+				{
+					this._approved = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_RMS_Progress_Counts_for_approverResult
+	{
+		
+		private System.Nullable<int> _total_sites;
+		
+		private System.Nullable<int> _analyzed;
+		
+		private System.Nullable<int> _approved;
+		
+		public SP_RMS_Progress_Counts_for_approverResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_sites", DbType="Int")]
+		public System.Nullable<int> total_sites
+		{
+			get
+			{
+				return this._total_sites;
+			}
+			set
+			{
+				if ((this._total_sites != value))
+				{
+					this._total_sites = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_analyzed", DbType="Int")]
+		public System.Nullable<int> analyzed
+		{
+			get
+			{
+				return this._analyzed;
+			}
+			set
+			{
+				if ((this._analyzed != value))
+				{
+					this._analyzed = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved", DbType="Int")]
+		public System.Nullable<int> approved
+		{
+			get
+			{
+				return this._approved;
+			}
+			set
+			{
+				if ((this._approved != value))
+				{
+					this._approved = value;
 				}
 			}
 		}

@@ -110,5 +110,32 @@ namespace RMS.Report {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadHtmlChart rhcTSRecords;
+        
+        /// <summary>
+        /// ltlNTSRecordsTR control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlNTSRecordsTR;
+        
+        /// <summary>
+        /// rhcNTSRecords control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadHtmlChart rhcNTSRecords;
+        
+        /// <summary>
+        /// rgEmployees control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid rgEmployees;
     }
 }

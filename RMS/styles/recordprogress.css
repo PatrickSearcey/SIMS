@@ -218,15 +218,17 @@ label {
     font-size: 11pt;
     font-weight:bold;
 }
-
-.AllRecords h3 {
+.Charts {
+    width: 100%;
+}
+.Charts h3 {
     border-bottom:1px solid #c2bebd;
     color: #b84626;    
     font-size:13pt;
     font-weight:bold;
     margin: 0 7px 0 7px;
 }
-.AllRecords {
+.Charts div {
     text-align:center;
     width: 400px;
     background: #f7f4f0;
