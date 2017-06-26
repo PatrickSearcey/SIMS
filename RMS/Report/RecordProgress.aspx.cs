@@ -73,8 +73,8 @@ namespace RMS.Report
 
             if (!Page.IsPostBack)
             {
-                //If an office_id was not passed to the report, then this will cause the report to show all offices' personnel initially
-                if (string.IsNullOrEmpty(office_id)) reportOfficeID = 0;
+                //On initial load, narrow down the view to the responsible office
+                reportOfficeID = OfficeID;
                 InitialDataBind();
             }
         }
@@ -88,15 +88,23 @@ namespace RMS.Report
             rddlOffice.DataSource = db.Offices.Where(p => p.wsc_id == WSCID).OrderBy(p => p.office_nm).ToList();
             rddlOffice.DataBind();
             rddlOffice.Items.Insert(0, "All Offices");
+            rddlOffice.SelectedValue = reportOfficeID.ToString();
 
             if (rdpEndDt.SelectedDate == null) rdpEndDt.SelectedDate = DateTime.Now.AddDays(-90);
 
+            if (reportOfficeID == 0) BindChartsByWSC();
+            else BindChartsByOffice();
+        }
+
+        protected void BindChartsByWSC()
+        {
             //For the All Records Chart
             var allRecs = db.SP_RMS_Progress_Report_by_region_or_WSC("NADA", WSCID, rdpEndDt.SelectedDate, false, "no")
-                .Select(p => new { 
-                    TotalSites = p.TotalSites, 
-                    Analyzed = p.Analyzed, 
-                    Approved = p.Approved, 
+                .Select(p => new
+                {
+                    TotalSites = p.TotalSites,
+                    Analyzed = p.Analyzed,
+                    Approved = p.Approved,
                     AnalyzedPercent = Decimal.Divide((decimal)p.Analyzed, (decimal)p.TotalSites) * 100,
                     ApprovedPercent = Decimal.Divide((decimal)p.Approved, (decimal)p.TotalSites) * 100,
                     AnalyzedPercentString = String.Format("{0:###.##}%", Decimal.Divide((decimal)p.Analyzed, (decimal)p.TotalSites) * 100),
@@ -104,7 +112,7 @@ namespace RMS.Report
                 });
 
             ltlAllRecordsTR.Text = "Total Records = " + db.SP_RMS_Progress_Report_by_region_or_WSC("NADA", WSCID, rdpEndDt.SelectedDate, false, "no").FirstOrDefault().TotalSites.ToString();
-            
+
             rhcAllRecords.DataSource = allRecs;
             rhcAllRecords.DataBind();
 
@@ -147,8 +155,6 @@ namespace RMS.Report
 
         protected void BindChartsByOffice()
         {
-            if (rdpEndDt.SelectedDate == null) rdpEndDt.SelectedDate = DateTime.Now.AddDays(-240);
-
             //For the All Records Chart
             var allRecs = db.SP_RMS_Progress_Report_by_office_id(reportOfficeID, rdpEndDt.SelectedDate, false, "no")
                 .Select(p => new
@@ -280,23 +286,61 @@ namespace RMS.Report
         }
         #endregion
 
+        #region rgRecordTypes
+        protected void rgRecordTypes_NeedDataSource(object source, GridNeedDataSourceEventArgs e)
+        {
+            rgRecordTypes.DataSource = db.RecordTypes.Where(p => p.wsc_id == WSCID).Select(p => new { record_type_id = p.record_type_id, RecordType = p.type_ds + " (" + p.type_cd + ")", type_ds = p.type_ds }).OrderBy(p => p.type_ds);
+        }
+
+        protected void rgRecordTypes_ItemDataBound(object sender, GridItemEventArgs e)
+        {
+            if (e.Item.ItemType == GridItemType.Item || e.Item.ItemType == GridItemType.AlternatingItem)
+            {
+                GridDataItem item = e.Item as GridDataItem;
+                RadHtmlChart progressChart = item["ProgressChartColumn"].FindControl("rhcProgress") as RadHtmlChart;
+                int record_type_id = Convert.ToInt32(item.GetDataKeyValue("record_type_id"));
+
+                RecordProgressItem rpi = new RecordProgressItem();
+                var countsByRecordType = db.SP_RMS_Progress_Counts_by_recordtype(record_type_id, reportOfficeID, rdpEndDt.SelectedDate).FirstOrDefault();
+
+                //Progress Chart Data
+                rpi.TotalRecordsToAnalyze = (int)countsByRecordType.total_sites;
+                rpi.TotalRecordsToApprove = (int)countsByRecordType.total_sites;
+                rpi.Analyzed = (int)countsByRecordType.analyzed;
+                rpi.Approved = (int)countsByRecordType.approved;
+                rpi.PercentAnalyzed = rpi.TotalRecordsToAnalyze > 0 ? Decimal.Divide((decimal)rpi.Analyzed, (decimal)rpi.TotalRecordsToAnalyze) * 100 : 0;
+                rpi.PercentApproved = rpi.TotalRecordsToApprove > 0 ? Decimal.Divide((decimal)rpi.Approved, (decimal)rpi.TotalRecordsToApprove) * 100 : 0;
+                rpi.PercentAnalyzedString = rpi.TotalRecordsToAnalyze > 0 ? String.Format("{0:###.##}%", Decimal.Divide((decimal)rpi.Analyzed, (decimal)rpi.TotalRecordsToAnalyze) * 100) : "0%";
+                rpi.PercentApprovedString = rpi.TotalRecordsToApprove > 0 ? String.Format("{0:###.##}%", Decimal.Divide((decimal)rpi.Approved, (decimal)rpi.TotalRecordsToApprove) * 100) : "0%";
+
+                List<RecordProgressItem> chartData = new List<RecordProgressItem>();
+                chartData.Add(rpi);
+
+                progressChart.DataSource = chartData;
+                progressChart.DataBind();
+            }
+        }
+        #endregion
+
         protected void UpdateDetails(object sender, CommandEventArgs e)
         {
-            if (rddlOffice.SelectedIndex == 0)
-            {
-                InitialDataBind();
-            }
-            else
-            {
-                reportOfficeID = Convert.ToInt32(rddlOffice.SelectedValue);
-                BindChartsByOffice();
-                rgEmployees.Rebind();
-            }
+            reportOfficeID = Convert.ToInt32(rddlOffice.SelectedValue);
+            InitialDataBind();
+            rgEmployees.Rebind();
+            rgRecordTypes.Rebind();
         }
 
         #region Internal Classes
         internal class RecordProgressItem
         {
+            private int _totalRecordsToAnalyze;
+            private int _totalRecordsToApprove;
+            private int _analyzed;
+            private int _approved;
+            private decimal _percentAnalyzed;
+            private decimal _percentApproved;
+            private string _percentAnalyzedString;
+            private string _percentApprovedString;
             private int _totalRecordsAssignedToAnalyze;
             private int _totalRecordsAssignedToApprove;
             private int _totalActuallyAnalyzed;
@@ -324,6 +368,46 @@ namespace RMS.Report
             private string _percentRecordsAssignedToApproveAnalyzedString;
             private string _percentRecordsAssignedToApproveApprovedString;
 
+            public int TotalRecordsToAnalyze
+            {
+                get { return _totalRecordsToAnalyze; }
+                set { _totalRecordsToAnalyze = value; }
+            }
+            public int TotalRecordsToApprove
+            {
+                get { return _totalRecordsToApprove; }
+                set { _totalRecordsToApprove = value; }
+            }
+            public int Analyzed
+            {
+                get { return _analyzed; }
+                set { _analyzed = value; }
+            }
+            public int Approved
+            {
+                get { return _approved; }
+                set { _approved = value; }
+            }
+            public decimal PercentAnalyzed
+            {
+                get { return _percentAnalyzed; }
+                set { _percentAnalyzed = value; }
+            }
+            public decimal PercentApproved
+            {
+                get { return _percentApproved; }
+                set { _percentApproved = value; }
+            }
+            public string PercentAnalyzedString
+            {
+                get { return _percentAnalyzedString; }
+                set { _percentAnalyzedString = value; }
+            }
+            public string PercentApprovedString
+            {
+                get { return _percentApprovedString; }
+                set { _percentApprovedString = value; }
+            }
             public int TotalRecordsAssignedToAnalyze
             {
                 get { return _totalRecordsAssignedToAnalyze; }

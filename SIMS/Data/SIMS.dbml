@@ -1303,4 +1303,15 @@
       <Column Name="approved" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.SP_RMS_Progress_Counts_by_recordtype" Method="SP_RMS_Progress_Counts_by_recordtype">
+    <Parameter Name="record_type_id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="office_id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="querydate" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="SP_RMS_Progress_Counts_by_recordtypeResult">
+      <Column Name="type_ds" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="total_sites" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="analyzed" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="approved" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

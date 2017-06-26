@@ -892,6 +892,13 @@ namespace Data
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), user_id, querydate, report_type);
 			return ((ISingleResult<SP_RMS_Progress_Counts_for_approverResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RMS_Progress_Counts_by_recordtype")]
+		public ISingleResult<SP_RMS_Progress_Counts_by_recordtypeResult> SP_RMS_Progress_Counts_by_recordtype([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> record_type_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> office_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> querydate)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), record_type_id, office_id, querydate);
+			return ((ISingleResult<SP_RMS_Progress_Counts_by_recordtypeResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.lut_Office")]
@@ -22927,6 +22934,86 @@ namespace Data
 		
 		public SP_RMS_Progress_Counts_for_approverResult()
 		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_sites", DbType="Int")]
+		public System.Nullable<int> total_sites
+		{
+			get
+			{
+				return this._total_sites;
+			}
+			set
+			{
+				if ((this._total_sites != value))
+				{
+					this._total_sites = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_analyzed", DbType="Int")]
+		public System.Nullable<int> analyzed
+		{
+			get
+			{
+				return this._analyzed;
+			}
+			set
+			{
+				if ((this._analyzed != value))
+				{
+					this._analyzed = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved", DbType="Int")]
+		public System.Nullable<int> approved
+		{
+			get
+			{
+				return this._approved;
+			}
+			set
+			{
+				if ((this._approved != value))
+				{
+					this._approved = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_RMS_Progress_Counts_by_recordtypeResult
+	{
+		
+		private string _type_ds;
+		
+		private System.Nullable<int> _total_sites;
+		
+		private System.Nullable<int> _analyzed;
+		
+		private System.Nullable<int> _approved;
+		
+		public SP_RMS_Progress_Counts_by_recordtypeResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_ds", DbType="NVarChar(MAX)")]
+		public string type_ds
+		{
+			get
+			{
+				return this._type_ds;
+			}
+			set
+			{
+				if ((this._type_ds != value))
+				{
+					this._type_ds = value;
+				}
+			}
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_sites", DbType="Int")]

@@ -130,6 +130,33 @@ namespace RMS.Report {
         protected global::Telerik.Web.UI.RadHtmlChart rhcNTSRecords;
         
         /// <summary>
+        /// rts1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadTabStrip rts1;
+        
+        /// <summary>
+        /// rmp1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadMultiPage rmp1;
+        
+        /// <summary>
+        /// rpv0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPageView rpv0;
+        
+        /// <summary>
         /// rgEmployees control.
         /// </summary>
         /// <remarks>
@@ -137,5 +164,23 @@ namespace RMS.Report {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadGrid rgEmployees;
+        
+        /// <summary>
+        /// rpv1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPageView rpv1;
+        
+        /// <summary>
+        /// rgRecordTypes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid rgRecordTypes;
     }
 }

@@ -16,6 +16,7 @@
                     <telerik:AjaxUpdatedControl ControlID="ltlTSRecordsTR" />
                     <telerik:AjaxUpdatedControl ControlID="ltlNTSRecordsTR" />
                     <telerik:AjaxUpdatedControl ControlID="rgEmployees" LoadingPanelID="ralp" />
+                    <telerik:AjaxUpdatedControl ControlID="rgRecordTypes" LoadingPanelID="ralp" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
         </AjaxSettings>
@@ -212,228 +213,302 @@
                 </td>
             </tr>
         </table>
-        <h2>Breakdown By Technician</h2>
-        <telerik:RadGrid RenderMode="Lightweight" ID="rgEmployees" runat="server" GridLines="None" Skin="Bootstrap" OnNeedDataSource="rgEmployees_NeedDataSource"
-            OnItemDataBound="rgEmployees_ItemDataBound" AllowPaging="False" PageSize="10" AllowSorting="True">
-            <MasterTableView AutoGenerateColumns="False" DataKeyNames="user_id">
-                <Columns>
-                    <telerik:GridBoundColumn DataField="user_id" HeaderText="Technician" SortExpression="user_id" UniqueName="user_id" />
-                    <telerik:GridBoundColumn DataField="office_cd" HeaderText="Office Code" SortExpression="office_cd" UniqueName="office_cd" />
-                    <telerik:GridTemplateColumn DataField="user_id" UniqueName="TotalProgressChartColumn" HeaderText="Total Progress on Tasks">
-                        <ItemTemplate>
-                            <div style="width: 300px; height: 170px;">
-                                <telerik:RadHtmlChart ID="rhcTotalProgress" runat="server" Width="300" Height="170" Skin="Bootstrap">
-                                    <Legend>
-                                        <Appearance BackgroundColor="Transparent" Position="Bottom"></Appearance>
-                                    </Legend>
-                                    <ChartTitle>
-                                        <Appearance Visible="false"></Appearance>
-                                    </ChartTitle>
-                                    <PlotArea>
-                                        <Series>
-                                            <telerik:BarSeries Name="Analyzing" Stacked="false" Gap="1.5" Spacing="0.4" DataFieldY="PercentActuallyAnalyzed">
+        <hr />
+
+        <telerik:RadTabStrip runat="server" ID="rts1" Orientation="HorizontalTop" SelectedIndex="0" MultiPageID="rmp1" Skin="Bootstrap">
+            <Tabs>
+                <telerik:RadTab Text="Breakdown By Technician" SelectedCssClass="selectedTab" SelectedIndex="0" />
+                <telerik:RadTab Text="Breakdown By Record-Type" SelectedCssClass="selectedTab" />
+            </Tabs>
+        </telerik:RadTabStrip><telerik:RadMultiPage ID="rmp1" runat="server" SelectedIndex="0" Width="100%" CssClass="multiPage">
+            <telerik:RadPageView runat="server" ID="rpv0">
+                <telerik:RadGrid RenderMode="Lightweight" ID="rgEmployees" runat="server" GridLines="None" Skin="Bootstrap" OnNeedDataSource="rgEmployees_NeedDataSource"
+                    OnItemDataBound="rgEmployees_ItemDataBound" AllowPaging="False" PageSize="10" AllowSorting="True">
+                    <MasterTableView AutoGenerateColumns="False" DataKeyNames="user_id">
+                        <Columns>
+                            <telerik:GridBoundColumn DataField="user_id" HeaderText="Technician" SortExpression="user_id" UniqueName="user_id" />
+                            <telerik:GridBoundColumn DataField="office_cd" HeaderText="Office Code" SortExpression="office_cd" UniqueName="office_cd" />
+                            <telerik:GridTemplateColumn DataField="user_id" UniqueName="TotalProgressChartColumn" HeaderText="Total Progress on Tasks">
+                                <ItemTemplate>
+                                    <div style="width: 300px; height: 170px;">
+                                        <telerik:RadHtmlChart ID="rhcTotalProgress" runat="server" Width="300" Height="170" Skin="Bootstrap">
+                                            <Legend>
+                                                <Appearance BackgroundColor="Transparent" Position="Bottom"></Appearance>
+                                            </Legend>
+                                            <ChartTitle>
+                                                <Appearance Visible="false"></Appearance>
+                                            </ChartTitle>
+                                            <PlotArea>
+                                                <Series>
+                                                    <telerik:BarSeries Name="Analyzing" Stacked="false" Gap="1.5" Spacing="0.4" DataFieldY="PercentActuallyAnalyzed">
+                                                        <Appearance>
+                                                            <FillStyle BackgroundColor="#c5d291"></FillStyle>
+                                                        </Appearance>
+                                                        <LabelsAppearance Visible="false"></LabelsAppearance>
+                                                        <TooltipsAppearance BackgroundColor="#b84626" Color="White">
+                                                            <ClientTemplate>
+                                                                #=dataItem.PercentActuallyAnalyzedString# | This field tech is the assigned analyzer for #=dataItem.TotalRecordsAssignedToAnalyze# records; They have actually analyzed a total of #=dataItem.TotalActuallyAnalyzed# records.
+                                                            </ClientTemplate>
+                                                        </TooltipsAppearance>
+                                                    </telerik:BarSeries>
+                                                    <telerik:BarSeries Name="Approved" Stacked="false" Gap="1.5" Spacing="0.4" DataFieldY="PercentActuallyApproved">
+                                                        <Appearance>
+                                                            <FillStyle BackgroundColor="#5cb8e3"></FillStyle>
+                                                        </Appearance>
+                                                        <LabelsAppearance Visible="False"></LabelsAppearance>
+                                                        <TooltipsAppearance BackgroundColor="#b84626" Color="White">
+                                                            <ClientTemplate>
+                                                                #=dataItem.PercentActuallyApprovedString# | This field tech is the assigned approver for #=dataItem.TotalRecordsAssignedToApprove# records; They have actually approved a total of #=dataItem.TotalActuallyApproved# records.
+                                                            </ClientTemplate>
+                                                        </TooltipsAppearance>
+                                                    </telerik:BarSeries>
+                                                </Series>
                                                 <Appearance>
-                                                    <FillStyle BackgroundColor="#c5d291"></FillStyle>
+                                                    <FillStyle BackgroundColor="Transparent"></FillStyle>
                                                 </Appearance>
-                                                <LabelsAppearance Visible="false"></LabelsAppearance>
-                                                <TooltipsAppearance BackgroundColor="#b84626" Color="White">
-                                                    <ClientTemplate>
-                                                        #=dataItem.PercentActuallyAnalyzedString# | This field tech is the assigned analyzer for #=dataItem.TotalRecordsAssignedToAnalyze# records; They have actually analyzed a total of #=dataItem.TotalActuallyAnalyzed# records.
-                                                    </ClientTemplate>
-                                                </TooltipsAppearance>
-                                            </telerik:BarSeries>
-                                            <telerik:BarSeries Name="Approved" Stacked="false" Gap="1.5" Spacing="0.4" DataFieldY="PercentActuallyApproved">
+                                                <XAxis AxisCrossingValue="0" Color="black" MajorTickType="Outside" MinorTickType="Outside"
+                                                    Reversed="false">
+                                                    <LabelsAppearance DataFormatString="{0}" RotationAngle="0" Skip="0" Step="1"></LabelsAppearance>
+                                                    <TitleAppearance Position="Center" RotationAngle="0" Text="Status"></TitleAppearance>
+                                                </XAxis>
+                                                <YAxis AxisCrossingValue="0" Color="black" MajorTickSize="1" MajorTickType="Outside" MaxValue="100" MinValue="0"
+                                                    MinorTickType="None" Reversed="false">
+                                                    <LabelsAppearance DataFormatString="{0}%" RotationAngle="0" Skip="0" Step="1"></LabelsAppearance>
+                                                    <TitleAppearance Position="Center" RotationAngle="0" Text="Progress Percentage"></TitleAppearance>
+                                                </YAxis>
+                                            </PlotArea>
+                                        </telerik:RadHtmlChart>
+                                    </div>
+                                </ItemTemplate>
+                            </telerik:GridTemplateColumn>
+                            <telerik:GridTemplateColumn DataField="user_id" UniqueName="AssignedProgressChartColumn" HeaderText="Progress on Assigned Tasks">
+                                <ItemTemplate>
+                                    <div style="width: 300px; height: 170px;">
+                                        <telerik:RadHtmlChart ID="rhcAssignedProgress" runat="server" Width="300" Height="170" Skin="Bootstrap">
+                                            <Legend>
+                                                <Appearance BackgroundColor="Transparent" Position="Bottom"></Appearance>
+                                            </Legend>
+                                            <ChartTitle>
+                                                <Appearance Visible="false"></Appearance>
+                                            </ChartTitle>
+                                            <PlotArea>
+                                                <Series>
+                                                    <telerik:BarSeries Name="Analyzing" Stacked="false" Gap="1.5" Spacing="0.4" DataFieldY="PercentAssignedAnalyzed">
+                                                        <Appearance>
+                                                            <FillStyle BackgroundColor="#c5d291"></FillStyle>
+                                                        </Appearance>
+                                                        <LabelsAppearance Visible="false"></LabelsAppearance>
+                                                        <TooltipsAppearance BackgroundColor="#b84626" Color="White">
+                                                            <ClientTemplate>
+                                                                #=dataItem.PercentAssignedAnalyzedString# | Of the #=dataItem.TotalRecordsAssignedToAnalyze# records for which this field tech is the assigned analyzer, #=dataItem.TotalAssignedAnalyzed# have been analyzed. 
+                                                            </ClientTemplate>
+                                                        </TooltipsAppearance>
+                                                    </telerik:BarSeries>
+                                                    <telerik:BarSeries Name="Approving" Stacked="false" Gap="1.5" Spacing="0.4" DataFieldY="PercentAssignedApproved">
+                                                        <Appearance>
+                                                            <FillStyle BackgroundColor="#5cb8e3"></FillStyle>
+                                                        </Appearance>
+                                                        <LabelsAppearance Visible="False"></LabelsAppearance>
+                                                        <TooltipsAppearance BackgroundColor="#b84626" Color="White">
+                                                            <ClientTemplate>
+                                                                #=dataItem.PercentAssignedApprovedString# | Of the #=dataItem.TotalRecordsAssignedToApprove# records for which this field tech is the assigned approver, #=dataItem.TotalAssignedApproved# have been approved.
+                                                            </ClientTemplate>
+                                                        </TooltipsAppearance>
+                                                    </telerik:BarSeries>
+                                                </Series>
                                                 <Appearance>
-                                                    <FillStyle BackgroundColor="#5cb8e3"></FillStyle>
+                                                    <FillStyle BackgroundColor="Transparent"></FillStyle>
                                                 </Appearance>
-                                                <LabelsAppearance Visible="False"></LabelsAppearance>
-                                                <TooltipsAppearance BackgroundColor="#b84626" Color="White">
-                                                    <ClientTemplate>
-                                                        #=dataItem.PercentActuallyApprovedString# | This field tech is the assigned approver for #=dataItem.TotalRecordsAssignedToApprove# records; They have actually approved a total of #=dataItem.TotalActuallyApproved# records.
-                                                    </ClientTemplate>
-                                                </TooltipsAppearance>
-                                            </telerik:BarSeries>
-                                        </Series>
-                                        <Appearance>
-                                            <FillStyle BackgroundColor="Transparent"></FillStyle>
-                                        </Appearance>
-                                        <XAxis AxisCrossingValue="0" Color="black" MajorTickType="Outside" MinorTickType="Outside"
-                                            Reversed="false">
-                                            <LabelsAppearance DataFormatString="{0}" RotationAngle="0" Skip="0" Step="1"></LabelsAppearance>
-                                            <TitleAppearance Position="Center" RotationAngle="0" Text="Status"></TitleAppearance>
-                                        </XAxis>
-                                        <YAxis AxisCrossingValue="0" Color="black" MajorTickSize="1" MajorTickType="Outside" MaxValue="100" MinValue="0"
-                                            MinorTickType="None" Reversed="false">
-                                            <LabelsAppearance DataFormatString="{0}%" RotationAngle="0" Skip="0" Step="1"></LabelsAppearance>
-                                            <TitleAppearance Position="Center" RotationAngle="0" Text="Progress Percentage"></TitleAppearance>
-                                        </YAxis>
-                                    </PlotArea>
-                                </telerik:RadHtmlChart>
-                            </div>
-                        </ItemTemplate>
-                    </telerik:GridTemplateColumn>
-                    <telerik:GridTemplateColumn DataField="user_id" UniqueName="AssignedProgressChartColumn" HeaderText="Progress on Assigned Tasks">
-                        <ItemTemplate>
-                            <div style="width: 300px; height: 170px;">
-                                <telerik:RadHtmlChart ID="rhcAssignedProgress" runat="server" Width="300" Height="170" Skin="Bootstrap">
-                                    <Legend>
-                                        <Appearance BackgroundColor="Transparent" Position="Bottom"></Appearance>
-                                    </Legend>
-                                    <ChartTitle>
-                                        <Appearance Visible="false"></Appearance>
-                                    </ChartTitle>
-                                    <PlotArea>
-                                        <Series>
-                                            <telerik:BarSeries Name="Analyzing" Stacked="false" Gap="1.5" Spacing="0.4" DataFieldY="PercentAssignedAnalyzed">
+                                                <XAxis AxisCrossingValue="0" Color="black" MajorTickType="Outside" MinorTickType="Outside"
+                                                    Reversed="false">
+                                                    <LabelsAppearance DataFormatString="{0}" RotationAngle="0" Skip="0" Step="1"></LabelsAppearance>
+                                                    <TitleAppearance Position="Center" RotationAngle="0" Text="Status"></TitleAppearance>
+                                                </XAxis>
+                                                <YAxis AxisCrossingValue="0" Color="black" MajorTickSize="1" MajorTickType="Outside" MaxValue="100" MinValue="0"
+                                                    MinorTickType="None" Reversed="false">
+                                                    <LabelsAppearance DataFormatString="{0}%" RotationAngle="0" Skip="0" Step="1"></LabelsAppearance>
+                                                    <TitleAppearance Position="Center" RotationAngle="0" Text="Progress Percentage"></TitleAppearance>
+                                                </YAxis>
+                                            </PlotArea>
+                                        </telerik:RadHtmlChart>
+                                    </div>
+                                </ItemTemplate>
+                            </telerik:GridTemplateColumn>
+                            <telerik:GridTemplateColumn DataField="user_id" UniqueName="AssignedForAnalyzingChartColumn" HeaderText="Records Assigned for Analyzing">
+                                <ItemTemplate>
+                                    <div style="width: 300px; height: 170px;">
+                                        <telerik:RadHtmlChart ID="rhcAssignedForAnalyzing" runat="server" Width="300" Height="170" Skin="Bootstrap">
+                                            <Legend>
+                                                <Appearance BackgroundColor="Transparent" Position="Bottom"></Appearance>
+                                            </Legend>
+                                            <ChartTitle>
+                                                <Appearance Visible="false"></Appearance>
+                                            </ChartTitle>
+                                            <PlotArea>
+                                                <Series>
+                                                    <telerik:BarSeries Name="Analyzed" Stacked="false" Gap="1.5" Spacing="0.4" DataFieldY="PercentRecordsAssignedToAnalyzeAnalyzed">
+                                                        <Appearance>
+                                                            <FillStyle BackgroundColor="#c5d291"></FillStyle>
+                                                        </Appearance>
+                                                        <LabelsAppearance Visible="false"></LabelsAppearance>
+                                                        <TooltipsAppearance BackgroundColor="#b84626" Color="White">
+                                                            <ClientTemplate>
+                                                                #=dataItem.PercentRecordsAssignedToAnalyzeAnalyzedString# | #=dataItem.RecordsAssignedToAnalyzeAnalyzed# records have been analyzed out of #=dataItem.TotalRecordsAssignedToAnalyze# records assigned to analyze.
+                                                            </ClientTemplate>
+                                                        </TooltipsAppearance>
+                                                    </telerik:BarSeries>
+                                                    <telerik:BarSeries Name="Approved" Stacked="false" Gap="1.5" Spacing="0.4" DataFieldY="PercentRecordsAssignedToAnalyzeApproved">
+                                                        <Appearance>
+                                                            <FillStyle BackgroundColor="#5cb8e3"></FillStyle>
+                                                        </Appearance>
+                                                        <LabelsAppearance Visible="False"></LabelsAppearance>
+                                                        <TooltipsAppearance BackgroundColor="#b84626" Color="White">
+                                                            <ClientTemplate>
+                                                                #=dataItem.PercentRecordsAssignedToAnalyzeApprovedString# | #=dataItem.RecordsAssignedToAnalyzeApproved# records have been approved out of #=dataItem.TotalRecordsAssignedToAnalyze# records assigned to analyze.
+                                                            </ClientTemplate>
+                                                        </TooltipsAppearance>
+                                                    </telerik:BarSeries>
+                                                </Series>
                                                 <Appearance>
-                                                    <FillStyle BackgroundColor="#c5d291"></FillStyle>
+                                                    <FillStyle BackgroundColor="Transparent"></FillStyle>
                                                 </Appearance>
-                                                <LabelsAppearance Visible="false"></LabelsAppearance>
-                                                <TooltipsAppearance BackgroundColor="#b84626" Color="White">
-                                                    <ClientTemplate>
-                                                        #=dataItem.PercentAssignedAnalyzedString# | Of the #=dataItem.TotalRecordsAssignedToAnalyze# records for which this field tech is the assigned analyzer, #=dataItem.TotalAssignedAnalyzed# have been analyzed. 
-                                                    </ClientTemplate>
-                                                </TooltipsAppearance>
-                                            </telerik:BarSeries>
-                                            <telerik:BarSeries Name="Approving" Stacked="false" Gap="1.5" Spacing="0.4" DataFieldY="PercentAssignedApproved">
+                                                <XAxis AxisCrossingValue="0" Color="black" MajorTickType="Outside" MinorTickType="Outside"
+                                                    Reversed="false">
+                                                    <LabelsAppearance DataFormatString="{0}" RotationAngle="0" Skip="0" Step="1"></LabelsAppearance>
+                                                    <TitleAppearance Position="Center" RotationAngle="0" Text="Status"></TitleAppearance>
+                                                </XAxis>
+                                                <YAxis AxisCrossingValue="0" Color="black" MajorTickSize="1" MajorTickType="Outside" MaxValue="100" MinValue="0"
+                                                    MinorTickType="None" Reversed="false">
+                                                    <LabelsAppearance DataFormatString="{0}%" RotationAngle="0" Skip="0" Step="1"></LabelsAppearance>
+                                                    <TitleAppearance Position="Center" RotationAngle="0" Text="Progress Percentage"></TitleAppearance>
+                                                </YAxis>
+                                            </PlotArea>
+                                        </telerik:RadHtmlChart>
+                                    </div>
+                                </ItemTemplate>
+                            </telerik:GridTemplateColumn>
+                            <telerik:GridTemplateColumn DataField="user_id" UniqueName="AssignedForApprovingChartColumn" HeaderText="Records Assigned for Approving">
+                                <ItemTemplate>
+                                    <div style="width: 300px; height: 170px;">
+                                        <telerik:RadHtmlChart ID="rhcAssignedForApproving" runat="server" Width="300" Height="170" Skin="Bootstrap">
+                                            <Legend>
+                                                <Appearance BackgroundColor="Transparent" Position="Bottom"></Appearance>
+                                            </Legend>
+                                            <ChartTitle>
+                                                <Appearance Visible="false"></Appearance>
+                                            </ChartTitle>
+                                            <PlotArea>
+                                                <Series>
+                                                    <telerik:BarSeries Name="Analyzed" Stacked="false" Gap="1.5" Spacing="0.4" DataFieldY="PercentRecordsAssignedToApproveAnalyzed">
+                                                        <Appearance>
+                                                            <FillStyle BackgroundColor="#c5d291"></FillStyle>
+                                                        </Appearance>
+                                                        <LabelsAppearance Visible="false"></LabelsAppearance>
+                                                        <TooltipsAppearance BackgroundColor="#b84626" Color="White">
+                                                            <ClientTemplate>
+                                                                #=dataItem.PercentRecordsAssignedToApproveAnalyzedString# | #=dataItem.RecordsAssignedToApproveAnalyzed# records have been analyzed out of #=dataItem.TotalRecordsAssignedToApprove# records assigned to approve.
+                                                            </ClientTemplate>
+                                                        </TooltipsAppearance>
+                                                    </telerik:BarSeries>
+                                                    <telerik:BarSeries Name="Approved" Stacked="false" Gap="1.5" Spacing="0.4" DataFieldY="PercentRecordsAssignedToApproveApproved">
+                                                        <Appearance>
+                                                            <FillStyle BackgroundColor="#5cb8e3"></FillStyle>
+                                                        </Appearance>
+                                                        <LabelsAppearance Visible="False"></LabelsAppearance>
+                                                        <TooltipsAppearance BackgroundColor="#b84626" Color="White">
+                                                            <ClientTemplate>
+                                                                #=dataItem.PercentRecordsAssignedToApproveApprovedString# | #=dataItem.RecordsAssignedToApproveApproved# records have been approved out of #=dataItem.TotalRecordsAssignedToApprove# records assigned to approve.
+                                                            </ClientTemplate>
+                                                        </TooltipsAppearance>
+                                                    </telerik:BarSeries>
+                                                </Series>
                                                 <Appearance>
-                                                    <FillStyle BackgroundColor="#5cb8e3"></FillStyle>
+                                                    <FillStyle BackgroundColor="Transparent"></FillStyle>
                                                 </Appearance>
-                                                <LabelsAppearance Visible="False"></LabelsAppearance>
-                                                <TooltipsAppearance BackgroundColor="#b84626" Color="White">
-                                                    <ClientTemplate>
-                                                        #=dataItem.PercentAssignedApprovedString# | Of the #=dataItem.TotalRecordsAssignedToApprove# records for which this field tech is the assigned approver, #=dataItem.TotalAssignedApproved# have been approved.
-                                                    </ClientTemplate>
-                                                </TooltipsAppearance>
-                                            </telerik:BarSeries>
-                                        </Series>
-                                        <Appearance>
-                                            <FillStyle BackgroundColor="Transparent"></FillStyle>
-                                        </Appearance>
-                                        <XAxis AxisCrossingValue="0" Color="black" MajorTickType="Outside" MinorTickType="Outside"
-                                            Reversed="false">
-                                            <LabelsAppearance DataFormatString="{0}" RotationAngle="0" Skip="0" Step="1"></LabelsAppearance>
-                                            <TitleAppearance Position="Center" RotationAngle="0" Text="Status"></TitleAppearance>
-                                        </XAxis>
-                                        <YAxis AxisCrossingValue="0" Color="black" MajorTickSize="1" MajorTickType="Outside" MaxValue="100" MinValue="0"
-                                            MinorTickType="None" Reversed="false">
-                                            <LabelsAppearance DataFormatString="{0}%" RotationAngle="0" Skip="0" Step="1"></LabelsAppearance>
-                                            <TitleAppearance Position="Center" RotationAngle="0" Text="Progress Percentage"></TitleAppearance>
-                                        </YAxis>
-                                    </PlotArea>
-                                </telerik:RadHtmlChart>
-                            </div>
-                        </ItemTemplate>
-                    </telerik:GridTemplateColumn>
-                    <telerik:GridTemplateColumn DataField="user_id" UniqueName="AssignedForAnalyzingChartColumn" HeaderText="Records Assigned for Analyzing">
-                        <ItemTemplate>
-                            <div style="width: 300px; height: 170px;">
-                                <telerik:RadHtmlChart ID="rhcAssignedForAnalyzing" runat="server" Width="300" Height="170" Skin="Bootstrap">
-                                    <Legend>
-                                        <Appearance BackgroundColor="Transparent" Position="Bottom"></Appearance>
-                                    </Legend>
-                                    <ChartTitle>
-                                        <Appearance Visible="false"></Appearance>
-                                    </ChartTitle>
-                                    <PlotArea>
-                                        <Series>
-                                            <telerik:BarSeries Name="Analyzed" Stacked="false" Gap="1.5" Spacing="0.4" DataFieldY="PercentRecordsAssignedToAnalyzeAnalyzed">
+                                                <XAxis AxisCrossingValue="0" Color="black" MajorTickType="Outside" MinorTickType="Outside"
+                                                    Reversed="false">
+                                                    <LabelsAppearance DataFormatString="{0}" RotationAngle="0" Skip="0" Step="1"></LabelsAppearance>
+                                                    <TitleAppearance Position="Center" RotationAngle="0" Text="Status"></TitleAppearance>
+                                                </XAxis>
+                                                <YAxis AxisCrossingValue="0" Color="black" MajorTickSize="1" MajorTickType="Outside" MaxValue="100" MinValue="0"
+                                                    MinorTickType="None" Reversed="false">
+                                                    <LabelsAppearance DataFormatString="{0}%" RotationAngle="0" Skip="0" Step="1"></LabelsAppearance>
+                                                    <TitleAppearance Position="Center" RotationAngle="0" Text="Progress Percentage"></TitleAppearance>
+                                                </YAxis>
+                                            </PlotArea>
+                                        </telerik:RadHtmlChart>
+                                    </div>
+                                </ItemTemplate>
+                            </telerik:GridTemplateColumn>
+                        </Columns>
+                    </MasterTableView>
+                    <PagerStyle Mode="NextPrevAndNumeric"></PagerStyle>
+                </telerik:RadGrid>
+            </telerik:RadPageView>
+            <telerik:RadPageView runat="server" ID="rpv1">
+                <telerik:RadGrid RenderMode="Lightweight" ID="rgRecordTypes" runat="server" GridLines="None" Skin="Bootstrap" OnNeedDataSource="rgRecordTypes_NeedDataSource"
+                    OnItemDataBound="rgRecordTypes_ItemDataBound" AllowPaging="False" PageSize="10" AllowSorting="True">
+                    <MasterTableView AutoGenerateColumns="False" DataKeyNames="record_type_id">
+                        <Columns>
+                            <telerik:GridBoundColumn DataField="RecordType" HeaderText="Record-Type" SortExpression="type_ds" UniqueName="RecordType" />
+                            <telerik:GridTemplateColumn DataField="record_type_id" UniqueName="ProgressChartColumn" HeaderText="Current Record Progress">
+                                <ItemTemplate>
+                                    <div style="width: 400px; height: 170px;">
+                                        <telerik:RadHtmlChart ID="rhcProgress" runat="server" Width="400" Height="170" Skin="Bootstrap">
+                                            <Legend>
+                                                <Appearance BackgroundColor="Transparent" Position="Bottom"></Appearance>
+                                            </Legend>
+                                            <ChartTitle>
+                                                <Appearance Visible="false"></Appearance>
+                                            </ChartTitle>
+                                            <PlotArea>
+                                                <Series>
+                                                    <telerik:BarSeries Name="Analyzed" Stacked="false" Gap="1.5" Spacing="0.4" DataFieldY="PercentAnalyzed">
+                                                        <Appearance>
+                                                            <FillStyle BackgroundColor="#c5d291"></FillStyle>
+                                                        </Appearance>
+                                                        <LabelsAppearance Visible="false"></LabelsAppearance>
+                                                        <TooltipsAppearance BackgroundColor="#b84626" Color="White">
+                                                            <ClientTemplate>
+                                                                #=dataItem.PercentAnalyzedString# | Actual Number: #=dataItem.Analyzed# 
+                                                            </ClientTemplate>
+                                                        </TooltipsAppearance>
+                                                    </telerik:BarSeries>
+                                                    <telerik:BarSeries Name="Approved" Stacked="false" Gap="1.5" Spacing="0.4" DataFieldY="PercentApproved">
+                                                        <Appearance>
+                                                            <FillStyle BackgroundColor="#5cb8e3"></FillStyle>
+                                                        </Appearance>
+                                                        <LabelsAppearance Visible="False"></LabelsAppearance>
+                                                        <TooltipsAppearance BackgroundColor="#b84626" Color="White">
+                                                            <ClientTemplate>
+                                                                #=dataItem.PercentApprovedString# | Actual Number: #=dataItem.Approved# 
+                                                            </ClientTemplate>
+                                                        </TooltipsAppearance>
+                                                    </telerik:BarSeries>
+                                                </Series>
                                                 <Appearance>
-                                                    <FillStyle BackgroundColor="#c5d291"></FillStyle>
+                                                    <FillStyle BackgroundColor="Transparent"></FillStyle>
                                                 </Appearance>
-                                                <LabelsAppearance Visible="false"></LabelsAppearance>
-                                                <TooltipsAppearance BackgroundColor="#b84626" Color="White">
-                                                    <ClientTemplate>
-                                                        #=dataItem.PercentRecordsAssignedToAnalyzeAnalyzedString# | #=dataItem.RecordsAssignedToAnalyzeAnalyzed# records have been analyzed out of #=dataItem.TotalRecordsAssignedToAnalyze# records assigned to analyze.
-                                                    </ClientTemplate>
-                                                </TooltipsAppearance>
-                                            </telerik:BarSeries>
-                                            <telerik:BarSeries Name="Approved" Stacked="false" Gap="1.5" Spacing="0.4" DataFieldY="PercentRecordsAssignedToAnalyzeApproved">
-                                                <Appearance>
-                                                    <FillStyle BackgroundColor="#5cb8e3"></FillStyle>
-                                                </Appearance>
-                                                <LabelsAppearance Visible="False"></LabelsAppearance>
-                                                <TooltipsAppearance BackgroundColor="#b84626" Color="White">
-                                                    <ClientTemplate>
-                                                        #=dataItem.PercentRecordsAssignedToAnalyzeApprovedString# | #=dataItem.RecordsAssignedToAnalyzeApproved# records have been approved out of #=dataItem.TotalRecordsAssignedToAnalyze# records assigned to analyze.
-                                                    </ClientTemplate>
-                                                </TooltipsAppearance>
-                                            </telerik:BarSeries>
-                                        </Series>
-                                        <Appearance>
-                                            <FillStyle BackgroundColor="Transparent"></FillStyle>
-                                        </Appearance>
-                                        <XAxis AxisCrossingValue="0" Color="black" MajorTickType="Outside" MinorTickType="Outside"
-                                            Reversed="false">
-                                            <LabelsAppearance DataFormatString="{0}" RotationAngle="0" Skip="0" Step="1"></LabelsAppearance>
-                                            <TitleAppearance Position="Center" RotationAngle="0" Text="Status"></TitleAppearance>
-                                        </XAxis>
-                                        <YAxis AxisCrossingValue="0" Color="black" MajorTickSize="1" MajorTickType="Outside" MaxValue="100" MinValue="0"
-                                            MinorTickType="None" Reversed="false">
-                                            <LabelsAppearance DataFormatString="{0}%" RotationAngle="0" Skip="0" Step="1"></LabelsAppearance>
-                                            <TitleAppearance Position="Center" RotationAngle="0" Text="Progress Percentage"></TitleAppearance>
-                                        </YAxis>
-                                    </PlotArea>
-                                </telerik:RadHtmlChart>
-                            </div>
-                        </ItemTemplate>
-                    </telerik:GridTemplateColumn>
-                    <telerik:GridTemplateColumn DataField="user_id" UniqueName="AssignedForApprovingChartColumn" HeaderText="Records Assigned for Approving">
-                        <ItemTemplate>
-                            <div style="width: 300px; height: 170px;">
-                                <telerik:RadHtmlChart ID="rhcAssignedForApproving" runat="server" Width="300" Height="170" Skin="Bootstrap">
-                                    <Legend>
-                                        <Appearance BackgroundColor="Transparent" Position="Bottom"></Appearance>
-                                    </Legend>
-                                    <ChartTitle>
-                                        <Appearance Visible="false"></Appearance>
-                                    </ChartTitle>
-                                    <PlotArea>
-                                        <Series>
-                                            <telerik:BarSeries Name="Analyzed" Stacked="false" Gap="1.5" Spacing="0.4" DataFieldY="PercentRecordsAssignedToApproveAnalyzed">
-                                                <Appearance>
-                                                    <FillStyle BackgroundColor="#c5d291"></FillStyle>
-                                                </Appearance>
-                                                <LabelsAppearance Visible="false"></LabelsAppearance>
-                                                <TooltipsAppearance BackgroundColor="#b84626" Color="White">
-                                                    <ClientTemplate>
-                                                        #=dataItem.PercentRecordsAssignedToApproveAnalyzedString# | #=dataItem.RecordsAssignedToApproveAnalyzed# records have been analyzed out of #=dataItem.TotalRecordsAssignedToApprove# records assigned to approve.
-                                                    </ClientTemplate>
-                                                </TooltipsAppearance>
-                                            </telerik:BarSeries>
-                                            <telerik:BarSeries Name="Approved" Stacked="false" Gap="1.5" Spacing="0.4" DataFieldY="PercentRecordsAssignedToApproveApproved">
-                                                <Appearance>
-                                                    <FillStyle BackgroundColor="#5cb8e3"></FillStyle>
-                                                </Appearance>
-                                                <LabelsAppearance Visible="False"></LabelsAppearance>
-                                                <TooltipsAppearance BackgroundColor="#b84626" Color="White">
-                                                    <ClientTemplate>
-                                                        #=dataItem.PercentRecordsAssignedToApproveApprovedString# | #=dataItem.RecordsAssignedToApproveApproved# records have been approved out of #=dataItem.TotalRecordsAssignedToApprove# records assigned to approve.
-                                                    </ClientTemplate>
-                                                </TooltipsAppearance>
-                                            </telerik:BarSeries>
-                                        </Series>
-                                        <Appearance>
-                                            <FillStyle BackgroundColor="Transparent"></FillStyle>
-                                        </Appearance>
-                                        <XAxis AxisCrossingValue="0" Color="black" MajorTickType="Outside" MinorTickType="Outside"
-                                            Reversed="false">
-                                            <LabelsAppearance DataFormatString="{0}" RotationAngle="0" Skip="0" Step="1"></LabelsAppearance>
-                                            <TitleAppearance Position="Center" RotationAngle="0" Text="Status"></TitleAppearance>
-                                        </XAxis>
-                                        <YAxis AxisCrossingValue="0" Color="black" MajorTickSize="1" MajorTickType="Outside" MaxValue="100" MinValue="0"
-                                            MinorTickType="None" Reversed="false">
-                                            <LabelsAppearance DataFormatString="{0}%" RotationAngle="0" Skip="0" Step="1"></LabelsAppearance>
-                                            <TitleAppearance Position="Center" RotationAngle="0" Text="Progress Percentage"></TitleAppearance>
-                                        </YAxis>
-                                    </PlotArea>
-                                </telerik:RadHtmlChart>
-                            </div>
-                        </ItemTemplate>
-                    </telerik:GridTemplateColumn>
-                </Columns>
-            </MasterTableView>
-            <PagerStyle Mode="NextPrevAndNumeric"></PagerStyle>
-        </telerik:RadGrid>
+                                                <XAxis AxisCrossingValue="0" Color="black" MajorTickType="Outside" MinorTickType="Outside"
+                                                    Reversed="false">
+                                                    <LabelsAppearance DataFormatString="{0}" RotationAngle="0" Skip="0" Step="1"></LabelsAppearance>
+                                                    <TitleAppearance Position="Center" RotationAngle="0" Text="Status"></TitleAppearance>
+                                                </XAxis>
+                                                <YAxis AxisCrossingValue="0" Color="black" MajorTickSize="1" MajorTickType="Outside" MaxValue="100" MinValue="0"
+                                                    MinorTickType="None" Reversed="false">
+                                                    <LabelsAppearance DataFormatString="{0}%" RotationAngle="0" Skip="0" Step="1"></LabelsAppearance>
+                                                    <TitleAppearance Position="Center" RotationAngle="0" Text="Progress Percentage"></TitleAppearance>
+                                                </YAxis>
+                                            </PlotArea>
+                                        </telerik:RadHtmlChart>
+                                    </div>
+                                </ItemTemplate>
+                            </telerik:GridTemplateColumn>
+                        </Columns>
+                    </MasterTableView>
+                    <PagerStyle Mode="NextPrevAndNumeric"></PagerStyle>
+                </telerik:RadGrid>
+            </telerik:RadPageView>
+        </telerik:RadMultiPage>
     </div>
 </asp:Content>

@@ -65,8 +65,7 @@
                                         <ContentTemplate>
                                             <div style="padding:10px;">
                                                 <b><a href="Report/RecordProgressWSC.aspx">Record Progress For The WSC</a></b><br />
-                                                <b><a href="Report/RecordProgress.aspx">Record Progress By User</a></b><br />
-                                                <b><a href="Report/RecordTypeProgress.aspx">Record Progress By Record Type</a></b><br /><br />
+                                                <b><a href="Report/RecordProgress.aspx">Record Progress By Office</a></b><br /><br />
                                                 <b><a href="Report/Audit.aspx">Audit Report</a></b>
                                             </div>
                                         </ContentTemplate>
