@@ -470,7 +470,7 @@
                                                         <LabelsAppearance Visible="false"></LabelsAppearance>
                                                         <TooltipsAppearance BackgroundColor="#b84626" Color="White">
                                                             <ClientTemplate>
-                                                                #=dataItem.PercentAnalyzedString# | Actual Number: #=dataItem.Analyzed# 
+                                                                #=dataItem.PercentAnalyzedString# | #=dataItem.Analyzed# records analyzed of #=dataItem.TotalRecords# total records.
                                                             </ClientTemplate>
                                                         </TooltipsAppearance>
                                                     </telerik:BarSeries>
@@ -481,7 +481,7 @@
                                                         <LabelsAppearance Visible="False"></LabelsAppearance>
                                                         <TooltipsAppearance BackgroundColor="#b84626" Color="White">
                                                             <ClientTemplate>
-                                                                #=dataItem.PercentApprovedString# | Actual Number: #=dataItem.Approved# 
+                                                                #=dataItem.PercentApprovedString# | #=dataItem.Approved# records approved of #=dataItem.TotalRecords# total records.
                                                             </ClientTemplate>
                                                         </TooltipsAppearance>
                                                     </telerik:BarSeries>

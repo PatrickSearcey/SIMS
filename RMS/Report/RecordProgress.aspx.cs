@@ -304,14 +304,13 @@ namespace RMS.Report
                 var countsByRecordType = db.SP_RMS_Progress_Counts_by_recordtype(record_type_id, reportOfficeID, rdpEndDt.SelectedDate).FirstOrDefault();
 
                 //Progress Chart Data
-                rpi.TotalRecordsToAnalyze = (int)countsByRecordType.total_sites;
-                rpi.TotalRecordsToApprove = (int)countsByRecordType.total_sites;
+                rpi.TotalRecords = (int)countsByRecordType.total_sites;
                 rpi.Analyzed = (int)countsByRecordType.analyzed;
                 rpi.Approved = (int)countsByRecordType.approved;
-                rpi.PercentAnalyzed = rpi.TotalRecordsToAnalyze > 0 ? Decimal.Divide((decimal)rpi.Analyzed, (decimal)rpi.TotalRecordsToAnalyze) * 100 : 0;
-                rpi.PercentApproved = rpi.TotalRecordsToApprove > 0 ? Decimal.Divide((decimal)rpi.Approved, (decimal)rpi.TotalRecordsToApprove) * 100 : 0;
-                rpi.PercentAnalyzedString = rpi.TotalRecordsToAnalyze > 0 ? String.Format("{0:###.##}%", Decimal.Divide((decimal)rpi.Analyzed, (decimal)rpi.TotalRecordsToAnalyze) * 100) : "0%";
-                rpi.PercentApprovedString = rpi.TotalRecordsToApprove > 0 ? String.Format("{0:###.##}%", Decimal.Divide((decimal)rpi.Approved, (decimal)rpi.TotalRecordsToApprove) * 100) : "0%";
+                rpi.PercentAnalyzed = rpi.TotalRecords > 0 ? Decimal.Divide((decimal)rpi.Analyzed, (decimal)rpi.TotalRecords) * 100 : 0;
+                rpi.PercentApproved = rpi.TotalRecords > 0 ? Decimal.Divide((decimal)rpi.Approved, (decimal)rpi.TotalRecords) * 100 : 0;
+                rpi.PercentAnalyzedString = rpi.TotalRecords > 0 ? String.Format("{0:###.##}%", Decimal.Divide((decimal)rpi.Analyzed, (decimal)rpi.TotalRecords) * 100) : "0%";
+                rpi.PercentApprovedString = rpi.TotalRecords > 0 ? String.Format("{0:###.##}%", Decimal.Divide((decimal)rpi.Approved, (decimal)rpi.TotalRecords) * 100) : "0%";
 
                 List<RecordProgressItem> chartData = new List<RecordProgressItem>();
                 chartData.Add(rpi);
@@ -333,8 +332,7 @@ namespace RMS.Report
         #region Internal Classes
         internal class RecordProgressItem
         {
-            private int _totalRecordsToAnalyze;
-            private int _totalRecordsToApprove;
+            private int _totalRecords;
             private int _analyzed;
             private int _approved;
             private decimal _percentAnalyzed;
@@ -368,15 +366,10 @@ namespace RMS.Report
             private string _percentRecordsAssignedToApproveAnalyzedString;
             private string _percentRecordsAssignedToApproveApprovedString;
 
-            public int TotalRecordsToAnalyze
+            public int TotalRecords
             {
-                get { return _totalRecordsToAnalyze; }
-                set { _totalRecordsToAnalyze = value; }
-            }
-            public int TotalRecordsToApprove
-            {
-                get { return _totalRecordsToApprove; }
-                set { _totalRecordsToApprove = value; }
+                get { return _totalRecords; }
+                set { _totalRecords = value; }
             }
             public int Analyzed
             {
@@ -541,6 +534,13 @@ namespace RMS.Report
             
             public RecordProgressItem()
             {
+                _totalRecords = TotalRecords;
+                _analyzed = Analyzed;
+                _approved = Approved;
+                _percentAnalyzed = PercentAnalyzed;
+                _percentApproved = PercentApproved;
+                _percentAnalyzedString = PercentAnalyzedString;
+                _percentApprovedString = PercentApprovedString;
                 _totalRecordsAssignedToAnalyze = TotalRecordsAssignedToAnalyze;
                 _totalRecordsAssignedToApprove = TotalRecordsAssignedToApprove;
                 _totalActuallyAnalyzed = TotalActuallyAnalyzed;
