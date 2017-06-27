@@ -283,7 +283,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/19/2017 21:16:53</publishTime>
     </File>
     <File Include="styles/recordprocess.css">
-      <publishTime>06/16/2017 14:56:21</publishTime>
+      <publishTime>06/27/2017 14:18:07</publishTime>
     </File>
     <File Include="styles/recordprogress.css">
       <publishTime>06/21/2017 05:40:00</publishTime>

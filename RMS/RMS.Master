@@ -59,7 +59,14 @@
                                         </ContentTemplate>
                                     </telerik:RadMenuItem>
                                     <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="CRP Tools" />
+                                    <telerik:RadMenuItem Text="CRP Tools">
+                                        <ContentTemplate>
+                                            <div style="padding:10px;">
+                                                <b><a href="Report/CRPStatus.aspx">CRP Status Report</a></b><br />
+                                                <b><a href="Report/CRPStatusChart.aspx">CRP Status Chart</a></b>
+                                            </div>
+                                        </ContentTemplate>
+                                    </telerik:RadMenuItem>
                                     <telerik:RadMenuItem IsSeparator="true" />
                                     <telerik:RadMenuItem Text="Reports">
                                         <ContentTemplate>

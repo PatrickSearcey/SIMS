@@ -83,6 +83,7 @@ h4 {
     border-bottom: 1px solid #a0865d;
     color: #b84626;
 }
+
 .multiPage
 {
     display: -moz-inline-box;
@@ -93,21 +94,6 @@ h4 {
     margin-bottom: -3px;
     border: 1px solid #a0865d;
     background-color: #f0eac8;
-}
-.pnlLocked {
-    text-align:center;
-    width: 300px;
-    margin: auto;
-    font-weight:bold;
-}
-.pnlLocked h4 {
-    background-color:#b84626;
-    color: white;
-}
-
-table.RecordProcess  {
-    margin:auto;
-    width: 1000px;
 }
 
 .pnlErrors {
@@ -127,4 +113,23 @@ table.RecordProcess  {
     color: #f0eac8;
     margin-bottom:0;
     margin-top:0;
+}
+
+.Filters {
+    margin: 0 0 10px 0;
+    padding: 10px;
+    height: 100%;
+    width: 100%;
+    color: #b84626;
+    background: #f7f4f0;
+    -webkit-box-shadow: 0 0 5px 0 #f7f4f0;
+    box-shadow: 0 0 5px 0 #f7f4f0;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 11pt;
+    font-weight:bold;
+}
+.filtersSubtext {
+    text-align:center;
+    font-style:italic;
 }
