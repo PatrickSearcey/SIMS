@@ -142,10 +142,13 @@
     <Content Include="images\USGSHeaderLogoRMS.png" />
     <Content Include="images\viewdoc.png" />
     <Content Include="Modal\Instructions.aspx" />
+    <Content Include="Report\CRPStatus.aspx" />
+    <Content Include="Report\CRPStatusChart.aspx" />
     <Content Include="Report\PeriodDetails.aspx" />
     <Content Include="Report\RecordProcess.aspx" />
     <Content Include="Report\RecordProgress.aspx" />
     <Content Include="Report\RecordProgressWSC.aspx" />
+    <Content Include="styles\crpstatus.css" />
     <Content Include="styles\recordprogress.css" />
     <Content Include="styles\perioddetails.css" />
     <Content Include="Task\Audit.aspx" />
@@ -194,6 +197,20 @@
     </Compile>
     <Compile Include="Modal\Instructions.aspx.designer.cs">
       <DependentUpon>Instructions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\CRPStatus.aspx.cs">
+      <DependentUpon>CRPStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\CRPStatus.aspx.designer.cs">
+      <DependentUpon>CRPStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\CRPStatusChart.aspx.cs">
+      <DependentUpon>CRPStatusChart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\CRPStatusChart.aspx.designer.cs">
+      <DependentUpon>CRPStatusChart.aspx</DependentUpon>
     </Compile>
     <Compile Include="Report\PeriodDetails.aspx.cs">
       <DependentUpon>PeriodDetails.aspx</DependentUpon>

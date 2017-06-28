@@ -132,4 +132,5 @@ h4 {
 .filtersSubtext {
     text-align:center;
     font-style:italic;
+    font-weight:normal !important;
 }

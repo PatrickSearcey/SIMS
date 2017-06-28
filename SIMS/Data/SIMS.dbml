@@ -459,27 +459,6 @@
       <Association Name="RecordAnalysisPeriod_PeriodChangeLog" Member="RecordAnalysisPeriod" ThisKey="period_id" OtherKey="period_id" Type="RecordAnalysisPeriod" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.RMS_Approval_Status" Member="RecordApprovalStatus">
-    <Type Name="RecordApprovalStatus">
-      <Column Name="site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="dd_nu" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="office_cd" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="site_no" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
-      <Column Name="category_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="parm_cd" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
-      <Column Name="last_aging_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="rms_record_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="type_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="type_ds" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="analyze_period_beg_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="analyze_period_end_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="approve_period_beg_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="approve_period_end_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="not_used_fg" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="DaysSinceAging" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="iv_ts_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.RMS_Analysis_Status" Member="RecordAnalysisStatus">
     <Type Name="RecordAnalysisStatus">
       <Column Name="rms_record_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -1062,6 +1041,29 @@
       <Column Name="rms_record_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.RMS_Approval_Status" Member="RecordApprovalStatus">
+    <Type Name="RecordApprovalStatus">
+      <Column Name="site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dd_nu" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="iv_ts_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="parm_cd" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="rms_record_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="category_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="not_used_fg" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="record_type_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="type_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="type_ds" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="analyzed_period_beg_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="analyzed_period_end_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="approved_period_beg_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="approved_period_end_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="last_aging_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DaysSinceAging" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="office_cd" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="site_no" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">
     <Parameter Name="site_id" Type="System.Int32" DbType="Int" />
     <ElementType Name="spz_GetDCPInfoResult">
@@ -1312,6 +1314,48 @@
       <Column Name="total_sites" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="analyzed" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="approved" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_CRP_Ult_Data_Aging_Table" Method="SP_CRP_Ult_Data_Aging_Table">
+    <Parameter Name="office_id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="wsc_id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="onlyactive" Type="System.String" DbType="NVarChar(3)" />
+    <ElementType Name="SP_CRP_Ult_Data_Aging_TableResult">
+      <Column Name="office_cd" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="rms_record_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="site_no" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="station_nm" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="dd_nu" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="category_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="parm_cd" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="type_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="type_ds" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="analyzed_period_beg_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="analyzed_period_end_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="analyzed_period_dt" Type="System.String" DbType="NVarChar(61)" CanBeNull="true" />
+      <Column Name="approved_period_beg_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="approved_period_end_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="approved_period_dt" Type="System.String" DbType="NVarChar(61)" CanBeNull="true" />
+      <Column Name="last_aging_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DaysSinceAging" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_CRP_Cat_Charts" Method="SP_CRP_Cat_Charts">
+    <Parameter Name="office_id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="wsc_id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="type" Type="System.String" DbType="NVarChar(10)" />
+    <ElementType Name="SP_CRP_Cat_ChartsResult">
+      <Column Name="type_ds" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="office_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="office_cd" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="TotalCat1Records" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ApprovedInLast150Days" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="percent_of_cat1_done" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TotalCat2Records" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ApprovedInLast240Days" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="percent_of_cat2_done" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>
