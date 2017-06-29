@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="cph1" runat="server">
     <telerik:RadAjaxManager ID="ram" runat="server">
         <AjaxSettings>
-            <telerik:AjaxSetting AjaxControlID="rbSubmit">
+            <telerik:AjaxSetting AjaxControlID="rddlOffice">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="rhcCRPStatus" LoadingPanelID="ralp" />
                 </UpdatedControls>
@@ -22,15 +22,15 @@
         <br />
     <div class="mainContent">
         <div class="Filters">
-            <table width="1000">
+            <table width="100%">
                 <tr>
-                    <td>Choose An Office To View Progress By Record-Type:</td>
-                    <td><telerik:RadDropDownList ID="rddlOffice" runat="server" DataValueField="office_id" DataTextField="office_nm" Skin="Bootstrap" Width="350px" DropDownHeight="200px" /></td>
-                    <td><telerik:RadButton ID="rbSubmit" runat="server" OnCommand="UpdateDetails" CommandArgument="Update" Text="Submit" AutoPostBack="true" Skin="Bootstrap" /></td>
+                    <td width="700">Choose an office to view progress by record-type, or select All Offices to view progress by office:</td>
+                    <td><telerik:RadDropDownList ID="rddlOffice" runat="server" DataValueField="office_id" DataTextField="office_nm" Skin="Bootstrap" Width="350px"
+                        DropDownHeight="200px" OnSelectedIndexChanged="UpdateDetails" AutoPostBack="true" /></td>
                     <td><asp:Literal ID="ltlError" runat="server" /></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><span class="filtersSubtext"><asp:Literal ID="ltl150DaysAgo" runat="server" /> &nbsp;&nbsp;&nbsp;<asp:Literal ID="ltl240DaysAgo" runat="server" /></span></td>
+                    <td><span class="filtersSubtext"><asp:Literal ID="ltl150DaysAgo" runat="server" /> &nbsp;&nbsp;&nbsp;<asp:Literal ID="ltl240DaysAgo" runat="server" /></span></td>
                     <td colspan="2"><span class="filtersSubtext"><asp:Literal ID="ltlCurrentData" runat="server" /></span></td>
                 </tr>
             </table>
@@ -84,17 +84,16 @@
                 <Appearance>
                     <FillStyle BackgroundColor="Transparent"></FillStyle>
                 </Appearance>
-                <XAxis AxisCrossingValue="0" Color="black" MajorTickType="Outside" MinorTickType="Outside"
+                <XAxis AxisCrossingValue="0" Color="black" MajorTickType="Outside" MinorTickType="Outside" DataLabelsField="RecordType"
                     Reversed="false">
-                    <LabelsAppearance RotationAngle="20" Skip="0" Step="1">
-                        <ClientTemplate>
-                            #=dataItem.RecordType#
-                        </ClientTemplate>
-                    </LabelsAppearance>
+                    <LabelsAppearance DataFormatString="{0}" RotationAngle="20" Skip="0" Step="1"></LabelsAppearance>
                     <TitleAppearance Visible="False"></TitleAppearance>
                 </XAxis>
                 <YAxis AxisCrossingValue="0" Color="black" MajorTickSize="1" MajorTickType="Outside" MaxValue="100" MinValue="0"
                     MinorTickType="None" Reversed="false">
+                    <PlotBands>
+                        <telerik:PlotBand From="79" To="80" Color="#009933" />
+                    </PlotBands>
                     <LabelsAppearance DataFormatString="{0}%" RotationAngle="0" Skip="0" Step="1"></LabelsAppearance>
                     <TitleAppearance Position="Center" RotationAngle="0" Text="% of records done"></TitleAppearance>
                 </YAxis>

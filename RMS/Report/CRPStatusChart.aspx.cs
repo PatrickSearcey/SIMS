@@ -111,6 +111,7 @@ namespace RMS.Report
                 TotalCat2Records = p.TotalCat2Records
             });
             rhcCRPStatus.DataBind();
+            rhcCRPStatus.PlotArea.XAxis.DataLabelsField = "OfficeCode";
         }
 
         protected void BindChartByOffice()
@@ -125,9 +126,10 @@ namespace RMS.Report
                 TotalCat2Records = p.TotalCat2Records
             });
             rhcCRPStatus.DataBind();
+            rhcCRPStatus.PlotArea.XAxis.DataLabelsField = "RecordType";
         }
 
-        protected void UpdateDetails(object sender, CommandEventArgs e)
+        protected void UpdateDetails(object sender, EventArgs e)
         {
             if (rddlOffice.SelectedIndex == 0)
             {
