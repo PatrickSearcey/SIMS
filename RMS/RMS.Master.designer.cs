@@ -76,6 +76,69 @@ namespace RMS {
         protected global::Telerik.Web.UI.RadMenu rmSide;
         
         /// <summary>
+        /// hlAnalyzeRecordsList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlAnalyzeRecordsList;
+        
+        /// <summary>
+        /// hlApproveRecordsList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlApproveRecordsList;
+        
+        /// <summary>
+        /// hlCRPStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlCRPStatus;
+        
+        /// <summary>
+        /// hlCRPStatusChart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlCRPStatusChart;
+        
+        /// <summary>
+        /// hlRecordProgressWSC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlRecordProgressWSC;
+        
+        /// <summary>
+        /// hlRecordProgress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlRecordProgress;
+        
+        /// <summary>
+        /// hlAudit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlAudit;
+        
+        /// <summary>
         /// cph1 control.
         /// </summary>
         /// <remarks>

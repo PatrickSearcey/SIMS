@@ -116,6 +116,7 @@ namespace RMS.Report
                 station_full_nm = p.station_full_nm,
                 category_no = p.category_no,
                 type_ds = p.type_ds,
+                type_cd = p.type_cd,
                 analyzer_uid = p.analyzer_uid,
                 reanalyze_status = p.reanalyze_status,
                 LastAnalyzedDate = p.LastAnalyzedDate,
@@ -171,6 +172,7 @@ namespace RMS.Report
                 }
                 else
                 {
+                    e.Item.Style.Add(0, "RosyBrown !important");
                     var period = db.RecordAnalysisPeriods.FirstOrDefault(p => p.rms_record_id == rms_record_id && p.status_va == "Reanalyze");
                     hlRecordType.NavigateUrl = String.Format("../Task/RecordProcess.aspx?period_id={0}&task=Reanalyze", period.period_id);
                 }
@@ -193,6 +195,7 @@ namespace RMS.Report
                 station_full_nm = p.station_full_nm,
                 category_no = p.category_no,
                 type_ds = p.type_ds,
+                type_cd = p.type_cd,
                 analyzer_uid = p.analyzer_uid,
                 reanalyze_status = p.reanalyze_status,
                 LastAnalyzedDate = p.LastAnalyzedDate,
@@ -248,6 +251,7 @@ namespace RMS.Report
                 }
                 else
                 {
+                    e.Item.BackColor = System.Drawing.Color.RosyBrown;
                     var period = db.RecordAnalysisPeriods.FirstOrDefault(p => p.rms_record_id == rms_record_id && p.status_va == "Reanalyze");
                     hlRecordType.NavigateUrl = String.Format("../Task/RecordProcess.aspx?period_id={0}&task=Reanalyze", period.period_id);
                 }
@@ -270,9 +274,9 @@ namespace RMS.Report
                 station_full_nm = p.station_full_nm,
                 category_no = p.category_no,
                 type_ds = p.type_ds,
+                type_cd = p.type_cd,
                 approver_uid = p.approver_uid,
                 approved_by = p.approved_by,
-                reanalyze_status = p.reanalyze_status,
                 period_id = p.period_id,
                 period = String.Format("{0:MM/dd/yyyy} - {1:MM/dd/yyyy}", p.period_beg_dt, p.period_end_dt),
                 DaysSinceAging = p.DaysSinceAging
@@ -344,9 +348,9 @@ namespace RMS.Report
                 station_full_nm = p.station_full_nm,
                 category_no = p.category_no,
                 type_ds = p.type_ds,
+                type_cd = p.type_cd,
                 approver_uid = p.approver_uid,
                 approved_by = p.approved_by,
-                reanalyze_status = p.reanalyze_status,
                 period_id = p.period_id,
                 period = String.Format("{0:MM/dd/yyyy} - {1:MM/dd/yyyy}", p.period_beg_dt, p.period_end_dt),
                 DaysSinceAging = p.DaysSinceAging

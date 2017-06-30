@@ -53,8 +53,8 @@
                                     <telerik:RadMenuItem Text="CRP Tasks">
                                         <ContentTemplate>
                                             <div style="padding:10px;">
-                                                <b><a href="Report/RecordProcess.aspx?task=analyze">Records Ready for Analyzing</a></b><br />
-                                                <b><a href="Report/RecordProcess.aspx?task=approve">Records Ready for Approving</a></b>
+                                                <asp:HyperLink ID="hlAnalyzeRecordsList" runat="server" Font-Bold="true" Text="Records Ready for Analyzing" /><br />
+                                                <asp:HyperLink ID="hlApproveRecordsList" runat="server" Font-Bold="true" Text="Records Ready for Approving" />
                                             </div>
                                         </ContentTemplate>
                                     </telerik:RadMenuItem>
@@ -62,8 +62,8 @@
                                     <telerik:RadMenuItem Text="CRP Tools">
                                         <ContentTemplate>
                                             <div style="padding:10px;">
-                                                <b><a href="Report/CRPStatus.aspx">CRP Status Report</a></b><br />
-                                                <b><a href="Report/CRPStatusChart.aspx">CRP Status Chart</a></b>
+                                                <asp:HyperLink ID="hlCRPStatus" runat="server" Font-Bold="true" Text="CRP Status Report" /><br />
+                                                <asp:HyperLink ID="hlCRPStatusChart" runat="server" Font-Bold="true" Text="CRP Status Chart" />
                                             </div>
                                         </ContentTemplate>
                                     </telerik:RadMenuItem>
@@ -71,9 +71,9 @@
                                     <telerik:RadMenuItem Text="Reports">
                                         <ContentTemplate>
                                             <div style="padding:10px;">
-                                                <b><a href="Report/RecordProgressWSC.aspx">Record Progress For The WSC</a></b><br />
-                                                <b><a href="Report/RecordProgress.aspx">Record Progress By Office</a></b><br /><br />
-                                                <b><a href="Report/Audit.aspx">Audit Report</a></b>
+                                                <asp:HyperLink ID="hlRecordProgressWSC" runat="server" Font-Bold="true" Text="Record Progress For The WSC" /><br />
+                                                <asp:HyperLink ID="hlRecordProgress" runat="server" Font-Bold="true" Text="Record Progress By Office" /><br /><br />
+                                                <asp:HyperLink ID="hlAudit" runat="server" Font-Bold="true" Text="Audit Report" />
                                             </div>
                                         </ContentTemplate>
                                     </telerik:RadMenuItem>

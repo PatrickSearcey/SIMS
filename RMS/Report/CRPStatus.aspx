@@ -69,7 +69,6 @@
                             <ul>
                                 <li>Clicking on the site number will open the Station Information page</li>
                                 <li>The cat no column shows the assigned category number for the record. If category number equal to 1, the last aging dates are highlighted based on being approved in ADAPS within the last 150 days. If category number equal to 2, the last aging dates are highlighted based on being approved in ADAPS within the last 240 days.</li>
-                                <li>Clicking on the dates in the last analyzed and last approved period in RMS columns will open the corresponding record processing page</li>
                                 <li>For cases where only provisional data exists for a TS ID, the LAST APPROVED DV IN AQ columns will be blank.</li>
                             </ul>
                         </div>
@@ -107,16 +106,8 @@
                         </ItemTemplate>
                     </telerik:GridTemplateColumn>
                     <telerik:GridBoundColumn DataField="category_no" HeaderText="Cat. No." AllowFiltering="false" UniqueName="category_no" />
-                    <telerik:GridTemplateColumn SortExpression="analyzed_period_beg_dt" HeaderText="Last Analyzed Period in RMS" AllowFiltering="false" UniqueName="analyzed_period_dt">
-                        <ItemTemplate>
-                            <a href='RecordProcess.aspx?task=analyze'><%# Eval("analyzed_period_dt") %></a>
-                        </ItemTemplate>
-                    </telerik:GridTemplateColumn>
-                    <telerik:GridTemplateColumn SortExpression="approved_period_beg_dt" HeaderText="Last Approved Period in RMS" AllowFiltering="false" UniqueName="approved_period_dt">
-                        <ItemTemplate>
-                            <a href='RecordProcess.aspx?task=approve'><%# Eval("approved_period_dt") %></a>
-                        </ItemTemplate>
-                    </telerik:GridTemplateColumn>
+                    <telerik:GridBoundColumn DataField="analyzed_period_dt" SortExpression="analyzed_period_beg_dt" HeaderText="Last Analyzed Period in RMS" AllowFiltering="false" UniqueName="analyzed_period_dt" />
+                    <telerik:GridBoundColumn DataField="approved_period_dt" SortExpression="approved_period_beg_dt" HeaderText="Last Approved Period in RMS" AllowFiltering="false" UniqueName="approved_period_dt" />
                     <telerik:GridBoundColumn DataField="last_aging_dt" DataFormatString="{0:MM/dd/yyyy}" AllowFiltering="false" UniqueName="last_aging_dt" HeaderText="Date" ColumnGroupName="AQ" />
                     <telerik:GridBoundColumn DataField="DaysSinceAging" AllowFiltering="false" UniqueName="DaysSinceAging" HeaderText="Days Ago" ColumnGroupName="AQ" />
                 </Columns>

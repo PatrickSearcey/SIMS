@@ -63,8 +63,26 @@ namespace RMS
         #region Page Events
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (OfficeID == 0) OfficeID = user.OfficeID;
-            if (WSCID == 0) WSCID = (int)db.Offices.Where(p => p.office_id == OfficeID).FirstOrDefault().wsc_id;
+            string wsc_id = Request.QueryString["wsc_id"];
+
+            if (!string.IsNullOrEmpty(wsc_id))
+            {
+                WSCID = Convert.ToInt32(wsc_id);
+                OfficeID = db.Offices.FirstOrDefault(p => p.wsc_id == WSCID).office_id;
+            }
+            else
+            {
+                if (OfficeID == 0 && WSCID == 0)
+                {
+                    OfficeID = user.OfficeID;
+                    WSCID = (int)db.Offices.FirstOrDefault(p => p.office_id == OfficeID).wsc_id;
+                }
+                else if (OfficeID == 0 && WSCID > 0)
+                    OfficeID = db.Offices.FirstOrDefault(p => p.wsc_id == WSCID).office_id;
+                else if (OfficeID > 0 && WSCID == 0)
+                    WSCID = (int)db.Offices.FirstOrDefault(p => p.office_id == OfficeID).wsc_id;
+            }
+
             osHome.SelectorChanged += new EventHandler(osHome_SelectorChanged);
 
             if (!Page.IsPostBack)
