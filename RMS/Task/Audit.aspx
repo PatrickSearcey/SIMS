@@ -116,7 +116,7 @@
                     <div class="RecordSubmit">
                         <br /><br /><br /><br />
                         <telerik:RadButton ID="rbSubmitRecord" runat="server" AutoPostBack="true" Text="Continue with audit" Skin="Bootstrap" OnCommand="rbSubmitRecords_Command" CommandArgument="single" />
-                        <p><b><img src="images/arrowbullet.png" alt="arrow" style="float:left;padding: 2px 3px 0 0;" /> Click <asp:LinkButton ID="lbMultiple" runat="server" OnCommand="lbMultiple_Command" Text="here" /> to select multiple records to audit.</b></p>
+                        <p><b><img src="../images/arrowbullet.png" alt="arrow" style="float:left;padding: 2px 3px 0 0;" /> Click <asp:LinkButton ID="lbMultiple" runat="server" OnCommand="lbMultiple_Command" Text="here" /> to select multiple records to audit.</b></p>
                     </div>
                 </div>
 

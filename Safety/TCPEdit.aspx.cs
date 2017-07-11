@@ -171,6 +171,7 @@ namespace Safety
                     EnableControl = false;
                     SetControlStatus();
                     lblRemoteSiteNote.Visible = true;
+                    rtbNotes.Text = currSite.TCPSite.Notes.FormatParagraphEdit();
                     //Plan Specific Information
                     dlTCPs.DataSource = TCPDataSource();
                     dlTCPs.DataBind();

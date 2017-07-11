@@ -85,7 +85,7 @@
             <MasterTableView DataKeyNames="rms_record_id" AllowSorting="true" AllowFilteringByColumn="true" AutoGenerateColumns="false">
                 <ColumnGroups>
                     <telerik:GridColumnGroup HeaderText="Site" Name="Site" HeaderStyle-HorizontalAlign="Center" />
-                    <telerik:GridColumnGroup HeaderText="Last Approved DV In AQ" Name="AQ" HeaderStyle-HorizontalAlign="Center" />
+                    <telerik:GridColumnGroup HeaderText="Last Approved DV" Name="AQ" HeaderStyle-HorizontalAlign="Center" />
                 </ColumnGroups>
                 <Columns>
                     <telerik:GridBoundColumn DataField="office_cd" HeaderText="Office" AllowFiltering="false" HeaderStyle-Width="40px" UniqueName="office_cd" />

@@ -104,7 +104,6 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <telerik:RadCheckBox ID="rcbNotPublished" runat="server" Text="Not Published (record shows up in analyze and approve, but not in End of Year Summary" /><br />
                             <telerik:RadCheckBox ID="rcbRecordInactive" runat="server" Text="Record Inactive (record only shows up when editing records through admin pages)" />
                         </td>
                     </tr>

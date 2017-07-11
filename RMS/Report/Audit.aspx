@@ -59,7 +59,7 @@
                                     <telerik:GridRelationFields DetailKeyField="rms_record_id" MasterKeyField="rms_record_id" />
                                 </ParentTableRelation>
                                 <Columns>
-                                    <telerik:GridEditCommandColumn ButtonType="ImageButton" UniqueName="EditCommandColumn" EditImageUrl="images/viewdoc.png" HeaderText="View">
+                                    <telerik:GridEditCommandColumn ButtonType="ImageButton" UniqueName="EditCommandColumn" EditImageUrl="../images/viewdoc.png" HeaderText="View">
                                         <HeaderStyle Width="10px" />
                                         <ItemStyle CssClass="MyImageButton" />
                                     </telerik:GridEditCommandColumn>
@@ -182,7 +182,7 @@
                         </DetailTables>
                         <Columns>
                             <telerik:GridBoundColumn DataField="site_no" HeaderText="Site Number" UniqueName="site_no" SortExpression="site_no" HeaderStyle-Width="150px" FilterControlWidth="100px" />
-                            <telerik:GridBoundColumn DataField="station_nm" HeaderText="Staiton Name" UniqueName="station_nm" HeaderStyle-Width="500px" SortExpression="station_nm" FilterControlWidth="200px"/>
+                            <telerik:GridBoundColumn DataField="station_nm" HeaderText="Station Name" UniqueName="station_nm" HeaderStyle-Width="500px" SortExpression="station_nm" FilterControlWidth="200px"/>
                             <telerik:GridBoundColumn DataField="type_ds" UniqueName="type_ds" HeaderText="Record Type" SortExpression="type_ds" FilterControlWidth="200px" />
                         </Columns>
                     </MasterTableView>
@@ -213,7 +213,7 @@
                                 <Columns>
                                     <telerik:GridBoundColumn DataField="site_no" HeaderText="Site Number" UniqueName="site_no" SortExpression="site_no" 
                                         AllowFiltering="false" HeaderStyle-Width="150" />
-                                    <telerik:GridBoundColumn DataField="station_nm" HeaderText="Staiton Name" UniqueName="station_nm" HeaderStyle-Width="500" 
+                                    <telerik:GridBoundColumn DataField="station_nm" HeaderText="Station Name" UniqueName="station_nm" HeaderStyle-Width="500" 
                                         SortExpression="station_nm" AllowFiltering="false" />
                                     <telerik:GridBoundColumn DataField="type_ds" UniqueName="type_ds" HeaderText="Record Type" SortExpression="type_ds" AllowFiltering="false" />
                                     <telerik:GridTemplateColumn HeaderText="Included Analysis Period Notes" UniqueName="analysis_notes_va" AllowSorting="false" AllowFiltering="false">
@@ -228,7 +228,7 @@
                             </telerik:GridTableView>
                         </DetailTables>
                         <Columns>
-                            <telerik:GridEditCommandColumn ButtonType="ImageButton" UniqueName="EditCommandColumn" EditImageUrl="images/viewdoc.png" HeaderText="View">
+                            <telerik:GridEditCommandColumn ButtonType="ImageButton" UniqueName="EditCommandColumn" EditImageUrl="../images/viewdoc.png" HeaderText="View">
                                 <HeaderStyle Width="10px" />
                                 <ItemStyle CssClass="MyImageButton" />
                             </telerik:GridEditCommandColumn>
