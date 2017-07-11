@@ -93,12 +93,12 @@ namespace RMS.Report
                     OfficeID = db.Offices.FirstOrDefault(p => p.wsc_id == WSCID).office_id;
                 }
                 else AuditID = 0;
+            }
 
-                if (OfficeID == 0 && WSCID == 0)
-                {
-                    OfficeID = user.OfficeID;
-                    WSCID = (int)db.Offices.FirstOrDefault(p => p.office_id == OfficeID).wsc_id;
-                }
+            if (OfficeID == 0 && WSCID == 0)
+            {
+                OfficeID = user.OfficeID;
+                WSCID = (int)db.Offices.FirstOrDefault(p => p.office_id == OfficeID).wsc_id;
             }
               
             if (!Page.IsPostBack)

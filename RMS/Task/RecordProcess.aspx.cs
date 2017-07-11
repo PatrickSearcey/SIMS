@@ -257,8 +257,8 @@ namespace RMS.Task
         protected void SetupAnalyzePanel()
         {
             ltlHydrographer.Text = "<b>" + user.ID + "</b>";
-            hlWYAnalysisNotes.NavigateUrl = String.Format("javascript:OpenPopup('Modal/ReportPopup.aspx?view=wyanalysisnotes&rms_record_id={0}')", RecordID);
-            hlInstructions.NavigateUrl = "javascript:OpenPopup('Modal/Instructions.aspx?type=Analyze')";
+            hlWYAnalysisNotes.NavigateUrl = String.Format("javascript:OpenPopup('../Modal/ReportPopup.aspx?view=wyanalysisnotes&rms_record_id={0}')", RecordID);
+            hlInstructions.NavigateUrl = "javascript:OpenPopup('../Modal/Instructions.aspx?type=Analyze')";
             string swr_url = db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID).swr_url;
             if (!string.IsNullOrEmpty(swr_url))
             {
@@ -316,10 +316,10 @@ namespace RMS.Task
                 ltlAnalyzedBy.Text = "<b>" + currPeriod.analyzed_by + "</b>";
                 if (!string.IsNullOrEmpty(currPeriod.approved_by)) ltlApprover.Text = "<b>" + currPeriod.approved_by + "</b>"; else ltlApprover.Text = "<b>" + user.ID + "</b>";
                 ltlTimePeriod.Text = String.Format("<b>{0:MM/dd/yyyy} - {1:MM/dd/yyyy}</b>", currPeriod.period_beg_dt, currPeriod.period_end_dt);
-                hlWYAnalysisNotes2.NavigateUrl = String.Format("javascript:OpenPopup('Modal/ReportPopup.aspx?view=wyanalysisnotes&rms_record_id={0}')", RecordID);
-                hlDialog.NavigateUrl = String.Format("javascript:OpenPopup('Modal/ReportPopup.aspx?view=dialog&period_id={0}')", PeriodID);
-                hlChangeLog.NavigateUrl = String.Format("javascript:OpenPopup('Modal/ReportPopup.aspx?view=changelog&period_id={0}')", PeriodID);
-                hlApproveInst.NavigateUrl = "javascript:OpenPopup('Modal/Instructions.aspx?type=Analyze')";
+                hlWYAnalysisNotes2.NavigateUrl = String.Format("javascript:OpenPopup('../Modal/ReportPopup.aspx?view=wyanalysisnotes&rms_record_id={0}')", RecordID);
+                hlDialog.NavigateUrl = String.Format("javascript:OpenPopup('../Modal/ReportPopup.aspx?view=dialog&period_id={0}')", PeriodID);
+                hlChangeLog.NavigateUrl = String.Format("javascript:OpenPopup('../Modal/ReportPopup.aspx?view=changelog&period_id={0}')", PeriodID);
+                hlApproveInst.NavigateUrl = "javascript:OpenPopup('../Modal/Instructions.aspx?type=Analyze')";
                 string swr_url = db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID).swr_url;
                 if (!string.IsNullOrEmpty(swr_url))
                 {

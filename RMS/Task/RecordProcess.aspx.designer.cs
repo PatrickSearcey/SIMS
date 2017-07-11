@@ -256,6 +256,15 @@ namespace RMS.Task {
         protected global::System.Web.UI.WebControls.HyperLink hlInstructions;
         
         /// <summary>
+        /// hlNWISDataPortal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlNWISDataPortal;
+        
+        /// <summary>
         /// hlAutoReview control.
         /// </summary>
         /// <remarks>
@@ -263,6 +272,15 @@ namespace RMS.Task {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlAutoReview;
+        
+        /// <summary>
+        /// hlWMAGuidelines control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlWMAGuidelines;
         
         /// <summary>
         /// rtbPrevAnalysisNotes control.

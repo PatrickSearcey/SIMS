@@ -116,8 +116,10 @@
                     <h4>Supporting Resources</h4>
                     <ul>
                         <li><asp:HyperLink ID="hlWYAnalysisNotes" runat="server" Text="View WY Analysis Notes" /></li>
-                        <li><asp:HyperLink ID="hlInstructions" runat="server" Text="Analyzing Instructions" /></li>
-                        <li><asp:HyperLink ID="hlAutoReview" runat="server" Text="View Auto Review (if applicable)" /></li>
+                        <li><asp:HyperLink ID="hlInstructions" runat="server" Text="WSC Analyzing Instructions" /></li>
+                        <li><asp:HyperLink ID="hlNWISDataPortal" runat="server" Text="NWIS Data Portal and Reports" Target="_blank" NavigateUrl="https://reporting.nwis.usgs.gov/" /></li>
+                        <li><asp:HyperLink ID="hlAutoReview" runat="server" Text="WSC Support Information (if applicable)" /></li>
+                        <li><asp:HyperLink ID="hlWMAGuidelines" runat="server" Text="WMA Records Processing Guidelines" Target="_blank" NavigateUrl="https://drive.google.com/drive/folders/0BxDYBMoHxbICM2NWaWp5SXI0Ums" /></li>
                     </ul>
                 </td>
             </tr>
