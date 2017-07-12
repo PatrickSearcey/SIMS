@@ -1368,7 +1368,7 @@
     <Parameter Name="onlyactive" Type="System.String" DbType="NVarChar(3)" />
     <ElementType Name="SP_RMS_Record_Details_by_WSC_or_officeResult">
       <Column Name="rms_record_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="office_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="office_cd" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Column Name="site_no" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
       <Column Name="station_nm_short" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
       <Column Name="operator_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />

@@ -50,7 +50,8 @@
             <telerik:RadPageView runat="server" ID="rpv0">
                 <p style="font-weight:bold; padding: 0 5px 0 5px;">
                     <img src="../images/lock.png" alt="lock" /> Record is currently locked
-                    <img src="../images/save_icon.gif" alt="save" /> Updates pending <br />
+                    <img src="../images/save_icon.gif" alt="save" /> Updates pending 
+                    &nbsp;&nbsp;&nbsp;&nbsp;Rows with light yellow backgrounds are currently in a status of "Reanalyze"<br />
                     Click on the Record-Type to analyze the record. Click on the station number to navigate to the Station Information page. 
                 </p>
                 <h4>&nbsp;&nbsp;&nbsp;Records Assigned To Me</h4>

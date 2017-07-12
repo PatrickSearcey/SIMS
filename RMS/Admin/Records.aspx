@@ -6,6 +6,7 @@
     <script type="text/javascript">
         function openWin(_id, _type, _SIMS2017URL) {
             if (_type == "newrecord") var oWnd = radopen(_SIMS2017URL + "Modal/RecordEdit.aspx?site_id=" + _id + "&type=" + _type, "rwEditRecords");
+            else if (_type == "record") var oWnd = radopen(_SIMS2017URL + "Modal/RecordEdit.aspx?rms_record_id=" + _id + "&type=" + _type, "rwEditRecords");
         }
 
         function OnClientClose(oWnd, args) {
@@ -62,7 +63,7 @@
                     <p>
                         Select the desired office and records to pull.
                     </p>
-                    <table width="1000">
+                    <table width="800">
                         <tr>
                             <td><telerik:RadDropDownList ID="rddlOffice" runat="server" DataValueField="office_id" DataTextField="office_nm" Skin="Bootstrap" Width="350px" 
                                 DropDownHeight="200px" /></td>
@@ -92,7 +93,8 @@
                                         <li>The <i>TS Class</i> column shows the classification of the record type; ts means the record has been assigned to a time-series record-type, and nts means the record has been assigned to a non-time-series record-type.</li>
                                         <li>The <i>Cat No</i> column shows the assigned category number for the record. If the category number is 2 or 3, the <i>cat reason</i> column displays the remarks for why the record was categorized this way.</li>
                                         <li>The <i>Parameter</i> column shows the parameter code and name that has been assigned to the record in RMS. If more than one parameter has been assigned to the record, <i>multi-param</i> is displayed.</li>
-                                        <li>When viewing <i>all records</i>, rows with light orange backgrounds are inactive records.</li>
+                                        <li>When viewing <i>all records</i>, rows with light gray font are inactive records.</li>
+                                        <li>To assign a new record-type to a site, click on the <i>Assign</i> link</li>
                                         <li><b>Note: Parameter code will not show in this interface until approved daily values are sent to NWISWeb. TS ID assignment can be seen on Records Configuration Interface. Click on Record Type.</b></li>
                                     </ul>
                                 </div>
@@ -112,6 +114,31 @@
                     OnPreRender="rgRecords_PreRender">
                     <MasterTableView DataKeyNames="rms_record_id" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" AutoGenerateColumns="false"
                         Name="Records" AllowFilteringByColumn="true">
+                        <Columns>
+                            <telerik:GridBoundColumn DataField="office_cd" HeaderText="Office" UniqueName="office_cd" SortExpression="office_cd" HeaderStyle-Width="30px" AllowFiltering="false" />
+                            <telerik:GridTemplateColumn DataField="site_no" HeaderText="Site No" UniqueName="site_no" SortExpression="site_no" HeaderStyle-Width="150px" FilterControlWidth="100px">
+                                <ItemTemplate>
+                                    <asp:HyperLink ID="hlSiteNo" runat="server" Target="_blank"><%# Eval("site_no") %></asp:HyperLink>
+                                </ItemTemplate>
+                            </telerik:GridTemplateColumn>
+                            <telerik:GridBoundColumn DataField="station_nm_short" HeaderText="Station Name" UniqueName="station_nm" SortExpression="station_nm" FilterControlWidth="120px"/>
+                            <telerik:GridBoundColumn DataField="analyzer_uid" HeaderText="Analyzer" UniqueName="analyzer_uid" SortExpression="analyzer_uid" FilterControlWidth="60px" HeaderStyle-Width="80px" />
+                            <telerik:GridBoundColumn DataField="approver_uid" HeaderText="Approver" UniqueName="approver_uid" SortExpression="approver_uid" FilterControlWidth="60px" HeaderStyle-Width="80px" />
+                            <telerik:GridTemplateColumn DataField="rms_record_id" HeaderText="Record-Type" UniqueName="rms_record_id" AllowFiltering="false" SortExpression="type_ds" HeaderStyle-Width="160px">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="lbEditRecord" runat="server"><%# Eval("type_ds") %></asp:LinkButton>
+                                </ItemTemplate>
+                            </telerik:GridTemplateColumn>
+                            <telerik:GridBoundColumn DataField="ts_fg" HeaderText="TS Cat" UniqueName="ts_fg" SortExpression="ts_fg" AllowFiltering="false" HeaderStyle-Width="30px" />
+                            <telerik:GridBoundColumn DataField="category_no" HeaderText="Cat No" UniqueName="category_no" SortExpression="category_no" AllowFiltering="false" HeaderStyle-Width="30px" />
+                            <telerik:GridBoundColumn DataField="cat_reason" HeaderText="Cat Reason" UniqueName="cat_reason" SortExpression="cat_reason" AllowFiltering="false" />
+                            <telerik:GridBoundColumn DataField="ts_full_ds" HeaderText="Parameter" UniqueName="ts_full_ds" SortExpression="ts_full_ds" FilterControlWidth="100px" HeaderStyle-Width="250px" />
+                            <telerik:GridTemplateColumn DataField="site_id" UniqueName="site_id" AllowSorting="false" AllowFiltering="false" HeaderStyle-Width="30px">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="lbAssignRecord" runat="server" Text="Assign" />
+                                </ItemTemplate>
+                            </telerik:GridTemplateColumn>
+                        </Columns>
                     </MasterTableView>
                 </telerik:RadGrid>
             </telerik:RadPageView>
@@ -129,7 +156,11 @@
                         Name="Sites" AllowFilteringByColumn="true">
                         <Columns>
                             <telerik:GridBoundColumn DataField="office_nm" HeaderText="Office" UniqueName="office_nm" SortExpression="office_nm" HeaderStyle-Width="200px" FilterControlWidth="100px" />
-                            <telerik:GridBoundColumn DataField="site_no" HeaderText="Site Number" UniqueName="site_no" SortExpression="site_no" HeaderStyle-Width="150px" FilterControlWidth="100px" />
+                            <telerik:GridTemplateColumn DataField="site_no" HeaderText="Site No." UniqueName="site_no" SortExpression="site_no" HeaderStyle-Width="150px" FilterControlWidth="100px">
+                                <ItemTemplate>
+                                    <asp:HyperLink ID="hlSiteNo" runat="server" Target="_blank"><%# Eval("site_no") %></asp:HyperLink>
+                                </ItemTemplate>
+                            </telerik:GridTemplateColumn>
                             <telerik:GridBoundColumn DataField="station_nm" HeaderText="Station Name" UniqueName="station_nm" SortExpression="station_nm" FilterControlWidth="200px"/>
                             <telerik:GridTemplateColumn DataField="site_id" UniqueName="site_id" AllowSorting="false" AllowFiltering="false">
                                 <ItemTemplate>

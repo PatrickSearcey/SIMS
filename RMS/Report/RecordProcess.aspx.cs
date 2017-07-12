@@ -172,7 +172,7 @@ namespace RMS.Report
                 }
                 else
                 {
-                    e.Item.Style.Add(0, "RosyBrown !important");
+                    e.Item.Style.Add(0, "LightYellow !important");
                     var period = db.RecordAnalysisPeriods.FirstOrDefault(p => p.rms_record_id == rms_record_id && p.status_va == "Reanalyze");
                     hlRecordType.NavigateUrl = String.Format("../Task/RecordProcess.aspx?period_id={0}&task=Reanalyze", period.period_id);
                 }
@@ -251,7 +251,7 @@ namespace RMS.Report
                 }
                 else
                 {
-                    e.Item.BackColor = System.Drawing.Color.RosyBrown;
+                    e.Item.BackColor = System.Drawing.Color.LightYellow;
                     var period = db.RecordAnalysisPeriods.FirstOrDefault(p => p.rms_record_id == rms_record_id && p.status_va == "Reanalyze");
                     hlRecordType.NavigateUrl = String.Format("../Task/RecordProcess.aspx?period_id={0}&task=Reanalyze", period.period_id);
                 }

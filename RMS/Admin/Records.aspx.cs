@@ -47,11 +47,13 @@ namespace RMS.Admin
                 Session["OfficeID"] = value;
             }
         }
+        private string onlyactive;
+        private int selOfficeID;
         #endregion
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string office_id = "348";// Request.QueryString["office_id"];
+            string office_id = Request.QueryString["office_id"];
 
             if (!string.IsNullOrEmpty(office_id))
                 OfficeID = Convert.ToInt32(office_id);
@@ -62,6 +64,7 @@ namespace RMS.Admin
             if (!Page.IsPostBack)
             {
                 UserControlSetup();
+                SetupFilterControls();
             }
         }
 
@@ -74,6 +77,17 @@ namespace RMS.Admin
             ph1.SubTitle = "For the " + wsc_nm + " WSC";
             ph1.RecordType = "&nbsp;";
         }
+        
+        protected void SetupFilterControls()
+        {
+            rddlOffice.DataSource = db.Offices.Where(p => p.wsc_id == WSCID).OrderBy(p => p.office_nm).ToList();
+            rddlOffice.DataBind();
+            rddlOffice.Items.Insert(0, new DropDownListItem { Value = "0", Text = "All Offices" });
+            rddlOffice.SelectedValue = OfficeID.ToString();
+
+            selOfficeID = Convert.ToInt32(rddlOffice.SelectedValue);
+            onlyactive = "yes";
+        }
         #endregion
 
         #region Misc Events
@@ -81,13 +95,18 @@ namespace RMS.Admin
         {
             if (e.Argument == "RebindGrids")
             {
+                rgRecords.Rebind();
                 rgSites.Rebind();
             }
         }
 
         protected void UpdateDetails(object sender, EventArgs e)
         {
+            if (rrblRecords.SelectedIndex == 0) onlyactive = "yes"; else onlyactive = "no";
 
+            selOfficeID = Convert.ToInt32(rddlOffice.SelectedValue);
+
+            rgRecords.Rebind();
         }
         #endregion
 
@@ -135,7 +154,10 @@ namespace RMS.Admin
         #region rgRecords
         protected void rgRecords_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
         {
+            var data = db.SP_RMS_Record_Details_by_WSC_or_office(selOfficeID, WSCID, onlyactive).ToList();
+            rgRecords.DataSource = data;
 
+            ltlNumberOfRecords.Text = "Number of records returned: <b>" + data.Count.ToString() + "</b>";
         }
 
         protected void rgRecords_PreRender(object sender, EventArgs e)
@@ -153,7 +175,33 @@ namespace RMS.Admin
 
         protected void rgRecords_ItemDataBound(object sender, GridItemEventArgs e)
         {
+            if (e.Item is GridDataItem)
+            {
+                GridDataItem item = (GridDataItem)e.Item;
 
+                int rms_record_id = Convert.ToInt32(item.GetDataKeyValue("rms_record_id"));
+                var currRecord = db.Records.FirstOrDefault(p => p.rms_record_id == rms_record_id);
+
+                LinkButton lbAssignRecord = (LinkButton)item.FindControl("lbAssignRecord");
+                LinkButton lbEditRecord = (LinkButton)item.FindControl("lbEditRecord");
+                lbAssignRecord.OnClientClick = String.Format("openWin('{0}','newrecord', '{1}'); return false;", currRecord.site_id, Config.SIMS2017URL);
+                lbEditRecord.OnClientClick = String.Format("openWin('{0}','record', '{1}'); return false;", currRecord.rms_record_id, Config.SIMS2017URL);
+
+                HyperLink hlSiteNo = (HyperLink)item.FindControl("hlSiteNo");
+                hlSiteNo.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, currRecord.site_id);
+
+                if (Convert.ToBoolean(currRecord.not_used_fg))
+                {
+                    item["office_cd"].ForeColor = System.Drawing.Color.LightGray;
+                    item["station_nm"].ForeColor = System.Drawing.Color.LightGray;
+                    item["analyzer_uid"].ForeColor = System.Drawing.Color.LightGray;
+                    item["approver_uid"].ForeColor = System.Drawing.Color.LightGray;
+                    item["ts_fg"].ForeColor = System.Drawing.Color.LightGray;
+                    item["category_no"].ForeColor = System.Drawing.Color.LightGray;
+                    item["cat_reason"].ForeColor = System.Drawing.Color.LightGray;
+                    item["ts_full_ds"].ForeColor = System.Drawing.Color.LightGray;
+                }
+            }
         }
         #endregion
     }

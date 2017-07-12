@@ -23719,7 +23719,7 @@ namespace Data
 		
 		private int _rms_record_id;
 		
-		private string _office_nm;
+		private string _office_cd;
 		
 		private string _site_no;
 		
@@ -23763,18 +23763,18 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_nm", DbType="NVarChar(150)")]
-		public string office_nm
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_cd", DbType="NVarChar(10)")]
+		public string office_cd
 		{
 			get
 			{
-				return this._office_nm;
+				return this._office_cd;
 			}
 			set
 			{
-				if ((this._office_nm != value))
+				if ((this._office_cd != value))
 				{
-					this._office_nm = value;
+					this._office_cd = value;
 				}
 			}
 		}
