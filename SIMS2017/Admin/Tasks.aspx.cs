@@ -78,8 +78,8 @@ namespace SIMS2017.Admin
                 hlManageFieldTrips.NavigateUrl = String.Format("{0}Admin/FieldTrips.aspx?office_id={1}", Config.SIMS2017URL, OfficeID);
                 hlManageRecords.NavigateUrl = String.Format("{0}Admin/Records.aspx?office_id={1}", Config.RMSURL, OfficeID);
                 hlManageRecordTypes.NavigateUrl = String.Format("{0}Admin/RecordTypes.aspx?office_id={1}", Config.RMSURL, OfficeID);
-                hlPeriodDates.NavigateUrl = String.Format("{0}Admin/Periods.aspx?type=dates&office_id={1}", Config.RMSURL, OfficeID);
-                hlPeriodStatus.NavigateUrl = String.Format("{0}Admin/Periods.aspx?type=status&office_id={1}", Config.RMSURL, OfficeID);
+                hlPeriodDates.NavigateUrl = String.Format("{0}Admin/PeriodDate.aspx?office_id={1}", Config.RMSURL, OfficeID);
+                hlPeriodStatus.NavigateUrl = String.Format("{0}Admin/PeriodStatus.aspx?office_id={1}", Config.RMSURL, OfficeID);
                 hlSANAL.NavigateUrl = String.Format("{0}Admin/StationAnalyses.aspx?office_id={1}", Config.RMSURL, OfficeID);
                 hlUnlock.NavigateUrl = String.Format("{0}Admin/Unlock.aspx?office_id={1}", Config.RMSURL, OfficeID);
             }

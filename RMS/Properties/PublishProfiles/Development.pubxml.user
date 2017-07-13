@@ -9,6 +9,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <_PublishTargetUrl>\\igskiacwvmgs012\wwwroot\RMS\</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
+    <File Include="Admin/PeriodStatus.aspx">
+      <publishTime>07/13/2017 16:40:07</publishTime>
+    </File>
     <File Include="Admin/Records.aspx">
       <publishTime>07/12/2017 13:26:41</publishTime>
     </File>
@@ -142,10 +145,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/12/2017 12:07:22</publishTime>
     </File>
     <File Include="bin/Core.dll">
-      <publishTime>07/13/2017 10:57:19</publishTime>
+      <publishTime>07/13/2017 15:59:09</publishTime>
     </File>
     <File Include="bin/Core.pdb">
-      <publishTime>07/13/2017 10:57:19</publishTime>
+      <publishTime>07/13/2017 15:59:09</publishTime>
     </File>
     <File Include="bin/Data.dll">
       <publishTime>07/13/2017 10:57:18</publishTime>
@@ -157,10 +160,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/11/2017 10:53:28</publishTime>
     </File>
     <File Include="bin/RMS.dll">
-      <publishTime>07/13/2017 13:24:40</publishTime>
+      <publishTime>07/13/2017 16:33:15</publishTime>
     </File>
     <File Include="bin/RMS.pdb">
-      <publishTime>07/13/2017 13:24:40</publishTime>
+      <publishTime>07/13/2017 16:33:15</publishTime>
     </File>
     <File Include="bin/Telerik.Web.Spreadsheet.dll">
       <publishTime>07/11/2017 10:53:28</publishTime>
@@ -201,6 +204,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Handler/ClearLock.ashx">
       <publishTime>07/11/2017 10:53:28</publishTime>
     </File>
+    <File Include="Handler/DialogsHandler.ashx">
+      <publishTime>07/13/2017 16:23:53</publishTime>
+    </File>
     <File Include="Handler/TemplateViewer.ashx">
       <publishTime>07/13/2017 12:11:47</publishTime>
     </File>
@@ -209,6 +215,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="images/arrowbullet.png">
       <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="images/bigarrow.png">
+      <publishTime>07/13/2017 16:13:51</publishTime>
+    </File>
+    <File Include="images/dialogsavebutton.png">
+      <publishTime>07/13/2017 16:13:51</publishTime>
     </File>
     <File Include="images/False.png">
       <publishTime>07/12/2017 18:37:08</publishTime>

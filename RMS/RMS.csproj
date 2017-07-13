@@ -89,6 +89,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\PeriodStatus.aspx" />
     <Content Include="Admin\Records.aspx" />
     <Content Include="Admin\RecordTypes.aspx" />
     <Content Include="Admin\Unlock.aspx" />
@@ -129,6 +130,8 @@
     <Content Include="App_Data\RadCaptcha\Y.wav" />
     <Content Include="App_Data\RadCaptcha\Z.wav" />
     <Content Include="Control\RecordTypeConfig.ascx" />
+    <Content Include="images\bigarrow.png" />
+    <Content Include="images\dialogsavebutton.png" />
     <Content Include="images\False.png" />
     <Content Include="images\save_icon.gif" />
     <Content Include="images\True.png" />
@@ -174,6 +177,13 @@
     <Content Include="styles\default.css" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\PeriodStatus.aspx.cs">
+      <DependentUpon>PeriodStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\PeriodStatus.aspx.designer.cs">
+      <DependentUpon>PeriodStatus.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Records.aspx.cs">
       <DependentUpon>Records.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -201,6 +211,9 @@
     </Compile>
     <Compile Include="Control\RecordTypeConfig.ascx.designer.cs">
       <DependentUpon>RecordTypeConfig.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\DialogsHandler.ashx.cs">
+      <DependentUpon>DialogsHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="Handler\TemplateViewer.ashx.cs">
       <DependentUpon>TemplateViewer.ashx</DependentUpon>
@@ -344,6 +357,7 @@
   <ItemGroup>
     <Content Include="Handler\ClearLock.ashx" />
     <Content Include="Handler\TemplateViewer.ashx" />
+    <Content Include="Handler\DialogsHandler.ashx" />
     <None Include="Properties\PublishProfiles\Development.pubxml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
