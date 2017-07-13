@@ -40,13 +40,41 @@ namespace RMS.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            string office_id = Request.QueryString["office_id"];
 
+            if (!string.IsNullOrEmpty(office_id))
+                OfficeID = Convert.ToInt32(office_id);
+            else
+                OfficeID = user.OfficeID;
+                
+            WSCID = Convert.ToInt32(db.Offices.FirstOrDefault(p => p.office_id == OfficeID).wsc_id);
+
+            if (!Page.IsPostBack)
+            {
+                UserControlSetup();
+            }
+        }
+
+        protected void UserControlSetup()
+        {
+            string wsc_nm = db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID).wsc_nm;
+            ph1.Title = "Manage Record Types";
+
+            ph1.SubTitle = "For the " + wsc_nm + " WSC";
+            ph1.RecordType = "&nbsp;";
         }
 
         #region rgRecordTypes
         protected void rgRecordTypes_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
         {
-            rgRecordTypes.DataSource = db.RecordTypes.Where(p => p.wsc_id == WSCID).OrderBy(p => p.type_ds).ToList();
+            rgRecordTypes.DataSource = db.RecordTypes.Where(p => p.wsc_id == WSCID).Select(p => new {
+                record_type_id = p.record_type_id,
+                type_cd = p.type_cd,
+                type_ds = p.type_ds,
+                ts_fg = p.ts_fg,
+                TemplateID = p.TemplateID,
+                TemplateName = p.RecordTemplate.TemplateName
+            }).OrderBy(p => p.type_ds).ToList();
         }
 
         protected void rgRecordTypes_Load(object sender, EventArgs e)
@@ -78,20 +106,20 @@ namespace RMS.Admin
             }
         }
 
-        private void rgRecordTypes_UpdateCommand(object source, GridCommandEventArgs e)
+        protected void rgRecordTypes_UpdateCommand(object source, GridCommandEventArgs e)
         {
             GridEditableItem editedItem = (GridEditableItem)e.Item;
             UserControl MyUserControl = (UserControl)e.Item.FindControl(GridEditFormItem.EditFormUserControlID);
-
-            int record_type_id = Convert.ToInt32(editedItem.GetDataKeyValue("record_type_id"));
-            var rec_type = db.RecordTypes.FirstOrDefault(p => p.record_type_id == record_type_id);
-            rec_type.type_cd = ((TextBox)MyUserControl.FindControl("tbCode")).Text;
-            rec_type.type_ds = ((TextBox)MyUserControl.FindControl("tbDescription")).Text;
-
+            
             try
             {
-                rec_type.UpdateRecordTypeDetails();
-                this.Session["RecordTypes"] = null;
+                int record_type_id = Convert.ToInt32(editedItem.GetDataKeyValue("record_type_id"));
+                var rec_type = db.RecordTypes.FirstOrDefault(p => p.record_type_id == record_type_id);
+                rec_type.type_cd = ((TextBox)MyUserControl.FindControl("tbCode")).Text;
+                rec_type.type_ds = ((TextBox)MyUserControl.FindControl("tbDescription")).Text;
+                rec_type.TemplateID = Convert.ToInt32(((RadDropDownList)MyUserControl.FindControl("rddlTemplates")).SelectedValue);
+
+                db.SubmitChanges();
                 rgRecordTypes.Rebind();
             }
             catch (Exception ex)
@@ -109,13 +137,11 @@ namespace RMS.Admin
         {
             UserControl userControl = (UserControl)e.Item.FindControl(GridEditFormItem.EditFormUserControlID);
 
-            RecordType rec_type = new RecordType(0);
-            rec_type.Code = Strings.Trim(((TextBox)userControl.FindControl("tbCode")).Text);
-            rec_type.Description = ((TextBox)userControl.FindControl("tbDescription")).Text;
-            rec_type.WorkerInstructions = ((TextBox)userControl.FindControl("tbWorkInst")).Text;
-            rec_type.CheckerInstructions = ((TextBox)userControl.FindControl("tbCheckInst")).Text;
-            rec_type.ReviewerInstructions = ((TextBox)userControl.FindControl("tbReviewInst")).Text;
-            rec_type.WSCID = w.ID;
+            var rec_type = new Data.RecordType();
+            rec_type.type_cd = ((TextBox)userControl.FindControl("tbCode")).Text.Trim();
+            rec_type.type_ds = ((TextBox)userControl.FindControl("tbDescription")).Text.Trim();
+            rec_type.TemplateID = Convert.ToInt32(((RadDropDownList)userControl.FindControl("rddlTemplates")).SelectedValue);
+            rec_type.wsc_id = WSCID;
             string cont_va = null;
 
             try
@@ -123,11 +149,11 @@ namespace RMS.Admin
                 cont_va = ((RadioButtonList)userControl.FindControl("rblContorNoncont")).SelectedItem.Value;
                 if (cont_va == "cont")
                 {
-                    rec_type.TimeSeriesFlag = true;
+                    rec_type.ts_fg = true;
                 }
                 else if (cont_va == "noncont")
                 {
-                    rec_type.TimeSeriesFlag = false;
+                    rec_type.ts_fg = false;
                 }
             }
             catch (Exception ex)
@@ -140,14 +166,13 @@ namespace RMS.Admin
                 return;
             }
 
-
             try
             {
-                RecordType rec_type_exist_test = new RecordType(rec_type.Code, rec_type.WSCID);
-                if (rec_type_exist_test.ID == 0)
+                var rec_type_exist_test = db.RecordTypes.FirstOrDefault(p => p.type_cd == rec_type.type_cd && p.wsc_id == WSCID);
+                if (rec_type_exist_test == null)
                 {
-                    rec_type.AddRecordType();
-                    this.Session["RecordTypes"] = null;
+                    db.RecordTypes.InsertOnSubmit(rec_type);
+                    db.SubmitChanges();
                     rgRecordTypes.Rebind();
                 }
                 else

@@ -90,6 +90,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\Records.aspx" />
+    <Content Include="Admin\RecordTypes.aspx" />
+    <Content Include="Admin\Unlock.aspx" />
     <Content Include="App_Data\RadCaptcha\0.wav" />
     <Content Include="App_Data\RadCaptcha\1.wav" />
     <Content Include="App_Data\RadCaptcha\2.wav" />
@@ -126,7 +128,10 @@
     <Content Include="App_Data\RadCaptcha\X.wav" />
     <Content Include="App_Data\RadCaptcha\Y.wav" />
     <Content Include="App_Data\RadCaptcha\Z.wav" />
+    <Content Include="Control\RecordTypeConfig.ascx" />
+    <Content Include="images\False.png" />
     <Content Include="images\save_icon.gif" />
+    <Content Include="images\True.png" />
     <Content Include="Report\Audit.aspx" />
     <Content Include="Control\OfficeSelector.ascx" />
     <Content Include="Control\RecordPageHeading.ascx" />
@@ -175,6 +180,30 @@
     </Compile>
     <Compile Include="Admin\Records.aspx.designer.cs">
       <DependentUpon>Records.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\RecordTypes.aspx.cs">
+      <DependentUpon>RecordTypes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\RecordTypes.aspx.designer.cs">
+      <DependentUpon>RecordTypes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Unlock.aspx.cs">
+      <DependentUpon>Unlock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Unlock.aspx.designer.cs">
+      <DependentUpon>Unlock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Control\RecordTypeConfig.ascx.cs">
+      <DependentUpon>RecordTypeConfig.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Control\RecordTypeConfig.ascx.designer.cs">
+      <DependentUpon>RecordTypeConfig.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\TemplateViewer.ashx.cs">
+      <DependentUpon>TemplateViewer.ashx</DependentUpon>
     </Compile>
     <Compile Include="Report\Audit.aspx.cs">
       <DependentUpon>Audit.aspx</DependentUpon>
@@ -314,6 +343,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Handler\ClearLock.ashx" />
+    <Content Include="Handler\TemplateViewer.ashx" />
     <None Include="Properties\PublishProfiles\Development.pubxml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
@@ -356,7 +386,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

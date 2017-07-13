@@ -165,9 +165,6 @@ namespace Data
     partial void InsertRecord(Record instance);
     partial void UpdateRecord(Record instance);
     partial void DeleteRecord(Record instance);
-    partial void InsertRecordType(RecordType instance);
-    partial void UpdateRecordType(RecordType instance);
-    partial void DeleteRecordType(RecordType instance);
     partial void InsertRecordAnalysisPeriod(RecordAnalysisPeriod instance);
     partial void UpdateRecordAnalysisPeriod(RecordAnalysisPeriod instance);
     partial void DeleteRecordAnalysisPeriod(RecordAnalysisPeriod instance);
@@ -177,6 +174,12 @@ namespace Data
     partial void InsertTCPShoulderRule(TCPShoulderRule instance);
     partial void UpdateTCPShoulderRule(TCPShoulderRule instance);
     partial void DeleteTCPShoulderRule(TCPShoulderRule instance);
+    partial void InsertRecordType(RecordType instance);
+    partial void UpdateRecordType(RecordType instance);
+    partial void DeleteRecordType(RecordType instance);
+    partial void InsertRecordTemplate(RecordTemplate instance);
+    partial void UpdateRecordTemplate(RecordTemplate instance);
+    partial void DeleteRecordTemplate(RecordTemplate instance);
     #endregion
 		
 		public SIMSDataContext() : 
@@ -673,14 +676,6 @@ namespace Data
 			}
 		}
 		
-		public System.Data.Linq.Table<RecordType> RecordTypes
-		{
-			get
-			{
-				return this.GetTable<RecordType>();
-			}
-		}
-		
 		public System.Data.Linq.Table<RecordAnalysisPeriod> RecordAnalysisPeriods
 		{
 			get
@@ -750,6 +745,22 @@ namespace Data
 			get
 			{
 				return this.GetTable<vRMSRecordsToBeApproved>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RecordType> RecordTypes
+		{
+			get
+			{
+				return this.GetTable<RecordType>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RecordTemplate> RecordTemplates
+		{
+			get
+			{
+				return this.GetTable<RecordTemplate>();
 			}
 		}
 		
@@ -17941,7 +17952,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordType_Record", Storage="_RecordType", ThisKey="record_type_id", OtherKey="record_type_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Type_Record", Storage="_RecordType", ThisKey="record_type_id", OtherKey="record_type_id", IsForeignKey=true)]
 		public RecordType RecordType
 		{
 			get
@@ -18041,240 +18052,6 @@ namespace Data
 		{
 			this.SendPropertyChanging();
 			entity.Record = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Record_Types")]
-	public partial class RecordType : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _record_type_id;
-		
-		private string _type_cd;
-		
-		private string _type_ds;
-		
-		private string _analyze_html_va;
-		
-		private string _approve_html_va;
-		
-		private System.Nullable<bool> _ts_fg;
-		
-		private System.Nullable<int> _wsc_id;
-		
-		private EntitySet<Record> _Records;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onrecord_type_idChanging(int value);
-    partial void Onrecord_type_idChanged();
-    partial void Ontype_cdChanging(string value);
-    partial void Ontype_cdChanged();
-    partial void Ontype_dsChanging(string value);
-    partial void Ontype_dsChanged();
-    partial void Onanalyze_html_vaChanging(string value);
-    partial void Onanalyze_html_vaChanged();
-    partial void Onapprove_html_vaChanging(string value);
-    partial void Onapprove_html_vaChanged();
-    partial void Onts_fgChanging(System.Nullable<bool> value);
-    partial void Onts_fgChanged();
-    partial void Onwsc_idChanging(System.Nullable<int> value);
-    partial void Onwsc_idChanged();
-    #endregion
-		
-		public RecordType()
-		{
-			this._Records = new EntitySet<Record>(new Action<Record>(this.attach_Records), new Action<Record>(this.detach_Records));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_record_type_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int record_type_id
-		{
-			get
-			{
-				return this._record_type_id;
-			}
-			set
-			{
-				if ((this._record_type_id != value))
-				{
-					this.Onrecord_type_idChanging(value);
-					this.SendPropertyChanging();
-					this._record_type_id = value;
-					this.SendPropertyChanged("record_type_id");
-					this.Onrecord_type_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_cd", DbType="NVarChar(50)")]
-		public string type_cd
-		{
-			get
-			{
-				return this._type_cd;
-			}
-			set
-			{
-				if ((this._type_cd != value))
-				{
-					this.Ontype_cdChanging(value);
-					this.SendPropertyChanging();
-					this._type_cd = value;
-					this.SendPropertyChanged("type_cd");
-					this.Ontype_cdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_ds", DbType="NVarChar(200)")]
-		public string type_ds
-		{
-			get
-			{
-				return this._type_ds;
-			}
-			set
-			{
-				if ((this._type_ds != value))
-				{
-					this.Ontype_dsChanging(value);
-					this.SendPropertyChanging();
-					this._type_ds = value;
-					this.SendPropertyChanged("type_ds");
-					this.Ontype_dsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_analyze_html_va", DbType="NVarChar(MAX)")]
-		public string analyze_html_va
-		{
-			get
-			{
-				return this._analyze_html_va;
-			}
-			set
-			{
-				if ((this._analyze_html_va != value))
-				{
-					this.Onanalyze_html_vaChanging(value);
-					this.SendPropertyChanging();
-					this._analyze_html_va = value;
-					this.SendPropertyChanged("analyze_html_va");
-					this.Onanalyze_html_vaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approve_html_va", DbType="NVarChar(MAX)")]
-		public string approve_html_va
-		{
-			get
-			{
-				return this._approve_html_va;
-			}
-			set
-			{
-				if ((this._approve_html_va != value))
-				{
-					this.Onapprove_html_vaChanging(value);
-					this.SendPropertyChanging();
-					this._approve_html_va = value;
-					this.SendPropertyChanged("approve_html_va");
-					this.Onapprove_html_vaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ts_fg", DbType="Bit")]
-		public System.Nullable<bool> ts_fg
-		{
-			get
-			{
-				return this._ts_fg;
-			}
-			set
-			{
-				if ((this._ts_fg != value))
-				{
-					this.Onts_fgChanging(value);
-					this.SendPropertyChanging();
-					this._ts_fg = value;
-					this.SendPropertyChanged("ts_fg");
-					this.Onts_fgChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_id", DbType="Int")]
-		public System.Nullable<int> wsc_id
-		{
-			get
-			{
-				return this._wsc_id;
-			}
-			set
-			{
-				if ((this._wsc_id != value))
-				{
-					this.Onwsc_idChanging(value);
-					this.SendPropertyChanging();
-					this._wsc_id = value;
-					this.SendPropertyChanged("wsc_id");
-					this.Onwsc_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordType_Record", Storage="_Records", ThisKey="record_type_id", OtherKey="record_type_id")]
-		public EntitySet<Record> Records
-		{
-			get
-			{
-				return this._Records;
-			}
-			set
-			{
-				this._Records.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Records(Record entity)
-		{
-			this.SendPropertyChanging();
-			entity.RecordType = this;
-		}
-		
-		private void detach_Records(Record entity)
-		{
-			this.SendPropertyChanging();
-			entity.RecordType = null;
 		}
 	}
 	
@@ -20975,6 +20752,467 @@ namespace Data
 					this._not_used_fg = value;
 				}
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Record_Types")]
+	public partial class RecordType : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _record_type_id;
+		
+		private string _type_cd;
+		
+		private string _type_ds;
+		
+		private string _analyze_html_va;
+		
+		private string _approve_html_va;
+		
+		private System.Nullable<int> _TemplateID;
+		
+		private System.Nullable<bool> _ts_fg;
+		
+		private System.Nullable<int> _wsc_id;
+		
+		private EntitySet<Record> _Records;
+		
+		private EntityRef<RecordTemplate> _RecordTemplate;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onrecord_type_idChanging(int value);
+    partial void Onrecord_type_idChanged();
+    partial void Ontype_cdChanging(string value);
+    partial void Ontype_cdChanged();
+    partial void Ontype_dsChanging(string value);
+    partial void Ontype_dsChanged();
+    partial void Onanalyze_html_vaChanging(string value);
+    partial void Onanalyze_html_vaChanged();
+    partial void Onapprove_html_vaChanging(string value);
+    partial void Onapprove_html_vaChanged();
+    partial void OnTemplateIDChanging(System.Nullable<int> value);
+    partial void OnTemplateIDChanged();
+    partial void Onts_fgChanging(System.Nullable<bool> value);
+    partial void Onts_fgChanged();
+    partial void Onwsc_idChanging(System.Nullable<int> value);
+    partial void Onwsc_idChanged();
+    #endregion
+		
+		public RecordType()
+		{
+			this._Records = new EntitySet<Record>(new Action<Record>(this.attach_Records), new Action<Record>(this.detach_Records));
+			this._RecordTemplate = default(EntityRef<RecordTemplate>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_record_type_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int record_type_id
+		{
+			get
+			{
+				return this._record_type_id;
+			}
+			set
+			{
+				if ((this._record_type_id != value))
+				{
+					this.Onrecord_type_idChanging(value);
+					this.SendPropertyChanging();
+					this._record_type_id = value;
+					this.SendPropertyChanged("record_type_id");
+					this.Onrecord_type_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_cd", DbType="NVarChar(50)")]
+		public string type_cd
+		{
+			get
+			{
+				return this._type_cd;
+			}
+			set
+			{
+				if ((this._type_cd != value))
+				{
+					this.Ontype_cdChanging(value);
+					this.SendPropertyChanging();
+					this._type_cd = value;
+					this.SendPropertyChanged("type_cd");
+					this.Ontype_cdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_ds", DbType="NVarChar(200)")]
+		public string type_ds
+		{
+			get
+			{
+				return this._type_ds;
+			}
+			set
+			{
+				if ((this._type_ds != value))
+				{
+					this.Ontype_dsChanging(value);
+					this.SendPropertyChanging();
+					this._type_ds = value;
+					this.SendPropertyChanged("type_ds");
+					this.Ontype_dsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_analyze_html_va", DbType="NVarChar(MAX)")]
+		public string analyze_html_va
+		{
+			get
+			{
+				return this._analyze_html_va;
+			}
+			set
+			{
+				if ((this._analyze_html_va != value))
+				{
+					this.Onanalyze_html_vaChanging(value);
+					this.SendPropertyChanging();
+					this._analyze_html_va = value;
+					this.SendPropertyChanged("analyze_html_va");
+					this.Onanalyze_html_vaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approve_html_va", DbType="NVarChar(MAX)")]
+		public string approve_html_va
+		{
+			get
+			{
+				return this._approve_html_va;
+			}
+			set
+			{
+				if ((this._approve_html_va != value))
+				{
+					this.Onapprove_html_vaChanging(value);
+					this.SendPropertyChanging();
+					this._approve_html_va = value;
+					this.SendPropertyChanged("approve_html_va");
+					this.Onapprove_html_vaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateID", DbType="Int")]
+		public System.Nullable<int> TemplateID
+		{
+			get
+			{
+				return this._TemplateID;
+			}
+			set
+			{
+				if ((this._TemplateID != value))
+				{
+					if (this._RecordTemplate.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTemplateIDChanging(value);
+					this.SendPropertyChanging();
+					this._TemplateID = value;
+					this.SendPropertyChanged("TemplateID");
+					this.OnTemplateIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ts_fg", DbType="Bit")]
+		public System.Nullable<bool> ts_fg
+		{
+			get
+			{
+				return this._ts_fg;
+			}
+			set
+			{
+				if ((this._ts_fg != value))
+				{
+					this.Onts_fgChanging(value);
+					this.SendPropertyChanging();
+					this._ts_fg = value;
+					this.SendPropertyChanged("ts_fg");
+					this.Onts_fgChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_id", DbType="Int")]
+		public System.Nullable<int> wsc_id
+		{
+			get
+			{
+				return this._wsc_id;
+			}
+			set
+			{
+				if ((this._wsc_id != value))
+				{
+					this.Onwsc_idChanging(value);
+					this.SendPropertyChanging();
+					this._wsc_id = value;
+					this.SendPropertyChanged("wsc_id");
+					this.Onwsc_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Type_Record", Storage="_Records", ThisKey="record_type_id", OtherKey="record_type_id")]
+		public EntitySet<Record> Records
+		{
+			get
+			{
+				return this._Records;
+			}
+			set
+			{
+				this._Records.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_lut_Template_RecordType", Storage="_RecordTemplate", ThisKey="TemplateID", OtherKey="TemplateID", IsForeignKey=true)]
+		public RecordTemplate RecordTemplate
+		{
+			get
+			{
+				return this._RecordTemplate.Entity;
+			}
+			set
+			{
+				RecordTemplate previousValue = this._RecordTemplate.Entity;
+				if (((previousValue != value) 
+							|| (this._RecordTemplate.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._RecordTemplate.Entity = null;
+						previousValue.RecordTypes.Remove(this);
+					}
+					this._RecordTemplate.Entity = value;
+					if ((value != null))
+					{
+						value.RecordTypes.Add(this);
+						this._TemplateID = value.TemplateID;
+					}
+					else
+					{
+						this._TemplateID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("RecordTemplate");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Records(Record entity)
+		{
+			this.SendPropertyChanging();
+			entity.RecordType = this;
+		}
+		
+		private void detach_Records(Record entity)
+		{
+			this.SendPropertyChanging();
+			entity.RecordType = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_lut_Template")]
+	public partial class RecordTemplate : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _TemplateID;
+		
+		private string _TemplateName;
+		
+		private string _TemplateText;
+		
+		private string _TemplateEdit;
+		
+		private EntitySet<RecordType> _RecordTypes;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTemplateIDChanging(int value);
+    partial void OnTemplateIDChanged();
+    partial void OnTemplateNameChanging(string value);
+    partial void OnTemplateNameChanged();
+    partial void OnTemplateTextChanging(string value);
+    partial void OnTemplateTextChanged();
+    partial void OnTemplateEditChanging(string value);
+    partial void OnTemplateEditChanged();
+    #endregion
+		
+		public RecordTemplate()
+		{
+			this._RecordTypes = new EntitySet<RecordType>(new Action<RecordType>(this.attach_RecordTypes), new Action<RecordType>(this.detach_RecordTypes));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int TemplateID
+		{
+			get
+			{
+				return this._TemplateID;
+			}
+			set
+			{
+				if ((this._TemplateID != value))
+				{
+					this.OnTemplateIDChanging(value);
+					this.SendPropertyChanging();
+					this._TemplateID = value;
+					this.SendPropertyChanged("TemplateID");
+					this.OnTemplateIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateName", DbType="NVarChar(100)")]
+		public string TemplateName
+		{
+			get
+			{
+				return this._TemplateName;
+			}
+			set
+			{
+				if ((this._TemplateName != value))
+				{
+					this.OnTemplateNameChanging(value);
+					this.SendPropertyChanging();
+					this._TemplateName = value;
+					this.SendPropertyChanged("TemplateName");
+					this.OnTemplateNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateText", DbType="NVarChar(MAX)")]
+		public string TemplateText
+		{
+			get
+			{
+				return this._TemplateText;
+			}
+			set
+			{
+				if ((this._TemplateText != value))
+				{
+					this.OnTemplateTextChanging(value);
+					this.SendPropertyChanging();
+					this._TemplateText = value;
+					this.SendPropertyChanged("TemplateText");
+					this.OnTemplateTextChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateEdit", DbType="NVarChar(MAX)")]
+		public string TemplateEdit
+		{
+			get
+			{
+				return this._TemplateEdit;
+			}
+			set
+			{
+				if ((this._TemplateEdit != value))
+				{
+					this.OnTemplateEditChanging(value);
+					this.SendPropertyChanging();
+					this._TemplateEdit = value;
+					this.SendPropertyChanged("TemplateEdit");
+					this.OnTemplateEditChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_lut_Template_RecordType", Storage="_RecordTypes", ThisKey="TemplateID", OtherKey="TemplateID")]
+		public EntitySet<RecordType> RecordTypes
+		{
+			get
+			{
+				return this._RecordTypes;
+			}
+			set
+			{
+				this._RecordTypes.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_RecordTypes(RecordType entity)
+		{
+			this.SendPropertyChanging();
+			entity.RecordTemplate = this;
+		}
+		
+		private void detach_RecordTypes(RecordType entity)
+		{
+			this.SendPropertyChanging();
+			entity.RecordTemplate = null;
 		}
 	}
 	

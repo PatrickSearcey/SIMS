@@ -12,6 +12,7 @@ namespace RMS.Control
     public partial class RecordTypeConfig : System.Web.UI.UserControl
     {
         private object _dataItem = null;
+        private Data.SIMSDataContext db = new Data.SIMSDataContext();
 
         public object DataItem
         {
@@ -19,24 +20,26 @@ namespace RMS.Control
             set { this._dataItem = value; }
         }
 
-        protected void Page_Load(object sender, EventArgs e)
+        protected override void OnInit(EventArgs e)
         {
-            if (DataItem is GridInsertionObject)
-            {
-                btnInsert.Visible = true;
-                btnUpdate.Visible = false;
-            }
-            else
-            {
-                btnInsert.Visible = false;
-                btnUpdate.Visible = true;
-            }
+            InitializeComponent();
+            base.OnInit(e);
         }
 
-        protected void RecordTypeConfigDetails_DataBinding(object sender, System.EventArgs e)
+        private void InitializeComponent()
+        {
+            DataBinding += this.RecordTypeConfig_DataBinding;
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+
+        protected void RecordTypeConfig_DataBinding(object sender, System.EventArgs e)
         {
             object contValue = DataBinder.Eval(DataItem, "ts_fg");
             object record_type_id = DataBinder.Eval(DataItem, "record_type_id");
+            object TemplateID = DataBinder.Eval(DataItem, "TemplateID");
 
             if (record_type_id.Equals(DBNull.Value))
             {
@@ -70,6 +73,24 @@ namespace RMS.Control
                 lblCONStatus.Visible = false;
                 rfvContorNoncont.Visible = true;
             }
+
+            List<Data.RecordTemplate> temps = new List<Data.RecordTemplate>();
+            temps.Add(new Data.RecordTemplate { TemplateID = 0, TemplateName = "" });
+            foreach (var temp in db.RecordTemplates)
+            {
+                temps.Add(temp);
+            }
+            rddlTemplates.DataSource = temps;
+            rddlTemplates.DataBind();
+
+            dlTemplates.DataSource = db.RecordTemplates.ToList();
+            dlTemplates.DataBind();
+           
+            if (TemplateID != null)
+            {
+                rddlTemplates.SelectedValue = TemplateID.ToString();
+            }
+
         }
     }
 }

@@ -12,6 +12,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Admin/Records.aspx">
       <publishTime>07/12/2017 13:26:41</publishTime>
     </File>
+    <File Include="Admin/RecordTypes.aspx">
+      <publishTime>07/13/2017 11:55:28</publishTime>
+    </File>
+    <File Include="Admin/Unlock.aspx">
+      <publishTime>07/13/2017 13:23:36</publishTime>
+    </File>
     <File Include="App_Data/RadCaptcha/0.wav">
       <publishTime>07/11/2017 10:53:28</publishTime>
     </File>
@@ -136,25 +142,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/12/2017 12:07:22</publishTime>
     </File>
     <File Include="bin/Core.dll">
-      <publishTime>07/11/2017 21:01:54</publishTime>
+      <publishTime>07/13/2017 10:57:19</publishTime>
     </File>
     <File Include="bin/Core.pdb">
-      <publishTime>07/11/2017 21:01:54</publishTime>
+      <publishTime>07/13/2017 10:57:19</publishTime>
     </File>
     <File Include="bin/Data.dll">
-      <publishTime>07/11/2017 21:01:53</publishTime>
+      <publishTime>07/13/2017 10:57:18</publishTime>
     </File>
     <File Include="bin/Data.pdb">
-      <publishTime>07/11/2017 21:01:53</publishTime>
+      <publishTime>07/13/2017 10:57:18</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>07/11/2017 10:53:28</publishTime>
     </File>
     <File Include="bin/RMS.dll">
-      <publishTime>07/12/2017 13:24:41</publishTime>
+      <publishTime>07/13/2017 13:24:40</publishTime>
     </File>
     <File Include="bin/RMS.pdb">
-      <publishTime>07/12/2017 13:24:41</publishTime>
+      <publishTime>07/13/2017 13:24:40</publishTime>
     </File>
     <File Include="bin/Telerik.Web.Spreadsheet.dll">
       <publishTime>07/11/2017 10:53:28</publishTime>
@@ -186,17 +192,26 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Control/RecordPageHeading.ascx">
       <publishTime>07/11/2017 10:53:28</publishTime>
     </File>
+    <File Include="Control/RecordTypeConfig.ascx">
+      <publishTime>07/13/2017 11:50:36</publishTime>
+    </File>
     <File Include="Doc/Temp/placeholder.txt">
       <publishTime>07/11/2017 10:53:28</publishTime>
     </File>
     <File Include="Handler/ClearLock.ashx">
       <publishTime>07/11/2017 10:53:28</publishTime>
     </File>
+    <File Include="Handler/TemplateViewer.ashx">
+      <publishTime>07/13/2017 12:11:47</publishTime>
+    </File>
     <File Include="images/approved.gif">
       <publishTime>07/11/2017 10:53:28</publishTime>
     </File>
     <File Include="images/arrowbullet.png">
       <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="images/False.png">
+      <publishTime>07/12/2017 18:37:08</publishTime>
     </File>
     <File Include="images/lock.png">
       <publishTime>07/11/2017 10:53:28</publishTime>
@@ -218,6 +233,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="images/tooltip.png">
       <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="images/True.png">
+      <publishTime>07/12/2017 18:37:08</publishTime>
     </File>
     <File Include="images/USGSHeaderLogo.png">
       <publishTime>07/11/2017 10:53:28</publishTime>

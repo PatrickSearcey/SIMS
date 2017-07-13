@@ -94,6 +94,33 @@ namespace RMS.Control {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvContorNoncont;
         
         /// <summary>
+        /// rddlTemplates control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDropDownList rddlTemplates;
+        
+        /// <summary>
+        /// rfvTemplates control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTemplates;
+        
+        /// <summary>
+        /// dlTemplates control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dlTemplates;
+        
+        /// <summary>
         /// lblError control.
         /// </summary>
         /// <remarks>
@@ -103,30 +130,30 @@ namespace RMS.Control {
         protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
-        /// btnUpdate control.
+        /// rbUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdate;
+        protected global::Telerik.Web.UI.RadButton rbUpdate;
         
         /// <summary>
-        /// btnInsert control.
+        /// rbInsert control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnInsert;
+        protected global::Telerik.Web.UI.RadButton rbInsert;
         
         /// <summary>
-        /// btnCancel control.
+        /// rbCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
+        protected global::Telerik.Web.UI.RadButton rbCancel;
     }
 }
