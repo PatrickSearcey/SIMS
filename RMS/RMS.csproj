@@ -93,6 +93,7 @@
     <Content Include="Admin\PeriodStatus.aspx" />
     <Content Include="Admin\Records.aspx" />
     <Content Include="Admin\RecordTypes.aspx" />
+    <Content Include="Admin\StationAnalyses.aspx" />
     <Content Include="Admin\Unlock.aspx" />
     <Content Include="App_Data\RadCaptcha\0.wav" />
     <Content Include="App_Data\RadCaptcha\1.wav" />
@@ -205,6 +206,13 @@
     </Compile>
     <Compile Include="Admin\RecordTypes.aspx.designer.cs">
       <DependentUpon>RecordTypes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\StationAnalyses.aspx.cs">
+      <DependentUpon>StationAnalyses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\StationAnalyses.aspx.designer.cs">
+      <DependentUpon>StationAnalyses.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Unlock.aspx.cs">
       <DependentUpon>Unlock.aspx</DependentUpon>
