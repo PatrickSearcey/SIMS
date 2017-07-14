@@ -216,3 +216,9 @@ div.RadGrid .rgEditRow td {
 .RadTabStrip_Bootstrap .rtsLevel1 .rtsLink {
     color:#ec562c !important;
 }
+
+/*TELERIK RAD SLIDER*/
+.RadSlider_Bootstrap .rslSelectedregion {
+    border-color: #b84626 !important;
+    background-color: #b84626 !important;
+}

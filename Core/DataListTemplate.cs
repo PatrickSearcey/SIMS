@@ -62,13 +62,13 @@ namespace Core
             {
                 case ListItemType.Header:
 
-                    lc.Text = "<fieldset style=\"width:340px;\"><legend>" + RecordType + "</legend><div style=\"padding:5px;\">" + 
-                        "<table cellpadding=\"3\" style=\"border: 1px solid #863d02;background-color:white;\">" + 
-                        "  <tr>" + 
-                        "    <td style=\"background-color:#863d02;color:white;text-align:center;\">Period ID</td>" + 
-                        "    <td style=\"background-color:#863d02;color:white;text-align:center;\">Begin Date</td>" + 
-                        "    <td style=\"background-color:#863d02;color:white;text-align:center;\">End Date</td>" + 
-                        "    <td style=\"background-color:#863d02;color:white;text-align:center;\">Status</td>" + 
+                    lc.Text = "<fieldset style=\"width:340px;\"><legend>" + RecordType + "</legend><div style=\"padding:5px;\">" +
+                        "<table cellpadding=\"3\" style=\"border: 1px solid #b84626;background-color:white;\">" + 
+                        "  <tr>" +
+                        "    <td style=\"background-color:#b84626;color:white;text-align:center;\">Period ID</td>" +
+                        "    <td style=\"background-color:#b84626;color:white;text-align:center;\">Begin Date</td>" +
+                        "    <td style=\"background-color:#b84626;color:white;text-align:center;\">End Date</td>" +
+                        "    <td style=\"background-color:#b84626;color:white;text-align:center;\">Status</td>" + 
                         "  </tr>";
 
                     Count = 1;
@@ -134,11 +134,11 @@ namespace Core
                 {
                     if (Count == Convert.ToInt32(NoOfPeriods))
                     {
-                        lc.Text += "<tr><td>" + period_id + "</td><td><a href=\"PeriodDates.aspx?period_id=" + period_id + "&dt=beg2\">" + String.Format("{0:MM/dd/yyyy}", DataBinder.Eval(container.DataItem, "period_beg_dt")) + "</a>" + "</td><td><a href=\"PeriodDates.aspx?period_id=" + period_id + "&dt=end2\">" + String.Format("{0:MM/dd/yyyy}", DataBinder.Eval(container.DataItem, "period_end_dt")) + "</a></td><td>" + status_va + "</td></tr>";
+                        lc.Text += "<tr><td>" + period_id + "</td><td><a href=\"PeriodDate.aspx?period_id=" + period_id + "&dt=beg2\">" + String.Format("{0:MM/dd/yyyy}", DataBinder.Eval(container.DataItem, "period_beg_dt")) + "</a>" + "</td><td><a href=\"PeriodDate.aspx?period_id=" + period_id + "&dt=end2\">" + String.Format("{0:MM/dd/yyyy}", DataBinder.Eval(container.DataItem, "period_end_dt")) + "</a></td><td>" + status_va + "</td></tr>";
                     }
                     else
                     {
-                        lc.Text += "<tr><td>" + period_id + "</td><td>" + String.Format("{0:MM/dd/yyyy}", DataBinder.Eval(container.DataItem, "period_beg_dt")) + "</td><td><a href=\"PeriodDates.aspx?period_id=" + period_id + "&dt=end1\">" + String.Format("{0:MM/dd/yyyy}", DataBinder.Eval(container.DataItem, "period_end_dt")) + "</a></td><td>" + status_va + "</td></tr>";
+                        lc.Text += "<tr><td>" + period_id + "</td><td>" + String.Format("{0:MM/dd/yyyy}", DataBinder.Eval(container.DataItem, "period_beg_dt")) + "</td><td><a href=\"PeriodDate.aspx?period_id=" + period_id + "&dt=end1\">" + String.Format("{0:MM/dd/yyyy}", DataBinder.Eval(container.DataItem, "period_end_dt")) + "</a></td><td>" + status_va + "</td></tr>";
                     }
                 }
                 else

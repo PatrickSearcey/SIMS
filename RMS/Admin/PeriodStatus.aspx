@@ -81,12 +81,12 @@
                                         <p><b>By setting the status back, the following dialog entries will be deleted:</b></p>
                                         <asp:DataList ID="dlDialogs" runat="server">
                                             <HeaderTemplate>
-                                                <table cellpadding="5" style="border: 1px solid #863d02;">
+                                                <table cellpadding="5" style="border: 1px solid #b84626;">
                                                   <tr>
-                                                    <td style="background-color:#863d02;color:white;text-align:center;">Dialog Date</td>
-                                                    <td style="background-color:#863d02;color:white;text-align:center;">Created By</td>
-                                                    <td style="background-color:#863d02;color:white;text-align:center;">Status Set To</td>
-                                                    <td style="background-color:#863d02;color:white;text-align:center;">Comments</td>
+                                                    <td style="background-color:#b84626;color:white;text-align:center;">Dialog Date</td>
+                                                    <td style="background-color:#b84626;color:white;text-align:center;">Created By</td>
+                                                    <td style="background-color:#b84626;color:white;text-align:center;">Status Set To</td>
+                                                    <td style="background-color:#b84626;color:white;text-align:center;">Comments</td>
                                                   </tr>
                                             </HeaderTemplate>
                                             <ItemTemplate>

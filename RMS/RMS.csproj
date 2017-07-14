@@ -89,6 +89,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\PeriodDate.aspx" />
     <Content Include="Admin\PeriodStatus.aspx" />
     <Content Include="Admin\Records.aspx" />
     <Content Include="Admin\RecordTypes.aspx" />
@@ -177,6 +178,13 @@
     <Content Include="styles\default.css" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\PeriodDate.aspx.cs">
+      <DependentUpon>PeriodDate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\PeriodDate.aspx.designer.cs">
+      <DependentUpon>PeriodDate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\PeriodStatus.aspx.cs">
       <DependentUpon>PeriodStatus.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
