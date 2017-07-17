@@ -889,7 +889,7 @@
       <Association Name="Record_AuditRecord" Member="AuditRecords" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="AuditRecord" />
       <Association Name="Record_RecordAnalysisPeriod" Member="RecordAnalysisPeriods" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="RecordAnalysisPeriod" />
       <Association Name="Site_Record" Member="Site" ThisKey="site_id" OtherKey="site_id" Type="Site" IsForeignKey="true" />
-      <Association Name="RMS_Record_Type_Record" Member="RecordType" ThisKey="record_type_id" OtherKey="record_type_id" Type="RecordType" IsForeignKey="true" />
+      <Association Name="RecordType_Record" Member="RecordType" ThisKey="record_type_id" OtherKey="record_type_id" Type="RecordType" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.RMS_Analysis_Periods" Member="RecordAnalysisPeriods">
@@ -933,24 +933,6 @@
       <Column Name="ShoulderRuleID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="StateCode" Type="System.String" DbType="NVarChar(2)" CanBeNull="true" />
       <Column Name="ShoulderRule" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.vRMSStatusOfRecords" Member="vRMSStatusOfRecords">
-    <Type Name="vRMSStatusOfRecord">
-      <Column Name="site_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="site_no" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
-      <Column Name="station_full_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Column Name="office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="agency_cd" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
-      <Column Name="analyzer_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="analyzed_period_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="analyzed_period_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="approver_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="approved_period_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="approved_period_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="not_used_fg" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="type_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="" Member="RecordProcessDataItems">
@@ -1066,8 +1048,8 @@
       <Column Name="TemplateID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ts_fg" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="RMS_Record_Type_Record" Member="Records" ThisKey="record_type_id" OtherKey="record_type_id" Type="Record" />
-      <Association Name="RMS_lut_Template_RecordType" Member="RecordTemplate" ThisKey="TemplateID" OtherKey="TemplateID" Type="RecordTemplate" IsForeignKey="true" />
+      <Association Name="RecordType_Record" Member="Records" ThisKey="record_type_id" OtherKey="record_type_id" Type="Record" />
+      <Association Name="RecordTemplate_RecordType" Member="RecordTemplate" ThisKey="TemplateID" OtherKey="TemplateID" Type="RecordTemplate" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.RMS_lut_Template" Member="RecordTemplates">
@@ -1076,7 +1058,25 @@
       <Column Name="TemplateName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="TemplateText" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="TemplateEdit" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Association Name="RMS_lut_Template_RecordType" Member="RecordTypes" ThisKey="TemplateID" OtherKey="TemplateID" Type="RecordType" />
+      <Association Name="RecordTemplate_RecordType" Member="RecordTypes" ThisKey="TemplateID" OtherKey="TemplateID" Type="RecordType" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vRMSStatusOfRecords" Member="vRMSStatusOfRecords">
+    <Type Name="vRMSStatusOfRecord">
+      <Column Name="site_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="site_no" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="station_full_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="record_office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="agency_cd" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="analyzer_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="analyzed_period_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="analyzed_period_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="approver_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="approved_period_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="approved_period_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="not_used_fg" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="type_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">

@@ -72,6 +72,8 @@ namespace RMS.Admin
                 type_cd = p.type_cd,
                 type_ds = p.type_ds,
                 ts_fg = p.ts_fg,
+                analyze_html_va = p.analyze_html_va,
+                approve_html_va = p.approve_html_va,
                 TemplateID = p.TemplateID,
                 TemplateName = p.RecordTemplate.TemplateName
             }).OrderBy(p => p.type_ds).ToList();
@@ -118,6 +120,8 @@ namespace RMS.Admin
                 rec_type.type_cd = ((TextBox)MyUserControl.FindControl("tbCode")).Text;
                 rec_type.type_ds = ((TextBox)MyUserControl.FindControl("tbDescription")).Text;
                 rec_type.TemplateID = Convert.ToInt32(((RadDropDownList)MyUserControl.FindControl("rddlTemplates")).SelectedValue);
+                rec_type.analyze_html_va = ((RadTextBox)MyUserControl.FindControl("rtbAnalyzeInstructions")).Text;
+                rec_type.approve_html_va = ((RadTextBox)MyUserControl.FindControl("rtbApproveInstructions")).Text;
 
                 db.SubmitChanges();
                 rgRecordTypes.Rebind();
@@ -141,6 +145,8 @@ namespace RMS.Admin
             rec_type.type_cd = ((TextBox)userControl.FindControl("tbCode")).Text.Trim();
             rec_type.type_ds = ((TextBox)userControl.FindControl("tbDescription")).Text.Trim();
             rec_type.TemplateID = Convert.ToInt32(((RadDropDownList)userControl.FindControl("rddlTemplates")).SelectedValue);
+            rec_type.analyze_html_va = ((RadTextBox)userControl.FindControl("rtbAnalyzeInstructions")).Text;
+            rec_type.approve_html_va = ((RadTextBox)userControl.FindControl("rtbApproveInstructions")).Text;
             rec_type.wsc_id = WSCID;
             string cont_va = null;
 

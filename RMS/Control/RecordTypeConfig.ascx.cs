@@ -40,15 +40,13 @@ namespace RMS.Control
             object contValue = DataBinder.Eval(DataItem, "ts_fg");
             object record_type_id = DataBinder.Eval(DataItem, "record_type_id");
             object TemplateID = DataBinder.Eval(DataItem, "TemplateID");
+            object analyzeInstructions = DataBinder.Eval(DataItem, "analyze_html_va");
+            object approveInstructions = DataBinder.Eval(DataItem, "approve_html_va");
 
             if (record_type_id.Equals(DBNull.Value))
-            {
                 lblHeading.Text = "Add New Record-Type";
-            }
             else
-            {
                 lblHeading.Text = "Edit Record-Type";
-            }
 
             if (contValue.ToString() == "True")
             {
@@ -85,11 +83,18 @@ namespace RMS.Control
 
             dlTemplates.DataSource = db.RecordTemplates.ToList();
             dlTemplates.DataBind();
-           
-            if (TemplateID != null)
+
+            if (TemplateID != null && !TemplateID.Equals(DBNull.Value))
             {
                 rddlTemplates.SelectedValue = TemplateID.ToString();
+                lblRequired.Visible = false;
             }
+
+            if (analyzeInstructions != null)
+                rtbAnalyzeInstructions.Text = analyzeInstructions.ToString();
+
+            if (approveInstructions != null)
+                rtbApproveInstructions.Text = approveInstructions.ToString();
 
         }
     }

@@ -61,8 +61,7 @@
         <td valign="top">
             <telerik:RadDropDownList ID="rddlTemplates" runat="server" DataValueField="TemplateID" DataTextField="TemplateName" Skin="Bootstrap" Width="300px">
             </telerik:RadDropDownList><br />
-            <asp:RequiredFieldValidator ID="rfvTemplates" runat="server" CssClass="validator" InitialValue="0"
-                Text="You must select one" ControlToValidate="rddlTemplates" />
+            <asp:Label ID="lblRequired" runat="server" CssClass="validator" Text="You must select a template!" />
         </td>
         <td><b>Click the links to view the available templates:</b><br />
             <asp:DataList ID="dlTemplates" runat="server">
@@ -70,6 +69,24 @@
                     <a href='<%# "../Handler/TemplateViewer.ashx?TemplateID=" + Eval("TemplateID") %>' target="_blank"><%# Eval("TemplateName") %></a>
                 </ItemTemplate>
             </asp:DataList>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"><b>Optional Info:</b><br />
+            Enter links to WSC specific instructions for processing this record-type. Remember to use a persistent URL for storage of these documents.
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            Analyzing:<br />
+            <telerik:RadTextBox ID="rtbAnalyzeInstructions" runat="server" Height="50px" Width="700px" Skin="Bootstrap" TextMode="MultiLine" />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            Approving:<br />
+            <telerik:RadTextBox ID="rtbApproveInstructions" runat="server" Height="50px" Width="700px" Skin="Bootstrap" TextMode="MultiLine" />
+            <hr />
         </td>
     </tr>
     <tr>

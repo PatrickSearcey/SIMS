@@ -149,13 +149,13 @@ namespace RMS
         #region Data
         private IEnumerable<RecordDataItem> GetData()
         {
-            var ret = db.vRMSStatusOfRecords.Where(p => p.office_id == OfficeID).Select(p => new RecordDataItem()
+            var ret = db.vRMSStatusOfRecords.Where(p => p.record_office_id == OfficeID).Select(p => new RecordDataItem()
             {
                 site_id = p.site_id.ToString(),
                 site_no = p.site_no,
                 station_nm = p.station_full_nm,
                 SIMS2017URL = Config.SIMS2017URL,
-                office_id = p.office_id.ToString(),
+                office_id = p.record_office_id.ToString(),
                 wsc_id = p.wsc_id.ToString(),
                 agency_cd = p.agency_cd,
                 RecordType = p.type_cd,

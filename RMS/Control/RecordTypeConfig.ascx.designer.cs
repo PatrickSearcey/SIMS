@@ -103,13 +103,13 @@ namespace RMS.Control {
         protected global::Telerik.Web.UI.RadDropDownList rddlTemplates;
         
         /// <summary>
-        /// rfvTemplates control.
+        /// lblRequired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTemplates;
+        protected global::System.Web.UI.WebControls.Label lblRequired;
         
         /// <summary>
         /// dlTemplates control.
@@ -119,6 +119,24 @@ namespace RMS.Control {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DataList dlTemplates;
+        
+        /// <summary>
+        /// rtbAnalyzeInstructions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadTextBox rtbAnalyzeInstructions;
+        
+        /// <summary>
+        /// rtbApproveInstructions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadTextBox rtbApproveInstructions;
         
         /// <summary>
         /// lblError control.
