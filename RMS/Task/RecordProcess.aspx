@@ -126,17 +126,28 @@
             <tr>
                 <td colspan="2">
                     <h4>Analysis notes from previous period</h4>
-                    <telerik:RadTextBox ID="rtbPrevAnalysisNotes" runat="server" TextMode="MultiLine" Width="100%" Height="300px" ReadOnly="true" />
+                    <asp:Panel ID="pnlAnalysisNotes" runat="server" Width="1000px" Height="300px" ScrollBars="Auto">
+                        <asp:Literal ID="ltlPrevAnalysisNotes" runat="server" />
+                    </asp:Panel>
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
                     <h4>Analysis notes for this period</h4>
-                    <telerik:RadEditor ID="reAnalysisNotes" runat="server" Skin="Bootstrap" OnClientLoad="OnClientLoad" Width="100%" Height="300px">
+                    <p style="font-weight:bold;margin-top:-10px">Analyzer Templates are automatically applied to new analyzing periods' analysis notes if a template has been assigned to the record-type.  Your WSC-level admin in your office can assign templates
+                        to record-types via the Manage Record-Types interface from the Admin Tasks page.</p>
+                    <asp:Panel id="pnlTemplateLink" runat="server" Visible="false">
+                        <span style="font-weight:bold;">To view the detailed version of the template, which contains example text and guidance, please <asp:HyperLink ID="hlTemplate" runat="server" Target="_blank">CLICK HERE</asp:HyperLink>.</span>
+                    </asp:Panel>  
+                    <telerik:RadEditor ID="reAnalysisNotes" runat="server" Skin="Bootstrap" OnClientLoad="OnClientLoad" Width="100%" Height="300px" ExternalDialogsPath="~/EditorDialogs/">
                         <Tools>
                             <telerik:EditorToolGroup>
                                 <telerik:EditorTool Name="InsertLink" Text="Insert Link Dialog" />
-                                <telerik:EditorTool Name="Bold" Text="Bold" Visible="true" /> 
+                                <telerik:EditorTool Name="Bold" Text="Bold" Visible="true" />
+                                <telerik:EditorTool Name="Indent" Text="Indent" Visible="true" />
+                                <telerik:EditorTool Name="Outdent" Text="Outdent" Visible="true" />
+                                <telerik:EditorTool Name="InsertImage" Text="Insert Image" Visible="true" />
+                                <telerik:EditorTool Name="InsertTable" Text="Insert Table" Visible="true" />
                             </telerik:EditorToolGroup>
                         </Tools>
                     </telerik:RadEditor>
@@ -168,7 +179,7 @@
                         <li><asp:HyperLink ID="hlChangeLog" runat="server" Text="View Change Log" /></li>
                         <li><asp:HyperLink ID="hlDialog" runat="server" Text="View Dialog" /></li>
                         <li><asp:HyperLink ID="hlWYAnalysisNotes2" runat="server" Text="View WY Analysis Notes" /></li>
-                        <li><asp:HyperLink ID="hlApproveInst" runat="server" Text="Approving Instructions" /></li>
+                        <li><asp:HyperLink ID="hlApproveInst" runat="server" Text="WSC Approving Instructions" /></li>
                         <li><asp:HyperLink ID="hlAutoReview2" runat="server" Text="View Auto Review (if applicable)" /></li>
                     </ul>
                 </td>
@@ -177,44 +188,57 @@
                 <td colspan="2">
                     <h4>Analysis notes</h4>
                     <asp:Literal ID="ltlNote" runat="server" Text="<div style='width:100%;text-align:center;color:#ec562c;font-weight:bold;'>The analysis notes were saved!</div>" Visible="false" />
-                    <asp:Panel ID="pnlAnalysisNotesReadOnly" runat="server">
-                        <telerik:RadTextBox ID="rtbAnalysisNotes" runat="server" TextMode="MultiLine" Width="100%" Height="300px" ReadOnly="true" />
+                    <asp:Panel ID="pnlAnalysisNotesReadOnly" runat="server" Width="1000px" Height="300px" ScrollBars="Auto">
+                        <asp:Literal ID="ltlAnalysisNotes" runat="server" />
                         <div style="text-align:center;padding-top:5px;">
-                            <telerik:RadButton ID="rbEditAnalysisNotes" runat="server" Text="Edit Analysis Notes" OnCommand="EditAnalysisNotes" CommandArgument="Toggle" />
+                            <telerik:RadButton ID="rbEditAnalysisNotes" runat="server" Text="Edit Analysis Notes" OnCommand="EditAnalysisNotes" CommandArgument="Toggle" Visible="false" /> <!-- Control used to toggle display of pnlAnalysisNotesEdit, which is no longer in use -->
                         </div>
                     </asp:Panel>
+                    <!-- APPROVERS ARE NOT ALLOWED TO EDIT STATION ANALYSIS NOTES -->
+                    <!-- This section is not currently in use, per request of OWI; remains here in case user complaints trigger the re-release of the functionality -->
                     <asp:Panel ID="pnlAnalysisNotesEdit" runat="server">
-                        <telerik:RadEditor ID="reAnalysisNotes2" runat="server" Skin="Bootstrap" OnClientLoad="OnClientLoad" Width="100%" Height="300px">
+                        <telerik:RadEditor ID="reAnalysisNotes2" runat="server" Skin="Bootstrap" OnClientLoad="OnClientLoad" Width="100%" Height="300px" ExternalDialogsPath="~/EditorDialogs/">
                             <Tools>
                                 <telerik:EditorToolGroup>
-                                <telerik:EditorTool Name="InsertLink" Text="Insert Link Dialog" />
-                                <telerik:EditorTool Name="Bold" Text="Bold" Visible="true" /> 
+                                    <telerik:EditorTool Name="InsertLink" Text="Insert Link Dialog" />
+                                    <telerik:EditorTool Name="Bold" Text="Bold" Visible="true" /> 
+                                    <telerik:EditorTool Name="Indent" Text="Indent" Visible="true" />
+                                    <telerik:EditorTool Name="Outdent" Text="Outdent" Visible="true" />
+                                    <telerik:EditorTool Name="InsertImage" Text="Insert Image" Visible="true" />
+                                    <telerik:EditorTool Name="InsertTable" Text="Insert Table" Visible="true" />
                                 </telerik:EditorToolGroup>
                             </Tools>
                         </telerik:RadEditor>
                         <div style="text-align:center;padding-top:5px;">
-                            <telerik:RadButton ID="rbSaveAnalysisNotes" runat="server" Text="Save Changes" OnCommand="EditAnalysisNotes" CommandArgument="Save" UseSubmitBehavior="false" /> 
-                            <telerik:RadButton ID="rbCancelAnalysisNotes" runat="server" Text="Cancel Without Saving" OnCommand="EditAnalysisNotes" CommandArgument="Cancel" />
+                            <telerik:RadButton ID="rbSaveAnalysisNotes" runat="server" Text="Save Changes" OnCommand="EditAnalysisNotes" CommandArgument="Save" UseSubmitBehavior="false" Visible="false" /> 
+                            <telerik:RadButton ID="rbCancelAnalysisNotes" runat="server" Text="Cancel Without Saving" OnCommand="EditAnalysisNotes" CommandArgument="Cancel" Visible="false" />
                         </div>
                     </asp:Panel>
+                    <!-- END LEGACY CONTROLS -->
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
                     <asp:Panel ID="pnlApproverComments" runat="server">
                         <h4>Approver Comments</h4>
-                        <telerik:RadTextBox ID="rtbApproverComments" runat="server" TextMode="MultiLine" Width="100%" Height="100px" ReadOnly="true" />
+                        <div style="height:100px;width:1000px;overflow-y:scroll;">
+                            <asp:Literal ID="ltlApproverComments" runat="server" />
+                        </div>
                     </asp:Panel>
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
                     <h4>Comments</h4>
-                    <telerik:RadEditor ID="reComments" runat="server" Skin="Bootstrap" OnClientLoad="OnClientLoad" Width="100%" Height="100px">
+                    <telerik:RadEditor ID="reComments" runat="server" Skin="Bootstrap" OnClientLoad="OnClientLoad" Width="100%" Height="100px" ExternalDialogsPath="~/EditorDialogs/">
                         <Tools>
                             <telerik:EditorToolGroup>
                                 <telerik:EditorTool Name="InsertLink" Text="Insert Link Dialog" />
                                 <telerik:EditorTool Name="Bold" Text="Bold" Visible="true" /> 
+                                <telerik:EditorTool Name="Indent" Text="Indent" Visible="true" />
+                                <telerik:EditorTool Name="Outdent" Text="Outdent" Visible="true" />
+                                <telerik:EditorTool Name="InsertImage" Text="Insert Image" Visible="true" />
+                                <telerik:EditorTool Name="InsertTable" Text="Insert Table" Visible="true" />
                             </telerik:EditorToolGroup>
                         </Tools>
                     </telerik:RadEditor>
@@ -222,9 +246,12 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <div style="text-align:center;">
+                    <div style="text-align:center;font-weight:bold;">
+                        <p><asp:Literal ID="ltlReanalyzeNote" runat="server" Text="Ensure that all problems found with the record period have been documented in the comment box before sending back to analyst:<br />" />
                         <telerik:RadButton ID="rbReanalyze" runat="server" Text="Send Back for Reanalyzing" OnCommand="Button_Commands" CommandArgument="Reanalyze" CommandName="Approve" UseSubmitBehavior="false" />
+                        <asp:Literal ID="ltlApproveNote" runat="server" Text="<br />By clicking approved you agree that you have followed current approval guidance and determined that the record period has been properly analyzed:<br />" />
                         <telerik:RadButton ID="rbFinish" runat="server" OnCommand="Button_Commands" CommandArgument="Finish" UseSubmitBehavior="false" />
+                        </p>
                         <telerik:RadButton ID="rbSave" runat="server" Text="Save" OnCommand="Button_Commands" CommandArgument="Save" UseSubmitBehavior="false" />
                         <telerik:RadButton ID="rbCancel" runat="server" Text="Cancel" OnCommand="Button_Commands" CommandName="Cancel" />
                     </div>

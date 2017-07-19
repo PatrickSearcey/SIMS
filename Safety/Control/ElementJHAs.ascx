@@ -130,11 +130,15 @@
     </asp:Panel>
     <asp:Panel ID="pnlEditElemInfo" runat="server" Visible="false">
         <br />
-        <telerik:RadEditor ID="reElemInfo" runat="server" Skin="Bootstrap" OnClientLoad="OnClientLoad">
+        <telerik:RadEditor ID="reElemInfo" runat="server" Skin="Bootstrap" OnClientLoad="OnClientLoad" ExternalDialogsPath="~/EditorDialogs/">
             <Tools>
                 <telerik:EditorToolGroup>
                     <telerik:EditorTool Name="InsertLink" Text="Insert Link Dialog" />
                     <telerik:EditorTool Name="Bold" Visible="true" /> 
+                    <telerik:EditorTool Name="Indent" Text="Indent" Visible="true" />
+                    <telerik:EditorTool Name="Outdent" Text="Outdent" Visible="true" />
+                    <telerik:EditorTool Name="InsertImage" Text="Insert Image" Visible="true" />
+                    <telerik:EditorTool Name="InsertTable" Text="Insert Table" Visible="true" />
                 </telerik:EditorToolGroup>
             </Tools>
         </telerik:RadEditor>

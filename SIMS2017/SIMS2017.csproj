@@ -139,6 +139,14 @@
     <Content Include="Control\OfficeSelector.ascx" />
     <Content Include="Control\SitePageHeading.ascx" />
     <Content Include="DCPIDReport.aspx" />
+    <Content Include="EditorDialogs\InsertImage.ascx" />
+    <Content Include="EditorDialogs\InsertLink.ascx" />
+    <Content Include="EditorDialogs\InsertTable.ascx" />
+    <Content Include="EditorDialogs\InsertTableLight.ascx" />
+    <Content Include="EditorDialogs\MobileTableProperties.ascx" />
+    <Content Include="EditorDialogs\TableLayouts.ascx" />
+    <Content Include="EditorDialogs\TableProperties.ascx" />
+    <Content Include="EditorDialogs\TableWizard.ascx" />
     <Content Include="images\approve.png" />
     <Content Include="images\cleanicon.png" />
     <Content Include="images\faqicon.png" />
@@ -487,7 +495,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

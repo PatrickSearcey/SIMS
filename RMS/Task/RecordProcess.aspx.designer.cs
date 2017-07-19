@@ -283,13 +283,40 @@ namespace RMS.Task {
         protected global::System.Web.UI.WebControls.HyperLink hlWMAGuidelines;
         
         /// <summary>
-        /// rtbPrevAnalysisNotes control.
+        /// pnlAnalysisNotes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadTextBox rtbPrevAnalysisNotes;
+        protected global::System.Web.UI.WebControls.Panel pnlAnalysisNotes;
+        
+        /// <summary>
+        /// ltlPrevAnalysisNotes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlPrevAnalysisNotes;
+        
+        /// <summary>
+        /// pnlTemplateLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlTemplateLink;
+        
+        /// <summary>
+        /// hlTemplate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlTemplate;
         
         /// <summary>
         /// reAnalysisNotes control.
@@ -427,13 +454,13 @@ namespace RMS.Task {
         protected global::System.Web.UI.WebControls.Panel pnlAnalysisNotesReadOnly;
         
         /// <summary>
-        /// rtbAnalysisNotes control.
+        /// ltlAnalysisNotes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadTextBox rtbAnalysisNotes;
+        protected global::System.Web.UI.WebControls.Literal ltlAnalysisNotes;
         
         /// <summary>
         /// rbEditAnalysisNotes control.
@@ -490,13 +517,13 @@ namespace RMS.Task {
         protected global::System.Web.UI.WebControls.Panel pnlApproverComments;
         
         /// <summary>
-        /// rtbApproverComments control.
+        /// ltlApproverComments control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadTextBox rtbApproverComments;
+        protected global::System.Web.UI.WebControls.Literal ltlApproverComments;
         
         /// <summary>
         /// reComments control.
@@ -508,6 +535,15 @@ namespace RMS.Task {
         protected global::Telerik.Web.UI.RadEditor reComments;
         
         /// <summary>
+        /// ltlReanalyzeNote control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlReanalyzeNote;
+        
+        /// <summary>
         /// rbReanalyze control.
         /// </summary>
         /// <remarks>
@@ -515,6 +551,15 @@ namespace RMS.Task {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadButton rbReanalyze;
+        
+        /// <summary>
+        /// ltlApproveNote control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlApproveNote;
         
         /// <summary>
         /// rbFinish control.

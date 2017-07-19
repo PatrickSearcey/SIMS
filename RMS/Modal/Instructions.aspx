@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-        <title>RMS Record Processing Instructions</title>
+    <title>RMS Record Processing Instructions</title>
     <style type="text/css">
         body {
             background:white;
@@ -23,8 +23,9 @@
     <telerik:RadFormDecorator ID="rfd2" runat="server" DecoratedControls="all" Skin="Bootstrap" RenderMode="Lightweight" />
     <telerik:RadStyleSheetManager ID="rssm2" runat="server" CdnSettings-TelerikCdn="Enabled" />
     <div>
-        <h2>Record Processing Instructions</h2>
-        <p>Coming soon!</p>
+        <h2>WSC-Specific Record Processing Instructions</h2>
+        <h3><asp:Literal ID="ltlSubTitle" runat="server" /></h3>
+        <asp:Literal ID="ltlInstructions" runat="server" />
     </div>
     </form>
 </body>

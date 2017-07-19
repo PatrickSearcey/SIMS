@@ -258,7 +258,7 @@ namespace RMS.Task
         {
             ltlHydrographer.Text = "<b>" + user.ID + "</b>";
             hlWYAnalysisNotes.NavigateUrl = String.Format("javascript:OpenPopup('../Modal/ReportPopup.aspx?view=wyanalysisnotes&rms_record_id={0}')", RecordID);
-            hlInstructions.NavigateUrl = "javascript:OpenPopup('../Modal/Instructions.aspx?type=Analyze')";
+            hlInstructions.NavigateUrl = String.Format("javascript:OpenPopup('../Modal/Instructions.aspx?type=Analyze&id={0}')", currRecord.record_type_id);
             string swr_url = db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID).swr_url;
             if (!string.IsNullOrEmpty(swr_url))
             {
@@ -281,7 +281,7 @@ namespace RMS.Task
                 
                 //If a previous period is found, then populate the analysis notes from previous period
                 var prevPeriod = currRecord.RecordAnalysisPeriods.FirstOrDefault(p => p.period_end_dt == period.period_beg_dt);
-                if (prevPeriod != null) rtbPrevAnalysisNotes.Text = prevPeriod.analysis_notes_va.FormatParagraphTextBox(); else rtbPrevAnalysisNotes.Text = "No previous period found.";
+                if (prevPeriod != null) ltlPrevAnalysisNotes.Text = prevPeriod.analysis_notes_va.FormatParagraphOut(); else ltlPrevAnalysisNotes.Text = "No previous period found.";
 
                 reAnalysisNotes.Content = period.analysis_notes_va.FormatParagraphEdit();
             }
@@ -293,11 +293,21 @@ namespace RMS.Task
                 {
                     rdpBeginDateAnalyze.SelectedDate = analysis_status.analyzed_period_dt;
                     rdpBeginDateAnalyze.Enabled = false;
-                    rtbPrevAnalysisNotes.Text = currRecord.RecordAnalysisPeriods.FirstOrDefault(p => p.period_end_dt == analysis_status.analyzed_period_dt).analysis_notes_va.FormatParagraphTextBox();
+                    ltlPrevAnalysisNotes.Text = currRecord.RecordAnalysisPeriods.FirstOrDefault(p => p.period_end_dt == analysis_status.analyzed_period_dt).analysis_notes_va.FormatParagraphOut();
                 }
                 else //Totally new, adding first period ever to record
                 {
-                    rtbPrevAnalysisNotes.Text = "No previous period found.";
+                    ltlPrevAnalysisNotes.Text = "No previous period found.";
+                }
+
+                //If a template has been setup for this record-type, then pre-populate the Station Analysis textbox with it
+                if (currRecord.RecordType.RecordTemplate != null)
+                {
+                    var template = currRecord.RecordType.RecordTemplate;
+                    reAnalysisNotes.Content = template.TemplateEdit;
+
+                    pnlTemplateLink.Visible = true;
+                    hlTemplate.NavigateUrl = String.Format("{0}Handler/TemplateViewer.ashx?TemplateID={1}", Config.RMSURL, template.TemplateID);
                 }
             }
 
@@ -319,7 +329,7 @@ namespace RMS.Task
                 hlWYAnalysisNotes2.NavigateUrl = String.Format("javascript:OpenPopup('../Modal/ReportPopup.aspx?view=wyanalysisnotes&rms_record_id={0}')", RecordID);
                 hlDialog.NavigateUrl = String.Format("javascript:OpenPopup('../Modal/ReportPopup.aspx?view=dialog&period_id={0}')", PeriodID);
                 hlChangeLog.NavigateUrl = String.Format("javascript:OpenPopup('../Modal/ReportPopup.aspx?view=changelog&period_id={0}')", PeriodID);
-                hlApproveInst.NavigateUrl = "javascript:OpenPopup('../Modal/Instructions.aspx?type=Analyze')";
+                
                 string swr_url = db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID).swr_url;
                 if (!string.IsNullOrEmpty(swr_url))
                 {
@@ -328,15 +338,21 @@ namespace RMS.Task
                 else hlAutoReview2.Visible = false;
                 pnlAnalysisNotesEdit.Visible = false;
                 pnlAnalysisNotesReadOnly.Visible = true;
-                rtbAnalysisNotes.Text = currPeriod.analysis_notes_va.FormatParagraphTextBox();
+                ltlAnalysisNotes.Text = currPeriod.analysis_notes_va.FormatParagraphOut();
                 reAnalysisNotes2.Content = currPeriod.analysis_notes_va.FormatParagraphEdit();
                 if (currPeriod.PeriodDialogs.FirstOrDefault(p => p.status_set_to_va == "Approving") != null)
                     reComments.Content = currPeriod.PeriodDialogs.Where(p => p.status_set_to_va == "Approving").OrderByDescending(p => p.dialog_dt).FirstOrDefault().comments_va.FormatParagraphEdit();
                 if (task == "Reanalyze")
                 {
                     if (currPeriod.PeriodDialogs.FirstOrDefault(p => p.status_set_to_va == "Reanalyze") != null)
-                        rtbApproverComments.Text = currPeriod.PeriodDialogs.Where(p => p.status_set_to_va == "Reanalyze").OrderByDescending(p => p.dialog_dt).FirstOrDefault().comments_va.FormatParagraphTextBox();
+                        ltlApproverComments.Text = currPeriod.PeriodDialogs.Where(p => p.status_set_to_va == "Reanalyze").OrderByDescending(p => p.dialog_dt).FirstOrDefault().comments_va.FormatParagraphOut();
                     pnlApproverComments.Visible = true;
+                    hlApproveInst.NavigateUrl = String.Format("javascript:OpenPopup('../Modal/Instructions.aspx?type=Analyze&id={0}')", currRecord.record_type_id);
+                    hlApproveInst.Text = "WSC Analyzing Instructions";
+                    pnlAnalysisNotesReadOnly.Visible = false;
+                    pnlAnalysisNotesEdit.Visible = true;
+                    ltlReanalyzeNote.Visible = false;
+                    ltlApproveNote.Visible = false;
                     rbFinish.Text = "Finish Reanalyzing";
                     rbFinish.CommandName = "Reanalyze";
                     rbSave.Visible = false;
@@ -344,6 +360,7 @@ namespace RMS.Task
                 }
                 else
                 {
+                    hlApproveInst.NavigateUrl = String.Format("javascript:OpenPopup('../Modal/Instructions.aspx?type=Approve&id={0}')", currRecord.record_type_id);
                     rbFinish.Text = "Finish Approving";
                     pnlApproverComments.Visible = false;
                     rbFinish.CommandName = "Approve";
@@ -421,7 +438,7 @@ namespace RMS.Task
                     db.PeriodChangeLogs.InsertOnSubmit(pcl);
                     db.SubmitChanges();
 
-                    rtbAnalysisNotes.Text = reAnalysisNotes2.Content.FormatParagraphTextBox();
+                    ltlAnalysisNotes.Text = reAnalysisNotes2.Content.FormatParagraphOut();
                     ltlNote.Visible = true;
                     pnlAnalysisNotesEdit.Visible = false;
                     pnlAnalysisNotesReadOnly.Visible = true;
@@ -618,11 +635,13 @@ namespace RMS.Task
                 period.approved_by = user.ID;
                 period.approved_dt = DateTime.Now;
 
+                string comments = "<p style='font-weight:bold;'>" + user.ID + " has followed current approval guidance and has determined that the record has been properly analyzed and has approved the record period.</p>" + reComments.Content.FormatParagraphIn();
+
                 db.SubmitChanges();
                 AddDialog(period, "", "Admin", "The period was set to approved by the approver.");
-                AddDialog(period, "Approved", "Approver", reComments.Content.FormatParagraphIn());
+                AddDialog(period, "Approved", "Approver", comments);
 
-                SendEmails("Approved", reComments.Content.FormatParagraphIn(), period);
+                SendEmails("Approved", comments, period);
                 CloseOutPage(true);
             }
             else
@@ -677,11 +696,13 @@ namespace RMS.Task
                 period.approved_by = user.ID;
                 period.approved_dt = DateTime.Now;
 
+                string comments = "<p style='font-weight:bold;'>" + user.ID + " has followed current approval guidance and has determined that some aspects of the record need to be reanalyzed.  These aspects have been listed below.</p>" + reComments.Content.FormatParagraphIn();
+
                 db.SubmitChanges();
                 AddDialog(period, "", "Admin", "The period was sent back for reanalyzing.");
-                AddDialog(period, "Reanalyze", "Approver", reComments.Content.FormatParagraphIn());
+                AddDialog(period, "Reanalyze", "Approver", comments);
 
-                SendEmails("Reanalyze", reComments.Content.FormatParagraphIn(), period);
+                SendEmails("Reanalyze", comments, period);
                 CloseOutPage(true);
             }
             else

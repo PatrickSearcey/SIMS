@@ -129,6 +129,14 @@
     <Content Include="Cableways.aspx" />
     <Content Include="Control\ElementJHAs.ascx" />
     <Content Include="Control\SitePageHeading.ascx" />
+    <Content Include="EditorDialogs\InsertImage.ascx" />
+    <Content Include="EditorDialogs\InsertLink.ascx" />
+    <Content Include="EditorDialogs\InsertTable.ascx" />
+    <Content Include="EditorDialogs\InsertTableLight.ascx" />
+    <Content Include="EditorDialogs\MobileTableProperties.ascx" />
+    <Content Include="EditorDialogs\TableLayouts.ascx" />
+    <Content Include="EditorDialogs\TableProperties.ascx" />
+    <Content Include="EditorDialogs\TableWizard.ascx" />
     <Content Include="EmergencyInfo.aspx" />
     <Content Include="images\arrowbullet.png" />
     <Content Include="images\bullet.png" />
@@ -358,7 +366,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

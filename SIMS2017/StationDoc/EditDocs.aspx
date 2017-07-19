@@ -159,11 +159,15 @@
                     <asp:Literal ID="ltlDOLLInfo" runat="server" />
                     <asp:Literal ID="ltlSLAP" runat="server" /> <asp:HyperLink ID="hlSLAP" runat="server" Target="_blank" />
                 </asp:Panel>
-                <telerik:RadEditor ID="reElementInfo" runat="server" Skin="Bootstrap" OnClientLoad="OnClientLoad" Width="100%" Height="400px">
+                <telerik:RadEditor ID="reElementInfo" runat="server" Skin="Bootstrap" OnClientLoad="OnClientLoad" Width="100%" Height="400px" ExternalDialogsPath="~/EditorDialogs/">
                     <Tools>
                         <telerik:EditorToolGroup>
                             <telerik:EditorTool Name="InsertLink" Text="Insert Link Dialog" />
                             <telerik:EditorTool Name="Bold" Text="Bold" Visible="true" /> 
+                            <telerik:EditorTool Name="Indent" Text="Indent" Visible="true" />
+                            <telerik:EditorTool Name="Outdent" Text="Outdent" Visible="true" />
+                            <telerik:EditorTool Name="InsertImage" Text="Insert Image" Visible="true" />
+                            <telerik:EditorTool Name="InsertTable" Text="Insert Table" Visible="true" />
                         </telerik:EditorToolGroup>
                     </Tools>
                 </telerik:RadEditor>

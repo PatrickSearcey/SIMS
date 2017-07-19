@@ -681,8 +681,8 @@ namespace Core
         {
             if (text != null)
             {
-                text = text.Replace("\n", "<br />");
-                text = text.Replace(System.Environment.NewLine, "<br />");
+                //text = text.Replace("\n", "<br />");
+                //text = text.Replace(System.Environment.NewLine, "<br />");
                 text = text.Replace("`", "&#0176;"); //Degree symbol
                 text = text.Replace("mi2", "mi&#178;"); //Superscript 2
                 text = text.Replace("ft3", "ft&#179;"); //Superscript 3
@@ -730,10 +730,10 @@ namespace Core
         {
             if (text != null)
             {
-                text = text.Replace("<br />\n", "\n");
-                text = text.Replace("<br />", "\n");
-                text = text.Replace("<p>", "");
-                text = text.Replace("</p>", "\n");
+                //text = text.Replace("<br />\n", "\n");
+                //text = text.Replace("<br />", "\n");
+                //text = text.Replace("<p>", "");
+                //text = text.Replace("</p>", "\n");
             }
 
             return text;

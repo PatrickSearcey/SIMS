@@ -158,11 +158,15 @@
                                     </tr>
                                     <tr>
                                         <td colspan="2">
-                                            <telerik:RadEditor ID="reSANAL" runat="server" Skin="Bootstrap" OnClientLoad="OnClientLoad" Width="100%" Height="300px">
+                                            <telerik:RadEditor ID="reSANAL" runat="server" Skin="Bootstrap" OnClientLoad="OnClientLoad" Width="100%" Height="300px" ExternalDialogsPath="~/EditorDialogs/">
                                                 <Tools>
                                                     <telerik:EditorToolGroup>
-                                                    <telerik:EditorTool Name="InsertLink" Text="Insert Link Dialog" />
-                                                    <telerik:EditorTool Name="Bold" Text="Bold" Visible="true" /> 
+                                                        <telerik:EditorTool Name="InsertLink" Text="Insert Link Dialog" />
+                                                        <telerik:EditorTool Name="Bold" Text="Bold" Visible="true" /> 
+                                                        <telerik:EditorTool Name="Indent" Text="Indent" Visible="true" />
+                                                        <telerik:EditorTool Name="Outdent" Text="Outdent" Visible="true" />
+                                                        <telerik:EditorTool Name="InsertImage" Text="Insert Image" Visible="true" />
+                                                        <telerik:EditorTool Name="InsertTable" Text="Insert Table" Visible="true" />
                                                     </telerik:EditorToolGroup>
                                                 </Tools>
                                             </telerik:RadEditor>

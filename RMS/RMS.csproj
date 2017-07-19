@@ -132,6 +132,14 @@
     <Content Include="App_Data\RadCaptcha\Y.wav" />
     <Content Include="App_Data\RadCaptcha\Z.wav" />
     <Content Include="Control\RecordTypeConfig.ascx" />
+    <Content Include="EditorDialogs\InsertImage.ascx" />
+    <Content Include="EditorDialogs\InsertLink.ascx" />
+    <Content Include="EditorDialogs\InsertTable.ascx" />
+    <Content Include="EditorDialogs\InsertTableLight.ascx" />
+    <Content Include="EditorDialogs\MobileTableProperties.ascx" />
+    <Content Include="EditorDialogs\TableLayouts.ascx" />
+    <Content Include="EditorDialogs\TableProperties.ascx" />
+    <Content Include="EditorDialogs\TableWizard.ascx" />
     <Content Include="images\bigarrow.png" />
     <Content Include="images\dialogsavebutton.png" />
     <Content Include="images\False.png" />
