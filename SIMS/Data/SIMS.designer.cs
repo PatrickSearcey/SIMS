@@ -180,6 +180,24 @@ namespace Data
     partial void InsertRecordTemplate(RecordTemplate instance);
     partial void UpdateRecordTemplate(RecordTemplate instance);
     partial void DeleteRecordTemplate(RecordTemplate instance);
+    partial void InsertCablewayVisit(CablewayVisit instance);
+    partial void UpdateCablewayVisit(CablewayVisit instance);
+    partial void DeleteCablewayVisit(CablewayVisit instance);
+    partial void InsertCablewayStatus(CablewayStatus instance);
+    partial void UpdateCablewayStatus(CablewayStatus instance);
+    partial void DeleteCablewayStatus(CablewayStatus instance);
+    partial void InsertCablewayType(CablewayType instance);
+    partial void UpdateCablewayType(CablewayType instance);
+    partial void DeleteCablewayType(CablewayType instance);
+    partial void InsertCablewayVisitAction(CablewayVisitAction instance);
+    partial void UpdateCablewayVisitAction(CablewayVisitAction instance);
+    partial void DeleteCablewayVisitAction(CablewayVisitAction instance);
+    partial void InsertCablewayVisitType(CablewayVisitType instance);
+    partial void UpdateCablewayVisitType(CablewayVisitType instance);
+    partial void DeleteCablewayVisitType(CablewayVisitType instance);
+    partial void InsertCableway(Cableway instance);
+    partial void UpdateCableway(Cableway instance);
+    partial void DeleteCableway(Cableway instance);
     #endregion
 		
 		public SIMSDataContext() : 
@@ -761,6 +779,54 @@ namespace Data
 			get
 			{
 				return this.GetTable<vRMSStatusOfRecord>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CablewayVisit> CablewayVisits
+		{
+			get
+			{
+				return this.GetTable<CablewayVisit>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CablewayStatus> CablewayStatus
+		{
+			get
+			{
+				return this.GetTable<CablewayStatus>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CablewayType> CablewayTypes
+		{
+			get
+			{
+				return this.GetTable<CablewayType>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CablewayVisitAction> CablewayVisitActions
+		{
+			get
+			{
+				return this.GetTable<CablewayVisitAction>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CablewayVisitType> CablewayVisitTypes
+		{
+			get
+			{
+				return this.GetTable<CablewayVisitType>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Cableway> Cableways
+		{
+			get
+			{
+				return this.GetTable<Cableway>();
 			}
 		}
 		
@@ -13505,6 +13571,8 @@ namespace Data
 		
 		private EntitySet<Record> _Records;
 		
+		private EntitySet<Cableway> _Cableways;
+		
 		private EntityRef<Office> _Office;
 		
     #region Extensibility Method Definitions
@@ -13541,6 +13609,7 @@ namespace Data
 			this._TripSites = new EntitySet<TripSite>(new Action<TripSite>(this.attach_TripSites), new Action<TripSite>(this.detach_TripSites));
 			this._SiteElements = new EntitySet<SiteElement>(new Action<SiteElement>(this.attach_SiteElements), new Action<SiteElement>(this.detach_SiteElements));
 			this._Records = new EntitySet<Record>(new Action<Record>(this.attach_Records), new Action<Record>(this.detach_Records));
+			this._Cableways = new EntitySet<Cableway>(new Action<Cableway>(this.attach_Cableways), new Action<Cableway>(this.detach_Cableways));
 			this._Office = default(EntityRef<Office>);
 			OnCreated();
 		}
@@ -13865,6 +13934,19 @@ namespace Data
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Safety_Cableway_Master", Storage="_Cableways", ThisKey="site_id", OtherKey="site_id")]
+		public EntitySet<Cableway> Cableways
+		{
+			get
+			{
+				return this._Cableways;
+			}
+			set
+			{
+				this._Cableways.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Office_Site", Storage="_Office", ThisKey="office_id", OtherKey="office_id", IsForeignKey=true)]
 		public Office Office
 		{
@@ -13986,6 +14068,18 @@ namespace Data
 		}
 		
 		private void detach_Records(Record entity)
+		{
+			this.SendPropertyChanging();
+			entity.Site = null;
+		}
+		
+		private void attach_Cableways(Cableway entity)
+		{
+			this.SendPropertyChanging();
+			entity.Site = this;
+		}
+		
+		private void detach_Cableways(Cableway entity)
 		{
 			this.SendPropertyChanging();
 			entity.Site = null;
@@ -21213,6 +21307,1364 @@ namespace Data
 					this._type_cd = value;
 				}
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Safety_Cableway_Visit")]
+	public partial class CablewayVisit : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _cableway_visit_id;
+		
+		private int _cableway_id;
+		
+		private System.Nullable<System.DateTime> _visit_dt;
+		
+		private string _visit_type_cd;
+		
+		private string _visit_action_cd;
+		
+		private string _visit_file_nm;
+		
+		private string _remarks;
+		
+		private string _created_by;
+		
+		private System.Nullable<System.DateTime> _created_dt;
+		
+		private string _updated_by;
+		
+		private System.Nullable<System.DateTime> _updated_dt;
+		
+		private EntityRef<CablewayVisitAction> _CablewayVisitAction;
+		
+		private EntityRef<CablewayVisitType> _CablewayVisitType;
+		
+		private EntityRef<Cableway> _Cableway;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Oncableway_visit_idChanging(int value);
+    partial void Oncableway_visit_idChanged();
+    partial void Oncableway_idChanging(int value);
+    partial void Oncableway_idChanged();
+    partial void Onvisit_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onvisit_dtChanged();
+    partial void Onvisit_type_cdChanging(string value);
+    partial void Onvisit_type_cdChanged();
+    partial void Onvisit_action_cdChanging(string value);
+    partial void Onvisit_action_cdChanged();
+    partial void Onvisit_file_nmChanging(string value);
+    partial void Onvisit_file_nmChanged();
+    partial void OnremarksChanging(string value);
+    partial void OnremarksChanged();
+    partial void Oncreated_byChanging(string value);
+    partial void Oncreated_byChanged();
+    partial void Oncreated_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Oncreated_dtChanged();
+    partial void Onupdated_byChanging(string value);
+    partial void Onupdated_byChanged();
+    partial void Onupdated_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onupdated_dtChanged();
+    #endregion
+		
+		public CablewayVisit()
+		{
+			this._CablewayVisitAction = default(EntityRef<CablewayVisitAction>);
+			this._CablewayVisitType = default(EntityRef<CablewayVisitType>);
+			this._Cableway = default(EntityRef<Cableway>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cableway_visit_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int cableway_visit_id
+		{
+			get
+			{
+				return this._cableway_visit_id;
+			}
+			set
+			{
+				if ((this._cableway_visit_id != value))
+				{
+					this.Oncableway_visit_idChanging(value);
+					this.SendPropertyChanging();
+					this._cableway_visit_id = value;
+					this.SendPropertyChanged("cableway_visit_id");
+					this.Oncableway_visit_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cableway_id", DbType="Int NOT NULL")]
+		public int cableway_id
+		{
+			get
+			{
+				return this._cableway_id;
+			}
+			set
+			{
+				if ((this._cableway_id != value))
+				{
+					if (this._Cableway.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Oncableway_idChanging(value);
+					this.SendPropertyChanging();
+					this._cableway_id = value;
+					this.SendPropertyChanged("cableway_id");
+					this.Oncableway_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_visit_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> visit_dt
+		{
+			get
+			{
+				return this._visit_dt;
+			}
+			set
+			{
+				if ((this._visit_dt != value))
+				{
+					this.Onvisit_dtChanging(value);
+					this.SendPropertyChanging();
+					this._visit_dt = value;
+					this.SendPropertyChanged("visit_dt");
+					this.Onvisit_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_visit_type_cd", DbType="NVarChar(50)")]
+		public string visit_type_cd
+		{
+			get
+			{
+				return this._visit_type_cd;
+			}
+			set
+			{
+				if ((this._visit_type_cd != value))
+				{
+					if (this._CablewayVisitType.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onvisit_type_cdChanging(value);
+					this.SendPropertyChanging();
+					this._visit_type_cd = value;
+					this.SendPropertyChanged("visit_type_cd");
+					this.Onvisit_type_cdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_visit_action_cd", DbType="NVarChar(50)")]
+		public string visit_action_cd
+		{
+			get
+			{
+				return this._visit_action_cd;
+			}
+			set
+			{
+				if ((this._visit_action_cd != value))
+				{
+					if (this._CablewayVisitAction.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onvisit_action_cdChanging(value);
+					this.SendPropertyChanging();
+					this._visit_action_cd = value;
+					this.SendPropertyChanged("visit_action_cd");
+					this.Onvisit_action_cdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_visit_file_nm", DbType="NVarChar(300)")]
+		public string visit_file_nm
+		{
+			get
+			{
+				return this._visit_file_nm;
+			}
+			set
+			{
+				if ((this._visit_file_nm != value))
+				{
+					this.Onvisit_file_nmChanging(value);
+					this.SendPropertyChanging();
+					this._visit_file_nm = value;
+					this.SendPropertyChanged("visit_file_nm");
+					this.Onvisit_file_nmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_remarks", DbType="NVarChar(MAX)")]
+		public string remarks
+		{
+			get
+			{
+				return this._remarks;
+			}
+			set
+			{
+				if ((this._remarks != value))
+				{
+					this.OnremarksChanging(value);
+					this.SendPropertyChanging();
+					this._remarks = value;
+					this.SendPropertyChanged("remarks");
+					this.OnremarksChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_created_by", DbType="NVarChar(50)")]
+		public string created_by
+		{
+			get
+			{
+				return this._created_by;
+			}
+			set
+			{
+				if ((this._created_by != value))
+				{
+					this.Oncreated_byChanging(value);
+					this.SendPropertyChanging();
+					this._created_by = value;
+					this.SendPropertyChanged("created_by");
+					this.Oncreated_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_created_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> created_dt
+		{
+			get
+			{
+				return this._created_dt;
+			}
+			set
+			{
+				if ((this._created_dt != value))
+				{
+					this.Oncreated_dtChanging(value);
+					this.SendPropertyChanging();
+					this._created_dt = value;
+					this.SendPropertyChanged("created_dt");
+					this.Oncreated_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_updated_by", DbType="NVarChar(50)")]
+		public string updated_by
+		{
+			get
+			{
+				return this._updated_by;
+			}
+			set
+			{
+				if ((this._updated_by != value))
+				{
+					this.Onupdated_byChanging(value);
+					this.SendPropertyChanging();
+					this._updated_by = value;
+					this.SendPropertyChanged("updated_by");
+					this.Onupdated_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_updated_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> updated_dt
+		{
+			get
+			{
+				return this._updated_dt;
+			}
+			set
+			{
+				if ((this._updated_dt != value))
+				{
+					this.Onupdated_dtChanging(value);
+					this.SendPropertyChanging();
+					this._updated_dt = value;
+					this.SendPropertyChanged("updated_dt");
+					this.Onupdated_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_cableway_visitaction_cd_Safety_Cableway_Visit", Storage="_CablewayVisitAction", ThisKey="visit_action_cd", OtherKey="visit_action_cd", IsForeignKey=true)]
+		public CablewayVisitAction CablewayVisitAction
+		{
+			get
+			{
+				return this._CablewayVisitAction.Entity;
+			}
+			set
+			{
+				CablewayVisitAction previousValue = this._CablewayVisitAction.Entity;
+				if (((previousValue != value) 
+							|| (this._CablewayVisitAction.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._CablewayVisitAction.Entity = null;
+						previousValue.CablewayVisits.Remove(this);
+					}
+					this._CablewayVisitAction.Entity = value;
+					if ((value != null))
+					{
+						value.CablewayVisits.Add(this);
+						this._visit_action_cd = value.visit_action_cd;
+					}
+					else
+					{
+						this._visit_action_cd = default(string);
+					}
+					this.SendPropertyChanged("CablewayVisitAction");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_cableway_visittype_cd_Safety_Cableway_Visit", Storage="_CablewayVisitType", ThisKey="visit_type_cd", OtherKey="visit_type_cd", IsForeignKey=true)]
+		public CablewayVisitType CablewayVisitType
+		{
+			get
+			{
+				return this._CablewayVisitType.Entity;
+			}
+			set
+			{
+				CablewayVisitType previousValue = this._CablewayVisitType.Entity;
+				if (((previousValue != value) 
+							|| (this._CablewayVisitType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._CablewayVisitType.Entity = null;
+						previousValue.CablewayVisits.Remove(this);
+					}
+					this._CablewayVisitType.Entity = value;
+					if ((value != null))
+					{
+						value.CablewayVisits.Add(this);
+						this._visit_type_cd = value.visit_type_cd;
+					}
+					else
+					{
+						this._visit_type_cd = default(string);
+					}
+					this.SendPropertyChanged("CablewayVisitType");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Safety_Cableway_Master_Safety_Cableway_Visit", Storage="_Cableway", ThisKey="cableway_id", OtherKey="cableway_id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public Cableway Cableway
+		{
+			get
+			{
+				return this._Cableway.Entity;
+			}
+			set
+			{
+				Cableway previousValue = this._Cableway.Entity;
+				if (((previousValue != value) 
+							|| (this._Cableway.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Cableway.Entity = null;
+						previousValue.CablewayVisits.Remove(this);
+					}
+					this._Cableway.Entity = value;
+					if ((value != null))
+					{
+						value.CablewayVisits.Add(this);
+						this._cableway_id = value.cableway_id;
+					}
+					else
+					{
+						this._cableway_id = default(int);
+					}
+					this.SendPropertyChanged("Cableway");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.lut_cableway_status_cd")]
+	public partial class CablewayStatus : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _cableway_status_cd;
+		
+		private string _cableway_status_desc;
+		
+		private EntitySet<Cableway> _Cableways;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Oncableway_status_cdChanging(string value);
+    partial void Oncableway_status_cdChanged();
+    partial void Oncableway_status_descChanging(string value);
+    partial void Oncableway_status_descChanged();
+    #endregion
+		
+		public CablewayStatus()
+		{
+			this._Cableways = new EntitySet<Cableway>(new Action<Cableway>(this.attach_Cableways), new Action<Cableway>(this.detach_Cableways));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cableway_status_cd", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string cableway_status_cd
+		{
+			get
+			{
+				return this._cableway_status_cd;
+			}
+			set
+			{
+				if ((this._cableway_status_cd != value))
+				{
+					this.Oncableway_status_cdChanging(value);
+					this.SendPropertyChanging();
+					this._cableway_status_cd = value;
+					this.SendPropertyChanged("cableway_status_cd");
+					this.Oncableway_status_cdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cableway_status_desc", DbType="NVarChar(255)")]
+		public string cableway_status_desc
+		{
+			get
+			{
+				return this._cableway_status_desc;
+			}
+			set
+			{
+				if ((this._cableway_status_desc != value))
+				{
+					this.Oncableway_status_descChanging(value);
+					this.SendPropertyChanging();
+					this._cableway_status_desc = value;
+					this.SendPropertyChanged("cableway_status_desc");
+					this.Oncableway_status_descChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_cableway_status_cd_Safety_Cableway_Master", Storage="_Cableways", ThisKey="cableway_status_cd", OtherKey="cableway_status_cd")]
+		public EntitySet<Cableway> Cableways
+		{
+			get
+			{
+				return this._Cableways;
+			}
+			set
+			{
+				this._Cableways.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Cableways(Cableway entity)
+		{
+			this.SendPropertyChanging();
+			entity.CablewayStatus = this;
+		}
+		
+		private void detach_Cableways(Cableway entity)
+		{
+			this.SendPropertyChanging();
+			entity.CablewayStatus = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.lut_cableway_type_cd")]
+	public partial class CablewayType : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _cableway_type_cd;
+		
+		private string _cableway_type_desc;
+		
+		private EntitySet<Cableway> _Cableways;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Oncableway_type_cdChanging(string value);
+    partial void Oncableway_type_cdChanged();
+    partial void Oncableway_type_descChanging(string value);
+    partial void Oncableway_type_descChanged();
+    #endregion
+		
+		public CablewayType()
+		{
+			this._Cableways = new EntitySet<Cableway>(new Action<Cableway>(this.attach_Cableways), new Action<Cableway>(this.detach_Cableways));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cableway_type_cd", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string cableway_type_cd
+		{
+			get
+			{
+				return this._cableway_type_cd;
+			}
+			set
+			{
+				if ((this._cableway_type_cd != value))
+				{
+					this.Oncableway_type_cdChanging(value);
+					this.SendPropertyChanging();
+					this._cableway_type_cd = value;
+					this.SendPropertyChanged("cableway_type_cd");
+					this.Oncableway_type_cdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cableway_type_desc", DbType="NVarChar(255)")]
+		public string cableway_type_desc
+		{
+			get
+			{
+				return this._cableway_type_desc;
+			}
+			set
+			{
+				if ((this._cableway_type_desc != value))
+				{
+					this.Oncableway_type_descChanging(value);
+					this.SendPropertyChanging();
+					this._cableway_type_desc = value;
+					this.SendPropertyChanged("cableway_type_desc");
+					this.Oncableway_type_descChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_cableway_type_cd_Safety_Cableway_Master", Storage="_Cableways", ThisKey="cableway_type_cd", OtherKey="cableway_type_cd")]
+		public EntitySet<Cableway> Cableways
+		{
+			get
+			{
+				return this._Cableways;
+			}
+			set
+			{
+				this._Cableways.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Cableways(Cableway entity)
+		{
+			this.SendPropertyChanging();
+			entity.CablewayType = this;
+		}
+		
+		private void detach_Cableways(Cableway entity)
+		{
+			this.SendPropertyChanging();
+			entity.CablewayType = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.lut_cableway_visitaction_cd")]
+	public partial class CablewayVisitAction : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _visit_action_cd;
+		
+		private string _visit_action_desc;
+		
+		private EntitySet<CablewayVisit> _CablewayVisits;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onvisit_action_cdChanging(string value);
+    partial void Onvisit_action_cdChanged();
+    partial void Onvisit_action_descChanging(string value);
+    partial void Onvisit_action_descChanged();
+    #endregion
+		
+		public CablewayVisitAction()
+		{
+			this._CablewayVisits = new EntitySet<CablewayVisit>(new Action<CablewayVisit>(this.attach_CablewayVisits), new Action<CablewayVisit>(this.detach_CablewayVisits));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_visit_action_cd", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string visit_action_cd
+		{
+			get
+			{
+				return this._visit_action_cd;
+			}
+			set
+			{
+				if ((this._visit_action_cd != value))
+				{
+					this.Onvisit_action_cdChanging(value);
+					this.SendPropertyChanging();
+					this._visit_action_cd = value;
+					this.SendPropertyChanged("visit_action_cd");
+					this.Onvisit_action_cdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_visit_action_desc", DbType="NVarChar(255)")]
+		public string visit_action_desc
+		{
+			get
+			{
+				return this._visit_action_desc;
+			}
+			set
+			{
+				if ((this._visit_action_desc != value))
+				{
+					this.Onvisit_action_descChanging(value);
+					this.SendPropertyChanging();
+					this._visit_action_desc = value;
+					this.SendPropertyChanged("visit_action_desc");
+					this.Onvisit_action_descChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_cableway_visitaction_cd_Safety_Cableway_Visit", Storage="_CablewayVisits", ThisKey="visit_action_cd", OtherKey="visit_action_cd")]
+		public EntitySet<CablewayVisit> CablewayVisits
+		{
+			get
+			{
+				return this._CablewayVisits;
+			}
+			set
+			{
+				this._CablewayVisits.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_CablewayVisits(CablewayVisit entity)
+		{
+			this.SendPropertyChanging();
+			entity.CablewayVisitAction = this;
+		}
+		
+		private void detach_CablewayVisits(CablewayVisit entity)
+		{
+			this.SendPropertyChanging();
+			entity.CablewayVisitAction = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.lut_cableway_visittype_cd")]
+	public partial class CablewayVisitType : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _visit_type_cd;
+		
+		private string _visit_type_desc;
+		
+		private EntitySet<CablewayVisit> _CablewayVisits;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onvisit_type_cdChanging(string value);
+    partial void Onvisit_type_cdChanged();
+    partial void Onvisit_type_descChanging(string value);
+    partial void Onvisit_type_descChanged();
+    #endregion
+		
+		public CablewayVisitType()
+		{
+			this._CablewayVisits = new EntitySet<CablewayVisit>(new Action<CablewayVisit>(this.attach_CablewayVisits), new Action<CablewayVisit>(this.detach_CablewayVisits));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_visit_type_cd", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string visit_type_cd
+		{
+			get
+			{
+				return this._visit_type_cd;
+			}
+			set
+			{
+				if ((this._visit_type_cd != value))
+				{
+					this.Onvisit_type_cdChanging(value);
+					this.SendPropertyChanging();
+					this._visit_type_cd = value;
+					this.SendPropertyChanged("visit_type_cd");
+					this.Onvisit_type_cdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_visit_type_desc", DbType="NVarChar(255)")]
+		public string visit_type_desc
+		{
+			get
+			{
+				return this._visit_type_desc;
+			}
+			set
+			{
+				if ((this._visit_type_desc != value))
+				{
+					this.Onvisit_type_descChanging(value);
+					this.SendPropertyChanging();
+					this._visit_type_desc = value;
+					this.SendPropertyChanged("visit_type_desc");
+					this.Onvisit_type_descChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_cableway_visittype_cd_Safety_Cableway_Visit", Storage="_CablewayVisits", ThisKey="visit_type_cd", OtherKey="visit_type_cd")]
+		public EntitySet<CablewayVisit> CablewayVisits
+		{
+			get
+			{
+				return this._CablewayVisits;
+			}
+			set
+			{
+				this._CablewayVisits.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_CablewayVisits(CablewayVisit entity)
+		{
+			this.SendPropertyChanging();
+			entity.CablewayVisitType = this;
+		}
+		
+		private void detach_CablewayVisits(CablewayVisit entity)
+		{
+			this.SendPropertyChanging();
+			entity.CablewayVisitType = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Safety_Cableway_Master")]
+	public partial class Cableway : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _cableway_id;
+		
+		private int _site_id;
+		
+		private string _cableway_status_cd;
+		
+		private string _cableway_type_cd;
+		
+		private System.Nullable<double> _cableway_inspection_freq;
+		
+		private string _cableway_nm;
+		
+		private string _aerial_marker_req;
+		
+		private string _aerial_marker_inst;
+		
+		private string _created_by;
+		
+		private System.Nullable<System.DateTime> _created_dt;
+		
+		private string _updated_by;
+		
+		private System.Nullable<System.DateTime> _updated_dt;
+		
+		private EntitySet<CablewayVisit> _CablewayVisits;
+		
+		private EntityRef<CablewayStatus> _CablewayStatus;
+		
+		private EntityRef<CablewayType> _CablewayType;
+		
+		private EntityRef<Site> _Site;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Oncableway_idChanging(int value);
+    partial void Oncableway_idChanged();
+    partial void Onsite_idChanging(int value);
+    partial void Onsite_idChanged();
+    partial void Oncableway_status_cdChanging(string value);
+    partial void Oncableway_status_cdChanged();
+    partial void Oncableway_type_cdChanging(string value);
+    partial void Oncableway_type_cdChanged();
+    partial void Oncableway_inspection_freqChanging(System.Nullable<double> value);
+    partial void Oncableway_inspection_freqChanged();
+    partial void Oncableway_nmChanging(string value);
+    partial void Oncableway_nmChanged();
+    partial void Onaerial_marker_reqChanging(string value);
+    partial void Onaerial_marker_reqChanged();
+    partial void Onaerial_marker_instChanging(string value);
+    partial void Onaerial_marker_instChanged();
+    partial void Oncreated_byChanging(string value);
+    partial void Oncreated_byChanged();
+    partial void Oncreated_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Oncreated_dtChanged();
+    partial void Onupdated_byChanging(string value);
+    partial void Onupdated_byChanged();
+    partial void Onupdated_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onupdated_dtChanged();
+    #endregion
+		
+		public Cableway()
+		{
+			this._CablewayVisits = new EntitySet<CablewayVisit>(new Action<CablewayVisit>(this.attach_CablewayVisits), new Action<CablewayVisit>(this.detach_CablewayVisits));
+			this._CablewayStatus = default(EntityRef<CablewayStatus>);
+			this._CablewayType = default(EntityRef<CablewayType>);
+			this._Site = default(EntityRef<Site>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cableway_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int cableway_id
+		{
+			get
+			{
+				return this._cableway_id;
+			}
+			set
+			{
+				if ((this._cableway_id != value))
+				{
+					this.Oncableway_idChanging(value);
+					this.SendPropertyChanging();
+					this._cableway_id = value;
+					this.SendPropertyChanged("cableway_id");
+					this.Oncableway_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int NOT NULL")]
+		public int site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					if (this._Site.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onsite_idChanging(value);
+					this.SendPropertyChanging();
+					this._site_id = value;
+					this.SendPropertyChanged("site_id");
+					this.Onsite_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cableway_status_cd", DbType="NVarChar(50)")]
+		public string cableway_status_cd
+		{
+			get
+			{
+				return this._cableway_status_cd;
+			}
+			set
+			{
+				if ((this._cableway_status_cd != value))
+				{
+					if (this._CablewayStatus.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Oncableway_status_cdChanging(value);
+					this.SendPropertyChanging();
+					this._cableway_status_cd = value;
+					this.SendPropertyChanged("cableway_status_cd");
+					this.Oncableway_status_cdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cableway_type_cd", DbType="NVarChar(50)")]
+		public string cableway_type_cd
+		{
+			get
+			{
+				return this._cableway_type_cd;
+			}
+			set
+			{
+				if ((this._cableway_type_cd != value))
+				{
+					if (this._CablewayType.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Oncableway_type_cdChanging(value);
+					this.SendPropertyChanging();
+					this._cableway_type_cd = value;
+					this.SendPropertyChanged("cableway_type_cd");
+					this.Oncableway_type_cdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cableway_inspection_freq", DbType="Float")]
+		public System.Nullable<double> cableway_inspection_freq
+		{
+			get
+			{
+				return this._cableway_inspection_freq;
+			}
+			set
+			{
+				if ((this._cableway_inspection_freq != value))
+				{
+					this.Oncableway_inspection_freqChanging(value);
+					this.SendPropertyChanging();
+					this._cableway_inspection_freq = value;
+					this.SendPropertyChanged("cableway_inspection_freq");
+					this.Oncableway_inspection_freqChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cableway_nm", DbType="NVarChar(30)")]
+		public string cableway_nm
+		{
+			get
+			{
+				return this._cableway_nm;
+			}
+			set
+			{
+				if ((this._cableway_nm != value))
+				{
+					this.Oncableway_nmChanging(value);
+					this.SendPropertyChanging();
+					this._cableway_nm = value;
+					this.SendPropertyChanged("cableway_nm");
+					this.Oncableway_nmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_aerial_marker_req", DbType="NVarChar(1)")]
+		public string aerial_marker_req
+		{
+			get
+			{
+				return this._aerial_marker_req;
+			}
+			set
+			{
+				if ((this._aerial_marker_req != value))
+				{
+					this.Onaerial_marker_reqChanging(value);
+					this.SendPropertyChanging();
+					this._aerial_marker_req = value;
+					this.SendPropertyChanged("aerial_marker_req");
+					this.Onaerial_marker_reqChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_aerial_marker_inst", DbType="NVarChar(1)")]
+		public string aerial_marker_inst
+		{
+			get
+			{
+				return this._aerial_marker_inst;
+			}
+			set
+			{
+				if ((this._aerial_marker_inst != value))
+				{
+					this.Onaerial_marker_instChanging(value);
+					this.SendPropertyChanging();
+					this._aerial_marker_inst = value;
+					this.SendPropertyChanged("aerial_marker_inst");
+					this.Onaerial_marker_instChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_created_by", DbType="NVarChar(50)")]
+		public string created_by
+		{
+			get
+			{
+				return this._created_by;
+			}
+			set
+			{
+				if ((this._created_by != value))
+				{
+					this.Oncreated_byChanging(value);
+					this.SendPropertyChanging();
+					this._created_by = value;
+					this.SendPropertyChanged("created_by");
+					this.Oncreated_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_created_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> created_dt
+		{
+			get
+			{
+				return this._created_dt;
+			}
+			set
+			{
+				if ((this._created_dt != value))
+				{
+					this.Oncreated_dtChanging(value);
+					this.SendPropertyChanging();
+					this._created_dt = value;
+					this.SendPropertyChanged("created_dt");
+					this.Oncreated_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_updated_by", DbType="NVarChar(50)")]
+		public string updated_by
+		{
+			get
+			{
+				return this._updated_by;
+			}
+			set
+			{
+				if ((this._updated_by != value))
+				{
+					this.Onupdated_byChanging(value);
+					this.SendPropertyChanging();
+					this._updated_by = value;
+					this.SendPropertyChanged("updated_by");
+					this.Onupdated_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_updated_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> updated_dt
+		{
+			get
+			{
+				return this._updated_dt;
+			}
+			set
+			{
+				if ((this._updated_dt != value))
+				{
+					this.Onupdated_dtChanging(value);
+					this.SendPropertyChanging();
+					this._updated_dt = value;
+					this.SendPropertyChanged("updated_dt");
+					this.Onupdated_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Safety_Cableway_Master_Safety_Cableway_Visit", Storage="_CablewayVisits", ThisKey="cableway_id", OtherKey="cableway_id")]
+		public EntitySet<CablewayVisit> CablewayVisits
+		{
+			get
+			{
+				return this._CablewayVisits;
+			}
+			set
+			{
+				this._CablewayVisits.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_cableway_status_cd_Safety_Cableway_Master", Storage="_CablewayStatus", ThisKey="cableway_status_cd", OtherKey="cableway_status_cd", IsForeignKey=true)]
+		public CablewayStatus CablewayStatus
+		{
+			get
+			{
+				return this._CablewayStatus.Entity;
+			}
+			set
+			{
+				CablewayStatus previousValue = this._CablewayStatus.Entity;
+				if (((previousValue != value) 
+							|| (this._CablewayStatus.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._CablewayStatus.Entity = null;
+						previousValue.Cableways.Remove(this);
+					}
+					this._CablewayStatus.Entity = value;
+					if ((value != null))
+					{
+						value.Cableways.Add(this);
+						this._cableway_status_cd = value.cableway_status_cd;
+					}
+					else
+					{
+						this._cableway_status_cd = default(string);
+					}
+					this.SendPropertyChanged("CablewayStatus");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_cableway_type_cd_Safety_Cableway_Master", Storage="_CablewayType", ThisKey="cableway_type_cd", OtherKey="cableway_type_cd", IsForeignKey=true)]
+		public CablewayType CablewayType
+		{
+			get
+			{
+				return this._CablewayType.Entity;
+			}
+			set
+			{
+				CablewayType previousValue = this._CablewayType.Entity;
+				if (((previousValue != value) 
+							|| (this._CablewayType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._CablewayType.Entity = null;
+						previousValue.Cableways.Remove(this);
+					}
+					this._CablewayType.Entity = value;
+					if ((value != null))
+					{
+						value.Cableways.Add(this);
+						this._cableway_type_cd = value.cableway_type_cd;
+					}
+					else
+					{
+						this._cableway_type_cd = default(string);
+					}
+					this.SendPropertyChanged("CablewayType");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Safety_Cableway_Master", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		public Site Site
+		{
+			get
+			{
+				return this._Site.Entity;
+			}
+			set
+			{
+				Site previousValue = this._Site.Entity;
+				if (((previousValue != value) 
+							|| (this._Site.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Site.Entity = null;
+						previousValue.Cableways.Remove(this);
+					}
+					this._Site.Entity = value;
+					if ((value != null))
+					{
+						value.Cableways.Add(this);
+						this._site_id = value.site_id;
+					}
+					else
+					{
+						this._site_id = default(int);
+					}
+					this.SendPropertyChanged("Site");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_CablewayVisits(CablewayVisit entity)
+		{
+			this.SendPropertyChanging();
+			entity.Cableway = this;
+		}
+		
+		private void detach_CablewayVisits(CablewayVisit entity)
+		{
+			this.SendPropertyChanging();
+			entity.Cableway = null;
 		}
 	}
 	

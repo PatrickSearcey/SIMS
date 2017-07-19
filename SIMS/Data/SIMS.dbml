@@ -671,6 +671,7 @@
       <Association Name="Site_TripSite" Member="TripSites" ThisKey="site_id" OtherKey="site_id" Type="TripSite" />
       <Association Name="Site_SiteElement" Member="SiteElements" ThisKey="site_id" OtherKey="site_id" Type="SiteElement" />
       <Association Name="Site_Record" Member="Records" ThisKey="site_id" OtherKey="site_id" Type="Record" />
+      <Association Name="Site_Safety_Cableway_Master" Member="Cableways" ThisKey="site_id" OtherKey="site_id" Type="Cableway" />
       <Association Name="Office_Site" Member="Office" ThisKey="office_id" OtherKey="office_id" Type="Office" IsForeignKey="true" />
     </Type>
   </Table>
@@ -1077,6 +1078,72 @@
       <Column Name="approved_period_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="not_used_fg" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="type_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Safety_Cableway_Visit" Member="CablewayVisits">
+    <Type Name="CablewayVisit">
+      <Column Name="cableway_visit_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="cableway_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="visit_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="visit_type_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="visit_action_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="visit_file_nm" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="remarks" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="created_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="created_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updated_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="updated_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="lut_cableway_visitaction_cd_Safety_Cableway_Visit" Member="CablewayVisitAction" ThisKey="visit_action_cd" OtherKey="visit_action_cd" Type="CablewayVisitAction" IsForeignKey="true" />
+      <Association Name="lut_cableway_visittype_cd_Safety_Cableway_Visit" Member="CablewayVisitType" ThisKey="visit_type_cd" OtherKey="visit_type_cd" Type="CablewayVisitType" IsForeignKey="true" />
+      <Association Name="Safety_Cableway_Master_Safety_Cableway_Visit" Member="Cableway" ThisKey="cableway_id" OtherKey="cableway_id" Type="Cableway" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.lut_cableway_status_cd" Member="CablewayStatus">
+    <Type Name="CablewayStatus">
+      <Column Name="cableway_status_cd" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="cableway_status_desc" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="lut_cableway_status_cd_Safety_Cableway_Master" Member="Cableways" ThisKey="cableway_status_cd" OtherKey="cableway_status_cd" Type="Cableway" />
+    </Type>
+  </Table>
+  <Table Name="dbo.lut_cableway_type_cd" Member="CablewayTypes">
+    <Type Name="CablewayType">
+      <Column Name="cableway_type_cd" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="cableway_type_desc" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="lut_cableway_type_cd_Safety_Cableway_Master" Member="Cableways" ThisKey="cableway_type_cd" OtherKey="cableway_type_cd" Type="Cableway" />
+    </Type>
+  </Table>
+  <Table Name="dbo.lut_cableway_visitaction_cd" Member="CablewayVisitActions">
+    <Type Name="CablewayVisitAction">
+      <Column Name="visit_action_cd" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="visit_action_desc" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="lut_cableway_visitaction_cd_Safety_Cableway_Visit" Member="CablewayVisits" ThisKey="visit_action_cd" OtherKey="visit_action_cd" Type="CablewayVisit" />
+    </Type>
+  </Table>
+  <Table Name="dbo.lut_cableway_visittype_cd" Member="CablewayVisitTypes">
+    <Type Name="CablewayVisitType">
+      <Column Name="visit_type_cd" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="visit_type_desc" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="lut_cableway_visittype_cd_Safety_Cableway_Visit" Member="CablewayVisits" ThisKey="visit_type_cd" OtherKey="visit_type_cd" Type="CablewayVisit" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Safety_Cableway_Master" Member="Cableways">
+    <Type Name="Cableway">
+      <Column Name="cableway_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="site_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cableway_status_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="cableway_type_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="cableway_inspection_freq" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="cableway_nm" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="aerial_marker_req" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="aerial_marker_inst" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="created_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="created_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updated_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="updated_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Safety_Cableway_Master_Safety_Cableway_Visit" Member="CablewayVisits" ThisKey="cableway_id" OtherKey="cableway_id" Type="CablewayVisit" />
+      <Association Name="lut_cableway_status_cd_Safety_Cableway_Master" Member="CablewayStatus" ThisKey="cableway_status_cd" OtherKey="cableway_status_cd" Type="CablewayStatus" IsForeignKey="true" />
+      <Association Name="lut_cableway_type_cd_Safety_Cableway_Master" Member="CablewayType" ThisKey="cableway_type_cd" OtherKey="cableway_type_cd" Type="CablewayType" IsForeignKey="true" />
+      <Association Name="Site_Safety_Cableway_Master" Member="Site" ThisKey="site_id" OtherKey="site_id" Type="Site" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">

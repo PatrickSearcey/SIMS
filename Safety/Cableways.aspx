@@ -89,10 +89,8 @@
                                 UniqueName="visit_dt" SortExpression="visit_dt" AllowFiltering="false" HeaderStyle-Width="100" />
                             <telerik:GridBoundColumn DataField="type_cd_desc" HeaderText="Visit Type" UniqueName="type_cd_desc" HeaderStyle-Width="180" 
                                 SortExpression="visit_type_cd" AllowFiltering="false" />
-                            <telerik:GridBoundColumn DataField="visit_type_cd" UniqueName="visit_type_cd" Display="false" ReadOnly="true" />
                             <telerik:GridBoundColumn DataField="action_cd_desc" HeaderText="Visit Action" UniqueName="action_cd_desc" HeaderStyle-Width="220"
                                 SortExpression="visit_action_cd" AllowFiltering="false" />
-                            <telerik:GridBoundColumn DataField="visit_action_cd" Display="false" ReadOnly="true" UniqueName="visit_action_cd" />
                             <telerik:GridTemplateColumn HeaderText="Documentation" HeaderStyle-Width="300" DataField="visit_file_nm">
                                 <ItemTemplate>
                                     <asp:HyperLink ID="hlDoc" runat="server" Text='<%# Bind("visit_file_nm") %>' Target="_blank" />&nbsp;
@@ -201,13 +199,8 @@
                         <HeaderStyle Width="20px" />
                         <ItemStyle CssClass="MyImageButton" />
                     </telerik:GridEditCommandColumn>
-                    <telerik:GridBoundColumn DataField="cableway_id" UniqueName="cableway_id" Display="false" ReadOnly="true"  />
-                    <telerik:GridBoundColumn DataField="site_id" UniqueName="site_id" Display="false" ReadOnly="true" />
-                    <telerik:GridBoundColumn DataField="cableway_nm" UniqueName="cableway_nm" Display="false" ReadOnly="true" />
                     <telerik:GridBoundColumn DataField="site_no_nm" HeaderText="Site" UniqueName="site_no_nm" SortExpression="site_no" FilterControlWidth="150px" />
-                    <telerik:GridBoundColumn DataField="cableway_status_cd" UniqueName="cableway_status_cd" Display="false" ReadOnly="true" />
                     <telerik:GridBoundColumn DataField="status_cd_desc" HeaderText="Cableway Status" UniqueName="status_cd_desc" SortExpression="cableway_status_cd" AllowFiltering="false" />
-                    <telerik:GridBoundColumn DataField="cableway_type_cd" UniqueName="cableway_type_cd" Display="false" ReadOnly="true" />
                     <telerik:GridBoundColumn DataField="type_cd_desc" HeaderText="Cableway Type"  UniqueName="type_cd_desc" SortExpression="cableway_type_cd" AllowFiltering="false" />
                     <telerik:GridBoundColumn DataField="cableway_inspection_freq" HeaderText="Insp Freq" UniqueName="cableway_inspection_freq" SortExpression="cableway_inspection_freq" AllowFiltering="false" />
                     <telerik:GridBoundColumn DataField="aerial_marker_req" HeaderText="Aerial Marker Required" UniqueName="aerial_marker_req" SortExpression="aerial_marker_req" AllowFiltering="false" />
