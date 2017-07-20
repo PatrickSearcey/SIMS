@@ -27,9 +27,10 @@
     <uc:PageHeading id="ph1" runat="server" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph2" runat="server">
+    <div class="mainContent">
     <asp:Panel ID="pnlHasAccess" runat="server">
         <div style="height:50px;width:100%;padding-bottom:10px;">
-            <p style="font-size:9pt;">A cableway is defined as any <b>permanent bank-supported</b> aerial conveying system suspended above a waterway for the 
+            <p style="font-size:10pt;">A cableway is defined as any <b>permanent bank-supported</b> aerial conveying system suspended above a waterway for the 
             purpose of making hydrologic measurements. Cableways typically are classified as either: (1) <b>manned cableways</b> where the 
             hydrographer traverses the river in a cable car suspended from the main cable to operate measurement equipment; or (2) 
             <b>bank-operated cableways</b> (BOS) where the hydrographer is positioned on the stream bank to remotely operate cableway-
@@ -42,29 +43,31 @@
                 <asp:LinkButton ID="lbToggleRStatus" runat="server" OnCommand="lbToggleRStatus_Command" Font-Bold="true" />
             </div>
             <div style="float:right;">
-                <asp:ImageMap ID="imInstructions" runat="server" ImageUrl="images/manualandhelplinks.png" BorderStyle="None">
+                <asp:ImageMap ID="imInstructions" runat="server" ImageUrl="~/images/manualandhelplinks.png" BorderStyle="None">
                     <asp:RectangleHotSpot AlternateText="Manned Cableway Inspection e-Form" HotSpotMode="Navigate" 
-                        NavigateUrl="Docs/MannedCablewayInspectionE-form.pdf" Bottom="33" Left="38" Right="210" Top="15" Target="_blank" />
+                        NavigateUrl="../Docs/MannedCablewayInspectionE-form.pdf" Bottom="33" Left="38" Right="210" Top="15" Target="_blank" />
                     <asp:RectangleHotSpot AlternateText="Bank-Operated Cableways Inspection Checklist" HotSpotMode="Navigate" 
-                        NavigateUrl="Docs/Bank-OperatedCablewayInspectionE-form.pdf" Bottom="58" Left="38" Right="210" Top="38" Target="_blank" />
+                        NavigateUrl="../Docs/Bank-OperatedCablewayInspectionE-form.pdf" Bottom="58" Left="38" Right="210" Top="38" Target="_blank" />
                     <asp:RectangleHotSpot AlternateText="USGS Manual" HotSpotMode="Navigate" 
                         NavigateUrl="http://www.usgs.gov/usgs-manual/handbook/hb/445-2-h/ch41.html" Bottom="33" Left="270" 
                         Right="470" Target="_blank" Top="10" />
                     <asp:RectangleHotSpot AlternateText="WMA Memo 13.03" HotSpotMode="Navigate"
-                        NavigateUrl="Docs/WMAMemorandum13.03.pdf" Bottom="60" Left="270" Right="460" Target="_blank" Top="38" />
+                        NavigateUrl="../Docs/WMAMemorandum13.03.pdf" Bottom="60" Left="270" Right="460" Target="_blank" Top="38" />
                     <asp:RectangleHotSpot AlternateText="CMI Instructions (.pptx)" HotSpotMode="Navigate" 
-                        NavigateUrl="Docs/SIMSCMIInstructions.pptx" Left="520" 
+                        NavigateUrl="../Docs/SIMSCMIInstructions.pptx" Left="520" 
                         Right="800" Target="_blank" Top="5" Bottom="60" />
                 </asp:ImageMap>
             </div>
         </div>
-        <telerik:RadGrid ID="rgCableways" runat="server" AutoGenerateColumns="false" EnableLinqExpressions="false" 
+        <telerik:RadGrid ID="rgCableways" runat="server" AutoGenerateColumns="false" EnableLinqExpressions="false" RenderMode="Lightweight" 
             Skin="Bootstrap" GridLines="None" ShowStatusBar="true" PageSize="50"
             AllowSorting="true" 
             AllowMultiRowSelection="false" 
             AllowFiltering="true"
             AllowPaging="true"
             AllowAutomaticDeletes="true" 
+            OnNeedDataSource="rgCableways_NeedDataSource" 
+            OnDetailTableDataBind="rgCableways_DetailTableDataBind"
             OnItemDataBound="rgCableways_ItemDataBound"
             OnInsertCommand="rgCableways_InsertCommand"
             OnUpdateCommand="rgCableways_UpdateCommand"
@@ -155,8 +158,8 @@
                                             </td>
                                             <td>
                                                 <div style="float:left;">
-                                                    <telerik:RadAsyncUpload runat="server" ID="rauPASUpload" TemporaryFolder="~/Control/Temporary/" AllowedFileExtensions="pdf,docx,txt" MaxFileInputsCount="1" 
-                                                        MaxFileSize="524288000" DisableChunkUpload="true" MultipleFileSelection="Disabled" Skin="Office2010Silver" PostbackTriggers="btnInsert1" 
+                                                    <telerik:RadAsyncUpload runat="server" ID="rauUpload" TemporaryFolder="~/Control/Temporary/" AllowedFileExtensions="pdf,docx,txt" MaxFileInputsCount="1" 
+                                                        MaxFileSize="524288000" DisableChunkUpload="true" MultipleFileSelection="Disabled" Skin="Office2010Silver" PostbackTriggers="btnInsert1,btnUpdate1" 
                                                         Localization-Select="Browse" ToolTip="Documents can be one of the following formats: .pdf, .docx, .txt" />
                                                 </div>
                                                 <asp:Image ID="imgUploadDocHelp" runat="server" ImageURL="~/Images/tooltip.png" />
@@ -176,11 +179,11 @@
                                     Enter the date of the visit. If you are adding non-visit information, enter today's date.
                                 </telerik:RadToolTip>
                                 <telerik:RadToolTip runat="server" ID="rtt0" RelativeTo="Element" Width="300px" AutoCloseDelay="10000"
-                                    Height="50px" TargetControlID="imgUploadDocHelp" IsClientID="false" Animation="Fade" Position="TopRight">
+                                    Height="90px" TargetControlID="imgUploadDocHelp" IsClientID="false" Animation="Fade" Position="TopRight">
                                     One supporting document may be uploaded. Please upload any hand written inspection forms. To include images or other supporting documents, please merge them into one file.   
                                 </telerik:RadToolTip>
                                 <telerik:RadToolTip runat="server" ID="rtt1" RelativeTo="Element" Width="300px" AutoCloseDelay="10000"
-                                    Height="50px" TargetControlID="imgVisitActionHelp" IsClientID="false" Animation="Fade" Position="TopRight">
+                                    Height="80px" TargetControlID="imgVisitActionHelp" IsClientID="false" Animation="Fade" Position="TopRight">
                                     What was the outcome of this visit? What you choose here might impact your Cableway Status, and you may need to edit the cableway above as well.
                                 </telerik:RadToolTip>
                             </FormTemplate>
@@ -210,19 +213,19 @@
 
                 <EditFormSettings EditFormType="Template">
                     <FormTemplate>
-                        <div style="padding:5px;background-color:#cfe3db;">
-                            <table id="tableForm1" cellspacing="5" cellpadding="5" width="600" border="0" rules="none" style="border-collapse: collapse; background: #cfe3db;">
+                        <div style="padding:5px;background-color:#d1ede5;">
+                            <table id="tableForm1" cellspacing="5" cellpadding="5" width="800" border="0" rules="none" style="border-collapse: collapse; background: #d1ede5;">
                                 <tr>
                                     <td colspan="2">
                                         <h4><asp:Literal ID="ltlEditFormTitle" runat="server" /></h4>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="width:120px;">
+                                    <td style="width:200px;">
                                         <label>Site:</label>
                                     </td>
                                     <td>
-                                        <asp:DropDownList ID="ddlSites" runat="server" Width="400px" DataTextField="site_no_nm" DataValueField="site_id" />
+                                        <asp:DropDownList ID="ddlSites" runat="server" Width="500px" DataTextField="site_no_nm" DataValueField="site_id" />
                                         <asp:Image ID="imgSitesHelp" runat="server" ImageUrl="~/Images/tooltip.png" />
                                     </td>
                                 </tr>
@@ -253,7 +256,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td nowrap>
                                         <label>Inspection Frequency:</label>
                                     </td>
                                     <td>
@@ -262,10 +265,10 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td nowrap>
                                         <label>Are Aerial Markers:</label><br />
-                                        <p style="padding-left:40px;padding-bottom:3px;"><label>Required?</label></p>
-                                        <p style="padding-left:40px;"><label>Installed?</label></p>
+                                        <span style="padding-left:90px;"><label>Required?</label></span><br />
+                                        <span style="padding-left:90px;"><label>Installed?</label></span>
                                     </td>
                                     <td>
                                         <br />
@@ -293,15 +296,15 @@
                             </table>
                         </div>
                         <telerik:RadToolTip runat="server" ID="rtt3" RelativeTo="Element" Width="300px" AutoCloseDelay="10000"
-                            Height="50px" TargetControlID="imgSitesHelp" IsClientID="false" Animation="Fade" Position="TopRight">
+                            Height="60px" TargetControlID="imgSitesHelp" IsClientID="false" Animation="Fade" Position="TopRight">
                             Only sites that already exist in SIMS are listed.  If you do not see your site, you must first add it to SIMS.  
                         </telerik:RadToolTip>
                         <telerik:RadToolTip runat="server" ID="rrt5" RelativeTo="Element" Width="300px" AutoCloseDelay="10000"
-                            Height="50px" TargetControlID="imgNicknameHelp" IsClientID="false" Animation="Fade" Position="TopRight">
+                            Height="60px" TargetControlID="imgNicknameHelp" IsClientID="false" Animation="Fade" Position="TopRight">
                             Enter a short descriptive phrase or word for this cableway. This is useful for setting your cableways apart if you have multiples at a site.
                         </telerik:RadToolTip>
                         <telerik:RadToolTip runat="server" ID="rtt6" RelativeTo="Element" Width="300px" AutoCloseDelay="10000"
-                            Height="50px" TargetControlID="imgCablewayTypeHelp" IsClientID="false" Animation="Fade" Position="TopRight">
+                            Height="100px" TargetControlID="imgCablewayTypeHelp" IsClientID="false" Animation="Fade" Position="TopRight">
                             <b>Bank Operated Cableway</b> A manually operated "loop" cableway<br />
                             <b>Manned Cableway</b> Traditional cableway with cable car and operator<br />
                             <b>Type Unknown</b> You just don't know
@@ -320,8 +323,9 @@
                         </telerik:RadToolTip>
                     </FormTemplate>
                 </EditFormSettings>
-                <EditItemStyle BackColor="#cfe3db" />
+                <EditItemStyle BackColor="#d1ede5" />
             </MasterTableView>
         </telerik:RadGrid>
     </asp:Panel>
+    </div>
 </asp:Content>

@@ -120,37 +120,15 @@ namespace Safety
             Session["ShowRStatusCableways"] = "false";
         }
 
-        #region Properties
-        private List<Data.Site> SiteList
-        {
-            get
-            {
-                var sites = (from p in db.Sites
-                        join v in db.vSITEFILEs on p.nwisweb_site_id equals v.site_id
-                        join t in db.SiteTypes on v.site_tp_cd equals t.site_tp_cd
-                        where p.Office.wsc_id == WSCID && t.sims_site_tp == "sw"
-                        select new Data.Site()
-                        {
-                            site_id = p.site_id,
-                            site_no = p.site_no,
-                            agency_cd = p.agency_cd,
-                            station_full_nm = p.station_full_nm,
-                            office_id = p.office_id
-                        }).ToList();
-                return sites;
-            }
-        }
-        #endregion
-
         public void lbToggleRStatus_Command(object source, CommandEventArgs e)
         {
-            if (e.CommandArgument == "viewR")
+            if (e.CommandArgument.ToString() == "viewR")
             {
                 Session["ShowRStatusCableways"] = "true";
                 lbToggleRStatus.Text = "Click to view all cableways";
                 lbToggleRStatus.CommandArgument = "hideR";
             }
-            else if (e.CommandArgument == "hideR")
+            else if (e.CommandArgument.ToString() == "hideR")
             {
                 Session["ShowRStatusCableways"] = "false";
                 lbToggleRStatus.Text = "Click to view removed or remediated cableways";
@@ -160,7 +138,7 @@ namespace Safety
             rgCableways.Rebind();
         }
 
-        private void rgCableways_NeedDataSource(object source, GridNeedDataSourceEventArgs e)
+        protected void rgCableways_NeedDataSource(object source, GridNeedDataSourceEventArgs e)
         {
             if (!e.IsFromDetailTable)
             {
@@ -175,18 +153,19 @@ namespace Safety
                         aerial_marker_inst = p.aerial_marker_inst,
                         office_cd = p.Site.Office.office_cd,
                         wsc_id = p.Site.Office.wsc_id,
-                        cableway_type_cd = p.cableway_type_cd
+                        cableway_type_cd = p.cableway_type_cd,
+                        cableway_status_cd = p.cableway_status_cd
                     });
 
-                if (Session["ShowRStatusCableways"] == "false")
+                if (Session["ShowRStatusCableways"].ToString() == "false")
                 {
                     //We do not want any cableways to be shown with a status of "r - Full removal and site remediated"
-                    rgCableways.DataSource = cableways.Where(p => p.wsc_id == WSCID && p.cableway_type_cd != "r").ToList();
+                    rgCableways.DataSource = cableways.Where(p => p.wsc_id == WSCID && p.cableway_status_cd != "r").ToList();
                 }
                 else
                 {
                     //Show only cableways with a status of "r - Full removal and site remediated"
-                    rgCableways.DataSource = cableways.Where(p => p.wsc_id == WSCID && p.cableway_type_cd == "r").ToList();
+                    rgCableways.DataSource = cableways.Where(p => p.wsc_id == WSCID && p.cableway_status_cd == "r").ToList();
                 }
 
                 if ((!Page.IsPostBack))
@@ -213,7 +192,7 @@ namespace Safety
             }
         }
 
-        private void rgCableways_DetailTableDataBind(object source, GridDetailTableDataBindEventArgs e)
+        protected void rgCableways_DetailTableDataBind(object source, GridDetailTableDataBindEventArgs e)
         {
             GridDataItem dataItem = (GridDataItem)e.DetailTableView.ParentItem;
             switch (e.DetailTableView.Name)
@@ -222,10 +201,11 @@ namespace Safety
                     int cableway_id = Convert.ToInt32(dataItem.GetDataKeyValue("cableway_id"));
                     var cw = db.Cableways.FirstOrDefault(p => p.cableway_id == cableway_id);
                     e.DetailTableView.DataSource = cw.CablewayVisits.Select(p => new {
+                        cableway_id = cableway_id,
                         cableway_visit_id = p.cableway_visit_id,
                         visit_dt = p.visit_dt,
-                        type_cd_desc = p.visit_type_cd + " - " + p.CablewayVisitType.visit_type_desc,
-                        action_cd_desc = p.visit_action_cd + " - " + p.CablewayVisitAction.visit_action_desc,
+                        type_cd_desc = (p.CablewayVisitType != null) ? p.visit_type_cd + " - " + p.CablewayVisitType.visit_type_desc : "",
+                        action_cd_desc = (p.CablewayVisitAction != null) ? p.visit_action_cd + " - " + p.CablewayVisitAction.visit_action_desc : "",
                         visit_file_nm = p.visit_file_nm,
                         remarks = p.remarks
                     }).ToList();
@@ -265,7 +245,7 @@ namespace Safety
                     TextBox tbRemarks = (TextBox)item.FindControl("tbRemarks");
                     Button btnUpdate1 = (Button)item.FindControl("btnUpdate1");
                     Button btnInsert1 = (Button)item.FindControl("btnInsert1");
-                    RadAsyncUpload upload = (RadAsyncUpload)item.FindControl("fuFile");
+                    RadAsyncUpload upload = (RadAsyncUpload)item.FindControl("rauUpload");
                     Label lblUploadDoc = (Label)item.FindControl("lblUploadDoc");
                     Image imgUploadDocHelp = (Image)item.FindControl("imgUploadDocHelp");
 
@@ -327,7 +307,7 @@ namespace Safety
                         if (!string.IsNullOrEmpty(visit.visit_file_nm))
                         {
                             HyperLink hlDoc = (HyperLink)item.FindControl("hlDoc");
-                            hlDoc.Attributes["href"] = String.Format("{0}Files/Cableways/{1}/{2}", visit.cableway_id, visit.visit_file_nm);
+                            hlDoc.Attributes["href"] = String.Format("{0}Files/Cableways/{1}/{2}", Config.SafetyURL, visit.cableway_id, visit.visit_file_nm);
                         }
                     }
                 }
@@ -361,7 +341,19 @@ namespace Safety
                     Button btnUpdate2 = (Button)item.FindControl("btnUpdate2");
                     Button btnInsert2 = (Button)item.FindControl("btnInsert2");
 
-                    ddlSites.DataSource = SiteList;
+                    ddlSites.DataSource = (from p in db.Sites
+                        join v in db.vSITEFILEs on p.nwisweb_site_id equals v.site_id
+                        join t in db.SiteTypes on v.site_tp_cd equals t.site_tp_cd
+                        where p.Office.wsc_id == WSCID && t.sims_site_tp == "sw"
+                        select new
+                        {
+                            site_id = p.site_id,
+                            site_no = p.site_no,
+                            site_no_nm = p.site_no + " " + p.station_full_nm,
+                            agency_cd = p.agency_cd,
+                            station_full_nm = p.station_full_nm,
+                            office_id = p.office_id
+                        });
                     ddlCablewayStatus.DataSource = db.CablewayStatus.Select(p => new {
                         status_cd_desc = p.cableway_status_cd + " - " + p.cableway_status_desc,
                         cableway_status_cd = p.cableway_status_cd
@@ -536,7 +528,7 @@ namespace Safety
 
                 try
                 {
-                    RadAsyncUpload uploader = (RadAsyncUpload)e.Item.FindControl("fuFile");
+                    RadAsyncUpload uploader = (RadAsyncUpload)e.Item.FindControl("rauUpload");
                     if (uploader.UploadedFiles.Count > 0)
                     {
                         string status_msg = SaveMyFile(uploader.UploadedFiles[0], updateVisit.cableway_id, Convert.ToDateTime(updateVisit.visit_dt));
@@ -606,7 +598,7 @@ namespace Safety
                 newVisit.updated_by = user.ID;
                 newVisit.updated_dt = DateTime.Now;
 
-                RadAsyncUpload uploader = (RadAsyncUpload)e.Item.FindControl("fuFile");
+                RadAsyncUpload uploader = (RadAsyncUpload)e.Item.FindControl("rauUpload");
                 if (uploader.UploadedFiles.Count > 0)
                 {
                     string status_msg = SaveMyFile(uploader.UploadedFiles[0], newVisit.cableway_id, Convert.ToDateTime(newVisit.visit_dt));
