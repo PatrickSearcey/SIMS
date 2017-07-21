@@ -311,3 +311,16 @@ h5.sectionHeadings
 {
     color:orange !important;
 }
+/* MANAGE EMERGENCY INFO */
+.pageViewPanel
+{
+    padding: 10px;
+}
+.xlsButton
+{
+    color: White;
+    border: 0;
+    height:48px;
+    background: url('../images/excellogo.png') no-repeat center;
+    cursor: pointer;
+}
