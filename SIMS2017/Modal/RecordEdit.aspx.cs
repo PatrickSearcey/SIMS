@@ -100,7 +100,7 @@ namespace SIMS2017.Modal
                 ltlBottomNote.Text = "<b>Note:</b> If you are trying to create a time-series record but do not see the ID, you must register the daily value ID in nw_edit," +
                     " and manually push the data to NWISWeb. Your registered ID will be available for creating a record within an hour.";
 
-                options.Add(new OptionItem() { option = "nonts_noid", description = "Non-Time-Series Record, no ID" });
+                options.Add(new OptionItem() { option = "nonts_noid", description = "Non-Time-Series Record" });
                 rcblOptions.DataSource = options;
                 rcblOptions.DataBind();
             }
@@ -109,9 +109,8 @@ namespace SIMS2017.Modal
                 ltlTopNote.Text = "Choose a classification for this new record:";
                 ltlBottomNote.Visible = false;
 
-                options.Add(new OptionItem() { option = "ts_id", description = "Time-Series Record, with ID" });
-                options.Add(new OptionItem() { option = "nonts_id", description = "Non-Time-Series Record, with ID" });
-                options.Add(new OptionItem() { option = "nonts_noid", description = "Non-Time-Series Record, no ID" });
+                options.Add(new OptionItem() { option = "ts_id", description = "Time-Series Record" });
+                options.Add(new OptionItem() { option = "nonts_noid", description = "Non-Time-Series Record" });
                 rcblOptions.DataSource = options;
                 rcblOptions.DataBind();
             }
