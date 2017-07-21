@@ -115,7 +115,7 @@
                 <td valign="top">
                     <h4>Supporting Resources</h4>
                     <ul>
-                        <li><asp:HyperLink ID="hlWYAnalysisNotes" runat="server" Text="View WY Analysis Notes" /></li>
+                        <li><asp:HyperLink ID="hlWYAnalysisNotes" runat="server" Text="View WY Analyses" /></li>
                         <li><asp:HyperLink ID="hlInstructions" runat="server" Text="WSC Analyzing Instructions" /></li>
                         <li><asp:HyperLink ID="hlNWISDataPortal" runat="server" Text="NWIS Data Portal and Reports" Target="_blank" NavigateUrl="https://reporting.nwis.usgs.gov/" /></li>
                         <li><asp:HyperLink ID="hlAutoReview" runat="server" Text="WSC Support Information (if applicable)" /></li>
@@ -125,7 +125,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <h4>Analysis notes from previous period</h4>
+                    <h4>Analysis from previous period</h4>
                     <asp:Panel ID="pnlAnalysisNotes" runat="server" Width="1000px" Height="300px" ScrollBars="Auto">
                         <asp:Literal ID="ltlPrevAnalysisNotes" runat="server" />
                     </asp:Panel>
@@ -133,8 +133,8 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <h4>Analysis notes for this period</h4>
-                    <p style="font-weight:bold;margin-top:-10px">Analyzer Templates are automatically applied to new analyzing periods' analysis notes if a template has been assigned to the record-type.  Your WSC-level admin in your office can assign templates
+                    <h4>Analysis for this period</h4>
+                    <p style="font-weight:bold;margin-top:-10px">Analyst Templates are automatically applied to new analyzing periods' analyses if a template has been assigned to the record-type.  Your WSC-level admin in your office can assign templates
                         to record-types via the Manage Record-Types interface from the Admin Tasks page.</p>
                     <asp:Panel id="pnlTemplateLink" runat="server" Visible="false">
                         <span style="font-weight:bold;">To view the detailed version of the template, which contains example text and guidance, please <asp:HyperLink ID="hlTemplate" runat="server" Target="_blank">CLICK HERE</asp:HyperLink>.</span>
@@ -178,7 +178,7 @@
                     <ul>
                         <li><asp:HyperLink ID="hlChangeLog" runat="server" Text="View Change Log" /></li>
                         <li><asp:HyperLink ID="hlDialog" runat="server" Text="View Dialog" /></li>
-                        <li><asp:HyperLink ID="hlWYAnalysisNotes2" runat="server" Text="View WY Analysis Notes" /></li>
+                        <li><asp:HyperLink ID="hlWYAnalysisNotes2" runat="server" Text="View WY Analyses" /></li>
                         <li><asp:HyperLink ID="hlApproveInst" runat="server" Text="WSC Approving Instructions" /></li>
                         <li><asp:HyperLink ID="hlAutoReview2" runat="server" Text="View Auto Review (if applicable)" /></li>
                     </ul>
@@ -186,12 +186,12 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <h4>Analysis notes</h4>
-                    <asp:Literal ID="ltlNote" runat="server" Text="<div style='width:100%;text-align:center;color:#ec562c;font-weight:bold;'>The analysis notes were saved!</div>" Visible="false" />
+                    <h4>Analysis</h4>
+                    <asp:Literal ID="ltlNote" runat="server" Text="<div style='width:100%;text-align:center;color:#ec562c;font-weight:bold;'>The analysis was saved!</div>" Visible="false" />
                     <asp:Panel ID="pnlAnalysisNotesReadOnly" runat="server" Width="1000px" Height="300px" ScrollBars="Auto">
                         <asp:Literal ID="ltlAnalysisNotes" runat="server" />
                         <div style="text-align:center;padding-top:5px;">
-                            <telerik:RadButton ID="rbEditAnalysisNotes" runat="server" Text="Edit Analysis Notes" OnCommand="EditAnalysisNotes" CommandArgument="Toggle" Visible="false" /> <!-- Control used to toggle display of pnlAnalysisNotesEdit, which is no longer in use -->
+                            <telerik:RadButton ID="rbEditAnalysisNotes" runat="server" Text="Edit Analysis" OnCommand="EditAnalysisNotes" CommandArgument="Toggle" Visible="false" /> <!-- Control used to toggle display of pnlAnalysisNotesEdit, which is no longer in use -->
                         </div>
                     </asp:Panel>
                     <!-- APPROVERS ARE NOT ALLOWED TO EDIT STATION ANALYSIS NOTES -->

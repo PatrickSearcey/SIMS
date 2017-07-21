@@ -45,7 +45,7 @@
                 <Columns>
                     <asp:BoundColumn DataField="edited_dt" HeaderText="Date and Time" ItemStyle-Width="180px" />
                     <asp:BoundColumn DataField="edited_by_uid" HeaderText="User ID" ItemStyle-Width="80px" />
-                    <asp:BoundColumn DataField="new_va" HeaderText="Analysis Notes" />
+                    <asp:BoundColumn DataField="new_va" HeaderText="Analysis" />
                 </Columns>
                 <HeaderStyle Font-Bold="true" CssClass="Header" />
             </asp:DataGrid>
@@ -70,11 +70,11 @@
                 <ItemTemplate>
                     <hr />
                     <p style="font-weight:bold;">Analysis Period: <%# Eval("timespan") %></p>
-                    <p style="font-weight:bold;">Analysis Notes:</p>
+                    <p style="font-weight:bold;">Analysis:</p>
                     <div>
                         <%# Eval("analysis_notes_va") %>
                     </div>
-                    <p style="font-style:italic;">Analysis notes for this period last updated <%# Eval("edited_dt") %> by <%# Eval("edited_by_uid") %></p>
+                    <p style="font-style:italic;">Analysis for this period last updated <%# Eval("edited_dt") %> by <%# Eval("edited_by_uid") %></p>
                     <table border="0" width="650px">
                         <tr>
                             <td align="right"><span style="font-style:italic;">Analyzed By: </span></td>

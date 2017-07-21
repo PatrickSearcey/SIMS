@@ -75,11 +75,24 @@ namespace Safety.Control
         {
             if (!Page.IsPostBack)
             {
-                ltlPageTitle.Text = Title;
-                hlPageSubTitle.Text = SubTitle;
-                hlPageSubTitle.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, SiteID);
+                if (OfficeID > 0)
+                {
+                    pnlFull.Visible = true;
+                    pnlPart.Visible = false;
 
-                SetupResponsibleOfficeInfo();
+                    ltlPageTitle.Text = Title;
+                    hlPageSubTitle.Text = SubTitle;
+                    hlPageSubTitle.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, SiteID);
+
+                    SetupResponsibleOfficeInfo();
+                }
+                else
+                {
+                    pnlFull.Visible = false;
+                    pnlPart.Visible = true;
+
+                    ltlPageTitle2.Text = Title;
+                }
             }
         }
 

@@ -72,7 +72,7 @@ namespace SIMS2017
             hlPASS.NavigateUrl = Config.PASSURL;
             hlStationLevels.NavigateUrl = String.Format("{0}StationLevels.aspx?wsc_id={1}", Config.SLAPURL, WSCID);
             hlOfficeReport.NavigateUrl = String.Format("{0}StationDoc/CustomReport.aspx?type={1}&office_id={2}", Config.SIMS2017URL, "office", OfficeID);
-            hlCableway.NavigateUrl = String.Format("{0}CablewayReport.aspx?tp=status&wsc_id={1}", Config.SafetyURL, WSCID);
+            hlCableway.NavigateUrl = String.Format("{0}CablewayReport.aspx?tp=status&office_id={1}", Config.SafetyURL, OfficeID);
             hlEditCableway.NavigateUrl = String.Format("{0}Cableways.aspx?office_id={1}", Config.SafetyURL, OfficeID);
             hlSHAReport.NavigateUrl = String.Format("{0}SHAReport.aspx?office_id={1}", Config.SafetyURL, OfficeID, WSCID);
             hlTCPReport.NavigateUrl = String.Format("{0}TCPReport.aspx?office_id={1}", Config.SafetyURL, OfficeID, WSCID);

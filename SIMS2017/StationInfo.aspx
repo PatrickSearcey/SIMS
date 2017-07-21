@@ -271,7 +271,7 @@
                             </div>
                             <asp:Panel ID="pnlRecord" runat="server" CssClass="RMSRecordPanel">
                                 <div>
-                                    Operator/Analyzer/Approver:<br />&nbsp;&nbsp;&nbsp;<b><%# Eval("personnel") %></b><br />
+                                    Operator/Analyst/Approver:<br />&nbsp;&nbsp;&nbsp;<b><%# Eval("personnel") %></b><br />
                                     Status: <b><%# Eval("published") %></b> | <b><%# Eval("active") %></b> 
                                     <%# Eval("cat_no") %><br />
                                     Time-series: <b><%# Eval("time_series") %></b><br />

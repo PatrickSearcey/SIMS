@@ -122,7 +122,7 @@
                                 </ItemTemplate>
                             </telerik:GridTemplateColumn>
                             <telerik:GridBoundColumn DataField="station_nm_short" HeaderText="Station Name" UniqueName="station_nm" SortExpression="station_nm" FilterControlWidth="120px"/>
-                            <telerik:GridBoundColumn DataField="analyzer_uid" HeaderText="Analyzer" UniqueName="analyzer_uid" SortExpression="analyzer_uid" FilterControlWidth="60px" HeaderStyle-Width="80px" />
+                            <telerik:GridBoundColumn DataField="analyzer_uid" HeaderText="Analyst" UniqueName="analyzer_uid" SortExpression="analyzer_uid" FilterControlWidth="60px" HeaderStyle-Width="80px" />
                             <telerik:GridBoundColumn DataField="approver_uid" HeaderText="Approver" UniqueName="approver_uid" SortExpression="approver_uid" FilterControlWidth="60px" HeaderStyle-Width="80px" />
                             <telerik:GridTemplateColumn DataField="rms_record_id" HeaderText="Record-Type" UniqueName="rms_record_id" AllowFiltering="false" SortExpression="type_ds" HeaderStyle-Width="160px">
                                 <ItemTemplate>

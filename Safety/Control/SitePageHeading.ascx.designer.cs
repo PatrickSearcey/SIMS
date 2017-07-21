@@ -13,6 +13,15 @@ namespace Safety.Control {
     public partial class SitePageHeading {
         
         /// <summary>
+        /// pnlFull control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlFull;
+        
+        /// <summary>
         /// ltlPageTitle control.
         /// </summary>
         /// <remarks>
@@ -47,5 +56,23 @@ namespace Safety.Control {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlOfficeInfo;
+        
+        /// <summary>
+        /// pnlPart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlPart;
+        
+        /// <summary>
+        /// ltlPageTitle2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlPageTitle2;
     }
 }

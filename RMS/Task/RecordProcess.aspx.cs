@@ -496,13 +496,13 @@ namespace RMS.Task
                     period.period_end_dt = rdpEndDateAnalyze.SelectedDate;
                     period.status_va = "Analyzed";
                     period.status_set_by = user.ID;
-                    period.status_set_by_role_va = "Analyzer";
+                    period.status_set_by_role_va = "Analyst";
                     period.analyzed_by = user.ID;
                     period.analyzed_dt = DateTime.Now;
                     period.analysis_notes_va = reAnalysisNotes.Content.FormatParagraphIn();
 
                     db.SubmitChanges();
-                    AddDialog(period, "Analyzed", "Analyzer", "The period is finished being analyzed.");
+                    AddDialog(period, "Analyzed", "Analyst", "The period is finished being analyzed.");
                     AddChangeLog(period.period_id, reAnalysisNotes.Content.FormatParagraphIn());
                 }
                 else //Insert new period
@@ -514,7 +514,7 @@ namespace RMS.Task
                         period_end_dt = rdpEndDateAnalyze.SelectedDate,
                         status_va = "Analyzed",
                         status_set_by = user.ID,
-                        status_set_by_role_va = "Analyzer",
+                        status_set_by_role_va = "Analyst",
                         analyzed_by = user.ID,
                         analyzed_dt = DateTime.Now,
                         analysis_notes_va = reAnalysisNotes.Content.FormatParagraphIn()
@@ -522,7 +522,7 @@ namespace RMS.Task
                     db.RecordAnalysisPeriods.InsertOnSubmit(new_period);
                     db.SubmitChanges();
                     PeriodID = new_period.period_id;
-                    AddDialog(new_period, "Analyzed", "Analyzer", "The period is finished being Analyzed.");
+                    AddDialog(new_period, "Analyzed", "Analyst", "The period is finished being Analyzed.");
                     AddChangeLog(new_period.period_id, reAnalysisNotes.Content.FormatParagraphIn());
                 }
 
@@ -550,13 +550,13 @@ namespace RMS.Task
                     period.period_end_dt = rdpEndDateAnalyze.SelectedDate;
                     period.status_va = "Analyzing";
                     period.status_set_by = user.ID;
-                    period.status_set_by_role_va = "Analyzer";
+                    period.status_set_by_role_va = "Analyst";
                     period.analyzed_by = user.ID;
                     period.analyzed_dt = DateTime.Now;
                     period.analysis_notes_va = reAnalysisNotes.Content.FormatParagraphIn();
 
                     db.SubmitChanges();
-                    AddDialog(period, "Analyzing", "Analyzer", "The period was saved by the analyzer.");
+                    AddDialog(period, "Analyzing", "Analyst", "The period was saved by the analyst.");
                 }
                 else //Insert new period
                 {
@@ -567,7 +567,7 @@ namespace RMS.Task
                         period_end_dt = rdpEndDateAnalyze.SelectedDate,
                         status_va = "Analyzing",
                         status_set_by = user.ID,
-                        status_set_by_role_va = "Analyzer",
+                        status_set_by_role_va = "Analyst",
                         analyzed_by = user.ID,
                         analyzed_dt = DateTime.Now,
                         analysis_notes_va = reAnalysisNotes.Content.FormatParagraphIn()
@@ -575,7 +575,7 @@ namespace RMS.Task
                     db.RecordAnalysisPeriods.InsertOnSubmit(new_period);
                     db.SubmitChanges();
                     PeriodID = new_period.period_id;
-                    AddDialog(new_period, "Analyzing", "Analyzer", "The period was saved by the analyzer.");
+                    AddDialog(new_period, "Analyzing", "Analyst", "The period was saved by the analyst.");
                 }
 
                 //Change the lock to a save type
@@ -602,13 +602,14 @@ namespace RMS.Task
 
                 period.status_va = "Analyzed";
                 period.status_set_by = user.ID;
-                period.status_set_by_role_va = "Analyzer";
+                period.status_set_by_role_va = "Analyst";
                 period.analyzed_by = user.ID;
                 period.analyzed_dt = DateTime.Now;
+                period.analysis_notes_va = reAnalysisNotes2.Content.FormatParagraphIn();
 
                 db.SubmitChanges();
                 AddDialog(period, "", "Admin", "The period was reanalyzed and is ready for approval.");
-                AddDialog(period, "Analyzed", "Analyzer", reComments.Content.FormatParagraphIn());
+                AddDialog(period, "Analyzed", "Analyst", reComments.Content.FormatParagraphIn());
 
                 SendEmails("Reanalyzed", reComments.Content.FormatParagraphIn(), period);
                 CloseOutPage(true);
@@ -707,7 +708,7 @@ namespace RMS.Task
             }
             else
             {
-                ErrorMessage("You must enter a comment for the analyzer!");
+                ErrorMessage("You must enter a comment for the analyst!");
             }
         }
 
@@ -869,7 +870,7 @@ namespace RMS.Task
                         message.Subject = "Record for " + period.Record.Site.site_no.Trim() + " has been reanalyzed by " + user.ID;
                         message.Body = "The record period of " + timespan + " for station " + period.Record.Site.site_no.Trim() + " " + period.Record.Site.station_full_nm +
                             " (" + period.Record.RecordType.type_ds + ") has been reanalyzed by " + user.ID + ". The status has been set to Analyzed. The following comments" +
-                            " were made by the analyzer:<br /><br />" + comments;
+                            " were made by the analyst:<br /><br />" + comments;
 
                         break;
                 }

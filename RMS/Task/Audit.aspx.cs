@@ -418,9 +418,9 @@ namespace RMS.Task
                     edited_by_uid = period.PeriodChangeLogs.Count() > 0 ? period.PeriodChangeLogs.OrderByDescending(b => b.edited_dt).FirstOrDefault().edited_by_uid : "unavailable";
 
                     pOut += "Analysis Period: " + String.Format("{0:MM/dd/yyyy} to {1:MM/dd/yyyy}", period.period_beg_dt, period.period_end_dt) + "\n" +
-                        "Analysis Notes:\n\n" +
+                        "Analysis:\n\n" +
                         period.analysis_notes_va.FormatParagraphTextBox() +
-                        "Analysis notes for this period last updated " + edited_dt + " by " + edited_by_uid + "\n" +
+                        "Analysis for this period last updated " + edited_dt + " by " + edited_by_uid + "\n" +
                         "Analyzed By: " + period.analyzed_by + " Date: " + String.Format("{0:MM/dd/yyyy}", period.analyzed_dt) + "\n" +
                         "Approved By: " + period.approved_by + " Date: " + String.Format("{0:MM/dd/yyyy}", period.approved_dt) + "\n" +
                         "------------------------------------------------------------------------------------------------------------------------------------------------------------------\n" +

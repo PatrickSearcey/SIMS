@@ -277,12 +277,12 @@ namespace RMS.Admin
                     case "Analyzed":
                         dialogs = period.PeriodDialogs.Where(p => p.status_set_to_va == "Analyzed").ToList();
                         period.status_va = "Analyzing";
-                        period.status_set_by_role_va = "Analyzer";
+                        period.status_set_by_role_va = "Analyst";
                         break;
                     case "Approved":
                         dialogs = period.PeriodDialogs.Where(p => p.origin_va == "Approver").ToList();
                         period.status_va = "Analyzed";
-                        period.status_set_by_role_va = "Analyzer";
+                        period.status_set_by_role_va = "Analyst";
                         break;
                 }
                 db.PeriodDialogs.DeleteAllOnSubmit(dialogs);

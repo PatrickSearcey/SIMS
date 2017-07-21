@@ -206,7 +206,7 @@
                             </telerik:RadToolTip>
                             <telerik:RadToolTip runat="server" ID="rtt4" RelativeTo="Element" Width="300px" AutoCloseDelay="10000"
                                 Height="100px" TargetControlID="imgNewRecord" IsClientID="false" Animation="Fade" Position="TopRight">
-                                By choosing <b>Allow</b> you're giving this office's analyzers the ability to begin a new record period before the previous period has been approved.
+                                By choosing <b>Allow</b> you're giving this office's analysts the ability to begin a new record period before the previous period has been approved.
                             </telerik:RadToolTip>
                         </FormTemplate>
                     </EditFormSettings>

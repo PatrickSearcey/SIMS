@@ -172,7 +172,7 @@ namespace RMS.Modal
                     lani.Add(ani);
                 }
 
-                ltlReportTitle.Text = "WY Analysis Notes";
+                ltlReportTitle.Text = "WY Analysis";
             }
             else
             {

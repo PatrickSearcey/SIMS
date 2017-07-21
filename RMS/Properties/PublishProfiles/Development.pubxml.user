@@ -10,19 +10,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="Admin/PeriodDate.aspx">
-      <publishTime>07/14/2017 06:41:10</publishTime>
+      <publishTime>07/21/2017 09:55:46</publishTime>
     </File>
     <File Include="Admin/PeriodStatus.aspx">
       <publishTime>07/14/2017 06:40:57</publishTime>
     </File>
     <File Include="Admin/Records.aspx">
-      <publishTime>07/12/2017 13:26:41</publishTime>
+      <publishTime>07/21/2017 09:42:41</publishTime>
     </File>
     <File Include="Admin/RecordTypes.aspx">
       <publishTime>07/13/2017 11:55:28</publishTime>
     </File>
     <File Include="Admin/StationAnalyses.aspx">
-      <publishTime>07/14/2017 14:38:03</publishTime>
+      <publishTime>07/21/2017 09:55:45</publishTime>
     </File>
     <File Include="Admin/Unlock.aspx">
       <publishTime>07/13/2017 13:23:36</publishTime>
@@ -151,25 +151,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/12/2017 12:07:22</publishTime>
     </File>
     <File Include="bin/Core.dll">
-      <publishTime>07/18/2017 12:27:28</publishTime>
+      <publishTime>07/21/2017 06:23:00</publishTime>
     </File>
     <File Include="bin/Core.pdb">
-      <publishTime>07/18/2017 12:27:28</publishTime>
+      <publishTime>07/21/2017 06:23:00</publishTime>
     </File>
     <File Include="bin/Data.dll">
-      <publishTime>07/17/2017 13:15:12</publishTime>
+      <publishTime>07/21/2017 06:22:58</publishTime>
     </File>
     <File Include="bin/Data.pdb">
-      <publishTime>07/17/2017 13:15:12</publishTime>
+      <publishTime>07/21/2017 06:22:58</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>07/11/2017 10:53:28</publishTime>
     </File>
     <File Include="bin/RMS.dll">
-      <publishTime>07/18/2017 13:16:27</publishTime>
+      <publishTime>07/21/2017 09:56:02</publishTime>
     </File>
     <File Include="bin/RMS.pdb">
-      <publishTime>07/18/2017 13:16:27</publishTime>
+      <publishTime>07/21/2017 09:56:02</publishTime>
     </File>
     <File Include="bin/Telerik.Web.Spreadsheet.dll">
       <publishTime>07/11/2017 10:53:28</publishTime>
@@ -292,7 +292,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/18/2017 11:47:38</publishTime>
     </File>
     <File Include="Modal/ReportPopup.aspx">
-      <publishTime>07/11/2017 10:53:28</publishTime>
+      <publishTime>07/21/2017 09:55:43</publishTime>
     </File>
     <File Include="Modal/ViewAudit.aspx">
       <publishTime>07/11/2017 10:53:28</publishTime>
@@ -313,13 +313,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/11/2017 10:53:28</publishTime>
     </File>
     <File Include="Report/PeriodDetails.aspx">
-      <publishTime>07/11/2017 10:53:28</publishTime>
+      <publishTime>07/21/2017 09:55:42</publishTime>
     </File>
     <File Include="Report/RecordProcess.aspx">
-      <publishTime>07/12/2017 12:44:25</publishTime>
+      <publishTime>07/21/2017 09:42:28</publishTime>
     </File>
     <File Include="Report/RecordProgress.aspx">
-      <publishTime>07/11/2017 10:53:28</publishTime>
+      <publishTime>07/21/2017 09:42:24</publishTime>
     </File>
     <File Include="Report/RecordProgressWSC.aspx">
       <publishTime>07/11/2017 10:53:28</publishTime>
@@ -328,7 +328,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/06/2016 15:50:22</publishTime>
     </File>
     <File Include="RMS.Master">
-      <publishTime>07/11/2017 10:53:28</publishTime>
+      <publishTime>07/21/2017 09:33:30</publishTime>
     </File>
     <File Include="RMSSingleMenu.Master">
       <publishTime>07/11/2017 10:53:28</publishTime>
@@ -367,7 +367,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/11/2017 10:53:28</publishTime>
     </File>
     <File Include="Task/RecordProcess.aspx">
-      <publishTime>07/18/2017 13:10:43</publishTime>
+      <publishTime>07/21/2017 09:55:47</publishTime>
     </File>
     <File Include="web.config">
       <publishTime>07/11/2017 13:11:51</publishTime>

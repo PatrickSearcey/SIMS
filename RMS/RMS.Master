@@ -50,7 +50,7 @@
                         <telerik:LayoutColumn Span="2" HiddenMd="true" HiddenSm="true" HiddenXs="true">
                             <telerik:RadMenu ID="rmSide" CssClass="sidebar" Flow="Vertical" runat="server" Skin="Bootstrap">
                                 <Items>
-                                    <telerik:RadMenuItem Text="CRP Tasks">
+                                    <telerik:RadMenuItem Text="Records Tasks">
                                         <ContentTemplate>
                                             <div style="padding:10px;">
                                                 <asp:HyperLink ID="hlAnalyzeRecordsList" runat="server" Font-Bold="true" Text="Records Ready for Analyzing" /><br />
@@ -59,11 +59,11 @@
                                         </ContentTemplate>
                                     </telerik:RadMenuItem>
                                     <telerik:RadMenuItem IsSeparator="true" />
-                                    <telerik:RadMenuItem Text="CRP Tools">
+                                    <telerik:RadMenuItem Text="Records Tools">
                                         <ContentTemplate>
                                             <div style="padding:10px;">
-                                                <asp:HyperLink ID="hlCRPStatus" runat="server" Font-Bold="true" Text="CRP Status Report" /><br />
-                                                <asp:HyperLink ID="hlCRPStatusChart" runat="server" Font-Bold="true" Text="CRP Status Chart" />
+                                                <asp:HyperLink ID="hlCRPStatus" runat="server" Font-Bold="true" Text="Records Status Report" /><br />
+                                                <asp:HyperLink ID="hlCRPStatusChart" runat="server" Font-Bold="true" Text="Records Status Chart" />
                                             </div>
                                         </ContentTemplate>
                                     </telerik:RadMenuItem>

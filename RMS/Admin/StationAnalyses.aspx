@@ -153,7 +153,7 @@
                                     </tr>
                                     <tr>
                                         <td colspan="2">
-                                            <label>Analysis Notes:</label>
+                                            <label>Analysis:</label>
                                         </td>
                                     </tr>
                                     <tr>

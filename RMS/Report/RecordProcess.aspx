@@ -85,7 +85,7 @@
                             </telerik:GridTemplateColumn>
                             <telerik:GridBoundColumn DataField="analyzer_uid" HeaderText="Assigned To" UniqueName="analyzer_uid" FilterControlWidth="80px" SortExpression="analyzer_uid" />
                             <telerik:GridBoundColumn DataField="LastAnalyzedDate" UniqueName="LastAnalyzedDate" DataFormatString="{0:MM/dd/yyyy}" HeaderText="Analyzed Through" SortExpression="LastAnalyzedDate" AllowFiltering="false" />
-                            <telerik:GridBoundColumn DataField="DaysSinceAging" UniqueName="DaysSinceAging" HeaderText="Days Since Last Approved in AQ" SortExpression="DaysSinceAging" 
+                            <telerik:GridBoundColumn DataField="DaysSinceAging" UniqueName="DaysSinceAging" HeaderText="Days Since Last Approved" SortExpression="DaysSinceAging" 
                                 AllowFiltering="false" HeaderStyle-Width="140px" />
                             <telerik:GridBoundColumn DataField="lock_type" UniqueName="lock_type" Display="false" />
                             <telerik:GridBoundColumn DataField="lock_dt" UniqueName="lock_dt" Display="false" />

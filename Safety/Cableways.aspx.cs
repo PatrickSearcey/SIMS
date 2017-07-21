@@ -17,8 +17,6 @@ namespace Safety
         #region Local Variables
         private Data.SIMSDataContext db = new Data.SIMSDataContext();
         public WindowsAuthenticationUser user = new WindowsAuthenticationUser();
-        private string grid_tp;
-        private int activeonly;
         private int WSCID
         {
             get

@@ -221,7 +221,7 @@
                                     </asp:Panel>
                                     <asp:Panel ID="pnlConfirm" runat="server" Visible="false">
                                         <p>The date for this record period has been successfully changed!</p>
-                                        <p><b>Don't forget to make your analysis notes match the time periods you just changed!</b></p>
+                                        <p><b>Don't forget to make your analysis match the time periods you just changed!</b></p>
                                     </asp:Panel>
                                 </asp:Panel>
                             </div>

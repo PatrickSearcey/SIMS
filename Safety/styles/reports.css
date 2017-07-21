@@ -297,3 +297,17 @@ h5.sectionHeadings
     padding: 10px;
     margin-top:10px;
 }
+/* CABLEWAY REPORT */
+.InspOverdue
+{
+    font-weight:bold !important;
+    color: red !important;
+}
+.InspWithin30days
+{
+    color:red !important;
+}
+.InspWithin6mo
+{
+    color:orange !important;
+}

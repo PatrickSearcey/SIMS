@@ -76,7 +76,7 @@ namespace RMS.Admin
         protected void UserControlSetup()
         {
             string wsc_nm = db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID).wsc_nm;
-            ph1.Title = "Manage Station Analysis Notes";
+            ph1.Title = "Manage Station Analyses";
 
             ph1.SubTitle = "For the " + wsc_nm + " WSC";
             ph1.RecordType = "&nbsp;";
@@ -198,7 +198,7 @@ namespace RMS.Admin
                 dialog_dt = DateTime.Now,
                 dialog_by = user.ID,
                 origin_va = "Admin",
-                comments_va = "The analysis notes were modified using the Manage Analysis Notes interface."
+                comments_va = "The analysis was modified using the Manage Analyses interface."
             };
             db.PeriodDialogs.InsertOnSubmit(dialog);
 

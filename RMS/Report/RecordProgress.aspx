@@ -247,7 +247,7 @@
                                                         <LabelsAppearance Visible="false"></LabelsAppearance>
                                                         <TooltipsAppearance BackgroundColor="#b84626" Color="White">
                                                             <ClientTemplate>
-                                                                #=dataItem.PercentActuallyAnalyzedString# | This field tech is the assigned analyzer for #=dataItem.TotalRecordsAssignedToAnalyze# records; They have actually analyzed a total of #=dataItem.TotalActuallyAnalyzed# records.
+                                                                #=dataItem.PercentActuallyAnalyzedString# | This field tech is the assigned analyst for #=dataItem.TotalRecordsAssignedToAnalyze# records; They have actually analyzed a total of #=dataItem.TotalActuallyAnalyzed# records.
                                                             </ClientTemplate>
                                                         </TooltipsAppearance>
                                                     </telerik:BarSeries>
@@ -300,7 +300,7 @@
                                                         <LabelsAppearance Visible="false"></LabelsAppearance>
                                                         <TooltipsAppearance BackgroundColor="#b84626" Color="White">
                                                             <ClientTemplate>
-                                                                #=dataItem.PercentAssignedAnalyzedString# | Of the #=dataItem.TotalRecordsAssignedToAnalyze# records for which this field tech is the assigned analyzer, #=dataItem.TotalAssignedAnalyzed# have been analyzed. 
+                                                                #=dataItem.PercentAssignedAnalyzedString# | Of the #=dataItem.TotalRecordsAssignedToAnalyze# records for which this field tech is the assigned analyst, #=dataItem.TotalAssignedAnalyzed# have been analyzed. 
                                                             </ClientTemplate>
                                                         </TooltipsAppearance>
                                                     </telerik:BarSeries>

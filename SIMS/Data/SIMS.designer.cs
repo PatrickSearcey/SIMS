@@ -830,6 +830,14 @@ namespace Data
 			}
 		}
 		
+		public System.Data.Linq.Table<vCablewayInspectionSummary> vCablewayInspectionSummaries
+		{
+			get
+			{
+				return this.GetTable<vCablewayInspectionSummary>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spz_GetDCPInfo")]
 		public ISingleResult<spz_GetDCPInfoResult> spz_GetDCPInfo([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> site_id)
 		{
@@ -13934,7 +13942,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Safety_Cableway_Master", Storage="_Cableways", ThisKey="site_id", OtherKey="site_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Cableway", Storage="_Cableways", ThisKey="site_id", OtherKey="site_id")]
 		public EntitySet<Cableway> Cableways
 		{
 			get
@@ -21612,7 +21620,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_cableway_visitaction_cd_Safety_Cableway_Visit", Storage="_CablewayVisitAction", ThisKey="visit_action_cd", OtherKey="visit_action_cd", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CablewayVisitAction_CablewayVisit", Storage="_CablewayVisitAction", ThisKey="visit_action_cd", OtherKey="visit_action_cd", IsForeignKey=true)]
 		public CablewayVisitAction CablewayVisitAction
 		{
 			get
@@ -21646,7 +21654,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_cableway_visittype_cd_Safety_Cableway_Visit", Storage="_CablewayVisitType", ThisKey="visit_type_cd", OtherKey="visit_type_cd", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CablewayVisitType_CablewayVisit", Storage="_CablewayVisitType", ThisKey="visit_type_cd", OtherKey="visit_type_cd", IsForeignKey=true)]
 		public CablewayVisitType CablewayVisitType
 		{
 			get
@@ -21680,7 +21688,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Safety_Cableway_Master_Safety_Cableway_Visit", Storage="_Cableway", ThisKey="cableway_id", OtherKey="cableway_id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Cableway_CablewayVisit", Storage="_Cableway", ThisKey="cableway_id", OtherKey="cableway_id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Cableway Cableway
 		{
 			get
@@ -21803,7 +21811,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_cableway_status_cd_Safety_Cableway_Master", Storage="_Cableways", ThisKey="cableway_status_cd", OtherKey="cableway_status_cd")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CablewayStatus_Cableway", Storage="_Cableways", ThisKey="cableway_status_cd", OtherKey="cableway_status_cd")]
 		public EntitySet<Cableway> Cableways
 		{
 			get
@@ -21917,7 +21925,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_cableway_type_cd_Safety_Cableway_Master", Storage="_Cableways", ThisKey="cableway_type_cd", OtherKey="cableway_type_cd")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CablewayType_Cableway", Storage="_Cableways", ThisKey="cableway_type_cd", OtherKey="cableway_type_cd")]
 		public EntitySet<Cableway> Cableways
 		{
 			get
@@ -22031,7 +22039,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_cableway_visitaction_cd_Safety_Cableway_Visit", Storage="_CablewayVisits", ThisKey="visit_action_cd", OtherKey="visit_action_cd")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CablewayVisitAction_CablewayVisit", Storage="_CablewayVisits", ThisKey="visit_action_cd", OtherKey="visit_action_cd")]
 		public EntitySet<CablewayVisit> CablewayVisits
 		{
 			get
@@ -22145,7 +22153,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_cableway_visittype_cd_Safety_Cableway_Visit", Storage="_CablewayVisits", ThisKey="visit_type_cd", OtherKey="visit_type_cd")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CablewayVisitType_CablewayVisit", Storage="_CablewayVisits", ThisKey="visit_type_cd", OtherKey="visit_type_cd")]
 		public EntitySet<CablewayVisit> CablewayVisits
 		{
 			get
@@ -22520,7 +22528,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Safety_Cableway_Master_Safety_Cableway_Visit", Storage="_CablewayVisits", ThisKey="cableway_id", OtherKey="cableway_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Cableway_CablewayVisit", Storage="_CablewayVisits", ThisKey="cableway_id", OtherKey="cableway_id")]
 		public EntitySet<CablewayVisit> CablewayVisits
 		{
 			get
@@ -22533,7 +22541,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_cableway_status_cd_Safety_Cableway_Master", Storage="_CablewayStatus", ThisKey="cableway_status_cd", OtherKey="cableway_status_cd", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CablewayStatus_Cableway", Storage="_CablewayStatus", ThisKey="cableway_status_cd", OtherKey="cableway_status_cd", IsForeignKey=true)]
 		public CablewayStatus CablewayStatus
 		{
 			get
@@ -22567,7 +22575,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lut_cableway_type_cd_Safety_Cableway_Master", Storage="_CablewayType", ThisKey="cableway_type_cd", OtherKey="cableway_type_cd", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CablewayType_Cableway", Storage="_CablewayType", ThisKey="cableway_type_cd", OtherKey="cableway_type_cd", IsForeignKey=true)]
 		public CablewayType CablewayType
 		{
 			get
@@ -22601,7 +22609,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Safety_Cableway_Master", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Cableway", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
 		public Site Site
 		{
 			get
@@ -22665,6 +22673,447 @@ namespace Data
 		{
 			this.SendPropertyChanging();
 			entity.Cableway = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vCablewayInspectionSummary")]
+	public partial class vCablewayInspectionSummary
+	{
+		
+		private int _cableway_id;
+		
+		private string _region_cd;
+		
+		private string _wsc_cd;
+		
+		private int _wsc_id;
+		
+		private string _office_cd;
+		
+		private int _site_id;
+		
+		private string _agency_cd;
+		
+		private string _site_no;
+		
+		private string _nwis_host;
+		
+		private string _db_no;
+		
+		private string _station_nm;
+		
+		private System.Nullable<System.DateTime> _last_inspection_dt;
+		
+		private System.Nullable<System.DateTime> _last_visit_dt;
+		
+		private string _cableway_status_cd;
+		
+		private string _cableway_status_desc;
+		
+		private string _cableway_type_cd;
+		
+		private string _cableway_type_desc;
+		
+		private System.Nullable<double> _cableway_inspection_freq;
+		
+		private string _created_by;
+		
+		private System.Nullable<System.DateTime> _created_dt;
+		
+		private string _updated_by;
+		
+		private System.Nullable<System.DateTime> _updated_dt;
+		
+		private string _aerial_marker_req;
+		
+		private string _aerial_marker_inst;
+		
+		public vCablewayInspectionSummary()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cableway_id", DbType="Int NOT NULL")]
+		public int cableway_id
+		{
+			get
+			{
+				return this._cableway_id;
+			}
+			set
+			{
+				if ((this._cableway_id != value))
+				{
+					this._cableway_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_region_cd", DbType="NVarChar(2)")]
+		public string region_cd
+		{
+			get
+			{
+				return this._region_cd;
+			}
+			set
+			{
+				if ((this._region_cd != value))
+				{
+					this._region_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_cd", DbType="NVarChar(10)")]
+		public string wsc_cd
+		{
+			get
+			{
+				return this._wsc_cd;
+			}
+			set
+			{
+				if ((this._wsc_cd != value))
+				{
+					this._wsc_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_id", DbType="Int NOT NULL")]
+		public int wsc_id
+		{
+			get
+			{
+				return this._wsc_id;
+			}
+			set
+			{
+				if ((this._wsc_id != value))
+				{
+					this._wsc_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_cd", DbType="NVarChar(10)")]
+		public string office_cd
+		{
+			get
+			{
+				return this._office_cd;
+			}
+			set
+			{
+				if ((this._office_cd != value))
+				{
+					this._office_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int NOT NULL")]
+		public int site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					this._site_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_agency_cd", DbType="NVarChar(5) NOT NULL", CanBeNull=false)]
+		public string agency_cd
+		{
+			get
+			{
+				return this._agency_cd;
+			}
+			set
+			{
+				if ((this._agency_cd != value))
+				{
+					this._agency_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_no", DbType="NVarChar(15)")]
+		public string site_no
+		{
+			get
+			{
+				return this._site_no;
+			}
+			set
+			{
+				if ((this._site_no != value))
+				{
+					this._site_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nwis_host", DbType="NVarChar(12) NOT NULL", CanBeNull=false)]
+		public string nwis_host
+		{
+			get
+			{
+				return this._nwis_host;
+			}
+			set
+			{
+				if ((this._nwis_host != value))
+				{
+					this._nwis_host = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_db_no", DbType="NVarChar(2) NOT NULL", CanBeNull=false)]
+		public string db_no
+		{
+			get
+			{
+				return this._db_no;
+			}
+			set
+			{
+				if ((this._db_no != value))
+				{
+					this._db_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_nm", DbType="VarChar(50)")]
+		public string station_nm
+		{
+			get
+			{
+				return this._station_nm;
+			}
+			set
+			{
+				if ((this._station_nm != value))
+				{
+					this._station_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_last_inspection_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> last_inspection_dt
+		{
+			get
+			{
+				return this._last_inspection_dt;
+			}
+			set
+			{
+				if ((this._last_inspection_dt != value))
+				{
+					this._last_inspection_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_last_visit_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> last_visit_dt
+		{
+			get
+			{
+				return this._last_visit_dt;
+			}
+			set
+			{
+				if ((this._last_visit_dt != value))
+				{
+					this._last_visit_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cableway_status_cd", DbType="NVarChar(50)")]
+		public string cableway_status_cd
+		{
+			get
+			{
+				return this._cableway_status_cd;
+			}
+			set
+			{
+				if ((this._cableway_status_cd != value))
+				{
+					this._cableway_status_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cableway_status_desc", DbType="NVarChar(255)")]
+		public string cableway_status_desc
+		{
+			get
+			{
+				return this._cableway_status_desc;
+			}
+			set
+			{
+				if ((this._cableway_status_desc != value))
+				{
+					this._cableway_status_desc = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cableway_type_cd", DbType="NVarChar(50)")]
+		public string cableway_type_cd
+		{
+			get
+			{
+				return this._cableway_type_cd;
+			}
+			set
+			{
+				if ((this._cableway_type_cd != value))
+				{
+					this._cableway_type_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cableway_type_desc", DbType="NVarChar(255)")]
+		public string cableway_type_desc
+		{
+			get
+			{
+				return this._cableway_type_desc;
+			}
+			set
+			{
+				if ((this._cableway_type_desc != value))
+				{
+					this._cableway_type_desc = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cableway_inspection_freq", DbType="Float")]
+		public System.Nullable<double> cableway_inspection_freq
+		{
+			get
+			{
+				return this._cableway_inspection_freq;
+			}
+			set
+			{
+				if ((this._cableway_inspection_freq != value))
+				{
+					this._cableway_inspection_freq = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_created_by", DbType="NVarChar(50)")]
+		public string created_by
+		{
+			get
+			{
+				return this._created_by;
+			}
+			set
+			{
+				if ((this._created_by != value))
+				{
+					this._created_by = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_created_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> created_dt
+		{
+			get
+			{
+				return this._created_dt;
+			}
+			set
+			{
+				if ((this._created_dt != value))
+				{
+					this._created_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_updated_by", DbType="NVarChar(50)")]
+		public string updated_by
+		{
+			get
+			{
+				return this._updated_by;
+			}
+			set
+			{
+				if ((this._updated_by != value))
+				{
+					this._updated_by = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_updated_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> updated_dt
+		{
+			get
+			{
+				return this._updated_dt;
+			}
+			set
+			{
+				if ((this._updated_dt != value))
+				{
+					this._updated_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_aerial_marker_req", DbType="VarChar(7) NOT NULL", CanBeNull=false)]
+		public string aerial_marker_req
+		{
+			get
+			{
+				return this._aerial_marker_req;
+			}
+			set
+			{
+				if ((this._aerial_marker_req != value))
+				{
+					this._aerial_marker_req = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_aerial_marker_inst", DbType="VarChar(7) NOT NULL", CanBeNull=false)]
+		public string aerial_marker_inst
+		{
+			get
+			{
+				return this._aerial_marker_inst;
+			}
+			set
+			{
+				if ((this._aerial_marker_inst != value))
+				{
+					this._aerial_marker_inst = value;
+				}
+			}
 		}
 	}
 	
