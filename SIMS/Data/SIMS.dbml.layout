@@ -570,10 +570,10 @@
         <elementListCompartment Id="464ea1d0-f65e-4777-ac7e-d11544c30b16" absoluteBounds="9.265, 0.96, 1.9700000000000002, 11.595174153645832" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="5aae1a68-7dbd-47b7-98fc-efc2e05b300c" absoluteBounds="5.625, 7.25, 2, 1.9631982421875005">
+    <classShape Id="5aae1a68-7dbd-47b7-98fc-efc2e05b300c" absoluteBounds="5.625, 7.25, 2, 2.3478011067708326">
       <DataClassMoniker Name="/SIMSDataContext/ADUserInfo" />
       <nestedChildShapes>
-        <elementListCompartment Id="77e08290-fc13-462e-b3b8-40498cd06305" absoluteBounds="5.64, 7.71, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="77e08290-fc13-462e-b3b8-40498cd06305" absoluteBounds="5.64, 7.71, 1.9700000000000002, 1.7878011067708333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="136297b2-f5b2-463a-8e6b-cf3dd5513726" absoluteBounds="16.75, 10.25, 2, 1.5785953776041666">

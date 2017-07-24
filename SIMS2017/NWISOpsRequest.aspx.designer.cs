@@ -13,13 +13,40 @@ namespace SIMS2017 {
     public partial class NWISOpsRequest {
         
         /// <summary>
-        /// pnlStep1 control.
+        /// ram control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlStep1;
+        protected global::Telerik.Web.UI.RadAjaxManager ram;
+        
+        /// <summary>
+        /// ralp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadAjaxLoadingPanel ralp;
+        
+        /// <summary>
+        /// ph1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SIMS2017.Control.SitePageHeading ph1;
+        
+        /// <summary>
+        /// pnlSetup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlSetup;
         
         /// <summary>
         /// lblName control.
@@ -76,58 +103,13 @@ namespace SIMS2017 {
         protected global::System.Web.UI.WebControls.Label lblOptional;
         
         /// <summary>
-        /// lblWarning control.
+        /// rrblRequestType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblWarning;
-        
-        /// <summary>
-        /// btnNext1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNext1;
-        
-        /// <summary>
-        /// pnlStep2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlStep2;
-        
-        /// <summary>
-        /// lblTest control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTest;
-        
-        /// <summary>
-        /// rblRequestType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblRequestType;
-        
-        /// <summary>
-        /// rfvRequestType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvRequestType;
+        protected global::Telerik.Web.UI.RadRadioButtonList rrblRequestType;
         
         /// <summary>
         /// lblReqTypesHeading control.
@@ -139,76 +121,40 @@ namespace SIMS2017 {
         protected global::System.Web.UI.WebControls.Label lblReqTypesHeading;
         
         /// <summary>
-        /// rblRTReqTypes control.
+        /// rrblRTReqTypes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblRTReqTypes;
+        protected global::Telerik.Web.UI.RadRadioButtonList rrblRTReqTypes;
         
         /// <summary>
-        /// rblNWISReqTypes control.
+        /// rrblNWISReqTypes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblNWISReqTypes;
+        protected global::Telerik.Web.UI.RadRadioButtonList rrblNWISReqTypes;
         
         /// <summary>
-        /// rblADRReqTypes control.
+        /// rrblMANUReqTypes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblADRReqTypes;
+        protected global::Telerik.Web.UI.RadRadioButtonList rrblMANUReqTypes;
         
         /// <summary>
-        /// rblOtherReqTypes control.
+        /// rrblOtherReqTypes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblOtherReqTypes;
-        
-        /// <summary>
-        /// btnBack2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBack2;
-        
-        /// <summary>
-        /// btnNext2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNext2;
-        
-        /// <summary>
-        /// pnlStep3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlStep3;
-        
-        /// <summary>
-        /// lblSubject control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSubject;
+        protected global::Telerik.Web.UI.RadRadioButtonList rrblOtherReqTypes;
         
         /// <summary>
         /// tbRequest control.
@@ -220,40 +166,31 @@ namespace SIMS2017 {
         protected global::System.Web.UI.WebControls.TextBox tbRequest;
         
         /// <summary>
-        /// rfvRequest control.
+        /// rbNext control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvRequest;
+        protected global::Telerik.Web.UI.RadButton rbNext;
         
         /// <summary>
-        /// btnBack3 control.
+        /// ltlError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBack3;
+        protected global::System.Web.UI.WebControls.Literal ltlError;
         
         /// <summary>
-        /// btnNext3 control.
+        /// pnlStepReview control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNext3;
-        
-        /// <summary>
-        /// pnlStep4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlStep4;
+        protected global::System.Web.UI.WebControls.Panel pnlStepReview;
         
         /// <summary>
         /// ltlCompleteRequest control.
@@ -283,22 +220,13 @@ namespace SIMS2017 {
         protected global::System.Web.UI.WebControls.TextBox tbCCEmail;
         
         /// <summary>
-        /// btnBack4 control.
+        /// rbSend control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBack4;
-        
-        /// <summary>
-        /// btnSend control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSend;
+        protected global::Telerik.Web.UI.RadButton rbSend;
         
         /// <summary>
         /// lbReset control.

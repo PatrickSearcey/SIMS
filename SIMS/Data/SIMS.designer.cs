@@ -17285,6 +17285,10 @@ namespace Data
 		
 		private string _samAccountName;
 		
+		private string _mail;
+		
+		private string _TelephoneNumber;
+		
 		public ADUserInfo()
 		{
 		}
@@ -17381,6 +17385,38 @@ namespace Data
 				if ((this._samAccountName != value))
 				{
 					this._samAccountName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mail")]
+		public string mail
+		{
+			get
+			{
+				return this._mail;
+			}
+			set
+			{
+				if ((this._mail != value))
+				{
+					this._mail = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TelephoneNumber")]
+		public string TelephoneNumber
+		{
+			get
+			{
+				return this._TelephoneNumber;
+			}
+			set
+			{
+				if ((this._TelephoneNumber != value))
+				{
+					this._TelephoneNumber = value;
 				}
 			}
 		}

@@ -858,6 +858,8 @@
       <Column Name="SN" Type="System.String" CanBeNull="true" />
       <Column Name="givenName" Type="System.String" CanBeNull="true" />
       <Column Name="samAccountName" Type="System.String" CanBeNull="true" />
+      <Column Member="mail" Type="System.String" CanBeNull="true" />
+      <Column Member="TelephoneNumber" Type="System.String" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Trip_Lut_Trip" Member="Trips">
