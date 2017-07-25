@@ -221,3 +221,48 @@ div.EditDocList {
 .rbVerticalList {
     width: 550px;
 }
+/*--------------FOR MAI----------------------------*/
+div.heading 
+{
+    width: 99%;
+	background-color: #dbdbb4;
+	margin: 5px 0 5px 0;
+    padding: 5px 5px 5px 5px;
+	color: #565656;	
+}
+.siteSelection
+{
+    background-color: #cedbeb;
+    width: 957px;
+	margin: 10px 0 30px 0;
+	padding: 10px 10px 10px 10px;
+	color: #565656;	
+	-moz-border-radius: 7px; 
+	-webkit-border-radius: 7px;
+	-khtml-border-radius: 7px;
+	border-radius: 7px; 
+	border: 1px solid rgb(205, 202, 204); 
+	filter: progid:DXImageTransform.Microsoft.Shadow(color=#cdcacc, direction=120, strength=3); 
+	box-shadow: 0px 0px 3px #cdcacc; 
+	-moz-box-shadow: 0 0 3px #cdcacc; 
+	-webkit-box-shadow: 0 0 3px #cdcacc; 
+}
+.linkBox
+{
+    background-color: #cedbeb;
+    font-size:10pt;
+    width: 300px;
+	margin: 5px 5px 30px 0;
+	padding: 10px 10px 10px 10px;
+	color: #565656;	
+    float:left;
+	-moz-border-radius: 7px; 
+	-webkit-border-radius: 7px;
+	-khtml-border-radius: 7px;
+	border-radius: 7px; 
+	border: 1px solid rgb(205, 202, 204); 
+	filter: progid:DXImageTransform.Microsoft.Shadow(color=#cdcacc, direction=120, strength=3); 
+	box-shadow: 0px 0px 3px #cdcacc; 
+	-moz-box-shadow: 0 0 3px #cdcacc; 
+	-webkit-box-shadow: 0 0 3px #cdcacc; 
+}

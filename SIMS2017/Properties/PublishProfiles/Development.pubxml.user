@@ -166,10 +166,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/01/2016 16:26:44</publishTime>
     </File>
     <File Include="bin/SIMS2017.dll">
-      <publishTime>07/25/2017 06:16:05</publishTime>
+      <publishTime>07/25/2017 14:11:59</publishTime>
     </File>
     <File Include="bin/SIMS2017.pdb">
-      <publishTime>07/25/2017 06:16:05</publishTime>
+      <publishTime>07/25/2017 14:11:59</publishTime>
     </File>
     <File Include="bin/Telerik.Web.Spreadsheet.dll">
       <publishTime>07/11/2017 10:53:28</publishTime>
@@ -196,7 +196,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/11/2017 10:53:29</publishTime>
     </File>
     <File Include="Control/ApproveMANU.ascx">
-      <publishTime>07/11/2017 10:53:29</publishTime>
+      <publishTime>07/25/2017 13:22:43</publishTime>
     </File>
     <File Include="Control/OfficeSelector.ascx">
       <publishTime>07/11/2017 10:53:29</publishTime>
@@ -384,6 +384,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="StationDoc/MAI.aspx">
       <publishTime>07/11/2017 10:53:30</publishTime>
     </File>
+    <File Include="StationDoc/SiteMAI.aspx">
+      <publishTime>07/25/2017 13:32:39</publishTime>
+    </File>
     <File Include="StationDoc/ViewDocs.aspx">
       <publishTime>07/11/2017 10:53:30</publishTime>
     </File>
@@ -415,13 +418,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/18/2016 13:35:44</publishTime>
     </File>
     <File Include="styles/stationdoc.css">
-      <publishTime>07/11/2017 10:53:30</publishTime>
+      <publishTime>07/25/2017 13:10:50</publishTime>
     </File>
     <File Include="styles/stationinfo.css">
       <publishTime>07/24/2017 15:29:49</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>07/13/2017 16:34:58</publishTime>
+      <publishTime>07/25/2017 13:43:42</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -215,6 +215,7 @@
     <Content Include="StationDoc\CustomReport.aspx" />
     <Content Include="StationDoc\EditDocs.aspx" />
     <Content Include="StationDoc\MAI.aspx" />
+    <Content Include="StationDoc\SiteMAI.aspx" />
     <Content Include="StationDoc\ViewDocs.aspx" />
     <Content Include="StationInfo.aspx" />
     <Content Include="styles\base.css" />
@@ -408,6 +409,13 @@
     <Compile Include="StationDoc\MAI.aspx.designer.cs">
       <DependentUpon>MAI.aspx</DependentUpon>
     </Compile>
+    <Compile Include="StationDoc\SiteMAI.aspx.cs">
+      <DependentUpon>SiteMAI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StationDoc\SiteMAI.aspx.designer.cs">
+      <DependentUpon>SiteMAI.aspx</DependentUpon>
+    </Compile>
     <Compile Include="StationDoc\ViewDocs.aspx.cs">
       <DependentUpon>ViewDocs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -495,7 +503,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -114,7 +114,7 @@
         <div style="width:100%;">
             <div style="float:left;">
                 <asp:Label id="lblComments" runat="server" Text="Approver remarks:" Font-Bold="true" />
-                <telerik:RadTextBox ID="rtbComments" runat="server" Height="50px" Width="200px" TextMode="MultiLine" Skin="Bootstrap"  />
+                <telerik:RadTextBox ID="rtbComments" runat="server" Height="50px" Width="300px" TextMode="MultiLine" Skin="Bootstrap"  />
                 <asp:Button id="btnApprove" runat="server" Text="Approve Manuscript" OnCommand="btnApprove_Command" CommandArgument="approve" CommandName="Cancel" />
                 <asp:Literal ID="ltlConfirm" runat="server" />
                 <telerik:RadToolTip ID="rtt1" runat="server" TargetControlID="btnApprove"

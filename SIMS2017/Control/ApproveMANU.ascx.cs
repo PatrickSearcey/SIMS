@@ -17,7 +17,7 @@ namespace SIMS2017.Control
         private Data.SIMSDataContext db = new Data.SIMSDataContext();
         public WindowsAuthenticationUser user = new WindowsAuthenticationUser();
         private Data.Site currSite;
-        private int SiteID
+        public int SiteID
         {
             get
             {
@@ -63,7 +63,7 @@ namespace SIMS2017.Control
         #region Public Methods
         public void RefreshMANU()
         {
-            //currSite = db.Sites.FirstOrDefault(p => p.site_id == SiteID);
+            currSite = db.Sites.FirstOrDefault(p => p.site_id == SiteID);
             var ers = currSite.ElemReportSums.FirstOrDefault(p => p.report_type_cd == "MANU");
             var era = currSite.ElemReportApproves.FirstOrDefault(p => p.report_type_cd == "MANU");
             string needs_approval = "YES";
@@ -98,12 +98,13 @@ namespace SIMS2017.Control
             {
                 ElementID = p.element_id.ToString(),
                 SiteID = p.site_id.ToString(),
-                ElementName = p.ElementDetail.element_nm,
+                ElementName = p.ElementDetail.element_nm.Replace(" (MANU)", ""),
                 ElementInfo = p.element_info.FormatElementInfo(Convert.ToInt32(p.element_id), currSite.site_id),
                 ReportType = db.ElementReportRefs.OrderBy(r => r.report_type_cd).FirstOrDefault(r => r.element_id == p.element_id).report_type_cd,
                 RevisedBy = p.revised_by,
-                RevisedDate = p.revised_dt.ToString()
-            }).ToList();
+                RevisedDate = p.revised_dt.ToString(),
+                Priority = Convert.ToInt32(p.ElementDetail.priority)
+            }).OrderBy(p => p.Priority).ToList();
 
             rlvElem.DataSource = lstElems.Where(p => p.ReportType == "MANU");
         }
@@ -152,14 +153,13 @@ namespace SIMS2017.Control
                     }
 
                     //For modal pop-ups to work
-                    switch (elem.ElementDetail.element_nm)
+                    if (elem.ElementDetail.element_nm.Contains("WELL CHARACTERISTICS"))
                     {
-                        case "WELL CHARACTERISTICS":
-                            rwWC.OpenerElementID = ibIcon.ClientID;
-                            break;
-                        case "DATUM":
-                            rwDatum.OpenerElementID = ibIcon.ClientID;
-                            break;
+                        rwWC.OpenerElementID = ibIcon.ClientID;
+                    }
+                    if (elem.ElementDetail.element_nm.Contains("DATUM"))
+                    {
+                        rwDatum.OpenerElementID = ibIcon.ClientID;
                     }
                 }
                 else
@@ -229,6 +229,7 @@ namespace SIMS2017.Control
             private string _ReportType;
             private string _RevisedBy;
             private string _RevisedDate;
+            private int _Priority;
 
             public string ElementID
             {
@@ -265,6 +266,11 @@ namespace SIMS2017.Control
                 get { return _RevisedDate; }
                 set { _RevisedDate = value; }
             }
+            public int Priority
+            {
+                get { return _Priority;  }
+                set { _Priority = value;  }
+            }
             public ElementItem()
             {
                 _ElementID = ElementID;
@@ -273,6 +279,7 @@ namespace SIMS2017.Control
                 _ElementInfo = ElementInfo;
                 _RevisedBy = RevisedBy;
                 _RevisedDate = RevisedDate;
+                _Priority = Priority;
             }
         }
         #endregion
