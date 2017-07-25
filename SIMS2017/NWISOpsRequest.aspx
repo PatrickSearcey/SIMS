@@ -16,6 +16,8 @@
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="pnlSetup" LoadingPanelID="ralp" />
                     <telerik:AjaxUpdatedControl ControlID="pnlStepReview" />
+                    <telerik:AjaxUpdatedControl ControlID="hfSiteID" />
+                    <telerik:AjaxUpdatedControl ControlID="hfRequestType" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="lbReset">
@@ -37,6 +39,9 @@
     <uc:PageHeading id="ph1" runat="server" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph2" runat="server">
+    <asp:HiddenField ID="hfSiteID" runat="server" />
+    <asp:HiddenField ID="hfRequestType" runat="server" />
+    <asp:HiddenField ID="hfEmail" runat="server" />
     <div class="mainContent">
         <asp:Panel ID="pnlSetup" runat="server">
             <p style="padding-right:10px;margin-top:20px;">Use this form to ask questions or request support from your local Water Science Center NWIS Operations staff 
@@ -128,7 +133,7 @@
         </asp:Panel>
         
         <asp:Panel ID="pnlConfirmSend" runat="server" Visible="false">
-            <p style="padding-left:10px;padding-right:10px;margin-top:0;margin-bottom:0;">Your request has been successfully sent!  You will receive a response shortly.</p>
+            <p style="padding-left:10px;padding-right:10px;margin-top:20px;font-weight:bold;">Your request has been successfully sent!  You will receive a response shortly.</p>
         </asp:Panel>
     </div>
 

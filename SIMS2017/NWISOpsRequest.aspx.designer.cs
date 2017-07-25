@@ -40,6 +40,33 @@ namespace SIMS2017 {
         protected global::SIMS2017.Control.SitePageHeading ph1;
         
         /// <summary>
+        /// hfSiteID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfSiteID;
+        
+        /// <summary>
+        /// hfRequestType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfRequestType;
+        
+        /// <summary>
+        /// hfEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfEmail;
+        
+        /// <summary>
         /// pnlSetup control.
         /// </summary>
         /// <remarks>
