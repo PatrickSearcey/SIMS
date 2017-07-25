@@ -66,8 +66,9 @@ namespace SIMS2017.Handler
                     ElementInfo = p.element_info.FormatElementInfo(Convert.ToInt32(p.element_id), site.site_id),
                     ReportType = db.ElementReportRefs.OrderBy(r => r.report_type_cd).FirstOrDefault(r => r.element_id == p.element_id).report_type_cd,
                     RevisedBy = p.revised_by,
-                    RevisedDate = p.revised_dt.ToString()
-                }).ToList();
+                    RevisedDate = p.revised_dt.ToString(),
+                    Priority = Convert.ToInt32(p.ElementDetail.priority)
+                }).OrderBy(p => p.Priority).ToList();
 
 		    string strElementName = "";
 		    string strElementInfo = "";
@@ -144,6 +145,7 @@ namespace SIMS2017.Handler
             private string _ReportType;
             private string _RevisedBy;
             private string _RevisedDate;
+            private int _Priority;
 
             public string ElementID
             {
@@ -180,6 +182,11 @@ namespace SIMS2017.Handler
                 get { return _RevisedDate; }
                 set { _RevisedDate = value; }
             }
+            public int Priority
+            {
+                get { return _Priority; }
+                set { _Priority = value; }
+            }
             public ElementItem()
             {
                 _ElementID = ElementID;
@@ -188,6 +195,7 @@ namespace SIMS2017.Handler
                 _ElementInfo = ElementInfo;
                 _RevisedBy = RevisedBy;
                 _RevisedDate = RevisedDate;
+                _Priority = Priority;
             }
         }
         #endregion

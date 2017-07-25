@@ -178,6 +178,7 @@
     <Content Include="Handler\DocHandler.ashx" />
     <Content Include="packages.config" />
     <Content Include="Handler\MANUDump_v1.ashx" />
+    <Content Include="Handler\MANUDump_v2.ashx" />
     <None Include="Service References\SIMSDevService\SIMSService.wsdl" />
     <None Include="Service References\SIMSDevService\WCFServices.disco" />
     <None Include="Service References\SIMSDevService\configuration91.svcinfo" />
@@ -299,6 +300,9 @@
     </Compile>
     <Compile Include="Handler\MANUDump_v1.ashx.cs">
       <DependentUpon>MANUDump_v1.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\MANUDump_v2.ashx.cs">
+      <DependentUpon>MANUDump_v2.ashx</DependentUpon>
     </Compile>
     <Compile Include="Modal\ConfirmDelete.aspx.cs">
       <DependentUpon>ConfirmDelete.aspx</DependentUpon>

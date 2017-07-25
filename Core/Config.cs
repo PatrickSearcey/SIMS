@@ -56,6 +56,12 @@ namespace Core
         public static String RMSURL { get { return "http://sims.water.usgs.gov/RMS/"; } } 
 #endif
 
+#if DEBUG
+        public static String ConnectionInfo { get { return "Data Source=IGSKIACWVMGS012;Initial Catalog=simsdb;Integrated Security=True"; } }
+#else
+        public static String ConnectionInfo { get { return "Data Source=IGSKIACWVMGS011;Initial Catalog=simsdb;Integrated Security=True"; } }
+#endif
+
         protected static List<int> SLAPWSC()
         {
             List<int> ret = new List<int>();
