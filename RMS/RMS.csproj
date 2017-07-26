@@ -382,6 +382,13 @@
     <Content Include="Handler\ClearLock.ashx" />
     <Content Include="Handler\TemplateViewer.ashx" />
     <Content Include="Handler\DialogsHandler.ashx" />
+    <Content Include="Doc\AAA\AAA_CSG.docx" />
+    <Content Include="Doc\AAA\AAA_index-velocity_streamflow.docx" />
+    <Content Include="Doc\AAA\AAA_precip.docx" />
+    <Content Include="Doc\AAA\AAA_reservoir_stagecontents.docx" />
+    <Content Include="Doc\AAA\AAA_stageQ.docx" />
+    <Content Include="Doc\AAA\AAA_stage_elevation.docx" />
+    <Content Include="Doc\AAA\AAA_Groundwater_Levels.docx" />
     <None Include="Properties\PublishProfiles\Development.pubxml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>

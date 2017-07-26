@@ -137,7 +137,9 @@
                     <p style="font-weight:bold;margin-top:-10px">Analyst Templates are automatically applied to new analyzing periods' analyses if a template has been assigned to the record-type.  Your WSC-level admin in your office can assign templates
                         to record-types via the Manage Record-Types interface from the Admin Tasks page.</p>
                     <asp:Panel id="pnlTemplateLink" runat="server" Visible="false">
-                        <span style="font-weight:bold;">To view the detailed version of the template, which contains example text and guidance, please <asp:HyperLink ID="hlTemplate" runat="server" Target="_blank">CLICK HERE</asp:HyperLink>.</span>
+                        <span style="font-weight:bold;">To view the detailed version of the template, which contains example text and guidance, please <asp:HyperLink ID="hlTemplate" runat="server" Target="_blank">CLICK HERE</asp:HyperLink>.<br />
+                            To view the Process of Analyzing, Approving and Auditing document, please <asp:HyperLink ID="hlAAADoc1" runat="server" Target="_blank">CLICK HERE</asp:HyperLink>.
+                        </span>
                     </asp:Panel>  
                     <telerik:RadEditor ID="reAnalysisNotes" runat="server" Skin="Bootstrap" OnClientLoad="OnClientLoad" Width="100%" Height="300px" ExternalDialogsPath="~/EditorDialogs/">
                         <Tools>
@@ -230,6 +232,12 @@
             <tr>
                 <td colspan="2">
                     <h4>Comments</h4>
+                    <p style="font-weight:bold;margin-top:-10px">Your WSC-level admin in your office can assign templates to record-types via the Manage Record-Types interface from the Admin Tasks page.</p>
+                    <asp:Panel id="pnlApproveTemplateLink" runat="server" Visible="false">
+                        <span style="font-weight:bold;">You may wish to copy and paste the approver template into the comment box below to help approve the analysis. To view the approver template <asp:HyperLink ID="hlApproverTemplate" runat="server" Target="_blank">CLICK HERE</asp:HyperLink>.<br />
+                            To view the Process of Analyzing, Approving and Auditing document, please <asp:HyperLink ID="hlAAADoc2" runat="server" Target="_blank">CLICK HERE</asp:HyperLink>.
+                        </span>
+                    </asp:Panel> 
                     <telerik:RadEditor ID="reComments" runat="server" Skin="Bootstrap" OnClientLoad="OnClientLoad" Width="100%" Height="100px" ExternalDialogsPath="~/EditorDialogs/">
                         <Tools>
                             <telerik:EditorToolGroup>

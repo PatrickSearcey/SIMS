@@ -16,6 +16,7 @@ namespace RMS.Handler
         {
             int TemplateID;
             string temp_ID = context.Request.QueryString["TemplateID"];
+            string type = context.Request.QueryString["type"];
 
             if (!string.IsNullOrEmpty(temp_ID))
             {
@@ -23,7 +24,14 @@ namespace RMS.Handler
                 var template = db.RecordTemplates.FirstOrDefault(p => p.TemplateID == TemplateID);
 
                 context.Response.ContentType = "text/html";
-                context.Response.Write(template.TemplateText);
+                if (type == "analyze")
+                {
+                    context.Response.Write(template.AnalyzeTemplateText);
+                }
+                else
+                {
+                    context.Response.Write(template.ApproveTemplateText);
+                }
             }
             else 
             {

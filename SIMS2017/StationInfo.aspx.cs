@@ -331,30 +331,21 @@ namespace SIMS2017
                 ret = "no";
 
             var DDs = db.SP_RMS_Get_Record_DDs(record.rms_record_id).ToList();
-            List<string> dds = new List<string>();
-            List<string> tsids = new List<string>();
+            List<string> parm_cds = new List<string>();
 
             if (DDs.Count > 0)
             {
                 foreach (var dd in DDs)
                 {
-                    if (dd.dd_nu != null) dds.Add(dd.dd_nu.ToString());
-                    if (!string.IsNullOrEmpty(dd.ts_tx)) tsids.Add(dd.ts_tx);
+                    if (dd.parameter_cd != null) parm_cds.Add(dd.parameter_cd.ToString());
                 }
 
-                if (dds.Count == 0)
+                if (parm_cds.Count > 0)
                 {
                     string ts_ids = "";
-                    foreach (string tsid in tsids)
+                    foreach (string tsid in parm_cds)
                         ts_ids += tsid + ", ";
-                    ret += " (ts/dd: " + ts_ids.TrimEnd(' ').TrimEnd(',') + ")";
-                }
-                else
-                {
-                    string dd_nus = "";
-                    foreach (string ddnu in dds)
-                        dd_nus += ddnu + ", ";
-                    ret += " (ts/dd: " + dd_nus.TrimEnd(' ').TrimEnd(',') + ")";
+                    ret += " (ts parm cds: " + ts_ids.TrimEnd(' ').TrimEnd(',') + ")";
                 }
             }
 

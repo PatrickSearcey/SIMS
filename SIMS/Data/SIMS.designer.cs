@@ -177,9 +177,6 @@ namespace Data
     partial void InsertRecordType(RecordType instance);
     partial void UpdateRecordType(RecordType instance);
     partial void DeleteRecordType(RecordType instance);
-    partial void InsertRecordTemplate(RecordTemplate instance);
-    partial void UpdateRecordTemplate(RecordTemplate instance);
-    partial void DeleteRecordTemplate(RecordTemplate instance);
     partial void InsertCablewayVisit(CablewayVisit instance);
     partial void UpdateCablewayVisit(CablewayVisit instance);
     partial void DeleteCablewayVisit(CablewayVisit instance);
@@ -198,6 +195,9 @@ namespace Data
     partial void InsertCableway(Cableway instance);
     partial void UpdateCableway(Cableway instance);
     partial void DeleteCableway(Cableway instance);
+    partial void InsertRecordTemplate(RecordTemplate instance);
+    partial void UpdateRecordTemplate(RecordTemplate instance);
+    partial void DeleteRecordTemplate(RecordTemplate instance);
     #endregion
 		
 		public SIMSDataContext() : 
@@ -766,14 +766,6 @@ namespace Data
 			}
 		}
 		
-		public System.Data.Linq.Table<RecordTemplate> RecordTemplates
-		{
-			get
-			{
-				return this.GetTable<RecordTemplate>();
-			}
-		}
-		
 		public System.Data.Linq.Table<vRMSStatusOfRecord> vRMSStatusOfRecords
 		{
 			get
@@ -835,6 +827,14 @@ namespace Data
 			get
 			{
 				return this.GetTable<vCablewayInspectionSummary>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RecordTemplate> RecordTemplates
+		{
+			get
+			{
+				return this.GetTable<RecordTemplate>();
 			}
 		}
 		
@@ -20864,7 +20864,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordTemplate_RecordType", Storage="_RecordTemplate", ThisKey="TemplateID", OtherKey="TemplateID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_lut_Template_RecordType", Storage="_RecordTemplate", ThisKey="TemplateID", OtherKey="TemplateID", IsForeignKey=true)]
 		public RecordTemplate RecordTemplate
 		{
 			get
@@ -20928,168 +20928,6 @@ namespace Data
 		{
 			this.SendPropertyChanging();
 			entity.RecordType = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_lut_Template")]
-	public partial class RecordTemplate : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _TemplateID;
-		
-		private string _TemplateName;
-		
-		private string _TemplateText;
-		
-		private string _TemplateEdit;
-		
-		private EntitySet<RecordType> _RecordTypes;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnTemplateIDChanging(int value);
-    partial void OnTemplateIDChanged();
-    partial void OnTemplateNameChanging(string value);
-    partial void OnTemplateNameChanged();
-    partial void OnTemplateTextChanging(string value);
-    partial void OnTemplateTextChanged();
-    partial void OnTemplateEditChanging(string value);
-    partial void OnTemplateEditChanged();
-    #endregion
-		
-		public RecordTemplate()
-		{
-			this._RecordTypes = new EntitySet<RecordType>(new Action<RecordType>(this.attach_RecordTypes), new Action<RecordType>(this.detach_RecordTypes));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int TemplateID
-		{
-			get
-			{
-				return this._TemplateID;
-			}
-			set
-			{
-				if ((this._TemplateID != value))
-				{
-					this.OnTemplateIDChanging(value);
-					this.SendPropertyChanging();
-					this._TemplateID = value;
-					this.SendPropertyChanged("TemplateID");
-					this.OnTemplateIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateName", DbType="NVarChar(100)")]
-		public string TemplateName
-		{
-			get
-			{
-				return this._TemplateName;
-			}
-			set
-			{
-				if ((this._TemplateName != value))
-				{
-					this.OnTemplateNameChanging(value);
-					this.SendPropertyChanging();
-					this._TemplateName = value;
-					this.SendPropertyChanged("TemplateName");
-					this.OnTemplateNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateText", DbType="NVarChar(MAX)")]
-		public string TemplateText
-		{
-			get
-			{
-				return this._TemplateText;
-			}
-			set
-			{
-				if ((this._TemplateText != value))
-				{
-					this.OnTemplateTextChanging(value);
-					this.SendPropertyChanging();
-					this._TemplateText = value;
-					this.SendPropertyChanged("TemplateText");
-					this.OnTemplateTextChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateEdit", DbType="NVarChar(MAX)")]
-		public string TemplateEdit
-		{
-			get
-			{
-				return this._TemplateEdit;
-			}
-			set
-			{
-				if ((this._TemplateEdit != value))
-				{
-					this.OnTemplateEditChanging(value);
-					this.SendPropertyChanging();
-					this._TemplateEdit = value;
-					this.SendPropertyChanged("TemplateEdit");
-					this.OnTemplateEditChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordTemplate_RecordType", Storage="_RecordTypes", ThisKey="TemplateID", OtherKey="TemplateID")]
-		public EntitySet<RecordType> RecordTypes
-		{
-			get
-			{
-				return this._RecordTypes;
-			}
-			set
-			{
-				this._RecordTypes.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_RecordTypes(RecordType entity)
-		{
-			this.SendPropertyChanging();
-			entity.RecordTemplate = this;
-		}
-		
-		private void detach_RecordTypes(RecordType entity)
-		{
-			this.SendPropertyChanging();
-			entity.RecordTemplate = null;
 		}
 	}
 	
@@ -23150,6 +22988,216 @@ namespace Data
 					this._aerial_marker_inst = value;
 				}
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_lut_Template")]
+	public partial class RecordTemplate : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _TemplateID;
+		
+		private string _TemplateName;
+		
+		private string _AnalyzeTemplateText;
+		
+		private string _AnalyzeTemplateEdit;
+		
+		private string _ApproveTemplateText;
+		
+		private string _AAADocFileName;
+		
+		private EntitySet<RecordType> _RecordTypes;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTemplateIDChanging(int value);
+    partial void OnTemplateIDChanged();
+    partial void OnTemplateNameChanging(string value);
+    partial void OnTemplateNameChanged();
+    partial void OnAnalyzeTemplateTextChanging(string value);
+    partial void OnAnalyzeTemplateTextChanged();
+    partial void OnAnalyzeTemplateEditChanging(string value);
+    partial void OnAnalyzeTemplateEditChanged();
+    partial void OnApproveTemplateTextChanging(string value);
+    partial void OnApproveTemplateTextChanged();
+    partial void OnAAADocFileNameChanging(string value);
+    partial void OnAAADocFileNameChanged();
+    #endregion
+		
+		public RecordTemplate()
+		{
+			this._RecordTypes = new EntitySet<RecordType>(new Action<RecordType>(this.attach_RecordTypes), new Action<RecordType>(this.detach_RecordTypes));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int TemplateID
+		{
+			get
+			{
+				return this._TemplateID;
+			}
+			set
+			{
+				if ((this._TemplateID != value))
+				{
+					this.OnTemplateIDChanging(value);
+					this.SendPropertyChanging();
+					this._TemplateID = value;
+					this.SendPropertyChanged("TemplateID");
+					this.OnTemplateIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateName", DbType="NVarChar(100)")]
+		public string TemplateName
+		{
+			get
+			{
+				return this._TemplateName;
+			}
+			set
+			{
+				if ((this._TemplateName != value))
+				{
+					this.OnTemplateNameChanging(value);
+					this.SendPropertyChanging();
+					this._TemplateName = value;
+					this.SendPropertyChanged("TemplateName");
+					this.OnTemplateNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AnalyzeTemplateText", DbType="NVarChar(MAX)")]
+		public string AnalyzeTemplateText
+		{
+			get
+			{
+				return this._AnalyzeTemplateText;
+			}
+			set
+			{
+				if ((this._AnalyzeTemplateText != value))
+				{
+					this.OnAnalyzeTemplateTextChanging(value);
+					this.SendPropertyChanging();
+					this._AnalyzeTemplateText = value;
+					this.SendPropertyChanged("AnalyzeTemplateText");
+					this.OnAnalyzeTemplateTextChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AnalyzeTemplateEdit", DbType="NVarChar(MAX)")]
+		public string AnalyzeTemplateEdit
+		{
+			get
+			{
+				return this._AnalyzeTemplateEdit;
+			}
+			set
+			{
+				if ((this._AnalyzeTemplateEdit != value))
+				{
+					this.OnAnalyzeTemplateEditChanging(value);
+					this.SendPropertyChanging();
+					this._AnalyzeTemplateEdit = value;
+					this.SendPropertyChanged("AnalyzeTemplateEdit");
+					this.OnAnalyzeTemplateEditChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApproveTemplateText", DbType="NVarChar(MAX)")]
+		public string ApproveTemplateText
+		{
+			get
+			{
+				return this._ApproveTemplateText;
+			}
+			set
+			{
+				if ((this._ApproveTemplateText != value))
+				{
+					this.OnApproveTemplateTextChanging(value);
+					this.SendPropertyChanging();
+					this._ApproveTemplateText = value;
+					this.SendPropertyChanged("ApproveTemplateText");
+					this.OnApproveTemplateTextChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AAADocFileName", DbType="NVarChar(150)")]
+		public string AAADocFileName
+		{
+			get
+			{
+				return this._AAADocFileName;
+			}
+			set
+			{
+				if ((this._AAADocFileName != value))
+				{
+					this.OnAAADocFileNameChanging(value);
+					this.SendPropertyChanging();
+					this._AAADocFileName = value;
+					this.SendPropertyChanged("AAADocFileName");
+					this.OnAAADocFileNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_lut_Template_RecordType", Storage="_RecordTypes", ThisKey="TemplateID", OtherKey="TemplateID")]
+		public EntitySet<RecordType> RecordTypes
+		{
+			get
+			{
+				return this._RecordTypes;
+			}
+			set
+			{
+				this._RecordTypes.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_RecordTypes(RecordType entity)
+		{
+			this.SendPropertyChanging();
+			entity.RecordTemplate = this;
+		}
+		
+		private void detach_RecordTypes(RecordType entity)
+		{
+			this.SendPropertyChanging();
+			entity.RecordTemplate = null;
 		}
 	}
 	

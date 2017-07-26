@@ -151,25 +151,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/12/2017 12:07:22</publishTime>
     </File>
     <File Include="bin/Core.dll">
-      <publishTime>07/21/2017 06:23:00</publishTime>
+      <publishTime>07/26/2017 11:04:47</publishTime>
     </File>
     <File Include="bin/Core.pdb">
-      <publishTime>07/21/2017 06:23:00</publishTime>
+      <publishTime>07/26/2017 11:04:47</publishTime>
     </File>
     <File Include="bin/Data.dll">
-      <publishTime>07/21/2017 06:22:58</publishTime>
+      <publishTime>07/26/2017 10:37:57</publishTime>
     </File>
     <File Include="bin/Data.pdb">
-      <publishTime>07/21/2017 06:22:58</publishTime>
+      <publishTime>07/26/2017 10:37:57</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>07/11/2017 10:53:28</publishTime>
     </File>
     <File Include="bin/RMS.dll">
-      <publishTime>07/21/2017 09:56:02</publishTime>
+      <publishTime>07/26/2017 15:17:55</publishTime>
     </File>
     <File Include="bin/RMS.pdb">
-      <publishTime>07/21/2017 09:56:02</publishTime>
+      <publishTime>07/26/2017 15:17:55</publishTime>
     </File>
     <File Include="bin/Telerik.Web.Spreadsheet.dll">
       <publishTime>07/11/2017 10:53:28</publishTime>
@@ -203,6 +203,27 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Control/RecordTypeConfig.ascx">
       <publishTime>07/17/2017 15:36:37</publishTime>
+    </File>
+    <File Include="Doc/AAA/AAA_CSG.docx">
+      <publishTime>07/26/2017 05:47:40</publishTime>
+    </File>
+    <File Include="Doc/AAA/AAA_Groundwater_Levels.docx">
+      <publishTime>07/26/2017 15:00:51</publishTime>
+    </File>
+    <File Include="Doc/AAA/AAA_index-velocity_streamflow.docx">
+      <publishTime>07/26/2017 05:47:40</publishTime>
+    </File>
+    <File Include="Doc/AAA/AAA_precip.docx">
+      <publishTime>07/26/2017 05:47:40</publishTime>
+    </File>
+    <File Include="Doc/AAA/AAA_reservoir_stagecontents.docx">
+      <publishTime>07/26/2017 05:47:40</publishTime>
+    </File>
+    <File Include="Doc/AAA/AAA_stageQ.docx">
+      <publishTime>07/26/2017 05:47:39</publishTime>
+    </File>
+    <File Include="Doc/AAA/AAA_stage_elevation.docx">
+      <publishTime>07/26/2017 05:47:39</publishTime>
     </File>
     <File Include="Doc/Temp/placeholder.txt">
       <publishTime>07/11/2017 10:53:28</publishTime>
@@ -367,7 +388,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/11/2017 10:53:28</publishTime>
     </File>
     <File Include="Task/RecordProcess.aspx">
-      <publishTime>07/21/2017 09:55:47</publishTime>
+      <publishTime>07/26/2017 06:56:41</publishTime>
     </File>
     <File Include="web.config">
       <publishTime>07/11/2017 13:11:51</publishTime>

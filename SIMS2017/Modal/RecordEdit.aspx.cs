@@ -174,39 +174,17 @@ namespace SIMS2017.Modal
             //Category Number
             if (option == "editcurrentrecord") //Show, and populate
             {
-                if (record.RecordDDs.Count() > 0) //Show the category number stuff if there are IDs tied to the record
+                //Show the category selection for both ts and nts records
+                rddlCatNumber.SelectedValue = record.category_no.ToString();
+                if (record.category_no > 1)
                 {
-                    rddlCatNumber.SelectedValue = record.category_no.ToString();
-                    if (record.category_no > 1)
-                    {
-                        rtbCatReason.Visible = true;
-                        rtbCatReason.Text = record.cat_reason;
-                    }
-                    else rtbCatReason.Visible = false;
+                    rtbCatReason.Visible = true;
+                    rtbCatReason.Text = record.cat_reason;
                 }
-                else //Do not show if there are no IDs tied to the record - this means it's a non-time-series record with no IDs
-                {
-                    ltlCatNumberLabel.Visible = false;
-                    rddlCatNumber.Visible = false;
-                    rtbCatReason.Visible = false;
-                }
+                else rtbCatReason.Visible = false;
             }
-            else if (option == "ts_id") //Show, and enable
+            else //Show, and enable
             {
-                rtbCatReason.Visible = false;
-            }
-            else if (option == "nonts_id") //Show, but only allow them to add category number 3, and the canned reason
-            {
-                rddlCatNumber.SelectedValue = "3";
-                rddlCatNumber.Enabled = false;
-                rtbCatReason.Visible = true;
-                rtbCatReason.Enabled = false;
-                rtbCatReason.Text = "Record is non-time-series";
-            }
-            else //Do not show at all if adding a non-time-series record with no ID
-            {
-                ltlCatNumberLabel.Visible = false;
-                rddlCatNumber.Visible = false;
                 rtbCatReason.Visible = false;
             }
 

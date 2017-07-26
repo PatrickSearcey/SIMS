@@ -304,10 +304,11 @@ namespace RMS.Task
                 if (currRecord.RecordType.RecordTemplate != null)
                 {
                     var template = currRecord.RecordType.RecordTemplate;
-                    reAnalysisNotes.Content = template.TemplateEdit;
+                    reAnalysisNotes.Content = template.AnalyzeTemplateEdit;
 
                     pnlTemplateLink.Visible = true;
-                    hlTemplate.NavigateUrl = String.Format("{0}Handler/TemplateViewer.ashx?TemplateID={1}", Config.RMSURL, template.TemplateID);
+                    hlTemplate.NavigateUrl = String.Format("{0}Handler/TemplateViewer.ashx?TemplateID={1}&type={2}", Config.RMSURL, template.TemplateID, "analyze");
+                    hlAAADoc1.NavigateUrl = String.Format("{0}Doc/AAA/{1}", Config.RMSURL, template.AAADocFileName);
                 }
             }
 
@@ -365,6 +366,16 @@ namespace RMS.Task
                     pnlApproverComments.Visible = false;
                     rbFinish.CommandName = "Approve";
                     rbSave.CommandName = "Approve";
+
+                    //If a template has been setup for this record-type, then show the template panel
+                    if (currRecord.RecordType.RecordTemplate != null)
+                    {
+                        var template = currRecord.RecordType.RecordTemplate;
+
+                        pnlApproveTemplateLink.Visible = true;
+                        hlApproverTemplate.NavigateUrl = String.Format("{0}Handler/TemplateViewer.ashx?TemplateID={1}&type={2}", Config.RMSURL, template.TemplateID, "approve");
+                        hlAAADoc2.NavigateUrl = String.Format("{0}Doc/AAA/{1}", Config.RMSURL, template.AAADocFileName);
+                    }
                 }
             }
         }

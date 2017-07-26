@@ -698,8 +698,8 @@ namespace Core
         {
             if (text != null)
             {
-                text = text.Replace(System.Environment.NewLine, "<br />");
-                text = text.Replace("\n", "<br />");
+                //text = text.Replace(System.Environment.NewLine, "<br />");
+                //text = text.Replace("\n", "<br />");
             }
 
             return text;
