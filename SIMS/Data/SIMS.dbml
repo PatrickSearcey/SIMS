@@ -1052,7 +1052,7 @@
       <Column Name="ts_fg" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="RecordType_Record" Member="Records" ThisKey="record_type_id" OtherKey="record_type_id" Type="Record" />
-      <Association Name="RMS_lut_Template_RecordType" Member="RecordTemplate" ThisKey="TemplateID" OtherKey="TemplateID" Type="RecordTemplate" IsForeignKey="true" />
+      <Association Name="RecordTemplate_RecordType" Member="RecordTemplate" ThisKey="TemplateID" OtherKey="TemplateID" Type="RecordTemplate" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.vRMSStatusOfRecords" Member="vRMSStatusOfRecords">
@@ -1175,7 +1175,29 @@
       <Column Name="AnalyzeTemplateEdit" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="ApproveTemplateText" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="AAADocFileName" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Association Name="RMS_lut_Template_RecordType" Member="RecordTypes" ThisKey="TemplateID" OtherKey="TemplateID" Type="RecordType" />
+      <Association Name="RecordTemplate_RecordType" Member="RecordTypes" ThisKey="TemplateID" OtherKey="TemplateID" Type="RecordType" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Ops_DCP_ID" Member="DCPIDs">
+    <Type Name="DCPID">
+      <Column Name="dcp_id" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
+      <Column Name="site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="site_no" Type="System.String" DbType="NVarChar(16)" CanBeNull="true" />
+      <Column Name="assigned_time" Type="System.String" DbType="NVarChar(6)" CanBeNull="true" />
+      <Column Name="trans_interval" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="window" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="primary_ch" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="primary_bd" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="random_ch" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="random_bd" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="satellite" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="contact_id" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="contact_nm" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="pass_station_nm" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ant_azimuth" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ant_elev" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="remark" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">

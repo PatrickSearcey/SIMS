@@ -95,7 +95,7 @@ namespace RMS.Report
                 else AuditID = 0;
             }
 
-            if (OfficeID == 0 && WSCID == 0)
+            if (OfficeID == 0 || WSCID == 0)
             {
                 OfficeID = user.OfficeID;
                 WSCID = (int)db.Offices.FirstOrDefault(p => p.office_id == OfficeID).wsc_id;

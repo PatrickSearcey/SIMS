@@ -838,6 +838,14 @@ namespace Data
 			}
 		}
 		
+		public System.Data.Linq.Table<DCPID> DCPIDs
+		{
+			get
+			{
+				return this.GetTable<DCPID>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spz_GetDCPInfo")]
 		public ISingleResult<spz_GetDCPInfoResult> spz_GetDCPInfo([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> site_id)
 		{
@@ -20864,7 +20872,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_lut_Template_RecordType", Storage="_RecordTemplate", ThisKey="TemplateID", OtherKey="TemplateID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordTemplate_RecordType", Storage="_RecordTemplate", ThisKey="TemplateID", OtherKey="TemplateID", IsForeignKey=true)]
 		public RecordTemplate RecordTemplate
 		{
 			get
@@ -23155,7 +23163,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_lut_Template_RecordType", Storage="_RecordTypes", ThisKey="TemplateID", OtherKey="TemplateID")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordTemplate_RecordType", Storage="_RecordTypes", ThisKey="TemplateID", OtherKey="TemplateID")]
 		public EntitySet<RecordType> RecordTypes
 		{
 			get
@@ -23198,6 +23206,339 @@ namespace Data
 		{
 			this.SendPropertyChanging();
 			entity.RecordTemplate = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Ops_DCP_ID")]
+	public partial class DCPID
+	{
+		
+		private string _dcp_id;
+		
+		private System.Nullable<int> _site_id;
+		
+		private string _site_no;
+		
+		private string _assigned_time;
+		
+		private string _trans_interval;
+		
+		private string _window;
+		
+		private System.Nullable<int> _primary_ch;
+		
+		private System.Nullable<int> _primary_bd;
+		
+		private System.Nullable<int> _random_ch;
+		
+		private System.Nullable<int> _random_bd;
+		
+		private string _satellite;
+		
+		private string _contact_id;
+		
+		private string _contact_nm;
+		
+		private string _pass_station_nm;
+		
+		private System.Nullable<short> _ant_azimuth;
+		
+		private System.Nullable<short> _ant_elev;
+		
+		private string _remark;
+		
+		private System.Nullable<int> _wsc_id;
+		
+		public DCPID()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dcp_id", DbType="NVarChar(8)")]
+		public string dcp_id
+		{
+			get
+			{
+				return this._dcp_id;
+			}
+			set
+			{
+				if ((this._dcp_id != value))
+				{
+					this._dcp_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int")]
+		public System.Nullable<int> site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					this._site_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_no", DbType="NVarChar(16)")]
+		public string site_no
+		{
+			get
+			{
+				return this._site_no;
+			}
+			set
+			{
+				if ((this._site_no != value))
+				{
+					this._site_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_assigned_time", DbType="NVarChar(6)")]
+		public string assigned_time
+		{
+			get
+			{
+				return this._assigned_time;
+			}
+			set
+			{
+				if ((this._assigned_time != value))
+				{
+					this._assigned_time = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_trans_interval", DbType="NVarChar(10)")]
+		public string trans_interval
+		{
+			get
+			{
+				return this._trans_interval;
+			}
+			set
+			{
+				if ((this._trans_interval != value))
+				{
+					this._trans_interval = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_window", DbType="NVarChar(10)")]
+		public string window
+		{
+			get
+			{
+				return this._window;
+			}
+			set
+			{
+				if ((this._window != value))
+				{
+					this._window = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_primary_ch", DbType="Int")]
+		public System.Nullable<int> primary_ch
+		{
+			get
+			{
+				return this._primary_ch;
+			}
+			set
+			{
+				if ((this._primary_ch != value))
+				{
+					this._primary_ch = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_primary_bd", DbType="Int")]
+		public System.Nullable<int> primary_bd
+		{
+			get
+			{
+				return this._primary_bd;
+			}
+			set
+			{
+				if ((this._primary_bd != value))
+				{
+					this._primary_bd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_random_ch", DbType="Int")]
+		public System.Nullable<int> random_ch
+		{
+			get
+			{
+				return this._random_ch;
+			}
+			set
+			{
+				if ((this._random_ch != value))
+				{
+					this._random_ch = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_random_bd", DbType="Int")]
+		public System.Nullable<int> random_bd
+		{
+			get
+			{
+				return this._random_bd;
+			}
+			set
+			{
+				if ((this._random_bd != value))
+				{
+					this._random_bd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_satellite", DbType="NVarChar(1)")]
+		public string satellite
+		{
+			get
+			{
+				return this._satellite;
+			}
+			set
+			{
+				if ((this._satellite != value))
+				{
+					this._satellite = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contact_id", DbType="NVarChar(20)")]
+		public string contact_id
+		{
+			get
+			{
+				return this._contact_id;
+			}
+			set
+			{
+				if ((this._contact_id != value))
+				{
+					this._contact_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contact_nm", DbType="NVarChar(50)")]
+		public string contact_nm
+		{
+			get
+			{
+				return this._contact_nm;
+			}
+			set
+			{
+				if ((this._contact_nm != value))
+				{
+					this._contact_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pass_station_nm", DbType="NVarChar(100)")]
+		public string pass_station_nm
+		{
+			get
+			{
+				return this._pass_station_nm;
+			}
+			set
+			{
+				if ((this._pass_station_nm != value))
+				{
+					this._pass_station_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ant_azimuth", DbType="SmallInt")]
+		public System.Nullable<short> ant_azimuth
+		{
+			get
+			{
+				return this._ant_azimuth;
+			}
+			set
+			{
+				if ((this._ant_azimuth != value))
+				{
+					this._ant_azimuth = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ant_elev", DbType="SmallInt")]
+		public System.Nullable<short> ant_elev
+		{
+			get
+			{
+				return this._ant_elev;
+			}
+			set
+			{
+				if ((this._ant_elev != value))
+				{
+					this._ant_elev = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_remark", DbType="NVarChar(255)")]
+		public string remark
+		{
+			get
+			{
+				return this._remark;
+			}
+			set
+			{
+				if ((this._remark != value))
+				{
+					this._remark = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_id", DbType="Int")]
+		public System.Nullable<int> wsc_id
+		{
+			get
+			{
+				return this._wsc_id;
+			}
+			set
+			{
+				if ((this._wsc_id != value))
+				{
+					this._wsc_id = value;
+				}
+			}
 		}
 	}
 	
