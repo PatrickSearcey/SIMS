@@ -137,6 +137,11 @@ namespace SIMS2017.Modal
                         foreach (var id in ts_ids) ltlAssignedIDs.Text += id.dd_ts_ds + ", ";
                         ltlAssignedIDs.Text.TrimEnd(' ').TrimEnd(',');
                     }
+                    else if (!(bool)record.RecordType.ts_fg)
+                    {
+                        ltlTimeSeriesLabel.Visible = false;
+                        pnlAssignedIDs.Visible = false;
+                    }
                     else
                     {
                         ltlTimeSeriesLabel.Visible = true;
@@ -348,12 +353,9 @@ namespace SIMS2017.Modal
 
                     //Update the record-type
                     record.record_type_id = Convert.ToInt32(rddlRecordTypes.SelectedValue);
-                    //Update the category number and reason, but only for records with time-series DDs
-                    if (record.RecordDDs.Count() > 0)
-                    {
-                        record.category_no = Convert.ToInt32(rddlCatNumber.SelectedValue);
-                        record.cat_reason = rtbCatReason.Text;
-                    }
+                    //Update the category number
+                    record.category_no = Convert.ToInt32(rddlCatNumber.SelectedValue);
+                    record.cat_reason = rtbCatReason.Text;
                     //Update the operator, analyzer and approver
                     record.operator_uid = rddlOperator.SelectedValue;
                     record.analyzer_uid = rddlAnalyzer.SelectedValue;
@@ -391,11 +393,8 @@ namespace SIMS2017.Modal
                     new_record.approver_uid = rddlApprover.SelectedValue;
                     new_record.not_used_fg = rcbRecordInactive.Checked;
                     new_record.record_type_id = Convert.ToInt32(rddlRecordTypes.SelectedValue);
-                    if (hfEditIDs.Value == "true")
-                    {
-                        new_record.category_no = Convert.ToInt32(rddlCatNumber.SelectedValue);
-                        new_record.cat_reason = rtbCatReason.Text;
-                    }
+                    new_record.category_no = Convert.ToInt32(rddlCatNumber.SelectedValue);
+                    new_record.cat_reason = rtbCatReason.Text;
 
                     db.Records.InsertOnSubmit(new_record);
                     db.SubmitChanges();

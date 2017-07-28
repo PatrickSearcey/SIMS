@@ -234,7 +234,7 @@
                                     <td colspan="2" valign="top">
                                         <div style="width:100%;">
                                             <div style="width:30%;float:left;">
-                                                <b><a href='<%# String.Format("http://amazon.nws.noaa.gov/cgi-bin/hads/dipper/dcpInfo2.pl?table=dcp&nesdis_id={0}", Eval("dcp_id")) %>' target="_blank">NWS HADS System</a></b><br />
+                                                <b><a href='<%# String.Format("https://hads.ncep.noaa.gov/cgi-bin/hads/interactiveDisplays/displayMetaData.pl?table=dcp&nesdis_id={0}", Eval("dcp_id")) %>' target="_blank">NWS HADS System</a></b><br />
                                                 <b><a href='<%# String.Format("http://eddn.usgs.gov/cgi-bin/configSummary.cgi?dcpid={0}&type=view", Eval("dcp_id")) %>' target="_blank">EDDN Platform Configuration</a></b><br />
                                                 <b><a href='<%# String.Format("{0}", Eval("PASSURL")) %>' target="_blank">PASS Home</a></b><br />
                                             </div>
