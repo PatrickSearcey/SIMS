@@ -434,6 +434,153 @@ namespace SIMS2017
 	        da.Fill(ds, "RMSlatencyreport");
 	        return ds;
         }
+
+        [WebMethod(Description = "Gets site list for SDESC Repository within a certain amount of hours of last revised")]
+        public DataSet GetSDSiteListByLastRevised(string lu)
+        {
+            int secs = Convert.ToInt32(lu) * 3600;
+            string seconds = secs.ToString();
+
+            string cs = Config.ConnectionInfo;
+            SqlConnection cn = new SqlConnection(cs);
+            SqlDataAdapter da = new SqlDataAdapter("SELECT DISTINCT lw.wsc_cd, lo.office_cd, ssm.site_no, ssm.agency_cd, s.station_nm, (CASE WHEN agency_use_cd In('A','M','L') THEN 'A' ELSE 'I' END) AS active_fg, ers.revised_dt" +
+                " FROM lut_WSC AS lw INNER JOIN" +
+                "   lut_Office AS lo ON lw.wsc_id = lo.wsc_id INNER JOIN" +
+                "   SIMS_Site_Master AS ssm ON lo.office_id = ssm.office_id INNER JOIN" +
+                "   Elem_Report_Sum AS ers ON ssm.site_id = ers.site_id INNER JOIN" +
+                "   nwisweb.dbo.SITEFILE AS s ON s.site_id = ssm.nwisweb_site_id" +
+                " WHERE DATEDIFF(second, ers.revised_dt, GETDATE()) <= " + seconds + " AND ers.report_type_cd = 'SDESC'", cn);
+
+            DataSet ds = new DataSet();
+            da.Fill(ds, "sitelist");
+            return ds;
+        }
+
+        [WebMethod(Description = "Gets site list for SDESC Repository")]
+        public DataSet GetSDSiteList()
+        {
+            string cs = Config.ConnectionInfo;
+            SqlConnection cn = new SqlConnection(cs);
+            SqlDataAdapter da = new SqlDataAdapter("SELECT DISTINCT lw.wsc_cd, lo.office_cd, ssm.site_no, ssm.agency_cd, s.station_nm, (CASE WHEN agency_use_cd In('A','M','L') THEN 'A' ELSE 'I' END) AS active_fg, ers.revised_dt" +
+                " FROM lut_WSC AS lw INNER JOIN" +
+                "   lut_Office AS lo ON lw.wsc_id = lo.wsc_id INNER JOIN" +
+                "   SIMS_Site_Master AS ssm ON lo.office_id = ssm.office_id INNER JOIN" +
+                "   Elem_Report_Sum AS ers ON ssm.site_id = ers.site_id INNER JOIN" +
+                "   nwisweb.dbo.SITEFILE AS s ON s.site_id = ssm.nwisweb_site_id" +
+                " WHERE ers.report_type_cd = 'SDESC'", cn);
+
+            DataSet ds = new DataSet();
+            da.Fill(ds, "sitelist");
+            return ds;
+        }
+
+        [WebMethod(Description = "Gets RMS total status information from stored proc SP_RMS_Progress_Report_by_region_or_WSC from SIMS")]
+        public DataSet GetProgressReportByRegionWSC(DateTime querydate, string region_cd, int wsc_id)
+        {
+            if (string.IsNullOrEmpty(region_cd)) region_cd = "NADA";
+
+            string cs = Config.ConnectionInfo;
+            SqlConnection cn = new SqlConnection(cs);
+            //Create a Data Adapter, then provide the name of the stored procedure
+            SqlDataAdapter da = new SqlDataAdapter("SP_RMS_Progress_Report_by_region_or_WSC", cn);
+
+            //Set the command type as Stored Procedure
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+            //Create and add parameters to Parameters collection for stored procedure
+            da.SelectCommand.Parameters.Add(new SqlParameter("@region_cd", SqlDbType.NVarChar, 50));
+            da.SelectCommand.Parameters["@region_cd"].Value = region_cd;
+
+            da.SelectCommand.Parameters.Add(new SqlParameter("@wsc_id", SqlDbType.Int));
+            da.SelectCommand.Parameters["@wsc_id"].Value = wsc_id;
+
+            da.SelectCommand.Parameters.Add(new SqlParameter("@querydate", SqlDbType.DateTime));
+            da.SelectCommand.Parameters["@querydate"].Value = querydate;
+
+            da.SelectCommand.Parameters.Add(new SqlParameter("@ts", SqlDbType.Bit));
+            da.SelectCommand.Parameters["@ts"].Value = 0;
+            
+            da.SelectCommand.Parameters.Add(new SqlParameter("@use_ts", SqlDbType.NVarChar, 3));
+            da.SelectCommand.Parameters["@use_ts"].Value = "no";
+
+            //Create a DataSet to hold the records
+            DataSet ds = new DataSet();
+            //Fill the DataSet with the rows returned
+            da.Fill(ds, "Total");
+            return ds;
+        }
+
+        [WebMethod(Description = "Gets RMS total status information from stored proc SP_RMS_Progress_Report_by_region_or_WSC from SIMS - Continuous records only")]
+        public DataSet GetContinuousProgressReportByRegionWSC(DateTime querydate, string region_cd, int wsc_id)
+        {
+            if (string.IsNullOrEmpty(region_cd)) region_cd = "NADA";
+
+            string cs = Config.ConnectionInfo;
+            SqlConnection cn = new SqlConnection(cs);
+            //Create a Data Adapter, then provide the name of the stored procedure
+            SqlDataAdapter da = new SqlDataAdapter("SP_RMS_Progress_Report_by_region_or_WSC", cn);
+
+            //Set the command type as Stored Procedure
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+            //Create and add parameters to Parameters collection for stored procedure
+            da.SelectCommand.Parameters.Add(new SqlParameter("@region_cd", SqlDbType.NVarChar, 50));
+            da.SelectCommand.Parameters["@region_cd"].Value = region_cd;
+
+            da.SelectCommand.Parameters.Add(new SqlParameter("@wsc_id", SqlDbType.Int));
+            da.SelectCommand.Parameters["@wsc_id"].Value = wsc_id;
+
+            da.SelectCommand.Parameters.Add(new SqlParameter("@querydate", SqlDbType.DateTime));
+            da.SelectCommand.Parameters["@querydate"].Value = querydate;
+
+            da.SelectCommand.Parameters.Add(new SqlParameter("@ts", SqlDbType.Bit));
+            da.SelectCommand.Parameters["@ts"].Value = 1;
+
+            da.SelectCommand.Parameters.Add(new SqlParameter("@use_ts", SqlDbType.NVarChar, 3));
+            da.SelectCommand.Parameters["@use_ts"].Value = "yes";
+
+            //Create a DataSet to hold the records
+            DataSet ds = new DataSet();
+            //Fill the DataSet with the rows returned
+            da.Fill(ds, "Total");
+            return ds;
+        }
+
+        [WebMethod(Description = "Gets RMS total status information from stored proc SP_RMS_Progress_Report_by_region_or_WSC from SIMS - Non-continuous records only")]
+        public DataSet GetNonContinuousProgressReportByRegionWSC(DateTime querydate, string region_cd, int wsc_id)
+        {
+            if (string.IsNullOrEmpty(region_cd)) region_cd = "NADA";
+
+            string cs = Config.ConnectionInfo;
+            SqlConnection cn = new SqlConnection(cs);
+            //Create a Data Adapter, then provide the name of the stored procedure
+            SqlDataAdapter da = new SqlDataAdapter("SP_RMS_Progress_Report_by_region_or_WSC", cn);
+
+            //Set the command type as Stored Procedure
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+            //Create and add parameters to Parameters collection for stored procedure
+            da.SelectCommand.Parameters.Add(new SqlParameter("@region_cd", SqlDbType.NVarChar, 50));
+            da.SelectCommand.Parameters["@region_cd"].Value = region_cd;
+
+            da.SelectCommand.Parameters.Add(new SqlParameter("@wsc_id", SqlDbType.Int));
+            da.SelectCommand.Parameters["@wsc_id"].Value = wsc_id;
+
+            da.SelectCommand.Parameters.Add(new SqlParameter("@querydate", SqlDbType.DateTime));
+            da.SelectCommand.Parameters["@querydate"].Value = querydate;
+
+            da.SelectCommand.Parameters.Add(new SqlParameter("@ts", SqlDbType.Bit));
+            da.SelectCommand.Parameters["@ts"].Value = 0;
+
+            da.SelectCommand.Parameters.Add(new SqlParameter("@use_ts", SqlDbType.NVarChar, 3));
+            da.SelectCommand.Parameters["@use_ts"].Value = "yes";
+
+            //Create a DataSet to hold the records
+            DataSet ds = new DataSet();
+            //Fill the DataSet with the rows returned
+            da.Fill(ds, "Total");
+            return ds;
+        }
     }
 
     public class SiteInfo
