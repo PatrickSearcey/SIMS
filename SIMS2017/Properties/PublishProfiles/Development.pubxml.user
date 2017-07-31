@@ -166,10 +166,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/01/2016 16:26:44</publishTime>
     </File>
     <File Include="bin/SIMS2017.dll">
-      <publishTime>07/28/2017 14:31:53</publishTime>
+      <publishTime>07/31/2017 14:29:47</publishTime>
     </File>
     <File Include="bin/SIMS2017.pdb">
-      <publishTime>07/28/2017 14:31:53</publishTime>
+      <publishTime>07/31/2017 14:29:47</publishTime>
     </File>
     <File Include="bin/Telerik.Web.Spreadsheet.dll">
       <publishTime>07/11/2017 10:53:28</publishTime>
@@ -236,6 +236,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Handler/DocHandler.ashx">
       <publishTime>07/11/2017 10:53:29</publishTime>
+    </File>
+    <File Include="Handler/FieldTrips.ashx">
+      <publishTime>07/31/2017 11:53:57</publishTime>
     </File>
     <File Include="Handler/MANUDump_v1.ashx">
       <publishTime>07/11/2017 10:53:29</publishTime>
