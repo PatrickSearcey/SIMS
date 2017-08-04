@@ -1013,6 +1013,13 @@ namespace Data
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), office_id, wsc_id, onlyactive);
 			return ((ISingleResult<SP_RMS_Record_Details_by_WSC_or_officeResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_Publication_Status")]
+		public ISingleResult<SP_Publication_StatusResult> SP_Publication_Status([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> wsc_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> office_id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), wsc_id, office_id);
+			return ((ISingleResult<SP_Publication_StatusResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.lut_Office")]
@@ -26515,6 +26522,266 @@ namespace Data
 				if ((this._ts_full_ds != value))
 				{
 					this._ts_full_ds = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_Publication_StatusResult
+	{
+		
+		private int _site_id;
+		
+		private System.Nullable<int> _rms_record_id;
+		
+		private string _nwis_host;
+		
+		private string _office_cd;
+		
+		private string _office_nm;
+		
+		private string _agency_cd;
+		
+		private string _site_no;
+		
+		private string _station_full_nm;
+		
+		private string _parm_cd;
+		
+		private string _type_cd;
+		
+		private string _type_ds;
+		
+		private System.Nullable<System.DateTime> _last_aging_dt;
+		
+		private System.Nullable<System.DateTime> _Last_peak_entered;
+		
+		private System.Nullable<System.DateTime> _Last_manu_approved;
+		
+		public SP_Publication_StatusResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int NOT NULL")]
+		public int site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					this._site_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int")]
+		public System.Nullable<int> rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					this._rms_record_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nwis_host", DbType="NVarChar(12) NOT NULL", CanBeNull=false)]
+		public string nwis_host
+		{
+			get
+			{
+				return this._nwis_host;
+			}
+			set
+			{
+				if ((this._nwis_host != value))
+				{
+					this._nwis_host = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_cd", DbType="NVarChar(10)")]
+		public string office_cd
+		{
+			get
+			{
+				return this._office_cd;
+			}
+			set
+			{
+				if ((this._office_cd != value))
+				{
+					this._office_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_nm", DbType="NVarChar(150)")]
+		public string office_nm
+		{
+			get
+			{
+				return this._office_nm;
+			}
+			set
+			{
+				if ((this._office_nm != value))
+				{
+					this._office_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_agency_cd", DbType="NVarChar(5) NOT NULL", CanBeNull=false)]
+		public string agency_cd
+		{
+			get
+			{
+				return this._agency_cd;
+			}
+			set
+			{
+				if ((this._agency_cd != value))
+				{
+					this._agency_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_no", DbType="NVarChar(15) NOT NULL", CanBeNull=false)]
+		public string site_no
+		{
+			get
+			{
+				return this._site_no;
+			}
+			set
+			{
+				if ((this._site_no != value))
+				{
+					this._site_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_full_nm", DbType="NVarChar(150)")]
+		public string station_full_nm
+		{
+			get
+			{
+				return this._station_full_nm;
+			}
+			set
+			{
+				if ((this._station_full_nm != value))
+				{
+					this._station_full_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_parm_cd", DbType="NVarChar(5)")]
+		public string parm_cd
+		{
+			get
+			{
+				return this._parm_cd;
+			}
+			set
+			{
+				if ((this._parm_cd != value))
+				{
+					this._parm_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_cd", DbType="NVarChar(50)")]
+		public string type_cd
+		{
+			get
+			{
+				return this._type_cd;
+			}
+			set
+			{
+				if ((this._type_cd != value))
+				{
+					this._type_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_ds", DbType="NVarChar(200)")]
+		public string type_ds
+		{
+			get
+			{
+				return this._type_ds;
+			}
+			set
+			{
+				if ((this._type_ds != value))
+				{
+					this._type_ds = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_last_aging_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> last_aging_dt
+		{
+			get
+			{
+				return this._last_aging_dt;
+			}
+			set
+			{
+				if ((this._last_aging_dt != value))
+				{
+					this._last_aging_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Last_peak_entered", DbType="Date")]
+		public System.Nullable<System.DateTime> Last_peak_entered
+		{
+			get
+			{
+				return this._Last_peak_entered;
+			}
+			set
+			{
+				if ((this._Last_peak_entered != value))
+				{
+					this._Last_peak_entered = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Last_manu_approved", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Last_manu_approved
+		{
+			get
+			{
+				return this._Last_manu_approved;
+			}
+			set
+			{
+				if ((this._Last_manu_approved != value))
+				{
+					this._Last_manu_approved = value;
 				}
 			}
 		}

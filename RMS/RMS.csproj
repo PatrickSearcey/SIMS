@@ -164,10 +164,12 @@
     <Content Include="Report\CRPStatus.aspx" />
     <Content Include="Report\CRPStatusChart.aspx" />
     <Content Include="Report\PeriodDetails.aspx" />
+    <Content Include="Report\PubStatus.aspx" />
     <Content Include="Report\RecordProcess.aspx" />
     <Content Include="Report\RecordProgress.aspx" />
     <Content Include="Report\RecordProgressWSC.aspx" />
     <Content Include="styles\admin.css" />
+    <Content Include="styles\pubstatus.css" />
     <Content Include="styles\crpstatus.css" />
     <Content Include="styles\recordprogress.css" />
     <Content Include="styles\perioddetails.css" />
@@ -293,6 +295,13 @@
     </Compile>
     <Compile Include="Report\PeriodDetails.aspx.designer.cs">
       <DependentUpon>PeriodDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\PubStatus.aspx.cs">
+      <DependentUpon>PubStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\PubStatus.aspx.designer.cs">
+      <DependentUpon>PubStatus.aspx</DependentUpon>
     </Compile>
     <Compile Include="Report\RecordProcess.aspx.cs">
       <DependentUpon>RecordProcess.aspx</DependentUpon>
@@ -433,7 +442,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

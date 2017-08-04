@@ -73,6 +73,7 @@
                                             <div style="padding:10px;">
                                                 <asp:HyperLink ID="hlRecordProgressWSC" runat="server" Font-Bold="true" Text="Record Progress For The WSC" /><br />
                                                 <asp:HyperLink ID="hlRecordProgress" runat="server" Font-Bold="true" Text="Record Progress By Office" /><br /><br />
+                                                <asp:HyperLink ID="hlPubStatus" runat="server" Font-Bold="true" Text="Current Publication Status" /><br /><br />
                                                 <asp:HyperLink ID="hlAudit" runat="server" Font-Bold="true" Text="Audit Report" />
                                             </div>
                                         </ContentTemplate>

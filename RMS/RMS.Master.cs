@@ -74,6 +74,7 @@ namespace RMS
             hlCRPStatusChart.NavigateUrl = String.Format("{0}Report/CRPStatusChart.aspx?office_id={1}", Config.RMSURL, OfficeID);
             hlRecordProgressWSC.NavigateUrl = String.Format("{0}Report/RecordProgressWSC.aspx?wsc_id={1}", Config.RMSURL, WSCID);
             hlRecordProgress.NavigateUrl = String.Format("{0}Report/RecordProgress.aspx?wsc_id={1}", Config.RMSURL, WSCID);
+            hlPubStatus.NavigateUrl = String.Format("{0}Report/PubStatus.aspx?office_id={1}", Config.RMSURL, OfficeID);
             hlAudit.NavigateUrl = String.Format("{0}Report/Audit.aspx?office_id={1}", Config.RMSURL, OfficeID);
 
             rmSide.FindItemByText("Period Details").NavigateUrl = String.Format("{0}Report/PeriodDetails.aspx?wsc_id={1}&office_id={2}", Config.RMSURL, WSCID, OfficeID);

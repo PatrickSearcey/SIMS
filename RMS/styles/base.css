@@ -211,6 +211,10 @@ div.RadGrid .rgEditRow td {
     border-color: #f0eac8 !important;
     background-color: #f0eac8 !important;
 }
+.RadGrid_Bootstrap .rgFiltered {
+    border-color:#ec562c !important;
+    background-color:#ec562c !important;
+}
 
 /*TELERIK RAD TAB STRIP*/
 .RadTabStrip_Bootstrap .rtsLevel1 .rtsLink {
