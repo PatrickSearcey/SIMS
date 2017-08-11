@@ -78,7 +78,7 @@ namespace RMS.Report
             int i = 0;
             while (i < menu.Items.Count)
             {
-                if (menu.Items[i].Text == "NoFilter" | menu.Items[i].Text == "Contains" | menu.Items[i].Text == "EqualTo" | menu.Items[i].Text == "DoesNotContain")
+                if (menu.Items[i].Text == "NoFilter" | menu.Items[i].Text == "Contains" | menu.Items[i].Text == "EqualTo" | menu.Items[i].Text == "DoesNotContain" | menu.Items[i].Text == "GreaterThan" | menu.Items[i].Text == "LessThan")
                     i = i + 1;
                 else
                     menu.Items.RemoveAt(i);
@@ -103,8 +103,10 @@ namespace RMS.Report
                 office_cd = p.office_cd,
                 site_no = p.site_no, 
                 rms_record_id = p.rms_record_id,
+                site_tp_cd = db.vSITEFILEs.FirstOrDefault(s => s.site_no == s.site_no && s.agency_cd == s.agency_cd).site_tp_cd,
                 type_cd = p.type_cd, 
                 parm_cd = p.parm_cd,
+                category_no = p.category_no,
                 station_full_nm = db.Sites.FirstOrDefault(s => s.site_id == p.site_id).station_full_nm,
                 last_aging_dt = p.last_aging_dt
             });

@@ -1526,6 +1526,8 @@
       <Column Name="agency_cd" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
       <Column Name="site_no" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
       <Column Name="station_full_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="site_tp_cd" Type="System.String" DbType="VarChar(7)" CanBeNull="true" />
+      <Column Name="category_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="parm_cd" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
       <Column Name="type_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="type_ds" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />

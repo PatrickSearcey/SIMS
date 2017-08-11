@@ -46,13 +46,15 @@
                     <MasterTableView DataKeyNames="rms_record_id" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" AllowFilteringByColumn="true">
                         <Columns>
                             <telerik:GridBoundColumn DataField="office_cd" HeaderText="Office" UniqueName="office_cd" SortExpression="office_cd" HeaderStyle-Width="60px" FilterControlWidth="40px" />
-                            <telerik:GridBoundColumn DataField="site_no" HeaderText="Site Number" UniqueName="site_no" SortExpression="site_no" HeaderStyle-Width="150px" FilterControlWidth="100px" />
+                            <telerik:GridBoundColumn DataField="site_no" HeaderText="Site Number" UniqueName="site_no" SortExpression="site_no" HeaderStyle-Width="120px" FilterControlWidth="100px" />
                             <telerik:GridBoundColumn DataField="station_full_nm" HeaderText="Station Name" UniqueName="station_full_nm" HeaderStyle-Width="500px" SortExpression="station_nm" FilterControlWidth="200px"/>
+                            <telerik:GridBoundColumn DataField="site_tp_cd" UniqueName="site_tp_cd" HeaderText="Site Type" SortExpression="site_tp_cd" AllowFiltering="false" />
                             <telerik:GridBoundColumn DataField="parm_cd" UniqueName="parm_cd" HeaderText="Parm Cd" SortExpression="parm_cd" FilterControlWidth="50px" />
-                            <telerik:GridBoundColumn DataField="type_cd" UniqueName="type_cd" HeaderText="Record Type" SortExpression="type_cd" FilterControlWidth="100px" />
-                            <telerik:GridBoundColumn DataField="last_aging_dt" UniqueName="last_aging_dt" HeaderText="Last Approved DV" DataFormatString="{0:MM/dd/yyyy}" SortExpression="last_aging_dt" FilterControlWidth="80px" />
-                            <telerik:GridBoundColumn DataField="Last_peak_entered" UniqueName="Last_peak_entered" HeaderText="Last Peak Entered" DataFormatString="{0:MM/dd/yyyy}" SortExpression="Last_peak_entered" FilterControlWidth="80px" />
-                            <telerik:GridBoundColumn DataField="Last_manu_approved" UniqueName="Last_manu_approved" HeaderText="MANU Approved Date" DataFormatString="{0:MM/dd/yyyy}" SortExpression="Last_manu_approved" FilterControlWidth="80px" />
+                            <telerik:GridBoundColumn DataField="type_cd" UniqueName="type_cd" HeaderText="Record Type" SortExpression="type_cd" FilterControlWidth="80px" />
+                            <telerik:GridBoundColumn DataField="category_no" UniqueName="category_no" HeaderText="Cat No" SortExpression="category_no" AllowFiltering="false" />
+                            <telerik:GridDateTimeColumn DataField="last_aging_dt" UniqueName="last_aging_dt" HeaderText="Last Approved DV" DataFormatString="{0:MM/dd/yyyy}" SortExpression="last_aging_dt" FilterControlWidth="100px" PickerType="DatePicker" EnableTimeIndependentFiltering="true" />
+                            <telerik:GridDateTimeColumn DataField="Last_peak_entered" UniqueName="Last_peak_entered" HeaderText="Last Peak Entered" DataFormatString="{0:MM/dd/yyyy}" SortExpression="Last_peak_entered" FilterControlWidth="100px" PickerType="DatePicker" EnableTimeIndependentFiltering="true" />
+                            <telerik:GridDateTimeColumn DataField="Last_manu_approved" UniqueName="Last_manu_approved" HeaderText="MANU Approved Date" DataFormatString="{0:MM/dd/yyyy}" SortExpression="Last_manu_approved" FilterControlWidth="100px" PickerType="DatePicker" EnableTimeIndependentFiltering="true" />
                         </Columns>
                     </MasterTableView>
                 </telerik:RadGrid>
@@ -74,9 +76,11 @@
                             <telerik:GridBoundColumn DataField="office_cd" HeaderText="Office" UniqueName="office_cd" SortExpression="office_cd" HeaderStyle-Width="60px" FilterControlWidth="40px" />
                             <telerik:GridBoundColumn DataField="site_no" HeaderText="Site Number" UniqueName="site_no" SortExpression="site_no" HeaderStyle-Width="150px" FilterControlWidth="100px" />
                             <telerik:GridBoundColumn DataField="station_full_nm" HeaderText="Station Name" UniqueName="station_full_nm" HeaderStyle-Width="500px" SortExpression="station_nm" FilterControlWidth="200px"/>
+                            <telerik:GridBoundColumn DataField="site_tp_cd" UniqueName="site_tp_cd" HeaderText="Site Type" SortExpression="site_tp_cd" FilterControlWidth="50px" />
                             <telerik:GridBoundColumn DataField="parm_cd" UniqueName="parm_cd" HeaderText="Parm Cd" SortExpression="parm_cd" FilterControlWidth="50px" />
                             <telerik:GridBoundColumn DataField="type_cd" UniqueName="type_cd" HeaderText="Record Type" SortExpression="type_cd" FilterControlWidth="100px" />
-                            <telerik:GridBoundColumn DataField="last_aging_dt" UniqueName="last_aging_dt" HeaderText="Last Approved DV" DataFormatString="{0:MM/dd/yyyy}" SortExpression="last_aging_dt" FilterControlWidth="80px" />
+                            <telerik:GridBoundColumn DataField="category_no" UniqueName="category_no" HeaderText="Category No" SortExpression="category_no" AllowFiltering="false" />
+                            <telerik:GridDateTimeColumn DataField="last_aging_dt" UniqueName="last_aging_dt" HeaderText="Last Approved DV" DataFormatString="{0:MM/dd/yyyy}" SortExpression="last_aging_dt" FilterControlWidth="100px" PickerType="DatePicker" EnableTimeIndependentFiltering="true" />
                         </Columns>
                     </MasterTableView>
                 </telerik:RadGrid>

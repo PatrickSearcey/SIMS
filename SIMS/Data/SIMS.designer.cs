@@ -26546,6 +26546,10 @@ namespace Data
 		
 		private string _station_full_nm;
 		
+		private string _site_tp_cd;
+		
+		private System.Nullable<int> _category_no;
+		
 		private string _parm_cd;
 		
 		private string _type_cd;
@@ -26686,6 +26690,38 @@ namespace Data
 				if ((this._station_full_nm != value))
 				{
 					this._station_full_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_tp_cd", DbType="VarChar(7)")]
+		public string site_tp_cd
+		{
+			get
+			{
+				return this._site_tp_cd;
+			}
+			set
+			{
+				if ((this._site_tp_cd != value))
+				{
+					this._site_tp_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_category_no", DbType="Int")]
+		public System.Nullable<int> category_no
+		{
+			get
+			{
+				return this._category_no;
+			}
+			set
+			{
+				if ((this._category_no != value))
+				{
+					this._category_no = value;
 				}
 			}
 		}
