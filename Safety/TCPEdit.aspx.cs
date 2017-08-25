@@ -1,6 +1,7 @@
 ﻿using Core;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -176,8 +177,17 @@ namespace Safety
                     dlTCPs.DataSource = TCPDataSource();
                     dlTCPs.DataBind();
                     //If there is already a plan VI in the database, do not show the link button to add it
-                    if (planV != null) lbAddPlanV.Visible = false; else lbAddPlanV.Visible = true;
+                    if (planV != null) lbAddPlanV.Visible = false;
+                    else
+                    {
+                        lbAddPlanV.PostBackUrl = String.Format("{0}TCPEdit.aspx?site_id={1}", Config.SafetyURL, currSite.site_id);
+                        lbAddPlanV.Visible = true;
+                    }
                     if (planV != null) imgBullet.Visible = false; else imgBullet.Visible = true;
+                    //If there is a plan V in the database, display the Upload Plan V Document controls
+                    if (planV != null) ltlPlanVDoc.Visible = true; else ltlPlanVDoc.Visible = false;
+                    if (planV != null) pnlFileUpload.Visible = true; else pnlFileUpload.Visible = false;
+                    if (planV != null) imgUploadDocHelp.Visible = true; else imgUploadDocHelp.Visible = false;
                     return;
                 }
             }
@@ -229,9 +239,18 @@ namespace Safety
             dlTCPs.DataSource = TCPDataSource();
             dlTCPs.DataBind();
 
-            //If there is already a plan VI in the database, do not show the link button to add it
-            if (planV != null) lbAddPlanV.Visible = false; else lbAddPlanV.Visible = true;
+            //If there is already a plan V in the database, do not show the link button to add it
+            if (planV != null) lbAddPlanV.Visible = false;
+            else
+            {
+                lbAddPlanV.PostBackUrl = String.Format("{0}TCPEdit.aspx?site_id={1}", Config.SafetyURL, currSite.site_id);
+                lbAddPlanV.Visible = true;
+            }
             if (planV != null) imgBullet.Visible = false; else imgBullet.Visible = true;
+            //If there is a plan V in the database, display the Upload Plan V Document controls
+            if (planV != null) ltlPlanVDoc.Visible = true; else ltlPlanVDoc.Visible = false;
+            if (planV != null) pnlFileUpload.Visible = true; else pnlFileUpload.Visible = false;
+            if (planV != null) imgUploadDocHelp.Visible = true; else imgUploadDocHelp.Visible = false;
         }
 
         protected void SetupPermission()
@@ -651,10 +670,29 @@ namespace Safety
                 }
                 #endregion
 
+                #region Upload the plan document if one is present
+                var planV = currSite.TCPSite.TCPs.FirstOrDefault(p => p.PlanID == 8);
+                if (planV != null)
+                {
+                    if (ruFile != null)
+                    {
+                        if (ruFile.UploadedFiles.Count >= 1)
+                        {
+                            var uf = ruFile.UploadedFiles[0];
+                            using (MemoryStream ms = new MemoryStream())
+                            {
+                                uf.InputStream.CopyTo(ms);
+                                planV.PlanFile = ms.ToArray();
+                            }
+                            db.SubmitChanges();
+                        }
+                    }
+                }
+                #endregion
+
                 ltlLastUpdated.Text = "This information was lasted updated on " + String.Format("{0:MM/dd/yyyy}", DateTime.Now) + " at " + String.Format("{0:h:mm tt}", DateTime.Now) + " by " + user.ID + "."; 
                 ltlNote.Text = "<span style='color:green;'>Changes to the site specific information saved! " + note + "</span>";
 
-               
                 dlTCPs.DataSource = TCPDataSource();
                 dlTCPs.DataBind();
             }
@@ -704,6 +742,10 @@ namespace Safety
 
             lbAddPlanV.Visible = false;
             imgBullet.Visible = false;
+
+            ltlPlanVDoc.Visible = true;
+            pnlFileUpload.Visible = true;
+            imgUploadDocHelp.Visible = true;
         }
 
         protected void RunPlanLogic(object sender, EventArgs e)
@@ -822,6 +864,15 @@ namespace Safety
         {
             int TCPID = (int)dlTCPs.DataKeys[e.Item.ItemIndex];
             var TCP = db.TCPs.FirstOrDefault(p => p.TCPID == TCPID);
+
+            //If deleting Plan V, then remove the Upload Plan V Document controls from the Site Specific Info section
+            if (TCP.PlanID == 8)
+            {
+                ltlPlanVDoc.Visible = false;
+                pnlFileUpload.Visible = false;
+                imgUploadDocHelp.Visible = false;
+            }
+
             db.TCPs.DeleteOnSubmit(TCP);
             db.SubmitChanges();
 
@@ -857,9 +908,23 @@ namespace Safety
             if (e.Item.ItemType == ListItemType.EditItem)
             {
                 RadDropDownList rddlWAA = (RadDropDownList)e.Item.FindControl("rddlWAA");
+                Panel pnlUploadPlan = (Panel)e.Item.FindControl("pnlUploadPlan");
 
                 if (!string.IsNullOrEmpty(TCP.WorkAreaActivity))
                     rddlWAA.SelectedValue = TCP.WorkAreaActivity;
+            }
+
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                Panel pnlDownloadPlan = (Panel)e.Item.FindControl("pnlDownloadPlan");
+                HyperLink hlDownloadPlan = (HyperLink)e.Item.FindControl("hlDownloadPlan");
+
+                if (TCP.PlanID == 8 && TCP.PlanFile != null)
+                {
+                    pnlDownloadPlan.Visible = true;
+                    hlDownloadPlan.NavigateUrl = String.Format("{0}Handler/DocHandler.ashx?task=getTCP&TCPID={1}", Config.SIMS2017URL, TCP.TCPID);
+                }
+                else pnlDownloadPlan.Visible = false;
             }
         }
         #endregion

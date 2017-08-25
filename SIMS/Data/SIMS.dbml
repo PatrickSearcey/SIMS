@@ -320,7 +320,7 @@
       <Column Name="WaterUse_PlaceOfUse" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="CoastalQW" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="AggregateSW" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="TCPPlanDetail_TCP" Member="TCPs" ThisKey="PlanID" OtherKey="PlanID" Type="TCP" />
+      <Association Name="TCPPlanDetail_TCP_Site_Plan" Member="TCPs" ThisKey="PlanID" OtherKey="PlanID" Type="TCP" />
     </Type>
   </Table>
   <Table Name="dbo.TCP_Lut_Calculations" Member="TCPCalculations">
@@ -330,26 +330,6 @@
       <Column Name="MinTaperLength" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="OptBufferLength" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="FlaggerDistance" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TCP_Site_Plan" Member="TCPs">
-    <Type Name="TCP">
-      <Column Name="TCPID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="PlanID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="WorkAreaActivity" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Column Name="Remarks" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="UpdatedDt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ReviewedBy" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="ReviewedDt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ApprovedBy" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="ApprovedDt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ApprovalReady" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="NoChanges" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="ReviewerComments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Association Name="TCPPlanDetail_TCP" Member="TCPPlanDetail" ThisKey="PlanID" OtherKey="PlanID" Type="TCPPlanDetail" IsForeignKey="true" />
-      <Association Name="TCPSite_TCP" Member="TCPSite" ThisKey="site_id" OtherKey="site_id" Type="TCPSite" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.TCP_Site_Master" Member="TCPSites">
@@ -372,7 +352,7 @@
       <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="UpdatedBy" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="UpdatedDt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="TCPSite_TCP" Member="TCPs" ThisKey="site_id" OtherKey="site_id" Type="TCP" />
+      <Association Name="TCPSite_TCP_Site_Plan" Member="TCPs" ThisKey="site_id" OtherKey="site_id" Type="TCP" />
       <Association Name="Site_TCPSite" Member="Site" ThisKey="site_id" OtherKey="site_id" Type="Site" IsForeignKey="true" />
     </Type>
   </Table>
@@ -1198,6 +1178,27 @@
       <Column Name="ant_elev" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
       <Column Name="remark" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TCP_Site_Plan" Member="TCPs">
+    <Type Name="TCP">
+      <Column Name="TCPID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PlanID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WorkAreaActivity" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Remarks" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="UpdatedDt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ReviewedBy" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="ReviewedDt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ApprovedBy" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="ApprovedDt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ApprovalReady" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NoChanges" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ReviewerComments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PlanFile" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="TCPPlanDetail_TCP_Site_Plan" Member="TCPPlanDetail" ThisKey="PlanID" OtherKey="PlanID" Type="TCPPlanDetail" IsForeignKey="true" />
+      <Association Name="TCPSite_TCP_Site_Plan" Member="TCPSite" ThisKey="site_id" OtherKey="site_id" Type="TCPSite" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">

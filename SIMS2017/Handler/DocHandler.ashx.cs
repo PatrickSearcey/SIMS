@@ -19,9 +19,11 @@ namespace SIMS2017.Handler
         {
             string task = context.Request.QueryString["task"];
             int docID = Convert.ToInt32(context.Request.QueryString["ID"]);
+            int TCPID = Convert.ToInt32(context.Request.QueryString["TCPID"]);
 
-            if (task == "get") GetDoc(docID, context);
+            if (task == "get") GetAuditDoc(docID, context);
             else if (task == "getzip") ZipDocs(docID, context);
+            else if (task == "getTCP") GetTCPPlan(TCPID, context);
         }
 
         /// <summary>
@@ -71,7 +73,26 @@ namespace SIMS2017.Handler
             return doc;
         }
 
-        public void GetDoc(int docID, HttpContext context)
+        public void GetTCPPlan(int TCPID, HttpContext context)
+        {
+            try
+            {
+                var tcp = db.TCPs.FirstOrDefault(p => p.TCPID == TCPID);
+
+                context.Response.ContentType = "application/pdf";
+
+                Binary file = tcp.PlanFile;
+                byte[] buffer = file.ToArray();
+
+                context.Response.AddHeader("Content-Disposition", "attachment;filename=\"TCPVPlanDoc.pdf\"");
+                context.Response.OutputStream.Write(buffer, 0, buffer.Length);
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        public void GetAuditDoc(int docID, HttpContext context)
         {
             try
             {

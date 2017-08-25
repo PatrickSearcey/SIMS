@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/RMSSingleMenu.Master" AutoEventWireup="true" CodeBehind="RecordTypes.aspx.cs" Inherits="RMS.Admin.RecordTypes" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/RMSSingleMenu.Master" AutoEventWireup="true" CodeBehind="RecordTypes.aspx.cs" Inherits="RMS.Admin.RecordTypes" ValidateRequest="false" %>
 <%@ Register Src="~/Control/RecordPageHeading.ascx" TagName="PageHeading" TagPrefix="uc" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">

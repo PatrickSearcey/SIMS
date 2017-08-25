@@ -3,6 +3,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="styles/reports.css" rel="stylesheet" />
+    <style type="text/css">
+        .imgPadding {
+            padding-left:5px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph1" runat="server">
     <telerik:RadAjaxManager ID="ram" runat="server">
@@ -23,14 +28,12 @@
                     <telerik:AjaxUpdatedControl ControlID="pnlEditSiteSpecificInfo" LoadingPanelID="ralp" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
-            <telerik:AjaxSetting AjaxControlID="lbAddPlanV">
-                <UpdatedControls>
-                    <telerik:AjaxUpdatedControl ControlID="pnlTCPs" LoadingPanelID="ralp" />
-                </UpdatedControls>
-            </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="dlTCPs">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="dlTCPs" />
+                    <telerik:AjaxUpdatedControl ControlID="ltlPlanVDoc" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlFileUpload" />
+                    <telerik:AjaxUpdatedControl ControlID="imgUploadDocHelp" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="rddlFlow2Way">
@@ -78,7 +81,7 @@
                                             <tr>
                                                 <td width="200">Remote Site?</td>
                                                 <td>
-                                                    <telerik:RadDropDownList id="rddlRemote" runat="server" AutoPostBack="true" Width="100px" OnSelectedIndexChanged="rddlRemote_SelectedIndexChanged">
+                                                    <telerik:RadDropDownList id="rddlRemote" runat="server" AutoPostBack="true" Width="100px" OnSelectedIndexChanged="rddlRemote_SelectedIndexChanged" Skin="Bootstrap">
                                                         <Items>
                                                             <telerik:DropDownListItem Text="" Value="" />
                                                             <telerik:DropDownListItem Text="Yes" Value="True" />
@@ -91,82 +94,92 @@
                                             <tr>
                                                 <td>Highway or Road Name</td>
                                                 <td>
-                                                    <telerik:RadTextBox ID="rtbRoadName" runat="server" Width="200px" />
+                                                    <telerik:RadTextBox ID="rtbRoadName" runat="server" Width="200px" Skin="Bootstrap" />
                                                     <asp:RequiredFieldValidator ID="rfvRoadName" runat="server" ControlToValidate="rtbRoadName" ErrorMessage="* required" ForeColor="Red" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Expressway?</td>
                                                 <td>
-                                                    <telerik:RadDropDownList id="rddlExpressway" runat="server" Width="100px">
+                                                    <telerik:RadDropDownList id="rddlExpressway" runat="server" Width="100px" Skin="Bootstrap">
                                                         <Items>
                                                             <telerik:DropDownListItem Text="" Value="" />
                                                             <telerik:DropDownListItem Text="Yes" Value="True" />
                                                             <telerik:DropDownListItem Text="No" Value="False" />
                                                         </Items>
                                                     </telerik:RadDropDownList>
-                                                    <asp:RequiredFieldValidator ID="rfvExpressway" runat="server" ControlToValidate="rddlExpressway" ErrorMessage="* required" ForeColor="Red" />
+                                                    <asp:RequiredFieldValidator ID="rfvExpressway" runat="server" ControlToValidate="rddlExpressway" ErrorMessage="* required" 
+                                                        ForeColor="Red" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Bridge Width</td>
                                                 <td>
-                                                    <telerik:RadNumericTextBox ID="rntbBridgeWidth" runat="server"  Width="100px" NumberFormat-DecimalDigits="0" /> feet
-                                                    <asp:RequiredFieldValidator ID="rfvBridgeWidth" runat="server" ControlToValidate="rntbBridgeWidth" ErrorMessage="* required" ForeColor="Red" />
+                                                    <telerik:RadNumericTextBox ID="rntbBridgeWidth" runat="server"  Width="100px" NumberFormat-DecimalDigits="0" Skin="Bootstrap" /> feet
+                                                    <asp:RequiredFieldValidator ID="rfvBridgeWidth" runat="server" ControlToValidate="rntbBridgeWidth" ErrorMessage="* required" 
+                                                        ForeColor="Red" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Work Zone (Bridge Length)</td>
                                                 <td>
-                                                    <telerik:RadNumericTextBox ID="rntbWorkZone" runat="server" Width="100px" NumberFormat-DecimalDigits="0" /> feet
-                                                    <asp:RequiredFieldValidator ID="rfvWorkZone" runat="server" ControlToValidate="rntbWorkZone" ErrorMessage="* required" ForeColor="Red" />
+                                                    <telerik:RadNumericTextBox ID="rntbWorkZone" runat="server" Width="100px" NumberFormat-DecimalDigits="0" Skin="Bootstrap" /> feet
+                                                    <asp:RequiredFieldValidator ID="rfvWorkZone" runat="server" ControlToValidate="rntbWorkZone" ErrorMessage="* required" 
+                                                        ForeColor="Red" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Lane Width</td>
                                                 <td>
-                                                    <telerik:RadNumericTextBox ID="rntbLaneWidth" runat="server" Width="100px" NumberFormat-DecimalDigits="0" /> feet
-                                                    <asp:RequiredFieldValidator ID="rfvLaneWidth" runat="server" ControlToValidate="rntbLaneWidth" ErrorMessage="* required" ForeColor="Red" />
+                                                    <telerik:RadNumericTextBox ID="rntbLaneWidth" runat="server" Width="100px" NumberFormat-DecimalDigits="0" Skin="Bootstrap" /> feet
+                                                    <asp:RequiredFieldValidator ID="rfvLaneWidth" runat="server" ControlToValidate="rntbLaneWidth" ErrorMessage="* required" 
+                                                        ForeColor="Red" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Shoulder Width</td>
                                                 <td>
-                                                    <telerik:RadNumericTextBox ID="rntbShoulderWidth" runat="server" Width="100px" OnTextChanged="RunPlanLogic" AutoPostBack="true" NumberFormat-DecimalDigits="0" /> feet
-                                                    <asp:RequiredFieldValidator ID="rfvShoulderWidth" runat="server" ControlToValidate="rntbShoulderWidth" ErrorMessage="* required" ForeColor="Red" />
+                                                    <telerik:RadNumericTextBox ID="rntbShoulderWidth" runat="server" Width="100px" OnTextChanged="RunPlanLogic" AutoPostBack="true" 
+                                                        NumberFormat-DecimalDigits="0" Skin="Bootstrap" /> feet
+                                                    <asp:RequiredFieldValidator ID="rfvShoulderWidth" runat="server" ControlToValidate="rntbShoulderWidth" ErrorMessage="* required" 
+                                                        ForeColor="Red" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Speed Limit</td>
                                                 <td>
-                                                    <telerik:RadNumericTextBox ID="rntbSpeedLimit" runat="server" Width="100px" NumberFormat-DecimalDigits="0" /> mph
+                                                    <telerik:RadNumericTextBox ID="rntbSpeedLimit" runat="server" Width="100px" NumberFormat-DecimalDigits="0" Skin="Bootstrap" /> mph
                                                     <asp:RequiredFieldValidator ID="rfvSpeedLimit" runat="server" ControlToValidate="rntbSpeedLimit" ErrorMessage="* required" ForeColor="Red" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Number of Lanes</td>
                                                 <td>
-                                                    <telerik:RadNumericTextBox ID="rntbLaneNumber" runat="server" Width="100px" OnTextChanged="RunPlanLogic" AutoPostBack="true" NumberFormat-DecimalDigits="0" />
-                                                    <asp:RequiredFieldValidator ID="rfvLaneNumber" runat="server" ControlToValidate="rntbLaneNumber" ErrorMessage="* required" ForeColor="Red" />
+                                                    <telerik:RadNumericTextBox ID="rntbLaneNumber" runat="server" Width="100px" OnTextChanged="RunPlanLogic" AutoPostBack="true" 
+                                                        NumberFormat-DecimalDigits="0" Skin="Bootstrap" />
+                                                    <asp:RequiredFieldValidator ID="rfvLaneNumber" runat="server" ControlToValidate="rntbLaneNumber" ErrorMessage="* required" 
+                                                        ForeColor="Red" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Traffic Flow</td>
                                                 <td>
-                                                    <telerik:RadDropDownList id="rddlFlow2Way" runat="server" Width="100px" OnSelectedIndexChanged="RunPlanLogic" AutoPostBack="true">
+                                                    <telerik:RadDropDownList id="rddlFlow2Way" runat="server" Width="100px" OnSelectedIndexChanged="RunPlanLogic" 
+                                                        AutoPostBack="true" Skin="Bootstrap">
                                                         <Items>
                                                             <telerik:DropDownListItem Text="" Value="" />
                                                             <telerik:DropDownListItem Text="two-way" Value="True" />
                                                             <telerik:DropDownListItem Text="one-way" Value="False" />
                                                         </Items>
                                                     </telerik:RadDropDownList>
-                                                    <asp:RequiredFieldValidator ID="rfvFlow2Way" runat="server" ControlToValidate="rddlFlow2Way" ErrorMessage="* required" ForeColor="Red" />
+                                                    <asp:RequiredFieldValidator ID="rfvFlow2Way" runat="server" ControlToValidate="rddlFlow2Way" ErrorMessage="* required" 
+                                                        ForeColor="Red" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Traffic Volume</td>
                                                 <td>
-                                                    <telerik:RadDropDownList id="rddlTrafficVolume" runat="server" Width="100px">
+                                                    <telerik:RadDropDownList id="rddlTrafficVolume" runat="server" Width="100px" Skin="Bootstrap">
                                                         <Items>
                                                             <telerik:DropDownListItem Text="" Value="" />
                                                             <telerik:DropDownListItem Text="low" Value="low" />
@@ -174,26 +187,28 @@
                                                             <telerik:DropDownListItem Text="high" Value="high" />
                                                         </Items>
                                                     </telerik:RadDropDownList>
-                                                    <asp:RequiredFieldValidator ID="rfvTrafficVolume" runat="server" ControlToValidate="rddlTrafficVolume" ErrorMessage="* required" ForeColor="Red" />
+                                                    <asp:RequiredFieldValidator ID="rfvTrafficVolume" runat="server" ControlToValidate="rddlTrafficVolume" ErrorMessage="* required" 
+                                                        ForeColor="Red" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Divided Highway?</td>
                                                 <td>
-                                                    <telerik:RadDropDownList id="rddlDividedHighway" runat="server" Width="100px">
+                                                    <telerik:RadDropDownList id="rddlDividedHighway" runat="server" Width="100px" Skin="Bootstrap">
                                                         <Items>
                                                             <telerik:DropDownListItem Text="" Value="" />
                                                             <telerik:DropDownListItem Text="Yes" Value="True" />
                                                             <telerik:DropDownListItem Text="No" Value="False" />
                                                         </Items>
                                                     </telerik:RadDropDownList>
-                                                    <asp:RequiredFieldValidator ID="rfvDividedHighway" runat="server" ControlToValidate="rddlDividedHighway" ErrorMessage="* required" ForeColor="Red" />
+                                                    <asp:RequiredFieldValidator ID="rfvDividedHighway" runat="server" ControlToValidate="rddlDividedHighway" ErrorMessage="* required" 
+                                                        ForeColor="Red" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Median?</td>
                                                 <td>
-                                                    <telerik:RadDropDownList id="rddlMedian" runat="server" Width="100px">
+                                                    <telerik:RadDropDownList id="rddlMedian" runat="server" Width="100px" Skin="Bootstrap">
                                                         <Items>
                                                             <telerik:DropDownListItem Text="" Value="" />
                                                             <telerik:DropDownListItem Text="Yes" Value="True" />
@@ -206,14 +221,15 @@
                                             <tr>
                                                 <td>Flaggers Required?</td>
                                                 <td>
-                                                    <telerik:RadDropDownList id="rddlFlaggers" runat="server" Width="100px">
+                                                    <telerik:RadDropDownList id="rddlFlaggers" runat="server" Width="100px" Skin="Bootstrap">
                                                         <Items>
                                                             <telerik:DropDownListItem Text="" Value="" />
                                                             <telerik:DropDownListItem Text="Yes" Value="True" />
                                                             <telerik:DropDownListItem Text="No" Value="False" />
                                                         </Items>
                                                     </telerik:RadDropDownList>
-                                                    <asp:RequiredFieldValidator ID="rfvFlaggers" runat="server" ControlToValidate="rddlFlaggers" ErrorMessage="* required" ForeColor="Red" />
+                                                    <asp:RequiredFieldValidator ID="rfvFlaggers" runat="server" ControlToValidate="rddlFlaggers" ErrorMessage="* required" 
+                                                        ForeColor="Red" />
                                                 </td>
                                             </tr>
                                             <tr>
@@ -221,15 +237,33 @@
                                                     <asp:Label ID="lblRemoteSiteNote" runat="server" Text="please explain why you chose Remote Site" Font-Bold="true" ForeColor="Red" Font-Italic="true" />
                                                 </td>
                                                 <td>
-                                                    <telerik:RadTextBox ID="rtbNotes" runat="server" TextMode="MultiLine" Width="400px" Height="100px" />
+                                                    <telerik:RadTextBox ID="rtbNotes" runat="server" TextMode="MultiLine" Width="400px" Height="100px" Skin="Bootstrap" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="top"><asp:Literal ID="ltlPlanVDoc" runat="server" Text="Upload Plan V Document" /></td>
+                                                <td>
+                                                    <asp:Panel ID="pnlFileUpload" runat="server" CssClass="floatLeft">
+                                                        <telerik:RadAsyncUpload runat="server" ID="ruFile" AllowedFileExtensions="pdf" MaxFileInputsCount="1" 
+                                                            MaxFileSize="524288000" DisableChunkUpload="true" MultipleFileSelection="Disabled" Skin="Bootstrap" PostbackTriggers="rbSubmit" 
+                                                            Localization-Select="Browse" ToolTip="Documents must be in PDF format." />
+                                                    </asp:Panel>
+                                                    <asp:Image ID="imgUploadDocHelp" runat="server" ImageURL="~/Images/tooltip.png" CssClass="imgPadding" />
+                                                    <telerik:RadToolTip runat="server" ID="rtt0" RelativeTo="Element" Width="300px" AutoCloseDelay="10000"
+                                                        Height="100px" TargetControlID="imgUploadDocHelp" IsClientID="false" Animation="Fade" Position="TopRight">
+                                                        If a plan document has already been uploaded, you will be able to see the link and download it under the TCP V below. Uploading
+                                                        a new document will replace the current one. Only one plan document can be stored with TCP V.   
+                                                    </telerik:RadToolTip>
                                                 </td>
                                             </tr>
                                         </table>
                                         <hr />
                                         <asp:Literal ID="ltlNote" runat="server" /><br />
                                         <div style="padding-top:5px;">
-                                            <telerik:RadButton ID="rbSubmit" runat="server" Text="Submit Changes" OnCommand="rbSubmit_Command" CommandArgument="SiteSpecificInfo" AutoPostBack="true" />
-                                            <telerik:RadButton ID="rbCancel" runat="server" Text="Cancel and Reset" OnCommand="rbCancel_Command" CommandArgument="Cancel" AutoPostBack="true" CausesValidation="false" />
+                                            <telerik:RadButton ID="rbSubmit" runat="server" Text="Submit Changes" OnCommand="rbSubmit_Command" CommandArgument="SiteSpecificInfo" 
+                                                AutoPostBack="true" Skin="Bootstrap" />
+                                            <telerik:RadButton ID="rbCancel" runat="server" Text="Cancel and Reset" OnCommand="rbCancel_Command" CommandArgument="Cancel" 
+                                                AutoPostBack="true" CausesValidation="false" Skin="Bootstrap" />
                                         </div>
                                     </asp:Panel>
                                 </Content>
@@ -259,7 +293,11 @@
                                                     <b>Plan Specific Activity:</b><br />
                                                     <%# Eval("WorkAreaActivity") %><br />
                                                     <b>Plan Specific Notes:</b><br />
-                                                    <%# Eval("PlanRemarks") %><br /><asp:LinkButton ID="lbPlanRemarks" runat="server" Text="edit plan info" CommandName="edit" Font-Bold="true" /> |
+                                                    <%# Eval("PlanRemarks") %><br />
+                                                    <asp:Panel ID="pnlDownloadPlan" runat="server">
+                                                        <b>Download Plan Document:</b> <asp:HyperLink ID="hlDownloadPlan" runat="server" Text="PlanVPlanDoc.pdf" Target="_blank" /><br />
+                                                    </asp:Panel>
+                                                    <asp:LinkButton ID="lbPlanRemarks" runat="server" Text="edit plan info" CommandName="edit" Font-Bold="true" /> |
                                                     <asp:LinkButton ID="lbDelete" runat="server" Text="delete plan" Font-Bold="true" CommandName="delete" />
                                                 </div>
                                             </ItemTemplate>
@@ -267,7 +305,7 @@
                                                 <a href='<%# Eval("TCPLink") %>'><%# Eval("TCPName") %></a><br />
                                                 <div class="PlanInfo">
                                                     <b>Plan Specific Activity:</b>
-                                                    <telerik:RadDropDownList ID="rddlWAA" runat="server">
+                                                    <telerik:RadDropDownList ID="rddlWAA" runat="server" Skin="Bootstrap">
                                                         <Items>
                                                             <telerik:DropDownListItem Value="" />
                                                             <telerik:DropDownListItem Value="ADCP" Text="ADCP" />
@@ -281,7 +319,9 @@
                                                         </Items>
                                                     </telerik:RadDropDownList><br />
                                                     <b>Plan Specific Notes:</b><br />
-                                                    <telerik:RadTextBox id="rtbPlanRemarks" runat="server" TextMode="MultiLine" Text='<%# Eval("PlanRemarks") %>' Font-Size="Small" Width="300px" /><br /><asp:LinkButton ID="lbUpdateRemarks" runat="server" Text="save" CommandName="update" Font-Bold="true" /> |
+                                                    <telerik:RadTextBox id="rtbPlanRemarks" runat="server" TextMode="MultiLine" Text='<%# Eval("PlanRemarks") %>' Font-Size="Small"
+                                                        Width="400px" Skin="Bootstrap" /><br />
+                                                    <asp:LinkButton ID="lbUpdateRemarks" runat="server" Text="save" CommandName="update" Font-Bold="true" /> |
                                                     <asp:LinkButton ID="lbCancel" runat="server" Text="cancel" CommandName="cancel" Font-Bold="true" />
                                                 </div>
                                             </EditItemTemplate>

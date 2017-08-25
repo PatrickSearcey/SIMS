@@ -87,9 +87,6 @@ namespace Data
     partial void InsertTCPPlanDetail(TCPPlanDetail instance);
     partial void UpdateTCPPlanDetail(TCPPlanDetail instance);
     partial void DeleteTCPPlanDetail(TCPPlanDetail instance);
-    partial void InsertTCP(TCP instance);
-    partial void UpdateTCP(TCP instance);
-    partial void DeleteTCP(TCP instance);
     partial void InsertTCPSite(TCPSite instance);
     partial void UpdateTCPSite(TCPSite instance);
     partial void DeleteTCPSite(TCPSite instance);
@@ -198,6 +195,9 @@ namespace Data
     partial void InsertRecordTemplate(RecordTemplate instance);
     partial void UpdateRecordTemplate(RecordTemplate instance);
     partial void DeleteRecordTemplate(RecordTemplate instance);
+    partial void InsertTCP(TCP instance);
+    partial void UpdateTCP(TCP instance);
+    partial void DeleteTCP(TCP instance);
     #endregion
 		
 		public SIMSDataContext() : 
@@ -395,14 +395,6 @@ namespace Data
 			get
 			{
 				return this.GetTable<TCPCalculation>();
-			}
-		}
-		
-		public System.Data.Linq.Table<TCP> TCPs
-		{
-			get
-			{
-				return this.GetTable<TCP>();
 			}
 		}
 		
@@ -843,6 +835,14 @@ namespace Data
 			get
 			{
 				return this.GetTable<DCPID>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TCP> TCPs
+		{
+			get
+			{
+				return this.GetTable<TCP>();
 			}
 		}
 		
@@ -7605,7 +7605,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPPlanDetail_TCP", Storage="_TCPs", ThisKey="PlanID", OtherKey="PlanID")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPPlanDetail_TCP_Site_Plan", Storage="_TCPs", ThisKey="PlanID", OtherKey="PlanID")]
 		public EntitySet<TCP> TCPs
 		{
 			get
@@ -7746,462 +7746,6 @@ namespace Data
 				{
 					this._FlaggerDistance = value;
 				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TCP_Site_Plan")]
-	public partial class TCP : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _TCPID;
-		
-		private System.Nullable<int> _site_id;
-		
-		private System.Nullable<int> _PlanID;
-		
-		private string _WorkAreaActivity;
-		
-		private string _Remarks;
-		
-		private string _UpdatedBy;
-		
-		private System.Nullable<System.DateTime> _UpdatedDt;
-		
-		private string _ReviewedBy;
-		
-		private System.Nullable<System.DateTime> _ReviewedDt;
-		
-		private string _ApprovedBy;
-		
-		private System.Nullable<System.DateTime> _ApprovedDt;
-		
-		private System.Nullable<bool> _ApprovalReady;
-		
-		private System.Nullable<bool> _NoChanges;
-		
-		private string _ReviewerComments;
-		
-		private EntityRef<TCPPlanDetail> _TCPPlanDetail;
-		
-		private EntityRef<TCPSite> _TCPSite;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnTCPIDChanging(int value);
-    partial void OnTCPIDChanged();
-    partial void Onsite_idChanging(System.Nullable<int> value);
-    partial void Onsite_idChanged();
-    partial void OnPlanIDChanging(System.Nullable<int> value);
-    partial void OnPlanIDChanged();
-    partial void OnWorkAreaActivityChanging(string value);
-    partial void OnWorkAreaActivityChanged();
-    partial void OnRemarksChanging(string value);
-    partial void OnRemarksChanged();
-    partial void OnUpdatedByChanging(string value);
-    partial void OnUpdatedByChanged();
-    partial void OnUpdatedDtChanging(System.Nullable<System.DateTime> value);
-    partial void OnUpdatedDtChanged();
-    partial void OnReviewedByChanging(string value);
-    partial void OnReviewedByChanged();
-    partial void OnReviewedDtChanging(System.Nullable<System.DateTime> value);
-    partial void OnReviewedDtChanged();
-    partial void OnApprovedByChanging(string value);
-    partial void OnApprovedByChanged();
-    partial void OnApprovedDtChanging(System.Nullable<System.DateTime> value);
-    partial void OnApprovedDtChanged();
-    partial void OnApprovalReadyChanging(System.Nullable<bool> value);
-    partial void OnApprovalReadyChanged();
-    partial void OnNoChangesChanging(System.Nullable<bool> value);
-    partial void OnNoChangesChanged();
-    partial void OnReviewerCommentsChanging(string value);
-    partial void OnReviewerCommentsChanged();
-    #endregion
-		
-		public TCP()
-		{
-			this._TCPPlanDetail = default(EntityRef<TCPPlanDetail>);
-			this._TCPSite = default(EntityRef<TCPSite>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TCPID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int TCPID
-		{
-			get
-			{
-				return this._TCPID;
-			}
-			set
-			{
-				if ((this._TCPID != value))
-				{
-					this.OnTCPIDChanging(value);
-					this.SendPropertyChanging();
-					this._TCPID = value;
-					this.SendPropertyChanged("TCPID");
-					this.OnTCPIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int")]
-		public System.Nullable<int> site_id
-		{
-			get
-			{
-				return this._site_id;
-			}
-			set
-			{
-				if ((this._site_id != value))
-				{
-					if (this._TCPSite.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onsite_idChanging(value);
-					this.SendPropertyChanging();
-					this._site_id = value;
-					this.SendPropertyChanged("site_id");
-					this.Onsite_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlanID", DbType="Int")]
-		public System.Nullable<int> PlanID
-		{
-			get
-			{
-				return this._PlanID;
-			}
-			set
-			{
-				if ((this._PlanID != value))
-				{
-					if (this._TCPPlanDetail.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnPlanIDChanging(value);
-					this.SendPropertyChanging();
-					this._PlanID = value;
-					this.SendPropertyChanged("PlanID");
-					this.OnPlanIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WorkAreaActivity", DbType="NVarChar(150)")]
-		public string WorkAreaActivity
-		{
-			get
-			{
-				return this._WorkAreaActivity;
-			}
-			set
-			{
-				if ((this._WorkAreaActivity != value))
-				{
-					this.OnWorkAreaActivityChanging(value);
-					this.SendPropertyChanging();
-					this._WorkAreaActivity = value;
-					this.SendPropertyChanged("WorkAreaActivity");
-					this.OnWorkAreaActivityChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remarks", DbType="NVarChar(MAX)")]
-		public string Remarks
-		{
-			get
-			{
-				return this._Remarks;
-			}
-			set
-			{
-				if ((this._Remarks != value))
-				{
-					this.OnRemarksChanging(value);
-					this.SendPropertyChanging();
-					this._Remarks = value;
-					this.SendPropertyChanged("Remarks");
-					this.OnRemarksChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="NVarChar(20)")]
-		public string UpdatedBy
-		{
-			get
-			{
-				return this._UpdatedBy;
-			}
-			set
-			{
-				if ((this._UpdatedBy != value))
-				{
-					this.OnUpdatedByChanging(value);
-					this.SendPropertyChanging();
-					this._UpdatedBy = value;
-					this.SendPropertyChanged("UpdatedBy");
-					this.OnUpdatedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDt", DbType="DateTime")]
-		public System.Nullable<System.DateTime> UpdatedDt
-		{
-			get
-			{
-				return this._UpdatedDt;
-			}
-			set
-			{
-				if ((this._UpdatedDt != value))
-				{
-					this.OnUpdatedDtChanging(value);
-					this.SendPropertyChanging();
-					this._UpdatedDt = value;
-					this.SendPropertyChanged("UpdatedDt");
-					this.OnUpdatedDtChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReviewedBy", DbType="NVarChar(20)")]
-		public string ReviewedBy
-		{
-			get
-			{
-				return this._ReviewedBy;
-			}
-			set
-			{
-				if ((this._ReviewedBy != value))
-				{
-					this.OnReviewedByChanging(value);
-					this.SendPropertyChanging();
-					this._ReviewedBy = value;
-					this.SendPropertyChanged("ReviewedBy");
-					this.OnReviewedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReviewedDt", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ReviewedDt
-		{
-			get
-			{
-				return this._ReviewedDt;
-			}
-			set
-			{
-				if ((this._ReviewedDt != value))
-				{
-					this.OnReviewedDtChanging(value);
-					this.SendPropertyChanging();
-					this._ReviewedDt = value;
-					this.SendPropertyChanged("ReviewedDt");
-					this.OnReviewedDtChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApprovedBy", DbType="NVarChar(20)")]
-		public string ApprovedBy
-		{
-			get
-			{
-				return this._ApprovedBy;
-			}
-			set
-			{
-				if ((this._ApprovedBy != value))
-				{
-					this.OnApprovedByChanging(value);
-					this.SendPropertyChanging();
-					this._ApprovedBy = value;
-					this.SendPropertyChanged("ApprovedBy");
-					this.OnApprovedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApprovedDt", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ApprovedDt
-		{
-			get
-			{
-				return this._ApprovedDt;
-			}
-			set
-			{
-				if ((this._ApprovedDt != value))
-				{
-					this.OnApprovedDtChanging(value);
-					this.SendPropertyChanging();
-					this._ApprovedDt = value;
-					this.SendPropertyChanged("ApprovedDt");
-					this.OnApprovedDtChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApprovalReady", DbType="Bit")]
-		public System.Nullable<bool> ApprovalReady
-		{
-			get
-			{
-				return this._ApprovalReady;
-			}
-			set
-			{
-				if ((this._ApprovalReady != value))
-				{
-					this.OnApprovalReadyChanging(value);
-					this.SendPropertyChanging();
-					this._ApprovalReady = value;
-					this.SendPropertyChanged("ApprovalReady");
-					this.OnApprovalReadyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoChanges", DbType="Bit")]
-		public System.Nullable<bool> NoChanges
-		{
-			get
-			{
-				return this._NoChanges;
-			}
-			set
-			{
-				if ((this._NoChanges != value))
-				{
-					this.OnNoChangesChanging(value);
-					this.SendPropertyChanging();
-					this._NoChanges = value;
-					this.SendPropertyChanged("NoChanges");
-					this.OnNoChangesChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReviewerComments", DbType="NVarChar(MAX)")]
-		public string ReviewerComments
-		{
-			get
-			{
-				return this._ReviewerComments;
-			}
-			set
-			{
-				if ((this._ReviewerComments != value))
-				{
-					this.OnReviewerCommentsChanging(value);
-					this.SendPropertyChanging();
-					this._ReviewerComments = value;
-					this.SendPropertyChanged("ReviewerComments");
-					this.OnReviewerCommentsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPPlanDetail_TCP", Storage="_TCPPlanDetail", ThisKey="PlanID", OtherKey="PlanID", IsForeignKey=true)]
-		public TCPPlanDetail TCPPlanDetail
-		{
-			get
-			{
-				return this._TCPPlanDetail.Entity;
-			}
-			set
-			{
-				TCPPlanDetail previousValue = this._TCPPlanDetail.Entity;
-				if (((previousValue != value) 
-							|| (this._TCPPlanDetail.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TCPPlanDetail.Entity = null;
-						previousValue.TCPs.Remove(this);
-					}
-					this._TCPPlanDetail.Entity = value;
-					if ((value != null))
-					{
-						value.TCPs.Add(this);
-						this._PlanID = value.PlanID;
-					}
-					else
-					{
-						this._PlanID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("TCPPlanDetail");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPSite_TCP", Storage="_TCPSite", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
-		public TCPSite TCPSite
-		{
-			get
-			{
-				return this._TCPSite.Entity;
-			}
-			set
-			{
-				TCPSite previousValue = this._TCPSite.Entity;
-				if (((previousValue != value) 
-							|| (this._TCPSite.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TCPSite.Entity = null;
-						previousValue.TCPs.Remove(this);
-					}
-					this._TCPSite.Entity = value;
-					if ((value != null))
-					{
-						value.TCPs.Add(this);
-						this._site_id = value.site_id;
-					}
-					else
-					{
-						this._site_id = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("TCPSite");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -8665,7 +8209,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPSite_TCP", Storage="_TCPs", ThisKey="site_id", OtherKey="site_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPSite_TCP_Site_Plan", Storage="_TCPs", ThisKey="site_id", OtherKey="site_id")]
 		public EntitySet<TCP> TCPs
 		{
 			get
@@ -23545,6 +23089,486 @@ namespace Data
 				{
 					this._wsc_id = value;
 				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TCP_Site_Plan")]
+	public partial class TCP : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _TCPID;
+		
+		private System.Nullable<int> _site_id;
+		
+		private System.Nullable<int> _PlanID;
+		
+		private string _WorkAreaActivity;
+		
+		private string _Remarks;
+		
+		private string _UpdatedBy;
+		
+		private System.Nullable<System.DateTime> _UpdatedDt;
+		
+		private string _ReviewedBy;
+		
+		private System.Nullable<System.DateTime> _ReviewedDt;
+		
+		private string _ApprovedBy;
+		
+		private System.Nullable<System.DateTime> _ApprovedDt;
+		
+		private System.Nullable<bool> _ApprovalReady;
+		
+		private System.Nullable<bool> _NoChanges;
+		
+		private string _ReviewerComments;
+		
+		private System.Data.Linq.Binary _PlanFile;
+		
+		private EntityRef<TCPPlanDetail> _TCPPlanDetail;
+		
+		private EntityRef<TCPSite> _TCPSite;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTCPIDChanging(int value);
+    partial void OnTCPIDChanged();
+    partial void Onsite_idChanging(System.Nullable<int> value);
+    partial void Onsite_idChanged();
+    partial void OnPlanIDChanging(System.Nullable<int> value);
+    partial void OnPlanIDChanged();
+    partial void OnWorkAreaActivityChanging(string value);
+    partial void OnWorkAreaActivityChanged();
+    partial void OnRemarksChanging(string value);
+    partial void OnRemarksChanged();
+    partial void OnUpdatedByChanging(string value);
+    partial void OnUpdatedByChanged();
+    partial void OnUpdatedDtChanging(System.Nullable<System.DateTime> value);
+    partial void OnUpdatedDtChanged();
+    partial void OnReviewedByChanging(string value);
+    partial void OnReviewedByChanged();
+    partial void OnReviewedDtChanging(System.Nullable<System.DateTime> value);
+    partial void OnReviewedDtChanged();
+    partial void OnApprovedByChanging(string value);
+    partial void OnApprovedByChanged();
+    partial void OnApprovedDtChanging(System.Nullable<System.DateTime> value);
+    partial void OnApprovedDtChanged();
+    partial void OnApprovalReadyChanging(System.Nullable<bool> value);
+    partial void OnApprovalReadyChanged();
+    partial void OnNoChangesChanging(System.Nullable<bool> value);
+    partial void OnNoChangesChanged();
+    partial void OnReviewerCommentsChanging(string value);
+    partial void OnReviewerCommentsChanged();
+    partial void OnPlanFileChanging(System.Data.Linq.Binary value);
+    partial void OnPlanFileChanged();
+    #endregion
+		
+		public TCP()
+		{
+			this._TCPPlanDetail = default(EntityRef<TCPPlanDetail>);
+			this._TCPSite = default(EntityRef<TCPSite>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TCPID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int TCPID
+		{
+			get
+			{
+				return this._TCPID;
+			}
+			set
+			{
+				if ((this._TCPID != value))
+				{
+					this.OnTCPIDChanging(value);
+					this.SendPropertyChanging();
+					this._TCPID = value;
+					this.SendPropertyChanged("TCPID");
+					this.OnTCPIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int")]
+		public System.Nullable<int> site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					if (this._TCPSite.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onsite_idChanging(value);
+					this.SendPropertyChanging();
+					this._site_id = value;
+					this.SendPropertyChanged("site_id");
+					this.Onsite_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlanID", DbType="Int")]
+		public System.Nullable<int> PlanID
+		{
+			get
+			{
+				return this._PlanID;
+			}
+			set
+			{
+				if ((this._PlanID != value))
+				{
+					if (this._TCPPlanDetail.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPlanIDChanging(value);
+					this.SendPropertyChanging();
+					this._PlanID = value;
+					this.SendPropertyChanged("PlanID");
+					this.OnPlanIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WorkAreaActivity", DbType="NVarChar(MAX)")]
+		public string WorkAreaActivity
+		{
+			get
+			{
+				return this._WorkAreaActivity;
+			}
+			set
+			{
+				if ((this._WorkAreaActivity != value))
+				{
+					this.OnWorkAreaActivityChanging(value);
+					this.SendPropertyChanging();
+					this._WorkAreaActivity = value;
+					this.SendPropertyChanged("WorkAreaActivity");
+					this.OnWorkAreaActivityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remarks", DbType="NVarChar(MAX)")]
+		public string Remarks
+		{
+			get
+			{
+				return this._Remarks;
+			}
+			set
+			{
+				if ((this._Remarks != value))
+				{
+					this.OnRemarksChanging(value);
+					this.SendPropertyChanging();
+					this._Remarks = value;
+					this.SendPropertyChanged("Remarks");
+					this.OnRemarksChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="NVarChar(20)")]
+		public string UpdatedBy
+		{
+			get
+			{
+				return this._UpdatedBy;
+			}
+			set
+			{
+				if ((this._UpdatedBy != value))
+				{
+					this.OnUpdatedByChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedBy = value;
+					this.SendPropertyChanged("UpdatedBy");
+					this.OnUpdatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdatedDt
+		{
+			get
+			{
+				return this._UpdatedDt;
+			}
+			set
+			{
+				if ((this._UpdatedDt != value))
+				{
+					this.OnUpdatedDtChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedDt = value;
+					this.SendPropertyChanged("UpdatedDt");
+					this.OnUpdatedDtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReviewedBy", DbType="NVarChar(20)")]
+		public string ReviewedBy
+		{
+			get
+			{
+				return this._ReviewedBy;
+			}
+			set
+			{
+				if ((this._ReviewedBy != value))
+				{
+					this.OnReviewedByChanging(value);
+					this.SendPropertyChanging();
+					this._ReviewedBy = value;
+					this.SendPropertyChanged("ReviewedBy");
+					this.OnReviewedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReviewedDt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ReviewedDt
+		{
+			get
+			{
+				return this._ReviewedDt;
+			}
+			set
+			{
+				if ((this._ReviewedDt != value))
+				{
+					this.OnReviewedDtChanging(value);
+					this.SendPropertyChanging();
+					this._ReviewedDt = value;
+					this.SendPropertyChanged("ReviewedDt");
+					this.OnReviewedDtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApprovedBy", DbType="NVarChar(20)")]
+		public string ApprovedBy
+		{
+			get
+			{
+				return this._ApprovedBy;
+			}
+			set
+			{
+				if ((this._ApprovedBy != value))
+				{
+					this.OnApprovedByChanging(value);
+					this.SendPropertyChanging();
+					this._ApprovedBy = value;
+					this.SendPropertyChanged("ApprovedBy");
+					this.OnApprovedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApprovedDt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ApprovedDt
+		{
+			get
+			{
+				return this._ApprovedDt;
+			}
+			set
+			{
+				if ((this._ApprovedDt != value))
+				{
+					this.OnApprovedDtChanging(value);
+					this.SendPropertyChanging();
+					this._ApprovedDt = value;
+					this.SendPropertyChanged("ApprovedDt");
+					this.OnApprovedDtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApprovalReady", DbType="Bit")]
+		public System.Nullable<bool> ApprovalReady
+		{
+			get
+			{
+				return this._ApprovalReady;
+			}
+			set
+			{
+				if ((this._ApprovalReady != value))
+				{
+					this.OnApprovalReadyChanging(value);
+					this.SendPropertyChanging();
+					this._ApprovalReady = value;
+					this.SendPropertyChanged("ApprovalReady");
+					this.OnApprovalReadyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoChanges", DbType="Bit")]
+		public System.Nullable<bool> NoChanges
+		{
+			get
+			{
+				return this._NoChanges;
+			}
+			set
+			{
+				if ((this._NoChanges != value))
+				{
+					this.OnNoChangesChanging(value);
+					this.SendPropertyChanging();
+					this._NoChanges = value;
+					this.SendPropertyChanged("NoChanges");
+					this.OnNoChangesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReviewerComments", DbType="NVarChar(MAX)")]
+		public string ReviewerComments
+		{
+			get
+			{
+				return this._ReviewerComments;
+			}
+			set
+			{
+				if ((this._ReviewerComments != value))
+				{
+					this.OnReviewerCommentsChanging(value);
+					this.SendPropertyChanging();
+					this._ReviewerComments = value;
+					this.SendPropertyChanged("ReviewerComments");
+					this.OnReviewerCommentsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlanFile", DbType="VarBinary(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary PlanFile
+		{
+			get
+			{
+				return this._PlanFile;
+			}
+			set
+			{
+				if ((this._PlanFile != value))
+				{
+					this.OnPlanFileChanging(value);
+					this.SendPropertyChanging();
+					this._PlanFile = value;
+					this.SendPropertyChanged("PlanFile");
+					this.OnPlanFileChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPPlanDetail_TCP_Site_Plan", Storage="_TCPPlanDetail", ThisKey="PlanID", OtherKey="PlanID", IsForeignKey=true)]
+		public TCPPlanDetail TCPPlanDetail
+		{
+			get
+			{
+				return this._TCPPlanDetail.Entity;
+			}
+			set
+			{
+				TCPPlanDetail previousValue = this._TCPPlanDetail.Entity;
+				if (((previousValue != value) 
+							|| (this._TCPPlanDetail.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TCPPlanDetail.Entity = null;
+						previousValue.TCPs.Remove(this);
+					}
+					this._TCPPlanDetail.Entity = value;
+					if ((value != null))
+					{
+						value.TCPs.Add(this);
+						this._PlanID = value.PlanID;
+					}
+					else
+					{
+						this._PlanID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("TCPPlanDetail");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPSite_TCP_Site_Plan", Storage="_TCPSite", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		public TCPSite TCPSite
+		{
+			get
+			{
+				return this._TCPSite.Entity;
+			}
+			set
+			{
+				TCPSite previousValue = this._TCPSite.Entity;
+				if (((previousValue != value) 
+							|| (this._TCPSite.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TCPSite.Entity = null;
+						previousValue.TCPs.Remove(this);
+					}
+					this._TCPSite.Entity = value;
+					if ((value != null))
+					{
+						value.TCPs.Add(this);
+						this._site_id = value.site_id;
+					}
+					else
+					{
+						this._site_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("TCPSite");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}

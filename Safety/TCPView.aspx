@@ -35,6 +35,9 @@
                 <b>Plan Updated: </b><asp:Literal ID="ltlUpdatedV" runat="server" /><br /> 
                 <b>Plan Reviewed: </b><asp:Literal ID="ltlReviewedV" runat="server" /><br />
                 <b>Plan Approved: </b><asp:Literal ID="ltlApprovedV" runat="server" /><br /> 
+                <asp:Panel ID="pnlDownloadPlan" runat="server">
+                    <b>Download Plan Document:</b> <asp:HyperLink ID="hlDownloadPlan" runat="server" Text="PlanVPlanDoc.pdf" Target="_blank" /><br />
+                </asp:Panel>
                 <b>Site Specific Notes:</b><br />
                 <asp:Literal ID="ltlNotesV" runat="server" />
                 <br />

@@ -123,6 +123,13 @@ namespace Safety
                     ltlUpdatedV.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.UpdatedBy.ToStringSafe();
                     ltlReviewedV.Text = string.Format("{0:MM/dd/yyyy}", currTCP.ReviewedDt) + ", by " + currTCP.ReviewedBy.ToStringSafe();
                     ltlApprovedV.Text = string.Format("{0:MM/dd/yyyy}", currTCP.ApprovedDt) + ", by " + currTCP.ApprovedBy.ToStringSafe();
+
+                    if (currTCP.PlanFile != null)
+                    {
+                        pnlDownloadPlan.Visible = true;
+                        hlDownloadPlan.NavigateUrl = String.Format("{0}Handler/DocHandler.ashx?task=getTCP&TCPID={1}", Config.SIMS2017URL, currTCP.TCPID);
+                    }
+                    else pnlDownloadPlan.Visible = false;
                 }
                 else
                 {

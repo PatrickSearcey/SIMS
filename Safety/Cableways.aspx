@@ -159,7 +159,7 @@
                                             <td>
                                                 <div style="float:left;">
                                                     <telerik:RadAsyncUpload runat="server" ID="rauUpload" TemporaryFolder="~/Control/Temporary/" AllowedFileExtensions="pdf,docx,txt" MaxFileInputsCount="1" 
-                                                        MaxFileSize="524288000" DisableChunkUpload="true" MultipleFileSelection="Disabled" Skin="Office2010Silver" PostbackTriggers="btnInsert1,btnUpdate1" 
+                                                        MaxFileSize="524288000" DisableChunkUpload="true" MultipleFileSelection="Disabled" Skin="Bootstrap" PostbackTriggers="btnInsert1,btnUpdate1" 
                                                         Localization-Select="Browse" ToolTip="Documents can be one of the following formats: .pdf, .docx, .txt" />
                                                 </div>
                                                 <asp:Image ID="imgUploadDocHelp" runat="server" ImageURL="~/Images/tooltip.png" />

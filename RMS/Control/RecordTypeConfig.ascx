@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="RecordTypeConfig.ascx.cs" Inherits="RMS.Control.RecordTypeConfig" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="RecordTypeConfig.ascx.cs" Inherits="RMS.Control.RecordTypeConfig"%>
 <style type="text/css">
     .validator {
         color:red;
@@ -66,7 +66,7 @@
         <td><b>Click the links to view the available templates:</b><br />
             <asp:DataList ID="dlTemplates" runat="server">
                 <ItemTemplate>
-                    <a href='<%# "../Handler/TemplateViewer.ashx?TemplateID=" + Eval("TemplateID") %>' target="_blank"><%# Eval("TemplateName") %></a>
+                    <a href='<%# "../Handler/TemplateViewer.ashx?type=analyze&TemplateID=" + Eval("TemplateID") %>' target="_blank"><%# Eval("TemplateName") %></a>
                 </ItemTemplate>
             </asp:DataList>
         </td>
@@ -79,7 +79,7 @@
     <tr>
         <td colspan="2">
             Analyzing:<br />
-            <telerik:RadTextBox ID="rtbAnalyzeInstructions" runat="server" Height="50px" Width="700px" Skin="Bootstrap" TextMode="MultiLine" />
+            <telerik:RadTextBox ID="rtbAnalyzeInstructions" runat="server" Height="50px" Width="700px" Skin="Bootstrap" TextMode="MultiLine"  />
         </td>
     </tr>
     <tr>
