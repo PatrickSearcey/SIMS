@@ -7605,7 +7605,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPPlanDetail_TCP_Site_Plan", Storage="_TCPs", ThisKey="PlanID", OtherKey="PlanID")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPPlanDetail_TCP", Storage="_TCPs", ThisKey="PlanID", OtherKey="PlanID")]
 		public EntitySet<TCP> TCPs
 		{
 			get
@@ -8209,7 +8209,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPSite_TCP_Site_Plan", Storage="_TCPs", ThisKey="site_id", OtherKey="site_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPSite_TCP", Storage="_TCPs", ThisKey="site_id", OtherKey="site_id")]
 		public EntitySet<TCP> TCPs
 		{
 			get
@@ -23484,7 +23484,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPPlanDetail_TCP_Site_Plan", Storage="_TCPPlanDetail", ThisKey="PlanID", OtherKey="PlanID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPPlanDetail_TCP", Storage="_TCPPlanDetail", ThisKey="PlanID", OtherKey="PlanID", IsForeignKey=true)]
 		public TCPPlanDetail TCPPlanDetail
 		{
 			get
@@ -23518,7 +23518,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPSite_TCP_Site_Plan", Storage="_TCPSite", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TCPSite_TCP", Storage="_TCPSite", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
 		public TCPSite TCPSite
 		{
 			get
@@ -26572,6 +26572,8 @@ namespace Data
 		
 		private string _site_tp_cd;
 		
+		private System.Nullable<System.DateTime> _approved_period_end_dt;
+		
 		private System.Nullable<int> _category_no;
 		
 		private string _parm_cd;
@@ -26730,6 +26732,22 @@ namespace Data
 				if ((this._site_tp_cd != value))
 				{
 					this._site_tp_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved_period_end_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> approved_period_end_dt
+		{
+			get
+			{
+				return this._approved_period_end_dt;
+			}
+			set
+			{
+				if ((this._approved_period_end_dt != value))
+				{
+					this._approved_period_end_dt = value;
 				}
 			}
 		}

@@ -320,7 +320,7 @@
       <Column Name="WaterUse_PlaceOfUse" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="CoastalQW" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="AggregateSW" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="TCPPlanDetail_TCP_Site_Plan" Member="TCPs" ThisKey="PlanID" OtherKey="PlanID" Type="TCP" />
+      <Association Name="TCPPlanDetail_TCP" Member="TCPs" ThisKey="PlanID" OtherKey="PlanID" Type="TCP" />
     </Type>
   </Table>
   <Table Name="dbo.TCP_Lut_Calculations" Member="TCPCalculations">
@@ -352,7 +352,7 @@
       <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="UpdatedBy" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="UpdatedDt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="TCPSite_TCP_Site_Plan" Member="TCPs" ThisKey="site_id" OtherKey="site_id" Type="TCP" />
+      <Association Name="TCPSite_TCP" Member="TCPs" ThisKey="site_id" OtherKey="site_id" Type="TCP" />
       <Association Name="Site_TCPSite" Member="Site" ThisKey="site_id" OtherKey="site_id" Type="Site" IsForeignKey="true" />
     </Type>
   </Table>
@@ -1197,8 +1197,8 @@
       <Column Name="NoChanges" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="ReviewerComments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="PlanFile" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
-      <Association Name="TCPPlanDetail_TCP_Site_Plan" Member="TCPPlanDetail" ThisKey="PlanID" OtherKey="PlanID" Type="TCPPlanDetail" IsForeignKey="true" />
-      <Association Name="TCPSite_TCP_Site_Plan" Member="TCPSite" ThisKey="site_id" OtherKey="site_id" Type="TCPSite" IsForeignKey="true" />
+      <Association Name="TCPPlanDetail_TCP" Member="TCPPlanDetail" ThisKey="PlanID" OtherKey="PlanID" Type="TCPPlanDetail" IsForeignKey="true" />
+      <Association Name="TCPSite_TCP" Member="TCPSite" ThisKey="site_id" OtherKey="site_id" Type="TCPSite" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">
@@ -1528,6 +1528,7 @@
       <Column Name="site_no" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
       <Column Name="station_full_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
       <Column Name="site_tp_cd" Type="System.String" DbType="VarChar(7)" CanBeNull="true" />
+      <Column Name="approved_period_end_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="category_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="parm_cd" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
       <Column Name="type_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
