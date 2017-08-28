@@ -92,7 +92,7 @@
                             <ClientSettings EnableAlternatingItems="false" />
                             <MasterTableView CommandItemDisplay="None" AutoGenerateColumns="false" AllowFilteringByColumn="true" AllowSorting="true">
                                 <Columns>
-                                    <telerik:GridTemplateColumn AllowSorting="true" AllowFiltering="true" SortExpression="site_no" HeaderText="Site Number" FilterControlWidth="100px">
+                                    <telerik:GridTemplateColumn DataField="site_no" AllowSorting="true" AllowFiltering="true" SortExpression="site_no" HeaderText="Site Number" FilterControlWidth="100px">
                                         <ItemTemplate>
                                             <b><a href='<%# String.Format("{0}StationInfo.aspx?site_id={1}", Eval("SIMS2017URL"), Eval("site_id")) %>'><%# Eval("site_no") %></a></b>
                                         </ItemTemplate>
