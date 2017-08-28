@@ -76,6 +76,24 @@ namespace Safety {
         protected global::Telerik.Web.UI.RadDropDownList rddlRemote;
         
         /// <summary>
+        /// imgRemoteTT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgRemoteTT;
+        
+        /// <summary>
+        /// rttRemote control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadToolTip rttRemote;
+        
+        /// <summary>
         /// rfvRemote control.
         /// </summary>
         /// <remarks>
@@ -112,6 +130,24 @@ namespace Safety {
         protected global::Telerik.Web.UI.RadDropDownList rddlExpressway;
         
         /// <summary>
+        /// imgExpresswayTT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgExpresswayTT;
+        
+        /// <summary>
+        /// rttExpressway control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadToolTip rttExpressway;
+        
+        /// <summary>
         /// rfvExpressway control.
         /// </summary>
         /// <remarks>
@@ -146,6 +182,24 @@ namespace Safety {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadNumericTextBox rntbWorkZone;
+        
+        /// <summary>
+        /// imgWorkZoneTT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgWorkZoneTT;
+        
+        /// <summary>
+        /// rttWorkZone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadToolTip rttWorkZone;
         
         /// <summary>
         /// rfvWorkZone control.
@@ -274,6 +328,24 @@ namespace Safety {
         protected global::Telerik.Web.UI.RadDropDownList rddlDividedHighway;
         
         /// <summary>
+        /// imgDividedHighwayTT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgDividedHighwayTT;
+        
+        /// <summary>
+        /// rttDividedHighway control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadToolTip rttDividedHighway;
+        
+        /// <summary>
         /// rfvDividedHighway control.
         /// </summary>
         /// <remarks>
@@ -290,6 +362,24 @@ namespace Safety {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadDropDownList rddlMedian;
+        
+        /// <summary>
+        /// imgMedianTT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgMedianTT;
+        
+        /// <summary>
+        /// rttMedian control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadToolTip rttMedian;
         
         /// <summary>
         /// rfvMedian control.

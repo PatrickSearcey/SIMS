@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SafetySingleMenu.Master" AutoEventWireup="true" CodeBehind="TCPEdit.aspx.cs" Inherits="Safety.TCPEdit" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SafetySingleMenu.Master" AutoEventWireup="true" CodeBehind="TCPEdit.aspx.cs" Inherits="Safety.TCPEdit" ValidateRequest="false" %>
 <%@ Register Src="~/Control/SitePageHeading.ascx" TagName="PageHeading" TagPrefix="uc" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -81,13 +81,21 @@
                                             <tr>
                                                 <td width="200">Remote Site?</td>
                                                 <td>
-                                                    <telerik:RadDropDownList id="rddlRemote" runat="server" AutoPostBack="true" Width="100px" OnSelectedIndexChanged="rddlRemote_SelectedIndexChanged" Skin="Bootstrap">
-                                                        <Items>
-                                                            <telerik:DropDownListItem Text="" Value="" />
-                                                            <telerik:DropDownListItem Text="Yes" Value="True" />
-                                                            <telerik:DropDownListItem Text="No" Value="False" />
-                                                        </Items>
-                                                    </telerik:RadDropDownList>
+                                                    <div class="floatLeft">
+                                                        <telerik:RadDropDownList id="rddlRemote" runat="server" AutoPostBack="true" Width="100px" OnSelectedIndexChanged="rddlRemote_SelectedIndexChanged" Skin="Bootstrap">
+                                                            <Items>
+                                                                <telerik:DropDownListItem Text="" Value="" />
+                                                                <telerik:DropDownListItem Text="Yes" Value="True" />
+                                                                <telerik:DropDownListItem Text="No" Value="False" />
+                                                            </Items>
+                                                        </telerik:RadDropDownList>
+                                                    </div>
+                                                    <asp:Image ID="imgRemoteTT" runat="server" ImageURL="~/Images/tooltip.png" CssClass="imgPadding" />
+                                                    <telerik:RadToolTip runat="server" ID="rttRemote" RelativeTo="Element" Width="300px" AutoCloseDelay="10000"
+                                                        Height="90px" TargetControlID="imgRemoteTT" IsClientID="false" Animation="Fade" Position="TopRight">
+                                                        Definition of remote: Greater than 30 ft from the highway; a sidewalk protected by a guard rail on the traffic side; a site that
+                                                        is off-road 
+                                                    </telerik:RadToolTip>
                                                     <asp:RequiredFieldValidator ID="rfvRemote" runat="server" ControlToValidate="rddlRemote" ErrorMessage="* required" ForeColor="Red" />
                                                 </td>
                                             </tr>
@@ -101,13 +109,20 @@
                                             <tr>
                                                 <td>Expressway?</td>
                                                 <td>
-                                                    <telerik:RadDropDownList id="rddlExpressway" runat="server" Width="100px" Skin="Bootstrap">
-                                                        <Items>
-                                                            <telerik:DropDownListItem Text="" Value="" />
-                                                            <telerik:DropDownListItem Text="Yes" Value="True" />
-                                                            <telerik:DropDownListItem Text="No" Value="False" />
-                                                        </Items>
-                                                    </telerik:RadDropDownList>
+                                                    <div class="floatLeft">
+                                                        <telerik:RadDropDownList id="rddlExpressway" runat="server" Width="100px" Skin="Bootstrap">
+                                                            <Items>
+                                                                <telerik:DropDownListItem Text="" Value="" />
+                                                                <telerik:DropDownListItem Text="Yes" Value="True" />
+                                                                <telerik:DropDownListItem Text="No" Value="False" />
+                                                            </Items>
+                                                        </telerik:RadDropDownList>
+                                                    </div>
+                                                    <asp:Image ID="imgExpresswayTT" runat="server" ImageURL="~/Images/tooltip.png" CssClass="imgPadding" />
+                                                    <telerik:RadToolTip runat="server" ID="rttExpressway" RelativeTo="Element" Width="300px" AutoCloseDelay="10000"
+                                                        Height="60px" TargetControlID="imgExpresswayTT" IsClientID="false" Animation="Fade" Position="TopRight">
+                                                        "A multi-lane highway designed for high-speed travel" (dictionary definition)
+                                                    </telerik:RadToolTip>
                                                     <asp:RequiredFieldValidator ID="rfvExpressway" runat="server" ControlToValidate="rddlExpressway" ErrorMessage="* required" 
                                                         ForeColor="Red" />
                                                 </td>
@@ -123,7 +138,14 @@
                                             <tr>
                                                 <td>Work Zone (Bridge Length)</td>
                                                 <td>
-                                                    <telerik:RadNumericTextBox ID="rntbWorkZone" runat="server" Width="100px" NumberFormat-DecimalDigits="0" Skin="Bootstrap" /> feet
+                                                    <div class="floatLeft">
+                                                        <telerik:RadNumericTextBox ID="rntbWorkZone" runat="server" Width="100px" NumberFormat-DecimalDigits="0" Skin="Bootstrap" /> feet
+                                                    </div>
+                                                    <asp:Image ID="imgWorkZoneTT" runat="server" ImageURL="~/Images/tooltip.png" CssClass="imgPadding" />
+                                                    <telerik:RadToolTip runat="server" ID="rttWorkZone" RelativeTo="Element" Width="300px" AutoCloseDelay="10000"
+                                                        Height="60px" TargetControlID="imgWorkZoneTT" IsClientID="false" Animation="Fade" Position="TopRight">
+                                                        The distance between bridge abutments, "a structure that supports the ends of a bridge" (dictionary definition)
+                                                    </telerik:RadToolTip>
                                                     <asp:RequiredFieldValidator ID="rfvWorkZone" runat="server" ControlToValidate="rntbWorkZone" ErrorMessage="* required" 
                                                         ForeColor="Red" />
                                                 </td>
@@ -194,13 +216,20 @@
                                             <tr>
                                                 <td>Divided Highway?</td>
                                                 <td>
-                                                    <telerik:RadDropDownList id="rddlDividedHighway" runat="server" Width="100px" Skin="Bootstrap">
-                                                        <Items>
-                                                            <telerik:DropDownListItem Text="" Value="" />
-                                                            <telerik:DropDownListItem Text="Yes" Value="True" />
-                                                            <telerik:DropDownListItem Text="No" Value="False" />
-                                                        </Items>
-                                                    </telerik:RadDropDownList>
+                                                    <div class="floatLeft">
+                                                        <telerik:RadDropDownList id="rddlDividedHighway" runat="server" Width="100px" Skin="Bootstrap">
+                                                            <Items>
+                                                                <telerik:DropDownListItem Text="" Value="" />
+                                                                <telerik:DropDownListItem Text="Yes" Value="True" />
+                                                                <telerik:DropDownListItem Text="No" Value="False" />
+                                                            </Items>
+                                                        </telerik:RadDropDownList>
+                                                    </div>
+                                                    <asp:Image ID="imgDividedHighwayTT" runat="server" ImageURL="~/Images/tooltip.png" CssClass="imgPadding" />
+                                                    <telerik:RadToolTip runat="server" ID="rttDividedHighway" RelativeTo="Element" Width="300px" AutoCloseDelay="10000"
+                                                        Height="60px" TargetControlID="imgDividedHighwayTT" IsClientID="false" Animation="Fade" Position="TopRight">
+                                                        "Having the lanes for opposing traffic separated as a highway" (dictionary definition)
+                                                    </telerik:RadToolTip>
                                                     <asp:RequiredFieldValidator ID="rfvDividedHighway" runat="server" ControlToValidate="rddlDividedHighway" ErrorMessage="* required" 
                                                         ForeColor="Red" />
                                                 </td>
@@ -208,13 +237,20 @@
                                             <tr>
                                                 <td>Median?</td>
                                                 <td>
-                                                    <telerik:RadDropDownList id="rddlMedian" runat="server" Width="100px" Skin="Bootstrap">
-                                                        <Items>
-                                                            <telerik:DropDownListItem Text="" Value="" />
-                                                            <telerik:DropDownListItem Text="Yes" Value="True" />
-                                                            <telerik:DropDownListItem Text="No" Value="False" />
-                                                        </Items>
-                                                    </telerik:RadDropDownList>
+                                                    <div class="floatLeft">
+                                                        <telerik:RadDropDownList id="rddlMedian" runat="server" Width="100px" Skin="Bootstrap">
+                                                            <Items>
+                                                                <telerik:DropDownListItem Text="" Value="" />
+                                                                <telerik:DropDownListItem Text="Yes" Value="True" />
+                                                                <telerik:DropDownListItem Text="No" Value="False" />
+                                                            </Items>
+                                                        </telerik:RadDropDownList>
+                                                    </div>
+                                                    <asp:Image ID="imgMedianTT" runat="server" ImageURL="~/Images/tooltip.png" CssClass="imgPadding" />
+                                                    <telerik:RadToolTip runat="server" ID="rttMedian" RelativeTo="Element" Width="300px" AutoCloseDelay="10000"
+                                                        Height="60px" TargetControlID="imgMedianTT" IsClientID="false" Animation="Fade" Position="TopRight">
+                                                        "The dividing area, either landscaped or paved between opposing highway lanes" (dictionary definition)
+                                                    </telerik:RadToolTip>
                                                     <asp:RequiredFieldValidator ID="rfvMedian" runat="server" ControlToValidate="rddlMedian" ErrorMessage="* required" ForeColor="Red" />
                                                 </td>
                                             </tr>
