@@ -1,0 +1,113 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="RMS.Master.cs" Inherits="RMS.MasterPage" %>
+<%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>SIMS - Records Management System</title>
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1, maximum-scale=1.0, user-scalable=no" />
+    <link href="styles/base.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <telerik:RadScriptManager runat="server"></telerik:RadScriptManager>
+        <telerik:RadFormDecorator runat="server" ID="rfd" Skin="Bootstrap" DecoratedControls="All" />
+        <div id="wrapper">
+        <telerik:RadPageLayout runat="server" ID="MasterLayout" GridType="Fluid">
+            <Rows>
+                <%--Header--%>
+                <telerik:LayoutRow CssClass="header">
+                    <Columns>
+                        <%--Logo--%>
+                        <telerik:LayoutColumn Span="2" SpanMd="3" SpanSm="12" SpanXs="12">
+                            <a href="#" class="logo">
+                                <img src="images/USGSHeaderLogo.png" alt="site logo"/>
+                            </a>
+                        </telerik:LayoutColumn>
+
+                        <%--Main Nav--%>
+                        <telerik:LayoutColumn Span="10" SpanMd="9" SpanSm="12" SpanXs="12">
+                            <telerik:RadMenu ID="rmTop" runat="server" RenderMode="Auto" Skin="Bootstrap">
+                            </telerik:RadMenu>
+                        </telerik:LayoutColumn>
+                    </Columns>
+                </telerik:LayoutRow>
+
+                <telerik:LayoutRow>
+                    <Columns>
+                        <telerik:LayoutColumn Span="12" SpanMd="12" SpanSm="12" SpanXs="12" CssClass="subheader">
+                            internal only | logged in as: <asp:Literal ID="ltlUserID" runat="server" />
+                        </telerik:LayoutColumn>
+                    </Columns>
+                </telerik:LayoutRow>
+
+                <%--Main--%>
+                <telerik:LayoutRow>
+                    <Columns>
+                        <%--Sidebar--%>
+                        <telerik:LayoutColumn Span="2" HiddenMd="true" HiddenSm="true" HiddenXs="true">
+                            <telerik:RadMenu ID="rmSide" CssClass="sidebar" Flow="Vertical" runat="server" Skin="Bootstrap">
+                                <Items>
+                                    <telerik:RadMenuItem Text="Records Tasks">
+                                        <ContentTemplate>
+                                            <div style="padding:10px;">
+                                                <asp:HyperLink ID="hlAnalyzeRecordsList" runat="server" Font-Bold="true" Text="Records Ready for Analyzing" /><br />
+                                                <asp:HyperLink ID="hlApproveRecordsList" runat="server" Font-Bold="true" Text="Records Ready for Approving" />
+                                            </div>
+                                        </ContentTemplate>
+                                    </telerik:RadMenuItem>
+                                    <telerik:RadMenuItem IsSeparator="true" />
+                                    <telerik:RadMenuItem Text="Records Tools">
+                                        <ContentTemplate>
+                                            <div style="padding:10px;">
+                                                <asp:HyperLink ID="hlCRPStatus" runat="server" Font-Bold="true" Text="Records Status Report" /><br />
+                                                <asp:HyperLink ID="hlCRPStatusChart" runat="server" Font-Bold="true" Text="Records Status Chart" />
+                                            </div>
+                                        </ContentTemplate>
+                                    </telerik:RadMenuItem>
+                                    <telerik:RadMenuItem IsSeparator="true" />
+                                    <telerik:RadMenuItem Text="Reports">
+                                        <ContentTemplate>
+                                            <div style="padding:10px;">
+                                                <asp:HyperLink ID="hlRecordProgressWSC" runat="server" Font-Bold="true" Text="Record Progress For The WSC" /><br />
+                                                <asp:HyperLink ID="hlRecordProgress" runat="server" Font-Bold="true" Text="Record Progress By Office" /><br /><br />
+                                                <asp:HyperLink ID="hlPubStatus" runat="server" Font-Bold="true" Text="Current Publication Status" /><br /><br />
+                                                <asp:HyperLink ID="hlAudit" runat="server" Font-Bold="true" Text="Audit Report" />
+                                            </div>
+                                        </ContentTemplate>
+                                    </telerik:RadMenuItem>
+                                    <telerik:RadMenuItem IsSeparator="true" />
+                                    <telerik:RadMenuItem Text="Period Details" NavigateUrl="Report/PeriodDetails.aspx" />
+                                </Items>
+                            </telerik:RadMenu>
+                        </telerik:LayoutColumn>
+
+                        <%--Content--%>
+                        <telerik:CompositeLayoutColumn Span="10" SpanMd="12" SpanSm="12" SpanXs="12">
+                            <Content>
+                                <asp:ContentPlaceHolder ID="cph1" runat="server">
+                                </asp:ContentPlaceHolder>
+                                <asp:ContentPlaceHolder ID="cph2" runat="server">
+                                </asp:ContentPlaceHolder>
+                            </Content>
+                        </telerik:CompositeLayoutColumn>
+                    </Columns>
+                </telerik:LayoutRow>
+
+                <%--Footer--%>
+                <telerik:LayoutRow>
+                    <Columns>
+                        <telerik:LayoutColumn CssClass="footer">
+                            <hr />
+                            U.S. Geological Survey, <a href="mailto:GS-W_Help_SIMS@usgs.gov">GS-W Help SIMS@usgs.gov</a>, Page Last Updated: 08/30/2017
+                        </telerik:LayoutColumn>
+                    </Columns>
+                </telerik:LayoutRow>
+            </Rows>
+        </telerik:RadPageLayout>
+       </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,228 @@
+﻿/*normalize*/
+html, 
+body, 
+form {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font: normal 16px "Segoe UI", Arial, sans-serif;
+    color: #555555;
+}
+
+@media only screen and (min-width: 481px) and (max-width: 720px) {
+    body {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    body {
+        font-size: 20px;
+    }
+}
+a {
+  color: #ec562c !important;
+  background: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+    text-decoration:underline !important;
+}
+
+img {
+  border: 0;
+}
+
+button,
+input {
+  cursor: pointer; 
+}
+
+hr {
+    border-width: 1px 0 0 0;
+    border-color: #767676;
+    border-style: solid;
+}
+
+/*typography*/
+h1, h2, h3, h4, h5, h6 {
+    line-height: normal;
+}
+
+h1, h2, h3 {
+    font-weight: normal;
+    margin: .5em 0;
+}
+
+h4, h5, h6 {
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 2.25em;
+}
+
+h2 {
+    font-size: 1.875em;
+}
+
+h3 {
+    font-size: 1.5em;
+}
+
+h4 {
+    font-size: 1.125em
+}
+
+h5 {
+    font-size: 1em;
+}
+
+h6 {
+    font-size: .875em;
+}
+
+/*template*/
+#wrapper .t-container-fluid {
+    max-width: 100%;
+}
+
+#wrapper .header {
+    background-color: #b84626;
+}
+
+#wrapper .subheader {
+    text-align:right;
+    font-size: .8em;
+    font-style:italic;
+    margin-top:-40px;
+    padding-bottom:20px;
+}
+
+#wrapper .RadButton {
+    font-size: 1em;
+}
+
+#wrapper .RadMenu,
+div.RadMenuPopup,
+#wrapper .RadMenu_Default, #wrapper .RadMenu_Default a.rmLink  {
+    font-size: 1em;
+}
+
+.selector {
+    margin-top:10px;
+    padding:10px;
+    height:130px;
+    background: #f0eac8; /* Old browsers */
+    -webkit-box-shadow: 0 0 5px 0 #f0eac8;
+    box-shadow: 0 0 5px 0 #f0eac8;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.selector h2 {
+    margin-top:0;
+}
+
+.filters {
+    width: 60%;
+    float:left;
+}
+
+.headers {
+    width: 60%;
+    float:left;
+}
+
+.officeinfo {
+    float:right;
+    text-align:right;
+}
+
+.MyImageButton
+{
+    cursor: hand;
+}
+
+/*RadDropDownList*/
+.rddlItem {
+    font-size:10pt !important;
+}
+.rddlFakeInput {
+    font-size: 10pt !important;
+}
+.rddlItemSelected {
+    background-color: #b84626 !important;
+}
+.rddlItemHovered {
+    background-color: #f0eac8 !important;
+}
+
+/*RadListBox*/
+.rlbItem {
+    font-size: 10pt !important;
+}
+.rlbSelected {
+    background-color: #b84626 !important;
+}
+.rlbHovered {
+    background-color: #f0eac8 !important;
+}
+
+/*RadDateSelector*/
+.RadCalendarMonthView_Bootstrap #rcMView_OK {
+    border-color: #f0eac8 !important;
+    background-color: #f0eac8 !important;
+}
+
+.RadCalendarMonthView_Bootstrap .rcSelected a {
+    background: #f0eac8 !important;
+}
+
+.RadCalendar_Bootstrap .rcMain .rcRow .rcSelected a {
+    border-color: #f0eac8 !important;
+    background: #f0eac8 !important;
+}
+
+/*TELERIK RAD GRID*/
+div.RadGrid .rgRow td,
+div.RadGrid .rgAltRow td,
+div.RadGrid .rgEditRow td {
+    padding: 0 5px 0 5px !important;
+    font-size: 10pt !important;
+}
+.RadGrid {
+    line-height: 1.2em !important;
+}
+.RadGrid_Bootstrap .rgRow,
+.RadGrid_Bootstrap .rgAltRow,
+.RadGrid_Bootstrap .rgEditRow {
+    height: 0.8em !important;
+}
+.RadGrid_Bootstrap .rgEditForm [type="image"] {
+    padding:0 !important;
+    border: none !important;
+    background: none !important;
+}
+.RadGrid_Bootstrap .rgPagerCell .rgNumPart a.rgCurrentPage {
+    border-color: #f0eac8 !important;
+    background-color: #f0eac8 !important;
+}
+.RadGrid_Bootstrap .rgFiltered {
+    border-color:#ec562c !important;
+    background-color:#ec562c !important;
+}
+
+/*TELERIK RAD TAB STRIP*/
+.RadTabStrip_Bootstrap .rtsLevel1 .rtsLink {
+    color:#ec562c !important;
+}
+
+/*TELERIK RAD SLIDER*/
+.RadSlider_Bootstrap .rslSelectedregion {
+    border-color: #b84626 !important;
+    background-color: #b84626 !important;
+}

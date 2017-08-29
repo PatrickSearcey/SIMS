@@ -1,0 +1,852 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 46, 51.75" name="SIMS">
+  <DataContextMoniker Name="/SIMSDataContext" />
+  <nestedChildShapes>
+    <classShape Id="fe78cdc6-6138-440a-b02e-69e1083415a3" absoluteBounds="15.125, 3.375, 2, 3.6939111328124996">
+      <DataClassMoniker Name="/SIMSDataContext/Office" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f62f6619-4f88-4e5c-9f3a-a026c43a239e" absoluteBounds="15.14, 3.835, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fc968d82-c264-49b6-8676-480db9bb550f" absoluteBounds="19.625, 5.25, 2, 2.5401025390625">
+      <DataClassMoniker Name="/SIMSDataContext/WSC" />
+      <nestedChildShapes>
+        <elementListCompartment Id="58bcc8d2-c0f5-4287-b7ea-b7c5aba716de" absoluteBounds="19.64, 5.71, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0003c775-63fe-49b5-91a7-d36edab3dca7" absoluteBounds="12.375, 7.125, 2, 2.5401025390625">
+      <DataClassMoniker Name="/SIMSDataContext/Employee" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9485fcd7-c431-4360-86ae-2e9e43b9bc81" absoluteBounds="12.39, 7.585, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(19.625 : 6.15945556640625); (17.125 : 6.15945556640625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/WSC/WSC_Office" />
+      <nodes>
+        <classShapeMoniker Id="fc968d82-c264-49b6-8676-480db9bb550f" />
+        <classShapeMoniker Id="fe78cdc6-6138-440a-b02e-69e1083415a3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(15.9999975 : 7.0689111328125); (15.9999975 : 8.39505126953125); (14.375 : 8.39505126953125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/Office/Office_Employee" />
+      <nodes>
+        <classShapeMoniker Id="fe78cdc6-6138-440a-b02e-69e1083415a3" />
+        <classShapeMoniker Id="0003c775-63fe-49b5-91a7-d36edab3dca7" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="8cf585e9-9fe9-480a-81b6-08fbf2764b9b" absoluteBounds="24.5, 6.375, 2, 1.3862939453125">
+      <DataClassMoniker Name="/SIMSDataContext/Exception" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6a477574-7781-440f-a965-22036af83ce8" absoluteBounds="24.515, 6.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="974941c7-e272-4a2c-a32e-687774d515cf" absoluteBounds="15.625, 0.625, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/SIMSDataContext/ElemReportApprove" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2af7a5ab-9021-448c-a0e4-ae02575fb480" absoluteBounds="15.64, 1.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f4513f87-5e4f-4221-94ac-2593ca919b67" absoluteBounds="12.75, 0.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/SIMSDataContext/ElemReportSum" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0a56cb17-d781-4d24-8063-b1cb487ba367" absoluteBounds="12.765, 1.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ddf20b2b-45d2-4f93-b6e7-0c3d21deac3f" absoluteBounds="22.375, 5, 2, 12.155174153645833">
+      <DataClassMoniker Name="/SIMSDataContext/vSITEFILE" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e8e2ab56-a6f1-4d9c-9ad9-844881c4424e" absoluteBounds="22.39, 5.46, 1.9700000000000002, 11.595174153645832" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(21.625 : 6.52005126953125); (21.875 : 6.52005126953125); (21.875 : 4.5); (25.25 : 4.5); (25.25 : 5.1651025390625); (25.5 : 5.1651025390625); (25.5 : 6.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/WSC/WSC_Exception" />
+      <nodes>
+        <classShapeMoniker Id="fc968d82-c264-49b6-8676-480db9bb550f" />
+        <classShapeMoniker Id="8cf585e9-9fe9-480a-81b6-08fbf2764b9b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(14.375 : 9.06132890429688); (16.8541666666667 : 9.06132890429688 : JumpStart); (17.0208333333333 : 9.06132890429688 : JumpEnd); (21.9166666666667 : 9.06132890429688 : JumpStart); (22.0833333333333 : 9.06132890429688 : JumpEnd); (22.125 : 9.06132890429688); (22.125 : 4.75); (25.1666666666667 : 4.75 : JumpStart); (25.3333333333333 : 4.75 : JumpEnd); (25.375 : 4.75); (25.375 : 5.4151025390625); (25.5 : 5.4151025390625); (25.5 : 6.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/Employee/Employee_Exception" />
+      <nodes>
+        <classShapeMoniker Id="0003c775-63fe-49b5-91a7-d36edab3dca7" />
+        <classShapeMoniker Id="8cf585e9-9fe9-480a-81b6-08fbf2764b9b" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="85e66be6-3ca6-47c4-8c05-0f5bdc3537f0" absoluteBounds="28.625, 24.125, 2, 1.3862939453125023">
+      <DataClassMoniker Name="/SIMSDataContext/ElementJHA" />
+      <nestedChildShapes>
+        <elementListCompartment Id="18821c69-a6e0-4793-8974-4cb4e60b8df8" absoluteBounds="28.64, 24.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a1da7f35-069e-47e2-a3d7-795e02784eb0" absoluteBounds="29.125, 21.125, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/SIMSDataContext/SHASpecificCondition" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f11afbd5-0b37-4409-bf98-3ac3ed402adc" absoluteBounds="29.14, 21.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="38ea07bc-98c6-4e29-9665-acac43452dca" absoluteBounds="25.875, 24.875, 2, 3.886212565104163">
+      <DataClassMoniker Name="/SIMSDataContext/JHA" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cc19e725-e942-4950-915d-53a4ad659681" absoluteBounds="25.89, 25.335, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7debe987-3d91-4af1-a8e6-9662ed7caef6" absoluteBounds="26.375, 18.25, 2, 1.3862939453125023">
+      <DataClassMoniker Name="/SIMSDataContext/ReferenceLevel" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a73ca375-aac9-47a6-8419-5bd5d860f5e6" absoluteBounds="26.39, 18.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8d05b6c1-2495-4bc1-b7ce-52a9776cf2d8" absoluteBounds="23.375, 18, 2, 1.3862939453125023">
+      <DataClassMoniker Name="/SIMSDataContext/SHAContact" />
+      <nestedChildShapes>
+        <elementListCompartment Id="302c3257-d01a-401e-a653-f6431e99362a" absoluteBounds="23.39, 18.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="018d892b-93d1-4390-bfea-e91897b01738" absoluteBounds="23.375, 20.125, 2, 1.3862939453125023">
+      <DataClassMoniker Name="/SIMSDataContext/SHAEquip" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2f70df3f-eb8d-43f1-bc0e-30e6d721a6ae" absoluteBounds="23.39, 20.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5f3ce1cc-1c67-4060-ad56-a6a4192c4070" absoluteBounds="23.375, 22.25, 2, 1.3862939453125023">
+      <DataClassMoniker Name="/SIMSDataContext/SHAHospital" />
+      <nestedChildShapes>
+        <elementListCompartment Id="27a71537-a634-4b05-a044-b026583e90c8" absoluteBounds="23.39, 22.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="aff7dcab-019a-4bf3-85ce-896b2b471aca" absoluteBounds="26.375, 21.25, 2, 1.3862939453125023">
+      <DataClassMoniker Name="/SIMSDataContext/SHAJHA" />
+      <nestedChildShapes>
+        <elementListCompartment Id="788d542e-423a-4be3-8a1b-22a0152c4107" absoluteBounds="26.39, 21.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="38af6d94-41c3-4526-9118-d66dabf3cb99" absoluteBounds="20.625, 20.5, 2, 2.9247054036458309">
+      <DataClassMoniker Name="/SIMSDataContext/SHA" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bfd8f518-2e8a-496a-8c1c-bfbd21bdea8d" absoluteBounds="20.64, 20.96, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7316b330-86cf-4eb7-b789-7303c0900d16" absoluteBounds="29.125, 18, 2, 1.9631982421875023">
+      <DataClassMoniker Name="/SIMSDataContext/SHAReferenceLevel" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3e5d437a-b3c3-42f9-9cfd-1522ec68db99" absoluteBounds="29.14, 18.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b41f16d5-043e-4026-b92d-382dd7655a1d" absoluteBounds="22.125, 24.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/SIMSDataContext/SHAServicing" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bfc654f5-71c4-4326-9952-113e2cb2fd03" absoluteBounds="22.14, 24.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="59982dc8-3306-4ea1-a116-3364d40a8bcb" absoluteBounds="32.375, 24.125, 2, 4.4631168619791666">
+      <DataClassMoniker Name="/SIMSDataContext/ElementDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b3eaad36-080c-47b2-aa3d-0bff6a20c943" absoluteBounds="32.39, 24.585, 1.9700000000000002, 3.903116861979167" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(27.875 : 25.1931469726563); (28.625 : 25.1931469726563)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/JHA/JHA_ElementJHA" />
+      <nodes>
+        <classShapeMoniker Id="38ea07bc-98c6-4e29-9665-acac43452dca" />
+        <classShapeMoniker Id="85e66be6-3ca6-47c4-8c05-0f5bdc3537f0" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(32.375 : 24.8181469726563); (31.4583333333333 : 24.8181469726563 : JumpStart); (31.2916666666667 : 24.8181469726563 : JumpEnd); (30.625 : 24.8181469726563)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/ElementDetail/ElementDetail_ElementJHA" />
+      <nodes>
+        <classShapeMoniker Id="59982dc8-3306-4ea1-a116-3364d40a8bcb" />
+        <classShapeMoniker Id="85e66be6-3ca6-47c4-8c05-0f5bdc3537f0" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(28.375 : 21.9431469726563); (29.125 : 21.9431469726563)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/SHAJHA/SHAJHA_SHASpecificCondition" />
+      <nodes>
+        <classShapeMoniker Id="aff7dcab-019a-4bf3-85ce-896b2b471aca" />
+        <classShapeMoniker Id="a1da7f35-069e-47e2-a3d7-795e02784eb0" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(21.625 : 20.5); (21.625 : 18.6931469726563); (21.9166666666667 : 18.6931469726563 : JumpStart); (22.0833333333333 : 18.6931469726563 : JumpEnd); (23.375 : 18.6931469726563)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/SHA/SHA_SHAContact" />
+      <nodes>
+        <classShapeMoniker Id="38af6d94-41c3-4526-9118-d66dabf3cb99" />
+        <classShapeMoniker Id="8d05b6c1-2495-4bc1-b7ce-52a9776cf2d8" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(22.625 : 21.0056469726563); (23.375 : 21.0056469726563)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/SHA/SHA_SHAEquip" />
+      <nodes>
+        <classShapeMoniker Id="38af6d94-41c3-4526-9118-d66dabf3cb99" />
+        <classShapeMoniker Id="018d892b-93d1-4390-bfea-e91897b01738" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(22.625 : 23.2123527018229); (22.9166666666667 : 23.2123527018229 : JumpStart); (23.0833333333333 : 23.2123527018229 : JumpEnd); (23.375 : 23.2123527018229)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/SHA/SHA_SHAHospital" />
+      <nodes>
+        <classShapeMoniker Id="38af6d94-41c3-4526-9118-d66dabf3cb99" />
+        <classShapeMoniker Id="5f3ce1cc-1c67-4060-ad56-a6a4192c4070" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(28.625 : 24.46875); (28.15625 : 24.46875); (28.15625 : 22.6362939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/ElementJHA/ElementJHA_SHAJHA" />
+      <nodes>
+        <classShapeMoniker Id="85e66be6-3ca6-47c4-8c05-0f5bdc3537f0" />
+        <classShapeMoniker Id="aff7dcab-019a-4bf3-85ce-896b2b471aca" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(22.625 : 21.8806469726563); (26.375 : 21.8806469726563)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/SHA/SHA_SHAJHA" />
+      <nodes>
+        <classShapeMoniker Id="38af6d94-41c3-4526-9118-d66dabf3cb99" />
+        <classShapeMoniker Id="aff7dcab-019a-4bf3-85ce-896b2b471aca" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(28.375 : 18.9431469726563); (29.125 : 18.9431469726563)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/ReferenceLevel/ReferenceLevel_SHAReferenceLevel" />
+      <nodes>
+        <classShapeMoniker Id="7debe987-3d91-4af1-a8e6-9662ed7caef6" />
+        <classShapeMoniker Id="7316b330-86cf-4eb7-b789-7303c0900d16" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(28.375 : 21.25); (28.5660744349011 : 21.0589255650989 : JumpStart); (28.6839255650989 : 20.9410744349011 : JumpEnd); (28.75 : 20.875); (28.75 : 19.4844246074219); (29.125 : 19.4844246074219)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/SHAJHA/SHAJHA_SHAReferenceLevel" />
+      <nodes>
+        <classShapeMoniker Id="aff7dcab-019a-4bf3-85ce-896b2b471aca" />
+        <classShapeMoniker Id="7316b330-86cf-4eb7-b789-7303c0900d16" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(22.375 : 23.4247054036458); (22.375 : 24.5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/SHA/SHA_SHAServicing" />
+      <nodes>
+        <classShapeMoniker Id="38af6d94-41c3-4526-9118-d66dabf3cb99" />
+        <classShapeMoniker Id="b41f16d5-043e-4026-b92d-382dd7655a1d" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="010871fd-aa5f-4aeb-96cd-cdb0eb8a939f" absoluteBounds="22.875, 28.25, 2, 4.4631168619791595">
+      <DataClassMoniker Name="/SIMSDataContext/TCPPlanDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6f4c594d-536f-45f0-9937-5958bba43bce" absoluteBounds="22.89, 28.71, 1.9700000000000002, 3.903116861979167" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="40a399c7-a8a3-4afb-88df-1bd0253ec8e1" absoluteBounds="15.875, 28.5, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/SIMSDataContext/TCPCalculation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="484d25f6-c71b-490d-997a-675256f667a5" absoluteBounds="15.89, 28.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b61b6996-3a92-4abc-b835-2e6b705179ac" absoluteBounds="18.25, 27.875, 2, 4.2708154296875">
+      <DataClassMoniker Name="/SIMSDataContext/TCPSite" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6073b4bc-c667-4abc-bef7-1c5b9405d203" absoluteBounds="18.265, 28.335, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5c44aba9-6b70-49f1-8c26-4c4bd02c853d" absoluteBounds="17.125, 19.875, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/SIMSDataContext/Hospital" />
+      <nestedChildShapes>
+        <elementListCompartment Id="932d2fd5-c634-49cd-b4f5-9d1431dd4da2" absoluteBounds="17.14, 20.335, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="cf2dfe1f-28ff-4636-a3be-ed46827c0fa6" absoluteBounds="17.75, 23.25, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/SIMSDataContext/Contact" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6475d3ea-2e58-4995-995f-0b1df33649ac" absoluteBounds="17.765, 23.71, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b48055ea-776c-4c13-a7bf-376c389785e0" absoluteBounds="2.875, 5.375, 2, 2.5401025390625">
+      <DataClassMoniker Name="/SIMSDataContext/SiteType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a7e8d556-896a-4b91-be06-15920c5071af" absoluteBounds="2.8900000000000006, 5.8350000000000009, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(19.46875 : 23.25); (19.46875 : 19.0709729589844); (21.5416666666667 : 19.0709729589844 : JumpStart); (21.7083333333333 : 19.0709729589844 : JumpEnd); (21.9166666666667 : 19.0709729589844 : JumpStart); (22.0833333333333 : 19.0709729589844 : JumpEnd); (23.375 : 19.0709729589844)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/Contact/Contact_SHAContact" />
+      <nodes>
+        <classShapeMoniker Id="cf2dfe1f-28ff-4636-a3be-ed46827c0fa6" />
+        <classShapeMoniker Id="8d05b6c1-2495-4bc1-b7ce-52a9776cf2d8" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(18.125 : 22.6074039713542); (18.125 : 22.9431469726563); (20.375 : 22.9431469726563); (20.375 : 23.6747054036458); (23 : 23.6747054036458); (23 : 22.9431469726563); (23.375 : 22.9431469726563)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/Hospital/Hospital_SHAHospital" />
+      <nodes>
+        <classShapeMoniker Id="5c44aba9-6b70-49f1-8c26-4c4bd02c853d" />
+        <classShapeMoniker Id="5f3ce1cc-1c67-4060-ad56-a6a4192c4070" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="b1c85db6-a497-41b0-9746-bab8c3acf33d" absoluteBounds="43.25, 13.5, 2, 1.7708968098958344">
+      <DataClassMoniker Name="/SIMSDataContext/RecordDD" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4a2b8f5e-f020-4275-b490-6fed5af0e811" absoluteBounds="43.265, 13.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2e1cee56-2f9f-40c3-b29e-8287f38ebc51" absoluteBounds="43.75, 15.625, 2, 1.7708968098958362">
+      <DataClassMoniker Name="/SIMSDataContext/RecordLock" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0fdaf636-ba7c-405b-bebd-b12c62b581ca" absoluteBounds="43.765, 16.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="cf80f7e5-6383-4b7f-b14e-41299539acbe" absoluteBounds="26.75, 40.75, 2, 2.1554996744791595">
+      <DataClassMoniker Name="/SIMSDataContext/RecordEOYStatus" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f73e1034-deb7-42ec-a520-0df1ccd5434e" absoluteBounds="26.765, 41.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ca08a1bb-2081-4305-aedf-67729da08b5b" absoluteBounds="29.5, 46.125, 2, 1.7708968098958309">
+      <DataClassMoniker Name="/SIMSDataContext/PeriodChangeLog" />
+      <nestedChildShapes>
+        <elementListCompartment Id="69ac3fa0-783d-4246-832d-0e737c16bb0e" absoluteBounds="29.515, 46.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4bf3b17e-c26c-4644-b2c7-38157bc83563" absoluteBounds="26.75, 38.25, 2, 1.7708968098958309">
+      <DataClassMoniker Name="/SIMSDataContext/RecordAnalysisStatus" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2340d42d-b44f-4ccb-80b4-89d7e3b8ae46" absoluteBounds="26.765, 38.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="db4d168e-30e1-4abe-bc7d-df3ddb6031fd" absoluteBounds="42.75, 10.125, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/SIMSDataContext/RecordAltOffice" />
+      <nestedChildShapes>
+        <elementListCompartment Id="620e39c1-310e-45d1-8cf7-517812c7d535" absoluteBounds="42.765, 10.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="36f016e0-ef58-43e9-95dd-85bf1d432145" absoluteBounds="2.875, 2.375, 2, 2.5401025390625">
+      <DataClassMoniker Name="/SIMSDataContext/vTS_ID_CACHE" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7c457507-1ae5-481a-a019-fa008764d104" absoluteBounds="2.8899999999999997, 2.835, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="53a24d05-dd49-44b2-ba70-847e5254905e" absoluteBounds="2.875, 0.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/SIMSDataContext/HUC" />
+      <nestedChildShapes>
+        <elementListCompartment Id="022288a6-a443-4512-b114-47354f31095d" absoluteBounds="2.8899999999999997, 0.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3cf79c05-e624-4b2e-8a29-a066e7c0caff" absoluteBounds="33.25, 21, 2, 1.3862939453125">
+      <DataClassMoniker Name="/SIMSDataContext/ElementReportRef" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6b7934f4-d11c-40e4-a00a-9e8ffa1f4184" absoluteBounds="33.265, 21.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="86660670-966a-470c-8e72-387afe905a1d" absoluteBounds="13.75, 17.125, 2, 5.8092268880208326">
+      <DataClassMoniker Name="/SIMSDataContext/vNWISSiteInfoForManu" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2210b1f5-0f05-44b2-8130-62469f65b22f" absoluteBounds="13.765, 17.585, 1.9700000000000002, 5.249226888020833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(33.8125 : 24.125); (33.8125 : 22.3862939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/ElementDetail/ElementDetail_ElementReportRef" />
+      <nodes>
+        <classShapeMoniker Id="59982dc8-3306-4ea1-a116-3364d40a8bcb" />
+        <classShapeMoniker Id="3cf79c05-e624-4b2e-8a29-a066e7c0caff" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="601a14ad-7b13-4a5e-8793-26193460c964" absoluteBounds="30.125, 27.625, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/SIMSDataContext/OpsLevel" />
+      <nestedChildShapes>
+        <elementListCompartment Id="20c6a555-a83a-41ab-b75d-af4bb2ef2c8c" absoluteBounds="30.14, 28.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bf3f7bd7-8af5-426f-9b51-0e09ee7cfca8" absoluteBounds="34.125, 7.25, 2, 1.3862939453125">
+      <DataClassMoniker Name="/SIMSDataContext/vSLAPAutoSIM" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b56bd613-c970-4519-bdb4-af971537d1af" absoluteBounds="34.14, 7.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="eb6b7baa-df7a-45a2-822f-363259ca9d7d" absoluteBounds="31.625, 2.125, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/SIMSDataContext/SiteElementBackup" />
+      <nestedChildShapes>
+        <elementListCompartment Id="065f0362-9a71-4f75-a032-d2d5df2fb21e" absoluteBounds="31.64, 2.585, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a95d2032-1d58-4bba-96f3-46d0d4d18ee8" absoluteBounds="0.5, 0.5, 2, 8.6937483723958326">
+      <DataClassMoniker Name="/SIMSDataContext/vEval_FullSiteDiagnostic" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cc0ae87a-7b78-4828-bb13-0c8164e19da9" absoluteBounds="0.51499999999999968, 0.96, 1.9700000000000002, 8.1337483723958321" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="04e42c7a-10fa-44ca-a52b-431c744c091c" absoluteBounds="6.5, 4.5, 2, 1.9631982421874996">
+      <DataClassMoniker Name="/SIMSDataContext/ArchivedElements" />
+      <nestedChildShapes>
+        <elementListCompartment Id="921b98cb-0490-41a2-8d50-51a355c17e66" absoluteBounds="6.515, 4.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7df2a004-a9b2-4279-8efd-1e8b2d0eb0f8" absoluteBounds="12.625, 3.5, 2, 2.5401025390625">
+      <DataClassMoniker Name="/SIMSDataContext/vSiteMasterList" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e1bc3165-4e86-4a71-be72-118cac997dbe" absoluteBounds="12.64, 3.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f5ea9f19-560f-48cc-b947-97d3ff8584ba" absoluteBounds="39.25, 13, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/SIMSDataContext/AuditRecord" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8e62b5bc-8d16-4c6c-93c6-66cb10e20648" absoluteBounds="39.265, 13.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2788ba9f-585a-4114-abb7-3fab4bfb17b4" absoluteBounds="22.25, 1.375, 2, 1.3862939453125">
+      <DataClassMoniker Name="/SIMSDataContext/TripSite" />
+      <nestedChildShapes>
+        <elementListCompartment Id="13f2088a-23e9-41c0-931f-0a7a443e8ee0" absoluteBounds="22.265, 1.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="52a1434b-17fc-4193-b513-f0b6fc341d37" absoluteBounds="25.5, 2.375, 2, 2.5401025390625">
+      <DataClassMoniker Name="/SIMSDataContext/Site" />
+      <nestedChildShapes>
+        <elementListCompartment Id="94a38d9a-d488-49c7-a447-402639b2aa90" absoluteBounds="25.515, 2.835, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4da17564-38f5-4fe4-89cb-b4600e28d3f4" absoluteBounds="28.625, 5.875, 2, 2.3478011067708326">
+      <DataClassMoniker Name="/SIMSDataContext/SiteElement" />
+      <nestedChildShapes>
+        <elementListCompartment Id="30d90434-99c6-46a3-92a9-c56afd297514" absoluteBounds="28.64, 6.335, 1.9700000000000002, 1.7878011067708333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0b041afe-81e7-49d5-bd9f-1c19e5755916" absoluteBounds="26.375, 12.375, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/SIMSDataContext/ElementApprovalItem" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b3e64d42-3f39-4cb3-ab2a-ab60e9dfe0b7" absoluteBounds="26.39, 12.835, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8a80d5e1-6365-420c-828b-5a1c8155ed13" absoluteBounds="34.75, 2, 2, 2.5401025390625">
+      <DataClassMoniker Name="/SIMSDataContext/ElementReportApproveBackup" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a9817802-ab9f-4b2f-9aba-7d2c41069ffb" absoluteBounds="34.765, 2.46, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d53902eb-e575-4be3-81cb-374c09ebe1f3" absoluteBounds="6.25, 11.25, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/SIMSDataContext/AuditDocument" />
+      <nestedChildShapes>
+        <elementListCompartment Id="19cc32b9-4191-4ec2-a980-11b6c93b80b8" absoluteBounds="6.265, 11.71, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="85c56713-832a-4633-9f72-a79105438ef4" absoluteBounds="9, 11.625, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/SIMSDataContext/AuditDocumentFile" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ecba9573-cdd9-46fb-8d3d-9f6fa7e516b9" absoluteBounds="9.015, 12.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="29ef682b-7332-4042-b0b3-f3560062e126" absoluteBounds="0.75, 10.625, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/SIMSDataContext/AuditResult" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7c9ce099-0f7c-42ec-9af9-5465abc6462e" absoluteBounds="0.765, 11.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fc86d96f-a4f2-4a2a-9772-618bb966a0c9" absoluteBounds="0.75, 12.75, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/SIMSDataContext/AuditType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="441b15e7-44f1-4f7c-baa1-46f383126738" absoluteBounds="0.765, 13.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0c6089f9-8fda-4b10-a6a0-ffbc56c338e4" absoluteBounds="3.875, 10.5, 2, 2.9247054036458331">
+      <DataClassMoniker Name="/SIMSDataContext/Audit" />
+      <nestedChildShapes>
+        <elementListCompartment Id="639a3dc9-7809-4491-a9e9-5d8dedfa042b" absoluteBounds="3.8899999999999997, 10.96, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(25.5 : 4.11220098632812); (17.40625 : 4.11220098632812); (17.40625 : 2.78049967447917)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/Site/Site_ElemReportApprove" />
+      <nodes>
+        <classShapeMoniker Id="52a1434b-17fc-4193-b513-f0b6fc341d37" />
+        <classShapeMoniker Id="974941c7-e272-4a2c-a32e-687774d515cf" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(25.5 : 3.07774983723958); (17.4895833333333 : 3.07774983723958 : JumpStart); (17.3229166666667 : 3.07774983723958 : JumpEnd); (14.71875 : 3.07774983723958); (14.71875 : 2.32859537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/Site/Site_ElemReportSum" />
+      <nodes>
+        <classShapeMoniker Id="52a1434b-17fc-4193-b513-f0b6fc341d37" />
+        <classShapeMoniker Id="f4513f87-5e4f-4221-94ac-2593ca919b67" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(25.5 : 3.66189697265625); (22 : 3.66189697265625); (22 : 20.5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/Site/Site_SHA" />
+      <nodes>
+        <classShapeMoniker Id="52a1434b-17fc-4193-b513-f0b6fc341d37" />
+        <classShapeMoniker Id="38af6d94-41c3-4526-9118-d66dabf3cb99" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(25.5 : 3.36982340494792); (19.25 : 3.36982340494792); (19.25 : 22.75); (20 : 22.75); (20 : 27.5); (19.25 : 27.5); (19.25 : 27.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/Site/Site_TCPSite" />
+      <nodes>
+        <classShapeMoniker Id="52a1434b-17fc-4193-b513-f0b6fc341d37" />
+        <classShapeMoniker Id="b61b6996-3a92-4abc-b835-2e6b705179ac" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(27.5 : 3.64505126953125); (29 : 3.64505126953125); (29 : 4.22280110677083); (31.125 : 4.22280110677083); (31.125 : 11.125); (29.875 : 11.125); (29.875 : 17.75); (31.375 : 17.75); (31.375 : 27.25); (31.125 : 27.25); (31.125 : 27.625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/Site/Site_OpsLevel" />
+      <nodes>
+        <classShapeMoniker Id="52a1434b-17fc-4193-b513-f0b6fc341d37" />
+        <classShapeMoniker Id="601a14ad-7b13-4a5e-8793-26193460c964" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.406252 : 13.4247054036458); (5.406252 : 13.6931469726562); (22.125 : 13.6931469726562); (22.125 : 17.4051741536458); (29.7916666666667 : 17.4051741536458 : JumpStart); (29.9583333333333 : 17.4051741536458 : JumpEnd); (35.6354146666667 : 17.4051741536458 : JumpStart); (35.8020813333333 : 17.4051741536458 : JumpEnd); (36.1666666666667 : 17.4051741536458 : JumpStart); (36.3333333333333 : 17.4051741536458 : JumpEnd); (36.6979186666667 : 17.4051741536458 : JumpStart); (36.8645853333333 : 17.4051741536458 : JumpEnd); (38.875 : 17.4051741536458); (38.875 : 13.6931469726562); (39.25 : 13.6931469726562)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/Audit/Audit_AuditRecord" />
+      <nodes>
+        <classShapeMoniker Id="0c6089f9-8fda-4b10-a6a0-ffbc56c338e4" />
+        <classShapeMoniker Id="f5ea9f19-560f-48cc-b947-97d3ff8584ba" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(25.5 : 2.56814697265625); (24.25 : 2.56814697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/Site/Site_TripSite" />
+      <nodes>
+        <classShapeMoniker Id="52a1434b-17fc-4193-b513-f0b6fc341d37" />
+        <classShapeMoniker Id="2788ba9f-585a-4114-abb7-3fab4bfb17b4" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(17.125 : 3.56831441715495); (17.3229166666667 : 3.56831441715495 : JumpStart); (17.4895833333333 : 3.56831441715495 : JumpEnd); (25.5 : 3.56831441715495)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/Office/Office_Site" />
+      <nodes>
+        <classShapeMoniker Id="fe78cdc6-6138-440a-b02e-69e1083415a3" />
+        <classShapeMoniker Id="52a1434b-17fc-4193-b513-f0b6fc341d37" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(32.375 : 26.4118969726563); (31.4583333333333 : 26.4118969726563 : JumpStart); (31.2916666666667 : 26.4118969726563 : JumpEnd); (28.375 : 26.4118969726563); (28.375 : 22.8862939453125); (28.625 : 22.8862939453125); (28.625 : 8.59780110677083); (29.625 : 8.59780110677083); (29.625 : 8.22280110677083)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/ElementDetail/ElementDetail_SiteElement" />
+      <nodes>
+        <classShapeMoniker Id="59982dc8-3306-4ea1-a116-3364d40a8bcb" />
+        <classShapeMoniker Id="4da17564-38f5-4fe4-89cb-b4600e28d3f4" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(26.5 : 4.9151025390625); (26.5 : 6.09375); (28.625 : 6.09375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/Site/Site_SiteElement" />
+      <nodes>
+        <classShapeMoniker Id="52a1434b-17fc-4193-b513-f0b6fc341d37" />
+        <classShapeMoniker Id="4da17564-38f5-4fe4-89cb-b4600e28d3f4" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.875 : 12.3277498372396); (6.25 : 12.3277498372396)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/Audit/Audit_AuditDocument" />
+      <nodes>
+        <classShapeMoniker Id="0c6089f9-8fda-4b10-a6a0-ffbc56c338e4" />
+        <classShapeMoniker Id="d53902eb-e575-4be3-81cb-374c09ebe1f3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 12.3550439453125); (9 : 12.3550439453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/AuditDocument/AuditDocument_AuditDocumentFile" />
+      <nodes>
+        <classShapeMoniker Id="d53902eb-e575-4be3-81cb-374c09ebe1f3" />
+        <classShapeMoniker Id="85c56713-832a-4633-9f72-a79105438ef4" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 11.3181469726562); (3.125 : 11.3181469726562); (3.125 : 13.6747054036458); (4.875 : 13.6747054036458); (4.875 : 13.4247054036458)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/AuditResult/AuditResult_Audit" />
+      <nodes>
+        <classShapeMoniker Id="29ef682b-7332-4042-b0b3-f3560062e126" />
+        <classShapeMoniker Id="0c6089f9-8fda-4b10-a6a0-ffbc56c338e4" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 13.2924625651042); (3.04166666666667 : 13.2924625651042 : JumpStart); (3.20833333333333 : 13.2924625651042 : JumpEnd); (3.875 : 13.2924625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/AuditType/AuditType_Audit" />
+      <nodes>
+        <classShapeMoniker Id="fc86d96f-a4f2-4a2a-9772-618bb966a0c9" />
+        <classShapeMoniker Id="0c6089f9-8fda-4b10-a6a0-ffbc56c338e4" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="353b365c-f175-4c9d-88d1-cb0871b90a3f" absoluteBounds="29.25, 1.625, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/SIMSDataContext/SiteElementItem" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2fa51c13-fa74-4651-8e3e-92967c27a25b" absoluteBounds="29.265, 2.085, 1.9700000000000002, 1.7878011067708333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4d693377-eb95-4499-a07e-3c09e2aa09dd" absoluteBounds="9.25, 0.5, 2, 12.155174153645833">
+      <DataClassMoniker Name="/SIMSDataContext/vSITEFILEUNUSED" />
+      <nestedChildShapes>
+        <elementListCompartment Id="464ea1d0-f65e-4777-ac7e-d11544c30b16" absoluteBounds="9.265, 0.96, 1.9700000000000002, 11.595174153645832" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5aae1a68-7dbd-47b7-98fc-efc2e05b300c" absoluteBounds="5.625, 7.25, 2, 2.3478011067708326">
+      <DataClassMoniker Name="/SIMSDataContext/ADUserInfo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="77e08290-fc13-462e-b3b8-40498cd06305" absoluteBounds="5.64, 7.71, 1.9700000000000002, 1.7878011067708333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="136297b2-f5b2-463a-8e6b-cf3dd5513726" absoluteBounds="16.75, 10.25, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/SIMSDataContext/Trip" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c5f04f4a-93ee-4930-8cd2-af27c8823977" absoluteBounds="16.765, 10.71, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(18.75 : 10.25); (19.125 : 9.875); (19.125 : 2.06814697265625); (22.25 : 2.06814697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/Trip/Trip_TripSite" />
+      <nodes>
+        <classShapeMoniker Id="136297b2-f5b2-463a-8e6b-cf3dd5513726" />
+        <classShapeMoniker Id="2788ba9f-585a-4114-abb7-3fab4bfb17b4" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(16.9375 : 7.0689111328125); (16.9375 : 10.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/Office/Office_Trip" />
+      <nodes>
+        <classShapeMoniker Id="fe78cdc6-6138-440a-b02e-69e1083415a3" />
+        <classShapeMoniker Id="136297b2-f5b2-463a-8e6b-cf3dd5513726" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="512f8c07-0162-47e9-a862-0d22f7081a28" absoluteBounds="35.25, 9.75, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/SIMSDataContext/Record" />
+      <nestedChildShapes>
+        <elementListCompartment Id="253875a7-b9b8-412e-8369-259807cf055a" absoluteBounds="35.265, 10.21, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8f3b1659-a0e2-46d7-9ed9-db378385a949" absoluteBounds="27, 46.625, 2, 3.8862125651041666">
+      <DataClassMoniker Name="/SIMSDataContext/RecordAnalysisPeriod" />
+      <nestedChildShapes>
+        <elementListCompartment Id="45dae1d8-2f4c-4af3-9f02-6cf721e421bd" absoluteBounds="27.015, 47.085, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b82e569e-929d-48bb-8568-5ef8951d0191" absoluteBounds="30.75, 49.125, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/SIMSDataContext/PeriodDialog" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7efe9a5a-fc49-4504-85ea-59048cdc28d3" absoluteBounds="30.765, 49.585, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(36.515626 : 12.4824039713542); (36.515626 : 14.8598453776042); (36.6979186666667 : 14.8598453776042 : JumpStart); (36.8645853333333 : 14.8598453776042 : JumpEnd); (38.7916666666667 : 14.8598453776042 : JumpStart); (38.9583333333333 : 14.8598453776042 : JumpEnd); (43.25 : 14.8598453776042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/Record/Record_RecordDD" />
+      <nodes>
+        <classShapeMoniker Id="512f8c07-0162-47e9-a862-0d22f7081a28" />
+        <classShapeMoniker Id="b1c85db6-a497-41b0-9746-bab8c3acf33d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(37.046878 : 12.4824039713542); (37.046878 : 16.5104484049479); (38.7916666666667 : 16.5104484049479 : JumpStart); (38.9583333333333 : 16.5104484049479 : JumpEnd); (43.75 : 16.5104484049479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/Record/Record_RecordLock" />
+      <nodes>
+        <classShapeMoniker Id="512f8c07-0162-47e9-a862-0d22f7081a28" />
+        <classShapeMoniker Id="2e1cee56-2f9f-40c3-b29e-8287f38ebc51" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(36.781252 : 12.4824039713542); (36.781252 : 41.8277498372396); (36.3333333333333 : 41.8277498372396 : JumpStart); (36.1666666666667 : 41.8277498372396 : JumpEnd); (28.75 : 41.8277498372396)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/Record/Record_RecordEOYStatus" />
+      <nodes>
+        <classShapeMoniker Id="512f8c07-0162-47e9-a862-0d22f7081a28" />
+        <classShapeMoniker Id="cf80f7e5-6383-4b7f-b14e-41299539acbe" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(29 : 47.2604484049479); (29.5 : 47.2604484049479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/RecordAnalysisPeriod/RecordAnalysisPeriod_PeriodChangeLog" />
+      <nodes>
+        <classShapeMoniker Id="8f3b1659-a0e2-46d7-9ed9-db378385a949" />
+        <classShapeMoniker Id="ca08a1bb-2081-4305-aedf-67729da08b5b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(35.718748 : 12.4824039713542); (35.718748 : 39.1354484049479); (28.75 : 39.1354484049479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/Record/Record_RecordAnalysisStatus" />
+      <nodes>
+        <classShapeMoniker Id="512f8c07-0162-47e9-a862-0d22f7081a28" />
+        <classShapeMoniker Id="4bf3b17e-c26c-4644-b2c7-38157bc83563" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(37.25 : 11.1771468098958); (42.75 : 11.1771468098958)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/Record/Record_RecordAltOffice" />
+      <nodes>
+        <classShapeMoniker Id="512f8c07-0162-47e9-a862-0d22f7081a28" />
+        <classShapeMoniker Id="db4d168e-30e1-4abe-bc7d-df3ddb6031fd" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(37.25 : 11.861027890625); (39.40625 : 11.861027890625); (39.40625 : 13)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/Record/Record_AuditRecord" />
+      <nodes>
+        <classShapeMoniker Id="512f8c07-0162-47e9-a862-0d22f7081a28" />
+        <classShapeMoniker Id="f5ea9f19-560f-48cc-b947-97d3ff8584ba" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(27.5 : 4.9151025390625); (27.875 : 5.2901025390625); (27.875 : 11.3499623522636); (35.25 : 11.3499623522636)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/Site/Site_Record" />
+      <nodes>
+        <classShapeMoniker Id="52a1434b-17fc-4193-b513-f0b6fc341d37" />
+        <classShapeMoniker Id="512f8c07-0162-47e9-a862-0d22f7081a28" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(36.25 : 12.4824039713542); (36.25 : 48.5104484049479); (29 : 48.5104484049479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/Record/Record_RecordAnalysisPeriod" />
+      <nodes>
+        <classShapeMoniker Id="512f8c07-0162-47e9-a862-0d22f7081a28" />
+        <classShapeMoniker Id="8f3b1659-a0e2-46d7-9ed9-db378385a949" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(29 : 49.8181062825521); (30.75 : 49.8181062825521)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/RecordAnalysisPeriod/RecordAnalysisPeriod_PeriodDialog" />
+      <nodes>
+        <classShapeMoniker Id="8f3b1659-a0e2-46d7-9ed9-db378385a949" />
+        <classShapeMoniker Id="b82e569e-929d-48bb-8568-5ef8951d0191" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="2a4d9655-f530-4ea9-97b0-fc1f8fa73efb" absoluteBounds="6.875, 9.75, 2, 1.3862939453125">
+      <DataClassMoniker Name="/SIMSDataContext/TCPShoulderRule" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2b8c4015-5a16-4cd3-a99f-f4839082d003" absoluteBounds="6.89, 10.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1d270d5d-19ae-4fe3-8ade-69984c2146ff" absoluteBounds="3.375, 8.25, 2, 4.8477197265625005">
+      <DataClassMoniker Name="/SIMSDataContext/RecordProcessDataItem" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1b418b83-c71a-49e9-a938-5e34e5b9bd3d" absoluteBounds="3.39, 8.71, 1.9700000000000002, 4.2877197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2a5585d8-22e9-42ef-b902-b42c410cd4d8" absoluteBounds="6.875, 14.875, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/SIMSDataContext/vRMSRecordOfficeID" />
+      <nestedChildShapes>
+        <elementListCompartment Id="511536b6-d3de-4b1c-86d4-f5a15815823d" absoluteBounds="6.89, 15.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4f616b42-8b57-48f8-80b4-d27c44e6ff3f" absoluteBounds="38, 4.25, 2, 4.4631168619791666">
+      <DataClassMoniker Name="/SIMSDataContext/RecordApprovalStatus" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7a6b364d-c36a-41d7-9a6c-06327b3064db" absoluteBounds="38.015, 4.71, 1.9700000000000002, 3.903116861979167" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4159e673-e6f0-469f-8232-bd94f47c7ccb" absoluteBounds="10.625, 15, 2, 4.2708154296875">
+      <DataClassMoniker Name="/SIMSDataContext/vRMSRecordsToBeAnalyzed" />
+      <nestedChildShapes>
+        <elementListCompartment Id="04ae58c6-c82c-4856-8d50-50f92691d4a3" absoluteBounds="10.64, 15.46, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bec59534-3b1d-4afa-9fe6-7bfc90bc074e" absoluteBounds="4.5, 14.75, 2, 5.2323225911458326">
+      <DataClassMoniker Name="/SIMSDataContext/vRMSRecordsToBeApproved" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c87e132f-d65a-4d8d-ae42-5f33c6d57cda" absoluteBounds="4.515, 15.21, 1.9700000000000002, 4.672322591145833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8596ec57-b070-4b41-986b-9b12cf8f1b13" absoluteBounds="32.375, 13.125, 2, 2.3478011067708344">
+      <DataClassMoniker Name="/SIMSDataContext/RecordType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b84bf4fe-f8d6-4c96-a36f-3c8716168fe7" absoluteBounds="32.39, 13.585, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(33.65625 : 13.125); (33.65625 : 11.6260151577524); (35.25 : 11.6260151577524)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/RecordType/RecordType_Record" />
+      <nodes>
+        <classShapeMoniker Id="8596ec57-b070-4b41-986b-9b12cf8f1b13" />
+        <classShapeMoniker Id="512f8c07-0162-47e9-a862-0d22f7081a28" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="762baa1d-02fc-46f0-8894-4efcddcdfe7f" absoluteBounds="5.625, 0.5, 2, 3.5016097005208326">
+      <DataClassMoniker Name="/SIMSDataContext/vRMSStatusOfRecord" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4c53b297-3183-4cf8-b899-b1e9166d892d" absoluteBounds="5.64, 0.96, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e7960432-f000-4763-9ec8-67303f5694fb" absoluteBounds="7.125, 23.5, 2, 2.9247054036458309">
+      <DataClassMoniker Name="/SIMSDataContext/CablewayVisit" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2f69b2f2-febb-4639-be70-f2aafd0cd8bd" absoluteBounds="7.14, 23.96, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="684b918b-bbbb-41a9-a7c9-ce93aee9d6ba" absoluteBounds="0.75, 22, 2, 1.1939925130208309">
+      <DataClassMoniker Name="/SIMSDataContext/CablewayStatus" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6bad40b0-24ec-4664-b97e-2859e774950c" absoluteBounds="0.765, 22.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4a92c477-2ce4-4052-9c56-a8b97d8f7416" absoluteBounds="0.75, 20, 2, 1.1939925130208309">
+      <DataClassMoniker Name="/SIMSDataContext/CablewayType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1b241946-e7b6-4a56-8515-e1e5f1589fa7" absoluteBounds="0.765, 20.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="51460ab1-c9e2-4a55-a467-73a2e7798ea8" absoluteBounds="3.5, 25, 2, 1.1939925130208309">
+      <DataClassMoniker Name="/SIMSDataContext/CablewayVisitAction" />
+      <nestedChildShapes>
+        <elementListCompartment Id="51d8d017-fa9c-424b-b509-c0e71b55767c" absoluteBounds="3.515, 25.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0bda7019-569e-4398-8f86-a87e6c6880e8" absoluteBounds="3.5, 26.875, 2, 1.1939925130208309">
+      <DataClassMoniker Name="/SIMSDataContext/CablewayVisitType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5ea01593-bf48-491b-9d37-ac783307e006" absoluteBounds="3.515, 27.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fae056a1-7c90-45c1-880f-0edd4c7e34b9" absoluteBounds="3.75, 20.625, 2, 3.1170068359375">
+      <DataClassMoniker Name="/SIMSDataContext/Cableway" />
+      <nestedChildShapes>
+        <elementListCompartment Id="11991f89-eb9c-473b-a2bd-e7d1a098e876" absoluteBounds="3.7649999999999997, 21.085, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 25.5969962565104); (7.125 : 25.5969962565104)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/CablewayVisitAction/CablewayVisitAction_CablewayVisit" />
+      <nodes>
+        <classShapeMoniker Id="51460ab1-c9e2-4a55-a467-73a2e7798ea8" />
+        <classShapeMoniker Id="e7960432-f000-4763-9ec8-67303f5694fb" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 27.4719962565104); (8.125 : 27.4719962565104); (8.125 : 26.4247054036458)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/CablewayVisitType/CablewayVisitType_CablewayVisit" />
+      <nodes>
+        <classShapeMoniker Id="0bda7019-569e-4398-8f86-a87e6c6880e8" />
+        <classShapeMoniker Id="e7960432-f000-4763-9ec8-67303f5694fb" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.75 : 22.0624995); (8.125 : 22.0624995); (8.125 : 23.5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/Cableway/Cableway_CablewayVisit" />
+      <nodes>
+        <classShapeMoniker Id="fae056a1-7c90-45c1-880f-0edd4c7e34b9" />
+        <classShapeMoniker Id="e7960432-f000-4763-9ec8-67303f5694fb" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 22.5969962565104); (3.75 : 22.5969962565104)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/CablewayStatus/CablewayStatus_Cableway" />
+      <nodes>
+        <classShapeMoniker Id="684b918b-bbbb-41a9-a7c9-ce93aee9d6ba" />
+        <classShapeMoniker Id="fae056a1-7c90-45c1-880f-0edd4c7e34b9" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 20.9094962565104); (3.75 : 20.9094962565104)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/CablewayType/CablewayType_Cableway" />
+      <nodes>
+        <classShapeMoniker Id="4a92c477-2ce4-4052-9c56-a8b97d8f7416" />
+        <classShapeMoniker Id="fae056a1-7c90-45c1-880f-0edd4c7e34b9" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(25.968748 : 4.9151025390625); (25.968748 : 6.3125); (24.4375 : 6.3125); (24.4375 : 12.3125); (26.3125 : 12.3125); (26.3125 : 22.1835034179688); (22.6875 : 22.1835034179688); (22.6875 : 23.4872054036458); (20.4583333333333 : 23.4872054036458 : JumpStart); (20.2916666666667 : 23.4872054036458 : JumpEnd); (20.0833333333333 : 23.4872054036458 : JumpStart); (19.9166666666667 : 23.4872054036458 : JumpEnd); (19.8125 : 23.4872054036458); (19.8125 : 23.1875); (8.20833333333333 : 23.1875 : JumpStart); (8.04166666666667 : 23.1875 : JumpEnd); (5.84375 : 23.1875); (5.84375 : 22.9335051679688); (5.75 : 22.9335051679688)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/Site/Site_Cableway" />
+      <nodes>
+        <classShapeMoniker Id="52a1434b-17fc-4193-b513-f0b6fc341d37" />
+        <classShapeMoniker Id="fae056a1-7c90-45c1-880f-0edd4c7e34b9" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="0b2c968e-f25f-4bdd-b3a1-b43d51f33dab" absoluteBounds="8.375, 0.875, 2, 5.4246240234375">
+      <DataClassMoniker Name="/SIMSDataContext/vCablewayInspectionSummary" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fe38553e-c3a7-46d4-a5b4-92f9e8b86650" absoluteBounds="8.39, 1.335, 1.9700000000000002, 4.8646240234375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="dd9297f1-293c-4036-8c1b-f49d881aa87a" absoluteBounds="30.125, 11.375, 2, 1.9631982421875">
+      <DataClassMoniker Name="/SIMSDataContext/RecordTemplate" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e834886e-3dc8-453d-a111-b38a8b2df1a4" absoluteBounds="30.14, 11.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(31.125 : 13.3381982421875); (31.125 : 14.4055001744792); (32.375 : 14.4055001744792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SIMSDataContext/RecordTemplate/RecordTemplate_RecordType" />
+      <nodes>
+        <classShapeMoniker Id="dd9297f1-293c-4036-8c1b-f49d881aa87a" />
+        <classShapeMoniker Id="8596ec57-b070-4b41-986b-9b12cf8f1b13" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="36bb83c7-05c5-494b-9bce-c57b7ca94e4f" absoluteBounds="9.125, 17.75, 2, 4.2708154296875">
+      <DataClassMoniker Name="/SIMSDataContext/DCPID" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9f160850-c456-489f-b6a4-5a11d6a6ac8b" absoluteBounds="9.14, 18.21, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="40df749a-ff5e-4aae-ac67-90f6056c0210" absoluteBounds="20.5, 28.25, 2, 3.6939111328124996">
+      <DataClassMoniker Name="/SIMSDataContext/TCP" />
+      <nestedChildShapes>
+        <elementListCompartment Id="34119a5b-db8c-4fb6-a5c9-2fca65cd7067" absoluteBounds="20.515, 28.71, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(22.875 : 30.0969555664063); (22.5 : 30.0969555664063)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIMSDataContext/TCPPlanDetail/TCPPlanDetail_TCP" />
+      <nodes>
+        <classShapeMoniker Id="010871fd-aa5f-4aeb-96cd-cdb0eb8a939f" />
+        <classShapeMoniker Id="40df749a-ff5e-4aae-ac67-90f6056c0210" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(20.25 : 30.0969555664063); (20.5 : 30.0969555664063)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIMSDataContext/TCPSite/TCPSite_TCP" />
+      <nodes>
+        <classShapeMoniker Id="b61b6996-3a92-4abc-b835-2e6b705179ac" />
+        <classShapeMoniker Id="40df749a-ff5e-4aae-ac67-90f6056c0210" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="aa1f93e1-c2c4-4315-9c7c-5d0711f5e5ad" absoluteBounds="11.875, 0.625, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/SIMSDataContext/vSiteTypesForWSC" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a0a7baa3-efb6-456a-8cb7-e2c42b00a487" absoluteBounds="11.89, 1.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

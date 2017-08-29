@@ -1,0 +1,146 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SIMS.Master.cs" Inherits="SIMS2017.SIMS" %>
+<%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Site Information Management System</title>
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1, maximum-scale=1.0, user-scalable=no" />
+    <link href="styles/base.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <telerik:RadScriptManager runat="server"></telerik:RadScriptManager>
+        <telerik:RadFormDecorator RenderMode="Lightweight" runat="server" DecoratedControls="All" Skin="Bootstrap" />
+
+        <div id="wrapper">
+        <telerik:RadPageLayout runat="server" ID="MasterLayout" GridType="Fluid">
+            <Rows>
+                <%--Header--%>
+                <telerik:LayoutRow CssClass="header">
+                    <Columns>
+                        <%--Logo--%>
+                        <telerik:LayoutColumn Span="2" SpanMd="3" SpanSm="12" SpanXs="12">
+                            <a href="#" class="logo">
+                                <img src="images/USGSHeaderLogo.png" alt="USGS"/>
+                            </a>
+                        </telerik:LayoutColumn>
+
+                        <%--Main Nav--%>
+                        <telerik:LayoutColumn Span="10" SpanMd="9" SpanSm="12" SpanXs="12">
+                            <telerik:RadMenu ID="rmTop" runat="server" RenderMode="Auto" Skin="Bootstrap">
+                            </telerik:RadMenu>
+                        </telerik:LayoutColumn>
+                    </Columns>
+                </telerik:LayoutRow>
+
+                <telerik:LayoutRow>
+                    <Columns>
+                        <telerik:LayoutColumn Span="12" SpanMd="12" SpanSm="12" SpanXs="12" CssClass="subheader">
+                            internal only | logged in as: <asp:Literal ID="ltlUserID" runat="server" />
+                        </telerik:LayoutColumn>
+                    </Columns>
+                </telerik:LayoutRow>
+
+                <%--Main--%>
+                <telerik:LayoutRow>
+                    <Columns>
+                        <%--Sidebar--%>
+                        <telerik:LayoutColumn Span="2" HiddenMd="true" HiddenSm="true" HiddenXs="true">
+                            <telerik:RadMenu ID="rmSide" CssClass="sidebar" Flow="Vertical" runat="server" Skin="Bootstrap">
+                                <Items>
+                                    <telerik:RadMenuItem Text="RMS" />
+                                    <telerik:RadMenuItem IsSeparator="true" />
+                                    <telerik:RadMenuItem Text="Info By Site">
+                                        <ContentTemplate>
+                                            <div style="padding:10px;">
+                                                <b>Generate a report by water body type.</b><br />
+                                                Please select the appropriate option:<br />
+                                                <asp:LinkButton ID="lbSpring" runat="server" OnCommand="SiteInfo_Command" CommandName="SiteType" CommandArgument="Spring" Text="Spring" /> |
+                                                <asp:LinkButton ID="lbEstuary" runat="server" OnCommand="SiteInfo_Command" CommandName="SiteType" CommandArgument="Estuary" Text="Estuary" /> |
+                                                <asp:LinkButton ID="lbLake" runat="server" OnCommand="SiteInfo_Command" CommandName="SiteType" CommandArgument="Lake" Text="Lake" /> |
+                                                <asp:LinkButton ID="lbStream" runat="server" OnCommand="SiteInfo_Command" CommandName="SiteType" CommandArgument="Stream" Text="Stream" /> |
+                                                <asp:LinkButton ID="lbGroundwater" runat="server" OnCommand="SiteInfo_Command" CommandName="SiteType" CommandArgument="Groundwater" Text="Groundwater" />
+                                            </div>
+                                        </ContentTemplate>
+                                    </telerik:RadMenuItem>
+                                    <telerik:RadMenuItem IsSeparator="true" />
+                                    <telerik:RadMenuItem Text="Info By Office">
+                                        <ContentTemplate>
+                                            <div style="padding:10px;">
+                                                <b><asp:HyperLink ID="hlDCPIDInfo" runat="server" Text="DCPID Information" /> (<asp:HyperLink ID="hlPASS" runat="server" Text="Visit PASS" Target="_blank" />)</b><br />
+                                                <b><asp:HyperLink ID="hlStationLevels" runat="server" Text="Station Levels Lists" /></b><br />
+                                                <b><asp:HyperLink ID="hlOfficeReport" runat="server" Text="Generate a report by office" /></b>
+                                            </div>
+                                        </ContentTemplate>
+                                    </telerik:RadMenuItem>
+                                    <telerik:RadMenuItem IsSeparator="true" />
+                                    <telerik:RadMenuItem Text="Safety">
+                                        <ContentTemplate>
+                                            <div style="padding:10px;">
+                                                <b><asp:HyperLink ID="hlCableway" runat="server" Text="Cableway Status Report" /></b><br />
+                                                <b><asp:HyperLink ID="hlEditCableway" runat="server" Text="Add/Edit Cableways" /></b><br />
+                                                <b><asp:HyperLink ID="hlSHAReport" runat="server" Text="Site Hazard Analysis Status Report" /></b><br />
+                                                <b><asp:HyperLink ID="hlTCPReport" runat="server" Text="Traffic Control Plan Status Report" /></b><br />
+                                                <b><asp:HyperLink ID="hlEmergencyInfo" runat="server" Text="Manage Emergency Info" /></b>
+                                            </div>
+                                        </ContentTemplate>
+                                    </telerik:RadMenuItem>
+                                    <telerik:RadMenuItem IsSeparator="true" />
+                                    <telerik:RadMenuItem Text="WY Summary">
+                                        <ContentTemplate>
+                                            <div style="padding:10px;">
+                                                <b><asp:HyperLink ID="hlMAI" runat="server" Text="Manuscript Approval Interface (MAI)" /></b><br />
+                                                <b><asp:HyperLink ID="hlWYSummaryReport" runat="server" Text="Water Year Summary Details Report" /></b><br />
+                                                <b><a href="https://collaboration.usgs.gov/wg/owi/specialprojects/SIMS/Shared%20Documents/PADRE/FAQ.html" target="_blank">MAI FAQ</a></b><br />
+                                                <b><a href="http://water.usgs.gov/usgs/adr/index.php" target="_blank">ADR Transition Site</a></b><br />
+                                                <b><a href="mailto:GS-W_Help_ADR_Transition@usgs.gov" target="_blank">GS-W Help ADR Transition</a></b><br />
+                                                <b><a href="mailto:GS-W Help SIMS@usgs.gov" target="_blank">GS-W Help SIMS</a></b>
+                                            </div>
+                                        </ContentTemplate>
+                                    </telerik:RadMenuItem>
+                                    <telerik:RadMenuItem IsSeparator="true" />
+                                    <telerik:RadMenuItem Text="Mapping">
+                                        <ContentTemplate>
+                                            <div style="padding:10px;">
+                                                <b><asp:HyperLink ID="hlMapFieldTrips" runat="server" Text="Map Field Trips" /></b><br />
+                                                <b>KML for use in ArcGIS &amp; Google Earth:</b><br />
+                                                &nbsp;&nbsp;&nbsp;Download for: <asp:HyperLink ID="hlKMLWSC" runat="server" Text="WSC" /> | <asp:HyperLink ID="hlKMLOffice" runat="server" Text="Office" /><br />
+                                                <asp:HyperLink ID="hlKMLInstructions" runat="server" Text="Download Instructions" Target="_blank" /><br />
+                                                <b><asp:HyperLink ID="hlEvalMaps" runat="server" Text="WSC Database Evaluation Maps" /></b>
+                                            </div>
+                                        </ContentTemplate>
+                                    </telerik:RadMenuItem>
+                                </Items>
+                            </telerik:RadMenu>
+                        </telerik:LayoutColumn>
+
+                        <%--Content--%>
+                        <telerik:CompositeLayoutColumn Span="10" SpanMd="12" SpanSm="12" SpanXs="12">
+                            <Content>
+                                <asp:ContentPlaceHolder ID="cph1" runat="server">
+                                </asp:ContentPlaceHolder>
+                                <asp:ContentPlaceHolder ID="cph2" runat="server">
+                                </asp:ContentPlaceHolder>
+                            </Content>
+                        </telerik:CompositeLayoutColumn>
+                    </Columns>
+                </telerik:LayoutRow>
+
+                <%--Footer--%>
+                <telerik:LayoutRow>
+                    <Columns>
+                        <telerik:LayoutColumn CssClass="footer">
+                            <hr />
+                            U.S. Geological Survey, <a href="mailto:GS-W_Help_SIMS@usgs.gov">GS-W Help SIMS@usgs.gov</a>, Page Last Updated: 08/30/2017
+                        </telerik:LayoutColumn>
+                    </Columns>
+                </telerik:LayoutRow>
+            </Rows>
+        </telerik:RadPageLayout>
+       </div>
+    </form>
+</body>
+</html>

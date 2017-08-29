@@ -606,6 +606,7 @@ Public Class Service
         da.Fill(ds, "Total")
         Return ds
     End Function
+
     <WebMethod(Description:="Gets RMS total status information from stored proc SP_TOTALS_Current_Continuous_by_region_or_district from SIMS")> _
     Public Function CurContRegDist(ByVal querydate As DateTime, ByVal region_cd As String, ByVal wsc_id As Integer) As DataSet
         Dim cs As String = Config.ConnectionInfo
@@ -634,6 +635,7 @@ Public Class Service
         da.Fill(ds, "Total")
         Return ds
     End Function
+
     <WebMethod(Description:="Gets RMS total status information from stored proc SP_TOTALS_Current_by_region_or_district_Q_Sites from SIMS")> _
     Public Function CurRegDistQ(ByVal querydate As DateTime, ByVal region_cd As String, ByVal wsc_id As Integer) As DataSet
         Dim cs As String = Config.ConnectionInfo

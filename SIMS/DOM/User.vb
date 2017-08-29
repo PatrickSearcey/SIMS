@@ -27,6 +27,9 @@ Public Class User
     ''' </summary>
     ''' <param name="user_id">The user ID identified by integrated authentication</param>
     Public Sub New(ByVal user_id As String)
+#If DEBUG Then
+        user_id = "GS\dterry"
+#End If
         _id = Replace(user_id, "GS\", "")
         _wsc_id = GetUserWSCID(_id)
         _user_exception = GetUserExceptions(_id)

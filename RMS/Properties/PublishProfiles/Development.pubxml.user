@@ -1,0 +1,430 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>\\igskiacwvmgs012\wwwroot\RMS\</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="Admin/PeriodDate.aspx">
+      <publishTime>07/21/2017 09:55:46</publishTime>
+    </File>
+    <File Include="Admin/PeriodStatus.aspx">
+      <publishTime>07/14/2017 06:40:57</publishTime>
+    </File>
+    <File Include="Admin/Records.aspx">
+      <publishTime>07/21/2017 09:42:41</publishTime>
+    </File>
+    <File Include="Admin/RecordTypes.aspx">
+      <publishTime>08/25/2017 10:48:34</publishTime>
+    </File>
+    <File Include="Admin/StationAnalyses.aspx">
+      <publishTime>07/21/2017 09:55:45</publishTime>
+    </File>
+    <File Include="Admin/Unlock.aspx">
+      <publishTime>07/13/2017 13:23:36</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/0.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/1.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/2.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/3.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/4.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/5.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/6.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/7.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/8.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/9.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/A.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/B.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/C.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/D.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/E.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/F.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/G.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/H.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/I.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/J.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/K.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/L.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/M.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/N.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/O.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/P.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/Q.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/R.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/S.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/T.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/U.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/V.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/W.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/X.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/Y.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/Z.wav">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadSpell/de-DE.tdf">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadSpell/en-US.tdf">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="App_Data/RadSpell/fr-FR.tdf">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="AuditPeriod.aspx">
+      <publishTime>06/12/2017 12:07:22</publishTime>
+    </File>
+    <File Include="AuditReport.aspx">
+      <publishTime>06/12/2017 12:07:22</publishTime>
+    </File>
+    <File Include="bin/Core.dll">
+      <publishTime>08/29/2017 16:04:39</publishTime>
+    </File>
+    <File Include="bin/Core.pdb">
+      <publishTime>08/29/2017 16:04:39</publishTime>
+    </File>
+    <File Include="bin/Data.dll">
+      <publishTime>08/29/2017 16:04:39</publishTime>
+    </File>
+    <File Include="bin/Data.pdb">
+      <publishTime>08/29/2017 16:04:39</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="bin/RMS.dll">
+      <publishTime>08/29/2017 16:29:54</publishTime>
+    </File>
+    <File Include="bin/RMS.pdb">
+      <publishTime>08/29/2017 16:29:54</publishTime>
+    </File>
+    <File Include="bin/Telerik.Web.Spreadsheet.dll">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="bin/Telerik.Web.UI.dll">
+      <publishTime>07/11/2017 10:53:29</publishTime>
+    </File>
+    <File Include="bin/Telerik.Web.UI.Skins.dll">
+      <publishTime>07/11/2017 10:53:29</publishTime>
+    </File>
+    <File Include="bin/Telerik.Windows.Documents.Core.dll">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="bin/Telerik.Windows.Documents.Flow.dll">
+      <publishTime>07/11/2017 10:53:29</publishTime>
+    </File>
+    <File Include="bin/Telerik.Windows.Documents.Spreadsheet.dll">
+      <publishTime>07/11/2017 10:53:29</publishTime>
+    </File>
+    <File Include="bin/Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll">
+      <publishTime>07/11/2017 10:53:29</publishTime>
+    </File>
+    <File Include="bin/Telerik.Windows.Zip.dll">
+      <publishTime>07/11/2017 10:53:29</publishTime>
+    </File>
+    <File Include="Control/OfficeSelector.ascx">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="Control/RecordPageHeading.ascx">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="Control/RecordTypeConfig.ascx">
+      <publishTime>08/25/2017 10:48:37</publishTime>
+    </File>
+    <File Include="Doc/AAA/AAA_CSG.docx">
+      <publishTime>07/26/2017 05:47:40</publishTime>
+    </File>
+    <File Include="Doc/AAA/AAA_CSG.pdf">
+      <publishTime>08/28/2017 13:34:04</publishTime>
+    </File>
+    <File Include="Doc/AAA/AAA_DiscreteGroundwater_Levels.pdf">
+      <publishTime>08/29/2017 10:08:47</publishTime>
+    </File>
+    <File Include="Doc/AAA/AAA_Groundwater_Levels.docx">
+      <publishTime>07/26/2017 15:00:51</publishTime>
+    </File>
+    <File Include="Doc/AAA/AAA_Groundwater_Levels.pdf">
+      <publishTime>08/28/2017 13:32:43</publishTime>
+    </File>
+    <File Include="Doc/AAA/AAA_index-velocity_streamflow.docx">
+      <publishTime>07/26/2017 05:47:40</publishTime>
+    </File>
+    <File Include="Doc/AAA/AAA_index-velocity_streamflow.pdf">
+      <publishTime>08/28/2017 13:33:36</publishTime>
+    </File>
+    <File Include="Doc/AAA/AAA_precip.docx">
+      <publishTime>07/26/2017 05:47:40</publishTime>
+    </File>
+    <File Include="Doc/AAA/AAA_precip.pdf">
+      <publishTime>08/28/2017 13:34:15</publishTime>
+    </File>
+    <File Include="Doc/AAA/AAA_reservoir_stagecontents.docx">
+      <publishTime>07/26/2017 05:47:40</publishTime>
+    </File>
+    <File Include="Doc/AAA/AAA_reservoir_stagecontents.pdf">
+      <publishTime>08/28/2017 13:33:50</publishTime>
+    </File>
+    <File Include="Doc/AAA/AAA_stageQ.docx">
+      <publishTime>07/26/2017 05:47:39</publishTime>
+    </File>
+    <File Include="Doc/AAA/AAA_stageQ.pdf">
+      <publishTime>08/28/2017 13:33:11</publishTime>
+    </File>
+    <File Include="Doc/AAA/AAA_stage_elevation.docx">
+      <publishTime>07/26/2017 05:47:39</publishTime>
+    </File>
+    <File Include="Doc/AAA/AAA_stage_elevation.pdf">
+      <publishTime>08/28/2017 13:33:24</publishTime>
+    </File>
+    <File Include="Doc/AAA/AAA_WQ.pdf">
+      <publishTime>08/28/2017 13:34:26</publishTime>
+    </File>
+    <File Include="Doc/Temp/placeholder.txt">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="EditorDialogs/InsertImage.ascx">
+      <publishTime>07/18/2017 13:14:44</publishTime>
+    </File>
+    <File Include="EditorDialogs/InsertLink.ascx">
+      <publishTime>07/18/2017 13:08:56</publishTime>
+    </File>
+    <File Include="EditorDialogs/InsertTable.ascx">
+      <publishTime>07/18/2017 13:08:30</publishTime>
+    </File>
+    <File Include="EditorDialogs/InsertTableLight.ascx">
+      <publishTime>07/18/2017 13:08:30</publishTime>
+    </File>
+    <File Include="EditorDialogs/MobileTableProperties.ascx">
+      <publishTime>07/18/2017 13:08:30</publishTime>
+    </File>
+    <File Include="EditorDialogs/TableLayouts.ascx">
+      <publishTime>07/18/2017 13:08:30</publishTime>
+    </File>
+    <File Include="EditorDialogs/TableProperties.ascx">
+      <publishTime>07/18/2017 13:08:30</publishTime>
+    </File>
+    <File Include="EditorDialogs/TableWizard.ascx">
+      <publishTime>07/18/2017 13:08:30</publishTime>
+    </File>
+    <File Include="Handler/ClearLock.ashx">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="Handler/DialogsHandler.ashx">
+      <publishTime>07/13/2017 16:23:53</publishTime>
+    </File>
+    <File Include="Handler/TemplateViewer.ashx">
+      <publishTime>07/13/2017 12:11:47</publishTime>
+    </File>
+    <File Include="images/approved.gif">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="images/arrowbullet.png">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="images/bigarrow.png">
+      <publishTime>07/13/2017 16:13:51</publishTime>
+    </File>
+    <File Include="images/dialogsavebutton.png">
+      <publishTime>07/13/2017 16:13:51</publishTime>
+    </File>
+    <File Include="images/False.png">
+      <publishTime>07/12/2017 18:37:08</publishTime>
+    </File>
+    <File Include="images/lock.png">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="images/lock_sm.png">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="images/RMSlogo.png">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="images/RMSTitle.png">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="images/save_icon.gif">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="images/save_sm.png">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="images/tooltip.png">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="images/True.png">
+      <publishTime>07/12/2017 18:37:08</publishTime>
+    </File>
+    <File Include="images/USGSHeaderLogo.png">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="images/USGSHeaderLogoRMS.png">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="images/viewdoc.png">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="Modal/Instructions.aspx">
+      <publishTime>07/18/2017 11:47:38</publishTime>
+    </File>
+    <File Include="Modal/ReportPopup.aspx">
+      <publishTime>07/21/2017 09:55:43</publishTime>
+    </File>
+    <File Include="Modal/ViewAudit.aspx">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="RecordAudit.aspx">
+      <publishTime>12/06/2016 15:23:02</publishTime>
+    </File>
+    <File Include="RecordProcess.aspx">
+      <publishTime>06/12/2017 12:07:24</publishTime>
+    </File>
+    <File Include="Report/Audit.aspx">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="Report/CRPStatus.aspx">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="Report/CRPStatusChart.aspx">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="Report/PeriodDetails.aspx">
+      <publishTime>07/21/2017 09:55:42</publishTime>
+    </File>
+    <File Include="Report/PubStatus.aspx">
+      <publishTime>08/29/2017 16:09:38</publishTime>
+    </File>
+    <File Include="Report/RecordProcess.aspx">
+      <publishTime>07/21/2017 09:42:28</publishTime>
+    </File>
+    <File Include="Report/RecordProgress.aspx">
+      <publishTime>07/21/2017 09:42:24</publishTime>
+    </File>
+    <File Include="Report/RecordProgressWSC.aspx">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="Report/ReportPopup.aspx">
+      <publishTime>12/06/2016 15:50:22</publishTime>
+    </File>
+    <File Include="RMS.Master">
+      <publishTime>08/29/2017 16:22:45</publishTime>
+    </File>
+    <File Include="RMSSingleMenu.Master">
+      <publishTime>08/29/2017 16:22:29</publishTime>
+    </File>
+    <File Include="RMSWSCHome.aspx">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="scripts/scripts.js">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="styles/admin.css">
+      <publishTime>07/11/2017 14:37:16</publishTime>
+    </File>
+    <File Include="styles/audit.css">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="styles/base.css">
+      <publishTime>08/04/2017 09:41:50</publishTime>
+    </File>
+    <File Include="styles/crpstatus.css">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="styles/default.css">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="styles/perioddetails.css">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="styles/pubstatus.css">
+      <publishTime>08/29/2017 16:11:14</publishTime>
+    </File>
+    <File Include="styles/recordprocess.css">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="styles/recordprogress.css">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="Task/Audit.aspx">
+      <publishTime>07/11/2017 10:53:28</publishTime>
+    </File>
+    <File Include="Task/RecordProcess.aspx">
+      <publishTime>07/26/2017 06:56:41</publishTime>
+    </File>
+    <File Include="web.config">
+      <publishTime>08/25/2017 10:48:44</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,136 @@
+﻿#wrapper .header {
+    padding: 10px 0;
+    margin: 0;
+    text-align: center;
+}
+
+#wrapper .header .RadMenu {
+    float: none;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#wrapper .logo {
+    padding: 10px 0;
+    display: block;
+    text-align: center;
+}
+
+#wrapper .jumbotron {
+    margin-bottom: 20px;
+    padding: 0 1.875em 1.875em 1.875em;
+    border: 1px solid transparent;
+    background-color: #e9eaea;
+    overflow: hidden;
+}
+
+#wrapper .jumbotron img {
+    float: right;
+    margin: 20px 0 0 0;
+    max-width: 100%;
+}
+
+#wrapper .jumbotron h1 {
+    border-bottom: 1px solid #767676;
+    display: inline-block;
+    padding-bottom: 20px;
+}
+
+#wrapper .grid_wrapper {
+    margin: 0 40px;
+}
+
+#wrapper .subheader {
+    text-align:right;
+    font-size: .8em;
+    font-style:italic;
+    padding-bottom:20px;
+    margin-top:0;
+}
+
+#wrapper .footer {
+    width:100%;
+    padding: 10px 15px;
+    line-height: 30px;
+}
+
+.selector {
+    width: 90%;
+    margin: auto;
+    padding-left:20px;
+    padding-right:20px;
+}
+
+.headers {
+    width: 70% !important;
+}
+
+.linkbar {
+    width: 90%;
+    margin: auto;
+    font-size:10pt;
+    padding-top:10px;
+    border-bottom:solid 1px #808080;
+    height:40px;
+}
+
+.mainContent {
+    margin:auto;
+    max-width:90% !important;
+}
+
+h4 {
+    border-bottom: 1px solid #a0865d;
+    color: #b84626;
+}
+
+.multiPage
+{
+    display: -moz-inline-box;
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+    position: relative;
+    margin-bottom: -3px;
+    border: 1px solid #a0865d;
+    background-color: #f0eac8;
+}
+
+.pnlErrors {
+    width: 1000px;
+    margin: 20px auto 0;
+    padding:10px;
+    height:80px;
+    background: #b84626; /* Old browsers */
+    -webkit-box-shadow: 0 0 5px 0 #b84626;
+    box-shadow: 0 0 5px 0 #b84626;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    color: #f0eac8;
+}
+
+.pnlErrors h4 {
+    color: #f0eac8;
+    margin-bottom:0;
+    margin-top:0;
+}
+
+.Filters {
+    margin: 0 0 10px 0;
+    padding: 10px;
+    height: 100%;
+    width: 100%;
+    color: #b84626;
+    background: #f7f4f0;
+    -webkit-box-shadow: 0 0 5px 0 #f7f4f0;
+    box-shadow: 0 0 5px 0 #f7f4f0;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 11pt;
+    font-weight:bold;
+}
+.filtersSubtext {
+    text-align:center;
+    font-style:italic;
+    font-weight:normal !important;
+}

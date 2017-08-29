@@ -1,0 +1,40 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="RMSSingleMenu.Master.cs" Inherits="RMS.MasterPageSingleMenu" %>
+<%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>SIMS - Records Management System</title>
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1, maximum-scale=1.0, user-scalable=no" />
+    <link href="styles/base.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <telerik:RadScriptManager runat="server"></telerik:RadScriptManager>
+        <div id="wrapper">
+            <a href="#" class="logo">
+                <asp:Image ID="imgUSGS" runat="server" ImageUrl="~/images/USGSHeaderLogoRMS.png" AlternateText="USGS" /><asp:Image ID="imgRMS" runat="server" ImageUrl="~/images/RMSLogo.png" AlternateText="site logo" />
+            </a>
+            <div class="header">
+                <telerik:RadMenu ID="rmTop" CssClass="mainMenu" runat="server" RenderMode="Auto">
+                </telerik:RadMenu>
+            </div>
+
+            <div class="subheader">
+                internal only | logged in as: <asp:Literal ID="ltlUserID" runat="server" />
+            </div>
+
+            <asp:ContentPlaceHolder ID="cph1" runat="server">
+            </asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="cph2" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr style="margin-top: 40px" />
+            <div class="footer">
+               U.S. Geological Survey, <a href="mailto:GS-W_Help_SIMS@usgs.gov">GS-W Help SIMS@usgs.gov</a>, Page Last Updated: 08/30/2017
+            </div>
+        </div>
+    </form>
+</body>
+</html>

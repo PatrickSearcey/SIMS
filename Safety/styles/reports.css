@@ -1,0 +1,326 @@
+﻿#wrapper .header {
+    padding: 10px 0;
+    margin: 0;
+    text-align: center;
+}
+
+#wrapper .header .RadMenu {
+    float: none;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#wrapper .logo {
+    padding: 10px 0;
+    display: block;
+    text-align: center;
+}
+
+#wrapper .jumbotron {
+    margin-bottom: 20px;
+    padding: 0 1.875em 1.875em 1.875em;
+    border: 1px solid transparent;
+    background-color: #e9eaea;
+    overflow: hidden;
+}
+
+#wrapper .jumbotron img {
+    float: right;
+    margin: 20px 0 0 0;
+    max-width: 100%;
+}
+
+#wrapper .jumbotron h1 {
+    border-bottom: 1px solid #767676;
+    display: inline-block;
+    padding-bottom: 20px;
+}
+
+#wrapper .grid_wrapper {
+    margin: 0 40px;
+}
+
+#wrapper .subheader {
+    text-align:right;
+    font-size: .8em;
+    font-style:italic;
+    padding-bottom:20px;
+}
+
+#wrapper .footer {
+    width:100%;
+    padding: 10px 15px;
+    line-height: 30px;
+    float:left;
+}
+
+.PrintView {
+    font-size:9pt !important;
+}
+
+.selector {
+    width: 90%;
+    margin: auto;
+    padding-left:20px;
+    padding-right:20px;
+}
+
+.headers {
+    width: 70% !important;
+}
+
+.linkbar {
+    width: 90%;
+    margin: auto;
+    font-size:10pt;
+    padding-top:10px;
+    border-bottom:solid 1px #808080;
+    height:40px;
+}
+
+.mainContent {
+    max-width:90% !important;
+    margin:auto;
+}
+
+.mainContentTCP {
+    max-width:80% !important;
+    margin:auto;
+}
+
+h4 {
+    border-bottom: 1px solid #a0865d;
+    color: #099b7a;
+}
+
+* + html .riSingle .riTextBox
+{
+    width: 10px !important;
+    height: 14px !important;
+}
+.multiPage
+{
+    display: -moz-inline-box;
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+    position: relative;
+    margin-bottom: -3px;
+    border: 1px solid #a0865d;
+    background-color: #f3efe9;
+}
+.selectedTab
+{
+    font-weight: bold !important;
+}
+
+.TCPInfo {
+    margin-top:10px;
+    padding:10px;
+    height:100%;
+    width:750px;
+    background: #f3efe9; /* Old browsers */
+    -webkit-box-shadow: 0 0 5px 0 #f3efe9;
+    box-shadow: 0 0 5px 0 #f3efe9;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.PlanInfo {
+    margin: 5px 0 0 30px;
+    padding:5px;
+    height:100%;
+    background: #d1ede5; /* Old browsers */
+    -webkit-box-shadow: 0 0 5px 0 #d1ede5;
+    box-shadow: 0 0 5px 0 #d1ede5;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-size:10pt;
+}
+
+/*----------------FOR SAFETY SUMMARY-----------------------*/
+.pnlHasAccess {
+    margin:auto;
+    padding: 20px 20px 0 20px;
+}
+.basicPanel 
+{
+    padding-top:10px;
+    padding-bottom:10px;
+    width: 970px;
+}
+.subPanel
+{
+    padding:10px;
+    width:950px;
+    background-color: #d1ede5;
+    border: 1px solid #4a9987;
+}
+.roundedPanel
+{
+    width: 900px;
+	margin: 10px 0 10px 0;
+	padding: 10px;
+	color: #565656;	
+	background: #f3efe9; /* Old browsers */
+    -webkit-box-shadow: 0 0 5px 0 #f3efe9;
+    box-shadow: 0 0 5px 0 #f3efe9;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.addServicingSiteInfo
+{
+    width: 900px;
+    min-height:260px;
+	margin: 10px 0 10px 0;
+	padding: 10px;
+	color: #565656;	
+	background: #f3efe9; /* Old browsers */
+    -webkit-box-shadow: 0 0 5px 0 #f3efe9;
+    box-shadow: 0 0 5px 0 #f3efe9;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.leftpanel
+{
+    float:left;
+    width:55%;
+    margin-top:0;
+}
+.rightpanel
+{
+    float:right;
+    width:45%;
+    margin-top:0;
+}
+.floatLeft
+{
+    float:left;
+}
+h3.sectionHeadings
+{
+    color: #846b45;
+    font-weight:bold;
+    font-size: 14pt;
+    border-bottom: 1px dotted #099b7a;
+}
+h4.sectionHeadings
+{
+    color: #4a9987 !important;
+    font-size: 12pt !important;
+    font-weight:bold !important;
+    border-bottom: 1px dotted #099b7a !important;
+    margin-bottom:3px;
+}
+h5.sectionHeadings
+{
+    color: #4a9987 !important;
+    font-size: 11pt !important; 
+    font-weight: bold !important;
+    border-bottom: 1px dotted #099b7a !important;
+    margin-bottom:3px;
+}
+.noData
+{
+    font-style:italic;
+    color:#666666;
+    font-size:smaller;
+}
+
+.riTextBox {
+    width: 100% !important;
+}
+
+/* TRAFFIC CONTROL PLANS */
+.TCPPlanImage {
+    max-width: 450px;
+    border-radius: 15px;
+    padding:10px;
+}
+
+.pnlSiteInfo {
+    border-radius: 5px;
+    border: 1px solid #4a9987;
+    padding: 10px;
+    margin-top:20px;
+    margin-bottom:5px;
+}
+
+.pnlCalcData {
+    border-radius: 5px;
+    border: 1px solid #4a9987;
+    padding: 10px;
+    margin-bottom:5px;
+}
+
+.pnlInstructions {
+    border-radius: 5px;
+    border: 1px solid #4a9987;
+    padding: 10px;
+    margin-bottom:480px;
+}
+
+.TCPRightSide {
+    float:right;
+    width:450px;
+    margin-top:30px;
+}
+.TCPLeftSide {
+    float:left;
+    width:50%;
+}
+
+.TCPPlanImagePrint {
+    max-width: 400px;
+    border-radius: 15px;
+    padding:10px;
+}
+
+.pnlSiteInfoPrint {
+    border-radius: 5px;
+    border: 1px solid #4a9987;
+    padding: 10px;
+    margin-top:10px;
+    margin-bottom:5px;
+}
+
+.pnlCalcDataPrint {
+    border-radius: 5px;
+    border: 1px solid #4a9987;
+    padding: 10px;
+    margin-bottom:5px;
+}
+
+.pnlInstructionsPrint {
+    border-radius: 5px;
+    border: 1px solid #4a9987;
+    padding: 10px;
+    margin-top:10px;
+}
+/* CABLEWAY REPORT */
+.InspOverdue
+{
+    font-weight:bold !important;
+    color: red !important;
+}
+.InspWithin30days
+{
+    color:red !important;
+}
+.InspWithin6mo
+{
+    color:orange !important;
+}
+/* MANAGE EMERGENCY INFO */
+.pageViewPanel
+{
+    padding: 10px;
+}
+.xlsButton
+{
+    color: White;
+    border: 0;
+    height:48px;
+    background: url('../images/excellogo.png') no-repeat center;
+    cursor: pointer;
+}

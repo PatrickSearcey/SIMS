@@ -142,7 +142,7 @@
     <p class="footerText"><a href="http://internal.usgs.gov">U.S. Geological Survey Intranet</a><br />
 	    URL: <a href="http://sims.water.usgs.gov/">http://sims.water.usgs.gov/</a><br />
 	    Page Contact Information: <a href="mailto:GS-W_Help_SIMS@usgs.gov">GS-W_Help_SIMS@usgs.gov</a><br />
-	    Page Last Updated: May 4, 2010</p>
+	    Page Last Updated: 08/30/2017</p>
     </form>
 </body>
 </html>
