@@ -134,7 +134,7 @@
                     <Columns>
                         <telerik:LayoutColumn CssClass="footer">
                             <hr />
-                            U.S. Geological Survey, <a href="mailto:GS-W_Help_SIMS@usgs.gov">GS-W Help SIMS@usgs.gov</a>, Page Last Updated: 1/31/2017
+                            U.S. Geological Survey, <a href="mailto:GS-W_Help_SIMS@usgs.gov">GS-W Help SIMS@usgs.gov</a>, Page Last Updated: 08/30/2017
                         </telerik:LayoutColumn>
                     </Columns>
                 </telerik:LayoutRow>
