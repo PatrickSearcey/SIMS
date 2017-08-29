@@ -765,3 +765,4 @@ SIMS/obj/Release/TransformWebConfig/assist/Web.config
 SIMS/obj/Release/TransformWebConfig/original/Web.config
 SIMS/obj/Release/TransformWebConfig/transformed/Web.config
 SIMS/obj/Release/_WPPLastBuildInfo.txt
+Safety/App_Data/RadUploadTemp/RadUploadTestFile
