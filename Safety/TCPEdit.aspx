@@ -277,7 +277,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td valign="top"><asp:Literal ID="ltlPlanVDoc" runat="server" Text="Upload Plan V Document" /></td>
+                                                <td valign="top"><asp:Literal ID="ltlPlanVDoc" runat="server" Text="<b>Upload Plan V Document</b>" /></td>
                                                 <td>
                                                     <asp:Panel ID="pnlFileUpload" runat="server" CssClass="floatLeft">
                                                         <telerik:RadAsyncUpload runat="server" ID="ruFile" AllowedFileExtensions="pdf" MaxFileInputsCount="1" 
@@ -331,7 +331,8 @@
                                                     <b>Plan Specific Notes:</b><br />
                                                     <%# Eval("PlanRemarks") %><br />
                                                     <asp:Panel ID="pnlDownloadPlan" runat="server">
-                                                        <b>Download Plan Document:</b> <asp:HyperLink ID="hlDownloadPlan" runat="server" Text="PlanVPlanDoc.pdf" Target="_blank" /><br />
+                                                        <b>Download Plan Document:</b> <asp:Literal ID="ltlUploadPlan" runat="server" Text="<i>upload a plan in the site specific info above</i>" />
+                                                            <asp:HyperLink ID="hlDownloadPlan" runat="server" Text="PlanVPlanDoc.pdf" Target="_blank" /><br />
                                                     </asp:Panel>
                                                     <asp:LinkButton ID="lbPlanRemarks" runat="server" Text="edit plan info" CommandName="edit" Font-Bold="true" /> |
                                                     <asp:LinkButton ID="lbDelete" runat="server" Text="delete plan" Font-Bold="true" CommandName="delete" />

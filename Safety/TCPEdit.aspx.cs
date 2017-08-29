@@ -918,11 +918,22 @@ namespace Safety
             {
                 Panel pnlDownloadPlan = (Panel)e.Item.FindControl("pnlDownloadPlan");
                 HyperLink hlDownloadPlan = (HyperLink)e.Item.FindControl("hlDownloadPlan");
+                Literal ltlUploadPlan = (Literal)e.Item.FindControl("ltlUploadPlan");
 
-                if (TCP.PlanID == 8 && TCP.PlanFile != null)
+                if (TCP.PlanID == 8)
                 {
                     pnlDownloadPlan.Visible = true;
-                    hlDownloadPlan.NavigateUrl = String.Format("{0}Handler/DocHandler.ashx?task=getTCP&TCPID={1}", Config.SIMS2017URL, TCP.TCPID);
+                    if (TCP.PlanFile != null)
+                    {
+                        hlDownloadPlan.NavigateUrl = String.Format("{0}Handler/DocHandler.ashx?task=getTCP&TCPID={1}", Config.SIMS2017URL, TCP.TCPID);
+                        hlDownloadPlan.Visible = true;
+                        ltlUploadPlan.Visible = false;
+                    }
+                    else
+                    {
+                        hlDownloadPlan.Visible = false;
+                        ltlUploadPlan.Visible = true;
+                    }
                 }
                 else pnlDownloadPlan.Visible = false;
             }
