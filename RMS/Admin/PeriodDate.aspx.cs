@@ -148,7 +148,7 @@ namespace RMS.Admin
                     }
                 }
 
-                lblSiteNo.Text = "Records for <a href=\"" + Config.SIMS2017URL + "StationInfo.asp?site_id=" + site.site_id + "\" target=\"_blank\">" + site.site_no + " " + site.station_full_nm + "</a>";
+                lblSiteNo.Text = "Records for <a href=\"" + Config.SIMS2017URL + "StationInfo.aspx?site_id=" + site.site_id + "\" target=\"_blank\">" + site.site_no + " " + site.station_full_nm + "</a>";
                 lblNoRecs.Visible = false;
                 pnlEnterSite.Visible = false;
                 pnlEditDates.Visible = true;

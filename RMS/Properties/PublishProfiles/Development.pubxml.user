@@ -166,10 +166,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/11/2017 10:53:28</publishTime>
     </File>
     <File Include="bin/RMS.dll">
-      <publishTime>08/29/2017 16:14:11</publishTime>
+      <publishTime>08/29/2017 16:29:54</publishTime>
     </File>
     <File Include="bin/RMS.pdb">
-      <publishTime>08/29/2017 16:14:11</publishTime>
+      <publishTime>08/29/2017 16:29:54</publishTime>
     </File>
     <File Include="bin/Telerik.Web.Spreadsheet.dll">
       <publishTime>07/11/2017 10:53:28</publishTime>
@@ -379,10 +379,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/06/2016 15:50:22</publishTime>
     </File>
     <File Include="RMS.Master">
-      <publishTime>08/04/2017 09:38:39</publishTime>
+      <publishTime>08/29/2017 16:22:45</publishTime>
     </File>
     <File Include="RMSSingleMenu.Master">
-      <publishTime>07/11/2017 10:53:28</publishTime>
+      <publishTime>08/29/2017 16:22:29</publishTime>
     </File>
     <File Include="RMSWSCHome.aspx">
       <publishTime>07/11/2017 10:53:28</publishTime>
