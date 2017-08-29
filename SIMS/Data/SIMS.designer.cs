@@ -18698,7 +18698,7 @@ namespace Data
 		
 		private string _approved_by;
 		
-		private string _SIMS2017URL;
+		private string _SIMSURL;
 		
 		private string _period;
 		
@@ -18982,18 +18982,18 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SIMS2017URL")]
-		public string SIMS2017URL
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SIMSURL")]
+		public string SIMSURL
 		{
 			get
 			{
-				return this._SIMS2017URL;
+				return this._SIMSURL;
 			}
 			set
 			{
-				if ((this._SIMS2017URL != value))
+				if ((this._SIMSURL != value))
 				{
-					this._SIMS2017URL = value;
+					this._SIMSURL = value;
 				}
 			}
 		}

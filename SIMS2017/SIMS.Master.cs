@@ -54,36 +54,36 @@ namespace SIMS2017
         //For setting up hyperlinks in the side and top menus
         protected void SetupPageHyperlinks()
         {
-            rmTop.Items.Add(new RadMenuItem { Text = "SIMS National Home", NavigateUrl = String.Format("{0}SIMSHome.aspx", Config.SIMS2017URL) });
+            rmTop.Items.Add(new RadMenuItem { Text = "SIMS National Home", NavigateUrl = String.Format("{0}SIMSHome.aspx", Config.SIMSURL) });
             rmTop.Items.Add(new RadMenuItem { IsSeparator = true });
-            rmTop.Items.Add(new RadMenuItem { Text = "SIMS WSC Home", NavigateUrl = String.Format("{0}SIMSWSCHome.aspx?wsc_id={1}", Config.SIMS2017URL, WSCID) });
+            rmTop.Items.Add(new RadMenuItem { Text = "SIMS WSC Home", NavigateUrl = String.Format("{0}SIMSWSCHome.aspx?wsc_id={1}", Config.SIMSURL, WSCID) });
             rmTop.Items.Add(new RadMenuItem { IsSeparator = true });
             rmTop.Items.Add(new RadMenuItem { Text = "RMS WSC Home", NavigateUrl = String.Format("{0}RMSWSCHome.aspx?wsc_id={1}", Config.RMSURL, WSCID) });
             rmTop.Items.Add(new RadMenuItem { IsSeparator = true });
-            rmTop.Items.Add(new RadMenuItem { Text = "Admin Tasks", NavigateUrl = String.Format("{0}Admin/Tasks.aspx?wsc_id={1}", Config.SIMS2017URL, WSCID) });
+            rmTop.Items.Add(new RadMenuItem { Text = "Admin Tasks", NavigateUrl = String.Format("{0}Admin/Tasks.aspx?wsc_id={1}", Config.SIMSURL, WSCID) });
             rmTop.Items.Add(new RadMenuItem { IsSeparator = true });
             rmTop.Items.Add(new RadMenuItem { Text = "Latest News", NavigateUrl = "https://collaboration.usgs.gov/wg/owi/specialprojects/SIMS/Shared%20Documents/updates.html" });
             rmTop.Items.Add(new RadMenuItem { IsSeparator = true });
-            rmTop.Items.Add(new RadMenuItem { Text = "Contact", NavigateUrl = String.Format("{0}NWISOpsRequest.aspx?office_id={1}", Config.SIMS2017URL, OfficeID) });
+            rmTop.Items.Add(new RadMenuItem { Text = "Contact", NavigateUrl = String.Format("{0}NWISOpsRequest.aspx?office_id={1}", Config.SIMSURL, OfficeID) });
 
             rmSide.FindItemByText("RMS").NavigateUrl = String.Format("{0}RMSWSCHome.aspx?wsc_id={1}", Config.RMSURL, WSCID);
 
-            hlDCPIDInfo.NavigateUrl = String.Format("{0}DCPIDReport.aspx?office_id={1}", Config.SIMS2017URL, OfficeID);
+            hlDCPIDInfo.NavigateUrl = String.Format("{0}DCPIDReport.aspx?office_id={1}", Config.SIMSURL, OfficeID);
             hlPASS.NavigateUrl = Config.PASSURL;
             hlStationLevels.NavigateUrl = String.Format("{0}StationLevels.aspx?wsc_id={1}", Config.SLAPURL, WSCID);
-            hlOfficeReport.NavigateUrl = String.Format("{0}StationDoc/CustomReport.aspx?type={1}&office_id={2}", Config.SIMS2017URL, "office", OfficeID);
+            hlOfficeReport.NavigateUrl = String.Format("{0}StationDoc/CustomReport.aspx?type={1}&office_id={2}", Config.SIMSURL, "office", OfficeID);
             hlCableway.NavigateUrl = String.Format("{0}CablewayReport.aspx?tp=status&office_id={1}", Config.SafetyURL, OfficeID);
             hlEditCableway.NavigateUrl = String.Format("{0}Cableways.aspx?office_id={1}", Config.SafetyURL, OfficeID);
             hlSHAReport.NavigateUrl = String.Format("{0}SHAReport.aspx?office_id={1}", Config.SafetyURL, OfficeID, WSCID);
             hlTCPReport.NavigateUrl = String.Format("{0}TCPReport.aspx?office_id={1}", Config.SafetyURL, OfficeID, WSCID);
             hlEmergencyInfo.NavigateUrl = String.Format("{0}EmergencyInfo.aspx?office_id={1}", Config.SafetyURL, OfficeID);
-            hlMAI.NavigateUrl = String.Format("{0}StationDoc/MAI.aspx?office_id={1}", Config.SIMS2017URL, OfficeID);
+            hlMAI.NavigateUrl = String.Format("{0}StationDoc/MAI.aspx?office_id={1}", Config.SIMSURL, OfficeID);
             hlWYSummaryReport.NavigateUrl = String.Format("{0}SIMSReports/WY/wys_details.html", Config.SIMSServerURL);
-            hlMapFieldTrips.NavigateUrl = String.Format("{0}fieldtripmap.aspx?office_id={1}&trip_id=0&wsc_id={2}", Config.SIMSURL, OfficeID, WSCID);
-            hlKMLWSC.NavigateUrl = String.Format("{0}KMLHandler.ashx?wsc_id={1}", Config.SIMSURL, WSCID);
-            hlKMLOffice.NavigateUrl = String.Format("{0}KMLHandler.ashx?office_id={1}", Config.SIMSURL, OfficeID);
-            hlKMLInstructions.NavigateUrl = String.Format("{0}Docs/KMLDownloadInstructions.pdf", Config.SIMSURL);
-            hlEvalMaps.NavigateUrl = String.Format("{0}EvalMaps.aspx?wsc_id={1}", Config.SIMSURL, WSCID);
+            hlMapFieldTrips.Enabled = false;
+            hlKMLWSC.Enabled = false;
+            hlKMLOffice.Enabled = false;
+            hlKMLInstructions.Enabled = false;
+            hlEvalMaps.Enabled = false;
         }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace SIMS2017
                     break;
             }
 
-            Response.Redirect(String.Format("{0}StationDoc/CustomReport.aspx?type={1}&office_id={2}", Config.SIMS2017URL, waterbodytype, OfficeID));
+            Response.Redirect(String.Format("{0}StationDoc/CustomReport.aspx?type={1}&office_id={2}", Config.SIMSURL, waterbodytype, OfficeID));
         }
     }
 }

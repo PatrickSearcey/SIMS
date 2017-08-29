@@ -214,6 +214,7 @@
     <Content Include="SIMS.Master" />
     <Content Include="SIMSHome.aspx" />
     <Content Include="SIMSSingleMenu.Master" />
+    <Content Include="SiteListsFAQ.html" />
     <Content Include="StationDoc\Archive.aspx" />
     <Content Include="StationDoc\CustomReport.aspx" />
     <Content Include="StationDoc\EditDocs.aspx" />
@@ -516,7 +517,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

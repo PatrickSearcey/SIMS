@@ -132,7 +132,7 @@ namespace SIMS2017.Control
                     lblRevisedDt.Text = String.Format("{0:MM/dd/yyyy}", elem.revised_dt);
                     lblRevisedBy.Text = elem.revised_by.ToString("N/A");
 
-                    hlRevisionHistory.NavigateUrl = String.Format("{0}StationDoc/Archive.aspx?element_id={1}&site_id={2}", Config.SIMS2017URL, element_id, currSite.site_id);
+                    hlRevisionHistory.NavigateUrl = String.Format("{0}StationDoc/Archive.aspx?element_id={1}&site_id={2}", Config.SIMSURL, element_id, currSite.site_id);
 
                     //Don't show EXTREMES FOR CURRENT YEAR, PEAK DISCHARGES FOR CURRENT YEAR, or FOOTNOTES elements in MANU
                     if (elem.ElementDetail.element_nm.Contains("EXTREMES FOR CURRENT YEAR") || elem.ElementDetail.element_nm.Contains("PEAK DISCHARGES FOR CURRENT YEAR") || elem.ElementDetail.element_nm.Contains("FOOTNOTE"))
@@ -204,7 +204,7 @@ namespace SIMS2017.Control
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
-            Response.Redirect(String.Format("{0}StationDoc/EditDocs.aspx?site_id={1}", Config.SIMS2017URL, SiteID), "_blank", "");
+            Response.Redirect(String.Format("{0}StationDoc/EditDocs.aspx?site_id={1}", Config.SIMSURL, SiteID), "_blank", "");
         }
 
         protected void ibFAQ_Click(object sender, EventArgs e)

@@ -937,7 +937,7 @@
       <Column Name="period_beg_dt" Type="System.DateTime" CanBeNull="true" />
       <Column Name="period_end_dt" Type="System.DateTime" CanBeNull="true" />
       <Column Name="approved_by" Type="System.String" CanBeNull="true" />
-      <Column Name="SIMS2017URL" Type="System.String" CanBeNull="true" />
+      <Column Name="SIMSURL" Type="System.String" CanBeNull="true" />
       <Column Name="period" Type="System.String" CanBeNull="true" />
       <Column Name="period_id" Type="System.Int32" CanBeNull="true" />
       <Column Name="type_cd" Type="System.String" CanBeNull="true" />

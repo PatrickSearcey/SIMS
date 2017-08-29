@@ -4,9 +4,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../styles/admin.css" rel="stylesheet" />
     <script type="text/javascript">
-        function openWin(_id, _type, _SIMS2017URL) {
-            if (_type == "newrecord") var oWnd = radopen(_SIMS2017URL + "Modal/RecordEdit.aspx?site_id=" + _id + "&type=" + _type, "rwEditRecords");
-            else if (_type == "record") var oWnd = radopen(_SIMS2017URL + "Modal/RecordEdit.aspx?rms_record_id=" + _id + "&type=" + _type, "rwEditRecords");
+        function openWin(_id, _type, _SIMSURL) {
+            if (_type == "newrecord") var oWnd = radopen(_SIMSURL + "Modal/RecordEdit.aspx?site_id=" + _id + "&type=" + _type, "rwEditRecords");
+            else if (_type == "record") var oWnd = radopen(_SIMSURL + "Modal/RecordEdit.aspx?rms_record_id=" + _id + "&type=" + _type, "rwEditRecords");
         }
 
         function OnClientClose(oWnd, args) {

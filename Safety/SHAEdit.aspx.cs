@@ -66,7 +66,7 @@ namespace Safety
         {
             //If no site_id was passed, then redirect back to the homepage
             string site_id = Request.QueryString["site_id"];
-            if (!string.IsNullOrEmpty(site_id)) SiteID = Convert.ToInt32(site_id); else Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
+            if (!string.IsNullOrEmpty(site_id)) SiteID = Convert.ToInt32(site_id); else Response.Redirect(Config.SIMSURL + "SIMSWSCHome.aspx");
 
             //Using the passed site_id, setup the site data element, and reset the office and wsc to match that of the current site
             currSHA = db.SHAs.Where(p => p.site_id == SiteID).FirstOrDefault();
@@ -705,7 +705,7 @@ namespace Safety
                 ltlElemInfo.Text = se.element_info;
                 ltlElemRevisedInfo.Text = String.Format("Revised by: {0} &nbsp;&nbsp;Date revised: {1:MM/dd/yyyy}", se.revised_by, se.revised_dt);
 
-                hlRevisionHistory.NavigateUrl = String.Format("{0}StationDoc/Archive.aspx?element_id={1}&site_id={2}&begin_dt=1/1/1900&end_dt={3}", Config.SIMS2017URL, Config.SiteHazardElem, SiteID, DateTime.Now);
+                hlRevisionHistory.NavigateUrl = String.Format("{0}StationDoc/Archive.aspx?element_id={1}&site_id={2}&begin_dt=1/1/1900&end_dt={3}", Config.SIMSURL, Config.SiteHazardElem, SiteID, DateTime.Now);
 
                 if (hfToggleElementEditMode.Value == "true")
                 {

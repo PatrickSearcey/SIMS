@@ -61,7 +61,7 @@ namespace SIMS2017.StationDoc
         {
             //If no site_id was passed, then redirect back to the homepage
             string site_id = Request.QueryString["site_id"];
-            if (!string.IsNullOrEmpty(site_id)) SiteID = Convert.ToInt32(site_id); else if (SiteID == 0) Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
+            if (!string.IsNullOrEmpty(site_id)) SiteID = Convert.ToInt32(site_id); else if (SiteID == 0) Response.Redirect(Config.SIMSURL + "SIMSWSCHome.aspx");
 
             //Set the element_id if it was passed from the browser
             if (!string.IsNullOrEmpty(Request.QueryString["element_id"])) element_id = Convert.ToInt32(Request.QueryString["element_id"]); 

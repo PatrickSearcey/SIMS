@@ -405,7 +405,7 @@ namespace Safety
                 HyperLink hlSite = (HyperLink)item.FindControl("hlSite");
 
                 hlSite.Attributes["target"] = "_blank";
-                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site.site_id);
+                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, site.site_id);
 
                 HyperLink hlAction = (HyperLink)item.FindControl("hlAction");
 
@@ -457,7 +457,7 @@ namespace Safety
                 HyperLink hlSite = (HyperLink)item.FindControl("hlSite");
 
                 hlSite.Attributes["target"] = "_blank";
-                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site.site_id);
+                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, site.site_id);
 
                 HyperLink hlAction = (HyperLink)item.FindControl("hlAction");
 
@@ -509,7 +509,7 @@ namespace Safety
                 HyperLink hlSite = (HyperLink)item.FindControl("hlSite");
 
                 hlSite.Attributes["target"] = "_blank";
-                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site.site_id);
+                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, site.site_id);
 
                 HyperLink hlAction = (HyperLink)item.FindControl("hlAction");
 
@@ -561,7 +561,7 @@ namespace Safety
                 HyperLink hlSite = (HyperLink)item.FindControl("hlSite");
 
                 hlSite.Attributes["target"] = "_blank";
-                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site.site_id);
+                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, site.site_id);
             }
         }
         #endregion
@@ -617,7 +617,7 @@ namespace Safety
                 HyperLink hlSite = (HyperLink)item.FindControl("hlSite");
 
                 hlSite.Attributes["target"] = "_blank";
-                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site.site_id);
+                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, site.site_id);
 
                 HyperLink hlAction = (HyperLink)item.FindControl("hlAction");
 
@@ -687,7 +687,7 @@ namespace Safety
                 HyperLink hlSite = (HyperLink)item.FindControl("hlSite");
 
                 hlSite.Attributes["target"] = "_blank";
-                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site.site_id);
+                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, site.site_id);
 
                 HyperLink hlAction = (HyperLink)item.FindControl("hlAction");
 
@@ -755,7 +755,7 @@ namespace Safety
                 HyperLink hlSite = (HyperLink)item.FindControl("hlSite");
 
                 hlSite.Attributes["target"] = "_blank";
-                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site.site_id);
+                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, site.site_id);
 
                 HyperLink hlAction = (HyperLink)item.FindControl("hlAction");
 
@@ -823,7 +823,7 @@ namespace Safety
                 HyperLink hlSite = (HyperLink)item.FindControl("hlSite");
 
                 hlSite.Attributes["target"] = "_blank";
-                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site.site_id);
+                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, site.site_id);
 
                 HyperLink hlAction = (HyperLink)item.FindControl("hlAction");
 

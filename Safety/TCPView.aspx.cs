@@ -64,7 +64,7 @@ namespace Safety
         {
             //If no TCPID was passed, then redirect back to the homepage
             string tcp_id = Request.QueryString["TCPID"];
-            if (!string.IsNullOrEmpty(tcp_id)) TCPID = Convert.ToInt32(tcp_id); else Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
+            if (!string.IsNullOrEmpty(tcp_id)) TCPID = Convert.ToInt32(tcp_id); else Response.Redirect(Config.SIMSURL + "SIMSWSCHome.aspx");
 
             //Using the passed TCPID, setup the TCP data element, and reset the office and wsc to match that of the current site
             currTCP = db.TCPs.Where(p => p.TCPID == TCPID).FirstOrDefault();
@@ -127,7 +127,7 @@ namespace Safety
                     if (currTCP.PlanFile != null)
                     {
                         pnlDownloadPlan.Visible = true;
-                        hlDownloadPlan.NavigateUrl = String.Format("{0}Handler/DocHandler.ashx?task=getTCP&TCPID={1}", Config.SIMS2017URL, currTCP.TCPID);
+                        hlDownloadPlan.NavigateUrl = String.Format("{0}Handler/DocHandler.ashx?task=getTCP&TCPID={1}", Config.SIMSURL, currTCP.TCPID);
                     }
                     else pnlDownloadPlan.Visible = false;
                 }

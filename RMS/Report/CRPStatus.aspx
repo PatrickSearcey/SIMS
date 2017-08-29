@@ -91,7 +91,7 @@
                     <telerik:GridBoundColumn DataField="office_cd" HeaderText="Office" AllowFiltering="false" HeaderStyle-Width="40px" UniqueName="office_cd" />
                     <telerik:GridTemplateColumn SortExpression="site_no" HeaderText="Number" FilterControlWidth="80px" ColumnGroupName="Site" UniqueName="site_no">
                         <ItemTemplate>
-                            <a href='<%# String.Format("{0}StationInfo.aspx?site_id={1}", Eval("SIMS2017URL"), Eval("site_id")) %>' target="_blank"><%# Eval("site_no") %></a>
+                            <a href='<%# String.Format("{0}StationInfo.aspx?site_id={1}", Eval("SIMSURL"), Eval("site_id")) %>' target="_blank"><%# Eval("site_no") %></a>
                         </ItemTemplate>
                     </telerik:GridTemplateColumn>
                     <telerik:GridBoundColumn DataField="station_nm" HeaderText="Name" FilterControlWidth="100px" ColumnGroupName="Site" UniqueName="station_nm" />

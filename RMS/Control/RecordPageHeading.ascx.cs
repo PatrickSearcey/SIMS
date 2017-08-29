@@ -57,7 +57,7 @@ namespace RMS.Control
         {
             hlPageSubTitle.Text = SubTitle;
             int SiteID = Convert.ToInt32(db.Records.FirstOrDefault(p => p.rms_record_id == RecordID).site_id);
-            hlPageSubTitle.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, SiteID);
+            hlPageSubTitle.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, SiteID);
             SetupResponsibleOfficeInfo();
         }
         #endregion
@@ -73,7 +73,7 @@ namespace RMS.Control
                 if (RecordID > 0)
                 {
                     int SiteID = Convert.ToInt32(db.Records.FirstOrDefault(p => p.rms_record_id == RecordID).site_id);
-                    hlPageSubTitle.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, SiteID);
+                    hlPageSubTitle.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, SiteID);
                 }
                 else
                 {
@@ -87,7 +87,7 @@ namespace RMS.Control
         protected void SetupResponsibleOfficeInfo()
         {
             Office office = db.Offices.Where(p => p.office_id == OfficeID).FirstOrDefault();
-            ltlOfficeInfo.Text = String.Format("<a href='{0}SIMSWSCHome.aspx?wsc_id={1}&office_id={2}'>{3}</a><br />{4}<br />{5}<br />{6}", Config.SIMS2017URL, WSCID, OfficeID, office.office_nm, office.street_addrs, office.city_st_zip, office.ph_no);
+            ltlOfficeInfo.Text = String.Format("<a href='{0}SIMSWSCHome.aspx?wsc_id={1}&office_id={2}'>{3}</a><br />{4}<br />{5}<br />{6}", Config.SIMSURL, WSCID, OfficeID, office.office_nm, office.street_addrs, office.city_st_zip, office.ph_no);
         }
     }
 }

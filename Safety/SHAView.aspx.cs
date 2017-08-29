@@ -64,7 +64,7 @@ namespace Safety
         {
             //If no site_id was passed, then redirect back to the homepage
             string site_id = Request.QueryString["site_id"];
-            if (!string.IsNullOrEmpty(site_id)) SiteID = Convert.ToInt32(site_id); else Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
+            if (!string.IsNullOrEmpty(site_id)) SiteID = Convert.ToInt32(site_id); else Response.Redirect(Config.SIMSURL + "SIMSWSCHome.aspx");
 
             //Using the passed site_id, setup the SHA data element, and reset the office and wsc to match that of the current site
             currSHA = db.SHAs.Where(p => p.site_id == SiteID).FirstOrDefault();

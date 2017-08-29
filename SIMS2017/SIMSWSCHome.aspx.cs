@@ -106,7 +106,8 @@ namespace SIMS2017
             var trip = db.Trips.Where(p => p.trip_id == TripID);
 
             ltlFieldTrip.Text = "Field Trip: " + trip.FirstOrDefault().trip_nm + " - " + db.Employees.Where(p => p.user_id == trip.FirstOrDefault().user_id).FirstOrDefault().first_nm + " " + db.Employees.Where(p => p.user_id == trip.FirstOrDefault().user_id).FirstOrDefault().last_nm;
-            hlMapTrip.NavigateUrl = String.Format("{0}fieldtripmap.aspx?office_id={1}&trip_id={2}&wsc_id={3}", Config.SIMSURL, OfficeID, TripID, WSCID);
+            //hlMapTrip.NavigateUrl = String.Format("{0}fieldtripmap.aspx?office_id={1}&trip_id={2}&wsc_id={3}", Config.SIMSURL, OfficeID, TripID, WSCID);
+            hlMapTrip.Visible = false;
 
             string site_no_list = "";
             var trip_sites = db.TripSites.Where(p => p.trip_id == TripID).Select(p => p.Site.site_no).ToList();
@@ -167,7 +168,7 @@ namespace SIMS2017
             private string _site_id;
             private string _site_no;
             private string _station_nm;
-            private string _SIMS2017URL;
+            private string _SIMSURL;
             private string _office_id;
             private string _wsc_id;
             private string _agency_cd;
@@ -191,10 +192,10 @@ namespace SIMS2017
                 get { return _station_nm; }
                 set { _station_nm = value; }
             }
-            public string SIMS2017URL
+            public string SIMSURL
             {
-                get { return _SIMS2017URL; }
-                set { _SIMS2017URL = value; }
+                get { return _SIMSURL; }
+                set { _SIMSURL = value; }
             }
             public string office_id
             {
@@ -236,7 +237,7 @@ namespace SIMS2017
                 _site_id = site_id;
                 _site_no = site_no;
                 _station_nm = station_nm;
-                _SIMS2017URL = SIMS2017URL;
+                _SIMSURL = SIMSURL;
                 _office_id = office_id;
                 _wsc_id = wsc_id;
                 _agency_cd = agency_cd;
@@ -256,7 +257,7 @@ namespace SIMS2017
                 site_id = p.site_id.ToString(),
                 site_no = p.site_no,
                 station_nm = p.station_nm,
-                SIMS2017URL = Config.SIMS2017URL,
+                SIMSURL = Config.SIMSURL,
                 office_id = p.office_id.ToString(),
                 wsc_id = p.wsc_id.ToString(),
                 agency_cd = p.agency_cd,

@@ -94,13 +94,13 @@
                                 <Columns>
                                     <telerik:GridTemplateColumn DataField="site_no" AllowSorting="true" AllowFiltering="true" SortExpression="site_no" HeaderText="Site Number" FilterControlWidth="100px">
                                         <ItemTemplate>
-                                            <b><a href='<%# String.Format("{0}StationInfo.aspx?site_id={1}", Eval("SIMS2017URL"), Eval("site_id")) %>'><%# Eval("site_no") %></a></b>
+                                            <b><a href='<%# String.Format("{0}StationInfo.aspx?site_id={1}", Eval("SIMSURL"), Eval("site_id")) %>'><%# Eval("site_no") %></a></b>
                                         </ItemTemplate>
                                     </telerik:GridTemplateColumn>
                                     <telerik:GridBoundColumn DataField="station_nm" AllowSorting="true" AllowFiltering="true" HeaderText="Station Name" />
                                     <telerik:GridTemplateColumn AllowSorting="false" AllowFiltering="false" HeaderText="Email Request">
                                         <ItemTemplate>
-                                            <a href='<%# String.Format("{0}NWISOpsRequest.aspx?office_id={1}&wsc_id={2}&site_id={3}", Eval("SIMS2017URL"), Eval("office_id"), Eval("wsc_id"), Eval("site_id")) %>'>Email</a>
+                                            <a href='<%# String.Format("{0}NWISOpsRequest.aspx?office_id={1}&wsc_id={2}&site_id={3}", Eval("SIMSURL"), Eval("office_id"), Eval("wsc_id"), Eval("site_id")) %>'>Email</a>
                                         </ItemTemplate>
                                     </telerik:GridTemplateColumn>
                                     <telerik:GridTemplateColumn AllowSorting="false" AllowFiltering="false" HeaderText="NWIS Web">

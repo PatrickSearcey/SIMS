@@ -77,7 +77,7 @@ namespace SIMS2017.StationDoc
 
                 OfficeID = Convert.ToInt32(site.office_id);
             }
-            else Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
+            else Response.Redirect(Config.SIMSURL + "SIMSWSCHome.aspx");
 
             //Set the the WSC ID based on the passed in Office ID
             WSCID = (int)db.Offices.Where(p => p.office_id == OfficeID).FirstOrDefault().wsc_id;
@@ -109,13 +109,13 @@ namespace SIMS2017.StationDoc
                 rcbSites.SelectedValue = site.site_id.ToString();
 
                 //Populate the link boxes at the top of the page. Only populate the hlOriginalSite link if first visit to page
-                hlCurrentSite.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site.site_id);
+                hlCurrentSite.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, site.site_id);
                 hlCurrentSite.Text = site.site_no + " " + site.station_full_nm;
 
-                hlOriginalSite.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site.site_id);
+                hlOriginalSite.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, site.site_id);
                 hlOriginalSite.Text = site.site_no + " " + site.station_full_nm;
 
-                hlFullReport.NavigateUrl = String.Format("{0}StationDoc/MAI.aspx?office_id={1}", Config.SIMS2017URL, OfficeID);
+                hlFullReport.NavigateUrl = String.Format("{0}StationDoc/MAI.aspx?office_id={1}", Config.SIMSURL, OfficeID);
             }
         }
 
@@ -161,7 +161,7 @@ namespace SIMS2017.StationDoc
             rgSiteDetails.Rebind();
 
             //Update the Current Site link box at the top of the page
-            hlCurrentSite.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site.site_id);
+            hlCurrentSite.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, site.site_id);
             hlCurrentSite.Text = site.site_no + " " + site.station_full_nm;
 
             //Refresh the ApproveMANU user control to show the newly selected site's MANU
@@ -195,7 +195,7 @@ namespace SIMS2017.StationDoc
                 HyperLink hlSiteNo = (HyperLink)item.FindControl("hlSiteNo");
 
                 hlSiteNo.Attributes["target"] = "_blank";
-                hlSiteNo.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site_id);
+                hlSiteNo.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, site_id);
             }
 
             //Set custom column header tooltips

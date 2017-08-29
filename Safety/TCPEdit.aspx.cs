@@ -69,7 +69,7 @@ namespace Safety
         {
             //If no site_id was passed, then redirect back to the homepage
             string site_id = Request.QueryString["site_id"];
-            if (!string.IsNullOrEmpty(site_id)) SiteID = Convert.ToInt32(site_id); else Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
+            if (!string.IsNullOrEmpty(site_id)) SiteID = Convert.ToInt32(site_id); else Response.Redirect(Config.SIMSURL + "SIMSWSCHome.aspx");
 
             //Using the passed site_id, setup the site data element, and reset the office and wsc to match that of the current site
             currSite = db.Sites.Where(p => p.site_id == SiteID).FirstOrDefault();
@@ -925,7 +925,7 @@ namespace Safety
                     pnlDownloadPlan.Visible = true;
                     if (TCP.PlanFile != null)
                     {
-                        hlDownloadPlan.NavigateUrl = String.Format("{0}Handler/DocHandler.ashx?task=getTCP&TCPID={1}", Config.SIMS2017URL, TCP.TCPID);
+                        hlDownloadPlan.NavigateUrl = String.Format("{0}Handler/DocHandler.ashx?task=getTCP&TCPID={1}", Config.SIMSURL, TCP.TCPID);
                         hlDownloadPlan.Visible = true;
                         ltlUploadPlan.Visible = false;
                     }

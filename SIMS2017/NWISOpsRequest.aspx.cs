@@ -464,7 +464,7 @@ namespace SIMS2017
             string site_no_nm = site.site_no + " " + site.station_full_nm;
             string pOut = "Site ID: " + site_no_nm + "\r\n\r\n" +
                 "DCPID: " + dcp_id + "\r\n\r\n" +
-                "SIMS Station Info Page: " + Config.SIMS2017URL + "StationInfo.aspx?office_id=" + site.office_id.ToString() + "&site_id=" + site.site_id.ToString() + "\r\n\r\n" +
+                "SIMS Station Info Page: " + Config.SIMSURL + "StationInfo.aspx?office_id=" + site.office_id.ToString() + "&site_id=" + site.site_id.ToString() + "\r\n\r\n" +
                 "NWIS Web: http://waterdata.usgs.gov/nwis/nwisman/?site_no=" + site.site_no + "\r\n\r\n";
 
             return pOut;

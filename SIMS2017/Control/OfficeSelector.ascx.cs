@@ -99,7 +99,7 @@ namespace SIMS2017.Control
 
         protected void SetupResponsibleOfficeInfo()
         {
-            ltlOfficeInfo.Text = String.Format("<a href='{0}SIMSWSCHome.aspx?wsc_id={1}&office_id={2}'>{3}</a><br />{4}<br />{5}<br />{6}", Config.SIMS2017URL, WSCID, SelOffice.office_id, SelOffice.office_nm, SelOffice.street_addrs, SelOffice.city_st_zip, SelOffice.ph_no);
+            ltlOfficeInfo.Text = String.Format("<a href='{0}SIMSWSCHome.aspx?wsc_id={1}&office_id={2}'>{3}</a><br />{4}<br />{5}<br />{6}", Config.SIMSURL, WSCID, SelOffice.office_id, SelOffice.office_nm, SelOffice.street_addrs, SelOffice.city_st_zip, SelOffice.ph_no);
         }
 
         protected void Filter_SelectedIndexChanged(object sender, EventArgs e)
@@ -127,7 +127,7 @@ namespace SIMS2017.Control
                 var site = db.Sites.FirstOrDefault(p => p.site_no == tbSiteNo.Text && p.agency_cd == tbAgencyCd.Text);
                 if (site != null)
                 {
-                    Response.Redirect(String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site.site_id));
+                    Response.Redirect(String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, site.site_id));
                 }
             }
         }

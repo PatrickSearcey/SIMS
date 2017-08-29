@@ -410,7 +410,7 @@ namespace Safety
                 int tcp_id = site.TCPSite.TCPs.FirstOrDefault(p => p.TCPPlanDetail.Number == plan_no).TCPID;
 
                 HyperLink hlSite = (HyperLink)item.FindControl("hlSite");
-                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site.site_id);
+                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, site.site_id);
 
                 HyperLink hlPlan = (HyperLink)item.FindControl("hlPlan");
                 hlPlan.Attributes["href"] = String.Format("{0}TCPView.aspx?TCPID={1}", Config.SafetyURL, tcp_id);
@@ -459,7 +459,7 @@ namespace Safety
                 int tcp_id = site.TCPSite.TCPs.FirstOrDefault(p => p.TCPPlanDetail.Number == plan_no).TCPID;
 
                 HyperLink hlSite = (HyperLink)item.FindControl("hlSite");
-                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site.site_id);
+                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, site.site_id);
 
                 HyperLink hlPlan = (HyperLink)item.FindControl("hlPlan");
                 hlPlan.Attributes["href"] = String.Format("{0}TCPView.aspx?TCPID={1}", Config.SafetyURL, tcp_id);
@@ -508,7 +508,7 @@ namespace Safety
                 int tcp_id = site.TCPSite.TCPs.FirstOrDefault(p => p.TCPPlanDetail.Number == plan_no).TCPID;
 
                 HyperLink hlSite = (HyperLink)item.FindControl("hlSite");
-                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site.site_id);
+                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, site.site_id);
 
                 HyperLink hlPlan = (HyperLink)item.FindControl("hlPlan");
                 hlPlan.Attributes["href"] = String.Format("{0}TCPView.aspx?TCPID={1}", Config.SafetyURL, tcp_id);
@@ -557,7 +557,7 @@ namespace Safety
                 HyperLink hlSite = (HyperLink)item.FindControl("hlSite");
 
                 hlSite.Attributes["target"] = "_blank";
-                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site.site_id);
+                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, site.site_id);
             }
         }
         #endregion
@@ -609,7 +609,7 @@ namespace Safety
                 int tcp_id = site.TCPSite.TCPs.FirstOrDefault(p => p.TCPPlanDetail.Number == plan_no).TCPID;
 
                 HyperLink hlSite = (HyperLink)item.FindControl("hlSite");
-                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site.site_id);
+                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, site.site_id);
 
                 HyperLink hlPlan = (HyperLink)item.FindControl("hlPlan");
                 hlPlan.Attributes["href"] = String.Format("{0}TCPView.aspx?TCPID={1}", Config.SafetyURL, tcp_id);
@@ -673,7 +673,7 @@ namespace Safety
                 int tcp_id = site.TCPSite.TCPs.FirstOrDefault(p => p.TCPPlanDetail.Number == plan_no).TCPID;
 
                 HyperLink hlSite = (HyperLink)item.FindControl("hlSite");
-                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site.site_id);
+                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, site.site_id);
 
                 HyperLink hlPlan = (HyperLink)item.FindControl("hlPlan");
                 hlPlan.Attributes["href"] = String.Format("{0}TCPView.aspx?TCPID={1}", Config.SafetyURL, tcp_id);
@@ -738,7 +738,7 @@ namespace Safety
                 int tcp_id = site.TCPSite.TCPs.FirstOrDefault(p => p.TCPPlanDetail.Number == plan_no).TCPID;
 
                 HyperLink hlSite = (HyperLink)item.FindControl("hlSite");
-                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site.site_id);
+                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, site.site_id);
 
                 HyperLink hlPlan = (HyperLink)item.FindControl("hlPlan");
                 hlPlan.Attributes["href"] = String.Format("{0}TCPView.aspx?TCPID={1}", Config.SafetyURL, tcp_id);
@@ -807,7 +807,7 @@ namespace Safety
                 HyperLink hlSite = (HyperLink)item.FindControl("hlSite");
 
                 hlSite.Attributes["target"] = "_blank";
-                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site.site_id);
+                hlSite.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, site.site_id);
 
                 HyperLink hlAction = (HyperLink)item.FindControl("hlAction");
 

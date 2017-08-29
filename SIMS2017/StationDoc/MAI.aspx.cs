@@ -69,7 +69,7 @@ namespace SIMS2017.StationDoc
             
             //If no office is passed, redirect to the homepage
             string office_id = Request.QueryString["office_id"];
-            if (!string.IsNullOrEmpty(office_id)) OfficeID = Convert.ToInt32(office_id); else Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
+            if (!string.IsNullOrEmpty(office_id)) OfficeID = Convert.ToInt32(office_id); else Response.Redirect(Config.SIMSURL + "SIMSWSCHome.aspx");
 
             //Set the the WSC ID based on the passed in Office ID
             WSCID = (int)db.Offices.Where(p => p.office_id == OfficeID).FirstOrDefault().wsc_id;
@@ -144,7 +144,7 @@ namespace SIMS2017.StationDoc
                 HyperLink hlSiteNo = (HyperLink)item.FindControl("hlSiteNo");
 
                 hlSiteNo.Attributes["target"] = "_blank";
-                hlSiteNo.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site_id);
+                hlSiteNo.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, site_id);
             }
 
             //Set custom column header tooltips
@@ -198,7 +198,7 @@ namespace SIMS2017.StationDoc
                 Button btnNWISWebSend = (Button)item.FindControl("btnNWISWebSend");
 
                 hlSiteNo.Attributes["target"] = "_blank";
-                hlSiteNo.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site_id);
+                hlSiteNo.Attributes["href"] = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, site_id);
             }
 
             //Set custom column header tooltips

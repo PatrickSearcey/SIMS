@@ -56,7 +56,7 @@ namespace SIMS2017
         {
             //If no site_id was passed, then redirect back to the homepage
             string site_id = Request.QueryString["site_id"];
-            if (!string.IsNullOrEmpty(site_id)) SiteID = Convert.ToInt32(site_id); else Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
+            if (!string.IsNullOrEmpty(site_id)) SiteID = Convert.ToInt32(site_id); else Response.Redirect(Config.SIMSURL + "SIMSWSCHome.aspx");
             
             //Using the passed site_id, setup the site data element, and reset the office and wsc to match that of the current site
             currSite = db.Sites.Where(p => p.site_id == SiteID).FirstOrDefault();
@@ -82,7 +82,7 @@ namespace SIMS2017
         {
             //Page Top
             hlNWISWeb.NavigateUrl = String.Format("http://waterdata.usgs.gov/nwis/inventory/?site_no={0}&agency_cd={1}", currSite.site_no, currSite.agency_cd);
-            hlNWISOpsRequest.NavigateUrl = String.Format("{0}NWISOpsRequest.aspx?office_id={1}&site_id={2}", Config.SIMS2017URL, OfficeID, SiteID);
+            hlNWISOpsRequest.NavigateUrl = String.Format("{0}NWISOpsRequest.aspx?office_id={1}&site_id={2}", Config.SIMSURL, OfficeID, SiteID);
 
             //Station Details
             ltlPubName.Text = currSite.station_full_nm;
@@ -99,7 +99,8 @@ namespace SIMS2017
             if (!string.IsNullOrEmpty(fieldtrips))
             {
                 ltlFieldTrip.Text = fieldtrips.TrimEnd(' ').TrimEnd(',');
-                hlMapTrips.NavigateUrl = String.Format("{0}fieldtripmap.aspx?office_id={1}&trip_id={2}&wsc_id={3}", Config.SIMSURL, OfficeID, currSite.TripSites.FirstOrDefault().trip_id, WSCID);
+                //hlMapTrips.NavigateUrl = String.Format("{0}fieldtripmap.aspx?office_id={1}&trip_id={2}&wsc_id={3}", Config.SIMSURL, OfficeID, currSite.TripSites.FirstOrDefault().trip_id, WSCID);
+                hlMapTrips.Visible = false;
             }
             else
             {
@@ -110,12 +111,12 @@ namespace SIMS2017
             hlSiFTA.NavigateUrl = "http://sifta.water.usgs.gov/NationalFunding/Site.aspx?SiteNumber=" + currSite.site_no.Trim();
 
             //Station Documents
-            hlEditDocs.NavigateUrl = String.Format("{0}StationDoc/EditDocs.aspx?site_id={1}", Config.SIMS2017URL, currSite.site_id);
-            hlSDESC.NavigateUrl = String.Format("{0}StationDoc/ViewDocs.aspx?site_id={1}&type=SDESC", Config.SIMS2017URL, currSite.site_id);
-            hlMANU.NavigateUrl = String.Format("{0}StationDoc/ViewDocs.aspx?site_id={1}&type=MANU", Config.SIMS2017URL, currSite.site_id);
-            hlSANAL.NavigateUrl = String.Format("{0}StationDoc/ViewDocs.aspx?site_id={1}&type=SANAL", Config.SIMS2017URL, currSite.site_id);
-            hlCustomReport.NavigateUrl = String.Format("{0}StationDoc/ViewDocs.aspx?site_id={1}&type=Custom", Config.SIMS2017URL, currSite.site_id);
-            hlArchives.NavigateUrl = String.Format("{0}StationDoc/Archive.aspx?site_id={1}", Config.SIMS2017URL, currSite.site_id);
+            hlEditDocs.NavigateUrl = String.Format("{0}StationDoc/EditDocs.aspx?site_id={1}", Config.SIMSURL, currSite.site_id);
+            hlSDESC.NavigateUrl = String.Format("{0}StationDoc/ViewDocs.aspx?site_id={1}&type=SDESC", Config.SIMSURL, currSite.site_id);
+            hlMANU.NavigateUrl = String.Format("{0}StationDoc/ViewDocs.aspx?site_id={1}&type=MANU", Config.SIMSURL, currSite.site_id);
+            hlSANAL.NavigateUrl = String.Format("{0}StationDoc/ViewDocs.aspx?site_id={1}&type=SANAL", Config.SIMSURL, currSite.site_id);
+            hlCustomReport.NavigateUrl = String.Format("{0}StationDoc/ViewDocs.aspx?site_id={1}&type=Custom", Config.SIMSURL, currSite.site_id);
+            hlArchives.NavigateUrl = String.Format("{0}StationDoc/Archive.aspx?site_id={1}", Config.SIMSURL, currSite.site_id);
             hlSLAP.NavigateUrl = String.Format("{0}HistoricObjectSum.aspx?site_no={1}&agency_cd={2}", Config.SLAPURL, currSite.site_no.Trim(), currSite.agency_cd);
             if (!Config.IsSLAPWSC.Contains(WSCID)) hlSLAP.Visible = false;
             //Make the determination of what to show for the MANU approval link
@@ -130,9 +131,9 @@ namespace SIMS2017
                     {
                         DateTime approved_dt = Convert.ToDateTime(manuApproved.approved_dt);
                         DateTime revised_dt = Convert.ToDateTime(db.ElemReportSums.FirstOrDefault(p => p.site_id == currSite.site_id && p.report_type_cd == "MANU").revised_dt);
-                        if (revised_dt > approved_dt) ltlApproved.Text = String.Format("(<a href='{0}StationDoc/SiteMAI.aspx?site_id={1}' style='color:red;'>Needs Approval</a>)", Config.SIMS2017URL, currSite.site_id); else ltlApproved.Text = String.Format("(<a href='{0}StationDoc/SiteMAI.aspx?site_id={1}' style='color:green'>Approved</a>)", Config.SIMS2017URL, currSite.site_id);
+                        if (revised_dt > approved_dt) ltlApproved.Text = String.Format("(<a href='{0}StationDoc/SiteMAI.aspx?site_id={1}' style='color:red;'>Needs Approval</a>)", Config.SIMSURL, currSite.site_id); else ltlApproved.Text = String.Format("(<a href='{0}StationDoc/SiteMAI.aspx?site_id={1}' style='color:green'>Approved</a>)", Config.SIMSURL, currSite.site_id);
                     }
-                    else ltlApproved.Text = String.Format("(<a href='{0}StationDoc/SiteMAI.aspx?site_id={1}'>Needs Approval</a>)", Config.SIMS2017URL, currSite.site_id);
+                    else ltlApproved.Text = String.Format("(<a href='{0}StationDoc/SiteMAI.aspx?site_id={1}'>Needs Approval</a>)", Config.SIMSURL, currSite.site_id);
                 }
                 else ltlApproved.Visible = false;
             }
@@ -162,8 +163,8 @@ namespace SIMS2017
             lbNewRecordType.OnClientClick = String.Format("openWin('{0}','newrecord'); return false;", currSite.site_id);
 
             //Safety
-            hlSHATutorial.NavigateUrl = String.Format("{0}SIMSShare/SIMS_SHA_Tutorial.pptx", Config.SIMSURL);
-            hlTCPTutorial.NavigateUrl = String.Format("{0}SIMSShare/SIMS_TCP_Software_Training.pptx", Config.SIMSURL);
+            hlSHATutorial.NavigateUrl = String.Format("{0}SIMSShare/SIMS_SHA_Tutorial.pptx", Config.SIMSServerURL);
+            hlTCPTutorial.NavigateUrl = String.Format("{0}SIMSShare/SIMS_TCP_Software_Training.pptx", Config.SIMSServerURL);
             var SHA = currSite.SHAs.FirstOrDefault();
             if (SHA != null)
             {
@@ -1077,7 +1078,7 @@ namespace SIMS2017
             if (!string.IsNullOrEmpty(site_no))
             {
                 int site_id = db.Sites.Where(p => p.site_no == site_no).FirstOrDefault().site_id;
-                Response.Redirect(String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, site_id));
+                Response.Redirect(String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, site_id));
             }
         }
 

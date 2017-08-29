@@ -145,7 +145,7 @@ namespace RMS.Admin
                 var currSite = db.Sites.FirstOrDefault(p => p.site_id == site_id);
 
                 LinkButton lbAssignRecord = (LinkButton)item.FindControl("lbAssignRecord");
-                lbAssignRecord.OnClientClick = String.Format("openWin('{0}','newrecord', '{1}'); return false;", currSite.site_id, Config.SIMS2017URL);
+                lbAssignRecord.OnClientClick = String.Format("openWin('{0}','newrecord', '{1}'); return false;", currSite.site_id, Config.SIMSURL);
             }
 
         }
@@ -184,11 +184,11 @@ namespace RMS.Admin
 
                 LinkButton lbAssignRecord = (LinkButton)item.FindControl("lbAssignRecord");
                 LinkButton lbEditRecord = (LinkButton)item.FindControl("lbEditRecord");
-                lbAssignRecord.OnClientClick = String.Format("openWin('{0}','newrecord', '{1}'); return false;", currRecord.site_id, Config.SIMS2017URL);
-                lbEditRecord.OnClientClick = String.Format("openWin('{0}','record', '{1}'); return false;", currRecord.rms_record_id, Config.SIMS2017URL);
+                lbAssignRecord.OnClientClick = String.Format("openWin('{0}','newrecord', '{1}'); return false;", currRecord.site_id, Config.SIMSURL);
+                lbEditRecord.OnClientClick = String.Format("openWin('{0}','record', '{1}'); return false;", currRecord.rms_record_id, Config.SIMSURL);
 
                 HyperLink hlSiteNo = (HyperLink)item.FindControl("hlSiteNo");
-                hlSiteNo.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, currRecord.site_id);
+                hlSiteNo.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, currRecord.site_id);
 
                 if (Convert.ToBoolean(currRecord.not_used_fg))
                 {

@@ -105,7 +105,7 @@ namespace RMS.Task
             {
                 PopulateErrorDiagnostics("No Period ID or Record ID was passed");
                 return;
-                //Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
+                //Response.Redirect(Config.SIMSURL + "SIMSWSCHome.aspx");
             }
 
             //Using the passed rms_record_id, setup the record data element, and reset the office and wsc to match that of the current record
@@ -384,7 +384,7 @@ namespace RMS.Task
         {
             if (!HasEditAccess)
                 PopulateErrorDiagnostics("The user does not have permission to access this page.");
-                //Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
+                //Response.Redirect(Config.SIMSURL + "SIMSWSCHome.aspx");
         }
         #endregion
 
@@ -489,7 +489,7 @@ namespace RMS.Task
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             }
             //Redirect back to Station Info page
-            Response.Redirect(String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, currRecord.Site.site_id));
+            Response.Redirect(String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, currRecord.Site.site_id));
         }
 
         protected void FinishAnalyzingPeriod()

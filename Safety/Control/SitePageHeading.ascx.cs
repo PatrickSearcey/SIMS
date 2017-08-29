@@ -66,7 +66,7 @@ namespace Safety.Control
         public void RefreshHeadingData()
         {
             hlPageSubTitle.Text = SubTitle;
-            hlPageSubTitle.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, SiteID);
+            hlPageSubTitle.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, SiteID);
             SetupResponsibleOfficeInfo();
         }
         #endregion
@@ -82,7 +82,7 @@ namespace Safety.Control
 
                     ltlPageTitle.Text = Title;
                     hlPageSubTitle.Text = SubTitle;
-                    hlPageSubTitle.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, SiteID);
+                    hlPageSubTitle.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, SiteID);
 
                     SetupResponsibleOfficeInfo();
                 }
@@ -104,7 +104,7 @@ namespace Safety.Control
             else
             {
                 pnlOffice.Visible = true;
-                ltlOfficeInfo.Text = String.Format("<a href='{0}SIMSWSCHome.aspx?wsc_id={1}&office_id={2}'>{3}</a><br />{4}<br />{5}<br />{6}", Config.SIMS2017URL, WSCID, OfficeID, office.office_nm, office.street_addrs, office.city_st_zip, office.ph_no);
+                ltlOfficeInfo.Text = String.Format("<a href='{0}SIMSWSCHome.aspx?wsc_id={1}&office_id={2}'>{3}</a><br />{4}<br />{5}<br />{6}", Config.SIMSURL, WSCID, OfficeID, office.office_nm, office.street_addrs, office.city_st_zip, office.ph_no);
             }
             
         }

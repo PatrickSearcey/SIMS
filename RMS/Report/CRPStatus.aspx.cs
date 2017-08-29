@@ -122,7 +122,7 @@ namespace RMS.Report
                 approved_period_dt = p.approved_period_dt,
                 last_aging_dt = p.last_aging_dt,
                 DaysSinceAging = p.DaysSinceAging,
-                SIMS2017URL = Config.SIMS2017URL,
+                SIMSURL = Config.SIMSURL,
                 site_id = db.Sites.FirstOrDefault(s => s.site_no == p.site_no).site_id
             }).OrderBy(p => p.office_cd).ThenBy(p => p.site_no).ThenBy(p => p.type_cd).ToList();
 

@@ -42,7 +42,7 @@ namespace SIMS2017.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
             string office_id = Request.QueryString["office_id"];
-            if (!string.IsNullOrEmpty(office_id)) OfficeID = Convert.ToInt32(office_id); else if (OfficeID == 0) Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
+            if (!string.IsNullOrEmpty(office_id)) OfficeID = Convert.ToInt32(office_id); else if (OfficeID == 0) Response.Redirect(Config.SIMSURL + "SIMSWSCHome.aspx");
 
             WSCID = Convert.ToInt32(db.Offices.FirstOrDefault(p => p.office_id == OfficeID).wsc_id);
             currWSC = db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID);
@@ -72,10 +72,10 @@ namespace SIMS2017.Admin
                 pnlHasAccess.Visible = true;
                 pnlNoAccess.Visible = false;
 
-                hlRegisterSite.NavigateUrl = String.Format("{0}Admin/RegisterSite.aspx?office_id={1}", Config.SIMS2017URL, OfficeID);
-                hlManageOffices.NavigateUrl = String.Format("{0}Admin/Offices.aspx?office_id={1}", Config.SIMS2017URL, OfficeID);
-                hlManagePersonnel.NavigateUrl = String.Format("{0}Admin/Personnel.aspx?office_id={1}", Config.SIMS2017URL, OfficeID);
-                hlManageFieldTrips.NavigateUrl = String.Format("{0}Admin/FieldTrips.aspx?office_id={1}", Config.SIMS2017URL, OfficeID);
+                hlRegisterSite.NavigateUrl = String.Format("{0}Admin/RegisterSite.aspx?office_id={1}", Config.SIMSURL, OfficeID);
+                hlManageOffices.NavigateUrl = String.Format("{0}Admin/Offices.aspx?office_id={1}", Config.SIMSURL, OfficeID);
+                hlManagePersonnel.NavigateUrl = String.Format("{0}Admin/Personnel.aspx?office_id={1}", Config.SIMSURL, OfficeID);
+                hlManageFieldTrips.NavigateUrl = String.Format("{0}Admin/FieldTrips.aspx?office_id={1}", Config.SIMSURL, OfficeID);
                 hlManageRecords.NavigateUrl = String.Format("{0}Admin/Records.aspx?office_id={1}", Config.RMSURL, OfficeID);
                 hlManageRecordTypes.NavigateUrl = String.Format("{0}Admin/RecordTypes.aspx?office_id={1}", Config.RMSURL, OfficeID);
                 hlPeriodDates.NavigateUrl = String.Format("{0}Admin/PeriodDate.aspx?office_id={1}", Config.RMSURL, OfficeID);

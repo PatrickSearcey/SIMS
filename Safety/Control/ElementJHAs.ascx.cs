@@ -107,7 +107,7 @@ namespace Safety.Control
 		    ltlElemName.Text = currSiteElem.ElementDetail.element_nm;
             ltlElemName2.Text = currSiteElem.ElementDetail.element_nm;
 
-            hlRevisionHistory.NavigateUrl = String.Format("{0}StationDoc/Archive.aspx?element_id={1}&site+id={2}&begin_dt=1/1/1900&end_dt={3}", Config.SIMS2017URL, ElementID, SiteID, DateTime.Now);
+            hlRevisionHistory.NavigateUrl = String.Format("{0}StationDoc/Archive.aspx?element_id={1}&site+id={2}&begin_dt=1/1/1900&end_dt={3}", Config.SIMSURL, ElementID, SiteID, DateTime.Now);
 
             if (hfToggleElementEditMode.Value == "true")
             {

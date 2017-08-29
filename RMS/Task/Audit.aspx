@@ -248,7 +248,7 @@
                                             </asp:Panel>
                                         </LayoutTemplate>
                                         <ItemTemplate>
-                                            <a href='<%# String.Format("{0}Handler/DocHandler.ashx?task=get&ID={1}", System.Configuration.ConfigurationManager.AppSettings["SIMS2017URL"], Eval("rms_audit_document_id")) %>' target="_blank"><%# Eval("document_nm") %></a>
+                                            <a href='<%# String.Format("{0}Handler/DocHandler.ashx?task=get&ID={1}", System.Configuration.ConfigurationManager.AppSettings["SIMSURL"], Eval("rms_audit_document_id")) %>' target="_blank"><%# Eval("document_nm") %></a>
                                         </ItemTemplate>
                                         <ItemSeparatorTemplate>
                                             <br />

@@ -74,13 +74,13 @@ namespace SIMS2017
         {
             rmTop.Items.Add(new RadMenuItem { Text = "SIMS National Home" });
             rmTop.Items.Add(new RadMenuItem { IsSeparator = true });
-            rmTop.Items.Add(new RadMenuItem { Text = "Your SIMS WSC Home", NavigateUrl = String.Format("{0}SIMSWSCHome.aspx", Config.SIMS2017URL) });
+            rmTop.Items.Add(new RadMenuItem { Text = "Your SIMS WSC Home", NavigateUrl = String.Format("{0}SIMSWSCHome.aspx", Config.SIMSURL) });
             rmTop.Items.Add(new RadMenuItem { IsSeparator = true });
             rmTop.Items.Add(new RadMenuItem { Text = "Your RMS WSC Home", NavigateUrl = String.Format("{0}RMSWSCHome.aspx", Config.RMSURL) });
             rmTop.Items.Add(new RadMenuItem { IsSeparator = true });
             rmTop.Items.Add(new RadMenuItem { Text = "Latest News", NavigateUrl = "https://collaboration.usgs.gov/wg/owi/specialprojects/SIMS/Shared%20Documents/updates.html" });
             rmTop.Items.Add(new RadMenuItem { IsSeparator = true });
-            rmTop.Items.Add(new RadMenuItem { Text = "Contact", NavigateUrl = String.Format("{0}NWISOpsRequest.aspx", Config.SIMS2017URL) });
+            rmTop.Items.Add(new RadMenuItem { Text = "Contact", NavigateUrl = String.Format("{0}NWISOpsRequest.aspx", Config.SIMSURL) });
 
             hlCRPCharts.NavigateUrl = String.Format("{0}SIMSReports/CRP/", Config.SIMSServerURL);
             hlCablewayInfo.NavigateUrl = String.Format("{0}CablewayReport.aspx?tp=nw", Config.SafetyURL);

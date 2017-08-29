@@ -77,7 +77,7 @@ namespace RMS.Admin
                     {
                         pnlEnterSite.Visible = true;
                         pnlEditDates.Visible = false;
-                        rbCancel.PostBackUrl = String.Format("{0}Admin/Tasks.asp?office_id={1}", Config.SIMS2017URL, OfficeID);
+                        rbCancel.PostBackUrl = String.Format("{0}Admin/Tasks.asp?office_id={1}", Config.SIMSURL, OfficeID);
                     }
                 }
                 else
@@ -148,7 +148,7 @@ namespace RMS.Admin
                     }
                 }
 
-                lblSiteNo.Text = "Records for <a href=\"" + Config.SIMS2017URL + "StationInfo.aspx?site_id=" + site.site_id + "\" target=\"_blank\">" + site.site_no + " " + site.station_full_nm + "</a>";
+                lblSiteNo.Text = "Records for <a href=\"" + Config.SIMSURL + "StationInfo.aspx?site_id=" + site.site_id + "\" target=\"_blank\">" + site.site_no + " " + site.station_full_nm + "</a>";
                 lblNoRecs.Visible = false;
                 pnlEnterSite.Visible = false;
                 pnlEditDates.Visible = true;

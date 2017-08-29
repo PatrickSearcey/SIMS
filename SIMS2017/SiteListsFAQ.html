@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Station List FAQ</title>
+<link rel="stylesheet" type="text/css" href="styles/base.css">
+<link rel="stylesheet" type="text/css" href="styles/default.css">
+</head>
+
+<body>
+<h3>FAQ for Master Station List in SIMS</h3>
+<ul>
+<li><a href="#1">How do I move a site from the "active sites" list to the "inactive sites" list. and vice versa?</a></li>
+<li><a href="#2">How do I highlight or unhighlight a site as "real-time" (grey) site or "non-realtime" site, and vice versa?</a></li>
+<li><a href="#3">How do we handle discontinued sites in SIMS?</a></li>
+</ul>
+<hr />
+<dl>
+<dt><a name="1" id="1"></a> <strong>How do I move a site from the "active sites" list to the 
+    "inactive sites" list, and vice versa?</strong></dt>
+  <dd>
+    <p> The site Agency Use Code in GWSI controls which list the site appears on. The following table describes how the Agency Use Code codes apply to the active/inactive site list.</p>
+  </dd>
+  <dd>
+    <table border="1">
+      <tr>
+        <td width="47"><div align="center"><b>List</b></div></td>
+        <td width="100"><div align="center"><b>Agency Use <br>
+          Code</b></div></td>
+        <td width="112"><div align="center"><b>Short Description</b></div></td>
+        <td width="507"><b>Long Description</b></td>
+      </tr>
+      <tr>
+        <td>Active</td>
+        <td><div align="center">A</div></td>
+        <td>Active</td>
+        <td>Active data collection site with undocumented or unneeded landowner agreement</td>
+      </tr>
+      <tr>
+        <td>Active</td>
+        <td><div align="center">L</div></td>
+        <td>Active</td>
+        <td>Written Active data collection site with written landowner agreement (Form 9-1483)</td>
+      </tr>
+      <tr>
+        <td>Active</td>
+        <td><div align="center">M</div></td>
+        <td>Active</td>
+        <td>Oral Active data collection site with memo documenting oral landowner agreement</td>
+      </tr>
+      <tr>
+        <td>Inactive</td>
+        <td><div align="center">I</div></td>
+        <td>Inactive Site</td>
+        <td>Inactive data collection site</td>
+      </tr>
+      <tr>
+        <td>Inactive</td>
+        <td><div align="center">R</div></td>
+        <td>Remediated</td>
+        <td>Discontinued and remediated site</td>
+      </tr>
+      <tr>
+        <td>Inactive</td>
+        <td><div align="center">D</div></td>
+        <td>Discontinued</td>
+        <td>Discontinued and non-remediated site</td>
+      </tr>
+      <tr>
+        <td>Inactive</td>
+        <td><div align="center">O</div></td>
+        <td>Inventory Site</td>
+        <td>Inventory data site only</td>
+      </tr>
+    </table>
+  </dd>
+  <dd>
+    <p> Run GWCHECK to push any changes to NWIS. The site will appear on 
+      the appropriate list in SIMS in 75 minutes or less.</p>
+  </dd>
+
+ <dt><a name="2"></a>
+  <strong>How do I highlight or unhighlight a site as 
+    "real-time" (grey) site or  "non-realtime" site, and vice versa?</strong></dt>
+  <dd><p>
+      The site must be first be designated as having telemetry (or not)
+      in GWSI. Change the telemetry flag in Instruments (field 28, 
+      columns 3,4, or 5) to "Y" as appropriate. Column 3 is for land 
+      telemetry, column 4 is for radio telemetry, and column 5 is for 
+      satellite telemetry. A "Y" in any of these columns will designate 
+      the site as real time.</p></dd>
+  <dd><p>
+      If you want also want the site to show on real-time web pages, 
+      set the web-ready flag (field 32) to "Y".</p></dd>
+  <dd>
+    <p>
+      If you want to remove the site from the real-time list, change the
+      flags to "N".</p></dd>
+  <dd>
+    <p>
+      Run GWCHECK to push any changes to NWIS. The site will appear on 
+      the appropriate list in SIMS in 75 minutes or less.</p></dd>
+
+<dt><a name="3"></a>
+    <strong>How do we handle discontinued sites in SIMS?</strong></dt>
+  <dd><p>
+      Once a site is "registered" in SIMS, it should stay 
+      there. Should you recommission the site in the future, the 
+      documentation will then be readily available in electronic 
+      format.</p></dd>
+  <dd>
+    <p>
+      Move the sites to the inactive list if they aren't there 
+      already by setting the appropriate Agency Use Code. See<a href="#2"> How do I highlight or unhighlight a site as 
+    "real-time" (grey) site or  "non-realtime" site, and vice versa?</a></p>
+  </dd>
+  <dd><p>
+    After changes are made in the NWIS sitefile, GWCHECK should be 
+    run to push the changes to NWIS.</p></dd>
+</dl>
+</body>
+</html>

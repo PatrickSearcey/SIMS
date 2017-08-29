@@ -42,7 +42,7 @@ namespace SIMS2017.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
             string office_id = Request.QueryString["office_id"];
-            if (!string.IsNullOrEmpty(office_id)) OfficeID = Convert.ToInt32(office_id); else if (OfficeID == 0) Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
+            if (!string.IsNullOrEmpty(office_id)) OfficeID = Convert.ToInt32(office_id); else if (OfficeID == 0) Response.Redirect(Config.SIMSURL + "SIMSWSCHome.aspx");
 
             WSCID = Convert.ToInt32(db.Offices.FirstOrDefault(p => p.office_id == OfficeID).wsc_id);
             currWSC = db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID);
@@ -223,7 +223,7 @@ namespace SIMS2017.Admin
                 pnlConfirmSite.Visible = false;
                 pnlFinal.Visible = true;
 
-                hlStationInfo.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMS2017URL, new_site.site_id);
+                hlStationInfo.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, new_site.site_id);
             }
             else
                 InitialPageSetup();
@@ -232,7 +232,7 @@ namespace SIMS2017.Admin
         protected void CancelEvent(object sender, CommandEventArgs e)
         {
             if (e.CommandArgument.ToString() == "Cancel")
-                Response.Redirect(String.Format("{0}Admin/Tasks.aspx?office_id={1}", Config.SIMS2017URL, OfficeID));
+                Response.Redirect(String.Format("{0}Admin/Tasks.aspx?office_id={1}", Config.SIMSURL, OfficeID));
             else
                 InitialPageSetup();
 

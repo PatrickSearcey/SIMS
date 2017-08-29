@@ -46,7 +46,7 @@ namespace SIMS2017.StationDoc
 
             //If no office_id was passed, then redirect back to the homepage
             string office_id = Request.QueryString["office_id"];
-            if (!string.IsNullOrEmpty(office_id)) OfficeID = Convert.ToInt32(office_id); else Response.Redirect(Config.SIMS2017URL + "SIMSWSCHome.aspx");
+            if (!string.IsNullOrEmpty(office_id)) OfficeID = Convert.ToInt32(office_id); else Response.Redirect(Config.SIMSURL + "SIMSWSCHome.aspx");
 
             //If no report type was passed, then default to office
             reportType = Request.QueryString["type"];
