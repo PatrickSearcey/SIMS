@@ -176,6 +176,26 @@ div.RecordFilters {
     color: #b84626;
 }
 
+.Filters {
+    margin: 0 0 10px 0;
+    padding: 10px;
+    height: 100%;
+    width: 98%;
+    color: #b84626;
+    background: #f7f4f0;
+    -webkit-box-shadow: 0 0 5px 0 #f7f4f0;
+    box-shadow: 0 0 5px 0 #f7f4f0;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 11pt;
+    font-weight:bold;
+}
+.filtersSubtext {
+    text-align:center;
+    font-style:italic;
+    font-weight:normal !important;
+}
+
 div.DateRange {
     margin-left:420px;
     padding: 0 0 10px 10px;

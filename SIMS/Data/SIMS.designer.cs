@@ -846,6 +846,14 @@ namespace Data
 			}
 		}
 		
+		public System.Data.Linq.Table<vSiteTypesForWSC> vSiteTypesForWSCs
+		{
+			get
+			{
+				return this.GetTable<vSiteTypesForWSC>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spz_GetDCPInfo")]
 		public ISingleResult<spz_GetDCPInfoResult> spz_GetDCPInfo([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> site_id)
 		{
@@ -858,13 +866,6 @@ namespace Data
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), site_id);
 			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RMS_Get_Record_DDs")]
-		public ISingleResult<SP_RMS_Get_Record_DDsResult> SP_RMS_Get_Record_DDs([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> rms_record_id)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), rms_record_id);
-			return ((ISingleResult<SP_RMS_Get_Record_DDsResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RMS_WYs_with_periods_to_work")]
@@ -1014,10 +1015,17 @@ namespace Data
 			return ((ISingleResult<SP_RMS_Record_Details_by_WSC_or_officeResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_Publication_Status")]
-		public ISingleResult<SP_Publication_StatusResult> SP_Publication_Status([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> wsc_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> office_id)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RMS_Get_Record_DDs")]
+		public ISingleResult<SP_RMS_Get_Record_DDsResult> SP_RMS_Get_Record_DDs([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> rms_record_id)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), wsc_id, office_id);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), rms_record_id);
+			return ((ISingleResult<SP_RMS_Get_Record_DDsResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_Publication_Status")]
+		public ISingleResult<SP_Publication_StatusResult> SP_Publication_Status([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> wsc_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> office_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(100)")] string site_tp_cd, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(100)")] string type_cd)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), wsc_id, office_id, site_tp_cd, type_cd);
 			return ((ISingleResult<SP_Publication_StatusResult>)(result.ReturnValue));
 		}
 	}
@@ -23573,6 +23581,51 @@ namespace Data
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vSiteTypesForWSC")]
+	public partial class vSiteTypesForWSC
+	{
+		
+		private string _site_tp_cd;
+		
+		private System.Nullable<int> _wsc_id;
+		
+		public vSiteTypesForWSC()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_tp_cd", DbType="VarChar(7)")]
+		public string site_tp_cd
+		{
+			get
+			{
+				return this._site_tp_cd;
+			}
+			set
+			{
+				if ((this._site_tp_cd != value))
+				{
+					this._site_tp_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_id", DbType="Int")]
+		public System.Nullable<int> wsc_id
+		{
+			get
+			{
+				return this._wsc_id;
+			}
+			set
+			{
+				if ((this._wsc_id != value))
+				{
+					this._wsc_id = value;
+				}
+			}
+		}
+	}
+	
 	public partial class spz_GetDCPInfoResult
 	{
 		
@@ -24098,176 +24151,6 @@ namespace Data
 				if ((this._wsc_id != value))
 				{
 					this._wsc_id = value;
-				}
-			}
-		}
-	}
-	
-	public partial class SP_RMS_Get_Record_DDsResult
-	{
-		
-		private int _dd_id;
-		
-		private System.Nullable<int> _rms_record_id;
-		
-		private System.Nullable<int> _dd_nu;
-		
-		private System.Nullable<int> _iv_ts_id;
-		
-		private string _gu_id;
-		
-		private string _ts_tx;
-		
-		private string _parameter_cd;
-		
-		private string _parm_nm;
-		
-		private string _dd_ts_ds;
-		
-		public SP_RMS_Get_Record_DDsResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dd_id", DbType="Int NOT NULL")]
-		public int dd_id
-		{
-			get
-			{
-				return this._dd_id;
-			}
-			set
-			{
-				if ((this._dd_id != value))
-				{
-					this._dd_id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int")]
-		public System.Nullable<int> rms_record_id
-		{
-			get
-			{
-				return this._rms_record_id;
-			}
-			set
-			{
-				if ((this._rms_record_id != value))
-				{
-					this._rms_record_id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dd_nu", DbType="Int")]
-		public System.Nullable<int> dd_nu
-		{
-			get
-			{
-				return this._dd_nu;
-			}
-			set
-			{
-				if ((this._dd_nu != value))
-				{
-					this._dd_nu = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iv_ts_id", DbType="Int")]
-		public System.Nullable<int> iv_ts_id
-		{
-			get
-			{
-				return this._iv_ts_id;
-			}
-			set
-			{
-				if ((this._iv_ts_id != value))
-				{
-					this._iv_ts_id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gu_id", DbType="NVarChar(32)")]
-		public string gu_id
-		{
-			get
-			{
-				return this._gu_id;
-			}
-			set
-			{
-				if ((this._gu_id != value))
-				{
-					this._gu_id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ts_tx", DbType="NVarChar(75)")]
-		public string ts_tx
-		{
-			get
-			{
-				return this._ts_tx;
-			}
-			set
-			{
-				if ((this._ts_tx != value))
-				{
-					this._ts_tx = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_parameter_cd", DbType="NVarChar(5)")]
-		public string parameter_cd
-		{
-			get
-			{
-				return this._parameter_cd;
-			}
-			set
-			{
-				if ((this._parameter_cd != value))
-				{
-					this._parameter_cd = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_parm_nm", DbType="NVarChar(75)")]
-		public string parm_nm
-		{
-			get
-			{
-				return this._parm_nm;
-			}
-			set
-			{
-				if ((this._parm_nm != value))
-				{
-					this._parm_nm = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dd_ts_ds", DbType="NVarChar(75)")]
-		public string dd_ts_ds
-		{
-			get
-			{
-				return this._dd_ts_ds;
-			}
-			set
-			{
-				if ((this._dd_ts_ds != value))
-				{
-					this._dd_ts_ds = value;
 				}
 			}
 		}
@@ -26546,6 +26429,176 @@ namespace Data
 				if ((this._ts_full_ds != value))
 				{
 					this._ts_full_ds = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_RMS_Get_Record_DDsResult
+	{
+		
+		private int _dd_id;
+		
+		private System.Nullable<int> _rms_record_id;
+		
+		private System.Nullable<int> _dd_nu;
+		
+		private System.Nullable<int> _iv_ts_id;
+		
+		private string _gu_id;
+		
+		private string _ts_tx;
+		
+		private string _parameter_cd;
+		
+		private string _parm_nm;
+		
+		private string _dd_ts_ds;
+		
+		public SP_RMS_Get_Record_DDsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dd_id", DbType="Int NOT NULL")]
+		public int dd_id
+		{
+			get
+			{
+				return this._dd_id;
+			}
+			set
+			{
+				if ((this._dd_id != value))
+				{
+					this._dd_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int")]
+		public System.Nullable<int> rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					this._rms_record_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dd_nu", DbType="Int")]
+		public System.Nullable<int> dd_nu
+		{
+			get
+			{
+				return this._dd_nu;
+			}
+			set
+			{
+				if ((this._dd_nu != value))
+				{
+					this._dd_nu = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iv_ts_id", DbType="Int")]
+		public System.Nullable<int> iv_ts_id
+		{
+			get
+			{
+				return this._iv_ts_id;
+			}
+			set
+			{
+				if ((this._iv_ts_id != value))
+				{
+					this._iv_ts_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gu_id", DbType="NVarChar(32)")]
+		public string gu_id
+		{
+			get
+			{
+				return this._gu_id;
+			}
+			set
+			{
+				if ((this._gu_id != value))
+				{
+					this._gu_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ts_tx", DbType="NVarChar(75)")]
+		public string ts_tx
+		{
+			get
+			{
+				return this._ts_tx;
+			}
+			set
+			{
+				if ((this._ts_tx != value))
+				{
+					this._ts_tx = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_parameter_cd", DbType="NVarChar(5)")]
+		public string parameter_cd
+		{
+			get
+			{
+				return this._parameter_cd;
+			}
+			set
+			{
+				if ((this._parameter_cd != value))
+				{
+					this._parameter_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_parm_nm", DbType="NVarChar(75)")]
+		public string parm_nm
+		{
+			get
+			{
+				return this._parm_nm;
+			}
+			set
+			{
+				if ((this._parm_nm != value))
+				{
+					this._parm_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dd_ts_ds", DbType="NVarChar(82)")]
+		public string dd_ts_ds
+		{
+			get
+			{
+				return this._dd_ts_ds;
+			}
+			set
+			{
+				if ((this._dd_ts_ds != value))
+				{
+					this._dd_ts_ds = value;
 				}
 			}
 		}

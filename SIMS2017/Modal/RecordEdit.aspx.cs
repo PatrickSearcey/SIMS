@@ -337,8 +337,14 @@ namespace SIMS2017.Modal
                             if (item.Selected)
                             {
                                 //Using the selected IDs iv_ts_id value, find the full details for the ID in the TS_ID_CACHE, and create a new entry in the Record DD table
-                                var ts_id = db.vTS_ID_CACHEs.FirstOrDefault(p => p.iv_ts_id == Convert.ToInt32(item.Value));
-                                Data.RecordDD id = new Data.RecordDD()
+                                var ts_id = db.vTS_ID_CACHEs.FirstOrDefault(p => p.iv_ts_id == Convert.ToInt32(item.Value) && p.stat_cd == "00003");
+                                Data.RecordDD id;
+                                if (ts_id == null)
+                                {
+                                    ts_id = db.vTS_ID_CACHEs.FirstOrDefault(p => p.iv_ts_id == Convert.ToInt32(item.Value));
+                                }
+
+                                id = new Data.RecordDD()
                                 {
                                     rms_record_id = record.rms_record_id,
                                     iv_ts_id = ts_id.iv_ts_id,
@@ -407,10 +413,16 @@ namespace SIMS2017.Modal
                             if (item.Selected)
                             {
                                 //Using the selected IDs iv_ts_id value, find the full details for the ID in the TS_ID_CACHE, and create a new entry in the Record DD table
-                                var ts_id = db.vTS_ID_CACHEs.FirstOrDefault(p => p.iv_ts_id == Convert.ToInt32(item.Value));
-                                Data.RecordDD id = new Data.RecordDD()
+                                var ts_id = db.vTS_ID_CACHEs.FirstOrDefault(p => p.iv_ts_id == Convert.ToInt32(item.Value) && p.stat_cd == "00003");
+                                Data.RecordDD id;
+                                if (ts_id == null)
                                 {
-                                    rms_record_id = new_record.rms_record_id,
+                                    ts_id = db.vTS_ID_CACHEs.FirstOrDefault(p => p.iv_ts_id == Convert.ToInt32(item.Value));
+                                }
+
+                                id = new Data.RecordDD()
+                                {
+                                    rms_record_id = record.rms_record_id,
                                     iv_ts_id = ts_id.iv_ts_id,
                                     dd_nu = ts_id.adaps_dd_nu,
                                     gu_id = ts_id.gu_id

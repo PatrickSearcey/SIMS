@@ -14,6 +14,9 @@ namespace RMS.Report
         #region Local Variables
         private Data.SIMSDataContext db = new Data.SIMSDataContext();
         public WindowsAuthenticationUser user = new WindowsAuthenticationUser();
+        private int reportOfficeID { get; set; }
+        private string siteTypeCd { get; set; }
+        private string recordTypeCd { get; set; }
         private int WSCID
         {
             get
@@ -52,6 +55,9 @@ namespace RMS.Report
             if (!Page.IsPostBack)
             {
                 UserControlSetup();
+                //On initial load, narrow down the view to the responsible office
+                reportOfficeID = OfficeID;
+                InitialDataBind();
             }
         }
 
@@ -64,12 +70,49 @@ namespace RMS.Report
             ph1.SubTitle = "For the " + wsc_nm + " WSC";
             ph1.RecordType = "&nbsp;";
         }
+
+        /// <summary>
+        /// When binding the chart data initially, pull data for the entire WSC
+        /// </summary>
+        protected void InitialDataBind()
+        {
+            //Filter controls
+            rddlOffice.DataSource = db.Offices.Where(p => p.wsc_id == WSCID).OrderBy(p => p.office_nm).ToList();
+            rddlOffice.DataBind();
+            rddlOffice.Items.Insert(0, "All Offices");
+            rddlOffice.SelectedValue = reportOfficeID.ToString();
+
+            rddlSiteType.DataSource = db.vSiteTypesForWSCs.Where(p => p.wsc_id == WSCID).OrderBy(p => p.site_tp_cd).ToList();
+            rddlSiteType.DataBind();
+            rddlSiteType.Items.Insert(0, "All Site Types");
+            rddlSiteType.SelectedValue = siteTypeCd;
+
+            rddlRecordType.DataSource = db.RecordTypes.Where(p => p.wsc_id == WSCID).OrderBy(p => p.type_cd).ToList();
+            rddlRecordType.DataBind();
+            rddlRecordType.Items.Insert(0, "All Record Types");
+            rddlRecordType.SelectedValue = recordTypeCd;
+        }
         #endregion
+
+        #region Misc Events
+        protected void UpdateDetails(object sender, CommandEventArgs e)
+        {
+            if (rddlOffice.SelectedIndex > 0) reportOfficeID = Convert.ToInt32(rddlOffice.SelectedValue); else reportOfficeID = 0;
+            if (rddlSiteType.SelectedIndex > 0) siteTypeCd = rddlSiteType.SelectedValue; else siteTypeCd = "";
+            if (rddlRecordType.SelectedIndex > 0) recordTypeCd = rddlRecordType.SelectedValue; else recordTypeCd = "";
+            InitialDataBind();
+            rgTSStatus.Rebind();
+        }
+        #endregion 
 
         #region Time-Series Status RadGrid
         protected void rgTSStatus_NeedDataSource(object source, GridNeedDataSourceEventArgs e)
         {
-            rgTSStatus.DataSource = db.SP_Publication_Status(WSCID, 0).OrderBy(p => p.office_cd).ThenBy(p => p.site_no);
+            var reportData = db.SP_Publication_Status(WSCID, reportOfficeID, siteTypeCd, recordTypeCd).OrderBy(p => p.office_cd).ThenBy(p => p.site_no).ToList();
+
+            rgTSStatus.DataSource = reportData;
+
+            ltlNumberOfRecords.Text = "Number of records returned: <b>" + reportData.Count.ToString() + "</b>";
         }
 
         protected void rgTSStatus_PreRender(object sender, EventArgs e)

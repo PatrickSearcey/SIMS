@@ -842,5 +842,11 @@
         <classShapeMoniker Id="40df749a-ff5e-4aae-ac67-90f6056c0210" />
       </nodes>
     </associationConnector>
+    <classShape Id="aa1f93e1-c2c4-4315-9c7c-5d0711f5e5ad" absoluteBounds="11.875, 0.625, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/SIMSDataContext/vSiteTypesForWSC" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a0a7baa3-efb6-456a-8cb7-e2c42b00a487" absoluteBounds="11.89, 1.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

@@ -67,6 +67,60 @@ namespace RMS.Report {
         protected global::Telerik.Web.UI.RadPageView rpv0;
         
         /// <summary>
+        /// rddlOffice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDropDownList rddlOffice;
+        
+        /// <summary>
+        /// rddlSiteType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDropDownList rddlSiteType;
+        
+        /// <summary>
+        /// rddlRecordType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDropDownList rddlRecordType;
+        
+        /// <summary>
+        /// rbSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton rbSubmit;
+        
+        /// <summary>
+        /// ltlError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlError;
+        
+        /// <summary>
+        /// ltlNumberOfRecords control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlNumberOfRecords;
+        
+        /// <summary>
         /// rgTSStatus control.
         /// </summary>
         /// <remarks>

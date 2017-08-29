@@ -1201,6 +1201,12 @@
       <Association Name="TCPSite_TCP" Member="TCPSite" ThisKey="site_id" OtherKey="site_id" Type="TCPSite" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.vSiteTypesForWSC" Member="vSiteTypesForWSCs">
+    <Type Name="vSiteTypesForWSC">
+      <Column Name="site_tp_cd" Type="System.String" DbType="VarChar(7)" CanBeNull="true" />
+      <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">
     <Parameter Name="site_id" Type="System.Int32" DbType="Int" />
     <ElementType Name="spz_GetDCPInfoResult">
@@ -1238,20 +1244,6 @@
   <Function Name="dbo.SP_Report_Update_Site_LastEdited" Method="SP_Report_Update_Site_LastEdited">
     <Parameter Name="site_id" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
-  </Function>
-  <Function Name="dbo.SP_RMS_Get_Record_DDs" Method="SP_RMS_Get_Record_DDs">
-    <Parameter Name="rms_record_id" Type="System.Int32" DbType="Int" />
-    <ElementType Name="SP_RMS_Get_Record_DDsResult">
-      <Column Name="dd_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="rms_record_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="dd_nu" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="iv_ts_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="gu_id" Type="System.String" DbType="NVarChar(32)" CanBeNull="true" />
-      <Column Name="ts_tx" Type="System.String" DbType="NVarChar(75)" CanBeNull="true" />
-      <Column Name="parameter_cd" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
-      <Column Name="parm_nm" Type="System.String" DbType="NVarChar(75)" CanBeNull="true" />
-      <Column Name="dd_ts_ds" Type="System.String" DbType="NVarChar(75)" CanBeNull="true" />
-    </ElementType>
   </Function>
   <Function Name="dbo.SP_RMS_WYs_with_periods_to_work" Method="SP_RMS_WYs_with_periods_to_work">
     <Parameter Name="rms_record_id" Type="System.Int32" DbType="Int" />
@@ -1515,9 +1507,25 @@
       <Column Name="ts_full_ds" Type="System.String" DbType="NVarChar(36)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.SP_RMS_Get_Record_DDs" Method="SP_RMS_Get_Record_DDs">
+    <Parameter Name="rms_record_id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_RMS_Get_Record_DDsResult">
+      <Column Name="dd_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="rms_record_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dd_nu" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="iv_ts_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="gu_id" Type="System.String" DbType="NVarChar(32)" CanBeNull="true" />
+      <Column Name="ts_tx" Type="System.String" DbType="NVarChar(75)" CanBeNull="true" />
+      <Column Name="parameter_cd" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="parm_nm" Type="System.String" DbType="NVarChar(75)" CanBeNull="true" />
+      <Column Name="dd_ts_ds" Type="System.String" DbType="NVarChar(82)" CanBeNull="true" />
+    </ElementType>
+  </Function>
   <Function Name="dbo.SP_Publication_Status" Method="SP_Publication_Status">
     <Parameter Name="wsc_id" Type="System.Int32" DbType="Int" />
     <Parameter Name="office_id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="site_tp_cd" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="type_cd" Type="System.String" DbType="NVarChar(100)" />
     <ElementType Name="SP_Publication_StatusResult">
       <Column Name="site_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="rms_record_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
