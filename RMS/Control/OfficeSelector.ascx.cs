@@ -124,6 +124,7 @@ namespace RMS.Control
                     TripID = 0;
                     break;
                 case "rddlFieldTrip":
+                    OfficeID = Convert.ToInt32(rddlOffice.SelectedValue);
                     if (!string.IsNullOrEmpty(rddlFieldTrip.SelectedValue)) TripID = Convert.ToInt32(rddlFieldTrip.SelectedValue); else TripID = 0;
                     break;
             }

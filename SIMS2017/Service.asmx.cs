@@ -352,12 +352,34 @@ namespace SIMS2017
             return ds;
         }
 
-        [WebMethod(Description = "Gets WSC information")]
-        public DataSet GetWSCInfo(int wsc_id, string primaryOU)
+        [WebMethod(Description = "Gets all the office info by office id")]
+        public DataSet GetOfficeInfo(int office_id)
         {
             string cs = Config.ConnectionInfo;
             SqlConnection cn = new SqlConnection(cs);
-            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM lut_WSC WHERE wsc_id = " + wsc_id.ToString() + " and AD_OU Like('%" + primaryOU + "%')", cn);
+            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM lut_Office AS lo WHERE lo.office_id = " + office_id.ToString(), cn);
+
+            DataSet ds = new DataSet();
+            da.Fill(ds, "OfficeList");
+            return ds;
+        }
+
+        [WebMethod(Description = "Gets WSC information")]
+        public DataSet GetWSCInfo(int wsc_id, string primaryOU)
+        {
+            string sql;
+            if (wsc_id == 0)
+            {
+                sql = "SELECT * FROM lut_WSC WHERE AD_OU Like('%" + primaryOU + "%')";
+            }
+            else
+            {
+                sql = "SELECT * FROM lut_WSC WHERE wsc_id = " + wsc_id.ToString();
+            }
+
+            string cs = Config.ConnectionInfo;
+            SqlConnection cn = new SqlConnection(cs);
+            SqlDataAdapter da = new SqlDataAdapter(sql, cn);
 
             DataSet ds = new DataSet();
             da.Fill(ds, "wscinfo");
@@ -405,7 +427,7 @@ namespace SIMS2017
         {
             string cs = Config.ConnectionInfo;
             SqlConnection cn = new SqlConnection(cs);
-            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Elem_Site_Element WHERE (ese.element_id=" + element_id.ToString() + ") AND (ese.site_id=" + site_id.ToString() + ")", cn);
+            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Elem_Site_Element WHERE (element_id=" + element_id.ToString() + ") AND (site_id=" + site_id.ToString() + ")", cn);
 
             DataSet ds = new DataSet();
             da.Fill(ds, "elementinfo");

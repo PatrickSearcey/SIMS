@@ -136,7 +136,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/29/2017 16:53:24</publishTime>
     </File>
     <File Include="bin/Safety.dll">
-      <publishTime>08/30/2017 09:23:58</publishTime>
+      <publishTime>08/30/2017 14:45:43</publishTime>
     </File>
     <File Include="bin/Telerik.Web.Spreadsheet.dll">
       <publishTime>08/29/2017 16:53:24</publishTime>

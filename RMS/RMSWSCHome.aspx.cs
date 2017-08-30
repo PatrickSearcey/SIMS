@@ -68,7 +68,7 @@ namespace RMS
             if (!string.IsNullOrEmpty(wsc_id))
             {
                 WSCID = Convert.ToInt32(wsc_id);
-                OfficeID = db.Offices.FirstOrDefault(p => p.wsc_id == WSCID).office_id;
+                if (OfficeID == 0) OfficeID = db.Offices.FirstOrDefault(p => p.wsc_id == WSCID).office_id;
             }
             else
             {
@@ -87,6 +87,8 @@ namespace RMS
 
             if (!Page.IsPostBack)
             {
+                TripID = 0;
+
                 var wsc = db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID);
                 ltlWSCName.Text = wsc.wsc_nm + " Water Science Center";
 

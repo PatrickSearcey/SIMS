@@ -11,7 +11,7 @@
         <AjaxSettings>
             <telerik:AjaxSetting AjaxControlID="osHome">
                 <UpdatedControls>
-                    <telerik:AjaxUpdatedControl ControlID="osHome" />
+                    <telerik:AjaxUpdatedControl ControlID="osHome" LoadingPanelID="ralp" />
                     <telerik:AjaxUpdatedControl ControlID="rgSites" LoadingPanelID="ralp" />
                     <telerik:AjaxUpdatedControl ControlID="ltlOfficeName" />
                     <telerik:AjaxUpdatedControl ControlID="pnlFieldTrip" LoadingPanelID="ralp" />
