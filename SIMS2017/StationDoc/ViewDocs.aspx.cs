@@ -56,7 +56,7 @@ namespace SIMS2017.StationDoc
         protected void Page_Load(object sender, EventArgs e)
         {
             //If no site_id was passed, then redirect back to the homepage
-            string site_id = "6001334";// Request.QueryString["site_id"];
+            string site_id = Request.QueryString["site_id"];
             if (!string.IsNullOrEmpty(site_id)) SiteID = Convert.ToInt32(site_id); else Response.Redirect(Config.SIMSURL + "SIMSWSCHome.aspx");
 
             reportType = Request.QueryString["type"];
