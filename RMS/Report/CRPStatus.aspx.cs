@@ -64,6 +64,10 @@ namespace RMS.Report
                     OfficeID = user.OfficeID;
                     WSCID = (int)db.Offices.FirstOrDefault(p => p.office_id == user.OfficeID).wsc_id;
                 }
+                else if (OfficeID == 0 && WSCID > 0)
+                    OfficeID = db.Offices.FirstOrDefault(p => p.wsc_id == WSCID).office_id;
+                else if (OfficeID > 0 && WSCID == 0)
+                    WSCID = (int)db.Offices.FirstOrDefault(p => p.office_id == OfficeID).wsc_id;
             }
 
             string wsc_nm = db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID).wsc_nm;

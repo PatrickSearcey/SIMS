@@ -82,7 +82,8 @@ namespace Safety.Control
 
                     ltlPageTitle.Text = Title;
                     hlPageSubTitle.Text = SubTitle;
-                    hlPageSubTitle.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, SiteID);
+                    if (SiteID > 0) hlPageSubTitle.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, SiteID);
+                    else hlPageSubTitle.NavigateUrl = String.Format("{0}SIMSWSCHome.aspx?wsc_id={1}&office_id={2}", Config.SIMSURL, WSCID, OfficeID);
 
                     SetupResponsibleOfficeInfo();
                 }

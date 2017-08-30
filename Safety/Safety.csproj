@@ -332,6 +332,7 @@
     <Content Include="Docs\SIMSCMIInstructions.pptx" />
     <Content Include="Docs\WMAMemorandum13.03.pdf" />
     <None Include="Properties\PublishProfiles\Development Site.pubxml" />
+    <None Include="Properties\PublishProfiles\Production.pubxml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -375,7 +376,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

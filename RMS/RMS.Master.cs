@@ -1,4 +1,5 @@
 ﻿using Core;
+using Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,27 +58,27 @@ namespace RMS
         {
             rmTop.Items.Add(new RadMenuItem { Text = "SIMS National Home", NavigateUrl = String.Format("{0}SIMSHome.aspx", Config.SIMSURL) });
             rmTop.Items.Add(new RadMenuItem { IsSeparator = true });
-            rmTop.Items.Add(new RadMenuItem { Text = "SIMS WSC Home", NavigateUrl = String.Format("{0}SIMSWSCHome.aspx?wsc_id={1}", Config.SIMSURL, WSCID) });
+            rmTop.Items.Add(new RadMenuItem { Text = "SIMS WSC Home", NavigateUrl = String.Format("{0}SIMSWSCHome.aspx?wsc_id={1}&office_id={2}", Config.SIMSURL, WSCID, OfficeID) });
             rmTop.Items.Add(new RadMenuItem { IsSeparator = true });
-            rmTop.Items.Add(new RadMenuItem { Text = "RMS WSC Home", NavigateUrl = String.Format("{0}RMSWSCHome.aspx?wsc_id={1}", Config.RMSURL, WSCID) });
+            rmTop.Items.Add(new RadMenuItem { Text = "RMS WSC Home", NavigateUrl = String.Format("{0}RMSWSCHome.aspx?wsc_id={1}&office_id={2}", Config.RMSURL, WSCID, OfficeID) });
             rmTop.Items.Add(new RadMenuItem { IsSeparator = true });
-            rmTop.Items.Add(new RadMenuItem { Text = "Admin Tasks", NavigateUrl = String.Format("{0}Admin/Tasks.aspx?wsc_id={1}", Config.SIMSURL, WSCID) });
+            rmTop.Items.Add(new RadMenuItem { Text = "Admin Tasks", NavigateUrl = String.Format("{0}Admin/Tasks.aspx?wsc_id={1}&office_id={2}", Config.SIMSURL, WSCID, OfficeID) });
             rmTop.Items.Add(new RadMenuItem { IsSeparator = true });
             rmTop.Items.Add(new RadMenuItem { Text = "Latest News", NavigateUrl = "https://collaboration.usgs.gov/wg/owi/specialprojects/SIMS/Shared%20Documents/updates.html" });
             rmTop.Items.Add(new RadMenuItem { IsSeparator = true });
-            rmTop.Items.Add(new RadMenuItem { Text = "Contact", NavigateUrl = String.Format("{0}NWISOpsRequest.aspx", Config.SIMSURL) });
+            rmTop.Items.Add(new RadMenuItem { Text = "Contact", NavigateUrl = String.Format("{0}NWISOpsRequest.aspx?office_id={1}", Config.SIMSURL, OfficeID) });
 
 
-            hlAnalyzeRecordsList.NavigateUrl = String.Format("{0}Report/RecordProcess.aspx?task=analyze&office_id={1}", Config.RMSURL, OfficeID);
-            hlApproveRecordsList.NavigateUrl = String.Format("{0}Report/RecordProcess.aspx?task=approve&office_id={1}", Config.RMSURL, OfficeID);
-            hlCRPStatus.NavigateUrl = String.Format("{0}Report/CRPStatus.aspx?office_id={1}", Config.RMSURL, OfficeID);
-            hlCRPStatusChart.NavigateUrl = String.Format("{0}Report/CRPStatusChart.aspx?office_id={1}", Config.RMSURL, OfficeID);
-            hlRecordProgressWSC.NavigateUrl = String.Format("{0}Report/RecordProgressWSC.aspx?wsc_id={1}", Config.RMSURL, WSCID);
-            hlRecordProgress.NavigateUrl = String.Format("{0}Report/RecordProgress.aspx?wsc_id={1}", Config.RMSURL, WSCID);
-            hlPubStatus.NavigateUrl = String.Format("{0}Report/PubStatus.aspx?office_id={1}", Config.RMSURL, OfficeID);
-            hlAudit.NavigateUrl = String.Format("{0}Report/Audit.aspx?office_id={1}", Config.RMSURL, OfficeID);
+            hlAnalyzeRecordsList.NavigateUrl = String.Format("{0}Report/RecordProcess.aspx?task=analyze", Config.RMSURL);
+            hlApproveRecordsList.NavigateUrl = String.Format("{0}Report/RecordProcess.aspx?task=approve", Config.RMSURL);
+            hlCRPStatus.NavigateUrl = String.Format("{0}Report/CRPStatus.aspx", Config.RMSURL);
+            hlCRPStatusChart.NavigateUrl = String.Format("{0}Report/CRPStatusChart.aspx", Config.RMSURL);
+            hlRecordProgressWSC.NavigateUrl = String.Format("{0}Report/RecordProgressWSC.aspx", Config.RMSURL);
+            hlRecordProgress.NavigateUrl = String.Format("{0}Report/RecordProgress.aspx", Config.RMSURL);
+            hlPubStatus.NavigateUrl = String.Format("{0}Report/PubStatus.aspx", Config.RMSURL);
+            hlAudit.NavigateUrl = String.Format("{0}Report/Audit.aspx", Config.RMSURL);
 
-            rmSide.FindItemByText("Period Details").NavigateUrl = String.Format("{0}Report/PeriodDetails.aspx?wsc_id={1}&office_id={2}", Config.RMSURL, WSCID, OfficeID);
+            rmSide.FindItemByText("Period Details").NavigateUrl = String.Format("{0}Report/PeriodDetails.aspx", Config.RMSURL);
         }
 
         /// <summary>

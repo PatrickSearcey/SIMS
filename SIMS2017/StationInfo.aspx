@@ -8,7 +8,7 @@
             if (_type == "field trip") var oWnd = radopen("Modal/FieldTripEdit.aspx?site_id=" + _id, "rwEditFieldTrips");
             else if (_type == "newrecord") var oWnd = radopen("Modal/RecordEdit.aspx?site_id=" + _id + "&type=" + _type, "rwEditRecords");
             else if (_type == "record") var oWnd = radopen("Modal/RecordEdit.aspx?rms_record_id=" + _id + "&type=" + _type, "rwEditRecords");
-            else var oWnd = radopen("http://simsdev.cr.usgs.gov/Safety/Modal/TCP.aspx?TCPID=" + _id + "&type=review", "rwTCPReview");
+            else var oWnd = radopen("http://sims.water.usgs.gov/Safety/Modal/TCP.aspx?TCPID=" + _id + "&type=review", "rwTCPReview");
         }
 
         function OnClientClose(oWnd, args) {

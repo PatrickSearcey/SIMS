@@ -42,7 +42,7 @@ namespace SIMS2017.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string office_id = "348";// Request.QueryString["office_id"];
+            string office_id = Request.QueryString["office_id"];
             if (!string.IsNullOrEmpty(office_id)) OfficeID = Convert.ToInt32(office_id); else if (OfficeID == 0) Response.Redirect(Config.SIMSURL + "SIMSWSCHome.aspx");
 
             WSCID = Convert.ToInt32(db.Offices.FirstOrDefault(p => p.office_id == OfficeID).wsc_id);
@@ -167,7 +167,7 @@ namespace SIMS2017.Admin
             rgFieldTrips.Rebind();
         }
 
-        #region Personnel RadGrid
+        #region Field Trip RadGrid
         protected void rgFieldTrips_NeedDataSource(object source, GridNeedDataSourceEventArgs e)
         {
             rgFieldTrips.DataSource = db.Trips.Where(p => p.Office.wsc_id == WSCID).Select(p => new
@@ -255,8 +255,8 @@ namespace SIMS2017.Admin
                 {
                     ImageButton ib = (ImageButton)item["EditCommandColumn"].Controls[0];
                     ib.Visible = false;
-                    HyperLink hl = (HyperLink)item["TemplateDeleteColumn"].Controls[0];
-                    hl.Visible = false;
+                    LiteralControl lb = (LiteralControl)item["TemplateDeleteColumn"].Controls[0];
+                    lb.Visible = false;
                 }
             }
 
