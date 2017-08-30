@@ -129,7 +129,7 @@
                                     <asp:LinkButton ID="lbEditRecord" runat="server"><%# Eval("type_ds") %></asp:LinkButton>
                                 </ItemTemplate>
                             </telerik:GridTemplateColumn>
-                            <telerik:GridBoundColumn DataField="ts_fg" HeaderText="TS Cat" UniqueName="ts_fg" SortExpression="ts_fg" AllowFiltering="false" HeaderStyle-Width="30px" />
+                            <telerik:GridBoundColumn DataField="ts_fg" HeaderText="TS Class" UniqueName="ts_fg" SortExpression="ts_fg" AllowFiltering="false" HeaderStyle-Width="30px" />
                             <telerik:GridBoundColumn DataField="category_no" HeaderText="Cat No" UniqueName="category_no" SortExpression="category_no" AllowFiltering="false" HeaderStyle-Width="30px" />
                             <telerik:GridBoundColumn DataField="cat_reason" HeaderText="Cat Reason" UniqueName="cat_reason" SortExpression="cat_reason" AllowFiltering="false" />
                             <telerik:GridBoundColumn DataField="ts_full_ds" HeaderText="Parameter" UniqueName="ts_full_ds" SortExpression="ts_full_ds" FilterControlWidth="100px" HeaderStyle-Width="250px" />

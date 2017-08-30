@@ -56,8 +56,14 @@ namespace SIMS2017
         protected void Page_Load(object sender, EventArgs e)
         {
             string wsc_id = Request.QueryString["wsc_id"];
+            string office_id = Request.QueryString["office_id"];
 
-            if (!string.IsNullOrEmpty(wsc_id))
+            if (!string.IsNullOrEmpty(office_id))
+            {
+                OfficeID = Convert.ToInt32(office_id);
+                WSCID = Convert.ToInt32(db.Offices.FirstOrDefault(p => p.office_id == OfficeID).wsc_id);
+            }
+            else if (!string.IsNullOrEmpty(wsc_id))
             {
                 WSCID = Convert.ToInt32(wsc_id);
                 OfficeID = db.Offices.FirstOrDefault(p => p.wsc_id == WSCID).office_id;
@@ -79,6 +85,9 @@ namespace SIMS2017
 
             if (!Page.IsPostBack)
             {
+                //Reset the field trip ID to 0 when first coming to the page
+                TripID = 0;
+
                 var wsc = db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID);
                 ltlWSCName.Text = wsc.wsc_nm + " Water Science Center";
 

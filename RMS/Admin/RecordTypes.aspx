@@ -39,7 +39,7 @@
                     </telerik:GridTemplateColumn>
                     <telerik:GridTemplateColumn HeaderText="Template" SortExpression="TemplateName" UniqueName="TemplateID" DataField="TemplateID" HeaderStyle-Width="300px" AllowFiltering="false">
                         <ItemTemplate>
-                            <a href='<%# "../Handler/TemplateViewer.ashx?TemplateID=" + Eval("TemplateID") %>' target="_blank"><%# Eval("TemplateName") %></a>
+                            <a href='<%# "../Handler/TemplateViewer.ashx?type=analyze&TemplateID=" + Eval("TemplateID") %>' target="_blank"><%# Eval("TemplateName") %></a>
                         </ItemTemplate>
                     </telerik:GridTemplateColumn>
                 </Columns>

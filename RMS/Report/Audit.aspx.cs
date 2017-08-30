@@ -111,6 +111,7 @@ namespace RMS.Report
         protected void UserControlSetup()
         {
             string wsc_nm = db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID).wsc_nm;
+            //string wsc_nm = WSCID.ToString();
             ph1.Title = "Audit Periods Report";
 
             if (RecordID == 0)
