@@ -104,7 +104,7 @@ namespace SIMS2017
 
         protected void rddlWSC_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Response.Redirect("SIMSWSCHome.aspx?wsc_id=" + rddlWSC.SelectedValue.ToString());
+            Response.Redirect(String.Format("{0}SIMSWSCHome.aspx?wsc_id={1}", Config.SIMSURL, rddlWSC.SelectedValue));
         }
 
         protected void btnGo_OnCommand(object sender, CommandEventArgs e)

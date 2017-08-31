@@ -183,6 +183,7 @@
                         <li><asp:HyperLink ID="hlWYAnalysisNotes2" runat="server" Text="View WY Analyses" /></li>
                         <li><asp:HyperLink ID="hlApproveInst" runat="server" Text="WSC Approving Instructions" /></li>
                         <li><asp:HyperLink ID="hlAutoReview2" runat="server" Text="View Auto Review (if applicable)" /></li>
+                        <li><asp:HyperLink ID="hlWMAGuidelines2" runat="server" Text="WMA Records Processing Guidelines" Target="_blank" NavigateUrl="https://water.usgs.gov/osw/time-series-guidance/" /></li>
                     </ul>
                 </td>
             </tr>

@@ -68,7 +68,7 @@
                                                 <telerik:LayoutColumn Span="12" SpanMd="12" SpanSm="12" HiddenXs="true">
                                                     <div class="roundedTopSubPanel">
                                                         <h3>Latest News</h3>
-                                                        <strong>&raquo; <a href="https://collaboration.usgs.gov/wg/owi/specialprojects/SIMS/Shared%20Documents/updates.html" style="color:#cb0000;">UPDATED 2/28/2017</a> &laquo;</strong>
+                                                        <strong>&raquo; <a href="https://collaboration.usgs.gov/wg/owi/specialprojects/SIMS/Shared%20Documents/updates.html" style="color:#cb0000;">UPDATED 8/30/2017</a> &laquo;</strong>
                                                     </div>
                                                     <div class="roundedTopSubPanel">
                                                         <h3>Quick Jump</h3>
@@ -139,7 +139,7 @@
                                                               <area shape="poly" coords="264,57,270,80,302,79,310,66,301,55" href="SIMSWSCHome.aspx?wsc_id=17" alt="IA" />
                                                               <area shape="poly" coords="273,83,303,83,312,98,320,115,314,119,280,117,279,99" href="SIMSWSCHome.aspx?wsc_id=20" alt="MO" />
                                                               <area shape="poly" coords="315,66,331,65,334,73,333,99,324,112,306,83" href="SIMSWSCHome.aspx?wsc_id=16" alt="IL" />
-                                                              <area shape="poly" coords="345,70,369,69,375,60,374,50,363,52,371,41,361,35,345,27,326,23,324,27,338,36,342,50" href="SIMSWSCHome.aspx?wsc_id=5" alt="MI" />
+                                                              <area shape="poly" coords="345,70,369,69,375,60,374,50,363,52,371,41,361,35,345,27,326,23,324,27,338,36,342,50" href="SIMSWSCHome.aspx?wsc_id=35" alt="MI" />
                                                               <area shape="poly" coords="338,73,356,73,358,95,349,103,335,106,339,96" href="SIMSWSCHome.aspx?wsc_id=4" alt="IN" />
                                                               <area shape="poly" coords="361,73,377,76,393,70,390,89,377,98,367,97,361,92" href="SIMSWSCHome.aspx?wsc_id=5" alt="OH" />
                                                               <area shape="poly" coords="281,121,314,122,305,142,305,148,283,148" href="SIMSWSCHome.aspx?wsc_id=1" alt="AR" />

@@ -397,6 +397,42 @@ namespace SIMS2017.StationDoc
         }
         #endregion
 
+        #region rlvElements Events
+        protected void rlvElements_ItemDataBound(object sender, RadListViewItemEventArgs e)
+        {
+            var dataItem = e.Item as RadListViewDataItem;
+            if (dataItem != null)
+            {
+                int element_id = Convert.ToInt32(dataItem.GetDataKeyValue("ElementID"));
+                var element = db.ElementDetails.FirstOrDefault(p => p.element_id == element_id);
+                LinkButton lbElement = (LinkButton)dataItem.FindControl("lbElement");
+                Literal ltlInactiveNotice = (Literal)dataItem.FindControl("ltlInactiveNotice");
+
+                if (!(bool)element.active)
+                {
+                    lbElement.Enabled = false;
+                    if (element_id == 110 || element_id == 90 || element_id == 118 || element_id == 86 || element_id == 87 || element_id == 1001 || element_id == 116 || element_id == 117)
+                    {
+                        ltlInactiveNotice.Visible = true;
+                        ltlInactiveNotice.Text = "<b><i>If appropriate, place information within the REVISIONS HISTORY element. Refer to <a href='' target='_blank'>Surface " +
+                            "Water Technical Memo 2017.06, Procedures for Identifying and Documenting Revisions to USGS Water Data</a>.</i></b><br />";
+                    }
+                    else
+                    {
+                        ltlInactiveNotice.Visible = false;
+                    }
+
+                }
+                else
+                {
+                    lbElement.Enabled = true;
+                    ltlInactiveNotice.Visible = false;
+                }
+                
+            }
+        }
+        #endregion
+
         #region Methods for Database Changes
         protected void AddElement()
         {

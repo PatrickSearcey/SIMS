@@ -116,13 +116,14 @@
             <div class="EditDocList">
                 <telerik:RadDropDownList ID="rddlElements" runat="server" Skin="Bootstrap" Width="400px" DropDownHeight="400px" OnItemDataBound="rddlElements_ItemDataBound"
                     DataValueField="element_id" DataTextField="element_nm" OnSelectedIndexChanged="UpdateControls" AutoPostBack="true" />
-                <telerik:RadListView ID="rlvElements" runat="server" Skin="Bootstrap">
+                <telerik:RadListView ID="rlvElements" runat="server" Skin="Bootstrap" OnItemDataBound="rlvElements_ItemDataBound" DataKeyNames="ElementID">
                     <ItemTemplate>
                         <div class='<%# Eval("ReportType") %>'>
                             <div class="RevisionHistory">
                                 Revised By: <%# Eval("RevisedBy") %> Date Revised: <%# String.Format("{0:MM/dd/yyyy}", Eval("RevisedDate")) %> 
                                 (<a href='<%# String.Format("Archive.aspx?element_id={0}&site_id={1}", Eval("ElementID"), Eval("SiteID")) %>' target="_blank">revision history</a>)
                             </div>
+                            <asp:Literal ID="ltlInactiveNotice" runat="server" />
                             <b><asp:LinkButton ID="lbElement" runat="server" Text='<%# Eval("ElementName") %>' OnCommand="lbElement_Command" CommandArgument='<%# Eval("ElementID") %>' />.--</b> 
                             <%# Eval("ElementInfo") %>
                             <p></p>

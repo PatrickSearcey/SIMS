@@ -21,10 +21,10 @@ namespace SIMS2017
     {
         private Data.SIMSDataContext db = new Data.SIMSDataContext();
 
-        [WebMethod(Description = "Gets Registered Site Information from SIMS using site_no")]
-        public SiteInfo GetSiteInfo(string site_no)
+        [WebMethod(Description = "Gets Registered Site Information from SIMS using site_no and agency code")]
+        public SiteInfo GetSiteInfo(string site_no, string agency_cd)
         {
-            var site = db.Sites.Where(p => p.site_no == site_no).Select(p => new SiteInfo() {
+            var site = db.Sites.Where(p => p.site_no == site_no && p.agency_cd == agency_cd).Select(p => new SiteInfo() {
                 SiteID = p.site_id,
                 NWISWebSiteID = Convert.ToInt32(p.nwisweb_site_id),
                 AgencyCd = p.agency_cd,

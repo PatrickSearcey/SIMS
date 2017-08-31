@@ -179,7 +179,7 @@ namespace Safety
                 site_no_nm = p.site_no + " " + p.station_nm,
                 last_inspection_dt = p.last_inspection_dt,
                 next_inspection_dt = (p.last_inspection_dt != null) ? String.Format("{0:MM/dd/yyyy}", Convert.ToDateTime(p.last_inspection_dt).AddYears(1)) : "",
-                days_to_next = (p.last_inspection_dt != null) ? String.Format("{0}", (DateTime.Now - Convert.ToDateTime(p.last_inspection_dt)).Days) : "",
+                days_to_next = (p.last_inspection_dt != null) ? String.Format("{0}", (Convert.ToDateTime(p.last_inspection_dt).AddYears(1) - DateTime.Now).Days) : "",
                 cableway_inspection_freq = p.cableway_inspection_freq,
                 status = p.cableway_status_cd + " - " + p.cableway_status_desc,
                 wsc_id = p.wsc_id,
@@ -248,7 +248,7 @@ namespace Safety
                     int days_to_next = 0;
                     if (cw.last_inspection_dt != null)
                     {
-                        days_to_next = (DateTime.Now - Convert.ToDateTime(cw.last_inspection_dt)).Days;
+                        days_to_next = (Convert.ToDateTime(cw.last_inspection_dt).AddYears(1) - DateTime.Now).Days;
                     }
 
                     if (days_to_next < 0)
