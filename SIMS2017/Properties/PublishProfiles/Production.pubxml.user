@@ -319,7 +319,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/30/2017 08:05:09</publishTime>
     </File>
     <File Include="SIMSHome.aspx">
-      <publishTime>08/30/2017 15:37:00</publishTime>
+      <publishTime>08/31/2017 09:12:10</publishTime>
     </File>
     <File Include="SIMSSingleMenu.Master">
       <publishTime>08/29/2017 16:53:25</publishTime>
@@ -373,7 +373,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/29/2017 16:53:26</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>08/30/2017 15:37:43</publishTime>
+      <publishTime>08/31/2017 10:50:23</publishTime>
     </File>
   </ItemGroup>
 </Project>
