@@ -1082,6 +1082,18 @@ namespace SIMS2017
             }
         }
 
+        protected void btnDCPViewData_Command(object sender, CommandEventArgs e)
+        {
+            Button btn = (Button)sender;
+            DataListItem item = (DataListItem)btn.NamingContainer;
+            TextBox txtSince = (TextBox)item.FindControl("tbDCPViewData");
+            string since = txtSince.Text;
+            if (!string.IsNullOrEmpty(since))
+            {
+                Response.Redirect(String.Format("http://lrgseddn3.cr.usgs.gov/cgi-bin/fieldtest.pl?DCPID={0}&SINCE={1}", e.CommandArgument.ToString(), since), "_blank", "menubar=0,scrollbars=1,width=780,height=900,top=10");
+            }
+        }
+
         protected void ram_AjaxRequest(object sender, AjaxRequestEventArgs e)
         {
             if (e.Argument == "RebindFieldTrips")

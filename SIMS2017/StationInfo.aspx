@@ -85,6 +85,11 @@
                     <telerik:AjaxUpdatedControl ControlID="rddlWYs" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="dlDCPTable">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="dlDCPTable" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
         </AjaxSettings>
     </telerik:RadAjaxManager>
     <telerik:RadAjaxLoadingPanel ID="ralp" runat="server" Skin="Bootstrap" />
@@ -239,8 +244,9 @@
                                                 <b><a href='<%# String.Format("{0}", Eval("PASSURL")) %>' target="_blank">PASS Home</a></b><br />
                                             </div>
                                             <div style="float:right;width:70%;">
-                                                <b>View data for specified hours:</b> <asp:TextBox ID="tbDCPViewData" runat="server" Text="8" Width="40px" /> <asp:Button ID="btnDCPViewData" runat="server" Enabled="false" Text="Go!" /><br />
-                                                <i>This option currently not available. Maintainers of this web site have been notified of the problem.</i>
+                                                <b>View data for specified hours:</b> <asp:TextBox ID="tbDCPViewData" runat="server" Text="8" Width="40px" /> 
+                                                <asp:Button ID="btnDCPViewData" runat="server" OnCommand="btnDCPViewData_Command" CommandArgument='<%# Eval("dcp_id") %>' Text="Go!" /><br />
+                                                <!--<b><i>This option currently not available. Maintainers of this web site have been notified of the problem.</i></b>-->
                                             </div>
                                         </div>
                                     </td>

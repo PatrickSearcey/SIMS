@@ -10,370 +10,370 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="Admin/FieldTrips.aspx">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="Admin/Offices.aspx">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="Admin/Personnel.aspx">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="Admin/RegisterSite.aspx">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="Admin/Tasks.aspx">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/0.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/1.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/2.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/3.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/4.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/5.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/6.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/7.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/8.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/9.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/A.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/B.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/C.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/D.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/E.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/F.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/G.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/H.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/I.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/J.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/K.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/L.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/M.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/N.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/O.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/P.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/Q.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/R.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/S.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/T.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/U.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/V.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/W.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/X.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/Y.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadCaptcha/Z.wav">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="App_Data/RadSpell/de-DE.tdf">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="App_Data/RadSpell/en-US.tdf">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="App_Data/RadSpell/fr-FR.tdf">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="bin/Core.dll">
-      <publishTime>08/30/2017 15:37:40</publishTime>
+      <publishTime>08/31/2017 12:49:43</publishTime>
     </File>
     <File Include="bin/Data.dll">
-      <publishTime>08/30/2017 15:37:39</publishTime>
+      <publishTime>08/31/2017 12:49:42</publishTime>
     </File>
     <File Include="bin/DotNetZip.dll">
       <publishTime>01/27/2017 12:28:42</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>08/29/2017 16:53:24</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="bin/SIMS2017.dll">
-      <publishTime>08/30/2017 15:40:56</publishTime>
+      <publishTime>08/31/2017 12:49:47</publishTime>
     </File>
     <File Include="bin/Telerik.Web.Spreadsheet.dll">
-      <publishTime>08/29/2017 16:53:24</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="bin/Telerik.Web.UI.dll">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="bin/Telerik.Web.UI.Skins.dll">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="bin/Telerik.Windows.Documents.Core.dll">
-      <publishTime>08/29/2017 16:53:24</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="bin/Telerik.Windows.Documents.Flow.dll">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="bin/Telerik.Windows.Documents.Spreadsheet.dll">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="bin/Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="bin/Telerik.Windows.Zip.dll">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="Control/ApproveMANU.ascx">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="Control/OfficeSelector.ascx">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="Control/SitePageHeading.ascx">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="DCPIDReport.aspx">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="EditorDialogs/InsertImage.ascx">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="EditorDialogs/InsertLink.ascx">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="EditorDialogs/InsertTable.ascx">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="EditorDialogs/InsertTableLight.ascx">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="EditorDialogs/MobileTableProperties.ascx">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="EditorDialogs/TableLayouts.ascx">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="EditorDialogs/TableProperties.ascx">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="EditorDialogs/TableWizard.ascx">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="Handler/DocHandler.ashx">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="Handler/FieldTrips.ashx">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="Handler/MANUDump_v1.ashx">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="Handler/MANUDump_v2.ashx">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="images/approve.png">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="images/cleanicon.png">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="images/faqicon.png">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="images/keycolor0.gif">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="images/keycolor1.gif">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="images/keycolor2.gif">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="images/nofootnoteicon.png">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="images/refresh_custom1.png">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="images/review.png">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="images/SIMSLogo.png">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="images/SIMSTitle.png">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="images/tooltip.png">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="images/underarrow.png">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="images/USGSHeaderLogo.png">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="images/USGSHeaderLogoSIMS.png">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="images/usmap.gif">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="Modal/ConfirmDelete.aspx">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="Modal/FieldTrip.aspx">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="Modal/FieldTripEdit.aspx">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="Modal/GWElems.aspx">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="Modal/RecordEdit.aspx">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="NWISOpsRequest.aspx">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="scripts/scripts.js">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="Service References/SIMSDevService/SIMS2017.SIMSDevService.Element.datasource">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="Service References/SIMSDevService/SIMS2017.SIMSDevService.Site.datasource">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="Service References/SIMSService/SIMS2017.SIMSService.Element.datasource">
-      <publishTime>08/30/2017 08:35:36</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="Service References/SIMSService/SIMS2017.SIMSService.Site.datasource">
-      <publishTime>08/30/2017 08:35:36</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="Service.asmx">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="SIMS.Master">
-      <publishTime>08/30/2017 08:05:09</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="SIMSHome.aspx">
-      <publishTime>08/31/2017 09:12:10</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="SIMSSingleMenu.Master">
-      <publishTime>08/29/2017 16:53:25</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="SIMSWSCHome.aspx">
-      <publishTime>08/30/2017 15:33:01</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="SiteListsFAQ.html">
-      <publishTime>08/30/2017 08:05:09</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="StationDoc/Archive.aspx">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="StationDoc/CustomReport.aspx">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="StationDoc/EditDocs.aspx">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="StationDoc/MAI.aspx">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="StationDoc/SiteMAI.aspx">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="StationDoc/ViewDocs.aspx">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="StationInfo.aspx">
-      <publishTime>08/30/2017 15:33:01</publishTime>
+      <publishTime>08/31/2017 12:52:19</publishTime>
     </File>
     <File Include="styles/admin.css">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="styles/base.css">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="styles/default.css">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="styles/home.css">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="styles/recordedit.css">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="styles/stationdoc.css">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="styles/stationinfo.css">
-      <publishTime>08/29/2017 16:53:26</publishTime>
+      <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>08/31/2017 10:50:23</publishTime>
+      <publishTime>08/31/2017 12:49:47</publishTime>
     </File>
   </ItemGroup>
 </Project>
