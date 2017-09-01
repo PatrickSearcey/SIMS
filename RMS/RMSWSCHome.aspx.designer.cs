@@ -13,22 +13,13 @@ namespace RMS {
     public partial class RMSWSCHome {
         
         /// <summary>
-        /// ram control.
+        /// rap control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadAjaxManager ram;
-        
-        /// <summary>
-        /// ralp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadAjaxLoadingPanel ralp;
+        protected global::Telerik.Web.UI.RadAjaxPanel rap;
         
         /// <summary>
         /// rplTop control.
@@ -128,5 +119,14 @@ namespace RMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadGrid rgRecords;
+        
+        /// <summary>
+        /// ralp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadAjaxLoadingPanel ralp;
     }
 }

@@ -7,35 +7,10 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="cph1" runat="Server">
-    <telerik:RadAjaxManager ID="ram" runat="server">
-        <AjaxSettings>
-            <telerik:AjaxSetting AjaxControlID="osHome">
-                <UpdatedControls>
-                    <telerik:AjaxUpdatedControl ControlID="osHome" LoadingPanelID="ralp" />
-                    <telerik:AjaxUpdatedControl ControlID="rgSites" LoadingPanelID="ralp" />
-                    <telerik:AjaxUpdatedControl ControlID="ltlOfficeName" />
-                    <telerik:AjaxUpdatedControl ControlID="pnlFieldTrip" LoadingPanelID="ralp" />
-                    <telerik:AjaxUpdatedControl ControlID="ltlSiteCount" />
-                    <telerik:AjaxUpdatedControl ControlID="lbActiveToggle" />
-                </UpdatedControls>
-            </telerik:AjaxSetting>
-            <telerik:AjaxSetting AjaxControlID="rgSites">
-                <UpdatedControls>
-                    <telerik:AjaxUpdatedControl ControlID="rgSites" LoadingPanelID="ralp" />
-                    <telerik:AjaxUpdatedControl ControlID="ltlSiteCount" />
-                </UpdatedControls>
-            </telerik:AjaxSetting>
-            <telerik:AjaxSetting AjaxControlID="lbActiveToggle">
-                <UpdatedControls>
-                    <telerik:AjaxUpdatedControl ControlID="rgSites" LoadingPanelID="ralp" />
-                    <telerik:AjaxUpdatedControl ControlID="lbActiveToggle" />
-                    <telerik:AjaxUpdatedControl ControlID="ltlSiteCount" />
-                </UpdatedControls>
-            </telerik:AjaxSetting>
-        </AjaxSettings>
-    </telerik:RadAjaxManager>
-    <telerik:RadAjaxLoadingPanel ID="ralp" runat="server" Skin="Bootstrap" />
+</asp:Content>
 
+<asp:Content ID="Content3" ContentPlaceHolderID="cph2" runat="Server">
+    <telerik:RadAjaxPanel ID="rap" runat="server" LoadingPanelID="ralp">
     <telerik:RadPageLayout runat="server" ID="rplTop">
         <Rows>
             <telerik:LayoutRow>
@@ -55,9 +30,7 @@
             </telerik:LayoutRow>
         </Rows>
     </telerik:RadPageLayout>
-</asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="cph2" runat="Server">
     <telerik:RadPageLayout runat="server" ID="rplContent">
         <Rows>
             <telerik:LayoutRow>
@@ -118,4 +91,6 @@
             </telerik:LayoutRow>
         </Rows>
     </telerik:RadPageLayout>
+    </telerik:RadAjaxPanel>
+    <telerik:RadAjaxLoadingPanel ID="ralp" runat="server" Skin="Bootstrap" />
 </asp:Content>

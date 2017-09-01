@@ -13,22 +13,13 @@ namespace SIMS2017 {
     public partial class SIMSWSCHome {
         
         /// <summary>
-        /// ram control.
+        /// rap control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadAjaxManager ram;
-        
-        /// <summary>
-        /// ralp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadAjaxLoadingPanel ralp;
+        protected global::Telerik.Web.UI.RadAjaxPanel rap;
         
         /// <summary>
         /// rplTop control.
@@ -146,5 +137,14 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadGrid rgSites;
+        
+        /// <summary>
+        /// ralp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadAjaxLoadingPanel ralp;
     }
 }
