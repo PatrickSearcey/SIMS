@@ -414,7 +414,7 @@ namespace SIMS2017.StationDoc
                     if (element_id == 110 || element_id == 90 || element_id == 118 || element_id == 86 || element_id == 87 || element_id == 1001 || element_id == 116 || element_id == 117)
                     {
                         ltlInactiveNotice.Visible = true;
-                        ltlInactiveNotice.Text = "<b><i>If appropriate, place information within the REVISIONS HISTORY element. Refer to <a href='' target='_blank'>Surface " +
+                        ltlInactiveNotice.Text = "<b><i>If appropriate, place information within the REVISIONS HISTORY element. Refer to <a href='https://water.usgs.gov/osw/RevisionsGuidance.html' target='_blank'>Surface " +
                             "Water Technical Memo 2017.06, Procedures for Identifying and Documenting Revisions to USGS Water Data</a>.</i></b><br />";
                     }
                     else
