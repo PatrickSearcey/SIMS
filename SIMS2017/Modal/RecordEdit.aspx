@@ -109,7 +109,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <telerik:RadButton ID="rbSubmit" runat="server" Text="Submit Changes" OnClick="EditRecord" />
+                            <telerik:RadButton ID="rbSubmit" runat="server" Text="Submit Changes" OnClick="EditRecord" SingleClick="true" SingleClickText="Submitting..." />
                             <telerik:RadButton ID="rbCancel" runat="server" Text="Cancel" OnClick="Cancel" />
                             <span class="error"><asp:Literal ID="ltlError" runat="server" /></span>
                         </td>
