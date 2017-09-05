@@ -426,40 +426,40 @@ namespace Safety.Control
 				    switch (shj.elem_jha_id) {
 					    case 1:
 						    //Servicing Surface Water Field Sites
-						    hlFullReport.NavigateUrl = "../Docs/JHAs/Servicing_Site.pdf";
+                            hlFullReport.NavigateUrl = String.Format("{0}SIMSShare/JHAs/Servicing_Site.pdf", Config.SIMSServerURL);
 						    break;
 					    case 2:
 						    //Wading Measurements
-						    hlFullReport.NavigateUrl = "../Docs/JHAs/Wading_Measurements.pdf";
+						    hlFullReport.NavigateUrl = String.Format("{0}SIMSShare/JHAs/Wading_Measurements.pdf", Config.SIMSServerURL);
 						    break;
 					    case 3:
 						    //Bridge Measurements
-						    hlFullReport.NavigateUrl = "../Docs/JHAs/Bridge_Measurements.pdf";
+						    hlFullReport.NavigateUrl = String.Format("{0}SIMSShare/JHAs/Bridge_Measurements.pdf", Config.SIMSServerURL);
 						    break;
 					    case 4:
 						    //Cableway Measurements
-						    hlFullReport.NavigateUrl = "../Docs/JHAs/Cableway_Measurements.pdf";
+						    hlFullReport.NavigateUrl = String.Format("{0}SIMSShare/JHAs/Cableway_Measurements.pdf", Config.SIMSServerURL);
 						    break;
 					    case 5:
 						    //Boat Measurements for Stream Sites
-						    hlFullReport.NavigateUrl = "../Docs/JHAs/Boat_Measurements_Streams.pdf";
+						    hlFullReport.NavigateUrl = String.Format("{0}SIMSShare/JHAs/Boat_Measurements_Streams.pdf", Config.SIMSServerURL);
 						    break;
 					    case 6:
 						    //Service and Measure Groundwater Field Site
-						    hlFullReport.NavigateUrl = "../Docs/JHAs/Groundwater.pdf";
+						    hlFullReport.NavigateUrl = String.Format("{0}SIMSShare/JHAs/Groundwater.pdf", Config.SIMSServerURL);
 						    break;
 					    case 7:
 					    case 8:
 						    //Stilling Well with Confined Space Hazard
-						    hlFullReport.NavigateUrl = "../Docs/JHAs/StillingWell_ConfinedSpace.pdf";
+						    hlFullReport.NavigateUrl = String.Format("{0}SIMSShare/JHAs/StillingWell_ConfinedSpace.pdf", Config.SIMSServerURL);
 						    break;
 					    case 9:
 						    //Water Quality Sampling
-						    hlFullReport.NavigateUrl = "../Docs/JHAs/Water_Quality_Sampling.pdf";
+						    hlFullReport.NavigateUrl = String.Format("{0}SIMSShare/JHAs/Water_Quality_Sampling.pdf", Config.SIMSServerURL);
 						    break;
 					    case 10:
 						    //Boat Measurements for Lake Sites
-						    hlFullReport.NavigateUrl = "../Docs/JHAs/Boat_Measurements_Lakes.pdf";
+                            hlFullReport.NavigateUrl = String.Format("{0}SIMSShare/JHAs/Boat_Measurements_Lakes.pdf", Config.SIMSServerURL);
 						    break;
 				    }
 			    }

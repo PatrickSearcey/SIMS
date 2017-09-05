@@ -45,16 +45,16 @@
             <div style="float:right;">
                 <asp:ImageMap ID="imInstructions" runat="server" ImageUrl="~/images/manualandhelplinks.png" BorderStyle="None">
                     <asp:RectangleHotSpot AlternateText="Manned Cableway Inspection e-Form" HotSpotMode="Navigate" 
-                        NavigateUrl="../Docs/MannedCablewayInspectionE-form.pdf" Bottom="33" Left="38" Right="210" Top="15" Target="_blank" />
+                        NavigateUrl="http://sims.water.usgs.gov/SIMSShare/MannedCablewayInspectionE-form.pdf" Bottom="33" Left="38" Right="210" Top="15" Target="_blank" />
                     <asp:RectangleHotSpot AlternateText="Bank-Operated Cableways Inspection Checklist" HotSpotMode="Navigate" 
-                        NavigateUrl="../Docs/Bank-OperatedCablewayInspectionE-form.pdf" Bottom="58" Left="38" Right="210" Top="38" Target="_blank" />
+                        NavigateUrl="http://sims.water.usgs.gov/SIMSShare/Bank-OperatedCablewayInspectionE-form.pdf" Bottom="58" Left="38" Right="210" Top="38" Target="_blank" />
                     <asp:RectangleHotSpot AlternateText="USGS Manual" HotSpotMode="Navigate" 
                         NavigateUrl="http://www.usgs.gov/usgs-manual/handbook/hb/445-2-h/ch41.html" Bottom="33" Left="270" 
                         Right="470" Target="_blank" Top="10" />
                     <asp:RectangleHotSpot AlternateText="WMA Memo 13.03" HotSpotMode="Navigate"
-                        NavigateUrl="../Docs/WMAMemorandum13.03.pdf" Bottom="60" Left="270" Right="460" Target="_blank" Top="38" />
+                        NavigateUrl="http://sims.water.usgs.gov/SIMSShare/WMAMemorandum13.03.pdf" Bottom="60" Left="270" Right="460" Target="_blank" Top="38" />
                     <asp:RectangleHotSpot AlternateText="CMI Instructions (.pptx)" HotSpotMode="Navigate" 
-                        NavigateUrl="../Docs/SIMSCMIInstructions.pptx" Left="520" 
+                        NavigateUrl="http://sims.water.usgs.gov/SIMSShare/SIMSCMIInstructions.pptx" Left="520" 
                         Right="800" Target="_blank" Top="5" Bottom="60" />
                 </asp:ImageMap>
             </div>
