@@ -54,9 +54,15 @@ namespace SIMS2017
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //If no site_id was passed, then redirect back to the homepage
+            //If no site_id or site_no was passed, then redirect back to the homepage
             string site_id = Request.QueryString["site_id"];
-            if (!string.IsNullOrEmpty(site_id)) SiteID = Convert.ToInt32(site_id); else Response.Redirect(Config.SIMSURL + "SIMSWSCHome.aspx");
+            string site_no = Request.QueryString["site_no"];
+            if (!string.IsNullOrEmpty(site_id))
+                SiteID = Convert.ToInt32(site_id);
+            else if (!string.IsNullOrEmpty(site_no))
+                SiteID = db.Sites.FirstOrDefault(p => p.site_no == site_no).site_id;
+            else 
+                Response.Redirect(Config.SIMSURL + "SIMSWSCHome.aspx");
             
             //Using the passed site_id, setup the site data element, and reset the office and wsc to match that of the current site
             currSite = db.Sites.Where(p => p.site_id == SiteID).FirstOrDefault();
