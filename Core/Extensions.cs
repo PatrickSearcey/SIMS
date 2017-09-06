@@ -655,7 +655,7 @@ namespace Core
                             if (doll.levels_freq != null) frequency = doll.levels_freq + " year(s)";
                             if (Convert.ToBoolean(doll.levels_closed)) status = "CLOSED";
 
-                            elem_info = "Last run: " + lastrun + "; Next run: " + nextrun + "; Frequency: " + frequency + "; Status: " + status;
+                            elem_info = "Last run: " + lastrun + "; Next run: " + nextrun + "; Frequency: " + frequency + "; Status: " + status + "<br /><br />" + element_info;
                         }
                         break;
                     default:
