@@ -74,11 +74,11 @@
                                     <telerik:GridBoundColumn DataField="station_nm" AllowSorting="true" AllowFiltering="true" HeaderText="Station Name" />
 
                                     <telerik:GridBoundColumn DataField="Analyzer" AllowSorting="true" AllowFiltering="true" HeaderText="Assigned To" ColumnGroupName="Analyzed" FilterControlWidth="80px" />
-                                    <telerik:GridBoundColumn DataField="AnalyzedDt" AllowSorting="true" AllowFiltering="false" HeaderText="Through" ColumnGroupName="Analyzed" />
+                                    <telerik:GridDateTimeColumn DataField="AnalyzedDt" DataFormatString="{0:MM/dd/yyyy}" AllowSorting="true" AllowFiltering="false" HeaderText="Through" ColumnGroupName="Analyzed" />
                                     <telerik:GridBoundColumn DataField="AnalyzedBy" AllowSorting="true" AllowFiltering="true" HeaderText="By" ColumnGroupName="Analyzed" FilterControlWidth="80px" />
 
                                     <telerik:GridBoundColumn DataField="Approver" AllowSorting="true" AllowFiltering="true" HeaderText="Assigned To" ColumnGroupName="Approved" FilterControlWidth="80px" />
-                                    <telerik:GridBoundColumn DataField="ApprovedDt" AllowSorting="true" AllowFiltering="false" HeaderText="Through" ColumnGroupName="Approved" />
+                                    <telerik:GridDateTimeColumn DataField="ApprovedDt" DataFormatString="{0:MM/dd/yyyy}" AllowSorting="true" AllowFiltering="false" HeaderText="Through" ColumnGroupName="Approved" />
                                     <telerik:GridBoundColumn DataField="ApprovedBy" AllowSorting="true" AllowFiltering="true" HeaderText="By" ColumnGroupName="Approved" FilterControlWidth="80px" />
 
                                     <telerik:GridBoundColumn DataField="RecordType" AllowFiltering="true" AllowSorting="true" HeaderText="Record Type Code" FilterControlWidth="40px" />

@@ -164,10 +164,10 @@ namespace RMS
                 RecordType = p.type_cd,
                 Active = (!p.not_used_fg).ToString(),
                 Analyzer = p.analyzer_uid,
-                AnalyzedDt = String.Format("{0:MM/dd/yyyy}", p.analyzed_period_dt),
+                AnalyzedDt = p.analyzed_period_dt,
                 AnalyzedBy = p.analyzed_period_by,
                 Approver = p.approver_uid,
-                ApprovedDt = String.Format("{0:MM/dd/yyyy}", p.approved_period_dt),
+                ApprovedDt = p.approved_period_dt,
                 ApprovedBy = p.approved_period_by,
                 trip_ids = GetTripIDs(p.site_id)
             }).OrderBy(p => p.site_no).ToList();
@@ -241,10 +241,10 @@ namespace RMS
             private string _wsc_id;
             private string _agency_cd;
             private string _Analyzer;
-            private string _AnalyzedDt;
+            private DateTime? _AnalyzedDt;
             private string _AnalyzedBy;
             private string _Approver;
-            private string _ApprovedDt;
+            private DateTime? _ApprovedDt;
             private string _ApprovedBy;
             private string _Active;
             private string _RecordType;
@@ -300,7 +300,7 @@ namespace RMS
                 get { return _Analyzer; }
                 set { _Analyzer = value; }
             }
-            public string AnalyzedDt
+            public DateTime? AnalyzedDt
             {
                 get { return _AnalyzedDt; }
                 set { _AnalyzedDt = value; }
@@ -315,7 +315,7 @@ namespace RMS
                 get { return _Approver; }
                 set { _Approver = value; }
             }
-            public string ApprovedDt
+            public DateTime? ApprovedDt
             {
                 get { return _ApprovedDt; }
                 set { _ApprovedDt = value; }
