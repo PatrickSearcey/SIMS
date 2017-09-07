@@ -54,7 +54,7 @@ namespace RMS
         {
             ltlUserID.Text = user.ID;
 
-            ClearLocks();
+            //ClearLocks();
 
             rmTop.Items.Add(new RadMenuItem { Text = "SIMS National Home", NavigateUrl = String.Format("{0}SIMSHome.aspx", Config.SIMSURL) });
             rmTop.Items.Add(new RadMenuItem { IsSeparator = true });
