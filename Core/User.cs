@@ -35,7 +35,6 @@ namespace Core
             int pos = _id.IndexOf("\\");
             _id = _id.Substring(pos + 1);
 
-
             //try to see if the user is in the database
             var user = db.Employees.FirstOrDefault(p => p.user_id == _id);
             //If the user isn't null it has Admin priveldges, or doesn't
@@ -58,20 +57,29 @@ namespace Core
                 _active = (bool)user.active;
                 _showreports = (bool)user.show_reports;
                 _email = _id + "@usgs.gov";
+                //If possible, get the email address for the user from AD
+                var reg_user = db.spz_GetUserInfoFromAD(_id);
+                foreach (var result in reg_user)
+                    _email = result.mail;
             }
             else
             {
                 var unreg_user = db.spz_GetUserInfoFromAD(_id);
                 string primaryOU = "AustinTX-W";
+                string email = _id + "@usgs.gov";
                 foreach (var result in unreg_user)
                 {
                     primaryOU = result.primaryOU;
+                    email = result.mail;
                 }
                 var wsc = db.WSCs.FirstOrDefault(p => p.AD_OU.Contains(primaryOU));
                 var office = db.Offices.FirstOrDefault(p => p.wsc_id == wsc.wsc_id);
 
                 _office_id = office.office_id;
                 _wsc_id.Add(wsc.wsc_id);
+                _email = email;
+                _active = false;
+                _showreports = false;
             }
 
         }

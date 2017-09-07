@@ -912,7 +912,13 @@ namespace RMS.Task
 
         private string EmailAddress(string user_id)
         {
-            return user_id + "@usgs.gov";
+            //If possible, get the email address for the user from AD
+            string email = user_id + "@usgs.gov";
+            var reg_user = db.spz_GetUserInfoFromAD(user_id);
+            foreach (var result in reg_user)
+                email = result.mail;
+
+            return email;
         }
         #endregion
     }
