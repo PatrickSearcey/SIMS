@@ -68,7 +68,8 @@ namespace RMS
             if (!string.IsNullOrEmpty(wsc_id))
             {
                 WSCID = Convert.ToInt32(wsc_id);
-                if (OfficeID == 0) OfficeID = db.Offices.FirstOrDefault(p => p.wsc_id == WSCID).office_id;
+                if (OfficeID == 0 || db.Offices.FirstOrDefault(p => p.office_id == OfficeID).wsc_id != WSCID) 
+                    OfficeID = db.Offices.FirstOrDefault(p => p.wsc_id == WSCID).office_id;
             }
             else
             {
