@@ -49,7 +49,17 @@ namespace SIMS2017
                 Session["TripID"] = value;
             }
         }
-        private Boolean ShowActiveSites = true;
+        private Boolean ShowActiveSites
+        {
+            get
+            {
+                if (Session["ShowActiveSites"] == null) return true; else return (Boolean)Session["ShowActiveSites"];
+            }
+            set
+            {
+                Session["ShowActiveSites"] = value;
+            }
+        }
         #endregion 
 
         #region Page Events
@@ -61,12 +71,14 @@ namespace SIMS2017
             if (!string.IsNullOrEmpty(office_id))
             {
                 OfficeID = Convert.ToInt32(office_id);
-                WSCID = Convert.ToInt32(db.Offices.FirstOrDefault(p => p.office_id == OfficeID).wsc_id);
+                if (WSCID == 0 || db.Offices.FirstOrDefault(p => p.office_id == OfficeID).wsc_id != WSCID) 
+                    WSCID = Convert.ToInt32(db.Offices.FirstOrDefault(p => p.office_id == OfficeID).wsc_id);
             }
             else if (!string.IsNullOrEmpty(wsc_id))
             {
                 WSCID = Convert.ToInt32(wsc_id);
-                OfficeID = db.Offices.FirstOrDefault(p => p.wsc_id == WSCID).office_id;
+                if (OfficeID == 0 || db.Offices.FirstOrDefault(p => p.office_id == OfficeID).wsc_id != WSCID)
+                    OfficeID = db.Offices.FirstOrDefault(p => p.wsc_id == WSCID).office_id;
             }
             else
             {
@@ -125,6 +137,7 @@ namespace SIMS2017
                 site_no_list += site.Trim() + ",";
             }
             hlRealtimeGraphs.NavigateUrl = "http://waterdata.usgs.gov/nwis/uv?multiple_site_no=" + site_no_list + "&sort_key=site_no&group_key=NONE&sitefile_output_format=html_table&column_name=agency_cd&column_name=site_no&column_name=station_nm&range_selection=days&period=7&format=gif_default&date_format=YYYY-MM-DD&rdb_compression=file&list_of_search_criteria=multiple_site_no%2Crealtime_parameter_selection";
+            lbActiveToggle.Visible = false;
         }
         #endregion
 
@@ -134,6 +147,7 @@ namespace SIMS2017
             //If the office was the only thing changed, reset to the office site list
             if (TripID == 0)
             {
+                lbActiveToggle.Visible = true;
                 ltlOfficeName.Text = "USGS Master Station List for " + db.Offices.Where(p => p.office_id == OfficeID).Select(p => p.office_nm).First();
                 pnlFieldTrip.Visible = false;
             }

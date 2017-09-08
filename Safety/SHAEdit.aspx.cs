@@ -1130,7 +1130,7 @@ namespace Safety
             }
 
             ltlApprovedBy.Text = currSHA.approved_by;
-            if (String.Format("{0:MM/dd/yyyy}", currSHA.approved_dt) == "01/01/1900")
+            if (String.Format("{0:MM/dd/yyyy}", currSHA.approved_dt) == "01/01/1900" || currSHA.approved_dt == null)
             {
                 ltlApprovedDate.Text = "never approved";
             }
@@ -1139,7 +1139,7 @@ namespace Safety
                 ltlApprovedDate.Text = String.Format("{0:MM/dd/yyyy}", currSHA.approved_dt);
             }
 
-            if (user.IsSafetyApprover & currSHA.reviewed_dt > currSHA.approved_dt)
+            if (user.IsSafetyApprover & currSHA.reviewed_dt > currSHA.approved_dt || user.IsSafetyApprover & currSHA.approved_dt == null & currSHA.reviewed_dt != null)
             {
                 pnlApprove.Visible = true;
             }
