@@ -89,14 +89,14 @@
                 </ColumnGroups>
                 <Columns>
                     <telerik:GridBoundColumn DataField="office_cd" HeaderText="Office" AllowFiltering="false" HeaderStyle-Width="40px" UniqueName="office_cd" />
-                    <telerik:GridTemplateColumn SortExpression="site_no" HeaderText="Number" FilterControlWidth="80px" ColumnGroupName="Site" UniqueName="site_no">
+                    <telerik:GridTemplateColumn DataField="site_no" SortExpression="site_no" HeaderText="Number" FilterControlWidth="80px" ColumnGroupName="Site" UniqueName="site_no">
                         <ItemTemplate>
                             <a href='<%# String.Format("{0}StationInfo.aspx?site_id={1}", Eval("SIMSURL"), Eval("site_id")) %>' target="_blank"><%# Eval("site_no") %></a>
                         </ItemTemplate>
                     </telerik:GridTemplateColumn>
                     <telerik:GridBoundColumn DataField="station_nm" HeaderText="Name" FilterControlWidth="100px" ColumnGroupName="Site" UniqueName="station_nm" />
                     <telerik:GridBoundColumn DataField="parm_cd" HeaderText="Param Code" AllowFiltering="false" UniqueName="parm_cd" />
-                    <telerik:GridTemplateColumn SortExpression="type_cd" HeaderText="Record-Type" FilterControlWidth="80px" UniqueName="type_cd">
+                    <telerik:GridTemplateColumn DataField="type_cd" SortExpression="type_cd" HeaderText="Record-Type" FilterControlWidth="80px" UniqueName="type_cd">
                         <ItemTemplate>
                             <asp:Literal ID="ltlTypeCd" runat="server" Text='<%# Eval("type_cd") %>' />
                             <telerik:RadToolTip RenderMode="Lightweight" ID="rttType" runat="server" TargetControlID="ltlTypeCd" RelativeTo="Element"
