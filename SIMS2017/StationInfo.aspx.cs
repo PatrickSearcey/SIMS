@@ -599,6 +599,9 @@ namespace SIMS2017
                 hf.Value = rec.rms_record_id.ToString();
                 lbEditRecord.OnClientClick = String.Format("openWin('{0}','record'); return false;", rec.rms_record_id);
 
+                //If the user belongs to this site's WSC (or has an exception to work in the WSC), or is a SuperUser, then allow them to edit the page
+                if (user.WSCID.Contains(WSCID) && user.IsAdmin || user.IsSuperUser) lbEditRecord.Visible = true; else lbEditRecord.Visible = false;
+
                 //If this is an active record, show the active panel, otherwise show the inactive
                 if (rec.active == "active")
                 {
