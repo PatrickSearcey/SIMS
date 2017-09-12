@@ -95,6 +95,8 @@ namespace RMS.Admin
         {
             if (e.Argument == "RebindGrids")
             {
+                if (rrblRecords.SelectedIndex == 0) onlyactive = "yes"; else onlyactive = "no";
+                selOfficeID = Convert.ToInt32(rddlOffice.SelectedValue);
                 rgRecords.Rebind();
                 rgSites.Rebind();
             }
