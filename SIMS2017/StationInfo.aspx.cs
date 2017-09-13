@@ -136,7 +136,9 @@ namespace SIMS2017
                     if (manuApproved != null)
                     {
                         DateTime approved_dt = Convert.ToDateTime(manuApproved.approved_dt);
-                        DateTime revised_dt = Convert.ToDateTime(db.ElemReportSums.FirstOrDefault(p => p.site_id == currSite.site_id && p.report_type_cd == "MANU").revised_dt);
+                        DateTime? revised_dt = null;
+                        if (db.ElemReportSums.FirstOrDefault(p => p.site_id == currSite.site_id && p.report_type_cd == "MANU") != null) 
+                            revised_dt = db.ElemReportSums.FirstOrDefault(p => p.site_id == currSite.site_id && p.report_type_cd == "MANU").revised_dt;
                         if (revised_dt > approved_dt) ltlApproved.Text = String.Format("(<a href='{0}StationDoc/SiteMAI.aspx?site_id={1}' style='color:red;'>Needs Approval</a>)", Config.SIMSURL, currSite.site_id); else ltlApproved.Text = String.Format("(<a href='{0}StationDoc/SiteMAI.aspx?site_id={1}' style='color:green'>Approved</a>)", Config.SIMSURL, currSite.site_id);
                     }
                     else ltlApproved.Text = String.Format("(<a href='{0}StationDoc/SiteMAI.aspx?site_id={1}'>Needs Approval</a>)", Config.SIMSURL, currSite.site_id);

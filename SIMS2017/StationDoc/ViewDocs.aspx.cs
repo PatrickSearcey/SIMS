@@ -158,7 +158,19 @@ namespace SIMS2017.StationDoc
             if (!string.IsNullOrEmpty(currSite.alt_basin_nm)) 
                 ltlPublishedBasin.Text = currSite.alt_basin_nm;
             else
-                ltlPublishedBasin.Text = db.HUCs.FirstOrDefault(p => p.huc_cd == db.vSITEFILEs.FirstOrDefault(n => n.site_id == currSite.nwisweb_site_id).huc_cd).basin;
+            {
+                if (db.vSITEFILEs.FirstOrDefault(n => n.site_id == currSite.nwisweb_site_id) != null)
+                {
+                    string huc_cd = db.vSITEFILEs.FirstOrDefault(n => n.site_id == currSite.nwisweb_site_id).huc_cd;
+                    if (!string.IsNullOrEmpty(huc_cd))
+                    {
+                        if (db.HUCs.FirstOrDefault(p => p.huc_cd == huc_cd) != null)
+                        {
+                            ltlPublishedBasin.Text = db.HUCs.FirstOrDefault(p => p.huc_cd == huc_cd).basin;
+                        }
+                    }
+                }
+            }
             if (!string.IsNullOrEmpty(currSite.station_full_nm))
                 ltlPublishedName.Text = currSite.station_full_nm;
             else

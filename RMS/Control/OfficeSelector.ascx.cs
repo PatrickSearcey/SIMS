@@ -101,7 +101,7 @@ namespace RMS.Control
             rddlOffice.SelectedValue = OfficeID.ToString();
             SelOffice = db.Offices.Where(p => p.office_id == Convert.ToInt32(rddlOffice.SelectedValue)).FirstOrDefault();
 
-            rddlFieldTrip.DataSource = db.Trips.Where(p => p.office_id == OfficeID).Select(p => new { trip_id = p.trip_id, TripName = p.trip_nm + " (" + p.user_id + ")" }).ToList();
+            rddlFieldTrip.DataSource = db.Trips.Where(p => p.office_id == OfficeID).Select(p => new { trip_id = p.trip_id, TripName = p.trip_nm + " (" + p.user_id + ")" }).OrderBy(p => p.TripName).ToList();
             rddlFieldTrip.DataBind();
             rddlFieldTrip.Items.Add(new DropDownListItem { Value = "", Text = "" });
             if (TripID > 0) rddlFieldTrip.SelectedValue = TripID.ToString(); else rddlFieldTrip.SelectedValue = "";

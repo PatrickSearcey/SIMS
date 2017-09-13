@@ -154,7 +154,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="bin/SIMS2017.dll">
-      <publishTime>09/11/2017 13:01:13</publishTime>
+      <publishTime>09/12/2017 13:53:38</publishTime>
     </File>
     <File Include="bin/Telerik.Web.Spreadsheet.dll">
       <publishTime>08/31/2017 12:21:21</publishTime>
