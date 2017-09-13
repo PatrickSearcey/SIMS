@@ -41,6 +41,15 @@
             var AudUrl = '/RMS/Modal/ViewAudit.aspx?period_id=' + period_id;
             open(AudUrl, 'SAudPU', 'toolbar=yes, menubar=no, width=900, height=600, scrollbar=yes');
         }
+
+        function OnKeyPress(sender, args)
+        {
+            if (args.get_keyCode() == 13)
+            {
+                document.getElementById('rbJump').click();
+                args.set_cancel(true);
+            }
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph1" runat="server">
@@ -105,8 +114,8 @@
     <uc:PageHeading id="ph1" runat="server" />
     <div class="linkbar">
         <div style="float:left;">
-            <telerik:RadTextBox ID="rtbSiteNo" runat="server" EmptyMessage="enter site number" />
-            <telerik:RadButton ID="rbJump" runat="server" Text="jump!" OnClick="rbJump_Click" />
+            <telerik:RadTextBox ID="rtbSiteNo" runat="server" EmptyMessage="enter site number" ClientEvents-OnKeyPress="OnKeyPress"  />
+            <telerik:RadButton ID="rbJump" runat="server" Text="jump!" OnClick="rbJump_Click" ClientIDMode="Static" />
         </div>
         <div style="float:right;">
             <asp:HyperLink ID="hlNWISWeb" runat="server" Text="Go to NWISWeb" Target="_blank" /> |
