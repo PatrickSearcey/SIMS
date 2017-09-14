@@ -60,6 +60,7 @@
                             OnPreRender="rgRecords_PreRender"
                             OnItemDataBound="rgRecords_ItemDataBound">
                             <ClientSettings EnableAlternatingItems="false" />
+                            <GroupingSettings CaseSensitive="false" />
                             <MasterTableView CommandItemDisplay="None" AutoGenerateColumns="false" AllowFilteringByColumn="true" AllowSorting="true">
                                 <ColumnGroups>
                                     <telerik:GridColumnGroup Name="Analyzed" HeaderText="Analyzed" HeaderStyle-HorizontalAlign="Center" />

@@ -822,13 +822,46 @@ namespace RMS.Task
                 var message = new MailMessage("rmsonline@usgs.gov", "rmsonline@usgs.gov");
                 message.IsBodyHtml = true;
 
+                //Setup the office's approver email list
+                var office = db.Offices.FirstOrDefault(p => p.office_id == OfficeID);
+                string[] appEmails;
+                List<string> appEmailList = new List<string>();
+                if (!string.IsNullOrEmpty(office.reviewer_email))
+                {
+                    //If the approver email field contains multiple email addresses, split them up and put them into a List
+                    if (office.reviewer_email.IndexOf(',') > 0 || office.reviewer_email.IndexOf(';') > 0)
+                    {
+                        char[] delimiterChars = { ',', ';' };
+                        appEmails = office.reviewer_email.Split(delimiterChars);
+                        foreach (string s in appEmails)
+                        {
+                            //Make sure to grab just the email address if formatted like so: "Cary Carman <cdcarman@usgs.gov>"
+                            if (s.IndexOf('<') > 0 && s.IndexOf('>') > 0)
+                                appEmailList.Add(s.Substring(s.IndexOf('<') + 1, s.IndexOf('>') - 1));
+                            else
+                                appEmailList.Add(s);
+                        }
+                    }
+                    else
+                    {
+                        appEmailList.Add(office.reviewer_email);
+                    }
+                }
+
                 switch (action)
                 {
                     case "Analyzed":
                         //TO the assigned approver
-                        to.Add(EmailAddress(period.Record.approver_uid));
+                        if (!string.IsNullOrEmpty(period.Record.approver_uid)) to.Add(EmailAddress(period.Record.approver_uid));
                         //CC the analyzer
-                        cc.Add(user.Email); 
+                        cc.Add(user.Email);
+
+                        //If one has been setup, CC the office's designated approver
+                        if (appEmailList.Count > 0)
+                        {
+                            foreach (string email in appEmailList)
+                                cc.Add(email);
+                        }
 
                         message.Subject = "Record for " + period.Record.Site.site_no.Trim() + " ready for approving";
                         message.Body = "A record assigned to you for approving has been analyzed:<br /><br />" +
@@ -836,14 +869,17 @@ namespace RMS.Task
                             " (" + period.Record.RecordType.type_ds + ") has been analyzed by " + user.ID + ".";
                         break;
                     case "Approved":
-                        //TO the assigned analyzer
-                        to.Add(EmailAddress(period.Record.analyzer_uid));  
+                        //To the assigned analyzer (or if no assigned analyzer, the person who analyzed the record
+                        if (!string.IsNullOrEmpty(period.Record.analyzer_uid)) to.Add(EmailAddress(period.Record.analyzer_uid)); else to.Add(EmailAddress(period.analyzed_by));
                         //If the assigned analyzer is different from the user who analyzed the record, CC to the user who analyzed the record
                         if (period.Record.analyzer_uid != period.analyzed_by) cc.Add(EmailAddress(period.analyzed_by));
 
                         //If one has been setup, CC the office's designated approver
-                        var office = db.Offices.FirstOrDefault(p => p.office_id == OfficeID);
-                        if (!string.IsNullOrEmpty(office.reviewer_email)) cc.Add(office.reviewer_email);
+                        if (appEmailList.Count > 0)
+                        {
+                            foreach (string email in appEmailList)
+                                cc.Add(email);
+                        }
 
                         //Add the approver to the CC list
                         cc.Add(user.Email);
@@ -855,10 +891,17 @@ namespace RMS.Task
 
                         break;
                     case "Reanalyze":
-                        //To the assigned analyzer
-                        to.Add(EmailAddress(period.Record.analyzer_uid));
+                        //To the assigned analyzer (or if no assigned analyzer, the person who analyzed the record
+                        if (!string.IsNullOrEmpty(period.Record.analyzer_uid)) to.Add(EmailAddress(period.Record.analyzer_uid)); else to.Add(EmailAddress(period.analyzed_by));
                         //If the assigned analyzer is different from the user who analyzed the record, CC to the user who analyzed the record
                         if (period.Record.analyzer_uid != period.analyzed_by) cc.Add(EmailAddress(period.analyzed_by));
+
+                        //If one has been setup, CC the office's designated approver
+                        if (appEmailList.Count > 0)
+                        {
+                            foreach (string email in appEmailList)
+                                cc.Add(email);
+                        }
 
                         //Add the approver to the CC list
                         cc.Add(user.Email);
@@ -870,10 +913,17 @@ namespace RMS.Task
 
                         break;
                     case "Reanalyzed":
-                        //To the assigned approver
-                        to.Add(EmailAddress(period.Record.approver_uid));
+                        //To the assigned approver (or if no assigned approver, the person who approved the record
+                        if (!string.IsNullOrEmpty(period.Record.approver_uid)) to.Add(EmailAddress(period.Record.approver_uid)); else to.Add(EmailAddress(period.approved_by));
                         //If the assigned approver is different from the user who approved the record, CC to the user who approved the record
                         if (period.Record.approver_uid != period.approved_by) cc.Add(EmailAddress(period.approved_by));
+
+                        //If one has been setup, CC the office's designated approver
+                        if (appEmailList.Count > 0)
+                        {
+                            foreach (string email in appEmailList)
+                                cc.Add(email);
+                        }
 
                         //Add the analyzer to the CC list
                         cc.Add(user.Email);

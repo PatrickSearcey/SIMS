@@ -202,7 +202,7 @@
                         <HeaderStyle Width="20px" />
                         <ItemStyle CssClass="MyImageButton" />
                     </telerik:GridEditCommandColumn>
-                    <telerik:GridBoundColumn DataField="site_no_nm" HeaderText="Site" UniqueName="site_no_nm" SortExpression="site_no" FilterControlWidth="150px" />
+                    <telerik:GridBoundColumn DataField="site_no_nm" HeaderText="Site" UniqueName="site_no_nm" SortExpression="site_no_nm" FilterControlWidth="150px" />
                     <telerik:GridBoundColumn DataField="status_cd_desc" HeaderText="Cableway Status" UniqueName="status_cd_desc" SortExpression="cableway_status_cd" AllowFiltering="false" />
                     <telerik:GridBoundColumn DataField="type_cd_desc" HeaderText="Cableway Type"  UniqueName="type_cd_desc" SortExpression="cableway_type_cd" AllowFiltering="false" />
                     <telerik:GridBoundColumn DataField="cableway_inspection_freq" HeaderText="Insp Freq" UniqueName="cableway_inspection_freq" SortExpression="cableway_inspection_freq" AllowFiltering="false" />
