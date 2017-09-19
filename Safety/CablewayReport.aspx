@@ -57,8 +57,8 @@
             <GroupingSettings CaseSensitive="false" />
             <MasterTableView DataKeyNames="cableway_id" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" AllowFilteringByColumn="true">
                 <Columns>
-                    <telerik:GridBoundColumn DataField="region_cd" UniqueName="region_cd" FilterControlWidth="30px" HeaderText="Region" HeaderStyle-Width="40px" />
-                    <telerik:GridBoundColumn DataField="wsc_cd" UniqueName="wsc_cd" FilterControlWidth="30px" HeaderText="WSC" HeaderStyle-Width="40px"  />
+                    <telerik:GridBoundColumn DataField="region_cd" UniqueName="region_cd" FilterControlWidth="35px" HeaderText="Region" HeaderStyle-Width="40px" />
+                    <telerik:GridBoundColumn DataField="wsc_cd" UniqueName="wsc_cd" FilterControlWidth="35px" HeaderText="WSC" HeaderStyle-Width="40px"  />
                     <telerik:GridBoundColumn DataField="site_no" UniqueName="site_no" Display="false" />
                     <telerik:GridTemplateColumn DataField="site_no_nm" SortExpression="site_no" UniqueName="site_no_nm" HeaderText="Site" FilterControlWidth="150px" HeaderStyle-Width="400px">
                         <ItemTemplate>
@@ -93,12 +93,13 @@
             OnItemDataBound="rgStatus_ItemDataBound"
             OnPreRender="rgStatus_PreRender">
             <PagerStyle Mode="NextPrevNumericAndAdvanced"  />
+            <GroupingSettings CaseSensitive="false" />
             <MasterTableView DataKeyNames="cableway_id" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" AllowFilteringByColumn="true">
                 <Columns>
                     <telerik:GridBoundColumn DataField="site_no" UniqueName="site_no" Display="false" />
-                    <telerik:GridBoundColumn DataField="region_cd" UniqueName="region_cd" FilterControlWidth="30px" HeaderText="Region" HeaderStyle-Width="40px" />
-                    <telerik:GridBoundColumn DataField="wsc_cd" UniqueName="wsc_cd" FilterControlWidth="30px" HeaderText="WSC" HeaderStyle-Width="40px"  />
-                    <telerik:GridBoundColumn DataField="office_cd" UniqueName="office_cd" HeaderText="Office Code" FilterControlWidth="30px" HeaderStyle-Width="40px" />
+                    <telerik:GridBoundColumn DataField="region_cd" UniqueName="region_cd" FilterControlWidth="35px" HeaderText="Region" HeaderStyle-Width="40px" />
+                    <telerik:GridBoundColumn DataField="wsc_cd" UniqueName="wsc_cd" FilterControlWidth="35px" HeaderText="WSC" HeaderStyle-Width="40px"  />
+                    <telerik:GridBoundColumn DataField="office_cd" UniqueName="office_cd" HeaderText="Office Code" FilterControlWidth="35px" HeaderStyle-Width="40px" />
                     <telerik:GridTemplateColumn DataField="site_no_nm" SortExpression="site_no" UniqueName="site_no_nm" HeaderText="Site" FilterControlWidth="150px" HeaderStyle-Width="400px">
                         <ItemTemplate>
                             <asp:HyperLink ID="hlSite" runat="server" Text='<%# Bind("site_no_nm") %>' Target="_blank" />&nbsp;
