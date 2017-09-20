@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RecordEdit.aspx.cs" Inherits="SIMS2017.Modal.RecordEdit" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RecordEdit.aspx.cs" Inherits="SIMS2017.Modal.RecordEdit" ValidateRequest="false" %>
 
 <!DOCTYPE html>
 

@@ -92,7 +92,7 @@ namespace Safety
                 ResetSessionStateVariables();
 
                 //--APPROVER ACCESS SECTION-------------------------------------------------------------
-                if (user.IsSuperUser || user.WSCID.Contains(WSCID) && user.IsSafetyApprover)
+                if (user.IsSuperUser || user.WSCID.Contains(WSCID))
                     Session["AllowEdits"] = "true";
                 else
                     Session["AllowEdits"] = "false";

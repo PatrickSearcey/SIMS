@@ -422,7 +422,7 @@ namespace SIMS2017.Modal
 
                                 id = new Data.RecordDD()
                                 {
-                                    rms_record_id = record.rms_record_id,
+                                    rms_record_id = new_record.rms_record_id,
                                     iv_ts_id = ts_id.iv_ts_id,
                                     dd_nu = ts_id.adaps_dd_nu,
                                     gu_id = ts_id.gu_id

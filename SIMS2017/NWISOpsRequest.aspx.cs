@@ -53,8 +53,8 @@ namespace SIMS2017
         #region Page Load Methods
         protected void Page_Load(object sender, EventArgs e)
         {
-            string office_id = "1022";// Request.QueryString["office_id"];
-            string site_id = "3018522";// Request.QueryString["site_id"];
+            string office_id = Request.QueryString["office_id"];
+            string site_id = Request.QueryString["site_id"];
 
             if (!string.IsNullOrEmpty(office_id)) OfficeID = Convert.ToInt32(office_id);
             else if (OfficeID == 0) OfficeID = user.OfficeID;

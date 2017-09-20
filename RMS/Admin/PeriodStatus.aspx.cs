@@ -124,7 +124,7 @@ namespace RMS.Admin
             {
                 foreach (var rec in site.Records)
                 {
-                    var dsPeriods = db.SP_RMS_Periods_per_WY(rec.rms_record_id, start_dt, end_dt, "0");
+                    var dsPeriods = db.SP_RMS_Periods_per_WY(rec.rms_record_id, start_dt, end_dt, "0").ToList();
                     int period_count = dsPeriods.Count();
 
                     if (rec.RecordAnalysisPeriods != null)
@@ -133,7 +133,7 @@ namespace RMS.Admin
                         {
                             DataList dlPeriods = ConstructDL(rec.RecordType.type_ds, period_count, WY.ToString());
 
-                            dlPeriods.DataSource = db.SP_RMS_Periods_per_WY(rec.rms_record_id, start_dt, end_dt, "0");
+                            dlPeriods.DataSource = db.SP_RMS_Periods_per_WY(rec.rms_record_id, start_dt, end_dt, "0").ToList();
                             dlPeriods.DataBind();
 
                             phPeriods.Controls.Add(dlPeriods);
@@ -143,7 +143,7 @@ namespace RMS.Admin
                             int lastWY = WY - 1;
                             start_dt = Convert.ToDateTime(String.Format("10/1/{0}", lastWY - 1));
                             end_dt = Convert.ToDateTime(String.Format("9/30/{0}", lastWY));
-                            var dsPeriods_lastWY = db.SP_RMS_Periods_per_WY(rec.rms_record_id, start_dt, end_dt, "0");
+                            var dsPeriods_lastWY = db.SP_RMS_Periods_per_WY(rec.rms_record_id, start_dt, end_dt, "0").ToList();
                             int period_count_lastWY = dsPeriods_lastWY.Count();
 
                             if (period_count_lastWY > 0)
@@ -160,7 +160,7 @@ namespace RMS.Admin
                                 int last2WY = lastWY - 1;
                                 start_dt = Convert.ToDateTime(String.Format("10/1/{0}", last2WY - 1));
                                 end_dt = Convert.ToDateTime(String.Format("9/30/{0}", last2WY));
-                                var dsPeriods_last2WY = db.SP_RMS_Periods_per_WY(rec.rms_record_id, start_dt, end_dt, "0");
+                                var dsPeriods_last2WY = db.SP_RMS_Periods_per_WY(rec.rms_record_id, start_dt, end_dt, "0").ToList();
                                 int period_count_last2WY = dsPeriods_last2WY.Count();
 
                                 if (period_count_last2WY > 0)
