@@ -58,13 +58,13 @@ namespace Core
                 _showreports = (bool)user.show_reports;
                 _email = _id + "@usgs.gov";
                 //If possible, get the email address for the user from AD
-                var reg_user = db.spz_GetUserInfoFromAD(_id);
+                var reg_user = db.spz_GetUserInfoFromAD(_id).ToList();
                 foreach (var result in reg_user)
                     _email = result.mail;
             }
             else
             {
-                var unreg_user = db.spz_GetUserInfoFromAD(_id);
+                var unreg_user = db.spz_GetUserInfoFromAD(_id).ToList();
                 string primaryOU = "AustinTX-W";
                 string email = _id + "@usgs.gov";
                 foreach (var result in unreg_user)
