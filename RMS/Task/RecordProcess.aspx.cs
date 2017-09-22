@@ -956,7 +956,7 @@ namespace RMS.Task
                     message.CC.Add(email);
 #endif
 
-                //smtp.Send(message);
+                smtp.Send(message);
             }
         }
 
