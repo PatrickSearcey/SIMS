@@ -68,8 +68,8 @@ namespace RMS.Modal
             View = Request.QueryString["view"];
             string rms_record_id = Request.QueryString["rms_record_id"];
             string period_id = Request.QueryString["period_id"];
-            beg_dt = Convert.ToDateTime(Request.QueryString["beg_dt"]);
-            end_dt = Convert.ToDateTime(Request.QueryString["end_dt"]);
+            if (!string.IsNullOrEmpty(Request.QueryString["beg_dt"])) beg_dt = Convert.ToDateTime(Request.QueryString["beg_dt"]); else beg_dt = null;
+            if (!string.IsNullOrEmpty(Request.QueryString["end_dt"])) end_dt = Convert.ToDateTime(Request.QueryString["end_dt"]); else end_dt = null;
 
             if (!string.IsNullOrEmpty(rms_record_id) || !string.IsNullOrEmpty(period_id))
             {
