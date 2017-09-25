@@ -120,6 +120,7 @@
                         <li><asp:HyperLink ID="hlNWISDataPortal" runat="server" Text="NWIS Data Portal and Reports" Target="_blank" NavigateUrl="https://reporting.nwis.usgs.gov/" /></li>
                         <li><asp:HyperLink ID="hlAutoReview" runat="server" Text="WSC Support Information (if applicable)" /></li>
                         <li><asp:HyperLink ID="hlWMAGuidelines" runat="server" Text="WMA Records Processing Guidelines" Target="_blank" NavigateUrl="https://water.usgs.gov/osw/time-series-guidance/" /></li>
+                        <li><asp:HyperLink ID="hlWMADiscreteGuidelines" runat="server" Text="WMA Discrete GW Processing Guidelines" Target="_blank" NavigateUrl="https://water.usgs.gov/ogw/policy/discrete-data-guidance/" /></li>
                     </ul>
                 </td>
             </tr>
@@ -184,6 +185,7 @@
                         <li><asp:HyperLink ID="hlApproveInst" runat="server" Text="WSC Approving Instructions" /></li>
                         <li><asp:HyperLink ID="hlAutoReview2" runat="server" Text="View Auto Review (if applicable)" /></li>
                         <li><asp:HyperLink ID="hlWMAGuidelines2" runat="server" Text="WMA Records Processing Guidelines" Target="_blank" NavigateUrl="https://water.usgs.gov/osw/time-series-guidance/" /></li>
+                        <li><asp:HyperLink ID="hlWMADiscreteGuidelines2" runat="server" Text="WMA Discrete GW Processing Guidelines" Target="_blank" NavigateUrl="https://water.usgs.gov/ogw/policy/discrete-data-guidance/" /></li>
                     </ul>
                 </td>
             </tr>
