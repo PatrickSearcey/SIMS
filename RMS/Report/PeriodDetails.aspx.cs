@@ -77,7 +77,7 @@ namespace RMS.Report
             string wsc_nm = db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID).wsc_nm;
             ph1.Title = "Retrieve Record Period Details";
 
-            if (RecordID == 0)
+            if (RecordID == 0 || Request.QueryString["type"] == "wsc")
             {
                 ph1.SubTitle = "For the " + wsc_nm + " WSC";
                 ph1.RecordType = "&nbsp;";
@@ -220,7 +220,7 @@ namespace RMS.Report
         #region SANALs
         protected void dlOuterSANAL_ItemDataBound(object sender, DataListItemEventArgs e)
         {
-            if (e.Item.ItemType == ListItemType.Item)
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 DataList dlInnerSANAL = e.Item.FindControl("dlInnerSANAL") as DataList;
                 HiddenField hfRecordID = e.Item.FindControl("hfRecordID") as HiddenField;
@@ -266,7 +266,7 @@ namespace RMS.Report
         #region ChangeLogs
         protected void dlOuterChangeLogs_ItemDataBound(object sender, DataListItemEventArgs e)
         {
-            if (e.Item.ItemType == ListItemType.Item)
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 DataList dlInnerChangeLogs = e.Item.FindControl("dlInnerChangeLogs") as DataList;
                 HiddenField hfRecordID = e.Item.FindControl("hfRecordID") as HiddenField;
@@ -294,7 +294,7 @@ namespace RMS.Report
 
         protected void dlInnerChangeLogs_ItemDataBound(object sender, DataListItemEventArgs e)
         {
-            if (e.Item.ItemType == ListItemType.Item)
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 DataGrid dgChangeLog = e.Item.FindControl("dgChangeLog") as DataGrid;
                 HiddenField hfPeriodID = e.Item.FindControl("hfPeriodID") as HiddenField;
@@ -319,7 +319,7 @@ namespace RMS.Report
         #region Dialogs
         protected void dlOuterDialogs_ItemDataBound(object sender, DataListItemEventArgs e)
         {
-            if (e.Item.ItemType == ListItemType.Item)
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 DataList dlInnerDialogs = e.Item.FindControl("dlInnerDialogs") as DataList;
                 HiddenField hfRecordID = e.Item.FindControl("hfRecordID") as HiddenField;
@@ -347,7 +347,7 @@ namespace RMS.Report
 
         protected void dlInnerDialogs_ItemDataBound(object sender, DataListItemEventArgs e)
         {
-            if (e.Item.ItemType == ListItemType.Item)
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 DataGrid dgDialog = e.Item.FindControl("dgDialog") as DataGrid;
                 HiddenField hfPeriodID = e.Item.FindControl("hfPeriodID") as HiddenField;
