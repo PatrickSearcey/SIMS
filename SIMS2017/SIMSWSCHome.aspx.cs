@@ -337,7 +337,7 @@ namespace SIMS2017
             }
             else
             {
-                if (ShowActiveSites) rgSites.DataSource = GetData().Where(p => p.trip_ids.Contains(TripID) && p.Active == "Active"); else rgSites.DataSource = GetData().Where(p => p.trip_ids.Contains(TripID) && p.Active == "Inactive");
+                rgSites.DataSource = GetData().Where(p => p.trip_ids.Contains(TripID));
             }
         }
 
