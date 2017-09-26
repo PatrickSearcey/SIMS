@@ -63,6 +63,7 @@
                             OnPreRender="rgSites_PreRender"
                             OnItemDataBound="rgSites_ItemDataBound">
                             <ClientSettings EnableAlternatingItems="false" />
+                            <GroupingSettings CaseSensitive="false" />
                             <MasterTableView CommandItemDisplay="None" AutoGenerateColumns="false" AllowFilteringByColumn="true" AllowSorting="true">
                                 <Columns>
                                     <telerik:GridTemplateColumn DataField="site_no" AllowSorting="true" AllowFiltering="true" SortExpression="site_no" HeaderText="Site Number" FilterControlWidth="100px">

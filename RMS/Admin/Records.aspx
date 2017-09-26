@@ -112,6 +112,7 @@
                     OnNeedDataSource="rgRecords_NeedDataSource" 
                     OnItemDataBound="rgRecords_ItemDataBound"
                     OnPreRender="rgRecords_PreRender">
+                    <GroupingSettings CaseSensitive="false" />
                     <MasterTableView DataKeyNames="rms_record_id" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" AutoGenerateColumns="false"
                         Name="Records" AllowFilteringByColumn="true">
                         <Columns>

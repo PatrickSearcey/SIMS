@@ -82,6 +82,7 @@
             OnItemDataBound="rgCRPStatus_ItemDataBound"  OnPreRender="rgCRPStatus_PreRender"
             Skin="Bootstrap" 
             RenderMode="Lightweight" AllowPaging="false">
+            <GroupingSettings CaseSensitive="false" />
             <MasterTableView DataKeyNames="rms_record_id" AllowSorting="true" AllowFilteringByColumn="true" AutoGenerateColumns="false">
                 <ColumnGroups>
                     <telerik:GridColumnGroup HeaderText="Site" Name="Site" HeaderStyle-HorizontalAlign="Center" />

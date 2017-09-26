@@ -67,6 +67,7 @@
                     AllowAutomaticDeletes="true" OnNeedDataSource="rgTSStatus_NeedDataSource"
                     OnItemDataBound="rgTSStatus_ItemDataBound"
                     OnPreRender="rgTSStatus_PreRender">
+                    <GroupingSettings CaseSensitive="false" />
                     <MasterTableView DataKeyNames="rms_record_id" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" AllowFilteringByColumn="true">
                         <Columns>
                             <telerik:GridBoundColumn DataField="office_cd" HeaderText="Office" UniqueName="office_cd" SortExpression="office_cd" HeaderStyle-Width="30px" AllowFiltering="false" />
