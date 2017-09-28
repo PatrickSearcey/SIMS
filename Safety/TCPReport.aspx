@@ -176,6 +176,7 @@
                         AllowAutomaticDeletes="true" 
                         OnItemDataBound="rgNWStatus_ItemDataBound"
                         OnPreRender="rgNWStatus_PreRender">
+                        <GroupingSettings CaseSensitive="false" />
                         <PagerStyle Mode="NextPrevNumericAndAdvanced" />
                         <MasterTableView DataKeyNames="site_no" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" AllowFilteringByColumn="true">
                             <Columns>
@@ -236,6 +237,7 @@
                         AllowAutomaticDeletes="true" 
                         OnItemDataBound="rgNWReview_ItemDataBound"
                         OnPreRender="rgNWReview_PreRender">
+                        <GroupingSettings CaseSensitive="false" />
                         <PagerStyle Mode="NextPrevNumericAndAdvanced" />
                         <MasterTableView DataKeyNames="site_no" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" AllowFilteringByColumn="true">
                             <Columns>
@@ -296,6 +298,7 @@
                         AllowAutomaticDeletes="true" 
                         OnItemDataBound="rgNWApprove_ItemDataBound"
                         OnPreRender="rgNWApprove_PreRender">
+                        <GroupingSettings CaseSensitive="false" />
                         <PagerStyle Mode="NextPrevNumericAndAdvanced" />
                         <MasterTableView DataKeyNames="site_no" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" AllowFilteringByColumn="true">
                             <Columns>
@@ -356,6 +359,7 @@
                         AllowAutomaticDeletes="true" 
                         OnItemDataBound="rgNWSitesNoTCP_ItemDataBound"
                         OnPreRender="rgNWSitesNoTCP_PreRender">
+                        <GroupingSettings CaseSensitive="false" />
                         <PagerStyle Mode="NextPrevNumericAndAdvanced" />
                         <MasterTableView DataKeyNames="site_no" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" AllowFilteringByColumn="true">
                             <Columns>
@@ -415,6 +419,7 @@
                         AllowAutomaticDeletes="true" 
                         OnItemDataBound="rgStatus_ItemDataBound"
                         OnPreRender="rgStatus_PreRender">
+                        <GroupingSettings CaseSensitive="false" />
                         <PagerStyle Mode="NextPrevNumericAndAdvanced" />
                         <MasterTableView DataKeyNames="site_no" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" AllowFilteringByColumn="true">
                             <Columns>
@@ -473,6 +478,7 @@
                         AllowAutomaticDeletes="true" 
                         OnItemDataBound="rgReview_ItemDataBound"
                         OnPreRender="rgReview_PreRender">
+                        <GroupingSettings CaseSensitive="false" />
                         <PagerStyle Mode="NextPrevNumericAndAdvanced" />
                         <MasterTableView DataKeyNames="site_no" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" AllowFilteringByColumn="true">
                             <Columns>
@@ -530,6 +536,7 @@
                         AllowAutomaticDeletes="true" 
                         OnItemDataBound="rgApprove_ItemDataBound"
                         OnPreRender="rgApprove_PreRender">
+                        <GroupingSettings CaseSensitive="false" />
                         <PagerStyle Mode="NextPrevNumericAndAdvanced" />
                         <MasterTableView DataKeyNames="site_no" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" AllowFilteringByColumn="true">
                             <Columns>
@@ -588,6 +595,7 @@
                         AllowAutomaticDeletes="true" 
                         OnItemDataBound="rgSitesNoTCP_ItemDataBound"
                         OnPreRender="rgSitesNoTCP_PreRender">
+                        <GroupingSettings CaseSensitive="false" />
                         <PagerStyle Mode="NextPrevNumericAndAdvanced" />
                         <MasterTableView DataKeyNames="site_no" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" AllowFilteringByColumn="true">
                             <Columns>
