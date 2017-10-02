@@ -87,7 +87,7 @@ namespace SIMS2017
         protected void PopulatePageData()
         {
             //Page Top
-            hlNWISWeb.NavigateUrl = String.Format("http://waterdata.usgs.gov/nwis/inventory/?site_no={0}&agency_cd={1}", currSite.site_no, currSite.agency_cd);
+            hlNWISWeb.NavigateUrl = String.Format("http://waterdata.usgs.gov/nwis/inventory/?site_no={0}&agency_cd={1}", currSite.site_no.Trim(), currSite.agency_cd);
             hlNWISOpsRequest.NavigateUrl = String.Format("{0}NWISOpsRequest.aspx?office_id={1}&site_id={2}", Config.SIMSURL, OfficeID, SiteID);
 
             //Station Details
