@@ -11,7 +11,7 @@ using System.Linq;
 using Core;
 using System.Data.SqlClient;
 
-namespace SIMS2017.Handler
+namespace SIMS2017
 {
     /// <summary>
     /// Summary description for MANUDump_v2
