@@ -122,7 +122,7 @@ namespace RMS.Admin
                 {
                     if (DateTime.Now.Month > 9) WY = DateTime.Now.AddYears(-1).Year; else WY = DateTime.Now.Year;
                     DateTime start_dt = Convert.ToDateTime(String.Format("10/1/{0}", WY - 1));
-                    DateTime end_dt = Convert.ToDateTime(String.Format("9/30/{0}", WY));
+                    DateTime end_dt = Convert.ToDateTime(String.Format("9/30/{0}", DateTime.Now.Year));
 
                     var dsPeriods = db.SP_RMS_Periods_per_WY(rec.rms_record_id, start_dt, end_dt, "0").ToList();
                     int period_count = dsPeriods.Count();
