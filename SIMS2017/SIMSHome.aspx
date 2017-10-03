@@ -89,11 +89,14 @@
                                             <Columns>
                                                 <telerik:LayoutColumn Span="12" SpanMd="12" SpanSm="12" HiddenXs="true">
                                                     <div style="width:950px">
-                                                    <p>SIMS (Site Information Management System) serves as a framework for information used by audiences ranging from hydrologists, hydrographers, managers and the bureau safety community.  The core SIMS 
-                                                    application manages and supplies station descriptions, manuscripts, station analyses, DCP information and E-mail communication. SIMS compliant modules include Platform Assignment and Scheduling System 
-                                                    (PASS), continuous records processing tools (RMS and CRP), Site Hazard Analyses (SHA), Traffic Control Plans, and current information about cableways. All of this is available due to integration with 
-                                                    other systems such as NWIS, NWISWeb, and the Annual Datra Report (ADR). On the horizon are integration with other non-SIMS applications such Site Levels Archiving and Processing (SLAP), cooperation and 
-                                                    site funding applications, equipment inventories and more robust records management tools.</p>
+                                                    <p>SIMS (Site Information Management System) is an authoritative data source for metadata not stored within NWIS,  integration and 
+                                                        display of data from multiple sources, sharing of stored data with other applications. SIMS provides hydrographers/managers 
+                                                        operational relevance about sites (field trips, WSC views), stores site characterization information, provides site strategies for 
+                                                        "How do I.. , Where do I.., How often do I.. and How do I do it safely". Provides performance metrics which are used for employee 
+                                                        evaluations; referenced in several policy memos and the USGS Safety Requirements Handbook. The core SIMS application manages and 
+                                                        supplies station descriptions, manuscripts, DCP information and E-mail communication. SIMS compliant modules include Platform 
+                                                        Assignment and Scheduling System (PASS), continuous records processing tools (RMS and CRP), Site Levels Archiving and Processing 
+                                                        (SLAP), Site Hazard Analyses (SHA), Traffic Control Plans (TCP), and current information about cableways.</p>
                                                     
                                                     <div class="roundedSubPanel">
                                                         <h3>National Reports</h3>
