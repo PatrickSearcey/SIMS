@@ -124,7 +124,7 @@ namespace SIMS2017
             hlCustomReport.NavigateUrl = String.Format("{0}StationDoc/ViewDocs.aspx?site_id={1}&type=Custom", Config.SIMSURL, currSite.site_id);
             hlArchives.NavigateUrl = String.Format("{0}StationDoc/Archive.aspx?site_id={1}", Config.SIMSURL, currSite.site_id);
             hlSLAP.NavigateUrl = String.Format("{0}HistoricObjectSum.aspx?site_no={1}&agency_cd={2}", Config.SLAPURL, currSite.site_no.Trim(), currSite.agency_cd);
-            if (!Config.IsSLAPWSC.Contains(WSCID)) hlSLAP.Visible = false;
+
             //Make the determination of what to show for the MANU approval link
             var manuSite = db.vSITEFILEs.FirstOrDefault(p => p.site_id == currSite.nwisweb_site_id && p.data_types_cd.EndsWith("NI") || p.site_id == currSite.nwisweb_site_id && p.data_types_cd.EndsWith("NA"));
             if (manuSite != null)
