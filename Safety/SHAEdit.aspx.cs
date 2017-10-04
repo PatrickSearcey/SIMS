@@ -879,7 +879,7 @@ namespace Safety
                 state = p.Contact.state,
                 zip = p.Contact.zip,
                 ph_no = p.Contact.ph_no
-            }).ToList();
+            }).OrderBy(p => p.contact_nm).ToList();
         }
 
         protected void rgContacts_PreRender(object sender, EventArgs e)
@@ -1002,7 +1002,7 @@ namespace Safety
                 ph_no = p.Hospital.ph_no,
                 dec_lat_va = p.Hospital.dec_lat_va,
                 dec_long_va = p.Hospital.dec_long_va
-            }).ToList();
+            }).OrderBy(p => p.hospital_nm).ToList();
         }
 
         protected void rgHospitals_PreRender(object sender, EventArgs e)

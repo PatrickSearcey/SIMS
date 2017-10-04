@@ -248,7 +248,7 @@ namespace Safety
                 city = p.Contact.city,
                 zip = p.Contact.zip,
                 ph_no = p.Contact.ph_no
-            }).ToList();
+            }).OrderBy(p => p.contact_nm).ToList();
             lvEmergContacts.DataBind();
 
             lvHospitals.DataSource = currSHA.SHAHospitals.Select(p => new Data.Hospital { 
@@ -260,7 +260,7 @@ namespace Safety
                 ph_no = p.Hospital.ph_no,
                 dec_lat_va = p.Hospital.dec_lat_va,
                 dec_long_va = p.Hospital.dec_long_va
-            }).ToList();
+            }).OrderBy(p => p.hospital_nm).ToList();
             lvHospitals.DataBind();
 
             ltlReviewedBy.Text = currSHA.reviewed_by;
