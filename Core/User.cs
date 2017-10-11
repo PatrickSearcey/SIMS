@@ -22,7 +22,7 @@ namespace Core
         private bool _active = false;
         private int _office_id;
         private List<int> _wsc_id = new List<int>();
-        private String _id, _firstName, _lastName, _email;
+        private String _id, _firstName, _lastName, _email, _primaryOU;
         #endregion
 
         #region Constructors
@@ -50,17 +50,28 @@ namespace Core
                 _lastName = user.last_nm;
                 _office_id = (int)user.office_id;
                 _wsc_id.Add((int)user.Office.wsc_id);
-                foreach (int wsc in user.Exceptions.Select(p => p.exc_wsc_id).ToList())
-                {
-                    _wsc_id.Add(wsc);
-                }
+                
                 _active = (bool)user.active;
                 _showreports = (bool)user.show_reports;
                 _email = _id + "@usgs.gov";
                 //If possible, get the email address for the user from AD
                 var reg_user = db.spz_GetUserInfoFromAD(_id).ToList();
                 foreach (var result in reg_user)
+                {
                     _email = result.mail;
+                    _primaryOU = result.primaryOU;
+                }
+
+                //Add WSCs for which the user has exceptions
+                foreach (int wsc in user.Exceptions.Select(p => p.exc_wsc_id).ToList())
+                {
+                    _wsc_id.Add(wsc);
+                }
+                //Add WSCs for which the WSC of the user has exceptions
+                foreach (int wsc in db.ExceptionWSCs.Where(p => p.AD_OU == _primaryOU).Select(p => p.exc_wsc_id).ToList())
+                {
+                    _wsc_id.Add(wsc);
+                }
             }
             else
             {
@@ -80,6 +91,11 @@ namespace Core
                 _email = email;
                 _active = false;
                 _showreports = false;
+                //Add WSCs for which the WSC of the user has exceptions
+                foreach (int w in db.ExceptionWSCs.Where(p => p.AD_OU == primaryOU).Select(p => p.exc_wsc_id).ToList())
+                {
+                    _wsc_id.Add(w);
+                }
             }
 
         }

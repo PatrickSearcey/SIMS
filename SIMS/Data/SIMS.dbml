@@ -1207,6 +1207,13 @@
       <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.lut_Exception_WSC" Member="ExceptionWSCs">
+    <Type Name="ExceptionWSC">
+      <Column Name="AD_OU" Type="System.String" DbType="NVarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="notes" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="exc_wsc_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">
     <Parameter Name="site_id" Type="System.Int32" DbType="Int" />
     <ElementType Name="spz_GetDCPInfoResult">

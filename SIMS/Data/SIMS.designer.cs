@@ -198,6 +198,9 @@ namespace Data
     partial void InsertTCP(TCP instance);
     partial void UpdateTCP(TCP instance);
     partial void DeleteTCP(TCP instance);
+    partial void InsertExceptionWSC(ExceptionWSC instance);
+    partial void UpdateExceptionWSC(ExceptionWSC instance);
+    partial void DeleteExceptionWSC(ExceptionWSC instance);
     #endregion
 		
 		public SIMSDataContext() : 
@@ -851,6 +854,14 @@ namespace Data
 			get
 			{
 				return this.GetTable<vSiteTypesForWSC>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ExceptionWSC> ExceptionWSCs
+		{
+			get
+			{
+				return this.GetTable<ExceptionWSC>();
 			}
 		}
 		
@@ -23622,6 +23633,116 @@ namespace Data
 				{
 					this._wsc_id = value;
 				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.lut_Exception_WSC")]
+	public partial class ExceptionWSC : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _AD_OU;
+		
+		private string _notes;
+		
+		private int _exc_wsc_id;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnAD_OUChanging(string value);
+    partial void OnAD_OUChanged();
+    partial void OnnotesChanging(string value);
+    partial void OnnotesChanged();
+    partial void Onexc_wsc_idChanging(int value);
+    partial void Onexc_wsc_idChanged();
+    #endregion
+		
+		public ExceptionWSC()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AD_OU", DbType="NVarChar(100) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string AD_OU
+		{
+			get
+			{
+				return this._AD_OU;
+			}
+			set
+			{
+				if ((this._AD_OU != value))
+				{
+					this.OnAD_OUChanging(value);
+					this.SendPropertyChanging();
+					this._AD_OU = value;
+					this.SendPropertyChanged("AD_OU");
+					this.OnAD_OUChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_notes", DbType="NVarChar(250)")]
+		public string notes
+		{
+			get
+			{
+				return this._notes;
+			}
+			set
+			{
+				if ((this._notes != value))
+				{
+					this.OnnotesChanging(value);
+					this.SendPropertyChanging();
+					this._notes = value;
+					this.SendPropertyChanged("notes");
+					this.OnnotesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_exc_wsc_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int exc_wsc_id
+		{
+			get
+			{
+				return this._exc_wsc_id;
+			}
+			set
+			{
+				if ((this._exc_wsc_id != value))
+				{
+					this.Onexc_wsc_idChanging(value);
+					this.SendPropertyChanging();
+					this._exc_wsc_id = value;
+					this.SendPropertyChanged("exc_wsc_id");
+					this.Onexc_wsc_idChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
