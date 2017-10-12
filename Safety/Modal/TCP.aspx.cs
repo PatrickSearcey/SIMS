@@ -21,7 +21,7 @@ namespace Safety
 
             tcp = db.TCPs.FirstOrDefault(p => p.TCPID == TCPID);
 
-            ltlSiteNoName.Text = tcp.TCPSite.Site.site_no.Trim() + " " + tcp.TCPSite.Site.station_full_nm;
+            ltlSiteNoName.Text = tcp.TCPSite.Site.site_no.Trim() + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == tcp.TCPSite.Site.site_no && s.agency_cd == tcp.TCPSite.Site.agency_cd).station_nm;
 
             SetupTCPPanel();
 

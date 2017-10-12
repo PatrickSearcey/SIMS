@@ -158,12 +158,12 @@ namespace RMS.Report
                 office_cd = p.office_cd,
                 site_no = p.site_no, 
                 rms_record_id = p.rms_record_id,
-                site_tp_cd = db.vSITEFILEs.FirstOrDefault(s => s.site_no == s.site_no && s.agency_cd == s.agency_cd).site_tp_cd,
+                site_tp_cd = db.vSITEFILEs.FirstOrDefault(s => s.site_no == p.site_no).site_tp_cd,
                 type_cd = p.type_cd, 
                 parm_cd = p.parm_cd,
                 ts = db.RecordTypes.FirstOrDefault(r => r.record_type_id == p.record_type_id).ts_fg,
                 category_no = p.category_no,
-                station_full_nm = db.Sites.FirstOrDefault(s => s.site_id == p.site_id).station_full_nm,
+                station_nm = db.vSITEFILEs.FirstOrDefault(s => s.site_no == p.site_no).station_nm,
                 last_aging_dt = p.last_aging_dt
             }).Where(p => p.ts == false);
 

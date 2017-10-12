@@ -85,7 +85,7 @@ namespace RMS.Report
             else
             {
                 currRecord = db.Records.FirstOrDefault(p => p.rms_record_id == RecordID);
-                ph1.SubTitle = currRecord.Site.site_no + " " + currRecord.Site.station_full_nm;
+                ph1.SubTitle = currRecord.Site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == currRecord.Site.site_no && s.agency_cd == currRecord.Site.agency_cd).station_nm;
                 ph1.RecordType = currRecord.RecordType.type_ds + " Record for";
             }
 
@@ -106,7 +106,7 @@ namespace RMS.Report
 
             rddlRecords.DataSource = db.Records
                 .Where(p => p.Site.Office.wsc_id == WSCID && p.not_used_fg == false)
-                .Select(p => new { rms_record_id = p.rms_record_id, SiteRecord = p.Site.site_no + " " + p.Site.station_full_nm + " (" + p.RecordType.type_cd + ")" })
+                .Select(p => new { rms_record_id = p.rms_record_id, SiteRecord = p.Site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == p.Site.site_no && s.agency_cd == p.Site.agency_cd).station_nm + " (" + p.RecordType.type_cd + ")" })
                 .OrderBy(p => p.SiteRecord).ToList();
             rddlRecords.DataBind();
             rddlRecords.Items.Insert(0, "");
@@ -134,7 +134,7 @@ namespace RMS.Report
                 {
                     var recList = db.Records
                         .Where(p => records.Contains(p.rms_record_id) && p.not_used_fg == false)
-                        .Select(p => new { rms_record_id = p.rms_record_id, SiteRecord = p.Site.site_no + " " + p.Site.station_full_nm + " (" + p.RecordType.type_cd + ")" })
+                        .Select(p => new { rms_record_id = p.rms_record_id, SiteRecord = p.Site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == p.Site.site_no && s.agency_cd == p.Site.agency_cd).station_nm + " (" + p.RecordType.type_cd + ")" })
                         .OrderBy(p => p.SiteRecord).ToList();
                     if (recList.Count() > 0)
                     {
@@ -163,7 +163,7 @@ namespace RMS.Report
             {
                 rddlRecords.DataSource = db.Records
                     .Where(p => p.Site.Office.wsc_id == WSCID && p.not_used_fg == false)
-                    .Select(p => new { rms_record_id = p.rms_record_id, SiteRecord = p.Site.site_no + " " + p.Site.station_full_nm + " (" + p.RecordType.type_cd + ")" })
+                    .Select(p => new { rms_record_id = p.rms_record_id, SiteRecord = p.Site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == p.Site.site_no && s.agency_cd == p.Site.agency_cd).station_nm + " (" + p.RecordType.type_cd + ")" })
                     .OrderBy(p => p.SiteRecord).ToList();
                 rddlRecords.DataBind();
                 rddlRecords.Items.Insert(0, "");
@@ -199,7 +199,7 @@ namespace RMS.Report
 
             var recordData = db.Records
                     .Where(p => records.Contains(p.rms_record_id))
-                    .Select(p => new { rms_record_id = p.rms_record_id, site_no = p.Site.site_no, station_full_nm = p.Site.station_full_nm, type_ds = p.RecordType.type_ds })
+                    .Select(p => new { rms_record_id = p.rms_record_id, site_no = p.Site.site_no, station_nm = db.vSITEFILEs.FirstOrDefault(s => s.site_no == p.Site.site_no && s.agency_cd == p.Site.agency_cd).station_nm, type_ds = p.RecordType.type_ds })
                     .OrderBy(p => p.site_no).ThenBy(p => p.type_ds).ToList();
 
             dlOuterSANAL.DataSource = recordData;

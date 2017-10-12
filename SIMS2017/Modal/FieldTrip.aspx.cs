@@ -19,7 +19,7 @@ namespace SIMS2017.Modal
             Data.Trip trip = db.Trips.Where(p => p.trip_id == trip_id).FirstOrDefault();
 
             ltlTripName.Text = trip.trip_nm;
-            dlSites.DataSource = trip.TripSites.Select(p => new { site_no = p.Site.site_no, station_full_nm = p.Site.station_full_nm }).OrderBy(p => p.site_no);
+            dlSites.DataSource = trip.TripSites.Select(p => new { site_no = p.Site.site_no, station_nm = db.vSITEFILEs.FirstOrDefault(s => s.site_no == p.Site.site_no && s.agency_cd == p.Site.agency_cd).station_nm }).OrderBy(p => p.site_no);
             dlSites.DataBind();
         }
     }

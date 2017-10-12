@@ -90,7 +90,7 @@ namespace RMS.Admin
                 lock_type = p.lock_type,
                 lock_uid = p.lock_uid,
                 lock_dt = p.lock_dt,
-                Record = p.Record.Site.site_no + " " + p.Record.Site.station_full_nm + " (" + p.Record.RecordType.type_cd + ")"
+                Record = p.Record.Site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == p.Record.Site.site_no && s.agency_cd == p.Record.Site.agency_cd).station_nm + " (" + p.Record.RecordType.type_cd + ")"
             }).OrderBy(p => p.Record).ToList();
             dlLocks.DataBind();
         }

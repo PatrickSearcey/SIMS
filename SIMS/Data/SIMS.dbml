@@ -923,7 +923,7 @@
       <Column Name="rms_record_id" Type="System.Int32" CanBeNull="false" />
       <Column Name="site_id" Type="System.Int32" CanBeNull="false" />
       <Column Name="site_no" Type="System.String" CanBeNull="false" />
-      <Column Name="station_full_nm" Type="System.String" CanBeNull="false" />
+      <Column Name="station_full_nm" Member="station_nm" Storage="_station_full_nm" Type="System.String" CanBeNull="false" />
       <Column Name="lock_type" Type="System.String" CanBeNull="true" />
       <Column Name="lock_uid" Type="System.String" CanBeNull="true" />
       <Column Name="lock_dt" Type="System.DateTime" CanBeNull="true" />

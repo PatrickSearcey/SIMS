@@ -125,7 +125,7 @@ namespace RMS.Report
             }
             else
             {
-                ph1.SubTitle = currRecord.Site.site_no + " " + currRecord.Site.station_full_nm;
+                ph1.SubTitle = currRecord.Site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == currRecord.Site.site_no && s.agency_cd == currRecord.Site.agency_cd).station_nm;
                 ph1.RecordType = currRecord.RecordType.type_ds + " Record for";
             }
         }
@@ -157,7 +157,7 @@ namespace RMS.Report
                         rms_audit_record_id = p.rms_audit_record_id,
                         rms_audit_id = p.rms_audit_id,
                         site_no = p.Record.Site.site_no,
-                        station_nm = p.Record.Site.station_full_nm,
+                        station_nm = db.vSITEFILEs.FirstOrDefault(s => s.site_no == p.Record.Site.site_no && s.agency_cd == p.Record.Site.agency_cd).station_nm,
                         type_ds = p.Record.RecordType.type_ds
                     }).ToList();
                     break;
@@ -240,7 +240,7 @@ namespace RMS.Report
                 rgAuditByRecord.DataSource = db.AuditRecords.Where(p => p.Audit.wsc_id == WSCID).Select(p => new {
                     rms_record_id = p.rms_record_id,
                     site_no = p.Record.Site.site_no,
-                    station_nm = p.Record.Site.station_full_nm,
+                    station_nm = db.vSITEFILEs.FirstOrDefault(s => s.site_no == p.Record.Site.site_no && s.agency_cd == p.Record.Site.agency_cd).station_nm,
                     type_ds = p.Record.RecordType.type_ds
                 }).Distinct().ToList();
             }

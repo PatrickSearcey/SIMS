@@ -112,7 +112,7 @@
                                             <label>Station:</label>
                                         </td>
                                         <td>
-                                            <%# Eval("site_no") %> <%# Eval("station_full_nm") %> (<%# Eval("type_ds") %>)
+                                            <%# Eval("site_no") %> <%# Eval("station_nm") %> (<%# Eval("type_ds") %>)
                                         </td>
                                     </tr>
                                     <tr>

@@ -146,7 +146,7 @@ namespace RMS.Task
             }
             else
             {
-                ph1.SubTitle = currRecord.Site.site_no + " " + currRecord.Site.station_full_nm;
+                ph1.SubTitle = currRecord.Site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == currRecord.Site.site_no && s.agency_cd == currRecord.Site.agency_cd).station_nm;
                 ph1.RecordType = currRecord.RecordType.type_ds + " Record for";
             }
         }
@@ -408,7 +408,7 @@ namespace RMS.Task
                 }
                 var periods = record.RecordAnalysisPeriods.Where(p => p.period_end_dt >= beg_dt && p.period_end_dt <= end_dt).OrderByDescending(p => p.period_beg_dt).ToList();
 
-                pOut = "Station Analyses for " + record.Site.site_no.Trim() + " " + record.Site.station_full_nm + "\n" + record.RecordType.type_ds + "\n" +
+                pOut = "Station Analyses for " + record.Site.site_no.Trim() + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == record.Site.site_no && s.agency_cd == record.Site.agency_cd).station_nm + "\n" + record.RecordType.type_ds + "\n" +
                         "------------------------------------------------------------------------------------------------------------------------------------------------------------------\n" +
                         "------------------------------------------------------------------------------------------------------------------------------------------------------------------\n\n";
 

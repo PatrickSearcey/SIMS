@@ -143,7 +143,7 @@ namespace Safety
                 var cableways = db.Cableways.Select(p => new {
                         cableway_id = p.cableway_id,
                         site_id = p.site_id,
-                        site_no_nm = p.Site.site_no + " " + p.Site.station_full_nm,
+                        site_no_nm = p.Site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == p.Site.site_no && s.agency_cd == p.Site.agency_cd).station_nm,
                         status_cd_desc = p.cableway_status_cd + " - " + p.CablewayStatus.cableway_status_desc,
                         type_cd_desc = p.cableway_type_cd + " - " + p.CablewayType.cableway_type_desc,
                         cableway_inspection_freq = p.cableway_inspection_freq,
@@ -347,7 +347,7 @@ namespace Safety
                         {
                             site_id = p.site_id,
                             site_no = p.site_no,
-                            site_no_nm = p.site_no + " " + p.station_full_nm,
+                            site_no_nm = p.site_no + " " + v.station_nm,
                             agency_cd = p.agency_cd,
                             station_full_nm = p.station_full_nm,
                             office_id = p.office_id

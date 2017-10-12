@@ -71,7 +71,7 @@ namespace SIMS2017.StationDoc
             WSCID = (int)db.Offices.Where(p => p.office_id == OfficeID).FirstOrDefault().wsc_id;
 
             ph1.Title = "Edit Station Documents";
-            ph1.SubTitle = currSite.site_no + " " + currSite.station_full_nm;
+            ph1.SubTitle = currSite.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == currSite.site_no && s.agency_cd == currSite.agency_cd).station_nm;
             ph1.ShowOfficeInfoPanel = true;
 
             if (!Page.IsPostBack)

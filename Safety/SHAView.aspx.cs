@@ -73,7 +73,7 @@ namespace Safety
 
             //--BASIC PAGE SETUP--------------------------------------------------------------------
             ph1.Title = "Site Hazard Analysis";
-            ph1.SubTitle = currSHA.Site.site_no + " " + currSHA.Site.station_full_nm;
+            ph1.SubTitle = currSHA.Site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == currSHA.Site.site_no && s.agency_cd == currSHA.Site.agency_cd).station_nm;
 
             //Fills out the header information
             PopulateHeader();

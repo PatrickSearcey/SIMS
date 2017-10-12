@@ -77,7 +77,7 @@ namespace Safety
             WSCID = (int)db.Offices.Where(p => p.office_id == OfficeID).FirstOrDefault().wsc_id;
 
             ph1.Title = "Manage Traffic Control Safety Plans";
-            ph1.SubTitle = currSite.site_no + " " + currSite.station_full_nm;
+            ph1.SubTitle = currSite.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == currSite.site_no && s.agency_cd == currSite.agency_cd).station_nm;
 
             //Find and set the shoulder rule based on the physical (which state) location of the site
             ShoulderRule = Convert.ToInt32(db.TCPShoulderRules.FirstOrDefault(p => p.StateCode == db.vSITEFILEs.FirstOrDefault(s => s.site_id == currSite.nwisweb_site_id).state_cd).ShoulderRule);

@@ -76,7 +76,7 @@
                                     <b><a href='<%# String.Format("{0}StationInfo.aspx?site_id={1}", Eval("SIMSURL"), Eval("site_id")) %>'><%# Eval("site_no") %></a></b>
                                 </ItemTemplate>
                             </telerik:GridTemplateColumn>
-                            <telerik:GridBoundColumn DataField="station_full_nm" HeaderText="Station Name" UniqueName="station_full_nm" HeaderStyle-Width="500px" SortExpression="station_full_nm" FilterControlWidth="200px"/>
+                            <telerik:GridBoundColumn DataField="station_nm" HeaderText="Station Name" UniqueName="station_nm" HeaderStyle-Width="500px" SortExpression="station_nm" FilterControlWidth="200px"/>
                             <telerik:GridBoundColumn DataField="category_no" HeaderText="Cat." UniqueName="category_no" SortExpression="category_no" AllowFiltering="false" HeaderStyle-Width="20px" />
                             <telerik:GridTemplateColumn AllowSorting="true" AllowFiltering="true" SortExpression="type_ds" HeaderText="Type Cd" FilterControlWidth="60px">
                                 <ItemTemplate>
@@ -117,7 +117,7 @@
                                     <b><a href='<%# String.Format("{0}StationInfo.aspx?site_id={1}", Eval("SIMSURL"), Eval("site_id")) %>'><%# Eval("site_no") %></a></b>
                                 </ItemTemplate>
                             </telerik:GridTemplateColumn>
-                            <telerik:GridBoundColumn DataField="station_full_nm" HeaderText="Station Name" UniqueName="station_full_nm" HeaderStyle-Width="500px" SortExpression="station_full_nm" FilterControlWidth="200px"/>
+                            <telerik:GridBoundColumn DataField="station_nm" HeaderText="Station Name" UniqueName="station_nm" HeaderStyle-Width="500px" SortExpression="station_nm" FilterControlWidth="200px"/>
                             <telerik:GridBoundColumn DataField="category_no" HeaderText="Cat." UniqueName="category_no" SortExpression="category_no" AllowFiltering="false" HeaderStyle-Width="20px" />
                             <telerik:GridTemplateColumn AllowSorting="true" AllowFiltering="true" SortExpression="type_ds" HeaderText="Type Cd" FilterControlWidth="60px">
                                 <ItemTemplate>
@@ -167,7 +167,7 @@
                                     <b><a href='<%# String.Format("{0}StationInfo.aspx?site_id={1}", Eval("SIMSURL"), Eval("site_id")) %>'><%# Eval("site_no") %></a></b>
                                 </ItemTemplate>
                             </telerik:GridTemplateColumn>
-                            <telerik:GridBoundColumn DataField="station_full_nm" HeaderText="Station Name" UniqueName="station_full_nm" HeaderStyle-Width="500px" SortExpression="station_nm" 
+                            <telerik:GridBoundColumn DataField="station_nm" HeaderText="Station Name" UniqueName="station_nm" HeaderStyle-Width="500px" SortExpression="station_nm" 
                                 FilterControlWidth="200px"/>
                             <telerik:GridBoundColumn DataField="category_no" HeaderText="Cat." UniqueName="category_no" SortExpression="category_no" AllowFiltering="false" HeaderStyle-Width="20px" />
                             <telerik:GridTemplateColumn AllowSorting="true" AllowFiltering="true" SortExpression="type_ds" HeaderText="Type Cd" FilterControlWidth="60px">
@@ -212,7 +212,7 @@
                                     <b><a href='<%# String.Format("{0}StationInfo.aspx?site_id={1}", Eval("SIMSURL"), Eval("site_id")) %>'><%# Eval("site_no") %></a></b>
                                 </ItemTemplate>
                             </telerik:GridTemplateColumn>
-                            <telerik:GridBoundColumn DataField="station_full_nm" HeaderText="Station Name" UniqueName="station_full_nm" HeaderStyle-Width="500px" SortExpression="station_nm" 
+                            <telerik:GridBoundColumn DataField="station_nm" HeaderText="Station Name" UniqueName="station_nm" HeaderStyle-Width="500px" SortExpression="station_nm" 
                                 FilterControlWidth="200px"/>
                             <telerik:GridBoundColumn DataField="category_no" HeaderText="Cat." UniqueName="category_no" SortExpression="category_no" AllowFiltering="false" HeaderStyle-Width="20px" />
                             <telerik:GridTemplateColumn AllowSorting="true" AllowFiltering="true" SortExpression="type_ds" HeaderText="Type Cd" FilterControlWidth="60px">

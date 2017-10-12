@@ -37,7 +37,7 @@
         <h3>Sites Assigned to <asp:Literal ID="ltlTripName" runat="server" /></h3>
         <asp:DataList ID="dlSites" runat="server">
             <ItemTemplate>
-                <%# Eval("site_no") %> - <%# Eval("station_full_nm") %>
+                <%# Eval("site_no") %> - <%# Eval("station_nm") %>
             </ItemTemplate>
         </asp:DataList>
         <button title="Close" id="close" onclick="closeWindow(); return false;">Close</button>

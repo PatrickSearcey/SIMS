@@ -67,7 +67,7 @@
                         <ItemTemplate>
                             <asp:HiddenField ID="hfRecordID" runat="server" Value='<%# Eval("rms_record_id") %>' />
                             <div style="text-align:center;font-weight:bold;font-size:12pt;width:100%">
-                                <%# Eval("site_no") %> <%# Eval("station_full_nm") %><br />
+                                <%# Eval("site_no") %> <%# Eval("station_nm") %><br />
                                 <%# Eval("type_ds") %>
                             </div>
                             <asp:DataList ID="dlInnerSANAL" runat="server">
@@ -111,7 +111,7 @@
                         <ItemTemplate>
                             <asp:HiddenField ID="hfRecordID" runat="server" Value='<%# Eval("rms_record_id") %>' />
                             <div style="text-align:center;font-weight:bold;font-size:12pt;width:100%">
-                                <%# Eval("site_no") %> <%# Eval("station_full_nm") %><br />
+                                <%# Eval("site_no") %> <%# Eval("station_nm") %><br />
                                 <%# Eval("type_ds") %>
                             </div>
                             <asp:DataList ID="dlInnerChangeLogs" runat="server" OnItemDataBound="dlInnerChangeLogs_ItemDataBound" Width="100%">
@@ -148,7 +148,7 @@
                         <ItemTemplate>
                             <asp:HiddenField ID="hfRecordID" runat="server" Value='<%# Eval("rms_record_id") %>' />
                             <div style="text-align:center;font-weight:bold;font-size:12pt;width:100%">
-                                <%# Eval("site_no") %> <%# Eval("station_full_nm") %><br />
+                                <%# Eval("site_no") %> <%# Eval("station_nm") %><br />
                                 <%# Eval("type_ds") %>
                             </div>
                             <asp:DataList ID="dlInnerDialogs" runat="server" OnItemDataBound="dlInnerDialogs_ItemDataBound" Width="100%">

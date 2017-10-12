@@ -74,7 +74,7 @@ namespace Safety
 
             //--BASIC PAGE SETUP--------------------------------------------------------------------
             ph1.Title = currTCP.TCPPlanDetail.Number + " - TCP, " + currTCP.TCPPlanDetail.SubName;
-            ph1.SubTitle = currTCP.TCPSite.Site.site_no + " " + currTCP.TCPSite.Site.station_full_nm;
+            ph1.SubTitle = currTCP.TCPSite.Site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == currTCP.TCPSite.Site.site_no && s.agency_cd == currTCP.TCPSite.Site.agency_cd).station_nm;
 
             PopulateReport();
         }

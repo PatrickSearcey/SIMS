@@ -61,7 +61,7 @@ namespace RMS.Modal
                 currPeriod = db.RecordAnalysisPeriods.FirstOrDefault(p => p.period_id == PeriodID);
                 currRecord = db.Records.FirstOrDefault(p => p.rms_record_id == currPeriod.rms_record_id);
 
-                ltlSite.Text = currRecord.Site.site_no + " " + currRecord.Site.station_full_nm;
+                ltlSite.Text = currRecord.Site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == currRecord.Site.site_no && s.agency_cd == currRecord.Site.agency_cd).station_nm;
                 ltlRecord.Text = currRecord.RecordType.type_ds + " Record";
 
                 pnlAudits.Visible = true;

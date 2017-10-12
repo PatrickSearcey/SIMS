@@ -75,7 +75,7 @@ namespace SIMS2017.Handler
                     }
                     catch (Exception ex) { }
 
-                    context.Response.Write(office.WSC.wsc_cd + "\t" + office.office_cd + "\t" + trip.trip_nm + " - " + trip.user_id + "\t" + site_tp + "\t" + site.Site.site_no + "\t" + site.Site.station_full_nm + "\r\n");
+                    context.Response.Write(office.WSC.wsc_cd + "\t" + office.office_cd + "\t" + trip.trip_nm + " - " + trip.user_id + "\t" + site_tp + "\t" + site.Site.site_no + "\t" + db.vSITEFILEs.FirstOrDefault(s => s.site_no == site.Site.site_no && s.agency_cd == site.Site.agency_cd).station_nm + "\r\n");
                 }
             }
         }
@@ -119,7 +119,7 @@ namespace SIMS2017.Handler
                             {
                                 foreach (var trip in trips)
                                 {
-                                    context.Response.Write(wsc.wsc_cd + "\t" + site.Office.office_cd + "\t" + site.office_id.ToString() + "\t" + site.site_no + "\t" + site.station_full_nm + "\t" + site_tp + "\t" + agency_use_cd + "\t");
+                                    context.Response.Write(wsc.wsc_cd + "\t" + site.Office.office_cd + "\t" + site.office_id.ToString() + "\t" + site.site_no + "\t" + db.vSITEFILEs.FirstOrDefault(s => s.site_no == site.site_no && s.agency_cd == site.agency_cd).station_nm + "\t" + site_tp + "\t" + agency_use_cd + "\t");
                                     if (type == "dev")
                                     {
                                         context.Response.Write(rec.RecordType.type_ds + "\t" + trip.Trip.Office.office_cd + "-" + trip.Trip.trip_nm + "\t" + trip.Trip.user_id + "\r\n");
@@ -132,7 +132,7 @@ namespace SIMS2017.Handler
                             }
                             else
                             {
-                                context.Response.Write(wsc.wsc_cd + "\t" + site.Office.office_cd + "\t" + site.office_id.ToString() + "\t" + site.site_no + "\t" + site.station_full_nm + "\t" + site_tp + "\t" + agency_use_cd + "\t");
+                                context.Response.Write(wsc.wsc_cd + "\t" + site.Office.office_cd + "\t" + site.office_id.ToString() + "\t" + site.site_no + "\t" + db.vSITEFILEs.FirstOrDefault(s => s.site_no == site.site_no && s.agency_cd == site.agency_cd).station_nm + "\t" + site_tp + "\t" + agency_use_cd + "\t");
                                 context.Response.Write(rec.RecordType.type_ds + "\tNA\tNA\r\n");
                             }
                             
@@ -140,7 +140,7 @@ namespace SIMS2017.Handler
                     }
                     else
                     {
-                        context.Response.Write(wsc.wsc_cd + "\t" + site.Office.office_cd + "\t" + site.office_id.ToString() + "\t" + site.site_no + "\t" + site.station_full_nm + "\t" + site_tp + "\t" + agency_use_cd + "\t");
+                        context.Response.Write(wsc.wsc_cd + "\t" + site.Office.office_cd + "\t" + site.office_id.ToString() + "\t" + site.site_no + "\t" + db.vSITEFILEs.FirstOrDefault(s => s.site_no == site.site_no && s.agency_cd == site.agency_cd).station_nm + "\t" + site_tp + "\t" + agency_use_cd + "\t");
                         context.Response.Write("NA\tNA\tNA\r\n");
                     }
                 }

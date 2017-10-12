@@ -136,7 +136,7 @@ namespace RMS.Task
         protected void UserControlSetup()
         {
             ph1.Title = task + " Record";
-            ph1.SubTitle = currRecord.Site.site_no + " " + currRecord.Site.station_full_nm;
+            ph1.SubTitle = currRecord.Site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == currRecord.Site.site_no && s.agency_cd == currRecord.Site.agency_cd).station_nm;
             ph1.RecordType = currRecord.RecordType.type_ds + " Record for";
         }
 
@@ -865,7 +865,7 @@ namespace RMS.Task
 
                         message.Subject = "Record for " + period.Record.Site.site_no.Trim() + " ready for approving";
                         message.Body = "A record assigned to you for approving has been analyzed:<br /><br />" +
-                            "The record period of " + timespan + " for station " + period.Record.Site.site_no.Trim() + " " + period.Record.Site.station_full_nm +
+                            "The record period of " + timespan + " for station " + period.Record.Site.site_no.Trim() + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == period.Record.Site.site_no && s.agency_cd == period.Record.Site.agency_cd).station_nm +
                             " (" + period.Record.RecordType.type_ds + ") has been analyzed by " + user.ID + ".";
                         break;
                     case "Approved":
@@ -885,7 +885,7 @@ namespace RMS.Task
                         cc.Add(user.Email);
 
                         message.Subject = "Your record for " + period.Record.Site.site_no.Trim() + " has been approved by " + user.ID;
-                        message.Body = "The record period of " + timespan + " for station " + period.Record.Site.site_no.Trim() + " " + period.Record.Site.station_full_nm +
+                        message.Body = "The record period of " + timespan + " for station " + period.Record.Site.site_no.Trim() + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == period.Record.Site.site_no && s.agency_cd == period.Record.Site.agency_cd).station_nm +
                             " (" + period.Record.RecordType.type_ds + ") has been approved by " + user.ID + ". The status has been set to Approved. The following comments" +
                             " were made by the approver:<br /><br />" + comments;
 
@@ -907,7 +907,7 @@ namespace RMS.Task
                         cc.Add(user.Email);
 
                         message.Subject = "Your record for " + period.Record.Site.site_no.Trim() + " needs to be reanalyzed";
-                        message.Body = "The record period of " + timespan + " for station " + period.Record.Site.site_no.Trim() + " " + period.Record.Site.station_full_nm +
+                        message.Body = "The record period of " + timespan + " for station " + period.Record.Site.site_no.Trim() + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == period.Record.Site.site_no && s.agency_cd == period.Record.Site.agency_cd).station_nm +
                             " (" + period.Record.RecordType.type_ds + ") has been sent back for reanalyzing.  The following comments were made by the approver:<br /><br />" +
                             comments;
 
@@ -929,7 +929,7 @@ namespace RMS.Task
                         cc.Add(user.Email);
 
                         message.Subject = "Record for " + period.Record.Site.site_no.Trim() + " has been reanalyzed by " + user.ID;
-                        message.Body = "The record period of " + timespan + " for station " + period.Record.Site.site_no.Trim() + " " + period.Record.Site.station_full_nm +
+                        message.Body = "The record period of " + timespan + " for station " + period.Record.Site.site_no.Trim() + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == period.Record.Site.site_no && s.agency_cd == period.Record.Site.agency_cd).station_nm +
                             " (" + period.Record.RecordType.type_ds + ") has been reanalyzed by " + user.ID + ". The status has been set to Analyzed. The following comments" +
                             " were made by the analyst:<br /><br />" + comments;
 

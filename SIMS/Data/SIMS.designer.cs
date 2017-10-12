@@ -18769,8 +18769,8 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_full_nm", CanBeNull=false)]
-		public string station_full_nm
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="station_full_nm", Storage="_station_full_nm", CanBeNull=false)]
+		public string station_nm
 		{
 			get
 			{
