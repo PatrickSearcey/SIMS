@@ -80,7 +80,7 @@ namespace SIMS2017
             hlTCPReport.NavigateUrl = String.Format("{0}TCPReport.aspx?office_id={1}", Config.SafetyURL, OfficeID, WSCID);
             hlEmergencyInfo.NavigateUrl = String.Format("{0}EmergencyInfo.aspx?office_id={1}", Config.SafetyURL, OfficeID);
             hlMAI.NavigateUrl = String.Format("{0}StationDoc/MAI.aspx?office_id={1}", Config.SIMSURL, OfficeID);
-            hlWYSummaryReport.NavigateUrl = String.Format("{0}SIMSReports/WY/wys_details.html", Config.SIMSServerURL);
+            hlWYSummaryReport.NavigateUrl = String.Format("{0}SIMSReports/WYS/wys_details.html", Config.SIMSServerURL);
             hlMapFieldTrips.Enabled = false;
             hlKMLWSC.Enabled = false;
             hlKMLOffice.Enabled = false;
