@@ -87,7 +87,7 @@ namespace SIMS2017.Handler
 		    XMLwrite.WriteStartElement("Manuscript");
 
 		    XMLwrite.WriteWhitespace(Environment.NewLine);
-            XMLwrite.WriteElementString("Description", "Manuscript for site " + site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == site.site_no && s.agency_cd == site.agency_cd).station_nm);
+            XMLwrite.WriteElementString("Description", "Manuscript for site " + site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_id == site.nwisweb_site_id).station_nm);
 		    XMLwrite.WriteWhitespace(Environment.NewLine);
 		    XMLwrite.WriteElementString("site_no", site.site_no);
 		    XMLwrite.WriteWhitespace(Environment.NewLine);

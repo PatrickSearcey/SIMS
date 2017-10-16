@@ -138,7 +138,7 @@ namespace SIMS2017.Admin
                 List<SiteItem> _sites = new List<SiteItem>();
                 _sites = db.Sites
                     .Where(p => p.Office.wsc_id == WSCID)
-                    .Select(p => new SiteItem { site_id = p.site_id, site_no_nm = p.site_no.Trim() + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == p.site_no && s.agency_cd == p.agency_cd).station_nm, office_id = p.office_id })
+                    .Select(p => new SiteItem { site_id = p.site_id, site_no_nm = p.site_no.Trim() + " " + p.station_full_nm, office_id = p.office_id })
                     .OrderBy(p => p.site_no_nm).ToList();
                 return _sites;
             }
@@ -221,7 +221,7 @@ namespace SIMS2017.Admin
                     rddlAssignedTo.SelectedValue = currTrip.user_id;
                     rlbSitesStart.DataSource = Sites.Where(p => p.office_id == currTrip.office_id && !currTrip.TripSites.Select(a => a.site_id).Contains(p.site_id));
                     rlbSitesStart.DataBind();
-                    rlbSitesEnd.DataSource = currTrip.TripSites.Select(p => new { site_id = p.site_id, site_no_nm = p.Site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == p.Site.site_no && s.agency_cd == p.Site.agency_cd).station_nm }).OrderBy(p => p.site_no_nm);
+                    rlbSitesEnd.DataSource = currTrip.TripSites.Select(p => new { site_id = p.site_id, site_no_nm = p.Site.site_no + " " + p.Site.station_full_nm }).OrderBy(p => p.site_no_nm);
                     rlbSitesEnd.DataBind();
 
                     pnlUpdate.Visible = true;

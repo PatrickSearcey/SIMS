@@ -128,7 +128,7 @@ namespace RMS.Admin
                     period_end_dt = p.period_end_dt,
                     status_va = p.status_va,
                     site_no = p.Record.Site.site_no,
-                    station_nm = db.vSITEFILEs.FirstOrDefault(s => s.site_no == p.Record.Site.site_no && s.agency_cd == p.Record.Site.agency_cd).station_nm,
+                    station_nm = p.Record.Site.station_full_nm,
                     type_ds = p.Record.RecordType.type_ds,
                     status_set_by_role_va = p.status_set_by_role_va
                 }).OrderBy(p => p.period_beg_dt).ToList();

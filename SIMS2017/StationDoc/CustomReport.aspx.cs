@@ -215,7 +215,7 @@ namespace SIMS2017.StationDoc
                 {
                     SiteID = p.site_id.ToString(),
                     SiteNo = p.site_no,
-                    StationName = db.vSITEFILEs.FirstOrDefault(s => s.site_no == p.site_no && s.agency_cd == p.agency_cd).station_nm,
+                    StationName = p.station_full_nm,
                     AgencyCd = p.agency_cd
                 }).ToList();
             }

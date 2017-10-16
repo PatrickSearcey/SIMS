@@ -93,7 +93,7 @@ namespace SIMS2017
             if (SiteID > 0)
             {
                 var site = db.Sites.FirstOrDefault(p => p.site_id == SiteID);
-                lblSiteNo.Text = site.site_no + " " + db.vSITEFILEs.FirstOrDefault(p => p.site_no == site.site_no && p.agency_cd == site.agency_cd).station_nm;
+                lblSiteNo.Text = site.site_no + " " + db.vSITEFILEs.FirstOrDefault(p => p.site_id == site.nwisweb_site_id).station_nm;
                 tbSiteNo.Visible = false;
                 lblOptional.Visible = false;
                 hfSiteID.Value = SiteID.ToString();
@@ -155,7 +155,7 @@ namespace SIMS2017
                 var site = db.Sites.FirstOrDefault(p => p.site_no == tbSiteNo.Text);
                 if (site != null)
                 {
-                    site_no = site.site_no + " " + db.vSITEFILEs.FirstOrDefault(p => p.site_no == site.site_no && p.agency_cd == site.agency_cd).station_nm;
+                    site_no = site.site_no + " " + db.vSITEFILEs.FirstOrDefault(p => p.site_id == site.nwisweb_site_id).station_nm;
                 }
             }
 
@@ -461,7 +461,7 @@ namespace SIMS2017
                 dcp_id = di.dcp_id;
             }
 
-            string site_no_nm = site.site_no + " " + db.vSITEFILEs.FirstOrDefault(p => p.site_no == site.site_no && p.agency_cd == site.agency_cd).station_nm;
+            string site_no_nm = site.site_no + " " + db.vSITEFILEs.FirstOrDefault(p => p.site_id == site.nwisweb_site_id).station_nm;
             string pOut = "Site ID: " + site_no_nm + "\r\n\r\n" +
                 "DCPID: " + dcp_id + "\r\n\r\n" +
                 "SIMS Station Info Page: " + Config.SIMSURL + "StationInfo.aspx?office_id=" + site.office_id.ToString() + "&site_id=" + site.site_id.ToString() + "\r\n\r\n" +

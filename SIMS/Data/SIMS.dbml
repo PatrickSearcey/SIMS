@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="simsdb" Class="SIMSDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=IGSKIACWVMGS012;Initial Catalog=simsdb;Integrated Security=True" SettingsObjectName="Data.Properties.Settings" SettingsPropertyName="simsdbConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=IGSKIACWVMGS012;Initial Catalog=simsdb;Integrated Security=True" SettingsObjectName="Data.Properties.Settings" SettingsPropertyName="simsdbConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.lut_Office" Member="Offices">
     <Type Name="Office">
       <Column Name="office_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -923,7 +923,7 @@
       <Column Name="rms_record_id" Type="System.Int32" CanBeNull="false" />
       <Column Name="site_id" Type="System.Int32" CanBeNull="false" />
       <Column Name="site_no" Type="System.String" CanBeNull="false" />
-      <Column Name="station_full_nm" Member="station_nm" Storage="_station_full_nm" Type="System.String" CanBeNull="false" />
+      <Column Name="station_nm" Storage="_station_full_nm" Type="System.String" CanBeNull="false" />
       <Column Name="lock_type" Type="System.String" CanBeNull="true" />
       <Column Name="lock_uid" Type="System.String" CanBeNull="true" />
       <Column Name="lock_dt" Type="System.DateTime" CanBeNull="true" />
@@ -972,55 +972,6 @@
       <Column Name="office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.vRMSRecordsToBeAnalyzed" Member="vRMSRecordsToBeAnalyzeds">
-    <Type Name="vRMSRecordsToBeAnalyzed">
-      <Column Name="rms_record_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="analyzer_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="lock_type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="lock_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="lock_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="reanalyze_status" Type="System.String" DbType="VarChar(9)" CanBeNull="true" />
-      <Column Name="LastAnalyzedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="station_full_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Column Name="office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="site_no" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
-      <Column Name="type_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="type_ds" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="category_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="record_type_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="record_office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="not_used_fg" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.vRMSRecordsToBeApproved" Member="vRMSRecordsToBeApproveds">
-    <Type Name="vRMSRecordsToBeApproved">
-      <Column Name="rms_record_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="site_no" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
-      <Column Name="analyzer_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="approver_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="lock_type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="lock_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="lock_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="status_va" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
-      <Column Name="period_beg_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="period_end_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="analyzed_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="approved_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="station_full_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Column Name="office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="type_ds" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="type_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="record_type_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="record_office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="category_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="period_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="not_used_fg" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.RMS_Record_Types" Member="RecordTypes">
     <Type Name="RecordType">
       <Column Name="record_type_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -1033,24 +984,6 @@
       <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="RecordType_Record" Member="Records" ThisKey="record_type_id" OtherKey="record_type_id" Type="Record" />
       <Association Name="RecordTemplate_RecordType" Member="RecordTemplate" ThisKey="TemplateID" OtherKey="TemplateID" Type="RecordTemplate" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.vRMSStatusOfRecords" Member="vRMSStatusOfRecords">
-    <Type Name="vRMSStatusOfRecord">
-      <Column Name="site_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="site_no" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
-      <Column Name="station_full_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Column Name="record_office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="agency_cd" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
-      <Column Name="analyzer_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="analyzed_period_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="analyzed_period_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="approver_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="approved_period_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="approved_period_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="not_used_fg" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="type_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Safety_Cableway_Visit" Member="CablewayVisits">
@@ -1212,6 +1145,73 @@
       <Column Name="AD_OU" Type="System.String" DbType="NVarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="notes" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
       <Column Name="exc_wsc_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vRMSStatusOfRecords" Member="vRMSStatusOfRecords">
+    <Type Name="vRMSStatusOfRecord">
+      <Column Name="site_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="site_no" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="station_nm" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="record_office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="agency_cd" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="analyzer_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="analyzed_period_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="analyzed_period_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="approver_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="approved_period_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="approved_period_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="not_used_fg" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="type_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vRMSRecordsToBeAnalyzed" Member="vRMSRecordsToBeAnalyzeds">
+    <Type Name="vRMSRecordsToBeAnalyzed">
+      <Column Name="rms_record_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="analyzer_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lock_type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lock_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lock_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="reanalyze_status" Type="System.String" DbType="VarChar(9)" CanBeNull="true" />
+      <Column Name="LastAnalyzedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="station_nm" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="site_no" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="type_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="type_ds" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="category_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="record_type_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="record_office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="not_used_fg" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vRMSRecordsToBeApproved" Member="vRMSRecordsToBeApproveds">
+    <Type Name="vRMSRecordsToBeApproved">
+      <Column Name="rms_record_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="site_no" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="analyzer_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="approver_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lock_type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lock_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lock_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="status_va" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="period_beg_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="period_end_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="analyzed_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="approved_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="station_nm" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="type_ds" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="type_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="record_type_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="record_office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="category_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="period_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="not_used_fg" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">
@@ -1488,12 +1488,6 @@
       <Column Name="percent_of_cat2_done" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.SP_RMS_Record_List_for_analyze_approve" Method="SP_RMS_Record_List_for_analyze_approve">
-    <Parameter Name="listtype" Type="System.String" DbType="NVarChar(13)" />
-    <Parameter Name="user_id" Type="System.String" DbType="NVarChar(20)" />
-    <Parameter Name="office_id" Type="System.Int32" DbType="Int" />
-    <ElementType IdRef="ID4" />
-  </Function>
   <Function Name="dbo.SP_RMS_Record_Details_by_WSC_or_office" Method="SP_RMS_Record_Details_by_WSC_or_office">
     <Parameter Name="office_id" Type="System.Int32" DbType="Int" />
     <Parameter Name="wsc_id" Type="System.Int32" DbType="Int" />
@@ -1552,5 +1546,11 @@
       <Column Name="Last_peak_entered" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="Last_manu_approved" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.SP_RMS_Record_List_for_analyze_approve" Method="SP_RMS_Record_List_for_analyze_approve">
+    <Parameter Name="listtype" Type="System.String" DbType="NVarChar(13)" />
+    <Parameter Name="user_id" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="office_id" Type="System.Int32" DbType="Int" />
+    <ElementType IdRef="ID4" />
   </Function>
 </Database>

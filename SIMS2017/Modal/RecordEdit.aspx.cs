@@ -31,7 +31,7 @@ namespace SIMS2017.Modal
                 {
                     ltlTitle.Text = "Add New Record";
                     ltlRecordType.Visible = false;
-                    ltlSite.Text = site.site_no.Trim() + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == site.site_no && s.agency_cd == site.agency_cd).station_nm;
+                    ltlSite.Text = site.site_no.Trim() + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_id == site.nwisweb_site_id).station_nm;
                     pnlNewRecord.Visible = true;
                     pnlRecordNotUsed.Visible = false;
                     pnlEditRecord.Visible = false;
@@ -47,7 +47,7 @@ namespace SIMS2017.Modal
                         try { ltlRecordType.Text = db.SP_RMS_Get_Record_DDs(record.rms_record_id).FirstOrDefault().parm_nm + ", " + record.RecordType.type_ds + " Record for"; }
                         catch (Exception ex) { ltlRecordType.Text = record.RecordType.type_ds + " Record for"; }
                     }
-                    ltlSite.Text = record.Site.site_no.Trim() + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == record.Site.site_no && s.agency_cd == record.Site.agency_cd).station_nm;
+                    ltlSite.Text = record.Site.site_no.Trim() + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_id == record.Site.nwisweb_site_id).station_nm;
                     pnlNewRecord.Visible = false;
                     if ((bool)record.not_used_fg)
                     {

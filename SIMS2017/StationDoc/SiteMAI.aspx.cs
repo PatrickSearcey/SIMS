@@ -84,7 +84,7 @@ namespace SIMS2017.StationDoc
 
             Page.Title = "SIMS - Site Manuscript Approval Interface";
             ph1.Title = "Site Manuscript Approval Interface";
-            ph1.SubTitle = site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == site.site_no && s.agency_cd == site.agency_cd).station_nm;
+            ph1.SubTitle = site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_id == site.nwisweb_site_id).station_nm;
             ph1.ShowOfficeInfoPanel = true;
 
             if (!Page.IsPostBack)
@@ -100,7 +100,7 @@ namespace SIMS2017.StationDoc
                 
                 var siteList = db.Records
                     .Where(p => p.RecordType.ts_fg == true && p.Site.Office.wsc_id == WSCID && p.Site.ElemReportSums.All(c => c.report_type_cd == "MANU"))
-                    .Select(p => new { site_id = p.site_id, site_no_nm = p.Site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == p.Site.site_no && s.agency_cd == p.Site.agency_cd).station_nm })
+                    .Select(p => new { site_id = p.site_id, site_no_nm = p.Site.site_no + " " + p.Site.station_full_nm })
                     .OrderBy(p => p.site_no_nm);
                 rcbSites.DataTextField = "site_no_nm";
                 rcbSites.DataValueField = "site_id";
@@ -110,10 +110,10 @@ namespace SIMS2017.StationDoc
 
                 //Populate the link boxes at the top of the page. Only populate the hlOriginalSite link if first visit to page
                 hlCurrentSite.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, site.site_id);
-                hlCurrentSite.Text = site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == site.site_no && s.agency_cd == site.agency_cd).station_nm;
+                hlCurrentSite.Text = site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_id == site.nwisweb_site_id).station_nm;
 
                 hlOriginalSite.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, site.site_id);
-                hlOriginalSite.Text = site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == site.site_no && s.agency_cd == site.agency_cd).station_nm;
+                hlOriginalSite.Text = site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_id == site.nwisweb_site_id).station_nm;
 
                 hlFullReport.NavigateUrl = String.Format("{0}StationDoc/MAI.aspx?office_id={1}", Config.SIMSURL, OfficeID);
             }
@@ -149,7 +149,7 @@ namespace SIMS2017.StationDoc
                     site_no = tbSiteNo.Text;
                     site = db.Sites.FirstOrDefault(p => p.site_no == site_no && p.agency_cd == agency_cd);
                     RefreshPageData(site.site_id);
-                    if (rcbSites.Items.Contains(new ListItem { Value = site.site_id.ToString(), Text = site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == site.site_no && s.agency_cd == site.agency_cd).station_nm }))
+                    if (rcbSites.Items.Contains(new ListItem { Value = site.site_id.ToString(), Text = site.site_no + " " + site.station_full_nm }))
                         rcbSites.SelectedValue = site.site_id.ToString();
                 }
             }
@@ -162,7 +162,7 @@ namespace SIMS2017.StationDoc
 
             //Update the Current Site link box at the top of the page
             hlCurrentSite.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, site.site_id);
-            hlCurrentSite.Text = site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == site.site_no && s.agency_cd == site.agency_cd).station_nm;
+            hlCurrentSite.Text = site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_id == site.nwisweb_site_id).station_nm;
 
             //Refresh the ApproveMANU user control to show the newly selected site's MANU
             ucApproveMANU.SiteID = site_id;

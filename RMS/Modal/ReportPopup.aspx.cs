@@ -79,7 +79,7 @@ namespace RMS.Modal
                 if (RecordID == 0) RecordID = Convert.ToInt32(db.RecordAnalysisPeriods.FirstOrDefault(p => p.period_id == PeriodID).rms_record_id);
                 currRecord = db.Records.FirstOrDefault(p => p.rms_record_id == RecordID);
 
-                ltlSite.Text = currRecord.Site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == currRecord.Site.site_no && s.agency_cd == currRecord.Site.agency_cd).station_nm;
+                ltlSite.Text = currRecord.Site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_id == currRecord.Site.nwisweb_site_id).station_nm;
                 ltlRecord.Text = currRecord.RecordType.type_ds + " Record";
 
                 switch (View)

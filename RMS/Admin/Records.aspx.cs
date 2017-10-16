@@ -119,7 +119,7 @@ namespace RMS.Admin
             {
                 office_nm = p.Office.office_nm,
                 site_no = p.site_no,
-                station_nm = db.vSITEFILEs.FirstOrDefault(s => s.site_no == p.site_no && s.agency_cd == p.agency_cd).station_nm,
+                station_nm = p.station_full_nm,
                 site_id = p.site_id
             }).OrderBy(p => p.office_nm).ThenBy(p => p.site_no).ToList();
         }

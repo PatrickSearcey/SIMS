@@ -74,7 +74,7 @@ namespace SIMS2017.StationDoc
             if (element_id == 0) ph1.Title = "Retrieve Archived Elements"; 
             else ph1.Title = "Archives for " + db.ElementDetails.FirstOrDefault(p => p.element_id == element_id).element_nm;
 
-            ph1.SubTitle = currSite.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == currSite.site_no && s.agency_cd == currSite.agency_cd).station_nm;
+            ph1.SubTitle = currSite.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_id == currSite.nwisweb_site_id).station_nm;
             ph1.ShowOfficeInfoPanel = true;
 
             if (!Page.IsPostBack)

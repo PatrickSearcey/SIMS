@@ -136,7 +136,7 @@ namespace RMS
             else if (SiteID > 0) //Else if a site number was entered, show for a site
             {
                 var site = db.Sites.FirstOrDefault(p => p.site_id == SiteID);
-                ltlOfficeName.Text = "Status of Records for " + site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == site.site_no && s.agency_cd == site.agency_cd).station_nm;
+                ltlOfficeName.Text = "Status of Records for " + site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_id == site.nwisweb_site_id).station_nm;
                 pnlFieldTrip.Visible = false;
             }
             else //Switch to the field trip site list
@@ -157,7 +157,7 @@ namespace RMS
             {
                 site_id = p.site_id.ToString(),
                 site_no = p.site_no,
-                station_nm = db.vSITEFILEs.FirstOrDefault(s => s.site_no == p.site_no && s.agency_cd == p.agency_cd).station_nm,
+                station_nm = p.station_nm,
                 SIMSURL = Config.SIMSURL,
                 office_id = p.record_office_id.ToString(),
                 wsc_id = p.wsc_id.ToString(),

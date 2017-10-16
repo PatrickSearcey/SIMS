@@ -185,7 +185,7 @@ namespace RMS.Admin
                     }
                 }
 
-                lblSiteNo.Text = "Records for <a href=\"" + Config.SIMSURL + "StationInfo.aspx?site_id=" + site.site_id.ToString() + "\" target=\"_blank\">" + site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == site.site_no && s.agency_cd == site.agency_cd).station_nm + "</a>";
+                lblSiteNo.Text = "Records for <a href=\"" + Config.SIMSURL + "StationInfo.aspx?site_id=" + site.site_id.ToString() + "\" target=\"_blank\">" + site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_id == site.nwisweb_site_id).station_nm + "</a>";
                 lblNoRecs.Visible = false;
                 pnlEnterSite.Visible = false;
                 pnlEditStatus.Visible = true;

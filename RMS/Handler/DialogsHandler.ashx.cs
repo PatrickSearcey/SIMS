@@ -28,7 +28,7 @@ namespace RMS.Handler
 
             string pOut = null;
 
-            pOut = "Dialogs for " + site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == site.site_no && s.agency_cd == site.agency_cd).station_nm + " - " + period.Record.RecordType.type_ds + "\r\nFile created on " + 
+            pOut = "Dialogs for " + site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_id == site.nwisweb_site_id).station_nm + " - " + period.Record.RecordType.type_ds + "\r\nFile created on " + 
                 DateTime.Now.ToShortDateString() + "\r\n\r\n";
 
             foreach (var item in dialogs)

@@ -142,10 +142,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="bin/Core.dll">
-      <publishTime>10/02/2017 13:38:20</publishTime>
+      <publishTime>10/16/2017 16:21:42</publishTime>
     </File>
     <File Include="bin/Data.dll">
-      <publishTime>10/02/2017 13:38:18</publishTime>
+      <publishTime>10/16/2017 16:21:37</publishTime>
     </File>
     <File Include="bin/DotNetZip.dll">
       <publishTime>01/27/2017 12:28:42</publishTime>
@@ -154,7 +154,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/31/2017 12:21:21</publishTime>
     </File>
     <File Include="bin/SIMS2017.dll">
-      <publishTime>10/02/2017 13:38:23</publishTime>
+      <publishTime>10/16/2017 16:39:03</publishTime>
     </File>
     <File Include="bin/Telerik.Web.Spreadsheet.dll">
       <publishTime>08/31/2017 12:21:21</publishTime>
@@ -277,13 +277,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="MANUDump_v2.ashx">
-      <publishTime>10/02/2017 13:38:00</publishTime>
+      <publishTime>10/02/2017 14:15:50</publishTime>
     </File>
     <File Include="Modal/ConfirmDelete.aspx">
       <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="Modal/FieldTrip.aspx">
-      <publishTime>08/31/2017 12:21:22</publishTime>
+      <publishTime>10/12/2017 13:51:36</publishTime>
     </File>
     <File Include="Modal/FieldTripEdit.aspx">
       <publishTime>08/31/2017 12:21:22</publishTime>
@@ -322,7 +322,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/31/2017 12:21:22</publishTime>
     </File>
     <File Include="SIMSHome.aspx">
-      <publishTime>08/31/2017 16:14:30</publishTime>
+      <publishTime>10/03/2017 15:31:13</publishTime>
     </File>
     <File Include="SIMSSingleMenu.Master">
       <publishTime>08/31/2017 12:21:22</publishTime>
