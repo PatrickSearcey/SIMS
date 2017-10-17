@@ -865,6 +865,14 @@ namespace Data
 			}
 		}
 		
+		public System.Data.Linq.Table<vRMSRecordApprovalStatus> vRMSRecordApprovalStatus
+		{
+			get
+			{
+				return this.GetTable<vRMSRecordApprovalStatus>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spz_GetDCPInfo")]
 		public ISingleResult<spz_GetDCPInfoResult> spz_GetDCPInfo([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> site_id)
 		{
@@ -1026,18 +1034,18 @@ namespace Data
 			return ((ISingleResult<SP_RMS_Get_Record_DDsResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_Publication_Status")]
-		public ISingleResult<SP_Publication_StatusResult> SP_Publication_Status([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> wsc_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> office_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(100)")] string site_tp_cd, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(100)")] string type_cd)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), wsc_id, office_id, site_tp_cd, type_cd);
-			return ((ISingleResult<SP_Publication_StatusResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RMS_Record_List_for_analyze_approve")]
 		public ISingleResult<RecordProcessDataItem> SP_RMS_Record_List_for_analyze_approve([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(13)")] string listtype, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(20)")] string user_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> office_id)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), listtype, user_id, office_id);
 			return ((ISingleResult<RecordProcessDataItem>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_Publication_Status")]
+		public ISingleResult<SP_Publication_StatusResult> SP_Publication_Status([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> wsc_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> office_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(100)")] string site_tp_cd, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(100)")] string type_cd)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), wsc_id, office_id, site_tp_cd, type_cd);
+			return ((ISingleResult<SP_Publication_StatusResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -23747,6 +23755,213 @@ namespace Data
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vRMSRecordApprovalStatus")]
+	public partial class vRMSRecordApprovalStatus
+	{
+		
+		private System.Nullable<int> _wsc_id;
+		
+		private string _office_cd;
+		
+		private string _site_no;
+		
+		private System.Nullable<int> _rms_record_id;
+		
+		private string _site_tp_cd;
+		
+		private string _type_cd;
+		
+		private string _parm_cd;
+		
+		private System.Nullable<bool> _ts_fg;
+		
+		private System.Nullable<int> _category_no;
+		
+		private string _station_nm;
+		
+		private System.Nullable<System.DateTime> _last_aging_dt;
+		
+		public vRMSRecordApprovalStatus()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_id", DbType="Int")]
+		public System.Nullable<int> wsc_id
+		{
+			get
+			{
+				return this._wsc_id;
+			}
+			set
+			{
+				if ((this._wsc_id != value))
+				{
+					this._wsc_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_cd", DbType="NVarChar(10)")]
+		public string office_cd
+		{
+			get
+			{
+				return this._office_cd;
+			}
+			set
+			{
+				if ((this._office_cd != value))
+				{
+					this._office_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_no", DbType="NVarChar(15)")]
+		public string site_no
+		{
+			get
+			{
+				return this._site_no;
+			}
+			set
+			{
+				if ((this._site_no != value))
+				{
+					this._site_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int")]
+		public System.Nullable<int> rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					this._rms_record_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_tp_cd", DbType="VarChar(7)")]
+		public string site_tp_cd
+		{
+			get
+			{
+				return this._site_tp_cd;
+			}
+			set
+			{
+				if ((this._site_tp_cd != value))
+				{
+					this._site_tp_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_cd", DbType="NVarChar(50)")]
+		public string type_cd
+		{
+			get
+			{
+				return this._type_cd;
+			}
+			set
+			{
+				if ((this._type_cd != value))
+				{
+					this._type_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_parm_cd", DbType="NVarChar(5)")]
+		public string parm_cd
+		{
+			get
+			{
+				return this._parm_cd;
+			}
+			set
+			{
+				if ((this._parm_cd != value))
+				{
+					this._parm_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ts_fg", DbType="Bit")]
+		public System.Nullable<bool> ts_fg
+		{
+			get
+			{
+				return this._ts_fg;
+			}
+			set
+			{
+				if ((this._ts_fg != value))
+				{
+					this._ts_fg = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_category_no", DbType="Int")]
+		public System.Nullable<int> category_no
+		{
+			get
+			{
+				return this._category_no;
+			}
+			set
+			{
+				if ((this._category_no != value))
+				{
+					this._category_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_nm", DbType="VarChar(50)")]
+		public string station_nm
+		{
+			get
+			{
+				return this._station_nm;
+			}
+			set
+			{
+				if ((this._station_nm != value))
+				{
+					this._station_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_last_aging_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> last_aging_dt
+		{
+			get
+			{
+				return this._last_aging_dt;
+			}
+			set
+			{
+				if ((this._last_aging_dt != value))
+				{
+					this._last_aging_dt = value;
+				}
+			}
+		}
+	}
+	
 	public partial class spz_GetDCPInfoResult
 	{
 		
@@ -26742,7 +26957,7 @@ namespace Data
 		
 		private string _site_no;
 		
-		private string _station_full_nm;
+		private string _station_nm;
 		
 		private string _site_tp_cd;
 		
@@ -26878,18 +27093,18 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_full_nm", DbType="NVarChar(150)")]
-		public string station_full_nm
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_nm", DbType="VarChar(50)")]
+		public string station_nm
 		{
 			get
 			{
-				return this._station_full_nm;
+				return this._station_nm;
 			}
 			set
 			{
-				if ((this._station_full_nm != value))
+				if ((this._station_nm != value))
 				{
-					this._station_full_nm = value;
+					this._station_nm = value;
 				}
 			}
 		}

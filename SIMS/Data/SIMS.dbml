@@ -1214,6 +1214,21 @@
       <Column Name="not_used_fg" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.vRMSRecordApprovalStatus" Member="vRMSRecordApprovalStatus">
+    <Type Name="vRMSRecordApprovalStatus">
+      <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="office_cd" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="site_no" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="rms_record_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="site_tp_cd" Type="System.String" DbType="VarChar(7)" CanBeNull="true" />
+      <Column Name="type_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="parm_cd" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="ts_fg" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="category_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="station_nm" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="last_aging_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">
     <Parameter Name="site_id" Type="System.Int32" DbType="Int" />
     <ElementType Name="spz_GetDCPInfoResult">
@@ -1522,6 +1537,12 @@
       <Column Name="dd_ts_ds" Type="System.String" DbType="NVarChar(82)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.SP_RMS_Record_List_for_analyze_approve" Method="SP_RMS_Record_List_for_analyze_approve">
+    <Parameter Name="listtype" Type="System.String" DbType="NVarChar(13)" />
+    <Parameter Name="user_id" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="office_id" Type="System.Int32" DbType="Int" />
+    <ElementType IdRef="ID4" />
+  </Function>
   <Function Name="dbo.SP_Publication_Status" Method="SP_Publication_Status">
     <Parameter Name="wsc_id" Type="System.Int32" DbType="Int" />
     <Parameter Name="office_id" Type="System.Int32" DbType="Int" />
@@ -1535,7 +1556,7 @@
       <Column Name="office_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
       <Column Name="agency_cd" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
       <Column Name="site_no" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
-      <Column Name="station_full_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="station_nm" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="site_tp_cd" Type="System.String" DbType="VarChar(7)" CanBeNull="true" />
       <Column Name="approved_period_end_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="category_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -1546,11 +1567,5 @@
       <Column Name="Last_peak_entered" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="Last_manu_approved" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </ElementType>
-  </Function>
-  <Function Name="dbo.SP_RMS_Record_List_for_analyze_approve" Method="SP_RMS_Record_List_for_analyze_approve">
-    <Parameter Name="listtype" Type="System.String" DbType="NVarChar(13)" />
-    <Parameter Name="user_id" Type="System.String" DbType="NVarChar(20)" />
-    <Parameter Name="office_id" Type="System.Int32" DbType="Int" />
-    <ElementType IdRef="ID4" />
   </Function>
 </Database>
