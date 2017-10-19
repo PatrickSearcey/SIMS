@@ -104,7 +104,7 @@ namespace RMS.Report
 
             if (rddlOffice.SelectedIndex > 0) reportOfficeID = Convert.ToInt32(rddlOffice.SelectedValue); else reportOfficeID = 0;
 
-            var ActionsData = db.SP_RMS_RecentActions(reportOfficeID, startDt, endDt).Select(p => new
+            var ActionsData = db.SP_RMS_RecentActions(reportOfficeID, WSCID, startDt, endDt).Select(p => new
             {
                 origin_va = p.origin_va,
                 status_set_to_va = p.status_set_to_va,
@@ -177,8 +177,6 @@ namespace RMS.Report
 
         protected void UpdateGrid(object sender, CommandEventArgs e)
         {
-            if (rddlOffice.SelectedIndex > 0) reportOfficeID = Convert.ToInt32(rddlOffice.SelectedValue); else reportOfficeID = 0;
-            InitialDataBind();
             rgRecentActions.Rebind();
         }
     }

@@ -1570,6 +1570,7 @@
   </Function>
   <Function Name="dbo.SP_RMS_RecentActions" Method="SP_RMS_RecentActions">
     <Parameter Name="office_id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="wsc_id" Type="System.Int32" DbType="Int" />
     <Parameter Name="querybegdate" Type="System.DateTime" DbType="DateTime" />
     <Parameter Name="queryenddate" Type="System.DateTime" DbType="DateTime" />
     <ElementType Name="SP_RMS_RecentActionsResult">
