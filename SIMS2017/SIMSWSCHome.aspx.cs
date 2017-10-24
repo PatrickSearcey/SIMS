@@ -293,6 +293,26 @@ namespace SIMS2017
             return ret;
         }
 
+        private IEnumerable<SiteDataItem> GetTripData()
+        {
+            var ret = db.vSiteMasterLists.Select(p => new SiteDataItem()
+            {
+                site_id = p.site_id.ToString(),
+                site_no = p.site_no,
+                station_nm = p.station_nm,
+                SIMSURL = Config.SIMSURL,
+                office_id = p.office_id.ToString(),
+                wsc_id = p.wsc_id.ToString(),
+                agency_cd = p.agency_cd,
+                SiteType = p.sims_site_tp,
+                Active = GetActiveData(p.agency_use_cd.ToString()),
+                TelFlag = p.tel_fg,
+                trip_ids = GetTripIDs(p.site_id)
+            }).OrderBy(p => p.site_no).ToList();
+
+            return ret;
+        }
+
         private List<int?> GetTripIDs(int site_id)
         {
             List<int?> ret = new List<int?>();
@@ -337,7 +357,7 @@ namespace SIMS2017
             }
             else
             {
-                rgSites.DataSource = GetData().Where(p => p.trip_ids.Contains(TripID));
+                rgSites.DataSource = GetTripData().Where(p => p.trip_ids.Contains(TripID));
             }
         }
 
