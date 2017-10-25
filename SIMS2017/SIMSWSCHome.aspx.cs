@@ -286,8 +286,7 @@ namespace SIMS2017
                 agency_cd = p.agency_cd,
                 SiteType = p.sims_site_tp,
                 Active = GetActiveData(p.agency_use_cd.ToString()),
-                TelFlag = p.tel_fg,
-                trip_ids = GetTripIDs(p.site_id)
+                TelFlag = p.tel_fg
             }).OrderBy(p => p.site_no).ToList();
 
             return ret;
@@ -295,7 +294,7 @@ namespace SIMS2017
 
         private IEnumerable<SiteDataItem> GetTripData()
         {
-            var ret = db.vSiteMasterLists.Select(p => new SiteDataItem()
+            var ret = db.vSiteMasterLists.Where(p => p.wsc_id == WSCID).Select(p => new SiteDataItem()
             {
                 site_id = p.site_id.ToString(),
                 site_no = p.site_no,
@@ -305,7 +304,6 @@ namespace SIMS2017
                 wsc_id = p.wsc_id.ToString(),
                 agency_cd = p.agency_cd,
                 SiteType = p.sims_site_tp,
-                Active = GetActiveData(p.agency_use_cd.ToString()),
                 TelFlag = p.tel_fg,
                 trip_ids = GetTripIDs(p.site_id)
             }).OrderBy(p => p.site_no).ToList();
