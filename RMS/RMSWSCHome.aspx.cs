@@ -169,6 +169,30 @@ namespace RMS
                 AnalyzedBy = p.analyzed_period_by,
                 Approver = p.approver_uid,
                 ApprovedDt = p.approved_period_dt,
+                ApprovedBy = p.approved_period_by
+            }).OrderBy(p => p.site_no).ToList();
+
+            return ret;
+        }
+
+        private IEnumerable<RecordDataItem> GetTripData()
+        {
+            var ret = db.vRMSStatusOfRecords.Where(p => p.wsc_id == WSCID).Select(p => new RecordDataItem()
+            {
+                site_id = p.site_id.ToString(),
+                site_no = p.site_no,
+                station_nm = p.station_nm,
+                SIMSURL = Config.SIMSURL,
+                office_id = p.record_office_id.ToString(),
+                wsc_id = p.wsc_id.ToString(),
+                agency_cd = p.agency_cd,
+                RecordType = p.type_cd,
+                Active = (!p.not_used_fg).ToString(),
+                Analyzer = p.analyzer_uid,
+                AnalyzedDt = p.analyzed_period_dt,
+                AnalyzedBy = p.analyzed_period_by,
+                Approver = p.approver_uid,
+                ApprovedDt = p.approved_period_dt,
                 ApprovedBy = p.approved_period_by,
                 trip_ids = GetTripIDs(p.site_id)
             }).OrderBy(p => p.site_no).ToList();
@@ -201,7 +225,7 @@ namespace RMS
             }
             else
             {
-                rgRecords.DataSource = GetData().Where(p => p.trip_ids.Contains(TripID) && p.Active == "True");
+                rgRecords.DataSource = GetTripData().Where(p => p.trip_ids.Contains(TripID) && p.Active == "True");
             }
         }
 
