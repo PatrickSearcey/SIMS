@@ -130,24 +130,6 @@ namespace RMS.Task {
         protected global::System.Web.UI.WebControls.Literal ltlAccess;
         
         /// <summary>
-        /// pnlErrors control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlErrors;
-        
-        /// <summary>
-        /// ltlError control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlError;
-        
-        /// <summary>
         /// pnlLocked control.
         /// </summary>
         /// <remarks>
@@ -562,6 +544,24 @@ namespace RMS.Task {
         protected global::System.Web.UI.WebControls.Literal ltlApproverComments;
         
         /// <summary>
+        /// pnlAnalystComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlAnalystComments;
+        
+        /// <summary>
+        /// ltlAnalystComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlAnalystComments;
+        
+        /// <summary>
         /// pnlApproveTemplateLink control.
         /// </summary>
         /// <remarks>
@@ -659,5 +659,23 @@ namespace RMS.Task {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlSaved;
+        
+        /// <summary>
+        /// pnlErrors control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlErrors;
+        
+        /// <summary>
+        /// ltlError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlError;
     }
 }

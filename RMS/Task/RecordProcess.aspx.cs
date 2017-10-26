@@ -339,14 +339,16 @@ namespace RMS.Task
                 else hlAutoReview2.Visible = false;
                 pnlAnalysisNotesEdit.Visible = false;
                 pnlAnalysisNotesReadOnly.Visible = true;
+                pnlAnalystComments.Visible = false;
                 ltlAnalysisNotes.Text = currPeriod.analysis_notes_va.FormatParagraphOut();
                 reAnalysisNotes2.Content = currPeriod.analysis_notes_va.FormatParagraphEdit();
-                if (currPeriod.PeriodDialogs.FirstOrDefault(p => p.status_set_to_va == "Approving") != null)
-                    reComments.Content = currPeriod.PeriodDialogs.Where(p => p.status_set_to_va == "Approving").OrderByDescending(p => p.dialog_dt).FirstOrDefault().comments_va.FormatParagraphEdit();
+                
                 if (task == "Reanalyze")
                 {
                     if (currPeriod.PeriodDialogs.FirstOrDefault(p => p.status_set_to_va == "Reanalyze") != null)
                         ltlApproverComments.Text = currPeriod.PeriodDialogs.Where(p => p.status_set_to_va == "Reanalyze").OrderByDescending(p => p.dialog_dt).FirstOrDefault().comments_va.FormatParagraphOut();
+                    if (currPeriod.PeriodDialogs.FirstOrDefault(p => p.status_set_to_va == "Reanalyzing") != null)
+                        reComments.Content = currPeriod.PeriodDialogs.Where(p => p.status_set_to_va == "Reanalyzing").OrderByDescending(p => p.dialog_dt).FirstOrDefault().comments_va.FormatParagraphEdit();
                     pnlApproverComments.Visible = true;
                     hlApproveInst.NavigateUrl = String.Format("javascript:OpenPopup('../Modal/Instructions.aspx?type=Analyze&id={0}')", currRecord.record_type_id);
                     hlApproveInst.Text = "WSC Analyzing Instructions";
@@ -356,16 +358,31 @@ namespace RMS.Task
                     ltlApproveNote.Visible = false;
                     rbFinish.Text = "Finish Reanalyzing";
                     rbFinish.CommandName = "Reanalyze";
-                    rbSave.Visible = false;
+                    rbSave.CommandName = "Reanalyze";
                     rbReanalyze.Visible = false;
                 }
                 else
                 {
+                    //If coming back in to approve after previously saving, populate the comments with the previously saved approver comments
+                    if (currPeriod.PeriodDialogs.FirstOrDefault(p => p.status_set_to_va == "Approving") != null)
+                        reComments.Content = currPeriod.PeriodDialogs.Where(p => p.status_set_to_va == "Approving").OrderByDescending(p => p.dialog_dt).FirstOrDefault().comments_va.FormatParagraphEdit();
+                    //If coming back in to the approve after previously sending back for reanalyzing, populate the comments with the previously saved approver comments
+                    if (currPeriod.PeriodDialogs.FirstOrDefault(p => p.status_set_to_va == "Reanalyze" && p.origin_va == "Approver") != null)
+                        reComments.Content = currPeriod.PeriodDialogs.Where(p => p.status_set_to_va == "Reanalyze" && p.origin_va == "Approver").OrderByDescending(p => p.dialog_dt).FirstOrDefault().comments_va.FormatParagraphEdit();
+
                     hlApproveInst.NavigateUrl = String.Format("javascript:OpenPopup('../Modal/Instructions.aspx?type=Approve&id={0}')", currRecord.record_type_id);
                     rbFinish.Text = "Finish Approving";
                     pnlApproverComments.Visible = false;
                     rbFinish.CommandName = "Approve";
                     rbSave.CommandName = "Approve";
+
+                    //We need to find out if this period had been previously reanalyzed, and if so, then we show the analyst comments panel
+                    var reanalyzedPeriod = currPeriod.PeriodDialogs.OrderByDescending(p => p.dialog_dt).FirstOrDefault(p => p.status_set_to_va == "Reanalyzed");
+                    if (reanalyzedPeriod != null)
+                    {
+                        pnlAnalystComments.Visible = true;
+                        ltlAnalystComments.Text = reanalyzedPeriod.comments_va.FormatParagraphOut();
+                    }
 
                     //If a template has been setup for this record-type, then show the template panel
                     if (currRecord.RecordType.RecordTemplate != null)
@@ -411,7 +428,8 @@ namespace RMS.Task
                     else if (e.CommandArgument.ToString() == "Save") SaveAnalyzingPeriod();
                     break;
                 case "Reanalyze":
-                    FinishReanalyzingPeriod();
+                    if (e.CommandArgument.ToString() == "Finish") FinishReanalyzingPeriod();
+                    else if (e.CommandArgument.ToString() == "Save") SaveReanalyzingPeriod();
                     break;
                 case "Approve":
                     if (e.CommandArgument.ToString() == "Finish") FinishApprovingPeriod();
@@ -620,7 +638,7 @@ namespace RMS.Task
 
                 db.SubmitChanges();
                 AddDialog(period, "", "Admin", "The period was reanalyzed and is ready for approval.");
-                AddDialog(period, "Analyzed", "Analyst", reComments.Content.FormatParagraphIn());
+                AddDialog(period, "Reanalyzed", "Analyst", reComments.Content.FormatParagraphIn());
 
                 SendEmails("Reanalyzed", reComments.Content.FormatParagraphIn(), period);
                 CloseOutPage(true);
@@ -628,6 +646,39 @@ namespace RMS.Task
             else
             {
                 ErrorMessage("You must enter some comments before you can finish reanalyzing!");
+            }
+        }
+
+        protected void SaveReanalyzingPeriod()
+        {
+            //First, do some validation
+            Boolean valid = false;
+            if (!string.IsNullOrEmpty(reComments.Content)) valid = true;
+
+            if (valid)
+            {
+                //Since reanalyzing a period that already exists, just update
+                if (PeriodID > 0)
+                {
+                    var period = currRecord.RecordAnalysisPeriods.FirstOrDefault(p => p.period_id == PeriodID);
+
+                    period.status_va = "Reanalyze";
+                    period.status_set_by = user.ID;
+                    period.status_set_by_role_va = "Analyst";
+                    period.analyzed_by = user.ID;
+                    period.analyzed_dt = DateTime.Now;
+                    period.analysis_notes_va = reAnalysisNotes2.Content.FormatParagraphIn();
+
+                    db.SubmitChanges();
+                    AddDialog(period, "Reanalyzing", "Analyst", reComments.Content.FormatParagraphIn());
+                }
+
+                ltlSaved.Visible = true;
+                ErrorMessage("hide");
+            }
+            else
+            {
+                ErrorMessage("You must enter some comments before saving!");
             }
         }
 
@@ -763,7 +814,7 @@ namespace RMS.Task
         /// <param name="comments">Comments about the status change/reanalyzing notes</param>
         protected void AddDialog(Data.RecordAnalysisPeriod period, string status, string origin_va, string comments)
         {
-            var dialog = period.PeriodDialogs.FirstOrDefault(p => p.status_set_to_va == status && p.status_set_to_va == "Approving" || p.status_set_to_va == status && p.status_set_to_va == "Analayzing");
+            var dialog = period.PeriodDialogs.FirstOrDefault(p => p.status_set_to_va == status && p.status_set_to_va == "Approving" || p.status_set_to_va == status && p.status_set_to_va == "Analayzing" || p.status_set_to_va == status && p.status_set_to_va == "Reanalyzing");
 
             if (dialog != null)
             {

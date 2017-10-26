@@ -89,10 +89,6 @@
         <p>Site WSC: <asp:Literal ID="ltlSiteWSC" runat="server" /></p>
         <p>User Access: <asp:Literal ID="ltlAccess" runat="server" /></p>
     </asp:Panel>
-    <asp:Panel ID="pnlErrors" runat="server" CssClass="pnlErrors" Visible="false">
-        <h4>ACTION FAILED: Errors Found</h4>
-        <p><asp:Literal ID="ltlError" runat="server" /></p>
-    </asp:Panel>
     <asp:Panel ID="pnlLocked" runat="server" CssClass="pnlLocked">
         <h4>This record period is locked.</h4>
         <p>Lock Type: <asp:Literal ID="ltlLockType" runat="server" /></p>
@@ -234,6 +230,17 @@
             </tr>
             <tr>
                 <td colspan="2">
+                    <!-- This panel will only show to the approver if the period had been sent back for reanalyzing -->
+                    <asp:Panel ID="pnlAnalystComments" runat="server">
+                        <h4>Analyst Comments During Reanalyzing</h4>
+                        <div style="height:100px;width:1000px;overflow-y:scroll;">
+                            <asp:Literal ID="ltlAnalystComments" runat="server" />
+                        </div>
+                    </asp:Panel>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
                     <h4>Comments</h4>
                     <p style="font-weight:bold;margin-top:-10px">Your WSC-level admin in your office can assign templates to record-types via the Manage Record-Types interface from the Admin Tasks page.</p>
                     <asp:Panel id="pnlApproveTemplateLink" runat="server" Visible="false">
@@ -271,4 +278,8 @@
         </table>
     </asp:Panel>
     <asp:Literal ID="ltlSaved" Text="<div style='width:100%;text-align:center;color:#ec562c;font-weight:bold;'>The period data was saved!</div>" runat="server" Visible="false" />
+    <asp:Panel ID="pnlErrors" runat="server" CssClass="pnlErrors" Visible="false">
+        <h4>ACTION FAILED: Errors Found</h4>
+        <p><asp:Literal ID="ltlError" runat="server" /></p>
+    </asp:Panel>
 </asp:Content>
