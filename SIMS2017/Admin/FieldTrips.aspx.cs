@@ -124,10 +124,10 @@ namespace SIMS2017.Admin
             get
             {
                 List<EmployeeItem> _employees = new List<EmployeeItem>();
-                _employees = db.Employees
-                        .Where(p => p.active == true && (p.Office.wsc_id == WSCID || p.Exceptions.Contains(new Data.Exception { exc_wsc_id = WSCID })))
-                        .Select(p => new EmployeeItem { user_nm = p.first_nm + " " + p.last_nm, user_id = p.user_id })
-                        .OrderBy(p => p.user_id).ToList();
+                _employees = db.SP_Personnel_by_WSC_office_or_user_id(WSCID, 0, "", "no", "True", "no")
+                    .Select(p => new EmployeeItem { user_nm = p.first_nm + " " + p.last_nm, user_id = p.user_id })
+                    .OrderBy(p => p.user_id).ToList();
+
                 return _employees;
             }
         }

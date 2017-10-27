@@ -74,21 +74,44 @@ namespace SIMS2017
                 if (WSCID == 0 || db.Offices.FirstOrDefault(p => p.office_id == OfficeID).wsc_id != WSCID) 
                     WSCID = Convert.ToInt32(db.Offices.FirstOrDefault(p => p.office_id == OfficeID).wsc_id);
             }
-            else if (!string.IsNullOrEmpty(wsc_id))
+            else if (!string.IsNullOrEmpty(wsc_id)) //A wsc_id has been passed to the page
             {
+                //So set the default WSCID to the passed wsc_id
                 WSCID = Convert.ToInt32(wsc_id);
+                //Only change the default OfficeID if there is not one already set in session state, or if the one in session state belongs to a different WSC
                 if (OfficeID == 0 || db.Offices.FirstOrDefault(p => p.office_id == OfficeID).wsc_id != WSCID)
-                    OfficeID = db.Offices.FirstOrDefault(p => p.wsc_id == WSCID).office_id;
+                {
+                    //For the default OfficeID, first check to see if the user belongs to this WSC
+                    if (user.WSCID.Contains(WSCID))
+                    {
+                        //Check to see if the office the user belongs to is part of the WSC in session state
+                        if ((int)db.Offices.FirstOrDefault(p => p.office_id == user.OfficeID).wsc_id == WSCID)
+                            OfficeID = user.OfficeID; //It is, so use the user's office_id to set the default OfficeID
+                        else OfficeID = db.Offices.FirstOrDefault(p => p.wsc_id == WSCID).office_id; //It's not, so just default to the first office in the list for the WSC
+                    }
+                    else OfficeID = db.Offices.FirstOrDefault(p => p.wsc_id == WSCID).office_id; //They do not, so just default to the first office in the list for the WSC
+                }
             }
             else
             {
+                //If no office or WSC is in session state, then use the user's assigned office_id to set defaults
                 if (OfficeID == 0 && WSCID == 0)
                 {
                     OfficeID = user.OfficeID;
                     WSCID = (int)db.Offices.FirstOrDefault(p => p.office_id == OfficeID).wsc_id;
                 }
                 else if (OfficeID == 0 && WSCID > 0)
-                    OfficeID = db.Offices.FirstOrDefault(p => p.wsc_id == WSCID).office_id;
+                {
+                    //If the user belongs to the WSC
+                    if (user.WSCID.Contains(WSCID))
+                    {
+                        //Check to see if the office the user belongs to is part of the WSC in session state
+                        if ((int)db.Offices.FirstOrDefault(p => p.office_id == user.OfficeID).wsc_id == WSCID)
+                            OfficeID = user.OfficeID; //It is, so use the user's office_id to set the default OfficeID
+                        else OfficeID = db.Offices.FirstOrDefault(p => p.wsc_id == WSCID).office_id; //It's not, so just default to the first office in the list for the WSC
+                    }
+                    else OfficeID = db.Offices.FirstOrDefault(p => p.wsc_id == WSCID).office_id; //They do not, so just default to the first office in the list for the WSC
+                }
                 else if (OfficeID > 0 && WSCID == 0)
                     WSCID = (int)db.Offices.FirstOrDefault(p => p.office_id == OfficeID).wsc_id;
             }
