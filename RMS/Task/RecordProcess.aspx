@@ -117,6 +117,7 @@
                         <li><asp:HyperLink ID="hlAutoReview" runat="server" Text="WSC Support Information (if applicable)" /></li>
                         <li><asp:HyperLink ID="hlWMAGuidelines" runat="server" Text="WMA Records Processing Guidelines" Target="_blank" NavigateUrl="https://water.usgs.gov/osw/time-series-guidance/" /></li>
                         <li><asp:HyperLink ID="hlWMADiscreteGuidelines" runat="server" Text="WMA Discrete GW Processing Guidelines" Target="_blank" NavigateUrl="https://water.usgs.gov/ogw/policy/discrete-data-guidance/" /></li>
+                        <li><asp:HyperLink ID="hlWMARevisionsPolicy" runat="server" Text="WMA Revisions Policy" Target="_blank" NavigateUrl="https://water.usgs.gov/osw/RevisionsGuidance.html" /></li>
                     </ul>
                 </td>
             </tr>
@@ -182,6 +183,7 @@
                         <li><asp:HyperLink ID="hlAutoReview2" runat="server" Text="View Auto Review (if applicable)" /></li>
                         <li><asp:HyperLink ID="hlWMAGuidelines2" runat="server" Text="WMA Records Processing Guidelines" Target="_blank" NavigateUrl="https://water.usgs.gov/osw/time-series-guidance/" /></li>
                         <li><asp:HyperLink ID="hlWMADiscreteGuidelines2" runat="server" Text="WMA Discrete GW Processing Guidelines" Target="_blank" NavigateUrl="https://water.usgs.gov/ogw/policy/discrete-data-guidance/" /></li>
+                        <li><asp:HyperLink ID="hlWMARevisionsPolicy2" runat="server" Text="WMA Revisions Policy" Target="_blank" NavigateUrl="https://water.usgs.gov/osw/RevisionsGuidance.html" /></li>
                     </ul>
                 </td>
             </tr>

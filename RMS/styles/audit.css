@@ -74,6 +74,18 @@
     height:40px;
 }
 
+.topLinks {
+    width: 90%;
+    margin: auto;
+    padding: 5px 20px 5px 20px;
+    height: 30px;
+    background: #f7f4f0;
+    -webkit-box-shadow: 0 0 5px 0 #f7f4f0;
+    box-shadow: 0 0 5px 0 #f7f4f0;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
 .mainContent {
     max-width:90% !important;
     margin:auto;

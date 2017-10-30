@@ -85,6 +85,10 @@
     <telerik:RadAjaxLoadingPanel ID="ralp" runat="server" Skin="Bootstrap" />
 
     <uc:PageHeading id="ph1" runat="server" />
+
+    <div class="topLinks">
+        <b>Links of interest:</b> <a href="https://water.usgs.gov/osw/RevisionsGuidance.html" target="_blank">WMA Revisions Policy</a>
+    </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph2" runat="server">
     <div class="mainContent">
