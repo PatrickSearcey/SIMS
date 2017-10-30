@@ -302,7 +302,9 @@ namespace RMS.Admin
 
         private void InitDates(string start_date, string end_date, string change_date)
         {
-            DateTime dtStart = Convert.ToDateTime(start_date);
+            
+            DateTime dtStart;
+            if (start_date != null) dtStart = Convert.ToDateTime(start_date); else dtStart = Convert.ToDateTime(change_date).AddYears(-2);
             DateTime dtEnd = Convert.ToDateTime(end_date);
             DateTime dtChange = Convert.ToDateTime(change_date);
             int dtdiff = Convert.ToInt32(dtEnd.ToOADate() - dtStart.ToOADate());
@@ -373,7 +375,7 @@ namespace RMS.Admin
                 if (date_type == "end1" | date_type == "beg2")
                 {
                     dtNewDate = DateTime.FromOADate(Convert.ToDouble(rsEndBeginDates.Value));
-                    if (ltlPeriodID1.Visible == false)
+                    if (string.IsNullOrEmpty(ltlPeriodID1.Text))
                     {
                         period = db.RecordAnalysisPeriods.FirstOrDefault(p => p.period_id == Convert.ToInt32(ltlPeriodID2.Text));
                         period.period_beg_dt = dtNewDate;
