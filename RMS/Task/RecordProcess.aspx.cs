@@ -18,28 +18,8 @@ namespace RMS.Task
         private Data.Record currRecord;
         private string task { get; set; }
         private Boolean HasEditAccess { get; set; }
-        private int? RecordID
-        {
-            get
-            {
-                if (Session["RecordID"] == null) return 0; else return (int)Session["RecordID"];
-            }
-            set
-            {
-                Session["RecordID"] = value;
-            }
-        }
-        private int? PeriodID
-        {
-            get
-            {
-                if (Session["PeriodID"] == null) return 0; else return (int)Session["PeriodID"];
-            }
-            set
-            {
-                Session["PeriodID"] = value;
-            }
-        }
+        private int? RecordID { get; set; }
+        private int? PeriodID { get; set; }
         private int WSCID
         {
             get
