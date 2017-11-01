@@ -873,6 +873,14 @@ namespace Data
 			}
 		}
 		
+		public System.Data.Linq.Table<vFieldTripSite> vFieldTripSites
+		{
+			get
+			{
+				return this.GetTable<vFieldTripSite>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spz_GetDCPInfo")]
 		public ISingleResult<spz_GetDCPInfoResult> spz_GetDCPInfo([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> site_id)
 		{
@@ -23964,6 +23972,177 @@ namespace Data
 				if ((this._last_aging_dt != value))
 				{
 					this._last_aging_dt = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vFieldTripSites")]
+	public partial class vFieldTripSite
+	{
+		
+		private System.Nullable<int> _site_id;
+		
+		private string _site_no;
+		
+		private string _station_nm;
+		
+		private System.Nullable<double> _dec_lat_va;
+		
+		private System.Nullable<double> _dec_long_va;
+		
+		private string _agency_cd;
+		
+		private string _site_tp_cd;
+		
+		private int _trip_id;
+		
+		private string _trip_full_nm;
+		
+		public vFieldTripSite()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int")]
+		public System.Nullable<int> site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					this._site_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_no", DbType="NVarChar(15) NOT NULL", CanBeNull=false)]
+		public string site_no
+		{
+			get
+			{
+				return this._site_no;
+			}
+			set
+			{
+				if ((this._site_no != value))
+				{
+					this._site_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_nm", DbType="VarChar(50)")]
+		public string station_nm
+		{
+			get
+			{
+				return this._station_nm;
+			}
+			set
+			{
+				if ((this._station_nm != value))
+				{
+					this._station_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dec_lat_va", DbType="Float")]
+		public System.Nullable<double> dec_lat_va
+		{
+			get
+			{
+				return this._dec_lat_va;
+			}
+			set
+			{
+				if ((this._dec_lat_va != value))
+				{
+					this._dec_lat_va = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dec_long_va", DbType="Float")]
+		public System.Nullable<double> dec_long_va
+		{
+			get
+			{
+				return this._dec_long_va;
+			}
+			set
+			{
+				if ((this._dec_long_va != value))
+				{
+					this._dec_long_va = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_agency_cd", DbType="VarChar(5) NOT NULL", CanBeNull=false)]
+		public string agency_cd
+		{
+			get
+			{
+				return this._agency_cd;
+			}
+			set
+			{
+				if ((this._agency_cd != value))
+				{
+					this._agency_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_tp_cd", DbType="VarChar(7)")]
+		public string site_tp_cd
+		{
+			get
+			{
+				return this._site_tp_cd;
+			}
+			set
+			{
+				if ((this._site_tp_cd != value))
+				{
+					this._site_tp_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_trip_id", DbType="Int NOT NULL")]
+		public int trip_id
+		{
+			get
+			{
+				return this._trip_id;
+			}
+			set
+			{
+				if ((this._trip_id != value))
+				{
+					this._trip_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_trip_full_nm", DbType="NVarChar(263)")]
+		public string trip_full_nm
+		{
+			get
+			{
+				return this._trip_full_nm;
+			}
+			set
+			{
+				if ((this._trip_full_nm != value))
+				{
+					this._trip_full_nm = value;
 				}
 			}
 		}

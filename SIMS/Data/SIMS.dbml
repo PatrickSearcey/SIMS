@@ -1229,6 +1229,19 @@
       <Column Name="last_aging_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.vFieldTripSites" Member="vFieldTripSites">
+    <Type Name="vFieldTripSite">
+      <Column Name="site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="site_no" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="station_nm" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="dec_lat_va" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="dec_long_va" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="agency_cd" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="site_tp_cd" Type="System.String" DbType="VarChar(7)" CanBeNull="true" />
+      <Column Name="trip_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="trip_full_nm" Type="System.String" DbType="NVarChar(263)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">
     <Parameter Name="site_id" Type="System.Int32" DbType="Int" />
     <ElementType Name="spz_GetDCPInfoResult">
