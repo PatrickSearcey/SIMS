@@ -27449,7 +27449,7 @@ namespace Data
 		
 		private string _dialog_by;
 		
-		private string _dialog_dt;
+		private System.Nullable<System.DateTime> _dialog_dt;
 		
 		private System.Nullable<System.DateTime> _period_beg_dt;
 		
@@ -27519,8 +27519,8 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dialog_dt", DbType="NVarChar(10)")]
-		public string dialog_dt
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dialog_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> dialog_dt
 		{
 			get
 			{

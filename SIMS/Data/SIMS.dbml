@@ -1590,7 +1590,7 @@
       <Column Name="origin_va" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Column Name="status_set_to_va" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="dialog_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="dialog_dt" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="dialog_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="period_beg_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="period_end_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="record_office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />

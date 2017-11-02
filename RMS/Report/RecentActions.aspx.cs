@@ -109,7 +109,7 @@ namespace RMS.Report
                 origin_va = p.origin_va,
                 status_set_to_va = p.status_set_to_va,
                 dialog_by = p.dialog_by,
-                dialog_dt = Convert.ToDateTime(p.dialog_dt),
+                dialog_dt = p.dialog_dt,
                 period_beg_dt = p.period_beg_dt,
                 period_end_dt = p.period_end_dt,
                 office_id = p.record_office_id,

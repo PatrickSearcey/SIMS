@@ -77,7 +77,7 @@
             <MasterTableView DataKeyNames="site_id" AllowSorting="true" AllowFilteringByColumn="true" AutoGenerateColumns="false">
                 <Columns>
                     <telerik:GridBoundColumn DataField="dialog_by" HeaderText="User" FilterControlWidth="60px" HeaderStyle-Width="70px" UniqueName="dialog_by" />
-                    <telerik:GridBoundColumn DataField="dialog_dt" DataFormatString="{0:MM/dd/yyyy}" AllowFiltering="false" UniqueName="dialog_dt" HeaderText="When" />
+                    <telerik:GridBoundColumn DataField="dialog_dt" DataFormatString="{0:MM/dd/yyyy HH:mm}" AllowFiltering="false" UniqueName="dialog_dt" HeaderText="When" />
                     <telerik:GridBoundColumn DataField="origin_va" UniqueName="origin_va" HeaderText="What" FilterControlWidth="60px" HeaderStyle-Width="70px" />
                     <telerik:GridBoundColumn DataField="status_set_to_va" UniqueName="status_set_to_va" HeaderText="Status Changed To" FilterControlWidth="60px" HeaderStyle-Width="70px" />
                     <telerik:GridTemplateColumn DataField="site_no" SortExpression="site_no" HeaderText="Number" FilterControlWidth="80px" ColumnGroupName="Site" UniqueName="site_no">
