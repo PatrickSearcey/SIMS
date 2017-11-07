@@ -20,19 +20,19 @@ namespace SIMS2017.Handler
         private Data.SIMSDataContext db = new Data.SIMSDataContext();
         private const string site_no_qs = "site_no";
         private const string agency_cd_qs = "agency_cd";
-        private const string wsc_id_qs = "wsc_id";
-        private int wsc_id;
+        private const string office_id_qs = "office_id";
+        private int office_id;
         private string site_no;
         private string agency_cd;
         private Data.Site site;
-        private Data.WSC wsc;
+        private Data.Office office;
 
         public void ProcessRequest(HttpContext context)
         {
             Setup(context);
 
-            if (wsc_id > 0)
-                dumpMANUsForWSC(wsc_id, context);
+            if (office_id > 0)
+                dumpMANUsForOffice(office_id, context);
             else
                 createSiteMANUXML(site_no, agency_cd, context);
 
@@ -50,11 +50,11 @@ namespace SIMS2017.Handler
                 site_no = context.Request.QueryString[site_no_qs];
             if (context.Request.QueryString[agency_cd_qs] != null)
                 agency_cd = context.Request.QueryString[agency_cd_qs];
-            if (context.Request.QueryString[wsc_id_qs] != null)
-                wsc_id = Convert.ToInt32(context.Request.QueryString[wsc_id_qs]);
+            if (context.Request.QueryString[office_id_qs] != null)
+                office_id = Convert.ToInt32(context.Request.QueryString[office_id_qs]);
 
-            if (wsc_id > 0)
-                wsc = db.WSCs.FirstOrDefault(p => p.wsc_id == wsc_id);
+            if (office_id > 0)
+                office = db.Offices.FirstOrDefault(p => p.office_id == office_id);
             else
                 site = db.Sites.FirstOrDefault(p => p.site_no == site_no && p.agency_cd == agency_cd); //site = db.Sites.FirstOrDefault(p => p.site_no == "434307112382601" && p.agency_cd == "USGS");
         }
@@ -67,7 +67,7 @@ namespace SIMS2017.Handler
             get { return false; }
         }
 
-        protected void dumpMANUsForWSC(int wsc_id, HttpContext context)
+        protected void dumpMANUsForOffice(int office_id, HttpContext context)
         {
             context.Response.ContentType = "text/xml";
             context.Response.ContentEncoding = System.Text.Encoding.UTF8;
@@ -79,81 +79,76 @@ namespace SIMS2017.Handler
             XMLwrite.WriteWhitespace(Environment.NewLine);
             XMLwrite.WriteStartElement("USGS");
 
-            List<Data.Office> offices = wsc.Offices.ToList();
+            XMLwrite.WriteWhitespace(Environment.NewLine);
+            XMLwrite.WriteStartElement("Office");
 
-            foreach (var o in offices)
+            XMLwrite.WriteWhitespace(Environment.NewLine);
+            XMLwrite.WriteElementString("office_nm", office.office_nm);
+
+            foreach (var site in office.Sites)
             {
-                XMLwrite.WriteWhitespace(Environment.NewLine);
-                XMLwrite.WriteStartElement("Office");
-
-                XMLwrite.WriteWhitespace(Environment.NewLine);
-                XMLwrite.WriteElementString("office_nm", o.office_nm);
-
-                foreach (var site in o.Sites)
+                try
                 {
-                    try
+                    List<ElementItem> lstElems = site.SiteElements.Select(p => new ElementItem
                     {
-                        List<ElementItem> lstElems = site.SiteElements.Select(p => new ElementItem
+                        ElementID = p.element_id.ToString(),
+                        SiteID = p.site_id.ToString(),
+                        ElementName = p.ElementDetail.element_nm,
+                        ElementInfo = p.element_info.FormatElementInfo(Convert.ToInt32(p.element_id), site.site_id),
+                        ReportType = db.ElementReportRefs.OrderBy(r => r.report_type_cd).FirstOrDefault(r => r.element_id == p.element_id).report_type_cd,
+                        RevisedBy = p.revised_by,
+                        RevisedDate = p.revised_dt.ToString(),
+                        Priority = Convert.ToInt32(p.ElementDetail.priority)
+                    }).OrderBy(p => p.Priority).ToList();
+
+                    string strElementName = "";
+                    string strElementInfo = "";
+
+                    XMLwrite.WriteWhitespace(Environment.NewLine);
+                    XMLwrite.WriteStartElement("Manuscript");
+
+                    XMLwrite.WriteWhitespace(Environment.NewLine);
+                    XMLwrite.WriteElementString("Description", "Manuscript for site " + site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_id == site.nwisweb_site_id).station_nm);
+                    XMLwrite.WriteWhitespace(Environment.NewLine);
+                    XMLwrite.WriteElementString("site_no", site.site_no);
+                    XMLwrite.WriteWhitespace(Environment.NewLine);
+                    XMLwrite.WriteElementString("agency_cd", site.agency_cd);
+                    XMLwrite.WriteWhitespace(Environment.NewLine);
+                    XMLwrite.WriteElementString("station_full_nm", site.station_full_nm);
+
+                    foreach (var x in lstElems.Where(p => p.ReportType == "MANU"))
+                    {
+                        strElementName = x.ElementName.ToString().Replace(" (MANU)", "");
+                        strElementInfo = x.ElementInfo;
+
+                        //Don't send EXTREMES FOR CURRENT YEAR element to NWIS
+                        if (strElementName != "EXTREMES FOR CURRENT YEAR" && strElementName != "PEAK DISCHARGES FOR CURRENT YEAR")
                         {
-                            ElementID = p.element_id.ToString(),
-                            SiteID = p.site_id.ToString(),
-                            ElementName = p.ElementDetail.element_nm,
-                            ElementInfo = p.element_info.FormatElementInfo(Convert.ToInt32(p.element_id), site.site_id),
-                            ReportType = db.ElementReportRefs.OrderBy(r => r.report_type_cd).FirstOrDefault(r => r.element_id == p.element_id).report_type_cd,
-                            RevisedBy = p.revised_by,
-                            RevisedDate = p.revised_dt.ToString(),
-                            Priority = Convert.ToInt32(p.ElementDetail.priority)
-                        }).OrderBy(p => p.Priority).ToList();
+                            XMLwrite.WriteWhitespace(Environment.NewLine);
+                            XMLwrite.WriteStartElement("Element");
 
-                        string strElementName = "";
-                        string strElementInfo = "";
+                            XMLwrite.WriteWhitespace(Environment.NewLine);
+                            XMLwrite.WriteElementString("name", strElementName);
 
-                        XMLwrite.WriteWhitespace(Environment.NewLine);
-                        XMLwrite.WriteStartElement("Manuscript");
+                            XMLwrite.WriteWhitespace(Environment.NewLine);
+                            XMLwrite.WriteElementString("info", strElementInfo);
 
-                        XMLwrite.WriteWhitespace(Environment.NewLine);
-                        XMLwrite.WriteElementString("Description", "Manuscript for site " + site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_id == site.nwisweb_site_id).station_nm);
-                        XMLwrite.WriteWhitespace(Environment.NewLine);
-                        XMLwrite.WriteElementString("site_no", site.site_no);
-                        XMLwrite.WriteWhitespace(Environment.NewLine);
-                        XMLwrite.WriteElementString("agency_cd", site.agency_cd);
-                        XMLwrite.WriteWhitespace(Environment.NewLine);
-                        XMLwrite.WriteElementString("station_full_nm", site.station_full_nm);
-
-                        foreach (var x in lstElems.Where(p => p.ReportType == "MANU"))
-                        {
-                            strElementName = x.ElementName.ToString().Replace(" (MANU)", "");
-                            strElementInfo = x.ElementInfo;
-
-                            //Don't send EXTREMES FOR CURRENT YEAR element to NWIS
-                            if (strElementName != "EXTREMES FOR CURRENT YEAR" && strElementName != "PEAK DISCHARGES FOR CURRENT YEAR")
-                            {
-                                XMLwrite.WriteWhitespace(Environment.NewLine);
-                                XMLwrite.WriteStartElement("Element");
-
-                                XMLwrite.WriteWhitespace(Environment.NewLine);
-                                XMLwrite.WriteElementString("name", strElementName);
-
-                                XMLwrite.WriteWhitespace(Environment.NewLine);
-                                XMLwrite.WriteElementString("info", strElementInfo);
-
-                                XMLwrite.WriteWhitespace(Environment.NewLine);
-                                XMLwrite.WriteEndElement();
-                            }
-                            //End Element
+                            XMLwrite.WriteWhitespace(Environment.NewLine);
+                            XMLwrite.WriteEndElement();
                         }
-
-                        XMLwrite.WriteWhitespace(Environment.NewLine);
-                        XMLwrite.WriteEndElement();
-                        //End Manuscript
+                        //End Element
                     }
-                    catch (Exception ex) { }
-                }
 
-                XMLwrite.WriteWhitespace(Environment.NewLine);
-                XMLwrite.WriteEndElement();
-                //End Office
+                    XMLwrite.WriteWhitespace(Environment.NewLine);
+                    XMLwrite.WriteEndElement();
+                    //End Manuscript
+                }
+                catch (Exception ex) { }
             }
+
+            XMLwrite.WriteWhitespace(Environment.NewLine);
+            XMLwrite.WriteEndElement();
+            //End Office
 
             XMLwrite.WriteWhitespace(Environment.NewLine);
             XMLwrite.WriteEndDocument();
