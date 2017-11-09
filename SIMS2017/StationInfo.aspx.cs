@@ -346,7 +346,11 @@ namespace SIMS2017
             {
                 foreach (var dd in DDs)
                 {
-                    if (dd.parameter_cd != null) parm_cds.Add(dd.parameter_cd.ToString());
+                    if (dd.parameter_cd != null)
+                    {
+                        parm_cds.Add("<a href='http://ts.nwis.usgs.gov/AQUARIUS/Publish/v2/GetApprovalsTransactionList?TimeSeriesUniqueId=" + dd.gu_id +
+                            "' target='_blank'>" + dd.parameter_cd.ToString() + "</a>");
+                    }
                 }
 
                 if (parm_cds.Count > 0)
