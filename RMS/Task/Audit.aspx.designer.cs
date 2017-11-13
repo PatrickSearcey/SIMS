@@ -238,13 +238,13 @@ namespace RMS.Task {
         protected global::Telerik.Web.UI.RadListBox rlbViewRecords;
         
         /// <summary>
-        /// rtbSANAL control.
+        /// reSANAL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadTextBox rtbSANAL;
+        protected global::Telerik.Web.UI.RadEditor reSANAL;
         
         /// <summary>
         /// rddlAuditType control.

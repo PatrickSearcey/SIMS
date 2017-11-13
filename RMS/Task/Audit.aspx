@@ -5,6 +5,12 @@
     <link href="../styles/audit.css" rel="stylesheet" />
     <script type="text/javascript">
     </script>
+    <style type="text/css">
+        #DivReadOnlyEditor .reToolbarWrapper
+        {
+            display:none;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph1" runat="server">
     <telerik:RadAjaxManager ID="ram" runat="server">
@@ -162,7 +168,13 @@
                     <p>Select a record from the list to view the station analyses that relate to the audit date range.</p>
                     <telerik:RadListBox RenderMode="Lightweight" ID="rlbViewRecords" runat="server" Skin="Bootstrap" OnSelectedIndexChanged="rlbViewRecords_SelectedIndexChanged" 
                         Height="80px" SelectionMode="Single" Width="1000px" AutoPostBack="true" DataValueField="rms_record_id" DataTextField="record_nm" /><br />
-                    <telerik:RadTextBox ID="rtbSANAL" runat="server" Height="250px" Width="1000px" ReadOnly="true" Skin="Bootstrap" TextMode="MultiLine" />
+                    <div id="DivReadOnlyEditor">
+                        <telerik:RadEditor ID="reSANAL" runat="server" Height="300px" Width="1000px" EditModes="Preview" Skin="Bootstrap">
+                            <Tools>
+                                <telerik:EditorToolGroup />
+                            </Tools>
+                        </telerik:RadEditor>
+                    </div>
                 </div>
                 <h4>Audit the Period</h4>
                 <div class="AuditList">

@@ -167,7 +167,7 @@ namespace RMS.Task
                 rtbAuditReason.Text = "";
                 rtbDataAudited.Text = "";
                 rtbAuditFindings.Text = "";
-                rtbSANAL.Text = "";
+                reSANAL.Content = "";
             }
             else
             {
@@ -178,7 +178,7 @@ namespace RMS.Task
                 rtbAuditReason.Text = currAudit.audit_reason;
                 rtbDataAudited.Text = currAudit.audit_data;
                 rtbAuditFindings.Text = currAudit.audit_findings;
-                rtbSANAL.Text = "";
+                reSANAL.Content = "";
             }
 
             LoadPeriodList();
@@ -408,26 +408,27 @@ namespace RMS.Task
                 }
                 var periods = record.RecordAnalysisPeriods.Where(p => p.period_end_dt >= beg_dt && p.period_end_dt <= end_dt).OrderByDescending(p => p.period_beg_dt).ToList();
 
-                pOut = "Station Analyses for " + record.Site.site_no.Trim() + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_id == record.Site.nwisweb_site_id).station_nm + "\n" + record.RecordType.type_ds + "\n" +
-                        "------------------------------------------------------------------------------------------------------------------------------------------------------------------\n" +
-                        "------------------------------------------------------------------------------------------------------------------------------------------------------------------\n\n";
+                pOut = "Station Analyses for " + record.Site.site_no.Trim() + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_id == record.Site.nwisweb_site_id).station_nm + "<br />" +
+                        record.RecordType.type_ds + "<br />" +
+                        "----------------------------------------------------------------------------------------------------------------------------------------<br />" +
+                        "----------------------------------------------------------------------------------------------------------------------------------------<br /><br />";
 
                 foreach (var period in periods)
                 {
                     edited_dt = period.PeriodChangeLogs.Count() > 0 ? String.Format("{0}", period.PeriodChangeLogs.OrderByDescending(b => b.edited_dt).FirstOrDefault().edited_dt) : "unavailable";
                     edited_by_uid = period.PeriodChangeLogs.Count() > 0 ? period.PeriodChangeLogs.OrderByDescending(b => b.edited_dt).FirstOrDefault().edited_by_uid : "unavailable";
 
-                    pOut += "Analysis Period: " + String.Format("{0:MM/dd/yyyy} to {1:MM/dd/yyyy}", period.period_beg_dt, period.period_end_dt) + "\n" +
-                        "Analysis:\n\n" +
+                    pOut += "Analysis Period: " + String.Format("{0:MM/dd/yyyy} to {1:MM/dd/yyyy}", period.period_beg_dt, period.period_end_dt) + "<br />" +
+                        "Analysis:<br /><br />" +
                         period.analysis_notes_va.FormatParagraphTextBox() +
-                        "Analysis for this period last updated " + edited_dt + " by " + edited_by_uid + "\n" +
-                        "Analyzed By: " + period.analyzed_by + " Date: " + String.Format("{0:MM/dd/yyyy}", period.analyzed_dt) + "\n" +
-                        "Approved By: " + period.approved_by + " Date: " + String.Format("{0:MM/dd/yyyy}", period.approved_dt) + "\n" +
-                        "------------------------------------------------------------------------------------------------------------------------------------------------------------------\n" +
-                        "------------------------------------------------------------------------------------------------------------------------------------------------------------------\n";
+                        "Analysis for this period last updated " + edited_dt + " by " + edited_by_uid + "<br />" +
+                        "Analyzed By: " + period.analyzed_by + " Date: " + String.Format("{0:MM/dd/yyyy}", period.analyzed_dt) + "<br />" +
+                        "Approved By: " + period.approved_by + " Date: " + String.Format("{0:MM/dd/yyyy}", period.approved_dt) + "<br />" +
+                        "----------------------------------------------------------------------------------------------------------------------------------------<br />" +
+                        "----------------------------------------------------------------------------------------------------------------------------------------<br />";
                 }
 
-                rtbSANAL.Text = pOut;
+                reSANAL.Content = pOut;
             }
         }
 
