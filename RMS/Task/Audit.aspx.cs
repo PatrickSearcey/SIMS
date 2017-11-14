@@ -420,7 +420,7 @@ namespace RMS.Task
 
                     pOut += "Analysis Period: " + String.Format("{0:MM/dd/yyyy} to {1:MM/dd/yyyy}", period.period_beg_dt, period.period_end_dt) + "<br />" +
                         "Analysis:<br /><br />" +
-                        period.analysis_notes_va.FormatParagraphTextBox() +
+                        period.analysis_notes_va.FormatParagraphOut() +
                         "Analysis for this period last updated " + edited_dt + " by " + edited_by_uid + "<br />" +
                         "Analyzed By: " + period.analyzed_by + " Date: " + String.Format("{0:MM/dd/yyyy}", period.analyzed_dt) + "<br />" +
                         "Approved By: " + period.approved_by + " Date: " + String.Format("{0:MM/dd/yyyy}", period.approved_dt) + "<br />" +
