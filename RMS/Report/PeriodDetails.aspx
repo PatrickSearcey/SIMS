@@ -76,7 +76,7 @@
                                     <div style="padding-left:10px;">
                                         <p style="font-weight:bold;">Analysis Period: <%# Eval("timespan") %></p>
                                         <p style="font-weight:bold;">Analysis:</p>
-                                        <div style="width:1200px;overflow-x:scroll;background-color:white;padding-left:5px;">
+                                        <div style="width:1000px;overflow-x:scroll;background-color:white;padding-left:5px;">
                                             <%# Eval("analysis_notes_va") %>
                                         </div>
                                         <p style="font-style:italic;">Analysis for this period last updated <%# Eval("edited_dt") %> by <%# Eval("edited_by_uid") %></p>
