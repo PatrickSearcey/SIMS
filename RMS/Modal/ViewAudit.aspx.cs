@@ -77,7 +77,10 @@ namespace RMS.Modal
 
         protected void PopulateAuditDetails()
         {
-            var audits = db.Audits.Where(p => (p.audit_beg_dt == currPeriod.period_beg_dt || p.audit_beg_dt < currPeriod.period_beg_dt) && (p.audit_end_dt == currPeriod.period_end_dt || p.audit_end_dt > currPeriod.period_end_dt))
+            var audits = db.Audits.Where(p => 
+                (p.audit_beg_dt == currPeriod.period_beg_dt || p.audit_beg_dt < currPeriod.period_beg_dt) && 
+                (p.audit_end_dt == currPeriod.period_end_dt || p.audit_end_dt > currPeriod.period_end_dt) &&
+                (p.AuditRecords.Select(a => a.rms_record_id).Contains(currRecord.rms_record_id)))
                 .Select(p => new
                 {
                     DateRange = String.Format("{0:MM/dd/yyyy} - {1:MM/dd/yyyy}", p.audit_beg_dt, p.audit_end_dt),
