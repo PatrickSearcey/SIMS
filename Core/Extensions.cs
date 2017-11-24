@@ -413,7 +413,7 @@ namespace Core
                                     {
                                         if (!string.IsNullOrEmpty(element_info))
                                         {
-                                            pOut = Convert.ToDecimal(da).FormatNWISNumber() + " mi&#178;, ";
+                                            pOut = Convert.ToDecimal(da).FormatNWISNumber() + " mi&#178;. "; //replaced , with . at end
                                         }
                                         else
                                         {
@@ -424,7 +424,7 @@ namespace Core
                                     {
                                         if (!string.IsNullOrEmpty(element_info))
                                         {
-                                            pOut = Convert.ToDecimal(da).FormatNWISNumber() + " mi&#178; of which " + Convert.ToDecimal(nca).FormatNWISNumber() + " mi&#178; probably is noncontributing, ";
+                                            pOut = Convert.ToDecimal(da).FormatNWISNumber() + " mi&#178; of which " + Convert.ToDecimal(nca).FormatNWISNumber() + " mi&#178; probably is noncontributing. "; //replaced , with . at end
                                         }
                                         else
                                         {
@@ -451,7 +451,7 @@ namespace Core
                             {
                                 if (!string.IsNullOrEmpty(element_info))
                                 {
-                                    pOut = Convert.ToDecimal(da).FormatNWISNumber() + " mi&#178;, ";
+                                    pOut = Convert.ToDecimal(da).FormatNWISNumber() + " mi&#178;. "; //replaced , with . at end
                                 }
                                 else
                                 {
