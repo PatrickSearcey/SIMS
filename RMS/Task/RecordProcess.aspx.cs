@@ -345,11 +345,29 @@ namespace RMS.Task
                 {
                     //If coming back in to approve after previously saving, populate the comments with the previously saved approver comments
                     if (currPeriod.PeriodDialogs.FirstOrDefault(p => p.status_set_to_va == "Approving") != null)
-                        reComments.Content = currPeriod.PeriodDialogs.Where(p => p.status_set_to_va == "Approving").OrderByDescending(p => p.dialog_dt).FirstOrDefault().comments_va.FormatParagraphEdit();
-                    //If coming back in to the approve after previously sending back for reanalyzing, populate the comments with the previously saved approver comments
-                    if (currPeriod.PeriodDialogs.FirstOrDefault(p => p.status_set_to_va == "Reanalyze" && p.origin_va == "Approver") != null)
-                        reComments.Content = currPeriod.PeriodDialogs.Where(p => p.status_set_to_va == "Reanalyze" && p.origin_va == "Approver").OrderByDescending(p => p.dialog_dt).FirstOrDefault().comments_va.FormatParagraphEdit();
-
+                    {
+                        //If coming back in to the approve after previously sending back for reanalyzing, check the order - has this been saved by the approver since reanalyzing happened?
+                        if (currPeriod.PeriodDialogs.FirstOrDefault(p => p.status_set_to_va == "Reanalyze" && p.origin_va == "Approver") != null)
+                        {
+                            //Check to see if the reanalyze dialog was entered before the approving dialog; if so, then populate the comments with the previously saved approver comments
+                            if (currPeriod.PeriodDialogs.FirstOrDefault(p => p.status_set_to_va == "Reanalyze" && p.origin_va == "Approver").dialog_dt < currPeriod.PeriodDialogs.FirstOrDefault(p => p.status_set_to_va == "Approving").dialog_dt)
+                            {
+                                reComments.Content = currPeriod.PeriodDialogs.Where(p => p.status_set_to_va == "Approving").OrderByDescending(p => p.dialog_dt).FirstOrDefault().comments_va.FormatParagraphEdit();
+                            }
+                            else //else, populate the comments with the previously saved approver comments from the reanalyze dialog
+                            {
+                                reComments.Content = currPeriod.PeriodDialogs.Where(p => p.status_set_to_va == "Reanalyze" && p.origin_va == "Approver").OrderByDescending(p => p.dialog_dt).FirstOrDefault().comments_va.FormatParagraphEdit();
+                            }
+                        }
+                        else reComments.Content = currPeriod.PeriodDialogs.Where(p => p.status_set_to_va == "Approving").OrderByDescending(p => p.dialog_dt).FirstOrDefault().comments_va.FormatParagraphEdit();
+                    }
+                    else
+                    {
+                        //If coming back in to the approve after previously sending back for reanalyzing, populate the comments with the previously saved approver comments
+                        if (currPeriod.PeriodDialogs.FirstOrDefault(p => p.status_set_to_va == "Reanalyze" && p.origin_va == "Approver") != null)
+                            reComments.Content = currPeriod.PeriodDialogs.Where(p => p.status_set_to_va == "Reanalyze" && p.origin_va == "Approver").OrderByDescending(p => p.dialog_dt).FirstOrDefault().comments_va.FormatParagraphEdit();
+                    }
+                    
                     hlApproveInst.NavigateUrl = String.Format("javascript:OpenPopup('../Modal/Instructions.aspx?type=Approve&id={0}')", currRecord.record_type_id);
                     rbFinish.Text = "Finish Approving";
                     pnlApproverComments.Visible = false;
