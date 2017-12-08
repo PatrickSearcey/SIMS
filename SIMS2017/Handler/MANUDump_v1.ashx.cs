@@ -89,7 +89,7 @@ namespace SIMS2017.Handler
             {
                 try
                 {
-                    List<ElementItem> lstElems = site.SiteElements.Select(p => new ElementItem
+                    List<ElementItem> lstElems = site.SiteElements.Where(p => p.ElementDetail.active == true).Select(p => new ElementItem
                     {
                         ElementID = p.element_id.ToString(),
                         SiteID = p.site_id.ToString(),
@@ -165,7 +165,7 @@ namespace SIMS2017.Handler
 
         protected void createSiteMANUXML(string site_no, string agency_cd, HttpContext context)
 	    {
-            List<ElementItem> lstElems = site.SiteElements.Select(p => new ElementItem
+            List<ElementItem> lstElems = site.SiteElements.Where(p => p.ElementDetail.active == true).Select(p => new ElementItem
                 {
                     ElementID = p.element_id.ToString(),
                     SiteID = p.site_id.ToString(),
