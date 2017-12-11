@@ -19,7 +19,11 @@ namespace SIMS2017.Modal
             int site_id = Convert.ToInt32(Request.QueryString["site_id"]);
             Data.Site site = db.Sites.Where(p => p.site_id == site_id).FirstOrDefault();
 
-            rlbFieldTripsStart.DataSource = db.Trips.Where(p => p.office_id == site.office_id).Select(p => new { TripName = p.trip_nm + " (" + p.user_id + ")", trip_id = p.trip_id }).ToList();
+            rlbFieldTripsStart.DataSource = db.Trips
+                .Where(p => p.Office.wsc_id == site.Office.wsc_id)
+                .Select(p => new { TripName = p.trip_nm + " (" + p.user_id + ")", trip_id = p.trip_id })
+                .OrderBy(p => p.TripName)
+                .ToList();
             rlbFieldTripsStart.DataBind();
 
             List<TripItem> trips = new List<TripItem>();

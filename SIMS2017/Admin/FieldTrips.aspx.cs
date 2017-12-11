@@ -151,6 +151,7 @@ namespace SIMS2017.Admin
             label.Text = text;
         }
 
+        //NO LONGER BEING USED - So that all sites, regardless of office, are available to be assigned to a field trip
         protected void rddlOffice_SelectedIndexChanged(object source, EventArgs e)
         {
             RadDropDownList rddl = (RadDropDownList)source;
@@ -219,7 +220,7 @@ namespace SIMS2017.Admin
                     rddlAssignedTo.DataSource = Employees;
                     rddlAssignedTo.DataBind();
                     rddlAssignedTo.SelectedValue = currTrip.user_id;
-                    rlbSitesStart.DataSource = Sites.Where(p => p.office_id == currTrip.office_id && !currTrip.TripSites.Select(a => a.site_id).Contains(p.site_id));
+                    rlbSitesStart.DataSource = Sites.Where(p => !currTrip.TripSites.Select(a => a.site_id).Contains(p.site_id));
                     rlbSitesStart.DataBind();
                     rlbSitesEnd.DataSource = currTrip.TripSites.Select(p => new { site_id = p.site_id, site_no_nm = p.Site.site_no + " " + p.Site.station_full_nm }).OrderBy(p => p.site_no_nm);
                     rlbSitesEnd.DataBind();
@@ -233,7 +234,7 @@ namespace SIMS2017.Admin
                     rddlAssignedTo2.DataBind();
                     rddlOffice.DataSource = db.Offices.Where(p => p.wsc_id == WSCID).Select(p => new { office_id = p.office_id, office_nm = p.office_nm }).ToList();
                     rddlOffice.DataBind();
-                    rlbSitesStart2.DataSource = Sites.Where(p => p.office_id == Convert.ToInt32(rddlOffice.SelectedValue));
+                    rlbSitesStart2.DataSource = Sites;
                     rlbSitesStart2.DataBind();
 
                     pnlUpdate.Visible = false;

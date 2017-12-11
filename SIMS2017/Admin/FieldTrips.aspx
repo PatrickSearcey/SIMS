@@ -14,12 +14,6 @@
                     <telerik:AjaxUpdatedControl ControlID="lblSuccess" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
-            <telerik:AjaxSetting AjaxControlID="rddlOffice">
-                <UpdatedControls>
-                    <telerik:AjaxUpdatedControl ControlID="rlbSitesStart2" LoadingPanelID="ralp" />
-                    <telerik:AjaxUpdatedControl ControlID="rlbSitesEnd2" LoadingPanelID="ralp" />
-                </UpdatedControls>
-            </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="ram">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="rgFieldTrips" LoadingPanelID="ralp" />
@@ -190,8 +184,7 @@
                                             <label style="line-height:9pt;">Assigned Office:</label>
                                         </td>
                                         <td>
-                                            <telerik:RadDropDownList ID="rddlOffice" runat="server" Width="300px" Skin="Bootstrap" DataTextField="office_nm" DataValueField="office_id" 
-                                                AutoPostBack="true" OnSelectedIndexChanged="rddlOffice_SelectedIndexChanged" />
+                                            <telerik:RadDropDownList ID="rddlOffice" runat="server" Width="300px" Skin="Bootstrap" DataTextField="office_nm" DataValueField="office_id" />
                                         </td>
                                     </tr>
                                     <tr>
