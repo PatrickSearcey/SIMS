@@ -1062,6 +1062,13 @@ namespace Data
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), office_id, wsc_id, querybegdate, queryenddate);
 			return ((ISingleResult<SP_RMS_RecentActionsResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_CRP_Ult_Data_Aging_Table_Legacy")]
+		public ISingleResult<SP_CRP_Ult_Data_Aging_Table_LegacyResult> SP_CRP_Ult_Data_Aging_Table_Legacy([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> wsc_id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), wsc_id);
+			return ((ISingleResult<SP_CRP_Ult_Data_Aging_Table_LegacyResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.lut_Office")]
@@ -27659,6 +27666,230 @@ namespace Data
 				if ((this._type_ds != value))
 				{
 					this._type_ds = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_CRP_Ult_Data_Aging_Table_LegacyResult
+	{
+		
+		private string _office_cd;
+		
+		private string _site_no;
+		
+		private string _station_nm;
+		
+		private System.Nullable<int> _dd_nu;
+		
+		private System.Nullable<int> _category_no;
+		
+		private string _parm_cd;
+		
+		private string _type_cd;
+		
+		private string _work_period_dt;
+		
+		private string _check_period_dt;
+		
+		private string _rev_period_dt;
+		
+		private System.Nullable<System.DateTime> _last_aging_dt;
+		
+		private System.Nullable<int> _DaysSinceAging;
+		
+		public SP_CRP_Ult_Data_Aging_Table_LegacyResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_cd", DbType="NVarChar(10)")]
+		public string office_cd
+		{
+			get
+			{
+				return this._office_cd;
+			}
+			set
+			{
+				if ((this._office_cd != value))
+				{
+					this._office_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_no", DbType="NVarChar(15)")]
+		public string site_no
+		{
+			get
+			{
+				return this._site_no;
+			}
+			set
+			{
+				if ((this._site_no != value))
+				{
+					this._site_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_nm", DbType="VarChar(50)")]
+		public string station_nm
+		{
+			get
+			{
+				return this._station_nm;
+			}
+			set
+			{
+				if ((this._station_nm != value))
+				{
+					this._station_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dd_nu", DbType="Int")]
+		public System.Nullable<int> dd_nu
+		{
+			get
+			{
+				return this._dd_nu;
+			}
+			set
+			{
+				if ((this._dd_nu != value))
+				{
+					this._dd_nu = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_category_no", DbType="Int")]
+		public System.Nullable<int> category_no
+		{
+			get
+			{
+				return this._category_no;
+			}
+			set
+			{
+				if ((this._category_no != value))
+				{
+					this._category_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_parm_cd", DbType="NVarChar(5)")]
+		public string parm_cd
+		{
+			get
+			{
+				return this._parm_cd;
+			}
+			set
+			{
+				if ((this._parm_cd != value))
+				{
+					this._parm_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_cd", DbType="NVarChar(50)")]
+		public string type_cd
+		{
+			get
+			{
+				return this._type_cd;
+			}
+			set
+			{
+				if ((this._type_cd != value))
+				{
+					this._type_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_work_period_dt", DbType="NVarChar(61)")]
+		public string work_period_dt
+		{
+			get
+			{
+				return this._work_period_dt;
+			}
+			set
+			{
+				if ((this._work_period_dt != value))
+				{
+					this._work_period_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_check_period_dt", DbType="NVarChar(61)")]
+		public string check_period_dt
+		{
+			get
+			{
+				return this._check_period_dt;
+			}
+			set
+			{
+				if ((this._check_period_dt != value))
+				{
+					this._check_period_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rev_period_dt", DbType="NVarChar(61)")]
+		public string rev_period_dt
+		{
+			get
+			{
+				return this._rev_period_dt;
+			}
+			set
+			{
+				if ((this._rev_period_dt != value))
+				{
+					this._rev_period_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_last_aging_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> last_aging_dt
+		{
+			get
+			{
+				return this._last_aging_dt;
+			}
+			set
+			{
+				if ((this._last_aging_dt != value))
+				{
+					this._last_aging_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DaysSinceAging", DbType="Int")]
+		public System.Nullable<int> DaysSinceAging
+		{
+			get
+			{
+				return this._DaysSinceAging;
+			}
+			set
+			{
+				if ((this._DaysSinceAging != value))
+				{
+					this._DaysSinceAging = value;
 				}
 			}
 		}

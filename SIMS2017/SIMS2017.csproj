@@ -53,6 +53,9 @@
     <Reference Include="GMaps">
       <HintPath>..\Dependencies\GMaps.dll</HintPath>
     </Reference>
+    <Reference Include="SIMSCustomControl">
+      <HintPath>..\Dependencies\SIMSCustomControl.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -459,6 +462,13 @@
     <Compile Include="StationInfo.aspx.designer.cs">
       <DependentUpon>StationInfo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UltDataAging.aspx.cs">
+      <DependentUpon>UltDataAging.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UltDataAging.aspx.designer.cs">
+      <DependentUpon>UltDataAging.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\RadSpell\de-DE.tdf" />
@@ -470,6 +480,7 @@
     <Content Include="App_Data\RadSpell\fr-FR.tdf" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="UltDataAging.aspx" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -534,7 +545,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
