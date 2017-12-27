@@ -403,6 +403,15 @@ namespace RMS.Task
         }
         #endregion
 
+        #region Page Methods
+        protected void UpdateSavedText()
+        {
+            string currTime = String.Format("{0:hh:mm}", DateTime.Now);
+            ltlSaved.Text = "<div style='width:100%;text-align:center;color:#ec562c;font-weight:bold;'>The period data was saved at " + currTime + "!</div>";
+            ltlSaved.Visible = true;
+        }
+        #endregion
+
         #region Page Events
         /// <summary>
         /// Allows a SuperUser or WSC Admin the ability to unloack a record, but only if the lock is a "save" type - in other words, 
@@ -415,6 +424,22 @@ namespace RMS.Task
 
             PopulatePageData();
             CreateLock(task);
+        }
+
+        protected void Timer1_Tick(object sender, EventArgs e)
+        {
+            switch (task)
+            {
+                case "Analyze":
+                    SaveAnalyzingPeriod();
+                    break;
+                case "Reanalyze":
+                    SaveReanalyzingPeriod();
+                    break;
+                case "Approve":
+                    SaveApprovingPeriod();
+                    break;
+            }
         }
 
         protected void Button_Commands(object sender, CommandEventArgs e)
@@ -607,7 +632,7 @@ namespace RMS.Task
 
                 //Change the lock to a save type
                 CreateLock("Analyzing");
-                ltlSaved.Visible = true;
+                UpdateSavedText();
                 ErrorMessage("hide");
             }
             else
@@ -671,7 +696,7 @@ namespace RMS.Task
                     AddDialog(period, "Reanalyzing", "Analyst", reComments.Content.FormatParagraphIn());
                 }
 
-                ltlSaved.Visible = true;
+                UpdateSavedText();
                 ErrorMessage("hide");
             }
             else
@@ -732,7 +757,7 @@ namespace RMS.Task
 
                 //Change the lock to a save type
                 CreateLock("Approving");
-                ltlSaved.Visible = true;
+                UpdateSavedText();
                 ErrorMessage("hide");
             }
             else

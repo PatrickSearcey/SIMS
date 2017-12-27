@@ -15,6 +15,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="cph1" runat="server">
     <telerik:RadAjaxManager ID="ram" runat="server">
         <AjaxSettings>
+            <telerik:AjaxSetting AjaxControlID="Timer1">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="ltlSaved" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="lbUnlockPeriod">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="pnlLocked" />
@@ -76,6 +81,7 @@
     <uc:PageHeading id="ph1" runat="server" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph2" runat="server">
+    <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval="300000" />
     <asp:Panel ID="pnlDiagnostics" runat="server" CssClass="pnlLocked" Visible="false">
         <h4>Error Diagnostics</h4>
         <p>There was an error accessing the period. Please send the below details to the system administrator: <a href="mailto:GS-W_Help_SIMS@usgs.gov">GS-W_Help_SIMS@usgs.gov</a></p>
@@ -279,7 +285,7 @@
             </tr>
         </table>
     </asp:Panel>
-    <asp:Literal ID="ltlSaved" Text="<div style='width:100%;text-align:center;color:#ec562c;font-weight:bold;'>The period data was saved!</div>" runat="server" Visible="false" />
+    <asp:Literal ID="ltlSaved" runat="server" Visible="false" />
     <asp:Panel ID="pnlErrors" runat="server" CssClass="pnlErrors" Visible="false">
         <h4>ACTION FAILED: Errors Found</h4>
         <p><asp:Literal ID="ltlError" runat="server" /></p>
