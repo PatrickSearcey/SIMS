@@ -90,6 +90,11 @@
                     </tr>
                     <tr>
                         <td colspan="2">
+                            Auditor <telerik:RadDropDownList ID="rddlAuditor" runat="server" Width="120px" DataValueField="user_id" DataTextField="user_id" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
                             <div class="SubPanel">
                                 <p>Upon approving this record, an email will also be sent to the following address(es): <asp:Literal ID="ltlApproverEmail" runat="server" /></p>
                                 <p>This site currently belongs to the following field trips: <asp:Literal ID="ltlFieldTrips" runat="server" /></p>
