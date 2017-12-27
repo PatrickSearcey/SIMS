@@ -803,7 +803,7 @@
         <elementListCompartment Id="a24060aa-29a1-475b-a7a0-70b52a111dd1" absoluteBounds="36.265, 11.46, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(38.25 : 12.2556469726562); (45.03125 : 12.2556469726562); (45.03125 : 13.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(38.25 : 12.4335034179687); (45.21875 : 12.4335034179687); (45.21875 : 13.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/SIMSDataContext/Record/RMS_Record_Master_RecordDD" />
       <nodes>
         <classShapeMoniker Id="812ebdea-de45-4537-aae5-2730a456de76" />
@@ -859,5 +859,11 @@
         <classShapeMoniker Id="812ebdea-de45-4537-aae5-2730a456de76" />
       </nodes>
     </associationConnector>
+    <classShape Id="d710cd25-0e1c-49cc-89b1-46742165f38f" absoluteBounds="40.75, 6.875, 2, 3.1170068359375">
+      <DataClassMoniker Name="/SIMSDataContext/vRMSMostRecentAuditPeriod" />
+      <nestedChildShapes>
+        <elementListCompartment Id="40ec0c8a-2d61-4107-9ec2-aee5e956988b" absoluteBounds="40.765, 7.3350000000000009, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
