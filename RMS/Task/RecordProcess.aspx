@@ -74,6 +74,11 @@
                     <telerik:AjaxUpdatedControl ControlID="ltlNote" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="rrblReanalyze">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="rbReanalyze" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
         </AjaxSettings>
     </telerik:RadAjaxManager>
     <telerik:RadAjaxLoadingPanel ID="ralp" runat="server" Skin="Bootstrap" />
@@ -273,8 +278,15 @@
             <tr>
                 <td colspan="2">
                     <div style="text-align:center;font-weight:bold;">
-                        <p><asp:Literal ID="ltlReanalyzeNote" runat="server" Text="Ensure that all problems found with the record period have been documented in the comment box before sending back to analyst:<br />" />
-                        <telerik:RadButton ID="rbReanalyze" runat="server" Text="Send Back for Reanalyzing" OnCommand="Button_Commands" CommandArgument="Reanalyze" CommandName="Approve" UseSubmitBehavior="false" />
+                        <p>
+                        <asp:Literal ID="ltlReanalyzeNote" runat="server" Text="Ensure that all problems found with the record period have been documented in the comment box before sending back to analyst.<br />You must first select the severity of the issue (minor or major).<br />" />
+                        <telerik:RadRadioButtonList ID="rrblReanalyze" runat="server" Skin="Bootstrap" OnSelectedIndexChanged="rrblReanalyze_SelectedIndexChanged" AutoPostBack="true" Direction="Horizontal">
+                            <Items>
+                                <telerik:ButtonListItem Text="Minor (grammar, spelling)" Value="minor" />
+                                <telerik:ButtonListItem Text="Major (requires new evaluation)" Value="major" />
+                            </Items>
+                        </telerik:RadRadioButtonList>
+                        <telerik:RadButton ID="rbReanalyze" runat="server" Text="Send Back for Reanalyzing" OnCommand="Button_Commands" CommandArgument="Reanalyze" CommandName="Approve" UseSubmitBehavior="false" Enabled="false" />
                         <asp:Literal ID="ltlApproveNote" runat="server" Text="<br />By clicking approved you agree that you have followed current approval guidance and determined that the record period has been properly analyzed:<br />" />
                         <telerik:RadButton ID="rbFinish" runat="server" OnCommand="Button_Commands" CommandArgument="Finish" UseSubmitBehavior="false" />
                         </p>

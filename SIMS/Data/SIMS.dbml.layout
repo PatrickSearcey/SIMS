@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 46, 51.75" name="SIMS">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 46, 52.125" name="SIMS">
   <DataContextMoniker Name="/SIMSDataContext" />
   <nestedChildShapes>
     <classShape Id="fe78cdc6-6138-440a-b02e-69e1083415a3" absoluteBounds="15.125, 3.375, 2, 3.6939111328124996">
@@ -582,24 +582,11 @@
         <elementListCompartment Id="45dae1d8-2f4c-4af3-9f02-6cf721e421bd" absoluteBounds="27.015, 47.085, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="b82e569e-929d-48bb-8568-5ef8951d0191" absoluteBounds="30.75, 49.125, 2, 2.3478011067708335">
-      <DataClassMoniker Name="/SIMSDataContext/PeriodDialog" />
-      <nestedChildShapes>
-        <elementListCompartment Id="7efe9a5a-fc49-4504-85ea-59048cdc28d3" absoluteBounds="30.765, 49.585, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <associationConnector edgePoints="[(29 : 47.2604484049479); (29.5 : 47.2604484049479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SIMSDataContext/RecordAnalysisPeriod/RecordAnalysisPeriod_PeriodChangeLog" />
       <nodes>
         <classShapeMoniker Id="8f3b1659-a0e2-46d7-9ed9-db378385a949" />
         <classShapeMoniker Id="ca08a1bb-2081-4305-aedf-67729da08b5b" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(29 : 49.8181062825521); (30.75 : 49.8181062825521)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/SIMSDataContext/RecordAnalysisPeriod/RecordAnalysisPeriod_PeriodDialog" />
-      <nodes>
-        <classShapeMoniker Id="8f3b1659-a0e2-46d7-9ed9-db378385a949" />
-        <classShapeMoniker Id="b82e569e-929d-48bb-8568-5ef8951d0191" />
       </nodes>
     </associationConnector>
     <classShape Id="2a4d9655-f530-4ea9-97b0-fc1f8fa73efb" absoluteBounds="6.875, 9.75, 2, 1.3862939453125">
@@ -865,5 +852,18 @@
         <elementListCompartment Id="40ec0c8a-2d61-4107-9ec2-aee5e956988b" absoluteBounds="40.765, 7.3350000000000009, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="d8d3a852-7312-484a-85f6-9c1cccecfa72" absoluteBounds="30.375, 49.5, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/SIMSDataContext/PeriodDialog" />
+      <nestedChildShapes>
+        <elementListCompartment Id="69b7a537-f8f2-4cc4-8bd1-7cae411120f0" absoluteBounds="30.39, 49.96, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(29 : 50.0056062825521); (30.375 : 50.0056062825521)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SIMSDataContext/RecordAnalysisPeriod/RecordAnalysisPeriod_RMS_Dialog" />
+      <nodes>
+        <classShapeMoniker Id="8f3b1659-a0e2-46d7-9ed9-db378385a949" />
+        <classShapeMoniker Id="d8d3a852-7312-484a-85f6-9c1cccecfa72" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

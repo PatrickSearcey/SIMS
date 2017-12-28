@@ -634,6 +634,15 @@ namespace RMS.Task {
         protected global::System.Web.UI.WebControls.Literal ltlReanalyzeNote;
         
         /// <summary>
+        /// rrblReanalyze control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadRadioButtonList rrblReanalyze;
+        
+        /// <summary>
         /// rbReanalyze control.
         /// </summary>
         /// <remarks>
