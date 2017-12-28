@@ -55,7 +55,7 @@
                 <telerik:RadPanelItem Text="Explanation (click here to collapse/expand)" Expanded="false">
                     <ContentTemplate>
                         <div style="padding:10px;font-size:9pt;">
-                            <div style="width:12px;height:12px;background-color:#eee8aa;border:solid 1px #808080;float:left;"></div> &nbsp;light yellow cell backgrounds in the 
+                            <p><div style="width:12px;height:12px;background-color:#eee8aa;border:solid 1px #808080;float:left;"></div> &nbsp;light yellow cell backgrounds in the 
                             analyze/approve period columns mean that the period was completed within the designated category guidelines (within the last 150 days for category 1 records, 
                             and within the last 240 days for category 2 records)<br />
                             <div style="width:12px;height:12px;background-color:#bc9f9f;border:solid 1px #808080;float:left;"></div> &nbsp;rose cell backgrounds denote last aging dates 
@@ -64,7 +64,10 @@
                             analyzed periods in RMS have been approved<br />
                             <div style="width:12px;height:12px;background-color:#bdb76b;border:solid 1px #808080;float:left;"></div> &nbsp;khaki cell backgrounds signify that all 
                             analyzed periods in RMS have been approved within the designated category guidelines (within the last 150 days for category 1 records, and within the last 
-                            240 days for category 2 records)</p>
+                            240 days for category 2 records)<br />
+                            Records that have been audited within the past 9 months show Last Audit Period in <span style="color:#196F3D;">dark green font</span>. Those audited between 9 - 12 
+                            months ago are in <span style="color:#7DCEA6;">light green font</span>, those between 12 - 15 months are in <span style="color:#CA6F1E;">orange font</span>, and greater 
+                            than 15 months in <span style="color:#E33813;">red font</span>.</p>
                             <b>Notes:</b>
                             <ul>
                                 <li>Clicking on the site number will open the Station Information page</li>
@@ -107,8 +110,13 @@
                         </ItemTemplate>
                     </telerik:GridTemplateColumn>
                     <telerik:GridBoundColumn DataField="category_no" HeaderText="Cat. No." AllowFiltering="false" UniqueName="category_no" />
-                    <telerik:GridBoundColumn DataField="analyzed_period_dt" SortExpression="analyzed_period_beg_dt" HeaderText="Last Analyzed Period in RMS" AllowFiltering="false" UniqueName="analyzed_period_dt" />
-                    <telerik:GridBoundColumn DataField="approved_period_dt" SortExpression="approved_period_beg_dt" HeaderText="Last Approved Period in RMS" AllowFiltering="false" UniqueName="approved_period_dt" />
+                    <telerik:GridBoundColumn DataField="analyzed_period_dt" SortExpression="analyzed_period_beg_dt" HeaderText="Last Analyzed Period" AllowFiltering="false" UniqueName="analyzed_period_dt" />
+                    <telerik:GridBoundColumn DataField="approved_period_dt" SortExpression="approved_period_beg_dt" HeaderText="Last Approved Period" AllowFiltering="false" UniqueName="approved_period_dt" />
+                    <telerik:GridTemplateColumn DataField="audit_end_dt" UniqueName="last_audit_period" HeaderText="Last Audit Period" SortExpression="audit_end_dt" AllowFiltering="false">
+                        <ItemTemplate>
+                            <asp:Literal ID="ltlAuditPeriod" runat="server" />
+                        </ItemTemplate>
+                    </telerik:GridTemplateColumn>
                     <telerik:GridBoundColumn DataField="last_aging_dt" DataFormatString="{0:MM/dd/yyyy}" AllowFiltering="false" UniqueName="last_aging_dt" HeaderText="Date" ColumnGroupName="AQ" />
                     <telerik:GridBoundColumn DataField="DaysSinceAging" AllowFiltering="false" UniqueName="DaysSinceAging" HeaderText="Days Ago" ColumnGroupName="AQ" />
                 </Columns>

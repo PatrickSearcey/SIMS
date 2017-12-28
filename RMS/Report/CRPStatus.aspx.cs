@@ -124,6 +124,7 @@ namespace RMS.Report
                 analyzed_period_dt = p.analyzed_period_dt,
                 approved_period_beg_dt = p.approved_period_beg_dt,
                 approved_period_dt = p.approved_period_dt,
+                audit_end_dt = p.audit_end_dt,
                 last_aging_dt = p.last_aging_dt,
                 DaysSinceAging = p.DaysSinceAging,
                 SIMSURL = Config.SIMSURL,
@@ -141,6 +142,41 @@ namespace RMS.Report
             {
                 GridDataItem item = e.Item as GridDataItem;
                 int rms_record_id = Convert.ToInt32(item.GetDataKeyValue("rms_record_id"));
+                
+                var audit = db.vRMSMostRecentAuditPeriods.FirstOrDefault(p => p.rms_record_id == rms_record_id);
+                Literal ltlAuditPeriod = (Literal)item.FindControl("ltlAuditPeriod");
+
+                if (audit != null)
+                {
+                    if (audit.audit_end_dt != null)
+                    {
+                        int monthsSinceLast = CalculateMonthsSinceLast(audit.audit_end_dt);
+                        if (monthsSinceLast < 10)
+                        {
+                            ltlAuditPeriod.Text = String.Format("<span style='color:#196F3D;'>{0:MM/dd/yyyy} - {1:MM/dd/yyyy}</span>", audit.audit_beg_dt, audit.audit_end_dt);
+                        }
+                        else if (monthsSinceLast > 9 && monthsSinceLast < 13)
+                        {
+                            ltlAuditPeriod.Text = String.Format("<span style='color:#7DCEA0;'>{0:MM/dd/yyyy} - {1:MM/dd/yyyy}</span>", audit.audit_beg_dt, audit.audit_end_dt);
+                        }
+                        else if (monthsSinceLast > 12 && monthsSinceLast < 16)
+                        {
+                            ltlAuditPeriod.Text = String.Format("<span style='color:#CA6F1E;'>{0:MM/dd/yyyy} - {1:MM/dd/yyyy}</span>", audit.audit_beg_dt, audit.audit_end_dt);
+                        }
+                        else
+                        {
+                            ltlAuditPeriod.Text = String.Format("<span style='color:#E33813;'>{0:MM/dd/yyyy} - {1:MM/dd/yyyy}</span>", audit.audit_beg_dt, audit.audit_end_dt);
+                        }
+                    }
+                    else
+                    {
+                        ltlAuditPeriod.Text = "N/A";
+                    }
+                }
+                else
+                {
+                    ltlAuditPeriod.Text = "N/A";
+                }
 
                 var ras = db.RecordApprovalStatus.FirstOrDefault(p => p.rms_record_id == rms_record_id);
 
@@ -218,6 +254,18 @@ namespace RMS.Report
             if (rddlOffice.SelectedIndex > 0) reportOfficeID = Convert.ToInt32(rddlOffice.SelectedValue); else reportOfficeID = 0;
             InitialDataBind();
             rgCRPStatus.Rebind();
+        }
+
+        private int CalculateMonthsSinceLast(DateTime? audit_end_dt)
+        {
+            int monthsSinceLast = -1;
+
+            if (audit_end_dt != null)
+            {
+                monthsSinceLast = ((DateTime.Now.Year - Convert.ToDateTime(audit_end_dt).Year) * 12) + DateTime.Now.Month - Convert.ToDateTime(audit_end_dt).Month;
+            }
+
+            return monthsSinceLast;
         }
     }
 }
