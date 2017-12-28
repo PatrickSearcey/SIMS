@@ -353,6 +353,10 @@
             </telerik:RadPageView>
 
             <telerik:RadPageView runat="server" ID="rpv2">
+                <p style="font-weight:bold; padding: 0 5px 0 5px;">Click the column headings to sort by that column.  To view audit details and download documents, click on 
+                    the Last Audit Period link.  Records that have been audited within the past 9 months show Months Since Last Audit in <span style="color:#196F3D;">dark green font</span>. Those audited between 9 - 12 
+                    months ago are in <span style="color:#7DCEA6;">light green font</span>, those between 12 - 15 months are in <span style="color:#CA6F1E;">orange font</span>, and greater than 15 months in <span style="color:#E33813;">red font</span>.
+                </p>
                 <telerik:RadGrid ID="rgAuditsDue" runat="server" AutoGenerateColumns="false" Skin="Bootstrap" 
                     GridLines="None" ShowStatusBar="true" PageSize="50"
                     AllowSorting="true" 

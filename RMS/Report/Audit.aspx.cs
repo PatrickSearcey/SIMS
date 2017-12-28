@@ -66,7 +66,7 @@ namespace RMS.Report
         {
             string rms_record_id = Request.QueryString["rms_record_id"];
             string rms_audit_id = Request.QueryString["rms_audit_id"];
-            string office_id = "646";// Request.QueryString["office_id"];
+            string office_id = Request.QueryString["office_id"];
 
             if (!string.IsNullOrEmpty(office_id))
             {
@@ -290,7 +290,7 @@ namespace RMS.Report
                     var audit = db.Audits.FirstOrDefault(p => p.rms_audit_id == rms_audit_id);
 
                     HyperLink hlAnalysisNotes = (HyperLink)item.FindControl("hlAnalysisNotes");
-                    hlAnalysisNotes.NavigateUrl = String.Format("javascript:OpenPopup('Modal/ReportPopup.aspx?view=analysisnotesbydaterange&rms_record_id={0}&beg_dt={1:MM/dd/yyyy}&end_dt={2:MM/dd/yyyy}')", rms_record_id, audit.audit_beg_dt, audit.audit_end_dt);
+                    hlAnalysisNotes.NavigateUrl = String.Format("javascript:OpenPopup('../Modal/ReportPopup.aspx?view=analysisnotesbydaterange&rms_record_id={0}&beg_dt={1:MM/dd/yyyy}&end_dt={2:MM/dd/yyyy}')", rms_record_id, audit.audit_beg_dt, audit.audit_end_dt);
 
                     HyperLink hlEditAudit = (HyperLink)item.FindControl("hlEditAudit");
                     hlEditAudit.NavigateUrl = String.Format("../Task/Audit.aspx?rms_audit_id={0}", rms_audit_id);
@@ -369,7 +369,7 @@ namespace RMS.Report
                     if (recAudit.audit_beg_dt != null && recAudit.audit_end_dt != null)
                     {
                         hlAuditPeriod.Text = String.Format("{0:MM/dd/yyyy} - {1:MM/dd/yyyy}", recAudit.audit_beg_dt, recAudit.audit_end_dt);
-                        hlAuditPeriod.NavigateUrl = String.Format("javascript:OpenPopup('')");
+                        hlAuditPeriod.NavigateUrl = String.Format("javascript:OpenPopup('../Modal/ViewAudit.aspx?rms_audit_id={0}&rms_record_id={1}')", recAudit.rms_audit_id, rms_record_id);
 
                         int monthsSinceLast = CalculateMonthsSinceLast(recAudit.audit_end_dt);
                         if (monthsSinceLast < 10)
