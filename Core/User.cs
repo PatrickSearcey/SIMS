@@ -75,27 +75,39 @@ namespace Core
             }
             else
             {
-                var unreg_user = db.spz_GetUserInfoFromAD(_id).ToList();
-                string primaryOU = "AustinTX-W";
-                string email = _id + "@usgs.gov";
-                foreach (var result in unreg_user)
+                try
                 {
-                    primaryOU = result.primaryOU;
-                    email = result.mail;
-                }
-                var wsc = db.WSCs.FirstOrDefault(p => p.AD_OU.Contains(primaryOU));
-                var office = db.Offices.FirstOrDefault(p => p.wsc_id == wsc.wsc_id);
+                    var unreg_user = db.spz_GetUserInfoFromAD(_id).ToList();
+                    string primaryOU = "AustinTX-W";
+                    string email = _id + "@usgs.gov";
+                    foreach (var result in unreg_user)
+                    {
+                        primaryOU = result.primaryOU;
+                        email = result.mail;
+                    }
+                    var wsc = db.WSCs.FirstOrDefault(p => p.AD_OU.Contains(primaryOU));
+                    var office = db.Offices.FirstOrDefault(p => p.wsc_id == wsc.wsc_id);
 
-                _office_id = office.office_id;
-                _wsc_id.Add(wsc.wsc_id);
-                _email = email;
-                _active = false;
-                _showreports = false;
-                //Add WSCs for which the WSC of the user has exceptions
-                foreach (int w in db.ExceptionWSCs.Where(p => p.AD_OU == primaryOU).Select(p => p.exc_wsc_id).ToList())
-                {
-                    _wsc_id.Add(w);
+                    _office_id = office.office_id;
+                    _wsc_id.Add(wsc.wsc_id);
+                    _email = email;
+                    _active = false;
+                    _showreports = false;
+                    //Add WSCs for which the WSC of the user has exceptions
+                    foreach (int w in db.ExceptionWSCs.Where(p => p.AD_OU == primaryOU).Select(p => p.exc_wsc_id).ToList())
+                    {
+                        _wsc_id.Add(w);
+                    }
                 }
+                catch (Exception ex)
+                {
+                    _office_id = 348;
+                    _wsc_id.Add(31);
+                    _email = "GS-W_Help_SIMS@usgs.gov";
+                    _active = false;
+                    _showreports = false;
+                }
+                
             }
 
         }
