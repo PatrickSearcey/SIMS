@@ -71,7 +71,7 @@ namespace RMS
 
             hlAnalyzeRecordsList.NavigateUrl = String.Format("{0}Report/RecordProcess.aspx?task=analyze", Config.RMSURL);
             hlApproveRecordsList.NavigateUrl = String.Format("{0}Report/RecordProcess.aspx?task=approve", Config.RMSURL);
-            hlCRPStatus.NavigateUrl = String.Format("{0}Report/CRPStatus.aspx", Config.RMSURL);
+            hlCRPStatus.NavigateUrl = String.Format("{0}Report/CRPStatus.aspx?office_id={1}", Config.RMSURL, OfficeID);
             hlCRPStatusChart.NavigateUrl = String.Format("{0}Report/CRPStatusChart.aspx", Config.RMSURL);
             hlRecordProgressWSC.NavigateUrl = String.Format("{0}Report/RecordProgressWSC.aspx", Config.RMSURL);
             hlRecordProgress.NavigateUrl = String.Format("{0}Report/RecordProgress.aspx", Config.RMSURL);
