@@ -339,6 +339,7 @@ namespace RMS.Task
                     rbFinish.Text = "Finish Reanalyzing";
                     rbFinish.CommandName = "Reanalyze";
                     rbSave.CommandName = "Reanalyze";
+                    rrblReanalyze.Visible = false;
                     rbReanalyze.Visible = false;
                 }
                 else
@@ -403,7 +404,24 @@ namespace RMS.Task
         }
         #endregion
 
+        #region Page Methods
+        protected void UpdateSavedText()
+        {
+            string currTime = String.Format("{0:hh:mm}", DateTime.Now);
+            ltlSaved.Text = "<div style='width:100%;text-align:center;color:#ec562c;font-weight:bold;'>The period data was saved at " + currTime + "!</div>";
+            ltlSaved.Visible = true;
+        }
+        #endregion
+
         #region Page Events
+        protected void rrblReanalyze_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (rrblReanalyze.SelectedValue != null)
+            {
+                rbReanalyze.Enabled = true;
+            }
+        }
+
         /// <summary>
         /// Allows a SuperUser or WSC Admin the ability to unloack a record, but only if the lock is a "save" type - in other words, 
         /// if the lock is in place because a user is currently analyzing/approving the record, the record cannot be unlocked
@@ -415,6 +433,22 @@ namespace RMS.Task
 
             PopulatePageData();
             CreateLock(task);
+        }
+
+        protected void Timer1_Tick(object sender, EventArgs e)
+        {
+            switch (task)
+            {
+                case "Analyze":
+                    SaveAnalyzingPeriod();
+                    break;
+                case "Reanalyze":
+                    SaveReanalyzingPeriod();
+                    break;
+                case "Approve":
+                    SaveApprovingPeriod();
+                    break;
+            }
         }
 
         protected void Button_Commands(object sender, CommandEventArgs e)
@@ -607,7 +641,7 @@ namespace RMS.Task
 
                 //Change the lock to a save type
                 CreateLock("Analyzing");
-                ltlSaved.Visible = true;
+                UpdateSavedText();
                 ErrorMessage("hide");
             }
             else
@@ -671,7 +705,7 @@ namespace RMS.Task
                     AddDialog(period, "Reanalyzing", "Analyst", reComments.Content.FormatParagraphIn());
                 }
 
-                ltlSaved.Visible = true;
+                UpdateSavedText();
                 ErrorMessage("hide");
             }
             else
@@ -732,7 +766,7 @@ namespace RMS.Task
 
                 //Change the lock to a save type
                 CreateLock("Approving");
-                ltlSaved.Visible = true;
+                UpdateSavedText();
                 ErrorMessage("hide");
             }
             else
@@ -757,10 +791,11 @@ namespace RMS.Task
                 period.approved_by = user.ID;
                 period.approved_dt = DateTime.Now;
 
-                string comments = "<p style='font-weight:bold;'>" + user.ID + " has followed current approval guidance and has determined that some aspects of the record need to be reanalyzed.  These aspects have been listed below.</p>" + reComments.Content.FormatParagraphIn();
+                string comments = "<p style='font-weight:bold;'>" + user.ID + " has followed current approval guidance and has determined that some aspects of the record need to be reanalyzed. The severity was deemed " + 
+                    rrblReanalyze.SelectedValue.ToUpper() + ". These aspects have been listed below.</p>" + reComments.Content.FormatParagraphIn();
 
                 db.SubmitChanges();
-                AddDialog(period, "", "Admin", "The period was sent back for reanalyzing.");
+                AddDialog(period, "", "Admin", "The period was sent back for reanalyzing. The severity was deemed " + rrblReanalyze.SelectedValue.ToUpper() + ".");
                 AddDialog(period, "Reanalyze", "Approver", comments);
 
                 SendEmails("Reanalyze", comments, period);
@@ -957,7 +992,7 @@ namespace RMS.Task
 
                         message.Subject = "Your record for " + period.Record.Site.site_no.Trim() + " needs to be reanalyzed";
                         message.Body = "The record period of " + timespan + " for station " + period.Record.Site.site_no.Trim() + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_id == period.Record.Site.nwisweb_site_id).station_nm +
-                            " (" + period.Record.RecordType.type_ds + ") has been sent back for reanalyzing.  The following comments were made by the approver:<br /><br />" +
+                            " (" + period.Record.RecordType.type_ds + ") has been sent back for reanalyzing. The severity was deemed " + rrblReanalyze.SelectedValue.ToUpper() + ". The following comments were made by the approver:<br /><br />" +
                             comments;
 
                         break;

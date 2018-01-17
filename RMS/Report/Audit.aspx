@@ -22,6 +22,11 @@
                     <telerik:AjaxUpdatedControl ControlID="rgAuditByRecord" LoadingPanelID="ralp" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="rgAuditsDue">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="rgAuditsDue" LoadingPanelID="ralp" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
         </AjaxSettings>
     </telerik:RadAjaxManager>
     <telerik:RadAjaxLoadingPanel ID="ralp" runat="server" Skin="Bootstrap" />
@@ -35,6 +40,7 @@
             <Tabs>
                 <telerik:RadTab Text="Audits By Record" SelectedCssClass="selectedTab" SelectedIndex="0" />
                 <telerik:RadTab Text="Audits By Date" SelectedCssClass="selectedTab" />
+                <telerik:RadTab Text="Audits Due" SelectedCssClass="selectedTab" />
             </Tabs>
         </telerik:RadTabStrip><telerik:RadMultiPage ID="rmp1" runat="server" SelectedIndex="0" Width="100%" CssClass="multiPage">
             <telerik:RadPageView runat="server" ID="rpv0">
@@ -342,6 +348,43 @@
                                 </telerik:RadToolTip>
                             </FormTemplate>
                         </EditFormSettings>
+                    </MasterTableView>
+                </telerik:RadGrid>
+            </telerik:RadPageView>
+
+            <telerik:RadPageView runat="server" ID="rpv2">
+                <p style="font-weight:bold; padding: 0 5px 0 5px;">Click the column headings to sort by that column.  To view audit details and download documents, click on 
+                    the Last Audit Period link.  Records that have been audited within the past 9 months show Months Since Last Audit in <span style="color:#196F3D;">dark green font</span>. Those audited between 9 - 12 
+                    months ago are in <span style="color:#7DCEA6;">light green font</span>, those between 12 - 15 months are in <span style="color:#CA6F1E;">orange font</span>, and greater than 15 months in <span style="color:#E33813;">red font</span>.
+                </p>
+                <telerik:RadGrid ID="rgAuditsDue" runat="server" AutoGenerateColumns="false" Skin="Bootstrap" 
+                    GridLines="None" ShowStatusBar="true" PageSize="50"
+                    AllowSorting="true" 
+                    AllowMultiRowSelection="false" 
+                    AllowFiltering="true"
+                    AllowPaging="true"
+                    AllowAutomaticDeletes="true" OnNeedDataSource="rgAuditsDue_NeedDataSource"
+                    OnItemDataBound="rgAuditsDue_ItemDataBound"
+                    OnPreRender="rgAuditsDue_PreRender">
+                    <PagerStyle Mode="NumericPages" />
+                    <MasterTableView DataKeyNames="rms_record_id" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" 
+                        Name="Records" AllowFilteringByColumn="true">
+                        <Columns>
+                            <telerik:GridBoundColumn DataField="site_no" HeaderText="Site Number" UniqueName="site_no" SortExpression="site_no" HeaderStyle-Width="150px" FilterControlWidth="100px" />
+                            <telerik:GridBoundColumn DataField="station_nm" HeaderText="Station Name" UniqueName="station_nm" HeaderStyle-Width="500px" SortExpression="station_nm" FilterControlWidth="200px"/>
+                            <telerik:GridBoundColumn DataField="type_cd" UniqueName="type_cd" HeaderText="Record Type" SortExpression="type_cd" FilterControlWidth="100px" />
+                            <telerik:GridBoundColumn DataField="auditor_uid" UniqueName="auditor_uid" HeaderText="Assigned Auditor" SortExpression="auditor_uid" FilterControlWidth="100px" />
+                            <telerik:GridTemplateColumn DataField="audit_end_dt" UniqueName="last_audit_period" HeaderText="Last Audit Period" SortExpression="audit_end_dt" AllowFiltering="false">
+                                <ItemTemplate>
+                                    <asp:HyperLink ID="hlAuditPeriod" runat="server"></asp:HyperLink>
+                                </ItemTemplate>
+                            </telerik:GridTemplateColumn>
+                            <telerik:GridTemplateColumn DataField="months_since_last" UniqueName="months_since_last" HeaderText="Months Since Last Audit" SortExpression="months_since_last" FilterControlWidth="60px">
+                                <ItemTemplate>
+                                    <asp:Literal ID="ltlMonthsSinceLast" runat="server" />
+                                </ItemTemplate>
+                            </telerik:GridTemplateColumn>
+                        </Columns>
                     </MasterTableView>
                 </telerik:RadGrid>
             </telerik:RadPageView>

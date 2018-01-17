@@ -152,7 +152,7 @@ namespace SIMS2017
             dlRecords.DataSource = record.Select(p => new RecordItem
             {
                 rms_record_id = p.rms_record_id,
-                personnel = GetPersonnelAssignments(p.operator_uid, p.analyzer_uid, p.approver_uid),
+                personnel = GetPersonnelAssignments(p.operator_uid, p.analyzer_uid, p.approver_uid, p.auditor_uid),
                 published = GetPublished(Convert.ToBoolean(p.not_published_fg)),
                 active = GetActive(Convert.ToBoolean(p.not_used_fg)),
                 cat_no = GetCategory(Convert.ToInt32(p.category_no)),
@@ -271,19 +271,21 @@ namespace SIMS2017
             }
         }
 
-        private string GetPersonnelAssignments(string operator_uid, string analyzer, string approver)
+        private string GetPersonnelAssignments(string operator_uid, string analyzer, string approver, string auditor)
         {
             string ret = "<i>unassigned</i>";
 
-            if (!string.IsNullOrEmpty(operator_uid) || !string.IsNullOrEmpty(analyzer) || !string.IsNullOrEmpty(approver))
+            if (!string.IsNullOrEmpty(operator_uid) || !string.IsNullOrEmpty(analyzer) || !string.IsNullOrEmpty(approver) || !string.IsNullOrEmpty(auditor))
             {
                 string op;
                 string az;
                 string ap;
+                string au;
                 if (!string.IsNullOrEmpty(operator_uid)) op = operator_uid; else op = "<i>unassigned</i>";
                 if (!string.IsNullOrEmpty(analyzer)) az = analyzer; else az = "<i>unassigned</i>";
                 if (!string.IsNullOrEmpty(approver)) ap = approver; else ap = "<i>unassigned</i>";
-                ret = op + "/" + az + "/" + ap;
+                if (!string.IsNullOrEmpty(auditor)) au = auditor; else au = "<i>unassigned</i>";
+                ret = op + "/" + az + "/" + ap + "/" + au;
             }
 
             return ret;
@@ -1149,7 +1151,7 @@ namespace SIMS2017
                 dlRecords.DataSource = record.Select(p => new RecordItem
                 {
                     rms_record_id = p.rms_record_id,
-                    personnel = GetPersonnelAssignments(p.operator_uid, p.analyzer_uid, p.approver_uid),
+                    personnel = GetPersonnelAssignments(p.operator_uid, p.analyzer_uid, p.approver_uid, p.auditor_uid),
                     published = GetPublished(Convert.ToBoolean(p.not_published_fg)),
                     active = GetActive(Convert.ToBoolean(p.not_used_fg)),
                     cat_no = GetCategory(Convert.ToInt32(p.category_no)),

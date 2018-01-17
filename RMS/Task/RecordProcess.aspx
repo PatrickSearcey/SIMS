@@ -15,6 +15,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="cph1" runat="server">
     <telerik:RadAjaxManager ID="ram" runat="server">
         <AjaxSettings>
+            <telerik:AjaxSetting AjaxControlID="Timer1">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="ltlSaved" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="lbUnlockPeriod">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="pnlLocked" />
@@ -69,6 +74,11 @@
                     <telerik:AjaxUpdatedControl ControlID="ltlNote" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="rrblReanalyze">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="rbReanalyze" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
         </AjaxSettings>
     </telerik:RadAjaxManager>
     <telerik:RadAjaxLoadingPanel ID="ralp" runat="server" Skin="Bootstrap" />
@@ -76,6 +86,7 @@
     <uc:PageHeading id="ph1" runat="server" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph2" runat="server">
+    <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval="300000" />
     <asp:Panel ID="pnlDiagnostics" runat="server" CssClass="pnlLocked" Visible="false">
         <h4>Error Diagnostics</h4>
         <p>There was an error accessing the period. Please send the below details to the system administrator: <a href="mailto:GS-W_Help_SIMS@usgs.gov">GS-W_Help_SIMS@usgs.gov</a></p>
@@ -267,8 +278,15 @@
             <tr>
                 <td colspan="2">
                     <div style="text-align:center;font-weight:bold;">
-                        <p><asp:Literal ID="ltlReanalyzeNote" runat="server" Text="Ensure that all problems found with the record period have been documented in the comment box before sending back to analyst:<br />" />
-                        <telerik:RadButton ID="rbReanalyze" runat="server" Text="Send Back for Reanalyzing" OnCommand="Button_Commands" CommandArgument="Reanalyze" CommandName="Approve" UseSubmitBehavior="false" />
+                        <p>
+                        <asp:Literal ID="ltlReanalyzeNote" runat="server" Text="Ensure that all problems found with the record period have been documented in the comment box before sending back to analyst.<br />You must first select the severity of the issue (minor or major).<br />" />
+                        <telerik:RadRadioButtonList ID="rrblReanalyze" runat="server" Skin="Bootstrap" OnSelectedIndexChanged="rrblReanalyze_SelectedIndexChanged" AutoPostBack="true" Direction="Horizontal">
+                            <Items>
+                                <telerik:ButtonListItem Text="Minor (grammar, spelling)" Value="minor" />
+                                <telerik:ButtonListItem Text="Major (requires new evaluation)" Value="major" />
+                            </Items>
+                        </telerik:RadRadioButtonList>
+                        <telerik:RadButton ID="rbReanalyze" runat="server" Text="Send Back for Reanalyzing" OnCommand="Button_Commands" CommandArgument="Reanalyze" CommandName="Approve" UseSubmitBehavior="false" Enabled="false" />
                         <asp:Literal ID="ltlApproveNote" runat="server" Text="<br />By clicking approved you agree that you have followed current approval guidance and determined that the record period has been properly analyzed:<br />" />
                         <telerik:RadButton ID="rbFinish" runat="server" OnCommand="Button_Commands" CommandArgument="Finish" UseSubmitBehavior="false" />
                         </p>
@@ -279,7 +297,7 @@
             </tr>
         </table>
     </asp:Panel>
-    <asp:Literal ID="ltlSaved" Text="<div style='width:100%;text-align:center;color:#ec562c;font-weight:bold;'>The period data was saved!</div>" runat="server" Visible="false" />
+    <asp:Literal ID="ltlSaved" runat="server" Visible="false" />
     <asp:Panel ID="pnlErrors" runat="server" CssClass="pnlErrors" Visible="false">
         <h4>ACTION FAILED: Errors Found</h4>
         <p><asp:Literal ID="ltlError" runat="server" /></p>

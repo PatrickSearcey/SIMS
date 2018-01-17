@@ -40,6 +40,15 @@ namespace RMS.Task {
         protected global::RMS.Control.RecordPageHeading ph1;
         
         /// <summary>
+        /// Timer1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.Timer Timer1;
+        
+        /// <summary>
         /// pnlDiagnostics control.
         /// </summary>
         /// <remarks>
@@ -623,6 +632,15 @@ namespace RMS.Task {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlReanalyzeNote;
+        
+        /// <summary>
+        /// rrblReanalyze control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadRadioButtonList rrblReanalyze;
         
         /// <summary>
         /// rbReanalyze control.

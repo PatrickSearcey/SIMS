@@ -193,7 +193,7 @@ namespace SIMS2017.Modal
                 rtbCatReason.Visible = false;
             }
 
-            //Analyzer & Approver
+            //Operator/Analyzer/Approver/Auditor
             var personnel = db.SP_Personnel_by_WSC_office_or_user_id(site.Office.wsc_id, 0, "", "no", "True", "no");
             rddlOperator.DataSource = personnel;
             rddlOperator.DataBind();
@@ -201,18 +201,25 @@ namespace SIMS2017.Modal
             rddlAnalyzer.DataBind();
             rddlApprover.DataSource = personnel;
             rddlApprover.DataBind();
+            rddlAuditor.DataSource = personnel;
+            rddlAuditor.DataBind();
             if (option == "editcurrentrecord")
             {
-                if (!string.IsNullOrEmpty(record.operator_uid)) rddlOperator.SelectedValue = record.operator_uid; else rddlOperator.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
-                if (!string.IsNullOrEmpty(record.analyzer_uid)) rddlAnalyzer.SelectedValue = record.analyzer_uid; else rddlAnalyzer.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
-                if (!string.IsNullOrEmpty(record.approver_uid)) rddlApprover.SelectedValue = record.approver_uid; else rddlApprover.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
+                rddlOperator.SelectedValue = record.operator_uid;
+                rddlAnalyzer.SelectedValue = record.analyzer_uid;
+                rddlApprover.SelectedValue = record.approver_uid;
+                rddlAuditor.SelectedValue = record.auditor_uid;
+                //if (!string.IsNullOrEmpty(record.operator_uid)) rddlOperator.SelectedValue = record.operator_uid; else rddlOperator.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
+                //if (!string.IsNullOrEmpty(record.analyzer_uid)) rddlAnalyzer.SelectedValue = record.analyzer_uid; else rddlAnalyzer.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
+                //if (!string.IsNullOrEmpty(record.approver_uid)) rddlApprover.SelectedValue = record.approver_uid; else rddlApprover.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
+                //if (!string.IsNullOrEmpty(record.auditor_uid)) rddlAuditor.SelectedValue = record.auditor_uid; else rddlAuditor.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
             }
-            else
-            {
-                rddlOperator.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
-                rddlAnalyzer.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
-                rddlApprover.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
-            }
+            
+            rddlOperator.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
+            rddlAnalyzer.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
+            rddlApprover.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
+            rddlAuditor.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
+            
             
             //Approver email
             int office_id = Convert.ToInt32(site.office_id);
@@ -366,6 +373,7 @@ namespace SIMS2017.Modal
                     record.operator_uid = rddlOperator.SelectedValue;
                     record.analyzer_uid = rddlAnalyzer.SelectedValue;
                     record.approver_uid = rddlApprover.SelectedValue;
+                    record.auditor_uid = rddlAuditor.SelectedValue;
                     //Update the responsible office
                     if (record.RecordAltOffice != null)
                     {
@@ -397,6 +405,7 @@ namespace SIMS2017.Modal
                     new_record.operator_uid = rddlOperator.SelectedValue;
                     new_record.analyzer_uid = rddlAnalyzer.SelectedValue;
                     new_record.approver_uid = rddlApprover.SelectedValue;
+                    new_record.auditor_uid = rddlAuditor.SelectedValue;
                     new_record.not_used_fg = rcbRecordInactive.Checked;
                     new_record.record_type_id = Convert.ToInt32(rddlRecordTypes.SelectedValue);
                     new_record.category_no = Convert.ToInt32(rddlCatNumber.SelectedValue);

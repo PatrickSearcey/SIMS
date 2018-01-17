@@ -283,6 +283,15 @@ namespace SIMS2017.Modal {
         protected global::Telerik.Web.UI.RadDropDownList rddlApprover;
         
         /// <summary>
+        /// rddlAuditor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDropDownList rddlAuditor;
+        
+        /// <summary>
         /// ltlApproverEmail control.
         /// </summary>
         /// <remarks>

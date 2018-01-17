@@ -290,7 +290,7 @@ namespace RMS.Report
                     var audit = db.Audits.FirstOrDefault(p => p.rms_audit_id == rms_audit_id);
 
                     HyperLink hlAnalysisNotes = (HyperLink)item.FindControl("hlAnalysisNotes");
-                    hlAnalysisNotes.NavigateUrl = String.Format("javascript:OpenPopup('Modal/ReportPopup.aspx?view=analysisnotesbydaterange&rms_record_id={0}&beg_dt={1:MM/dd/yyyy}&end_dt={2:MM/dd/yyyy}')", rms_record_id, audit.audit_beg_dt, audit.audit_end_dt);
+                    hlAnalysisNotes.NavigateUrl = String.Format("javascript:OpenPopup('../Modal/ReportPopup.aspx?view=analysisnotesbydaterange&rms_record_id={0}&beg_dt={1:MM/dd/yyyy}&end_dt={2:MM/dd/yyyy}')", rms_record_id, audit.audit_beg_dt, audit.audit_end_dt);
 
                     HyperLink hlEditAudit = (HyperLink)item.FindControl("hlEditAudit");
                     hlEditAudit.NavigateUrl = String.Format("../Task/Audit.aspx?rms_audit_id={0}", rms_audit_id);
@@ -320,6 +320,98 @@ namespace RMS.Report
                     ltlFindings.Text = audit.audit_findings;
                 }
             }
+        }
+        #endregion
+
+        #region Audits Due RadGrid
+        protected void rgAuditsDue_NeedDataSource(object source, GridNeedDataSourceEventArgs e)
+        {
+            rgAuditsDue.DataSource = db.vRMSMostRecentAuditPeriods.Where(p => p.wsc_id == WSCID).Select(p => new
+            {
+                site_no = p.site_no,
+                station_nm = p.station_nm,
+                type_cd = p.type_cd,
+                auditor_uid = p.auditor_uid,
+                audit_beg_dt = p.audit_beg_dt,
+                audit_end_dt = p.audit_end_dt,
+                months_since_last = CalculateMonthsSinceLast(p.audit_end_dt),
+                rms_record_id = p.rms_record_id
+            }).ToList();
+        }
+
+        protected void rgAuditsDue_PreRender(object sender, EventArgs e)
+        {
+            GridFilterMenu menu = rgAuditsDue.FilterMenu;
+            int i = 0;
+            while (i < menu.Items.Count)
+            {
+                if (menu.Items[i].Text == "NoFilter" | menu.Items[i].Text == "Contains" | menu.Items[i].Text == "EqualTo" | menu.Items[i].Text == "DoesNotContain")
+                    i = i + 1;
+                else
+                    menu.Items.RemoveAt(i);
+            }
+        }
+
+        protected void rgAuditsDue_ItemDataBound(object sender, GridItemEventArgs e)
+        {
+            if ("Records".Equals(e.Item.OwnerTableView.Name))
+            {
+                if (e.Item is GridDataItem)
+                {
+                    GridDataItem item = (GridDataItem)e.Item;
+
+                    int rms_record_id = Convert.ToInt32(item.GetDataKeyValue("rms_record_id"));
+                    var recAudit = db.vRMSMostRecentAuditPeriods.FirstOrDefault(p => p.rms_record_id == rms_record_id);
+
+                    HyperLink hlAuditPeriod = (HyperLink)item.FindControl("hlAuditPeriod");
+                    Literal ltlMonthsSinceLast = (Literal)item.FindControl("ltlMonthsSinceLast");
+
+                    if (recAudit.audit_beg_dt != null && recAudit.audit_end_dt != null)
+                    {
+                        hlAuditPeriod.Text = String.Format("{0:MM/dd/yyyy} - {1:MM/dd/yyyy}", recAudit.audit_beg_dt, recAudit.audit_end_dt);
+                        hlAuditPeriod.NavigateUrl = String.Format("javascript:OpenPopup('../Modal/ViewAudit.aspx?rms_audit_id={0}&rms_record_id={1}')", recAudit.rms_audit_id, rms_record_id);
+
+                        int monthsSinceLast = CalculateMonthsSinceLast(recAudit.audit_end_dt);
+                        if (monthsSinceLast < 10)
+                        {
+                            ltlMonthsSinceLast.Text = String.Format("<span style='color:#196F3D;'>{0}</span>", monthsSinceLast);
+                        }
+                        else if (monthsSinceLast > 9 && monthsSinceLast < 13)
+                        {
+                            ltlMonthsSinceLast.Text = String.Format("<span style='color:#7DCEA0;'>{0}</span>", monthsSinceLast);
+                        }
+                        else if (monthsSinceLast > 12 && monthsSinceLast < 16)
+                        {
+                            ltlMonthsSinceLast.Text = String.Format("<span style='color:#CA6F1E;'>{0}</span>", monthsSinceLast);
+                        }
+                        else
+                        {
+                            ltlMonthsSinceLast.Text = String.Format("<span style='color:#E33813;'>{0}</span>", monthsSinceLast);
+                        }
+                    }
+                    else
+                    {
+                        hlAuditPeriod.Text = "";
+                        hlAuditPeriod.Enabled = false;
+
+                        ltlMonthsSinceLast.Text = "N/A";
+                    }
+                }
+            }
+        }
+        #endregion
+
+        #region Page Methods
+        private int CalculateMonthsSinceLast(DateTime? audit_end_dt)
+        {
+            int monthsSinceLast = -1;
+
+            if (audit_end_dt != null)
+            {
+                monthsSinceLast = ((DateTime.Now.Year - Convert.ToDateTime(audit_end_dt).Year) * 12) + DateTime.Now.Month - Convert.ToDateTime(audit_end_dt).Month;
+            }
+
+            return monthsSinceLast;
         }
         #endregion
 
