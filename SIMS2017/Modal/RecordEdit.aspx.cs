@@ -205,18 +205,21 @@ namespace SIMS2017.Modal
             rddlAuditor.DataBind();
             if (option == "editcurrentrecord")
             {
-                if (!string.IsNullOrEmpty(record.operator_uid)) rddlOperator.SelectedValue = record.operator_uid; else rddlOperator.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
-                if (!string.IsNullOrEmpty(record.analyzer_uid)) rddlAnalyzer.SelectedValue = record.analyzer_uid; else rddlAnalyzer.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
-                if (!string.IsNullOrEmpty(record.approver_uid)) rddlApprover.SelectedValue = record.approver_uid; else rddlApprover.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
-                if (!string.IsNullOrEmpty(record.auditor_uid)) rddlAuditor.SelectedValue = record.auditor_uid; else rddlAuditor.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
+                rddlOperator.SelectedValue = record.operator_uid;
+                rddlAnalyzer.SelectedValue = record.analyzer_uid;
+                rddlApprover.SelectedValue = record.approver_uid;
+                rddlAuditor.SelectedValue = record.auditor_uid;
+                //if (!string.IsNullOrEmpty(record.operator_uid)) rddlOperator.SelectedValue = record.operator_uid; else rddlOperator.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
+                //if (!string.IsNullOrEmpty(record.analyzer_uid)) rddlAnalyzer.SelectedValue = record.analyzer_uid; else rddlAnalyzer.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
+                //if (!string.IsNullOrEmpty(record.approver_uid)) rddlApprover.SelectedValue = record.approver_uid; else rddlApprover.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
+                //if (!string.IsNullOrEmpty(record.auditor_uid)) rddlAuditor.SelectedValue = record.auditor_uid; else rddlAuditor.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
             }
-            else
-            {
-                rddlOperator.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
-                rddlAnalyzer.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
-                rddlApprover.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
-                rddlAuditor.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
-            }
+            
+            rddlOperator.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
+            rddlAnalyzer.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
+            rddlApprover.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
+            rddlAuditor.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
+            
             
             //Approver email
             int office_id = Convert.ToInt32(site.office_id);
