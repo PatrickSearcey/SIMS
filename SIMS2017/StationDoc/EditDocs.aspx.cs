@@ -348,6 +348,8 @@ namespace SIMS2017.StationDoc
                         }
                         else if (rrblAction.SelectedValue == "Edit")
                         {
+                            //Archive the previous version
+                            BackupElement();
                             EditElement();
                             pnlResult.Visible = false;
                             rlvElements.Visible = true;
