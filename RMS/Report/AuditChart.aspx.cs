@@ -93,15 +93,16 @@ namespace RMS.Report
                 GridDataItem item = e.Item as GridDataItem;
                 RadHtmlChart progressChart = item["ProgressChartColumn"].FindControl("rhcProgress") as RadHtmlChart;
                 int record_type_id = Convert.ToInt32(item.GetDataKeyValue("record_type_id"));
+                DateTime date15MonthsAgo = DateTime.Now.AddMonths(-15);
 
                 RecordProgressItem rpi = new RecordProgressItem();
-                var countsByRecordType = db.SP_RMS_Progress_Counts_by_recordtype(record_type_id, reportOfficeID, rdpEndDt.SelectedDate).FirstOrDefault();
+                var countsByRecordType = db.SP_RMS_Audit_Progress_by_recordtype(record_type_id, date15MonthsAgo).FirstOrDefault();
 
                 //Progress Chart Data
                 rpi.TotalRecords = (int)countsByRecordType.total_sites;
-                rpi.Audited = (int)countsByRecordType.analyzed;
-                rpi.PercentAudited = rpi.TotalRecords > 0 ? Decimal.Divide((decimal)rpi.Analyzed, (decimal)rpi.TotalRecords) * 100 : 0;
-                rpi.PercentAuditedString = rpi.TotalRecords > 0 ? String.Format("{0:###.##}%", Decimal.Divide((decimal)rpi.Analyzed, (decimal)rpi.TotalRecords) * 100) : "0%";
+                rpi.Audited = (int)countsByRecordType.audited;
+                rpi.PercentAudited = rpi.TotalRecords > 0 ? Decimal.Divide((decimal)rpi.Audited, (decimal)rpi.TotalRecords) * 100 : 0;
+                rpi.PercentAuditedString = rpi.TotalRecords > 0 ? String.Format("{0:###.##}%", Decimal.Divide((decimal)rpi.Audited, (decimal)rpi.TotalRecords) * 100) : "0%";
 
                 List<RecordProgressItem> chartData = new List<RecordProgressItem>();
                 chartData.Add(rpi);

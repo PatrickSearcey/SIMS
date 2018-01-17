@@ -1077,6 +1077,13 @@ namespace Data
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), office_id, wsc_id, onlyactive);
 			return ((ISingleResult<SP_CRP_Ult_Data_Aging_TableResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RMS_Audit_Progress_by_recordtype")]
+		public ISingleResult<SP_RMS_Audit_Progress_by_recordtypeResult> SP_RMS_Audit_Progress_by_recordtype([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> record_type_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> querydate)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), record_type_id, querydate);
+			return ((ISingleResult<SP_RMS_Audit_Progress_by_recordtypeResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.lut_Office")]
@@ -9225,7 +9232,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordDD", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordDD", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
 		public Record Record
 		{
 			get
@@ -9424,7 +9431,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordLock", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordLock", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
 		public Record Record
 		{
 			get
@@ -10028,7 +10035,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordAnalysisStatus", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordAnalysisStatus", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
 		public Record Record
 		{
 			get
@@ -10179,7 +10186,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordAltOffice", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordAltOffice", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
 		public Record Record
 		{
 			get
@@ -12867,7 +12874,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_AuditRecord", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_AuditRecord", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
 		public Record Record
 		{
 			get
@@ -13517,7 +13524,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_RMS_Record_Master", Storage="_Records", ThisKey="site_id", OtherKey="site_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Record", Storage="_Records", ThisKey="site_id", OtherKey="site_id")]
 		public EntitySet<Record> Records
 		{
 			get
@@ -17627,7 +17634,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_RMS_Dialog", Storage="_PeriodDialogs", ThisKey="period_id", OtherKey="period_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_PeriodDialog", Storage="_PeriodDialogs", ThisKey="period_id", OtherKey="period_id")]
 		public EntitySet<PeriodDialog> PeriodDialogs
 		{
 			get
@@ -17640,7 +17647,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordAnalysisPeriod", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordAnalysisPeriod", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
 		public Record Record
 		{
 			get
@@ -18831,7 +18838,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordType_RMS_Record_Master", Storage="_Records", ThisKey="record_type_id", OtherKey="record_type_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordType_Record", Storage="_Records", ThisKey="record_type_id", OtherKey="record_type_id")]
 		public EntitySet<Record> Records
 		{
 			get
@@ -23596,7 +23603,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordDD", Storage="_RecordDDs", ThisKey="rms_record_id", OtherKey="rms_record_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordDD", Storage="_RecordDDs", ThisKey="rms_record_id", OtherKey="rms_record_id")]
 		public EntitySet<RecordDD> RecordDDs
 		{
 			get
@@ -23609,7 +23616,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordLock", Storage="_RecordLock", ThisKey="rms_record_id", OtherKey="rms_record_id", IsUnique=true, IsForeignKey=false)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordLock", Storage="_RecordLock", ThisKey="rms_record_id", OtherKey="rms_record_id", IsUnique=true, IsForeignKey=false)]
 		public RecordLock RecordLock
 		{
 			get
@@ -23638,7 +23645,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordAnalysisStatus", Storage="_RecordAnalysisStatus", ThisKey="rms_record_id", OtherKey="rms_record_id", IsUnique=true, IsForeignKey=false)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordAnalysisStatus", Storage="_RecordAnalysisStatus", ThisKey="rms_record_id", OtherKey="rms_record_id", IsUnique=true, IsForeignKey=false)]
 		public RecordAnalysisStatus RecordAnalysisStatus
 		{
 			get
@@ -23667,7 +23674,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordAltOffice", Storage="_RecordAltOffice", ThisKey="rms_record_id", OtherKey="rms_record_id", IsUnique=true, IsForeignKey=false)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordAltOffice", Storage="_RecordAltOffice", ThisKey="rms_record_id", OtherKey="rms_record_id", IsUnique=true, IsForeignKey=false)]
 		public RecordAltOffice RecordAltOffice
 		{
 			get
@@ -23696,7 +23703,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_AuditRecord", Storage="_AuditRecords", ThisKey="rms_record_id", OtherKey="rms_record_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_AuditRecord", Storage="_AuditRecords", ThisKey="rms_record_id", OtherKey="rms_record_id")]
 		public EntitySet<AuditRecord> AuditRecords
 		{
 			get
@@ -23709,7 +23716,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RMS_Record_Master_RecordAnalysisPeriod", Storage="_RecordAnalysisPeriods", ThisKey="rms_record_id", OtherKey="rms_record_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RecordAnalysisPeriod", Storage="_RecordAnalysisPeriods", ThisKey="rms_record_id", OtherKey="rms_record_id")]
 		public EntitySet<RecordAnalysisPeriod> RecordAnalysisPeriods
 		{
 			get
@@ -23722,7 +23729,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordType_RMS_Record_Master", Storage="_RecordType", ThisKey="record_type_id", OtherKey="record_type_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordType_Record", Storage="_RecordType", ThisKey="record_type_id", OtherKey="record_type_id", IsForeignKey=true)]
 		public RecordType RecordType
 		{
 			get
@@ -23756,7 +23763,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_RMS_Record_Master", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_Record", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
 		public Site Site
 		{
 			get
@@ -24288,7 +24295,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_RMS_Dialog", Storage="_RecordAnalysisPeriod", ThisKey="period_id", OtherKey="period_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordAnalysisPeriod_PeriodDialog", Storage="_RecordAnalysisPeriod", ThisKey="period_id", OtherKey="period_id", IsForeignKey=true)]
 		public RecordAnalysisPeriod RecordAnalysisPeriod
 		{
 			get
@@ -28114,6 +28121,68 @@ namespace Data
 				if ((this._audit_end_dt != value))
 				{
 					this._audit_end_dt = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_RMS_Audit_Progress_by_recordtypeResult
+	{
+		
+		private string _type_ds;
+		
+		private System.Nullable<int> _total_sites;
+		
+		private System.Nullable<int> _audited;
+		
+		public SP_RMS_Audit_Progress_by_recordtypeResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_ds", DbType="NVarChar(MAX)")]
+		public string type_ds
+		{
+			get
+			{
+				return this._type_ds;
+			}
+			set
+			{
+				if ((this._type_ds != value))
+				{
+					this._type_ds = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_sites", DbType="Int")]
+		public System.Nullable<int> total_sites
+		{
+			get
+			{
+				return this._total_sites;
+			}
+			set
+			{
+				if ((this._total_sites != value))
+				{
+					this._total_sites = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audited", DbType="Int")]
+		public System.Nullable<int> audited
+		{
+			get
+			{
+				return this._audited;
+			}
+			set
+			{
+				if ((this._audited != value))
+				{
+					this._audited = value;
 				}
 			}
 		}

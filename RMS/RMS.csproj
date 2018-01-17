@@ -8,6 +8,8 @@
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -161,6 +163,7 @@
     <Content Include="images\USGSHeaderLogoRMS.png" />
     <Content Include="images\viewdoc.png" />
     <Content Include="Modal\Instructions.aspx" />
+    <Content Include="Report\AuditChart.aspx" />
     <Content Include="Report\CRPStatus.aspx" />
     <Content Include="Report\CRPStatusChart.aspx" />
     <Content Include="Report\PeriodDetails.aspx" />
@@ -275,6 +278,13 @@
     </Compile>
     <Compile Include="Modal\Instructions.aspx.designer.cs">
       <DependentUpon>Instructions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\AuditChart.aspx.cs">
+      <DependentUpon>AuditChart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\AuditChart.aspx.designer.cs">
+      <DependentUpon>AuditChart.aspx</DependentUpon>
     </Compile>
     <Compile Include="Report\CRPStatus.aspx.cs">
       <DependentUpon>CRPStatus.aspx</DependentUpon>
@@ -451,7 +461,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

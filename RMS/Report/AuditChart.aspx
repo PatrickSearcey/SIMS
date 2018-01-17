@@ -14,6 +14,11 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="cph2" runat="server">
     <br />
     <div class="mainContent">
+        <div class="Filters">
+            <p>
+                This report shows the percent of records by record type that have been audited within the past 15 months. Hover your cursor over the bar in the charts to view more details.
+            </p>
+        </div>
         <telerik:RadGrid RenderMode="Lightweight" ID="rgRecordTypes" runat="server" GridLines="None" Skin="Bootstrap" OnNeedDataSource="rgRecordTypes_NeedDataSource"
             OnItemDataBound="rgRecordTypes_ItemDataBound" AllowPaging="False" PageSize="10" AllowSorting="True">
             <MasterTableView AutoGenerateColumns="False" DataKeyNames="record_type_id">
