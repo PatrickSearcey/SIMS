@@ -244,7 +244,7 @@ namespace RMS.Task
             {
                 hlAutoReview.NavigateUrl = String.Format("javascript:OpenPopup('{0}{1}/')", swr_url, currRecord.Site.site_no.Replace(" ", ""));
             }
-            else hlAutoReview.Visible = false;
+            else hlAutoReview.Enabled = false;
 
             if (PeriodID > 0)
             {
@@ -316,7 +316,7 @@ namespace RMS.Task
                 {
                     hlAutoReview2.NavigateUrl = String.Format("javascript:OpenPopup('{0}{1}/')", swr_url, currRecord.Site.site_no.Replace(" ", ""));
                 }
-                else hlAutoReview2.Visible = false;
+                else hlAutoReview2.Enabled = false;
                 pnlAnalysisNotesEdit.Visible = false;
                 pnlAnalysisNotesReadOnly.Visible = true;
                 pnlAnalystComments.Visible = false;

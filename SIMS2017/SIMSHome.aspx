@@ -68,7 +68,7 @@
                                                 <telerik:LayoutColumn Span="12" SpanMd="12" SpanSm="12" HiddenXs="true">
                                                     <div class="roundedTopSubPanel">
                                                         <h3>Latest News</h3>
-                                                        <strong>&raquo; <a href="https://collaboration.usgs.gov/wg/owi/specialprojects/SIMS/Shared%20Documents/updates.html" style="color:#cb0000;">UPDATED 11/13/2017</a> &laquo;</strong>
+                                                        <strong>&raquo; <a href="https://collaboration.usgs.gov/wg/owi/specialprojects/SIMS/Shared%20Documents/updates.html" style="color:#cb0000;">UPDATED 01/17/2018</a> &laquo;</strong>
                                                     </div>
                                                     <div class="roundedTopSubPanel">
                                                         <h3>Quick Jump</h3>
