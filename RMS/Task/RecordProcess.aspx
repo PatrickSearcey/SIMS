@@ -60,20 +60,6 @@
                     <telerik:AjaxUpdatedControl ControlID="pnlApprove" LoadingPanelID="ralp" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
-            <telerik:AjaxSetting AjaxControlID="pnlAnalysisNotesEdit">
-                <UpdatedControls>
-                    <telerik:AjaxUpdatedControl ControlID="pnlAnalysisNotesEdit" />
-                    <telerik:AjaxUpdatedControl ControlID="pnlAnalysisNotesReadOnly" />
-                    <telerik:AjaxUpdatedControl ControlID="ltlNote" />
-                </UpdatedControls>
-            </telerik:AjaxSetting>
-            <telerik:AjaxSetting AjaxControlID="pnlAnalysisNotesReadOnly">
-                <UpdatedControls>
-                    <telerik:AjaxUpdatedControl ControlID="pnlAnalysisNotesReadOnly" />
-                    <telerik:AjaxUpdatedControl ControlID="pnlAnalysisNotesEdit" />
-                    <telerik:AjaxUpdatedControl ControlID="ltlNote" />
-                </UpdatedControls>
-            </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="rrblReanalyze">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="rbReanalyze" />
