@@ -70,7 +70,7 @@ namespace RMS.Report
             }
 
             string wsc_nm = db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID).wsc_nm;
-            ph1.Title = "Current Record Progress by Office";
+            ph1.Title = "Current Record Progress";
             ph1.SubTitle = "For the " + wsc_nm + " WSC";
             ph1.RecordType = "&nbsp;";
 

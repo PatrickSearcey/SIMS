@@ -247,6 +247,9 @@
                             To view the Process of Analyzing, Approving and Auditing document, please <asp:HyperLink ID="hlAAADoc2" runat="server" Target="_blank">CLICK HERE</asp:HyperLink>.
                         </span>
                     </asp:Panel> 
+                    <p style="font-weight:bold;font-style:italic;">If you are approving after the period was reanalyzed, you are viewing the comments that were entered prior to reanalyzing. These comments are permanently saved and can be found in the
+                        <a href="../Report/PeriodDetails.aspx?type=wsc" target="_blank">Period Details</a> report. Users may edit these comments to show they were addressed, or they may clear the comment and enter their final approval comments.
+                    </p>
                     <telerik:RadEditor ID="reComments" runat="server" Skin="Bootstrap" OnClientLoad="OnClientLoad" Width="100%" Height="100px" ExternalDialogsPath="~/EditorDialogs/">
                         <Tools>
                             <telerik:EditorToolGroup>
