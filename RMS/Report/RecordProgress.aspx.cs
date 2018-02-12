@@ -41,7 +41,7 @@ namespace RMS.Report
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string office_id = Request.QueryString["office_id"];
+            string office_id = "348";// Request.QueryString["office_id"];
             string wsc_id = Request.QueryString["wsc_id"];
 
             //If an office was passed, then use this to determine the WSCID
@@ -327,7 +327,8 @@ namespace RMS.Report
 
         protected void UpdateDetails(object sender, CommandEventArgs e)
         {
-            reportOfficeID = Convert.ToInt32(rddlOffice.SelectedValue);
+            if (!string.IsNullOrEmpty(rddlOffice.SelectedValue)) reportOfficeID = Convert.ToInt32(rddlOffice.SelectedValue);
+            else reportOfficeID = 0;
             InitialDataBind();
             rgEmployees.Rebind();
             rgRecordTypes.Rebind();
