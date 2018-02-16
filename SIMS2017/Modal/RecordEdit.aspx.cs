@@ -344,11 +344,20 @@ namespace SIMS2017.Modal
                             if (item.Selected)
                             {
                                 //Using the selected IDs iv_ts_id value, find the full details for the ID in the TS_ID_CACHE, and create a new entry in the Record DD table
+                                //First grab the one with stat_cd = 00003. If unavailable, grab the one with stat_cd = 00002. If unavailable, grab the one with stat_cd = 00001. If unavailable, grab the first one found.
                                 var ts_id = db.vTS_ID_CACHEs.FirstOrDefault(p => p.iv_ts_id == Convert.ToInt32(item.Value) && p.stat_cd == "00003");
                                 Data.RecordDD id;
                                 if (ts_id == null)
                                 {
-                                    ts_id = db.vTS_ID_CACHEs.FirstOrDefault(p => p.iv_ts_id == Convert.ToInt32(item.Value));
+                                    ts_id = db.vTS_ID_CACHEs.FirstOrDefault(p => p.iv_ts_id == Convert.ToInt32(item.Value) && p.stat_cd == "00002");
+                                    if (ts_id == null)
+                                    {
+                                        db.vTS_ID_CACHEs.FirstOrDefault(p => p.iv_ts_id == Convert.ToInt32(item.Value) && p.stat_cd == "00001");
+                                        if (ts_id == null)
+                                        {
+                                            db.vTS_ID_CACHEs.FirstOrDefault(p => p.iv_ts_id == Convert.ToInt32(item.Value));
+                                        }
+                                    }
                                 }
 
                                 id = new Data.RecordDD()
