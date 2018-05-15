@@ -478,6 +478,27 @@ namespace SIMS2017
             return ds;
         }
 
+        [WebMethod(Description = "Gets site list for MANU Repository within a certain amount of hours of last revised")]
+        public DataSet GetMANUSiteListByLastRevised(string lu)
+        {
+            int secs = Convert.ToInt32(lu) * 3600;
+            string seconds = secs.ToString();
+
+            string cs = Config.ConnectionInfo;
+            SqlConnection cn = new SqlConnection(cs);
+            SqlDataAdapter da = new SqlDataAdapter("SELECT DISTINCT lw.wsc_cd, lo.office_cd, ssm.site_no, ssm.agency_cd, s.station_nm, (CASE WHEN agency_use_cd In('A','M','L') THEN 'A' ELSE 'I' END) AS active_fg, ers.revised_dt" +
+                " FROM lut_WSC AS lw INNER JOIN" +
+                "   lut_Office AS lo ON lw.wsc_id = lo.wsc_id INNER JOIN" +
+                "   SIMS_Site_Master AS ssm ON lo.office_id = ssm.office_id INNER JOIN" +
+                "   Elem_Report_Sum AS ers ON ssm.site_id = ers.site_id INNER JOIN" +
+                "   nwisweb.dbo.SITEFILE AS s ON s.site_id = ssm.nwisweb_site_id" +
+                " WHERE DATEDIFF(second, ers.revised_dt, GETDATE()) <= " + seconds + " AND ers.report_type_cd = 'MANU'", cn);
+
+            DataSet ds = new DataSet();
+            da.Fill(ds, "sitelist");
+            return ds;
+        }
+
         [WebMethod(Description = "Gets site list for SDESC Repository")]
         public DataSet GetSDSiteList()
         {
