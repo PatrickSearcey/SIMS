@@ -99,10 +99,10 @@ namespace RMS.Report
                     TotalSites = p.TotalSites,
                     Analyzed = p.Analyzed,
                     Approved = p.Approved,
-                    AnalyzedPercent = Decimal.Divide((decimal)p.Analyzed, (decimal)p.TotalSites) * 100,
-                    ApprovedPercent = Decimal.Divide((decimal)p.Approved, (decimal)p.TotalSites) * 100,
-                    AnalyzedPercentString = String.Format("{0:###.##}%", Decimal.Divide((decimal)p.Analyzed, (decimal)p.TotalSites) * 100),
-                    ApprovedPercentString = String.Format("{0:###.##}%", Decimal.Divide((decimal)p.Approved, (decimal)p.TotalSites) * 100)
+                    AnalyzedPercent = (p.TotalSites == 0) ? 100 : Decimal.Divide((decimal)p.Analyzed, (decimal)p.TotalSites) * 100,
+                    ApprovedPercent = (p.TotalSites == 0) ? 100 : Decimal.Divide((decimal)p.Approved, (decimal)p.TotalSites) * 100,
+                    AnalyzedPercentString = (p.TotalSites == 0) ? "100%" : String.Format("{0:###.##}%", Decimal.Divide((decimal)p.Analyzed, (decimal)p.TotalSites) * 100),
+                    ApprovedPercentString = (p.TotalSites == 0) ? "100%" : String.Format("{0:###.##}%", Decimal.Divide((decimal)p.Approved, (decimal)p.TotalSites) * 100)
                 });
 
             ltlAllRecordsTR.Text = "Total Records = " + db.SP_RMS_Progress_Report_by_region_or_WSC("NADA", WSCID, rdpEndDt.SelectedDate, false, "no").FirstOrDefault().TotalSites.ToString();
@@ -117,10 +117,10 @@ namespace RMS.Report
                     TotalSites = p.TotalSites,
                     Analyzed = p.Analyzed,
                     Approved = p.Approved,
-                    AnalyzedPercent = Decimal.Divide((decimal)p.Analyzed, (decimal)p.TotalSites) * 100,
-                    ApprovedPercent = Decimal.Divide((decimal)p.Approved, (decimal)p.TotalSites) * 100,
-                    AnalyzedPercentString = String.Format("{0:###.##}%", Decimal.Divide((decimal)p.Analyzed, (decimal)p.TotalSites) * 100),
-                    ApprovedPercentString = String.Format("{0:###.##}%", Decimal.Divide((decimal)p.Approved, (decimal)p.TotalSites) * 100)
+                    AnalyzedPercent = (p.TotalSites == 0) ? 100 : Decimal.Divide((decimal)p.Analyzed, (decimal)p.TotalSites) * 100,
+                    ApprovedPercent = (p.TotalSites == 0) ? 100 : Decimal.Divide((decimal)p.Approved, (decimal)p.TotalSites) * 100,
+                    AnalyzedPercentString = (p.TotalSites == 0) ? "100%" : String.Format("{0:###.##}%", Decimal.Divide((decimal)p.Analyzed, (decimal)p.TotalSites) * 100),
+                    ApprovedPercentString = (p.TotalSites == 0) ? "100%" : String.Format("{0:###.##}%", Decimal.Divide((decimal)p.Approved, (decimal)p.TotalSites) * 100)
                 });
 
             ltlTSRecordsTR.Text = "Total Records = " + db.SP_RMS_Progress_Report_by_region_or_WSC("NADA", WSCID, rdpEndDt.SelectedDate, true, "yes").FirstOrDefault().TotalSites.ToString();
@@ -135,10 +135,10 @@ namespace RMS.Report
                     TotalSites = p.TotalSites,
                     Analyzed = p.Analyzed,
                     Approved = p.Approved,
-                    AnalyzedPercent = Decimal.Divide((decimal)p.Analyzed, (decimal)p.TotalSites) * 100,
-                    ApprovedPercent = Decimal.Divide((decimal)p.Approved, (decimal)p.TotalSites) * 100,
-                    AnalyzedPercentString = String.Format("{0:###.##}%", Decimal.Divide((decimal)p.Analyzed, (decimal)p.TotalSites) * 100),
-                    ApprovedPercentString = String.Format("{0:###.##}%", Decimal.Divide((decimal)p.Approved, (decimal)p.TotalSites) * 100)
+                    AnalyzedPercent = (p.TotalSites == 0) ? 100 : Decimal.Divide((decimal)p.Analyzed, (decimal)p.TotalSites) * 100,
+                    ApprovedPercent = (p.TotalSites == 0) ? 100 : Decimal.Divide((decimal)p.Approved, (decimal)p.TotalSites) * 100,
+                    AnalyzedPercentString = (p.TotalSites == 0) ? "100%" : String.Format("{0:###.##}%", Decimal.Divide((decimal)p.Analyzed, (decimal)p.TotalSites) * 100),
+                    ApprovedPercentString = (p.TotalSites == 0) ? "100%" : String.Format("{0:###.##}%", Decimal.Divide((decimal)p.Approved, (decimal)p.TotalSites) * 100)
                 });
 
             ltlNTSRecordsTR.Text = "Total Records = " + db.SP_RMS_Progress_Report_by_region_or_WSC("NADA", WSCID, rdpEndDt.SelectedDate, false, "yes").FirstOrDefault().TotalSites.ToString();
@@ -172,28 +172,28 @@ namespace RMS.Report
                 rpi.AllRecords = (int)allProgressChartData.TotalSites;
                 rpi.AllAnalyzed = (int)allProgressChartData.Analyzed;
                 rpi.AllApproved = (int)allProgressChartData.Approved;
-                rpi.PercentAllAnalyzed = rpi.AllRecords > 0 ? Decimal.Divide((decimal)rpi.AllAnalyzed, (decimal)rpi.AllRecords) * 100 : 0;
-                rpi.PercentAllApproved = rpi.AllRecords > 0 ? Decimal.Divide((decimal)rpi.AllApproved, (decimal)rpi.AllRecords) * 100 : 0;
-                rpi.PercentAllAnalyzedString = rpi.AllRecords > 0 ? String.Format("{0:###.##}%", Decimal.Divide((decimal)rpi.AllAnalyzed, (decimal)rpi.AllRecords) * 100) : "0%";
-                rpi.PercentAllApprovedString = rpi.AllRecords > 0 ? String.Format("{0:###.##}%", Decimal.Divide((decimal)rpi.AllApproved, (decimal)rpi.AllRecords) * 100) : "0%";
+                rpi.PercentAllAnalyzed = rpi.AllRecords > 0 ? Decimal.Divide((decimal)rpi.AllAnalyzed, (decimal)rpi.AllRecords) * 100 : 100;
+                rpi.PercentAllApproved = rpi.AllRecords > 0 ? Decimal.Divide((decimal)rpi.AllApproved, (decimal)rpi.AllRecords) * 100 : 100;
+                rpi.PercentAllAnalyzedString = rpi.AllRecords > 0 ? String.Format("{0:###.##}%", Decimal.Divide((decimal)rpi.AllAnalyzed, (decimal)rpi.AllRecords) * 100) : "100%";
+                rpi.PercentAllApprovedString = rpi.AllRecords > 0 ? String.Format("{0:###.##}%", Decimal.Divide((decimal)rpi.AllApproved, (decimal)rpi.AllRecords) * 100) : "100%";
 
                 //Time-Series Records Progress Chart Data
                 rpi.TSRecords = (int)tsProgressChartData.TotalSites;
                 rpi.TSAnalyzed = (int)tsProgressChartData.Analyzed;
                 rpi.TSApproved = (int)tsProgressChartData.Approved;
-                rpi.PercentTSAnalyzed = rpi.TSRecords > 0 ? Decimal.Divide((decimal)rpi.TSAnalyzed, (decimal)rpi.TSRecords) * 100 : 0;
-                rpi.PercentTSApproved = rpi.TSRecords > 0 ? Decimal.Divide((decimal)rpi.TSApproved, (decimal)rpi.TSRecords) * 100 : 0;
-                rpi.PercentTSAnalyzedString = rpi.TSRecords > 0 ? String.Format("{0:###.##}%", Decimal.Divide((decimal)rpi.TSAnalyzed, (decimal)rpi.TSRecords) * 100) : "0%";
-                rpi.PercentTSApprovedString = rpi.TSRecords > 0 ? String.Format("{0:###.##}%", Decimal.Divide((decimal)rpi.TSApproved, (decimal)rpi.TSRecords) * 100) : "0%";
+                rpi.PercentTSAnalyzed = rpi.TSRecords > 0 ? Decimal.Divide((decimal)rpi.TSAnalyzed, (decimal)rpi.TSRecords) * 100 : 100;
+                rpi.PercentTSApproved = rpi.TSRecords > 0 ? Decimal.Divide((decimal)rpi.TSApproved, (decimal)rpi.TSRecords) * 100 : 100;
+                rpi.PercentTSAnalyzedString = rpi.TSRecords > 0 ? String.Format("{0:###.##}%", Decimal.Divide((decimal)rpi.TSAnalyzed, (decimal)rpi.TSRecords) * 100) : "100%";
+                rpi.PercentTSApprovedString = rpi.TSRecords > 0 ? String.Format("{0:###.##}%", Decimal.Divide((decimal)rpi.TSApproved, (decimal)rpi.TSRecords) * 100) : "100%";
 
                 //Non-Time-Series Records Progress Chart Data
                 rpi.NTSRecords = (int)ntsProgressChartData.TotalSites;
                 rpi.NTSAnalyzed = (int)ntsProgressChartData.Analyzed;
                 rpi.NTSApproved = (int)ntsProgressChartData.Approved;
-                rpi.PercentNTSAnalyzed = rpi.NTSRecords > 0 ? Decimal.Divide((decimal)rpi.NTSAnalyzed, (decimal)rpi.NTSRecords) * 100 : 0;
-                rpi.PercentNTSApproved = rpi.NTSRecords > 0 ? Decimal.Divide((decimal)rpi.NTSApproved, (decimal)rpi.NTSRecords) * 100 : 0;
-                rpi.PercentNTSAnalyzedString = rpi.NTSRecords > 0 ? String.Format("{0:###.##}%", Decimal.Divide((decimal)rpi.NTSAnalyzed, (decimal)rpi.NTSRecords) * 100) : "0%";
-                rpi.PercentNTSApprovedString = rpi.NTSRecords > 0 ? String.Format("{0:###.##}%", Decimal.Divide((decimal)rpi.NTSApproved, (decimal)rpi.NTSRecords) * 100) : "0%";
+                rpi.PercentNTSAnalyzed = rpi.NTSRecords > 0 ? Decimal.Divide((decimal)rpi.NTSAnalyzed, (decimal)rpi.NTSRecords) * 100 : 100;
+                rpi.PercentNTSApproved = rpi.NTSRecords > 0 ? Decimal.Divide((decimal)rpi.NTSApproved, (decimal)rpi.NTSRecords) * 100 : 100;
+                rpi.PercentNTSAnalyzedString = rpi.NTSRecords > 0 ? String.Format("{0:###.##}%", Decimal.Divide((decimal)rpi.NTSAnalyzed, (decimal)rpi.NTSRecords) * 100) : "100%";
+                rpi.PercentNTSApprovedString = rpi.NTSRecords > 0 ? String.Format("{0:###.##}%", Decimal.Divide((decimal)rpi.NTSApproved, (decimal)rpi.NTSRecords) * 100) : "100%";
                 
                 List<RecordProgressItem> chartData = new List<RecordProgressItem>();
                 chartData.Add(rpi);
