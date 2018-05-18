@@ -411,7 +411,7 @@ namespace SIMS2017
 
             string cs = Config.ConnectionInfo;
             SqlConnection cn = new SqlConnection(cs);
-            SqlDataAdapter da = new SqlDataAdapter("SELECT ese.element_id, eled.element_nm, (CASE WHEN ese.element_info IS NULL THEN '' ELSE ese.element_info END) AS element_info, ese.revised_by, ese.revised_dt, eled.remark, elr.report_type_cd, priority" +
+            SqlDataAdapter da = new SqlDataAdapter("SELECT ese.site_id, ese.element_id, eled.element_nm, (CASE WHEN ese.element_info IS NULL THEN '' ELSE ese.element_info END) AS element_info, ese.revised_by, ese.revised_dt, eled.remark, elr.report_type_cd, priority" +
                 " FROM Elem_Lut_ReportRef AS elr INNER JOIN Elem_Lut_ElemDetail AS eled INNER JOIN SIMS_Site_Master AS ssm INNER JOIN" +
                 " Elem_Site_Element AS ese ON ssm.site_id = ese.site_id ON eled.element_id = ese.element_id ON elr.element_id = eled.element_id" + 
                 " WHERE " + where_stmt + 
@@ -419,6 +419,19 @@ namespace SIMS2017
 
             DataSet ds = new DataSet();
             da.Fill(ds, "elementlist");
+
+            DataTable tblElements;
+            tblElements = ds.Tables["elementlist"];
+
+            foreach (DataRow drCurr in tblElements.Rows)
+            {
+                string element_info = drCurr["element_info"].ToString();
+                int site_id = Convert.ToInt32(drCurr["site_id"].ToString());
+                int element_id = Convert.ToInt32(drCurr["element_id"].ToString());
+
+                drCurr["element_info"] = Extensions.FormatElementInfo(element_info, element_id, site_id);
+            }
+            
             return ds;
         }
 
@@ -431,6 +444,17 @@ namespace SIMS2017
 
             DataSet ds = new DataSet();
             da.Fill(ds, "elementinfo");
+
+            DataTable tblElement;
+            tblElement = ds.Tables["elementinfo"];
+
+            foreach (DataRow drCurr in tblElement.Rows)
+            {
+                string element_info = drCurr["element_info"].ToString();
+
+                drCurr["element_info"] = Extensions.FormatElementInfo(element_info, element_id, site_id);
+            }
+
             return ds;
         }
 
