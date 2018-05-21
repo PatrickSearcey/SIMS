@@ -85,6 +85,15 @@ namespace SIMS2017.StationDoc {
         protected global::System.Web.UI.WebControls.Literal ltlSDESCRevisedBy;
         
         /// <summary>
+        /// ltlSiteCharacterization control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlSiteCharacterization;
+        
+        /// <summary>
         /// dlSDESC control.
         /// </summary>
         /// <remarks>

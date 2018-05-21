@@ -117,6 +117,27 @@ namespace SIMS2017.StationDoc
                 ltlSDESCRevisedBy.Text = "<i>N/A</i>";
             }
 
+            string site_char = "<i>No time-series records found</i>; ";
+            var records = currSite.Records;
+            if (records.Count > 0)
+            {
+                var record_list = records.Where(p => p.not_used_fg == false && p.RecordType.ts_fg == true).OrderBy(p => p.category_no);
+                int x = 0;
+                foreach (var rec in record_list)
+                {
+                    if (x == 0) site_char = ""; else site_char += "; ";
+
+                    site_char += rec.RecordType.type_ds + ", category " + rec.category_no.ToString();
+                    if (!string.IsNullOrEmpty(rec.cat_reason))
+                    {
+                        site_char += ", reason: " + rec.cat_reason;
+                    }
+
+                    x++;
+                }
+            }
+            ltlSiteCharacterization.Text = site_char.TrimEnd(' ').TrimEnd(';');
+
             dlSDESC.DataSource = svcSIMS.GetElementsBySiteAndReport(currSite.site_no, currSite.agency_cd, "SDESC");
             dlSDESC.DataBind();
         }
