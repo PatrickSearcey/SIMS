@@ -47,6 +47,7 @@
                     <p style="padding:5px 0 0 10px;"><b>Most recent revision:</b> <asp:Literal ID="ltlSDESCRevisedDt" runat="server" /><br />
                     <b>Revised by:</b> <asp:Literal ID="ltlSDESCRevisedBy" runat="server" /></p>
                 </div>
+                <p><b>SITE CHARACTERIZATION.--</b> <asp:Literal ID="ltlSiteCharacterization" runat="server" /></p>
                 <asp:DataList ID="dlSDESC" runat="server">
                     <ItemTemplate>
                         <b><%# Eval("ElementName") %>.--</b> <%# Eval("ElementInfo") %>
