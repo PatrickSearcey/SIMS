@@ -41,13 +41,13 @@
                     <telerik:AjaxUpdatedControl ControlID="pnlAnalyze" LoadingPanelID="ralp" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
-            <telerik:AjaxSetting AjaxControlID="rbReanalyze">
+            <telerik:AjaxSetting AjaxControlID="rbReanalyze2">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="pnlErrors" />
                     <telerik:AjaxUpdatedControl ControlID="pnlApprove" LoadingPanelID="ralp" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
-            <telerik:AjaxSetting AjaxControlID="rbFinish">
+            <telerik:AjaxSetting AjaxControlID="rbFinish2">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="pnlErrors" />
                     <telerik:AjaxUpdatedControl ControlID="pnlApprove" LoadingPanelID="ralp" />
@@ -62,7 +62,28 @@
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="rrblReanalyze">
                 <UpdatedControls>
-                    <telerik:AjaxUpdatedControl ControlID="rbReanalyze" />
+                    <telerik:AjaxUpdatedControl ControlID="rbReanalyze2" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="rbEditAnalysisNotes">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="pnlAnalysisNotesEdit" LoadingPanelID="ralp" />
+                    <telerik:AjaxUpdatedControl ControlID="ltlNote" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="rbSaveAnalysisNotes">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="pnlAnalysisNotesEdit" LoadingPanelID="ralp" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlAnalysisNotesReadOnly2" />
+                    <telerik:AjaxUpdatedControl ControlID="rbFinish2" />
+                    <telerik:AjaxUpdatedControl ControlID="rrblReanalyze" />
+                    <telerik:AjaxUpdatedControl ControlID="ltlNote" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="rbCancelAnalysisNotes">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="pnlAnalysisNotesEdit" LoadingPanelID="ralp" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlAnalysisNotesReadOnly2" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
         </AjaxSettings>
@@ -161,22 +182,21 @@
             </tr>
         </table>
     </asp:Panel>
-    <asp:Panel ID="pnlApprove" runat="server">
+    <asp:Panel ID="pnlPending" runat="server">
         <table class="RecordProcess">
             <tr>
                 <td valign="top">
                     <h4>General Period Details</h4>
-                    <p>Analyzed By: <asp:Literal ID="ltlAnalyzedBy" runat="server" /></p>
-                    <p>Approver: <asp:Literal ID="ltlApprover" runat="server" /></p>
-                    <p>Time Period: <asp:Literal ID="ltlTimePeriod" runat="server" /></p>
+                    <p>Analyzed By: <asp:Literal ID="ltlAnalyzedBy1" runat="server" /></p>
+                    <p>Approver: <asp:Literal ID="ltlApprover1" runat="server" /></p>
+                    <p>Time Period: <asp:Literal ID="ltlTimePeriod1" runat="server" /></p>
                 </td>
                 <td valign="top">
                     <h4>Supporting Resources</h4>
                     <ul>
-                        <li><asp:HyperLink ID="hlChangeLog" runat="server" Text="View Change Log" /></li>
-                        <li><asp:HyperLink ID="hlDialog" runat="server" Text="View Dialog" /></li>
+                        <li><asp:HyperLink ID="hlChangeLog1" runat="server" Text="View Change Log" /></li>
+                        <li><asp:HyperLink ID="hlDialog1" runat="server" Text="View Dialog" /></li>
                         <li><asp:HyperLink ID="hlWYAnalysisNotes2" runat="server" Text="View WY Analyses" /></li>
-                        <li><asp:HyperLink ID="hlApproveInst" runat="server" Text="WSC Approving Instructions" /></li>
                         <li><asp:HyperLink ID="hlAutoReview2" runat="server" Text="View Auto Review (if applicable)" /></li>
                         <li><asp:HyperLink ID="hlWMAGuidelines2" runat="server" Text="WMA Records Processing Guidelines" Target="_blank" NavigateUrl="https://water.usgs.gov/osw/time-series-guidance/" /></li>
                         <li><asp:HyperLink ID="hlWMADiscreteGuidelines2" runat="server" Text="WMA Discrete GW Processing Guidelines" Target="_blank" NavigateUrl="https://water.usgs.gov/ogw/policy/discrete-data-guidance/" /></li>
@@ -187,15 +207,66 @@
             <tr>
                 <td colspan="2">
                     <h4>Analysis</h4>
-                    <asp:Literal ID="ltlNote" runat="server" Text="<div style='width:100%;text-align:center;color:#ec562c;font-weight:bold;'>The analysis was saved!</div>" Visible="false" />
-                    <asp:Panel ID="pnlAnalysisNotesReadOnly" runat="server" Width="1000px" Height="300px" ScrollBars="Auto">
-                        <asp:Literal ID="ltlAnalysisNotes" runat="server" />
-                        <div style="text-align:center;padding-top:5px;">
-                            <telerik:RadButton ID="rbEditAnalysisNotes" runat="server" Text="Edit Analysis" OnCommand="EditAnalysisNotes" CommandArgument="Toggle" Visible="false" /> <!-- Control used to toggle display of pnlAnalysisNotesEdit, which is no longer in use -->
+                    <asp:Panel ID="pnlAnalysisNotesReadOnly1" runat="server" Width="1000px" Height="300px" ScrollBars="Auto">
+                        <asp:Literal ID="ltlAnalysisNotes1" runat="server" />
+                    </asp:Panel>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <asp:Panel ID="pnlApproverComments1" runat="server">
+                        <h4>Approver Comments</h4>
+                        <div style="height:100px;width:1000px;overflow-y:scroll;">
+                            <asp:Literal ID="ltlApproverComments1" runat="server" />
                         </div>
                     </asp:Panel>
-                    <!-- APPROVERS ARE NOT ALLOWED TO EDIT STATION ANALYSIS NOTES -->
-                    <!-- This section is not currently in use, per request of OWI; remains here in case user complaints trigger the re-release of the functionality -->
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div style="text-align:center;font-weight:bold;">
+                        <p>If additional modifications need to be made to the analysis, click the Open to Reanalyze button to change the period status to Reanalyze.</p>
+                        <telerik:RadButton ID="rbReanalyze1" runat="server" Text="Open to Reanalyze" OnCommand="Button_Commands" CommandArgument="Reanalyze" CommandName="Pending" UseSubmitBehavior="false" />
+                        <telerik:RadButton ID="rbFinish1" runat="server" Text="Accept Minor Edits and Mark Approved" OnCommand="Button_Commands" CommandArgument="Finish" CommandName="Pending" UseSubmitBehavior="false" />
+                        <telerik:RadButton ID="rbCancel1" runat="server" Text="Cancel" OnCommand="Button_Commands" CommandName="Cancel" />
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </asp:Panel>
+    <asp:Panel ID="pnlApprove" runat="server">
+        <table class="RecordProcess">
+            <tr>
+                <td valign="top">
+                    <h4>General Period Details</h4>
+                    <p>Analyzed By: <asp:Literal ID="ltlAnalyzedBy2" runat="server" /></p>
+                    <p>Approver: <asp:Literal ID="ltlApprover2" runat="server" /></p>
+                    <p>Time Period: <asp:Literal ID="ltlTimePeriod2" runat="server" /></p>
+                </td>
+                <td valign="top">
+                    <h4>Supporting Resources</h4>
+                    <ul>
+                        <li><asp:HyperLink ID="hlChangeLog2" runat="server" Text="View Change Log" /></li>
+                        <li><asp:HyperLink ID="hlDialog2" runat="server" Text="View Dialog" /></li>
+                        <li><asp:HyperLink ID="hlWYAnalysisNotes3" runat="server" Text="View WY Analyses" /></li>
+                        <li><asp:HyperLink ID="hlApproveInst" runat="server" Text="WSC Approving Instructions" /></li>
+                        <li><asp:HyperLink ID="hlAutoReview3" runat="server" Text="View Auto Review (if applicable)" /></li>
+                        <li><asp:HyperLink ID="hlWMAGuidelines3" runat="server" Text="WMA Records Processing Guidelines" Target="_blank" NavigateUrl="https://water.usgs.gov/osw/time-series-guidance/" /></li>
+                        <li><asp:HyperLink ID="hlWMADiscreteGuidelines3" runat="server" Text="WMA Discrete GW Processing Guidelines" Target="_blank" NavigateUrl="https://water.usgs.gov/ogw/policy/discrete-data-guidance/" /></li>
+                        <li><asp:HyperLink ID="hlWMARevisionsPolicy3" runat="server" Text="WMA Revisions Policy" Target="_blank" NavigateUrl="https://water.usgs.gov/osw/RevisionsGuidance.html" /></li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <h4>Analysis</h4>
+                    <asp:Literal ID="ltlNote" runat="server" Text="<div style='width:100%;text-align:center;color:#ec562c;font-weight:bold;'>The analysis was saved!</div>" Visible="false" />
+                    <asp:Panel ID="pnlAnalysisNotesReadOnly2" runat="server" Width="1000px" Height="300px" ScrollBars="Auto">
+                        <div style="text-align:center;padding-top:5px;">
+                            <telerik:RadButton ID="rbEditAnalysisNotes" runat="server" Text="Open analysis for minor edits" OnCommand="EditAnalysisNotes" CommandArgument="Toggle" /> 
+                        </div>
+                        <asp:Literal ID="ltlAnalysisNotes2" runat="server" />
+                    </asp:Panel>
                     <asp:Panel ID="pnlAnalysisNotesEdit" runat="server">
                         <telerik:RadEditor ID="reAnalysisNotes2" runat="server" Skin="Bootstrap" OnClientLoad="OnClientLoad" Width="100%" Height="300px" ExternalDialogsPath="~/EditorDialogs/">
                             <Tools>
@@ -210,19 +281,18 @@
                             </Tools>
                         </telerik:RadEditor>
                         <div style="text-align:center;padding-top:5px;">
-                            <telerik:RadButton ID="rbSaveAnalysisNotes" runat="server" Text="Save Changes" OnCommand="EditAnalysisNotes" CommandArgument="Save" UseSubmitBehavior="false" Visible="false" /> 
-                            <telerik:RadButton ID="rbCancelAnalysisNotes" runat="server" Text="Cancel Without Saving" OnCommand="EditAnalysisNotes" CommandArgument="Cancel" Visible="false" />
+                            <telerik:RadButton ID="rbSaveAnalysisNotes" runat="server" Text="Save Changes" OnCommand="EditAnalysisNotes" CommandArgument="Save" UseSubmitBehavior="false" /> 
+                            <telerik:RadButton ID="rbCancelAnalysisNotes" runat="server" Text="Cancel Without Saving" OnCommand="EditAnalysisNotes" CommandArgument="Cancel" />
                         </div>
                     </asp:Panel>
-                    <!-- END LEGACY CONTROLS -->
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
-                    <asp:Panel ID="pnlApproverComments" runat="server">
+                    <asp:Panel ID="pnlApproverComments2" runat="server">
                         <h4>Approver Comments</h4>
                         <div style="height:100px;width:1000px;overflow-y:scroll;">
-                            <asp:Literal ID="ltlApproverComments" runat="server" />
+                            <asp:Literal ID="ltlApproverComments2" runat="server" />
                         </div>
                     </asp:Panel>
                 </td>
@@ -275,12 +345,12 @@
                                 <telerik:ButtonListItem Text="Major (requires new evaluation)" Value="major" />
                             </Items>
                         </telerik:RadRadioButtonList>
-                        <telerik:RadButton ID="rbReanalyze" runat="server" Text="Send Back for Reanalyzing" OnCommand="Button_Commands" CommandArgument="Reanalyze" CommandName="Approve" UseSubmitBehavior="false" Enabled="false" />
+                        <telerik:RadButton ID="rbReanalyze2" runat="server" Text="Send Back for Reanalyzing" OnCommand="Button_Commands" CommandArgument="Reanalyze" CommandName="Approve" UseSubmitBehavior="false" Enabled="false" />
                         <asp:Literal ID="ltlApproveNote" runat="server" Text="<br />By clicking approved you agree that you have followed current approval guidance and determined that the record period has been properly analyzed:<br />" />
-                        <telerik:RadButton ID="rbFinish" runat="server" OnCommand="Button_Commands" CommandArgument="Finish" UseSubmitBehavior="false" />
+                        <telerik:RadButton ID="rbFinish2" runat="server" OnCommand="Button_Commands" CommandArgument="Finish" UseSubmitBehavior="false" />
                         </p>
                         <telerik:RadButton ID="rbSave" runat="server" Text="Save" OnCommand="Button_Commands" CommandArgument="Save" UseSubmitBehavior="false" />
-                        <telerik:RadButton ID="rbCancel" runat="server" Text="Cancel" OnCommand="Button_Commands" CommandName="Cancel" />
+                        <telerik:RadButton ID="rbCancel2" runat="server" Text="Cancel" OnCommand="Button_Commands" CommandName="Cancel" />
                     </div>
                 </td>
             </tr>

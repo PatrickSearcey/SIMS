@@ -373,58 +373,58 @@ namespace RMS.Task {
         protected global::Telerik.Web.UI.RadButton rbCancelAnalyze;
         
         /// <summary>
-        /// pnlApprove control.
+        /// pnlPending control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlApprove;
+        protected global::System.Web.UI.WebControls.Panel pnlPending;
         
         /// <summary>
-        /// ltlAnalyzedBy control.
+        /// ltlAnalyzedBy1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlAnalyzedBy;
+        protected global::System.Web.UI.WebControls.Literal ltlAnalyzedBy1;
         
         /// <summary>
-        /// ltlApprover control.
+        /// ltlApprover1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlApprover;
+        protected global::System.Web.UI.WebControls.Literal ltlApprover1;
         
         /// <summary>
-        /// ltlTimePeriod control.
+        /// ltlTimePeriod1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlTimePeriod;
+        protected global::System.Web.UI.WebControls.Literal ltlTimePeriod1;
         
         /// <summary>
-        /// hlChangeLog control.
+        /// hlChangeLog1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlChangeLog;
+        protected global::System.Web.UI.WebControls.HyperLink hlChangeLog1;
         
         /// <summary>
-        /// hlDialog control.
+        /// hlDialog1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlDialog;
+        protected global::System.Web.UI.WebControls.HyperLink hlDialog1;
         
         /// <summary>
         /// hlWYAnalysisNotes2 control.
@@ -434,15 +434,6 @@ namespace RMS.Task {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlWYAnalysisNotes2;
-        
-        /// <summary>
-        /// hlApproveInst control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlApproveInst;
         
         /// <summary>
         /// hlAutoReview2 control.
@@ -481,6 +472,177 @@ namespace RMS.Task {
         protected global::System.Web.UI.WebControls.HyperLink hlWMARevisionsPolicy2;
         
         /// <summary>
+        /// pnlAnalysisNotesReadOnly1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlAnalysisNotesReadOnly1;
+        
+        /// <summary>
+        /// ltlAnalysisNotes1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlAnalysisNotes1;
+        
+        /// <summary>
+        /// pnlApproverComments1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlApproverComments1;
+        
+        /// <summary>
+        /// ltlApproverComments1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlApproverComments1;
+        
+        /// <summary>
+        /// rbReanalyze1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton rbReanalyze1;
+        
+        /// <summary>
+        /// rbFinish1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton rbFinish1;
+        
+        /// <summary>
+        /// rbCancel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton rbCancel1;
+        
+        /// <summary>
+        /// pnlApprove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlApprove;
+        
+        /// <summary>
+        /// ltlAnalyzedBy2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlAnalyzedBy2;
+        
+        /// <summary>
+        /// ltlApprover2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlApprover2;
+        
+        /// <summary>
+        /// ltlTimePeriod2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlTimePeriod2;
+        
+        /// <summary>
+        /// hlChangeLog2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlChangeLog2;
+        
+        /// <summary>
+        /// hlDialog2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlDialog2;
+        
+        /// <summary>
+        /// hlWYAnalysisNotes3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlWYAnalysisNotes3;
+        
+        /// <summary>
+        /// hlApproveInst control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlApproveInst;
+        
+        /// <summary>
+        /// hlAutoReview3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlAutoReview3;
+        
+        /// <summary>
+        /// hlWMAGuidelines3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlWMAGuidelines3;
+        
+        /// <summary>
+        /// hlWMADiscreteGuidelines3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlWMADiscreteGuidelines3;
+        
+        /// <summary>
+        /// hlWMARevisionsPolicy3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlWMARevisionsPolicy3;
+        
+        /// <summary>
         /// ltlNote control.
         /// </summary>
         /// <remarks>
@@ -490,22 +652,13 @@ namespace RMS.Task {
         protected global::System.Web.UI.WebControls.Literal ltlNote;
         
         /// <summary>
-        /// pnlAnalysisNotesReadOnly control.
+        /// pnlAnalysisNotesReadOnly2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlAnalysisNotesReadOnly;
-        
-        /// <summary>
-        /// ltlAnalysisNotes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlAnalysisNotes;
+        protected global::System.Web.UI.WebControls.Panel pnlAnalysisNotesReadOnly2;
         
         /// <summary>
         /// rbEditAnalysisNotes control.
@@ -515,6 +668,15 @@ namespace RMS.Task {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadButton rbEditAnalysisNotes;
+        
+        /// <summary>
+        /// ltlAnalysisNotes2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlAnalysisNotes2;
         
         /// <summary>
         /// pnlAnalysisNotesEdit control.
@@ -553,22 +715,22 @@ namespace RMS.Task {
         protected global::Telerik.Web.UI.RadButton rbCancelAnalysisNotes;
         
         /// <summary>
-        /// pnlApproverComments control.
+        /// pnlApproverComments2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlApproverComments;
+        protected global::System.Web.UI.WebControls.Panel pnlApproverComments2;
         
         /// <summary>
-        /// ltlApproverComments control.
+        /// ltlApproverComments2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlApproverComments;
+        protected global::System.Web.UI.WebControls.Literal ltlApproverComments2;
         
         /// <summary>
         /// pnlAnalystComments control.
@@ -643,13 +805,13 @@ namespace RMS.Task {
         protected global::Telerik.Web.UI.RadRadioButtonList rrblReanalyze;
         
         /// <summary>
-        /// rbReanalyze control.
+        /// rbReanalyze2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton rbReanalyze;
+        protected global::Telerik.Web.UI.RadButton rbReanalyze2;
         
         /// <summary>
         /// ltlApproveNote control.
@@ -661,13 +823,13 @@ namespace RMS.Task {
         protected global::System.Web.UI.WebControls.Literal ltlApproveNote;
         
         /// <summary>
-        /// rbFinish control.
+        /// rbFinish2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton rbFinish;
+        protected global::Telerik.Web.UI.RadButton rbFinish2;
         
         /// <summary>
         /// rbSave control.
@@ -679,13 +841,13 @@ namespace RMS.Task {
         protected global::Telerik.Web.UI.RadButton rbSave;
         
         /// <summary>
-        /// rbCancel control.
+        /// rbCancel2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton rbCancel;
+        protected global::Telerik.Web.UI.RadButton rbCancel2;
         
         /// <summary>
         /// ltlSaved control.
