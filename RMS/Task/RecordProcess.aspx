@@ -78,6 +78,7 @@
                     <telerik:AjaxUpdatedControl ControlID="rbFinish2" />
                     <telerik:AjaxUpdatedControl ControlID="rrblReanalyze" />
                     <telerik:AjaxUpdatedControl ControlID="ltlNote" />
+                    <telerik:AjaxUpdatedControl ControlID="rbSave" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="rbCancelAnalysisNotes">
@@ -349,8 +350,16 @@
                         <asp:Literal ID="ltlApproveNote" runat="server" Text="<br />By clicking approved you agree that you have followed current approval guidance and determined that the record period has been properly analyzed:<br />" />
                         <telerik:RadButton ID="rbFinish2" runat="server" OnCommand="Button_Commands" CommandArgument="Finish" UseSubmitBehavior="false" />
                         </p>
-                        <telerik:RadButton ID="rbSave" runat="server" Text="Save" OnCommand="Button_Commands" CommandArgument="Save" UseSubmitBehavior="false" />
-                        <telerik:RadButton ID="rbCancel2" runat="server" Text="Cancel" OnCommand="Button_Commands" CommandName="Cancel" />
+                        <table style="width:100%">
+                            <tr>
+                                <td style="width:49%;text-align:right;">
+                                    <telerik:RadButton ID="rbSave" runat="server" Text="Save" OnCommand="Button_Commands" CommandArgument="Save" UseSubmitBehavior="false" />
+                                </td>
+                                <td style="width:51%;text-align:left;">
+                                    <telerik:RadButton ID="rbCancel2" runat="server" Text="Cancel" OnCommand="Button_Commands" CommandName="Cancel" />
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </td>
             </tr>

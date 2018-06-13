@@ -145,6 +145,7 @@
     <Content Include="images\bigarrow.png" />
     <Content Include="images\dialogsavebutton.png" />
     <Content Include="images\False.png" />
+    <Content Include="images\pending.png" />
     <Content Include="images\save_icon.gif" />
     <Content Include="images\True.png" />
     <Content Include="Report\Audit.aspx" />
@@ -461,7 +462,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

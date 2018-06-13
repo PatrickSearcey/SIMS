@@ -63,9 +63,9 @@ namespace RMS.Task
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string period_id = "10244535";// Request.QueryString["period_id"];
+            string period_id = Request.QueryString["period_id"];
             string rms_record_id = Request.QueryString["rms_record_id"];
-            task = "Pending";// Request.QueryString["task"];
+            task = Request.QueryString["task"];
 
             //If no rms_record_id or period_id was passed, then show the error diagnostics panel
             if (!string.IsNullOrEmpty(period_id) || !string.IsNullOrEmpty(rms_record_id))
@@ -115,7 +115,9 @@ namespace RMS.Task
         #region Page Load Methods
         protected void UserControlSetup()
         {
-            ph1.Title = task + " Record";
+            if (task == "Pending") ph1.Title = "Pending Analyst Concurrence";
+            else if (task == "SavePending") ph1.Title = "Approving Record";
+            else ph1.Title = task + " Record";
             ph1.SubTitle = currRecord.Site.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_id == currRecord.Site.nwisweb_site_id).station_nm;
             ph1.RecordType = currRecord.RecordType.type_ds + " Record for";
         }
@@ -169,6 +171,7 @@ namespace RMS.Task
                 pnlLocked.Visible = true;
                 pnlAnalyze.Visible = false;
                 pnlApprove.Visible = false;
+                pnlPending.Visible = false;
                 SetupLockedPanel();
             }
             else
@@ -178,6 +181,7 @@ namespace RMS.Task
                     pnlLocked.Visible = false;
                     pnlAnalyze.Visible = true;
                     pnlApprove.Visible = false;
+                    pnlPending.Visible = false;
                     SetupAnalyzePanel();
                 }
                 else if (task == "Pending")
@@ -185,13 +189,15 @@ namespace RMS.Task
                     pnlLocked.Visible = false;
                     pnlAnalyze.Visible = false;
                     pnlApprove.Visible = false;
-
+                    pnlPending.Visible = true;
+                    SetupPendingPanel();
                 }
                 else
                 {
                     pnlLocked.Visible = false;
                     pnlAnalyze.Visible = false;
                     pnlApprove.Visible = true;
+                    pnlPending.Visible = false;
                     SetupApprovePanel();
                 }
             }
@@ -300,12 +306,34 @@ namespace RMS.Task
             }
 
         }
+        
         /// <summary>
         /// The Pending panel is used for the analyst to concur with the approver's minor changes to the analysis notes
         /// </summary>
         protected void SetupPendingPanel()
         {
+            var currPeriod = currRecord.RecordAnalysisPeriods.FirstOrDefault(p => p.period_id == PeriodID);
 
+            if (currPeriod == null) PopulateErrorDiagnostics("The Period could not be referenced.");
+            else
+            {
+                ltlAnalyzedBy1.Text = "<b>" + currPeriod.analyzed_by + "</b>";
+                if (!string.IsNullOrEmpty(currPeriod.approved_by)) ltlApprover1.Text = "<b>" + currPeriod.approved_by + "</b>"; else ltlApprover1.Text = "<b>" + user.ID + "</b>";
+                ltlTimePeriod1.Text = String.Format("<b>{0:MM/dd/yyyy} - {1:MM/dd/yyyy}</b>", currPeriod.period_beg_dt, currPeriod.period_end_dt);
+                hlWYAnalysisNotes2.NavigateUrl = String.Format("javascript:OpenPopup('../Modal/ReportPopup.aspx?view=wyanalysisnotes&rms_record_id={0}')", RecordID);
+                hlDialog1.NavigateUrl = String.Format("javascript:OpenPopup('../Modal/ReportPopup.aspx?view=dialog&period_id={0}')", PeriodID);
+                hlChangeLog1.NavigateUrl = String.Format("javascript:OpenPopup('../Modal/ReportPopup.aspx?view=changelog&period_id={0}')", PeriodID);
+
+                string swr_url = db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID).swr_url;
+                if (!string.IsNullOrEmpty(swr_url))
+                {
+                    hlAutoReview2.NavigateUrl = String.Format("javascript:OpenPopup('{0}{1}/')", swr_url, currRecord.Site.site_no.Replace(" ", ""));
+                }
+                else hlAutoReview2.Enabled = false;
+                pnlAnalysisNotesReadOnly1.Visible = true;
+                ltlAnalysisNotes1.Text = currPeriod.analysis_notes_va.FormatParagraphOut();
+                ltlApproverComments1.Text = currPeriod.PeriodDialogs.Where(p => p.status_set_to_va == "Pending").OrderByDescending(p => p.dialog_dt).FirstOrDefault().comments_va.FormatParagraphOut();
+            }
         }
 
         /// <summary>
@@ -348,6 +376,8 @@ namespace RMS.Task
                     hlApproveInst.Text = "WSC Analyzing Instructions";
                     pnlAnalysisNotesReadOnly2.Visible = false;
                     pnlAnalysisNotesEdit.Visible = true;
+                    rbSaveAnalysisNotes.Visible = false;
+                    rbCancelAnalysisNotes.Visible = false;
                     ltlReanalyzeNote.Visible = false;
                     ltlApproveNote.Visible = false;
                     rbFinish2.Text = "Finish Reanalyzing";
@@ -381,6 +411,10 @@ namespace RMS.Task
                         //If coming back in to the approve after previously sending back for reanalyzing, populate the comments with the previously saved approver comments
                         if (currPeriod.PeriodDialogs.FirstOrDefault(p => p.status_set_to_va == "Reanalyze" && p.origin_va == "Approver") != null)
                             reComments.Content = currPeriod.PeriodDialogs.Where(p => p.status_set_to_va == "Reanalyze" && p.origin_va == "Approver").OrderByDescending(p => p.dialog_dt).FirstOrDefault().comments_va.FormatParagraphEdit();
+                        //If coming back into the approve after previously making minor edits to the station analysis, and then having the analyst choose to open for reanalyzing, populate the comments 
+                        //with the previously made approver comments
+                        if (currPeriod.PeriodDialogs.FirstOrDefault(p => p.status_set_to_va == "Reanalyze" && p.origin_va == "Analyst") != null)
+                            reComments.Content = currPeriod.PeriodDialogs.Where(p => p.status_set_to_va == "Reanalyze" && p.origin_va == "Analyst").OrderByDescending(p => p.dialog_dt).FirstOrDefault().comments_va.FormatParagraphEdit();
                     }
                     
                     hlApproveInst.NavigateUrl = String.Format("javascript:OpenPopup('../Modal/Instructions.aspx?type=Approve&id={0}')", currRecord.record_type_id);
@@ -388,6 +422,14 @@ namespace RMS.Task
                     pnlApproverComments2.Visible = false;
                     rbFinish2.CommandName = "Approve";
                     rbSave.CommandName = "Approve";
+
+                    if (task == "SavePending")
+                    {
+                        rbFinish2.Text = "Finish approving with minor edits";
+                        rbFinish2.CommandArgument = "Pending";
+                        rbSave.CommandArgument = "SavePending";
+                        rrblReanalyze.Enabled = false;
+                    }
 
                     //We need to find out if this period had been previously reanalyzed, and if so, then we show the analyst comments panel
                     var reanalyzedPeriod = currPeriod.PeriodDialogs.OrderByDescending(p => p.dialog_dt).FirstOrDefault(p => p.status_set_to_va == "Reanalyzed");
@@ -460,7 +502,7 @@ namespace RMS.Task
                     SaveReanalyzingPeriod();
                     break;
                 case "Approve":
-                    SaveApprovingPeriod();
+                    SaveApprovingPeriod("Approving");
                     break;
             }
         }
@@ -480,8 +522,9 @@ namespace RMS.Task
                 case "Approve":
                     if (e.CommandArgument.ToString() == "Finish") FinishApprovingPeriod();
                     else if (e.CommandArgument.ToString() == "Pending") PendingApproval();
-                    else if (e.CommandArgument.ToString() == "Save") SaveApprovingPeriod();
+                    else if (e.CommandArgument.ToString() == "Save") SaveApprovingPeriod("Approving");
                     else if (e.CommandArgument.ToString() == "Reanalyze") SendBackToReanalyze();
+                    else if (e.CommandArgument.ToString() == "SavePending") SaveApprovingPeriod("SavePending");
                     break;
                 case "Pending":
                     if (e.CommandArgument.ToString() == "Reanalyze") OpenToReanalyze();
@@ -495,6 +538,8 @@ namespace RMS.Task
 
         protected void EditAnalysisNotes(object sender, CommandEventArgs e)
         {
+            var currPeriod = currRecord.RecordAnalysisPeriods.FirstOrDefault(p => p.period_id == PeriodID);
+
             switch (e.CommandArgument.ToString())
             {
                 case "Toggle":
@@ -504,7 +549,6 @@ namespace RMS.Task
                     break;
                 case "Save":
                     //Save the analysis notes
-                    var currPeriod = currRecord.RecordAnalysisPeriods.FirstOrDefault(p => p.period_id == PeriodID);
                     currPeriod.analysis_notes_va = reAnalysisNotes2.Content.FormatParagraphIn();
 
                     //Add an entry to the change log table
@@ -521,12 +565,16 @@ namespace RMS.Task
                     ltlAnalysisNotes2.Text = reAnalysisNotes2.Content.FormatParagraphOut();
                     rbFinish2.Text = "Finish approving with minor edits";
                     rbFinish2.CommandArgument = "Pending";
+                    rbSave.CommandArgument = "SavePending";
                     ltlNote.Visible = true;
                     rrblReanalyze.Enabled = false;
                     pnlAnalysisNotesEdit.Visible = false;
                     pnlAnalysisNotesReadOnly2.Visible = true;
                     break;
                 case "Cancel":
+                    //Reset the analysis notes
+                    reAnalysisNotes2.Content = currPeriod.analysis_notes_va.FormatParagraphEdit();
+
                     pnlAnalysisNotesEdit.Visible = false;
                     pnlAnalysisNotesReadOnly2.Visible = true;
                     break;
@@ -742,15 +790,15 @@ namespace RMS.Task
 
             period.status_va = "Approved";
             period.status_set_by = user.ID;
-            period.status_set_by_role_va = "Approver";
+            period.status_set_by_role_va = "Analyst";
             period.approved_by = user.ID;
             period.approved_dt = DateTime.Now;
 
-            string comments = "<p style='font-weight:bold;'>" + user.ID + " has followed current approval guidance and has determined that the record has been properly analyzed and has approved the record period.</p>" + reComments.Content.FormatParagraphIn();
+            string comments = "<p style='font-weight:bold;'>" + user.ID + " has accepted the approver's minor edits to the analysis, and the period is now marked as approved.</p>" + ltlApproverComments1.Text.FormatParagraphIn();
 
             db.SubmitChanges();
-            AddDialog(period, "", "Admin", "The period was set to approved by the approver.");
-            AddDialog(period, "Approved", "Approver", comments);
+            AddDialog(period, "", "Admin", "The period was set to approved after the analyst accepted the approver's minor edits to the analysis.");
+            AddDialog(period, "Approved", "Analyst", comments);
 
             SendEmails("Approved", comments, period);
             CloseOutPage(true);
@@ -817,8 +865,9 @@ namespace RMS.Task
                 ErrorMessage("You must enter some comments when approving!");
             }
         }
+        
 
-        protected void SaveApprovingPeriod()
+        protected void SaveApprovingPeriod(string status_va)
         {
             //First, do some validation
             Boolean valid = false;
@@ -827,8 +876,8 @@ namespace RMS.Task
             if (valid)
             {
                 var period = currRecord.RecordAnalysisPeriods.FirstOrDefault(p => p.period_id == PeriodID);
-
-                period.status_va = "Approving";
+                
+                period.status_va = status_va;
                 period.status_set_by = user.ID;
                 period.status_set_by_role_va = "Approver";
                 period.approved_by = user.ID;
@@ -854,7 +903,7 @@ namespace RMS.Task
 
             period.status_va = "Reanalyze";
             period.status_set_by = user.ID;
-            period.status_set_by_role_va = "Approver";
+            period.status_set_by_role_va = "Analyst";
             period.approved_by = user.ID;
             period.approved_dt = DateTime.Now;
 
@@ -863,9 +912,9 @@ namespace RMS.Task
 
             db.SubmitChanges();
             AddDialog(period, "", "Admin", "The period was opened for reanalyzing. The severity was deemed MINOR.");
-            AddDialog(period, "Reanalyze", "Approver", comments);
+            AddDialog(period, "Reanalyze", "Analyst", comments);
 
-            SendEmails("Reanalyze", comments, period);
+            SendEmails("OpenToReanalyze", comments, period);
             CloseOutPage(true);
         }
 
@@ -1048,6 +1097,7 @@ namespace RMS.Task
                         break;
                     case "Approved":
                     case "Pending":
+                    case "Accepted":
                         //To the assigned analyzer (or if no assigned analyzer, the person who analyzed the record
                         if (!string.IsNullOrEmpty(period.Record.analyzer_uid)) to.Add(EmailAddress(period.Record.analyzer_uid)); else to.Add(EmailAddress(period.analyzed_by));
                         //If the assigned analyzer is different from the user who analyzed the record, CC to the user who analyzed the record
@@ -1070,6 +1120,13 @@ namespace RMS.Task
                                 " (" + period.Record.RecordType.type_ds + ") has been approved by " + user.ID + ". The status has been set to Approved. The following comments" +
                                 " were made by the approver:<br /><br />" + comments;
                         }
+                        else if (action == "Accepted")
+                        {
+                            message.Subject = "Your record for " + period.Record.Site.site_no.Trim() + " has been approved by " + period.Record.approver_uid;
+                            message.Body = "The record period of " + timespan + " for station " + period.Record.Site.site_no.Trim() + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_id == period.Record.Site.nwisweb_site_id).station_nm +
+                                " (" + period.Record.RecordType.type_ds + ") has been approved by " + period.Record.approver_uid + ". The status has been set to Approved. The following comments" +
+                                " were made by the approver:<br /><br />" + comments;
+                        }
                         else
                         {
                             message.Subject = "Your record for " + period.Record.Site.site_no.Trim() + " has been set to pending by " + user.ID;
@@ -1079,6 +1136,7 @@ namespace RMS.Task
                         }
                         break;
                     case "Reanalyze":
+                    case "OpenToReanalyze":
                         //To the assigned analyzer (or if no assigned analyzer, the person who analyzed the record
                         if (!string.IsNullOrEmpty(period.Record.analyzer_uid)) to.Add(EmailAddress(period.Record.analyzer_uid)); else to.Add(EmailAddress(period.analyzed_by));
                         //If the assigned analyzer is different from the user who analyzed the record, CC to the user who analyzed the record
@@ -1094,10 +1152,20 @@ namespace RMS.Task
                         //Add the approver to the CC list
                         cc.Add(user.Email);
 
-                        message.Subject = "Your record for " + period.Record.Site.site_no.Trim() + " needs to be reanalyzed";
-                        message.Body = "The record period of " + timespan + " for station " + period.Record.Site.site_no.Trim() + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_id == period.Record.Site.nwisweb_site_id).station_nm +
-                            " (" + period.Record.RecordType.type_ds + ") has been sent back for reanalyzing. The severity was deemed " + rrblReanalyze.SelectedValue.ToUpper() + ". The following comments were made by the approver:<br /><br />" +
-                            comments;
+                        if (action == "Reanalyze")
+                        {
+                            message.Subject = "Your record for " + period.Record.Site.site_no.Trim() + " needs to be reanalyzed";
+                            message.Body = "The record period of " + timespan + " for station " + period.Record.Site.site_no.Trim() + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_id == period.Record.Site.nwisweb_site_id).station_nm +
+                                " (" + period.Record.RecordType.type_ds + ") has been sent back for reanalyzing. The severity was deemed " + rrblReanalyze.SelectedValue.ToUpper() + ". The following comments were made by the approver:<br /><br />" +
+                                comments;
+                        }
+                        else
+                        {
+                            message.Subject = "Your record for " + period.Record.Site.site_no.Trim() + " needs to be reanalyzed";
+                            message.Body = "The record period of " + timespan + " for station " + period.Record.Site.site_no.Trim() + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_id == period.Record.Site.nwisweb_site_id).station_nm +
+                                " (" + period.Record.RecordType.type_ds + ") has been sent back for reanalyzing. The severity was deemed MINOR. The following comments were made by the approver:<br /><br />" +
+                                comments;
+                        }
 
                         break;
                     case "Reanalyzed":
