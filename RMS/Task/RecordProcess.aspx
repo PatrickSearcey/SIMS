@@ -226,8 +226,8 @@
             <tr>
                 <td colspan="2">
                     <div style="text-align:center;font-weight:bold;">
-                        <p>If additional modifications need to be made to the analysis, click the Open to Reanalyze button to change the period status to Reanalyze.</p>
-                        <telerik:RadButton ID="rbReanalyze1" runat="server" Text="Open to Reanalyze" OnCommand="Button_Commands" CommandArgument="Reanalyze" CommandName="Pending" UseSubmitBehavior="false" />
+                        <p>If additional modifications need to be made to the analysis, click the Set to Reanalyze button to change the period status to Reanalyze.</p>
+                        <telerik:RadButton ID="rbReanalyze1" runat="server" Text="Set to Reanalyze" OnCommand="Button_Commands" CommandArgument="Reanalyze" CommandName="Pending" UseSubmitBehavior="false" />
                         <telerik:RadButton ID="rbFinish1" runat="server" Text="Accept Minor Edits and Mark Approved" OnCommand="Button_Commands" CommandArgument="Finish" CommandName="Pending" UseSubmitBehavior="false" />
                         <telerik:RadButton ID="rbCancel1" runat="server" Text="Cancel" OnCommand="Button_Commands" CommandName="Cancel" />
                     </div>
