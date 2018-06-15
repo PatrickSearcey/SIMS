@@ -383,7 +383,6 @@ namespace RMS.Task
                     rbFinish2.Text = "Finish Reanalyzing";
                     rbFinish2.CommandName = "Reanalyze";
                     rbSave.CommandName = "Reanalyze";
-                    rrblReanalyze.Visible = false;
                     rbReanalyze2.Visible = false;
                 }
                 else
@@ -428,7 +427,7 @@ namespace RMS.Task
                         rbFinish2.Text = "Finish approving with minor edits";
                         rbFinish2.CommandArgument = "Pending";
                         rbSave.CommandArgument = "SavePending";
-                        rrblReanalyze.Enabled = false;
+                        rbReanalyze2.Enabled = false;
                     }
 
                     //We need to find out if this period had been previously reanalyzed, and if so, then we show the analyst comments panel
@@ -470,14 +469,6 @@ namespace RMS.Task
         #endregion
 
         #region Page Events
-        protected void rrblReanalyze_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (rrblReanalyze.SelectedValue != null)
-            {
-                rbReanalyze2.Enabled = true;
-            }
-        }
-
         /// <summary>
         /// Allows a SuperUser or WSC Admin the ability to unloack a record, but only if the lock is a "save" type - in other words, 
         /// if the lock is in place because a user is currently analyzing/approving the record, the record cannot be unlocked
@@ -567,7 +558,7 @@ namespace RMS.Task
                     rbFinish2.CommandArgument = "Pending";
                     rbSave.CommandArgument = "SavePending";
                     ltlNote.Visible = true;
-                    rrblReanalyze.Enabled = false;
+                    rbReanalyze2.Enabled = false;
                     pnlAnalysisNotesEdit.Visible = false;
                     pnlAnalysisNotesReadOnly2.Visible = true;
                     break;
@@ -911,7 +902,7 @@ namespace RMS.Task
                 "The original approver comments are below.</p>" + ltlApproverComments1.Text.FormatParagraphIn();
 
             db.SubmitChanges();
-            AddDialog(period, "", "Admin", "The period was opened for reanalyzing. The severity was deemed MINOR.");
+            AddDialog(period, "", "Admin", "The period was opened for reanalyzing.");
             AddDialog(period, "Reanalyze", "Analyst", comments);
 
             SendEmails("OpenToReanalyze", comments, period);
@@ -934,11 +925,11 @@ namespace RMS.Task
                 period.approved_by = user.ID;
                 period.approved_dt = DateTime.Now;
 
-                string comments = "<p style='font-weight:bold;'>" + user.ID + " has followed current approval guidance and has determined that some aspects of the record need to be reanalyzed. The severity was deemed " + 
-                    rrblReanalyze.SelectedValue.ToUpper() + ". These aspects have been listed below.</p>" + reComments.Content.FormatParagraphIn();
+                string comments = "<p style='font-weight:bold;'>" + user.ID + " has followed current approval guidance and has determined that some aspects of the record need to be reanalyzed." + 
+                    " These aspects have been listed below.</p>" + reComments.Content.FormatParagraphIn();
 
                 db.SubmitChanges();
-                AddDialog(period, "", "Admin", "The period was sent back for reanalyzing. The severity was deemed " + rrblReanalyze.SelectedValue.ToUpper() + ".");
+                AddDialog(period, "", "Admin", "The period was sent back for reanalyzing.");
                 AddDialog(period, "Reanalyze", "Approver", comments);
 
                 SendEmails("Reanalyze", comments, period);
@@ -1156,14 +1147,14 @@ namespace RMS.Task
                         {
                             message.Subject = "Your record for " + period.Record.Site.site_no.Trim() + " needs to be reanalyzed";
                             message.Body = "The record period of " + timespan + " for station " + period.Record.Site.site_no.Trim() + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_id == period.Record.Site.nwisweb_site_id).station_nm +
-                                " (" + period.Record.RecordType.type_ds + ") has been sent back for reanalyzing. The severity was deemed " + rrblReanalyze.SelectedValue.ToUpper() + ". The following comments were made by the approver:<br /><br />" +
+                                " (" + period.Record.RecordType.type_ds + ") has been sent back for reanalyzing. The following comments were made by the approver:<br /><br />" +
                                 comments;
                         }
                         else
                         {
                             message.Subject = "Your record for " + period.Record.Site.site_no.Trim() + " needs to be reanalyzed";
                             message.Body = "The record period of " + timespan + " for station " + period.Record.Site.site_no.Trim() + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_id == period.Record.Site.nwisweb_site_id).station_nm +
-                                " (" + period.Record.RecordType.type_ds + ") has been sent back for reanalyzing. The severity was deemed MINOR. The following comments were made by the approver:<br /><br />" +
+                                " (" + period.Record.RecordType.type_ds + ") has been sent back for reanalyzing. The following comments were made by the approver:<br /><br />" +
                                 comments;
                         }
 
