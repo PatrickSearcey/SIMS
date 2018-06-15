@@ -18,8 +18,8 @@ namespace SIMS2017.Modal
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string type = Request.QueryString["type"];
-            int rms_record_id = Convert.ToInt32(Request.QueryString["rms_record_id"]);
+            string type = "record";// Request.QueryString["type"];
+            int rms_record_id = 10014175;// Convert.ToInt32(Request.QueryString["rms_record_id"]);
             int site_id = Convert.ToInt32(Request.QueryString["site_id"]);
 
             if (rms_record_id > 0) record = db.Records.FirstOrDefault(p => p.rms_record_id == rms_record_id);
@@ -352,10 +352,10 @@ namespace SIMS2017.Modal
                                     ts_id = db.vTS_ID_CACHEs.FirstOrDefault(p => p.iv_ts_id == Convert.ToInt32(item.Value) && p.stat_cd == "00002");
                                     if (ts_id == null)
                                     {
-                                        db.vTS_ID_CACHEs.FirstOrDefault(p => p.iv_ts_id == Convert.ToInt32(item.Value) && p.stat_cd == "00001");
+                                        ts_id = db.vTS_ID_CACHEs.FirstOrDefault(p => p.iv_ts_id == Convert.ToInt32(item.Value) && p.stat_cd == "00001");
                                         if (ts_id == null)
                                         {
-                                            db.vTS_ID_CACHEs.FirstOrDefault(p => p.iv_ts_id == Convert.ToInt32(item.Value));
+                                            ts_id = db.vTS_ID_CACHEs.FirstOrDefault(p => p.iv_ts_id == Convert.ToInt32(item.Value));
                                         }
                                     }
                                 }
