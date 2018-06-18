@@ -352,10 +352,10 @@ namespace SIMS2017.Modal
                                     ts_id = db.vTS_ID_CACHEs.FirstOrDefault(p => p.iv_ts_id == Convert.ToInt32(item.Value) && p.stat_cd == "00002");
                                     if (ts_id == null)
                                     {
-                                        db.vTS_ID_CACHEs.FirstOrDefault(p => p.iv_ts_id == Convert.ToInt32(item.Value) && p.stat_cd == "00001");
+                                        ts_id = db.vTS_ID_CACHEs.FirstOrDefault(p => p.iv_ts_id == Convert.ToInt32(item.Value) && p.stat_cd == "00001");
                                         if (ts_id == null)
                                         {
-                                            db.vTS_ID_CACHEs.FirstOrDefault(p => p.iv_ts_id == Convert.ToInt32(item.Value));
+                                            ts_id = db.vTS_ID_CACHEs.FirstOrDefault(p => p.iv_ts_id == Convert.ToInt32(item.Value));
                                         }
                                     }
                                 }

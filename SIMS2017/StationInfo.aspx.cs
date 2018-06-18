@@ -795,12 +795,24 @@ namespace SIMS2017
                     hlStart = String.Format("<a href='{0}Task/RecordProcess.aspx?period_id={1}&task=Approve' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
                     level = 4;
                 }
+                //A period with a status of 'SavePending' means that it was saved to be finished later
+                else if (period.status_va == "SavePending")
+                {
+                    hlStart = String.Format("<a href='{0}Task/RecordProcess.aspx?period_id={1}&task=SavePending' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
+                    level = 4;
+                }
                 //A period with a status of 'Approved' means that it is done, and they can only view the station analysis in a pop-up
                 else if (period.status_va == "Approved")
                 {
                     imgApproved = String.Format("<img src='{0}images/approved.gif' alt='Approved' style='float:left;padding: 0 2px 2px 0;' />", Config.RMSURL);
                     hlStart = String.Format("<a href='javascript:ShowAnalysisPopup({0})'>", period.period_id);
                     level = 5;
+                }
+                //A period with a status of 'Pending' means that the approver made minor edits to the analysis, and the period is waiting for the analyst to concur
+                else if (period.status_va == "Pending")
+                {
+                    imgApproved = String.Format("<img src='{0}images/pending.png' alt='Pending Analyst Concurrence' style='float:left;padding: 0 2px 2px 0;' />", Config.RMSURL);
+                    hlStart = String.Format("<a href='{0}Task/RecordProcess.aspx?period_id={1}&task=Pending'>", Config.RMSURL, period.period_id);
                 }
                 //Otherwise, they are trying to start a new period for analyzing
                 else
