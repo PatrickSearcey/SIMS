@@ -782,8 +782,6 @@ namespace RMS.Task
             period.status_va = "Approved";
             period.status_set_by = user.ID;
             period.status_set_by_role_va = "Analyst";
-            period.approved_by = user.ID;
-            period.approved_dt = DateTime.Now;
 
             string comments = "<p style='font-weight:bold;'>" + user.ID + " has accepted the approver's minor edits to the analysis, and the period is now marked as approved.</p>" + ltlApproverComments1.Text.FormatParagraphIn();
 
