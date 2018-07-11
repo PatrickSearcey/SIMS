@@ -49,7 +49,7 @@
                     <asp:RectangleHotSpot AlternateText="Bank-Operated Cableways Inspection Checklist" HotSpotMode="Navigate" 
                         NavigateUrl="http://sims.water.usgs.gov/SIMSShare/Bank-OperatedCablewayInspectionE-form.pdf" Bottom="58" Left="38" Right="210" Top="38" Target="_blank" />
                     <asp:RectangleHotSpot AlternateText="USGS Manual" HotSpotMode="Navigate" 
-                        NavigateUrl="http://www.usgs.gov/usgs-manual/handbook/hb/445-2-h/ch41.html" Bottom="33" Left="270" 
+                        NavigateUrl="https://www2.usgs.gov/usgs-manual/handbook/hb/445-2-h/ch41.html" Bottom="33" Left="270" 
                         Right="470" Target="_blank" Top="10" />
                     <asp:RectangleHotSpot AlternateText="WMA Memo 13.03" HotSpotMode="Navigate"
                         NavigateUrl="http://sims.water.usgs.gov/SIMSShare/WMAMemorandum13.03.pdf" Bottom="60" Left="270" Right="460" Target="_blank" Top="38" />
