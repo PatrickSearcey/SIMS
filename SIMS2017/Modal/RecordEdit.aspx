@@ -109,6 +109,47 @@
                     </tr>
                     <tr>
                         <td colspan="2">
+                            <telerik:RadCheckBox ID="rcbThreatenedGage" runat="server" Text="Record Threatened (show/don't show on threatened gage website)" AutoPostBack="true" 
+                                OnCheckedChanged="rcbThreatenedGage_CheckedChanged" />
+                            <asp:Panel ID="pnlThreatenedGage" runat="server">
+                                <div class="SubPanel">
+                                    <p>Enter display comment</p>
+                                    <asp:TextBox ID="tbRemarks" runat="server" TextMode="MultiLine" Height="50px" Width="557px" />
+                                    <table width="100%">
+                                        <tr>
+                                            <td>
+                                                Enter years of record
+                                            </td>
+                                            <td><telerik:RadNumericTextBox ID="rntbYearsOfRecord" runat="server" Width="50px" NumberFormat-DecimalDigits="0" /></td>
+                                            <td>
+                                                Choose status
+                                            </td>
+                                            <td>
+                                                <telerik:RadComboBox ID="rcbStatus" runat="server">
+                                                    <Items>
+                                                        <telerik:RadComboBoxItem Value="" Text="" />
+                                                        <telerik:RadComboBoxItem Value="Threatened" Text="Threatened" />
+                                                        <telerik:RadComboBoxItem Value="Rescued" Text="Rescued" />
+                                                        <telerik:RadComboBoxItem Value="Discontinued" Text="Discontinued" />
+                                                    </Items>
+                                                </telerik:RadComboBox>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3">
+                                                If Rescued/Discontinued - Enter sunset date of this message
+                                            </td>
+                                            <td>
+                                                <telerik:RadDatePicker ID="rdpSunsetDt" runat="server" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </asp:Panel>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
                             <telerik:RadCheckBox ID="rcbRecordInactive" runat="server" Text="Record Inactive (record only shows up when editing records through admin pages)" />
                         </td>
                     </tr>

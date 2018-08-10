@@ -1224,6 +1224,7 @@
       <Association Name="Record_RecordAltOffice" Member="RecordAltOffice" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="RecordAltOffice" Cardinality="One" />
       <Association Name="Record_AuditRecord" Member="AuditRecords" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="AuditRecord" />
       <Association Name="Record_RecordAnalysisPeriod" Member="RecordAnalysisPeriods" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="RecordAnalysisPeriod" />
+      <Association Name="Record_RMS_Threatened_Gage" Member="ThreatenedGages" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="ThreatenedGage" />
       <Association Name="RecordType_Record" Member="RecordType" ThisKey="record_type_id" OtherKey="record_type_id" Type="RecordType" IsForeignKey="true" />
       <Association Name="Site_Record" Member="Site" ThisKey="site_id" OtherKey="site_id" Type="Site" IsForeignKey="true" />
     </Type>
@@ -1255,6 +1256,19 @@
       <Column Name="comments_va" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="period_end_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="RecordAnalysisPeriod_PeriodDialog" Member="RecordAnalysisPeriod" ThisKey="period_id" OtherKey="period_id" Type="RecordAnalysisPeriod" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RMS_Threatened_Gages" Member="ThreatenedGages">
+    <Type Name="ThreatenedGage">
+      <Column Name="rms_threatened_gages_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="rms_record_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="remarks" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="years_of_record" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="status" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="sunset_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="entered_by" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="entered_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Record_RMS_Threatened_Gage" Member="Record" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="Record" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">

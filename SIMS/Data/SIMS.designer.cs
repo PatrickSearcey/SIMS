@@ -201,6 +201,9 @@ namespace Data
     partial void InsertPeriodDialog(PeriodDialog instance);
     partial void UpdatePeriodDialog(PeriodDialog instance);
     partial void DeletePeriodDialog(PeriodDialog instance);
+    partial void InsertThreatenedGage(ThreatenedGage instance);
+    partial void UpdateThreatenedGage(ThreatenedGage instance);
+    partial void DeleteThreatenedGage(ThreatenedGage instance);
     #endregion
 		
 		public SIMSDataContext() : 
@@ -886,6 +889,14 @@ namespace Data
 			get
 			{
 				return this.GetTable<PeriodDialog>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ThreatenedGage> ThreatenedGages
+		{
+			get
+			{
+				return this.GetTable<ThreatenedGage>();
 			}
 		}
 		
@@ -23330,6 +23341,8 @@ namespace Data
 		
 		private EntitySet<RecordAnalysisPeriod> _RecordAnalysisPeriods;
 		
+		private EntitySet<ThreatenedGage> _ThreatenedGages;
+		
 		private EntityRef<RecordType> _RecordType;
 		
 		private EntityRef<Site> _Site;
@@ -23370,6 +23383,7 @@ namespace Data
 			this._RecordAltOffice = default(EntityRef<RecordAltOffice>);
 			this._AuditRecords = new EntitySet<AuditRecord>(new Action<AuditRecord>(this.attach_AuditRecords), new Action<AuditRecord>(this.detach_AuditRecords));
 			this._RecordAnalysisPeriods = new EntitySet<RecordAnalysisPeriod>(new Action<RecordAnalysisPeriod>(this.attach_RecordAnalysisPeriods), new Action<RecordAnalysisPeriod>(this.detach_RecordAnalysisPeriods));
+			this._ThreatenedGages = new EntitySet<ThreatenedGage>(new Action<ThreatenedGage>(this.attach_ThreatenedGages), new Action<ThreatenedGage>(this.detach_ThreatenedGages));
 			this._RecordType = default(EntityRef<RecordType>);
 			this._Site = default(EntityRef<Site>);
 			OnCreated();
@@ -23729,6 +23743,19 @@ namespace Data
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RMS_Threatened_Gage", Storage="_ThreatenedGages", ThisKey="rms_record_id", OtherKey="rms_record_id")]
+		public EntitySet<ThreatenedGage> ThreatenedGages
+		{
+			get
+			{
+				return this._ThreatenedGages;
+			}
+			set
+			{
+				this._ThreatenedGages.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordType_Record", Storage="_RecordType", ThisKey="record_type_id", OtherKey="record_type_id", IsForeignKey=true)]
 		public RecordType RecordType
 		{
@@ -23848,6 +23875,18 @@ namespace Data
 		}
 		
 		private void detach_RecordAnalysisPeriods(RecordAnalysisPeriod entity)
+		{
+			this.SendPropertyChanging();
+			entity.Record = null;
+		}
+		
+		private void attach_ThreatenedGages(ThreatenedGage entity)
+		{
+			this.SendPropertyChanging();
+			entity.Record = this;
+		}
+		
+		private void detach_ThreatenedGages(ThreatenedGage entity)
 		{
 			this.SendPropertyChanging();
 			entity.Record = null;
@@ -24325,6 +24364,277 @@ namespace Data
 						this._period_id = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("RecordAnalysisPeriod");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Threatened_Gages")]
+	public partial class ThreatenedGage : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _rms_threatened_gages_id;
+		
+		private System.Nullable<int> _rms_record_id;
+		
+		private string _remarks;
+		
+		private System.Nullable<int> _years_of_record;
+		
+		private string _status;
+		
+		private System.Nullable<System.DateTime> _sunset_dt;
+		
+		private string _entered_by;
+		
+		private System.Nullable<System.DateTime> _entered_dt;
+		
+		private EntityRef<Record> _Record;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onrms_threatened_gages_idChanging(int value);
+    partial void Onrms_threatened_gages_idChanged();
+    partial void Onrms_record_idChanging(System.Nullable<int> value);
+    partial void Onrms_record_idChanged();
+    partial void OnremarksChanging(string value);
+    partial void OnremarksChanged();
+    partial void Onyears_of_recordChanging(System.Nullable<int> value);
+    partial void Onyears_of_recordChanged();
+    partial void OnstatusChanging(string value);
+    partial void OnstatusChanged();
+    partial void Onsunset_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onsunset_dtChanged();
+    partial void Onentered_byChanging(string value);
+    partial void Onentered_byChanged();
+    partial void Onentered_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onentered_dtChanged();
+    #endregion
+		
+		public ThreatenedGage()
+		{
+			this._Record = default(EntityRef<Record>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_threatened_gages_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int rms_threatened_gages_id
+		{
+			get
+			{
+				return this._rms_threatened_gages_id;
+			}
+			set
+			{
+				if ((this._rms_threatened_gages_id != value))
+				{
+					this.Onrms_threatened_gages_idChanging(value);
+					this.SendPropertyChanging();
+					this._rms_threatened_gages_id = value;
+					this.SendPropertyChanged("rms_threatened_gages_id");
+					this.Onrms_threatened_gages_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int")]
+		public System.Nullable<int> rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					if (this._Record.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onrms_record_idChanging(value);
+					this.SendPropertyChanging();
+					this._rms_record_id = value;
+					this.SendPropertyChanged("rms_record_id");
+					this.Onrms_record_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_remarks", DbType="NVarChar(MAX)")]
+		public string remarks
+		{
+			get
+			{
+				return this._remarks;
+			}
+			set
+			{
+				if ((this._remarks != value))
+				{
+					this.OnremarksChanging(value);
+					this.SendPropertyChanging();
+					this._remarks = value;
+					this.SendPropertyChanged("remarks");
+					this.OnremarksChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_years_of_record", DbType="Int")]
+		public System.Nullable<int> years_of_record
+		{
+			get
+			{
+				return this._years_of_record;
+			}
+			set
+			{
+				if ((this._years_of_record != value))
+				{
+					this.Onyears_of_recordChanging(value);
+					this.SendPropertyChanging();
+					this._years_of_record = value;
+					this.SendPropertyChanged("years_of_record");
+					this.Onyears_of_recordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="NVarChar(50)")]
+		public string status
+		{
+			get
+			{
+				return this._status;
+			}
+			set
+			{
+				if ((this._status != value))
+				{
+					this.OnstatusChanging(value);
+					this.SendPropertyChanging();
+					this._status = value;
+					this.SendPropertyChanged("status");
+					this.OnstatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sunset_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> sunset_dt
+		{
+			get
+			{
+				return this._sunset_dt;
+			}
+			set
+			{
+				if ((this._sunset_dt != value))
+				{
+					this.Onsunset_dtChanging(value);
+					this.SendPropertyChanging();
+					this._sunset_dt = value;
+					this.SendPropertyChanged("sunset_dt");
+					this.Onsunset_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entered_by", DbType="NVarChar(20)")]
+		public string entered_by
+		{
+			get
+			{
+				return this._entered_by;
+			}
+			set
+			{
+				if ((this._entered_by != value))
+				{
+					this.Onentered_byChanging(value);
+					this.SendPropertyChanging();
+					this._entered_by = value;
+					this.SendPropertyChanged("entered_by");
+					this.Onentered_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entered_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> entered_dt
+		{
+			get
+			{
+				return this._entered_dt;
+			}
+			set
+			{
+				if ((this._entered_dt != value))
+				{
+					this.Onentered_dtChanging(value);
+					this.SendPropertyChanging();
+					this._entered_dt = value;
+					this.SendPropertyChanged("entered_dt");
+					this.Onentered_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RMS_Threatened_Gage", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		public Record Record
+		{
+			get
+			{
+				return this._Record.Entity;
+			}
+			set
+			{
+				Record previousValue = this._Record.Entity;
+				if (((previousValue != value) 
+							|| (this._Record.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Record.Entity = null;
+						previousValue.ThreatenedGages.Remove(this);
+					}
+					this._Record.Entity = value;
+					if ((value != null))
+					{
+						value.ThreatenedGages.Add(this);
+						this._rms_record_id = value.rms_record_id;
+					}
+					else
+					{
+						this._rms_record_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Record");
 				}
 			}
 		}
