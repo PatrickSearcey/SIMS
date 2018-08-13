@@ -105,8 +105,8 @@
                         </telerik:GridTemplateColumn>
                         <telerik:GridBoundColumn DataField="station_nm_short" HeaderText="Station Name" UniqueName="station_nm" SortExpression="station_nm" FilterControlWidth="120px"/>
                         <telerik:GridBoundColumn DataField="type_ds" HeaderText="Record-Type" UniqueName="type_ds" AllowFiltering="false" SortExpression="type_ds" HeaderStyle-Width="160px" />
-                        <telerik:GridBoundColumn DataField="status" HeaderText="TS Class" UniqueName="ts_fg" SortExpression="ts_fg" AllowFiltering="false" HeaderStyle-Width="30px" />
-                        <telerik:GridBoundColumn DataField="years_of_record" HeaderText="Cat No" UniqueName="category_no" SortExpression="category_no" AllowFiltering="false" HeaderStyle-Width="30px" />
+                        <telerik:GridBoundColumn DataField="status" HeaderText="Status" UniqueName="ts_fg" SortExpression="ts_fg" AllowFiltering="false" HeaderStyle-Width="30px" />
+                        <telerik:GridBoundColumn DataField="years_of_record" HeaderText="Yrs of Record" UniqueName="category_no" SortExpression="category_no" AllowFiltering="false" HeaderStyle-Width="30px" />
                         <telerik:GridBoundColumn DataField="remarks" HeaderText="Remarks" UniqueName="remarks" SortExpression="remarks" AllowFiltering="false" />
                         <telerik:GridTemplateColumn DataField="rms_record_id" UniqueName="rms_record_id" AllowSorting="false" AllowFiltering="false" HeaderStyle-Width="30px">
                             <ItemTemplate>
