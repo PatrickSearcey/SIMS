@@ -8,6 +8,8 @@
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -105,6 +107,7 @@
     <Content Include="Admin\Personnel.aspx" />
     <Content Include="Admin\RegisterSite.aspx" />
     <Content Include="Admin\Tasks.aspx" />
+    <Content Include="Admin\ThreatenedGages.aspx" />
     <Content Include="App_Data\RadCaptcha\0.wav" />
     <Content Include="App_Data\RadCaptcha\1.wav" />
     <Content Include="App_Data\RadCaptcha\2.wav" />
@@ -280,6 +283,13 @@
     </Compile>
     <Compile Include="Admin\Tasks.aspx.designer.cs">
       <DependentUpon>Tasks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ThreatenedGages.aspx.cs">
+      <DependentUpon>ThreatenedGages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ThreatenedGages.aspx.designer.cs">
+      <DependentUpon>ThreatenedGages.aspx</DependentUpon>
     </Compile>
     <Compile Include="Control\ApproveMANU.ascx.cs">
       <DependentUpon>ApproveMANU.ascx</DependentUpon>
@@ -545,7 +555,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

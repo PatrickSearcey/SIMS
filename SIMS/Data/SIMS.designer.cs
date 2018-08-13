@@ -1095,6 +1095,13 @@ namespace Data
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), record_type_id, querydate);
 			return ((ISingleResult<SP_RMS_Audit_Progress_by_recordtypeResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RMS_ThreatenedGages_by_WSC_or_Office")]
+		public ISingleResult<SP_RMS_ThreatenedGages_by_WSC_or_OfficeResult> SP_RMS_ThreatenedGages_by_WSC_or_Office([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> office_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> wsc_id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), office_id, wsc_id);
+			return ((ISingleResult<SP_RMS_ThreatenedGages_by_WSC_or_OfficeResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.lut_Office")]
@@ -23743,7 +23750,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RMS_Threatened_Gage", Storage="_ThreatenedGages", ThisKey="rms_record_id", OtherKey="rms_record_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_ThreatenedGage", Storage="_ThreatenedGages", ThisKey="rms_record_id", OtherKey="rms_record_id")]
 		public EntitySet<ThreatenedGage> ThreatenedGages
 		{
 			get
@@ -24605,7 +24612,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_RMS_Threatened_Gage", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_ThreatenedGage", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
 		public Record Record
 		{
 			get
@@ -28493,6 +28500,212 @@ namespace Data
 				if ((this._audited != value))
 				{
 					this._audited = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_RMS_ThreatenedGages_by_WSC_or_OfficeResult
+	{
+		
+		private int _rms_record_id;
+		
+		private string _office_cd;
+		
+		private string _site_no;
+		
+		private string _station_nm_short;
+		
+		private string _type_ds;
+		
+		private string _remarks;
+		
+		private System.Nullable<int> _years_of_record;
+		
+		private string _status;
+		
+		private System.Nullable<System.DateTime> _sunset_dt;
+		
+		private string _entered_by;
+		
+		private System.Nullable<System.DateTime> _entered_dt;
+		
+		public SP_RMS_ThreatenedGages_by_WSC_or_OfficeResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int NOT NULL")]
+		public int rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					this._rms_record_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_cd", DbType="NVarChar(10)")]
+		public string office_cd
+		{
+			get
+			{
+				return this._office_cd;
+			}
+			set
+			{
+				if ((this._office_cd != value))
+				{
+					this._office_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_no", DbType="NVarChar(15)")]
+		public string site_no
+		{
+			get
+			{
+				return this._site_no;
+			}
+			set
+			{
+				if ((this._site_no != value))
+				{
+					this._site_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_nm_short", DbType="NVarChar(150)")]
+		public string station_nm_short
+		{
+			get
+			{
+				return this._station_nm_short;
+			}
+			set
+			{
+				if ((this._station_nm_short != value))
+				{
+					this._station_nm_short = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_ds", DbType="NVarChar(200)")]
+		public string type_ds
+		{
+			get
+			{
+				return this._type_ds;
+			}
+			set
+			{
+				if ((this._type_ds != value))
+				{
+					this._type_ds = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_remarks", DbType="NVarChar(MAX)")]
+		public string remarks
+		{
+			get
+			{
+				return this._remarks;
+			}
+			set
+			{
+				if ((this._remarks != value))
+				{
+					this._remarks = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_years_of_record", DbType="Int")]
+		public System.Nullable<int> years_of_record
+		{
+			get
+			{
+				return this._years_of_record;
+			}
+			set
+			{
+				if ((this._years_of_record != value))
+				{
+					this._years_of_record = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="NVarChar(50)")]
+		public string status
+		{
+			get
+			{
+				return this._status;
+			}
+			set
+			{
+				if ((this._status != value))
+				{
+					this._status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sunset_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> sunset_dt
+		{
+			get
+			{
+				return this._sunset_dt;
+			}
+			set
+			{
+				if ((this._sunset_dt != value))
+				{
+					this._sunset_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entered_by", DbType="NVarChar(20)")]
+		public string entered_by
+		{
+			get
+			{
+				return this._entered_by;
+			}
+			set
+			{
+				if ((this._entered_by != value))
+				{
+					this._entered_by = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entered_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> entered_dt
+		{
+			get
+			{
+				return this._entered_dt;
+			}
+			set
+			{
+				if ((this._entered_dt != value))
+				{
+					this._entered_dt = value;
 				}
 			}
 		}

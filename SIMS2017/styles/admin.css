@@ -252,4 +252,23 @@ div.EditDocList {
 }
 
 
+.Filters {
+    margin: 0 0 10px 0;
+    padding: 10px;
+    height: 100%;
+    width: 98%;
+    color: #314d93;
+    background: #fbfcee;
+    -webkit-box-shadow: 0 0 5px 0 #fbfcee;
+    box-shadow: 0 0 5px 0 #fbfcee;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 11pt;
+    font-weight: bold;
+}
 
+.filtersSubtext {
+    text-align: center;
+    font-style: italic;
+    font-weight: normal !important;
+}
