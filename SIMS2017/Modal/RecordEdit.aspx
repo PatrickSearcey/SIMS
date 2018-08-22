@@ -109,7 +109,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <telerik:RadCheckBox ID="rcbThreatenedGage" runat="server" Text="Record Threatened (show/don't show on threatened gage website)" AutoPostBack="true" 
+                            <telerik:RadCheckBox ID="rcbThreatenedGage" runat="server" Text="Record Endangered (show/don't show on endangered gage website)" AutoPostBack="true" 
                                 OnCheckedChanged="rcbThreatenedGage_CheckedChanged" />
                             <asp:Panel ID="pnlThreatenedGage" runat="server">
                                 <div class="SubPanel">
@@ -128,7 +128,7 @@
                                                 <telerik:RadComboBox ID="rcbStatus" runat="server">
                                                     <Items>
                                                         <telerik:RadComboBoxItem Value="" Text="" />
-                                                        <telerik:RadComboBoxItem Value="Threatened" Text="Threatened" />
+                                                        <telerik:RadComboBoxItem Value="Threatened" Text="Endangered" />
                                                         <telerik:RadComboBoxItem Value="Rescued" Text="Rescued" />
                                                         <telerik:RadComboBoxItem Value="Discontinued" Text="Discontinued" />
                                                     </Items>

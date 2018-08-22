@@ -77,7 +77,7 @@ namespace SIMS2017.Admin
         protected void UserControlSetup()
         {
             string wsc_nm = db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID).wsc_nm;
-            ph1.Title = "Threatened Gages List";
+            ph1.Title = "Endangered Gages List";
 
             ph1.SubTitle = "For the " + wsc_nm + " WSC";
             ph1.ShowOfficeInfoPanel = true;

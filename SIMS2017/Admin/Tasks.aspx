@@ -28,9 +28,9 @@
                             <asp:HyperLink ID="hlManagePersonnel" runat="server" Text="Manage Personnel" /><br />
                             <asp:HyperLink ID="hlManageFieldTrips" runat="server" Text="Manage Field Trips" />
                         </div>
-                        <h3>Threatened Gages</h3>
+                        <h3>Endangered Gages</h3>
                         <div class="GeneralTasks">
-                            <asp:HyperLink ID="hlThreatenedGages" runat="server" Text="List of Threatened Gages" />
+                            <asp:HyperLink ID="hlThreatenedGages" runat="server" Text="List of Endangered Gages" />
                         </div>
                     </td>
                     <td>
