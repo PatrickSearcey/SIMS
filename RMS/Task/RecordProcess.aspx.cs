@@ -282,7 +282,7 @@ namespace RMS.Task
             {
                 //Analyzing a new period, but check to see if there have been other periods started for this record
                 var analysis_status = currRecord.RecordAnalysisStatus;
-                if (analysis_status != null)
+                if (analysis_status.analyzed_period_dt != null)
                 {
                     rdpBeginDateAnalyze.SelectedDate = analysis_status.analyzed_period_dt;
                     rdpBeginDateAnalyze.Enabled = false;
