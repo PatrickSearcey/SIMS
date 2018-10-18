@@ -94,13 +94,13 @@ namespace SIMS2017.Admin {
         protected global::System.Web.UI.WebControls.HyperLink hlManageFieldTrips;
         
         /// <summary>
-        /// hlThreatenedGages control.
+        /// hlEndangeredGages control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlThreatenedGages;
+        protected global::System.Web.UI.WebControls.HyperLink hlEndangeredGages;
         
         /// <summary>
         /// hlManageRecords control.

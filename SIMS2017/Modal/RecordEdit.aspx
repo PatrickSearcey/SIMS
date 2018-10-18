@@ -38,7 +38,7 @@
             <h3><asp:Literal ID="ltlRecordType" runat="server" /><br /><asp:Literal ID="ltlSite" runat="server" /></h3>
             <asp:Panel ID="pnlNewRecord" runat="server" CssClass="RecordPanel">
                 <p><asp:Literal ID="ltlTopNote" runat="server" /></p>
-                <telerik:RadCheckBoxList ID="rcblOptions" runat="server" OnSelectedIndexChanged="CreateNewRecord" Direction="Horizontal"
+                <telerik:RadCheckBoxList ID="rcblOptions" runat="server" OnSelectedIndexChanged="CreateNewRecord" Direction="Horizontal" Skin="Bootstrap"
                     DataBindings-DataValueField="option" DataBindings-DataTextField="description" AutoPostBack="true" />
                 <p><asp:Literal ID="ltlBottomNote" runat="server" /></p>
             </asp:Panel>
@@ -53,25 +53,25 @@
                         <td colspan="2"><p><asp:Literal ID="ltlRecordTS" runat="server" /></p></td>
                     </tr>
                     <tr>
-                        <td><asp:Literal ID="ltlTimeSeriesLabel" runat="server" Text="Time-Series ID" /></td>
+                        <td><asp:Literal ID="ltlTimeSeriesLabel" runat="server"><b>Time-Series ID</b></asp:Literal></td>
                         <td>
                             <asp:HiddenField ID="hfEditIDs" runat="server" />
                             <asp:Panel ID="pnlAssignedIDs" runat="server">
                                 <asp:Literal ID="ltlAssignedIDs" runat="server" /> <asp:LinkButton ID="lbEditIDs" runat="server" Text="edit" OnCommand="EditIDs" />
                             </asp:Panel>
                             <asp:Panel ID="pnlEditIDs" runat="server">
-                                <telerik:RadCheckBoxList ID="rcblIDs" runat="server" DataBindings-DataValueField="iv_ts_id" DataBindings-DataTextField="dd_ts_ds" />
+                                <telerik:RadCheckBoxList ID="rcblIDs" runat="server" DataBindings-DataValueField="iv_ts_id" DataBindings-DataTextField="dd_ts_ds" Skin="Bootstrap" />
                             </asp:Panel>
                         </td>
                     </tr>
                     <tr>
-                        <td width="30%">Record-Type</td>
-                        <td><telerik:RadDropDownList ID="rddlRecordTypes" runat="server" DataValueField="record_type_id" DataTextField="type_ds" Width="300px" /></td>
+                        <td width="30%"><b>Record-Type</b></td>
+                        <td><telerik:RadDropDownList ID="rddlRecordTypes" runat="server" DataValueField="record_type_id" DataTextField="type_ds" Width="300px" Skin="Bootstrap" /></td>
                     </tr>
                     <tr>
-                        <td><asp:Literal ID="ltlCatNumberLabel" runat="server" Text="Category Number" /></td>
+                        <td><asp:Literal ID="ltlCatNumberLabel" runat="server"><b>Category Number</b></asp:Literal></td>
                         <td>
-                            <telerik:RadDropDownList ID="rddlCatNumber" runat="server" AutoPostBack="true" OnSelectedIndexChanged="CategoryNumberChanged" Width="80px">
+                            <telerik:RadDropDownList ID="rddlCatNumber" runat="server" AutoPostBack="true" OnSelectedIndexChanged="CategoryNumberChanged" Width="80px" Skin="Bootstrap">
                                 <Items>
                                     <telerik:DropDownListItem Value="1" Text="1" />
                                     <telerik:DropDownListItem Value="2" Text="2" />
@@ -82,15 +82,15 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Operator <telerik:RadDropDownList ID="rddlOperator" runat="server" Width="120px" DataValueField="user_id" DataTextField="user_id" /></td>
+                        <td><b>Operator</b> <telerik:RadDropDownList ID="rddlOperator" runat="server" Width="120px" DataValueField="user_id" DataTextField="user_id" Skin="Bootstrap" /></td>
                         <td>
-                            Analyst <telerik:RadDropDownList ID="rddlAnalyzer" runat="server" Width="120px" DataValueField="user_id" DataTextField="user_id" />
-                            Approver <telerik:RadDropDownList ID="rddlApprover" runat="server" Width="120px" DataValueField="user_id" DataTextField="user_id"  />
+                            <b>Analyst</b> <telerik:RadDropDownList ID="rddlAnalyzer" runat="server" Width="120px" DataValueField="user_id" DataTextField="user_id" Skin="Bootstrap" />
+                            <b>Approver</b> <telerik:RadDropDownList ID="rddlApprover" runat="server" Width="120px" DataValueField="user_id" DataTextField="user_id" Skin="Bootstrap"  />
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            Auditor <telerik:RadDropDownList ID="rddlAuditor" runat="server" Width="120px" DataValueField="user_id" DataTextField="user_id" />
+                            <b>Auditor</b> <telerik:RadDropDownList ID="rddlAuditor" runat="server" Width="120px" DataValueField="user_id" DataTextField="user_id" Skin="Bootstrap" />
                         </td>
                     </tr>
                     <tr>
@@ -102,30 +102,27 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Responsible Office</td>
+                        <td><b>Responsible Office</b></td>
                         <td>
-                            <telerik:RadDropDownList ID="rddlResponsibleOffice" runat="server" DataValueField="office_id" DataTextField="office_nm"  Width="350px" />
+                            <telerik:RadDropDownList ID="rddlResponsibleOffice" runat="server" DataValueField="office_id" DataTextField="office_nm"  Width="350px" Skin="Bootstrap" />
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <telerik:RadCheckBox ID="rcbThreatenedGage" runat="server" Text="Record Endangered (show/don't show on endangered gage website)" AutoPostBack="true" 
+                            <telerik:RadCheckBox ID="rcbThreatenedGage" runat="server" Text="Record Endangered (show/don't show on endangered gage website)" AutoPostBack="true" Skin="Bootstrap" 
                                 OnCheckedChanged="rcbThreatenedGage_CheckedChanged" />
                             <asp:Panel ID="pnlThreatenedGage" runat="server">
                                 <div class="SubPanel">
-                                    <p>Enter display comment</p>
+                                    <p><b>Enter display comment</b><br /><span style="font-style:italic;font-size:9pt;">Include the date to be discontinued (or was discontinued or rescued), 
+                                        as well as the reason for the change in status. Please note, all remarks will be visible to the public.</span></p>
                                     <asp:TextBox ID="tbRemarks" runat="server" TextMode="MultiLine" Height="50px" Width="557px" />
                                     <table width="100%">
                                         <tr>
+                                            <td><b>Enter years of record</b></td>
+                                            <td><telerik:RadNumericTextBox ID="rntbYearsOfRecord" runat="server" Width="50px" NumberFormat-DecimalDigits="0" Skin="Bootstrap" /></td>
+                                            <td><b>Choose status</b></td>
                                             <td>
-                                                Enter years of record
-                                            </td>
-                                            <td><telerik:RadNumericTextBox ID="rntbYearsOfRecord" runat="server" Width="50px" NumberFormat-DecimalDigits="0" /></td>
-                                            <td>
-                                                Choose status
-                                            </td>
-                                            <td>
-                                                <telerik:RadComboBox ID="rcbStatus" runat="server">
+                                                <telerik:RadComboBox ID="rcbStatus" runat="server" Skin="Bootstrap">
                                                     <Items>
                                                         <telerik:RadComboBoxItem Value="" Text="" />
                                                         <telerik:RadComboBoxItem Value="Threatened" Text="Endangered" />
@@ -133,15 +130,21 @@
                                                         <telerik:RadComboBoxItem Value="Discontinued" Text="Discontinued" />
                                                     </Items>
                                                 </telerik:RadComboBox>
+                                                <asp:Image runat="server" ID="imgToolTip_Status" ImageUrl="~/images/QuestionMark.png" AlternateText="question mark" Width="15px" Height="15px" />
+                                                <telerik:RadToolTip RenderMode="Lightweight" runat="server" ID="rttStatus" TargetControlID="imgToolTip_Status" IsClientID="false"
+                                                    ShowEvent="OnMouseOver" HideEvent="Default" Position="MiddleRight" RelativeTo="Element" AutoCloseDelay="9000"
+                                                    Width="300px" Height="150px" Skin="Bootstrap" IgnoreAltAttribute="true">
+                                                    <ul>
+                                                        <li>Endangered - Station may be discontinued or converted to a reduced level of service.</li>
+                                                        <li>Discontinued - Recently discontinued stations due to funding shortfall</li>
+                                                        <li>Rescued - Stations temporarily discontinued or converted to a reduced level of service, now back in full operation</li>
+                                                    </ul>
+                                                </telerik:RadToolTip>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3">
-                                                If Rescued/Discontinued - Enter sunset date of this message
-                                            </td>
-                                            <td>
-                                                <telerik:RadDatePicker ID="rdpSunsetDt" runat="server" />
-                                            </td>
+                                            <td colspan="3"><b>If Rescued/Discontinued - Enter sunset date of this message</b></td>
+                                            <td><telerik:RadDatePicker ID="rdpSunsetDt" runat="server" /></td>
                                         </tr>
                                     </table>
                                 </div>

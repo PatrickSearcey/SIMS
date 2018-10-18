@@ -201,9 +201,9 @@ namespace Data
     partial void InsertPeriodDialog(PeriodDialog instance);
     partial void UpdatePeriodDialog(PeriodDialog instance);
     partial void DeletePeriodDialog(PeriodDialog instance);
-    partial void InsertThreatenedGage(ThreatenedGage instance);
-    partial void UpdateThreatenedGage(ThreatenedGage instance);
-    partial void DeleteThreatenedGage(ThreatenedGage instance);
+    partial void InsertEndangeredGage(EndangeredGage instance);
+    partial void UpdateEndangeredGage(EndangeredGage instance);
+    partial void DeleteEndangeredGage(EndangeredGage instance);
     #endregion
 		
 		public SIMSDataContext() : 
@@ -892,11 +892,27 @@ namespace Data
 			}
 		}
 		
-		public System.Data.Linq.Table<ThreatenedGage> ThreatenedGages
+		public System.Data.Linq.Table<EndangeredGage> EndangeredGages
 		{
 			get
 			{
-				return this.GetTable<ThreatenedGage>();
+				return this.GetTable<EndangeredGage>();
+			}
+		}
+		
+		public System.Data.Linq.Table<vEndangeredGagesHistory> vEndangeredGagesHistories
+		{
+			get
+			{
+				return this.GetTable<vEndangeredGagesHistory>();
+			}
+		}
+		
+		public System.Data.Linq.Table<vEndangeredGagesCurrentStatus> vEndangeredGagesCurrentStatus
+		{
+			get
+			{
+				return this.GetTable<vEndangeredGagesCurrentStatus>();
 			}
 		}
 		
@@ -1096,11 +1112,11 @@ namespace Data
 			return ((ISingleResult<SP_RMS_Audit_Progress_by_recordtypeResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RMS_ThreatenedGages_by_WSC_or_Office")]
-		public ISingleResult<SP_RMS_ThreatenedGages_by_WSC_or_OfficeResult> SP_RMS_ThreatenedGages_by_WSC_or_Office([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> office_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> wsc_id)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RMS_EndangeredGages_by_WSC_or_Office")]
+		public ISingleResult<SP_RMS_EndangeredGages_by_WSC_or_OfficeResult> SP_RMS_EndangeredGages_by_WSC_or_Office([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> office_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> wsc_id)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), office_id, wsc_id);
-			return ((ISingleResult<SP_RMS_ThreatenedGages_by_WSC_or_OfficeResult>)(result.ReturnValue));
+			return ((ISingleResult<SP_RMS_EndangeredGages_by_WSC_or_OfficeResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -23348,7 +23364,7 @@ namespace Data
 		
 		private EntitySet<RecordAnalysisPeriod> _RecordAnalysisPeriods;
 		
-		private EntitySet<ThreatenedGage> _ThreatenedGages;
+		private EntitySet<EndangeredGage> _EndangeredGages;
 		
 		private EntityRef<RecordType> _RecordType;
 		
@@ -23390,7 +23406,7 @@ namespace Data
 			this._RecordAltOffice = default(EntityRef<RecordAltOffice>);
 			this._AuditRecords = new EntitySet<AuditRecord>(new Action<AuditRecord>(this.attach_AuditRecords), new Action<AuditRecord>(this.detach_AuditRecords));
 			this._RecordAnalysisPeriods = new EntitySet<RecordAnalysisPeriod>(new Action<RecordAnalysisPeriod>(this.attach_RecordAnalysisPeriods), new Action<RecordAnalysisPeriod>(this.detach_RecordAnalysisPeriods));
-			this._ThreatenedGages = new EntitySet<ThreatenedGage>(new Action<ThreatenedGage>(this.attach_ThreatenedGages), new Action<ThreatenedGage>(this.detach_ThreatenedGages));
+			this._EndangeredGages = new EntitySet<EndangeredGage>(new Action<EndangeredGage>(this.attach_EndangeredGages), new Action<EndangeredGage>(this.detach_EndangeredGages));
 			this._RecordType = default(EntityRef<RecordType>);
 			this._Site = default(EntityRef<Site>);
 			OnCreated();
@@ -23750,16 +23766,16 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_ThreatenedGage", Storage="_ThreatenedGages", ThisKey="rms_record_id", OtherKey="rms_record_id")]
-		public EntitySet<ThreatenedGage> ThreatenedGages
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_EndangeredGage", Storage="_EndangeredGages", ThisKey="rms_record_id", OtherKey="rms_record_id")]
+		public EntitySet<EndangeredGage> EndangeredGages
 		{
 			get
 			{
-				return this._ThreatenedGages;
+				return this._EndangeredGages;
 			}
 			set
 			{
-				this._ThreatenedGages.Assign(value);
+				this._EndangeredGages.Assign(value);
 			}
 		}
 		
@@ -23887,13 +23903,13 @@ namespace Data
 			entity.Record = null;
 		}
 		
-		private void attach_ThreatenedGages(ThreatenedGage entity)
+		private void attach_EndangeredGages(EndangeredGage entity)
 		{
 			this.SendPropertyChanging();
 			entity.Record = this;
 		}
 		
-		private void detach_ThreatenedGages(ThreatenedGage entity)
+		private void detach_EndangeredGages(EndangeredGage entity)
 		{
 			this.SendPropertyChanging();
 			entity.Record = null;
@@ -24396,13 +24412,13 @@ namespace Data
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Threatened_Gages")]
-	public partial class ThreatenedGage : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Endangered_Gages")]
+	public partial class EndangeredGage : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _rms_threatened_gages_id;
+		private int _rms_endangered_gages_id;
 		
 		private System.Nullable<int> _rms_record_id;
 		
@@ -24424,8 +24440,8 @@ namespace Data
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void Onrms_threatened_gages_idChanging(int value);
-    partial void Onrms_threatened_gages_idChanged();
+    partial void Onrms_endangered_gages_idChanging(int value);
+    partial void Onrms_endangered_gages_idChanged();
     partial void Onrms_record_idChanging(System.Nullable<int> value);
     partial void Onrms_record_idChanged();
     partial void OnremarksChanging(string value);
@@ -24442,28 +24458,28 @@ namespace Data
     partial void Onentered_dtChanged();
     #endregion
 		
-		public ThreatenedGage()
+		public EndangeredGage()
 		{
 			this._Record = default(EntityRef<Record>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_threatened_gages_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int rms_threatened_gages_id
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_endangered_gages_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int rms_endangered_gages_id
 		{
 			get
 			{
-				return this._rms_threatened_gages_id;
+				return this._rms_endangered_gages_id;
 			}
 			set
 			{
-				if ((this._rms_threatened_gages_id != value))
+				if ((this._rms_endangered_gages_id != value))
 				{
-					this.Onrms_threatened_gages_idChanging(value);
+					this.Onrms_endangered_gages_idChanging(value);
 					this.SendPropertyChanging();
-					this._rms_threatened_gages_id = value;
-					this.SendPropertyChanged("rms_threatened_gages_id");
-					this.Onrms_threatened_gages_idChanged();
+					this._rms_endangered_gages_id = value;
+					this.SendPropertyChanged("rms_endangered_gages_id");
+					this.Onrms_endangered_gages_idChanged();
 				}
 			}
 		}
@@ -24612,7 +24628,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_ThreatenedGage", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_EndangeredGage", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
 		public Record Record
 		{
 			get
@@ -24629,12 +24645,12 @@ namespace Data
 					if ((previousValue != null))
 					{
 						this._Record.Entity = null;
-						previousValue.ThreatenedGages.Remove(this);
+						previousValue.EndangeredGages.Remove(this);
 					}
 					this._Record.Entity = value;
 					if ((value != null))
 					{
-						value.ThreatenedGages.Add(this);
+						value.EndangeredGages.Add(this);
 						this._rms_record_id = value.rms_record_id;
 					}
 					else
@@ -24663,6 +24679,276 @@ namespace Data
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vEndangeredGages_History")]
+	public partial class vEndangeredGagesHistory
+	{
+		
+		private System.Nullable<int> _site_id;
+		
+		private int _rms_record_id;
+		
+		private string _type_cd;
+		
+		private string _type_ds;
+		
+		private string _status;
+		
+		private System.Nullable<System.DateTime> _entered_dt;
+		
+		public vEndangeredGagesHistory()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int")]
+		public System.Nullable<int> site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					this._site_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int NOT NULL")]
+		public int rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					this._rms_record_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_cd", DbType="NVarChar(50)")]
+		public string type_cd
+		{
+			get
+			{
+				return this._type_cd;
+			}
+			set
+			{
+				if ((this._type_cd != value))
+				{
+					this._type_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_ds", DbType="NVarChar(200)")]
+		public string type_ds
+		{
+			get
+			{
+				return this._type_ds;
+			}
+			set
+			{
+				if ((this._type_ds != value))
+				{
+					this._type_ds = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="NVarChar(50)")]
+		public string status
+		{
+			get
+			{
+				return this._status;
+			}
+			set
+			{
+				if ((this._status != value))
+				{
+					this._status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entered_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> entered_dt
+		{
+			get
+			{
+				return this._entered_dt;
+			}
+			set
+			{
+				if ((this._entered_dt != value))
+				{
+					this._entered_dt = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vEndangeredGages_CurrentStatus")]
+	public partial class vEndangeredGagesCurrentStatus
+	{
+		
+		private System.Nullable<int> _wsc_id;
+		
+		private int _office_id;
+		
+		private int _site_id;
+		
+		private string _site_no;
+		
+		private string _station_nm;
+		
+		private System.Nullable<System.DateTime> _LastEndangeredDate;
+		
+		private System.Nullable<System.DateTime> _LastRescuedDate;
+		
+		private System.Nullable<System.DateTime> _LastDiscontinuedDate;
+		
+		public vEndangeredGagesCurrentStatus()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_id", DbType="Int")]
+		public System.Nullable<int> wsc_id
+		{
+			get
+			{
+				return this._wsc_id;
+			}
+			set
+			{
+				if ((this._wsc_id != value))
+				{
+					this._wsc_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_id", DbType="Int NOT NULL")]
+		public int office_id
+		{
+			get
+			{
+				return this._office_id;
+			}
+			set
+			{
+				if ((this._office_id != value))
+				{
+					this._office_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int NOT NULL")]
+		public int site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					this._site_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_no", DbType="NVarChar(15) NOT NULL", CanBeNull=false)]
+		public string site_no
+		{
+			get
+			{
+				return this._site_no;
+			}
+			set
+			{
+				if ((this._site_no != value))
+				{
+					this._site_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_nm", DbType="VarChar(50)")]
+		public string station_nm
+		{
+			get
+			{
+				return this._station_nm;
+			}
+			set
+			{
+				if ((this._station_nm != value))
+				{
+					this._station_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastEndangeredDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LastEndangeredDate
+		{
+			get
+			{
+				return this._LastEndangeredDate;
+			}
+			set
+			{
+				if ((this._LastEndangeredDate != value))
+				{
+					this._LastEndangeredDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastRescuedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LastRescuedDate
+		{
+			get
+			{
+				return this._LastRescuedDate;
+			}
+			set
+			{
+				if ((this._LastRescuedDate != value))
+				{
+					this._LastRescuedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastDiscontinuedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LastDiscontinuedDate
+		{
+			get
+			{
+				return this._LastDiscontinuedDate;
+			}
+			set
+			{
+				if ((this._LastDiscontinuedDate != value))
+				{
+					this._LastDiscontinuedDate = value;
+				}
 			}
 		}
 	}
@@ -28505,7 +28791,7 @@ namespace Data
 		}
 	}
 	
-	public partial class SP_RMS_ThreatenedGages_by_WSC_or_OfficeResult
+	public partial class SP_RMS_EndangeredGages_by_WSC_or_OfficeResult
 	{
 		
 		private int _rms_record_id;
@@ -28517,6 +28803,8 @@ namespace Data
 		private string _station_nm_short;
 		
 		private string _type_ds;
+		
+		private string _site_tp_cd;
 		
 		private string _remarks;
 		
@@ -28530,7 +28818,7 @@ namespace Data
 		
 		private System.Nullable<System.DateTime> _entered_dt;
 		
-		public SP_RMS_ThreatenedGages_by_WSC_or_OfficeResult()
+		public SP_RMS_EndangeredGages_by_WSC_or_OfficeResult()
 		{
 		}
 		
@@ -28610,6 +28898,22 @@ namespace Data
 				if ((this._type_ds != value))
 				{
 					this._type_ds = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_tp_cd", DbType="VarChar(7)")]
+		public string site_tp_cd
+		{
+			get
+			{
+				return this._site_tp_cd;
+			}
+			set
+			{
+				if ((this._site_tp_cd != value))
+				{
+					this._site_tp_cd = value;
 				}
 			}
 		}

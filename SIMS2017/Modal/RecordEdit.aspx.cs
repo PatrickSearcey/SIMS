@@ -242,7 +242,7 @@ namespace SIMS2017.Modal
             rddlResponsibleOffice.SelectedValue = office_id.ToString();
 
             //Threatened Gage
-            var tg_newest = record.ThreatenedGages.OrderByDescending(p => p.entered_dt).FirstOrDefault();
+            var tg_newest = record.EndangeredGages.OrderByDescending(p => p.entered_dt).FirstOrDefault();
             if (tg_newest != null)
             {
                 pnlThreatenedGage.Visible = true;
@@ -429,7 +429,7 @@ namespace SIMS2017.Modal
                         db.SubmitChanges();
                     }
                     //Update the threatened gage
-                    var tg_newest = record.ThreatenedGages.OrderByDescending(p => p.entered_dt).FirstOrDefault();
+                    var tg_newest = record.EndangeredGages.OrderByDescending(p => p.entered_dt).FirstOrDefault();
                     if ((bool)rcbThreatenedGage.Checked)
                     {
                         if (tg_newest != null)
@@ -437,7 +437,7 @@ namespace SIMS2017.Modal
                             //If there was a change to any of the threatened gage field values, then need to create a new record for it in the database table
                             if (tg_newest.remarks != tbRemarks.Text || tg_newest.years_of_record != rntbYearsOfRecord.Value || tg_newest.status != rcbStatus.SelectedValue.ToString() || tg_newest.sunset_dt != rdpSunsetDt.SelectedDate)
                             {
-                                var tg_new = new Data.ThreatenedGage();
+                                var tg_new = new Data.EndangeredGage();
                                 tg_new.rms_record_id = record.rms_record_id;
                                 tg_new.remarks = tbRemarks.Text;
                                 tg_new.years_of_record = Convert.ToInt32(rntbYearsOfRecord.Value);
@@ -445,13 +445,13 @@ namespace SIMS2017.Modal
                                 tg_new.sunset_dt = rdpSunsetDt.SelectedDate;
                                 tg_new.entered_by = user.ID;
                                 tg_new.entered_dt = DateTime.Now;
-                                db.ThreatenedGages.InsertOnSubmit(tg_new);
+                                db.EndangeredGages.InsertOnSubmit(tg_new);
                             }
                             //Otherwise, do nothing
                         }
                         else //Adding to the threatened gage table for the first time
                         {
-                            var tg_new = new Data.ThreatenedGage();
+                            var tg_new = new Data.EndangeredGage();
                             tg_new.rms_record_id = record.rms_record_id;
                             tg_new.remarks = tbRemarks.Text;
                             tg_new.years_of_record = Convert.ToInt32(rntbYearsOfRecord.Value);
@@ -459,7 +459,7 @@ namespace SIMS2017.Modal
                             tg_new.sunset_dt = rdpSunsetDt.SelectedDate;
                             tg_new.entered_by = user.ID;
                             tg_new.entered_dt = DateTime.Now;
-                            db.ThreatenedGages.InsertOnSubmit(tg_new);
+                            db.EndangeredGages.InsertOnSubmit(tg_new);
                         }
                     }
                     else //The checkbox was not checked
@@ -535,7 +535,7 @@ namespace SIMS2017.Modal
                     //Insert the threatened gage
                     if ((bool)rcbThreatenedGage.Checked)
                     {
-                        var tg_new = new Data.ThreatenedGage();
+                        var tg_new = new Data.EndangeredGage();
                         tg_new.rms_record_id = new_record.rms_record_id;
                         tg_new.remarks = tbRemarks.Text;
                         tg_new.years_of_record = Convert.ToInt32(rntbYearsOfRecord.Value);
@@ -543,7 +543,7 @@ namespace SIMS2017.Modal
                         tg_new.sunset_dt = rdpSunsetDt.SelectedDate;
                         tg_new.entered_by = user.ID;
                         tg_new.entered_dt = DateTime.Now;
-                        db.ThreatenedGages.InsertOnSubmit(tg_new);
+                        db.EndangeredGages.InsertOnSubmit(tg_new);
                     }
                 }
                 

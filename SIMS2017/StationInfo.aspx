@@ -105,7 +105,7 @@
     <telerik:RadWindowManager RenderMode="Lightweight" ID="rwm" ShowContentDuringLoad="false" VisibleStatusbar="false" ReloadOnShow="true" runat="server" EnableShadow="true">
         <Windows>
             <telerik:RadWindow RenderMode="Lightweight" ID="rwEditFieldTrips" runat="server" Behaviors="Close" OnClientClose="OnClientClose" Width="900" Height="400" />
-            <telerik:RadWindow RenderMode="Lightweight" ID="rwEditRecords" runat="server" Behaviors="Close" OnClientClose="OnClientClose" Width="700" Height="600" />
+            <telerik:RadWindow RenderMode="Lightweight" ID="rwEditRecords" runat="server" Behaviors="Close" OnClientClose="OnClientClose" Width="700" Height="820" />
             <telerik:RadWindow RenderMode="Lightweight" ID="rwTCPReview" runat="server" Behaviors="Close" OnClientClose="OnClientClose" Width="900" Height="900" Modal="true" />
         </Windows>
     </telerik:RadWindowManager>

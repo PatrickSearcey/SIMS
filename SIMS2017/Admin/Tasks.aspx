@@ -30,7 +30,7 @@
                         </div>
                         <h3>Endangered Gages</h3>
                         <div class="GeneralTasks">
-                            <asp:HyperLink ID="hlThreatenedGages" runat="server" Text="List of Endangered Gages" />
+                            <asp:HyperLink ID="hlEndangeredGages" runat="server" Text="List of Endangered Gages" />
                         </div>
                     </td>
                     <td>

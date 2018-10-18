@@ -10,7 +10,7 @@
 namespace SIMS2017.Admin {
     
     
-    public partial class ThreatenedGages {
+    public partial class EndangeredGages {
         
         /// <summary>
         /// ram control.
@@ -130,30 +130,75 @@ namespace SIMS2017.Admin {
         protected global::System.Web.UI.WebControls.Literal ltlError;
         
         /// <summary>
-        /// ltlNumberOfRecords control.
+        /// rts1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlNumberOfRecords;
+        protected global::Telerik.Web.UI.RadTabStrip rts1;
         
         /// <summary>
-        /// rpbExplanation control.
+        /// rmp1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadPanelBar rpbExplanation;
+        protected global::Telerik.Web.UI.RadMultiPage rmp1;
         
         /// <summary>
-        /// rgThreatenedGages control.
+        /// rpv0 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid rgThreatenedGages;
+        protected global::Telerik.Web.UI.RadPageView rpv0;
+        
+        /// <summary>
+        /// rpbExplanation1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPanelBar rpbExplanation1;
+        
+        /// <summary>
+        /// rgEndangeredGages control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid rgEndangeredGages;
+        
+        /// <summary>
+        /// rpv1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPageView rpv1;
+        
+        /// <summary>
+        /// rpbExplanation2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPanelBar rpbExplanation2;
+        
+        /// <summary>
+        /// rgCurrentStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid rgCurrentStatus;
     }
 }

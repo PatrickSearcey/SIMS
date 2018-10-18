@@ -1224,7 +1224,7 @@
       <Association Name="Record_RecordAltOffice" Member="RecordAltOffice" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="RecordAltOffice" Cardinality="One" />
       <Association Name="Record_AuditRecord" Member="AuditRecords" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="AuditRecord" />
       <Association Name="Record_RecordAnalysisPeriod" Member="RecordAnalysisPeriods" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="RecordAnalysisPeriod" />
-      <Association Name="Record_ThreatenedGage" Member="ThreatenedGages" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="ThreatenedGage" />
+      <Association Name="Record_EndangeredGage" Member="EndangeredGages" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="EndangeredGage" />
       <Association Name="RecordType_Record" Member="RecordType" ThisKey="record_type_id" OtherKey="record_type_id" Type="RecordType" IsForeignKey="true" />
       <Association Name="Site_Record" Member="Site" ThisKey="site_id" OtherKey="site_id" Type="Site" IsForeignKey="true" />
     </Type>
@@ -1258,9 +1258,9 @@
       <Association Name="RecordAnalysisPeriod_PeriodDialog" Member="RecordAnalysisPeriod" ThisKey="period_id" OtherKey="period_id" Type="RecordAnalysisPeriod" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.RMS_Threatened_Gages" Member="ThreatenedGages">
-    <Type Name="ThreatenedGage">
-      <Column Name="rms_threatened_gages_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+  <Table Name="dbo.RMS_Endangered_Gages" Member="EndangeredGages">
+    <Type Name="EndangeredGage">
+      <Column Name="rms_endangered_gages_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="rms_record_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="remarks" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="years_of_record" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -1268,7 +1268,29 @@
       <Column Name="sunset_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="entered_by" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="entered_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="Record_ThreatenedGage" Member="Record" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="Record" IsForeignKey="true" />
+      <Association Name="Record_EndangeredGage" Member="Record" ThisKey="rms_record_id" OtherKey="rms_record_id" Type="Record" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vEndangeredGages_History" Member="vEndangeredGagesHistories">
+    <Type Name="vEndangeredGagesHistory">
+      <Column Name="site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="rms_record_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="type_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="type_ds" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="status" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="entered_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vEndangeredGages_CurrentStatus" Member="vEndangeredGagesCurrentStatus">
+    <Type Name="vEndangeredGagesCurrentStatus">
+      <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="office_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="site_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="site_no" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="station_nm" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LastEndangeredDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastRescuedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastDiscontinuedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">
@@ -1658,15 +1680,16 @@
       <Column Name="audited" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.SP_RMS_ThreatenedGages_by_WSC_or_Office" Method="SP_RMS_ThreatenedGages_by_WSC_or_Office">
+  <Function Name="dbo.SP_RMS_EndangeredGages_by_WSC_or_Office" Method="SP_RMS_EndangeredGages_by_WSC_or_Office">
     <Parameter Name="office_id" Type="System.Int32" DbType="Int" />
     <Parameter Name="wsc_id" Type="System.Int32" DbType="Int" />
-    <ElementType Name="SP_RMS_ThreatenedGages_by_WSC_or_OfficeResult">
+    <ElementType Name="SP_RMS_EndangeredGages_by_WSC_or_OfficeResult">
       <Column Name="rms_record_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="office_cd" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Column Name="site_no" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
       <Column Name="station_nm_short" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
       <Column Name="type_ds" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="site_tp_cd" Type="System.String" DbType="VarChar(7)" CanBeNull="true" />
       <Column Name="remarks" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="years_of_record" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="status" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />

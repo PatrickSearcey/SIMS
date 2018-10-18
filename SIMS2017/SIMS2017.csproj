@@ -107,7 +107,7 @@
     <Content Include="Admin\Personnel.aspx" />
     <Content Include="Admin\RegisterSite.aspx" />
     <Content Include="Admin\Tasks.aspx" />
-    <Content Include="Admin\ThreatenedGages.aspx" />
+    <Content Include="Admin\EndangeredGages.aspx" />
     <Content Include="App_Data\RadCaptcha\0.wav" />
     <Content Include="App_Data\RadCaptcha\1.wav" />
     <Content Include="App_Data\RadCaptcha\2.wav" />
@@ -167,6 +167,7 @@
     <Content Include="images\keycolor1.gif" />
     <Content Include="images\keycolor2.gif" />
     <Content Include="images\nofootnoteicon.png" />
+    <Content Include="images\QuestionMark.png" />
     <Content Include="images\refresh_custom1.png" />
     <Content Include="images\review.png" />
     <Content Include="images\SIMSLogo.png" />
@@ -284,12 +285,12 @@
     <Compile Include="Admin\Tasks.aspx.designer.cs">
       <DependentUpon>Tasks.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\ThreatenedGages.aspx.cs">
-      <DependentUpon>ThreatenedGages.aspx</DependentUpon>
+    <Compile Include="Admin\EndangeredGages.aspx.cs">
+      <DependentUpon>EndangeredGages.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\ThreatenedGages.aspx.designer.cs">
-      <DependentUpon>ThreatenedGages.aspx</DependentUpon>
+    <Compile Include="Admin\EndangeredGages.aspx.designer.cs">
+      <DependentUpon>EndangeredGages.aspx</DependentUpon>
     </Compile>
     <Compile Include="Control\ApproveMANU.ascx.cs">
       <DependentUpon>ApproveMANU.ascx</DependentUpon>
@@ -555,7 +556,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

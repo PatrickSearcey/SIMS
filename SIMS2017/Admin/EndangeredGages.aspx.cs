@@ -9,7 +9,7 @@ using Telerik.Web.UI;
 
 namespace SIMS2017.Admin
 {
-    public partial class ThreatenedGages : System.Web.UI.Page
+    public partial class EndangeredGages : System.Web.UI.Page
     {
         #region Local Variables
         private Data.SIMSDataContext db = new Data.SIMSDataContext();
@@ -67,7 +67,7 @@ namespace SIMS2017.Admin
                     pnlHasAccess.Visible = false;
                     pnlNoAccess.Visible = true;
                 }
-
+                
                 UserControlSetup();
                 SetupFilterControls();
             }
@@ -98,29 +98,28 @@ namespace SIMS2017.Admin
         protected void ram_AjaxRequest(object sender, AjaxRequestEventArgs e)
         {
             selOfficeID = Convert.ToInt32(rddlOffice.SelectedValue);
-            rgThreatenedGages.Rebind();
+            rgEndangeredGages.Rebind();
+            rgCurrentStatus.Rebind();
         }
 
         protected void UpdateDetails(object sender, EventArgs e)
         {
             selOfficeID = Convert.ToInt32(rddlOffice.SelectedValue);
-
-            rgThreatenedGages.Rebind();
+            rgEndangeredGages.Rebind();
+            rgCurrentStatus.Rebind();
         }
         #endregion
 
-        #region rgThreatenedGages
-        protected void rgThreatenedGages_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
+        #region rgEndangeredGages
+        protected void rgEndangeredGages_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
         {
-            var data = db.SP_RMS_ThreatenedGages_by_WSC_or_Office(selOfficeID, WSCID).ToList();
-            rgThreatenedGages.DataSource = data;
-
-            ltlNumberOfRecords.Text = "Number of records returned: <b>" + data.Count.ToString() + "</b>";
+            var data = db.SP_RMS_EndangeredGages_by_WSC_or_Office(selOfficeID, WSCID).ToList();
+            rgEndangeredGages.DataSource = data;
         }
 
-        protected void rgThreatenedGages_PreRender(object sender, EventArgs e)
+        protected void rgEndangeredGages_PreRender(object sender, EventArgs e)
         {
-            GridFilterMenu menu = rgThreatenedGages.FilterMenu;
+            GridFilterMenu menu = rgEndangeredGages.FilterMenu;
             int i = 0;
             while (i < menu.Items.Count)
             {
@@ -131,7 +130,7 @@ namespace SIMS2017.Admin
             }
         }
 
-        protected void rgThreatenedGages_ItemDataBound(object sender, GridItemEventArgs e)
+        protected void rgEndangeredGages_ItemDataBound(object sender, GridItemEventArgs e)
         {
             if (e.Item is GridDataItem)
             {
@@ -145,6 +144,45 @@ namespace SIMS2017.Admin
 
                 HyperLink hlSiteNo = (HyperLink)item.FindControl("hlSiteNo");
                 hlSiteNo.NavigateUrl = String.Format("{0}StationInfo.aspx?site_id={1}", Config.SIMSURL, currRecord.site_id);
+            }
+        }
+        #endregion
+
+        #region rgCurrentStatus
+        protected void rgCurrentStatus_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
+        {
+            var data = db.vEndangeredGagesCurrentStatus.Where(p => p.wsc_id == WSCID);
+
+            if (selOfficeID != 0) rgCurrentStatus.DataSource = data.Where(p => p.office_id == selOfficeID).ToList();
+            else rgCurrentStatus.DataSource = data.ToList();
+        }
+
+        protected void rgCurrentStatus_DetailTableDataBind(object sender, GridDetailTableDataBindEventArgs e)
+        {
+            GridDataItem dataItem = (GridDataItem)e.DetailTableView.ParentItem;
+            int site_id = Convert.ToInt32(dataItem.GetDataKeyValue("site_id"));
+
+            var data = db.vEndangeredGagesHistories.Where(p => p.site_id == site_id).OrderBy(p => p.rms_record_id).ThenBy(p => p.entered_dt).ToList();
+            e.DetailTableView.DataSource = data;
+        }
+
+        protected void rgCurrentStatus_PreRender(object sender, EventArgs e)
+        {
+            GridFilterMenu menu = rgCurrentStatus.FilterMenu;
+            int i = 0;
+            while (i < menu.Items.Count)
+            {
+                if (menu.Items[i].Text == "NoFilter" | menu.Items[i].Text == "Contains" | menu.Items[i].Text == "EqualTo" | menu.Items[i].Text == "DoesNotContain")
+                    i = i + 1;
+                else
+                    menu.Items.RemoveAt(i);
+            }
+        }
+
+        protected void rgCurrentStatus_ItemDataBound(object sender, GridItemEventArgs e)
+        {
+            if (e.Item is GridDataItem)
+            {
             }
         }
         #endregion
