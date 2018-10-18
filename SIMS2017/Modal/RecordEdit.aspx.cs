@@ -242,15 +242,23 @@ namespace SIMS2017.Modal
             rddlResponsibleOffice.SelectedValue = office_id.ToString();
 
             //Threatened Gage
-            var tg_newest = record.EndangeredGages.OrderByDescending(p => p.entered_dt).FirstOrDefault();
-            if (tg_newest != null)
+            if (record != null)
             {
-                pnlThreatenedGage.Visible = true;
-                rcbThreatenedGage.Checked = true;
-                tbRemarks.Text = tg_newest.remarks;
-                rntbYearsOfRecord.Value = tg_newest.years_of_record;
-                rcbStatus.SelectedValue = tg_newest.status;
-                rdpSunsetDt.SelectedDate = tg_newest.sunset_dt;
+                var tg_newest = record.EndangeredGages.OrderByDescending(p => p.entered_dt).FirstOrDefault();
+                if (tg_newest != null)
+                {
+                    pnlThreatenedGage.Visible = true;
+                    rcbThreatenedGage.Checked = true;
+                    tbRemarks.Text = tg_newest.remarks;
+                    rntbYearsOfRecord.Value = tg_newest.years_of_record;
+                    rcbStatus.SelectedValue = tg_newest.status;
+                    rdpSunsetDt.SelectedDate = tg_newest.sunset_dt;
+                }
+                else
+                {
+                    pnlThreatenedGage.Visible = false;
+                    rcbThreatenedGage.Checked = false;
+                }
             }
             else
             {
