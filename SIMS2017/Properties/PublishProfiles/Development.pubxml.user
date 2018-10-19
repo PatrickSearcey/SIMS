@@ -178,10 +178,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/01/2016 16:26:44</publishTime>
     </File>
     <File Include="bin/SIMS2017.dll">
-      <publishTime>10/18/2018 16:20:42</publishTime>
+      <publishTime>10/19/2018 15:22:59</publishTime>
     </File>
     <File Include="bin/SIMS2017.pdb">
-      <publishTime>10/18/2018 16:20:42</publishTime>
+      <publishTime>10/19/2018 15:22:59</publishTime>
     </File>
     <File Include="bin/SIMSCustomControl.dll">
       <publishTime>12/29/2017 09:45:18</publishTime>
@@ -367,7 +367,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/29/2017 09:45:21</publishTime>
     </File>
     <File Include="Modal/RecordEdit.aspx">
-      <publishTime>10/17/2018 15:23:58</publishTime>
+      <publishTime>10/19/2018 15:22:18</publishTime>
     </File>
     <File Include="NWISOpsRequest.aspx">
       <publishTime>12/29/2017 09:45:21</publishTime>

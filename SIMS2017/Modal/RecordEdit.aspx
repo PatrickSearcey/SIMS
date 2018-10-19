@@ -122,7 +122,7 @@
                                             <td><telerik:RadNumericTextBox ID="rntbYearsOfRecord" runat="server" Width="50px" NumberFormat-DecimalDigits="0" Skin="Bootstrap" /></td>
                                             <td><b>Choose status</b></td>
                                             <td>
-                                                <telerik:RadComboBox ID="rcbStatus" runat="server" Skin="Bootstrap">
+                                                <telerik:RadComboBox ID="rcbStatus" runat="server" Skin="Bootstrap" AutoPostBack="true" OnSelectedIndexChanged="rcbStatus_SelectedIndexChanged">
                                                     <Items>
                                                         <telerik:RadComboBoxItem Value="" Text="" />
                                                         <telerik:RadComboBoxItem Value="Threatened" Text="Endangered" />
@@ -153,6 +153,9 @@
                     </tr>
                     <tr>
                         <td colspan="2">
+                            <asp:Literal ID="ltlInactiveNotice" runat="server" Visible="false">
+                                <span style="color:red;font-style:italic;">The endangered gage status must be set to "Discontinued" before you can set the record to inactive.</span><br />
+                            </asp:Literal>
                             <telerik:RadCheckBox ID="rcbRecordInactive" runat="server" Text="Record Inactive (record only shows up when editing records through admin pages)" />
                         </td>
                     </tr>

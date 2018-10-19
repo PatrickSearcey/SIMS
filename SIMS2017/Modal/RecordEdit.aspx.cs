@@ -253,6 +253,11 @@ namespace SIMS2017.Modal
                     rntbYearsOfRecord.Value = tg_newest.years_of_record;
                     rcbStatus.SelectedValue = tg_newest.status;
                     rdpSunsetDt.SelectedDate = tg_newest.sunset_dt;
+                    if (tg_newest.status != "Discontinued")
+                    {
+                        rcbRecordInactive.Enabled = false; //If this is an endangered gage, and the status it not discontinued, do not allow them to set the record to inactive
+                        ltlInactiveNotice.Visible = true;
+                    }
                 }
                 else
                 {
@@ -355,6 +360,20 @@ namespace SIMS2017.Modal
         {
             if ((bool)rcbThreatenedGage.Checked) pnlThreatenedGage.Visible = true;
             else pnlThreatenedGage.Visible = false;
+        }
+
+        protected void rcbStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (rcbStatus.SelectedValue == "Discontinued")
+            {
+                rcbRecordInactive.Enabled = true;
+                ltlInactiveNotice.Visible = false;
+            }
+            else
+            {
+                rcbRecordInactive.Enabled = false;
+                ltlInactiveNotice.Visible = true;
+            }
         }
         #endregion
 
