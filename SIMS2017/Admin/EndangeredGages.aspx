@@ -79,7 +79,7 @@
             <telerik:RadTabStrip runat="server" ID="rts1" Orientation="HorizontalTop" SelectedIndex="0" MultiPageID="rmp1" Skin="Bootstrap">
                 <Tabs>
                     <telerik:RadTab Text="List of Gages" SelectedCssClass="selectedTab" SelectedIndex="0" Value="list" />
-                    <telerik:RadTab Text="Current Status" SelectedCssClass="selectedTab" Value="status" />
+                    <telerik:RadTab Text="Status and History" SelectedCssClass="selectedTab" Value="status" />
                 </Tabs>
             </telerik:RadTabStrip><telerik:RadMultiPage ID="rmp1" runat="server" SelectedIndex="0" Width="100%" CssClass="multiPage">
                 <telerik:RadPageView runat="server" ID="rpv0">
@@ -88,7 +88,9 @@
                             <telerik:RadPanelItem Text="Explanation (click here to collapse/expand)" Expanded="false">
                                 <ContentTemplate>
                                     <div style="padding:10px;font-size:9pt;">
-
+                                        List of gages that have been marked as endangered, rescued or discontinued. Only site type of ST are sent to the 
+                                        <a href="https://water.usgs.gov/networks/fundingstability/" target="_blank">endangered gages website</a>. To add more gages to this list,
+                                        edit the record type on the site information page.
                                     </div>
                                 </ContentTemplate>
                             </telerik:RadPanelItem>
@@ -135,7 +137,7 @@
                             <telerik:RadPanelItem Text="Explanation (click here to collapse/expand)" Expanded="false">
                                 <ContentTemplate>
                                     <div style="padding:10px;font-size:9pt;">
-
+                                        List gages that have been marked as endangered, rescued or discontinued. Select history to view the history of changes made to this site.
                                     </div>
                                 </ContentTemplate>
                             </telerik:RadPanelItem>

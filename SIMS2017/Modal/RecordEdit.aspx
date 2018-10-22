@@ -114,7 +114,7 @@
                             <asp:Panel ID="pnlThreatenedGage" runat="server">
                                 <div class="SubPanel">
                                     <p><b>Enter display comment</b><br /><span style="font-style:italic;font-size:9pt;">Include the date to be discontinued (or was discontinued or rescued), 
-                                        as well as the reason for the change in status. Please note, all remarks will be visible to the public.</span></p>
+                                        as well as the reason for the change in status. Please note, all remarks will be visible to the public. Only streamflow sites show on the endangered gage website.</span></p>
                                     <asp:TextBox ID="tbRemarks" runat="server" TextMode="MultiLine" Height="50px" Width="557px" />
                                     <table width="100%">
                                         <tr>
