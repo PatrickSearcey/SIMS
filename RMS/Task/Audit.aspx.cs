@@ -496,6 +496,8 @@ namespace RMS.Task
 
                     rbSubmit.CommandArgument = new_audit.rms_audit_id.ToString();
 
+                    //Send out emails to analysts and approvers
+                    SendEmail("new", new_audit.rms_audit_id);
                     //Setup the rest of the page
                     pnlError.Visible = false;
                     pnlNotice.Visible = false;
@@ -536,6 +538,8 @@ namespace RMS.Task
 
                     rbSubmit.CommandArgument = currAudit.rms_audit_id.ToString();
 
+                    //Send out emails to analysts and approvers
+                    SendEmail("edit", currAudit.rms_audit_id);
                     //Setup the rest of the page
                     pnlError.Visible = false;
                     pnlNotice.Visible = false;
@@ -712,6 +716,119 @@ namespace RMS.Task
         {
             rtbName.Text = "";
             rtbDescription.Text = "";
+        }
+        
+        protected void SendEmail(string action, int audit_id)
+        {
+            var audit = db.Audits.FirstOrDefault(p => p.rms_audit_id == audit_id);
+            string recordList = "";
+            var cc = new List<String>();
+            var to = new List<String>();
+
+            string timespan = String.Format("{0:MM/dd/yyyy} to {1:MM/dd/yyyy}", audit.audit_beg_dt, audit.audit_end_dt);
+            //Create the text list of records involved with this audit
+            var recordsInAudit = db.AuditRecords.Where(p => p.rms_audit_id == audit.rms_audit_id);
+            foreach (var record in recordsInAudit)
+            {
+                var Record = db.Records.FirstOrDefault(p => p.rms_record_id == record.rms_record_id);
+                recordList += Record.Site.site_no + " " + Record.Site.station_full_nm + ", " + Record.RecordType.type_ds + "<br />";
+
+                //Create the to email list - send to analysts and approvers of all periods involved with this audit
+                foreach (var period in Record.RecordAnalysisPeriods.Where(p => p.period_beg_dt >= audit.audit_beg_dt && p.period_end_dt <= audit.audit_end_dt))
+                {
+                    string analyst_email = EmailAddress(period.analyzed_by);
+                    string approver_email = EmailAddress(period.approved_by);
+
+                    if (!to.Contains(analyst_email)) to.Add(analyst_email);
+                    if (!to.Contains(approver_email)) to.Add(approver_email);
+                }
+            }
+
+            using (var smtp = new SmtpClient() { Host = "gscamnlh01.wr.usgs.gov" })
+            {
+                var message = new MailMessage("rmsonline@usgs.gov", "rmsonline@usgs.gov");
+                message.IsBodyHtml = true;
+
+                //Setup the office's approver email list
+                var office = db.Offices.FirstOrDefault(p => p.office_id == OfficeID);
+                string[] appEmails;
+                List<string> appEmailList = new List<string>();
+                if (!string.IsNullOrEmpty(office.reviewer_email))
+                {
+                    //If the approver email field contains multiple email addresses, split them up and put them into a List
+                    if (office.reviewer_email.IndexOf(',') > 0 || office.reviewer_email.IndexOf(';') > 0)
+                    {
+                        char[] delimiterChars = { ',', ';' };
+                        appEmails = office.reviewer_email.Split(delimiterChars);
+                        foreach (string s in appEmails)
+                        {
+                            //Make sure to grab just the email address if formatted like so: "Cary Carman <cdcarman@usgs.gov>"
+                            if (s.IndexOf('<') > 0 && s.IndexOf('>') > 0)
+                                appEmailList.Add(s.Substring(s.IndexOf('<') + 1, s.IndexOf('>') - 1));
+                            else
+                                appEmailList.Add(s);
+                        }
+                    }
+                    else
+                    {
+                        appEmailList.Add(office.reviewer_email);
+                    }
+
+                    //If one has been setup, CC the office's designated approver
+                    if (appEmailList.Count > 0)
+                    {
+                        foreach (string email in appEmailList)
+                            cc.Add(email);
+                    }
+                }
+                
+                switch (action)
+                {
+                    case "new":
+                        message.Subject = "RMS: A new audit period was created";
+                        message.Body = "A record period that you either analyzed or approved has been audited.<br /><br />" +
+                            "The audit was performed for the time period of " + timespan + " and included the following records:<br />" + recordList;
+                        break;
+                    case "edit":
+                        message.Subject = "RMS: An audit period was edited";
+                        message.Body = "An audit that involves a record period that you either analyzed or approved has been edited.<br /><br />" +
+                            "The audit encompasses time period of " + timespan + " and included the following records:<br />" + recordList;
+                        break;
+                }
+
+#if DEBUG
+                string to_string = "";
+                string cc_string = "";
+                foreach (string email in to)
+                    to_string += email + ", ";
+                foreach (string email in cc)
+                    cc_string += email + ", ";
+                to_string.TrimEnd(' ').TrimEnd(',');
+                cc_string.TrimEnd(' ').TrimEnd(',');
+                message.Body += "<br /><br />To Recipients: " + to_string + "<br />CC Recipients: " + cc_string;
+
+                message.To.Add("dterry@usgs.gov");
+                message.CC.Add("slvasque@usgs.gov");
+#else
+                foreach (string email in to)
+                    message.To.Add(email);
+                foreach (string email in cc)
+                    message.CC.Add(email);
+#endif
+
+                smtp.Send(message);
+            }
+        }
+
+        private string EmailAddress(string user_id)
+        {
+            //If possible, get the email address for the user from AD
+            string email = user_id + "@usgs.gov";
+            var reg_user = db.spz_GetUserInfoFromAD(user_id).ToList();
+            foreach (var result in reg_user)
+                email = result.mail;
+
+            return email;
         }
         #endregion
     }
