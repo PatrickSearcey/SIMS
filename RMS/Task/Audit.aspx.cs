@@ -742,6 +742,8 @@ namespace RMS.Task
                     if (!to.Contains(analyst_email)) to.Add(analyst_email);
                     if (!to.Contains(approver_email)) to.Add(approver_email);
                 }
+
+                if (to.Contains("@usgs.gov")) to.Remove("@usgs.gov");
             }
 
             using (var smtp = new SmtpClient() { Host = "gscamnlh01.wr.usgs.gov" })
