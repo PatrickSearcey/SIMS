@@ -783,8 +783,6 @@ namespace RMS.Task
             var period = currRecord.RecordAnalysisPeriods.FirstOrDefault(p => p.period_id == PeriodID);
 
             period.status_va = "Approved";
-            period.status_set_by = user.ID;
-            period.status_set_by_role_va = "Analyst";
 
             string comments = "<p style='font-weight:bold;'>" + user.ID + " has accepted the approver's minor edits to the analysis, and the period is now marked as approved.</p>" + ltlApproverComments1.Text.FormatParagraphIn();
 
