@@ -876,14 +876,6 @@ namespace Data
 			}
 		}
 		
-		public System.Data.Linq.Table<vRMSMostRecentAuditPeriod> vRMSMostRecentAuditPeriods
-		{
-			get
-			{
-				return this.GetTable<vRMSMostRecentAuditPeriod>();
-			}
-		}
-		
 		public System.Data.Linq.Table<PeriodDialog> PeriodDialogs
 		{
 			get
@@ -913,6 +905,22 @@ namespace Data
 			get
 			{
 				return this.GetTable<vEndangeredGagesCurrentStatus>();
+			}
+		}
+		
+		public System.Data.Linq.Table<vRMSMostRecentAuditPeriod> vRMSMostRecentAuditPeriods
+		{
+			get
+			{
+				return this.GetTable<vRMSMostRecentAuditPeriod>();
+			}
+		}
+		
+		public System.Data.Linq.Table<vRMSAuditByRecord> vRMSAuditByRecords
+		{
+			get
+			{
+				return this.GetTable<vRMSAuditByRecord>();
 			}
 		}
 		
@@ -23916,231 +23924,6 @@ namespace Data
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vRMSMostRecentAuditPeriod")]
-	public partial class vRMSMostRecentAuditPeriod
-	{
-		
-		private System.Nullable<int> _wsc_id;
-		
-		private System.Nullable<int> _record_office_id;
-		
-		private string _site_no;
-		
-		private string _station_nm;
-		
-		private int _rms_record_id;
-		
-		private string _type_cd;
-		
-		private string _auditor_uid;
-		
-		private string _TemplateName;
-		
-		private string _sims_site_tp;
-		
-		private System.Nullable<int> _rms_audit_id;
-		
-		private System.Nullable<System.DateTime> _audit_beg_dt;
-		
-		private System.Nullable<System.DateTime> _audit_end_dt;
-		
-		public vRMSMostRecentAuditPeriod()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_id", DbType="Int")]
-		public System.Nullable<int> wsc_id
-		{
-			get
-			{
-				return this._wsc_id;
-			}
-			set
-			{
-				if ((this._wsc_id != value))
-				{
-					this._wsc_id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_record_office_id", DbType="Int")]
-		public System.Nullable<int> record_office_id
-		{
-			get
-			{
-				return this._record_office_id;
-			}
-			set
-			{
-				if ((this._record_office_id != value))
-				{
-					this._record_office_id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_no", DbType="NVarChar(15) NOT NULL", CanBeNull=false)]
-		public string site_no
-		{
-			get
-			{
-				return this._site_no;
-			}
-			set
-			{
-				if ((this._site_no != value))
-				{
-					this._site_no = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_nm", DbType="VarChar(50)")]
-		public string station_nm
-		{
-			get
-			{
-				return this._station_nm;
-			}
-			set
-			{
-				if ((this._station_nm != value))
-				{
-					this._station_nm = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int NOT NULL")]
-		public int rms_record_id
-		{
-			get
-			{
-				return this._rms_record_id;
-			}
-			set
-			{
-				if ((this._rms_record_id != value))
-				{
-					this._rms_record_id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_cd", DbType="NVarChar(50)")]
-		public string type_cd
-		{
-			get
-			{
-				return this._type_cd;
-			}
-			set
-			{
-				if ((this._type_cd != value))
-				{
-					this._type_cd = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_auditor_uid", DbType="NVarChar(50)")]
-		public string auditor_uid
-		{
-			get
-			{
-				return this._auditor_uid;
-			}
-			set
-			{
-				if ((this._auditor_uid != value))
-				{
-					this._auditor_uid = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateName", DbType="NVarChar(100)")]
-		public string TemplateName
-		{
-			get
-			{
-				return this._TemplateName;
-			}
-			set
-			{
-				if ((this._TemplateName != value))
-				{
-					this._TemplateName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sims_site_tp", DbType="NVarChar(5)")]
-		public string sims_site_tp
-		{
-			get
-			{
-				return this._sims_site_tp;
-			}
-			set
-			{
-				if ((this._sims_site_tp != value))
-				{
-					this._sims_site_tp = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_audit_id", DbType="Int")]
-		public System.Nullable<int> rms_audit_id
-		{
-			get
-			{
-				return this._rms_audit_id;
-			}
-			set
-			{
-				if ((this._rms_audit_id != value))
-				{
-					this._rms_audit_id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_beg_dt", DbType="DateTime")]
-		public System.Nullable<System.DateTime> audit_beg_dt
-		{
-			get
-			{
-				return this._audit_beg_dt;
-			}
-			set
-			{
-				if ((this._audit_beg_dt != value))
-				{
-					this._audit_beg_dt = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_end_dt", DbType="DateTime")]
-		public System.Nullable<System.DateTime> audit_end_dt
-		{
-			get
-			{
-				return this._audit_end_dt;
-			}
-			set
-			{
-				if ((this._audit_end_dt != value))
-				{
-					this._audit_end_dt = value;
-				}
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Dialog")]
 	public partial class PeriodDialog : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -24948,6 +24731,366 @@ namespace Data
 				if ((this._LastDiscontinuedDate != value))
 				{
 					this._LastDiscontinuedDate = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vRMSMostRecentAuditPeriod")]
+	public partial class vRMSMostRecentAuditPeriod
+	{
+		
+		private System.Nullable<int> _wsc_id;
+		
+		private System.Nullable<int> _record_office_id;
+		
+		private string _office_cd;
+		
+		private string _site_no;
+		
+		private string _station_nm;
+		
+		private int _rms_record_id;
+		
+		private string _type_cd;
+		
+		private string _auditor_uid;
+		
+		private string _TemplateName;
+		
+		private string _sims_site_tp;
+		
+		private System.Nullable<int> _rms_audit_id;
+		
+		private System.Nullable<System.DateTime> _audit_beg_dt;
+		
+		private System.Nullable<System.DateTime> _audit_end_dt;
+		
+		public vRMSMostRecentAuditPeriod()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_id", DbType="Int")]
+		public System.Nullable<int> wsc_id
+		{
+			get
+			{
+				return this._wsc_id;
+			}
+			set
+			{
+				if ((this._wsc_id != value))
+				{
+					this._wsc_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_record_office_id", DbType="Int")]
+		public System.Nullable<int> record_office_id
+		{
+			get
+			{
+				return this._record_office_id;
+			}
+			set
+			{
+				if ((this._record_office_id != value))
+				{
+					this._record_office_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_cd", DbType="NVarChar(10)")]
+		public string office_cd
+		{
+			get
+			{
+				return this._office_cd;
+			}
+			set
+			{
+				if ((this._office_cd != value))
+				{
+					this._office_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_no", DbType="NVarChar(15) NOT NULL", CanBeNull=false)]
+		public string site_no
+		{
+			get
+			{
+				return this._site_no;
+			}
+			set
+			{
+				if ((this._site_no != value))
+				{
+					this._site_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_nm", DbType="VarChar(50)")]
+		public string station_nm
+		{
+			get
+			{
+				return this._station_nm;
+			}
+			set
+			{
+				if ((this._station_nm != value))
+				{
+					this._station_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int NOT NULL")]
+		public int rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					this._rms_record_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_cd", DbType="NVarChar(50)")]
+		public string type_cd
+		{
+			get
+			{
+				return this._type_cd;
+			}
+			set
+			{
+				if ((this._type_cd != value))
+				{
+					this._type_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_auditor_uid", DbType="NVarChar(50)")]
+		public string auditor_uid
+		{
+			get
+			{
+				return this._auditor_uid;
+			}
+			set
+			{
+				if ((this._auditor_uid != value))
+				{
+					this._auditor_uid = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateName", DbType="NVarChar(100)")]
+		public string TemplateName
+		{
+			get
+			{
+				return this._TemplateName;
+			}
+			set
+			{
+				if ((this._TemplateName != value))
+				{
+					this._TemplateName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sims_site_tp", DbType="NVarChar(5)")]
+		public string sims_site_tp
+		{
+			get
+			{
+				return this._sims_site_tp;
+			}
+			set
+			{
+				if ((this._sims_site_tp != value))
+				{
+					this._sims_site_tp = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_audit_id", DbType="Int")]
+		public System.Nullable<int> rms_audit_id
+		{
+			get
+			{
+				return this._rms_audit_id;
+			}
+			set
+			{
+				if ((this._rms_audit_id != value))
+				{
+					this._rms_audit_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_beg_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> audit_beg_dt
+		{
+			get
+			{
+				return this._audit_beg_dt;
+			}
+			set
+			{
+				if ((this._audit_beg_dt != value))
+				{
+					this._audit_beg_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_end_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> audit_end_dt
+		{
+			get
+			{
+				return this._audit_end_dt;
+			}
+			set
+			{
+				if ((this._audit_end_dt != value))
+				{
+					this._audit_end_dt = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vRMSAuditByRecord")]
+	public partial class vRMSAuditByRecord
+	{
+		
+		private System.Nullable<int> _rms_record_id;
+		
+		private string _site_no;
+		
+		private string _station_full_nm;
+		
+		private string _type_ds;
+		
+		private string _office_cd;
+		
+		private System.Nullable<int> _wsc_id;
+		
+		public vRMSAuditByRecord()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int")]
+		public System.Nullable<int> rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					this._rms_record_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_no", DbType="NVarChar(15) NOT NULL", CanBeNull=false)]
+		public string site_no
+		{
+			get
+			{
+				return this._site_no;
+			}
+			set
+			{
+				if ((this._site_no != value))
+				{
+					this._site_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_full_nm", DbType="NVarChar(150)")]
+		public string station_full_nm
+		{
+			get
+			{
+				return this._station_full_nm;
+			}
+			set
+			{
+				if ((this._station_full_nm != value))
+				{
+					this._station_full_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_ds", DbType="NVarChar(200)")]
+		public string type_ds
+		{
+			get
+			{
+				return this._type_ds;
+			}
+			set
+			{
+				if ((this._type_ds != value))
+				{
+					this._type_ds = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_cd", DbType="NVarChar(10)")]
+		public string office_cd
+		{
+			get
+			{
+				return this._office_cd;
+			}
+			set
+			{
+				if ((this._office_cd != value))
+				{
+					this._office_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_id", DbType="Int")]
+		public System.Nullable<int> wsc_id
+		{
+			get
+			{
+				return this._wsc_id;
+			}
+			set
+			{
+				if ((this._wsc_id != value))
+				{
+					this._wsc_id = value;
 				}
 			}
 		}

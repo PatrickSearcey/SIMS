@@ -187,6 +187,7 @@
                             </telerik:GridTableView>
                         </DetailTables>
                         <Columns>
+                            <telerik:GridBoundColumn DataField="office_cd" HeaderText="Office" UniqueName="office_cd" SortExpression="office_cd" HeaderStyle-Width="90px" FilterControlWidth="70px" />
                             <telerik:GridBoundColumn DataField="site_no" HeaderText="Site Number" UniqueName="site_no" SortExpression="site_no" HeaderStyle-Width="150px" FilterControlWidth="100px" />
                             <telerik:GridBoundColumn DataField="station_nm" HeaderText="Station Name" UniqueName="station_nm" HeaderStyle-Width="500px" SortExpression="station_nm" FilterControlWidth="200px"/>
                             <telerik:GridBoundColumn DataField="type_ds" UniqueName="type_ds" HeaderText="Record Type" SortExpression="type_ds" FilterControlWidth="200px" />
@@ -234,7 +235,7 @@
                             </telerik:GridTableView>
                         </DetailTables>
                         <Columns>
-                            <telerik:GridEditCommandColumn ButtonType="ImageButton" UniqueName="EditCommandColumn" EditImageUrl="../images/viewdoc.png" HeaderText="View">
+                            <telerik:GridEditCommandColumn ButtonType="ImageButton" UniqueName="EditCommandColumn" EditImageUrl="../images/viewdoc.png" HeaderText="View" HeaderStyle-Width="50px">
                                 <HeaderStyle Width="10px" />
                                 <ItemStyle CssClass="MyImageButton" />
                             </telerik:GridEditCommandColumn>
@@ -370,6 +371,7 @@
                     <MasterTableView DataKeyNames="rms_record_id" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" 
                         Name="Records" AllowFilteringByColumn="true">
                         <Columns>
+                            <telerik:GridBoundColumn DataField="office_cd" HeaderText="Office" UniqueName="office_cd" SortExpression="office_cd" HeaderStyle-Width="90px" FilterControlWidth="70px" />
                             <telerik:GridBoundColumn DataField="site_no" HeaderText="Site Number" UniqueName="site_no" SortExpression="site_no" HeaderStyle-Width="150px" FilterControlWidth="100px" />
                             <telerik:GridBoundColumn DataField="station_nm" HeaderText="Station Name" UniqueName="station_nm" HeaderStyle-Width="500px" SortExpression="station_nm" FilterControlWidth="200px"/>
                             <telerik:GridBoundColumn DataField="type_cd" UniqueName="type_cd" HeaderText="Record Type" SortExpression="type_cd" FilterControlWidth="100px" />

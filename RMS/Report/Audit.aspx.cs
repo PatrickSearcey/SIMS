@@ -237,11 +237,13 @@ namespace RMS.Report
         {
             if (!e.IsFromDetailTable)
             {
-                rgAuditByRecord.DataSource = db.AuditRecords.Where(p => p.Audit.wsc_id == WSCID).Select(p => new {
+                rgAuditByRecord.DataSource = db.vRMSAuditByRecords.Where(p => p.wsc_id == WSCID).Select(p => new
+                {
                     rms_record_id = p.rms_record_id,
-                    site_no = p.Record.Site.site_no,
-                    station_nm = p.Record.Site.station_full_nm,
-                    type_ds = p.Record.RecordType.type_ds
+                    office_cd = p.office_cd,
+                    site_no = p.site_no,
+                    station_nm = p.station_full_nm,
+                    type_ds = p.type_ds
                 }).Distinct().ToList();
             }
         }
@@ -328,6 +330,7 @@ namespace RMS.Report
         {
             rgAuditsDue.DataSource = db.vRMSMostRecentAuditPeriods.Where(p => p.wsc_id == WSCID).Select(p => new
             {
+                office_cd = p.office_cd,
                 site_no = p.site_no,
                 station_nm = p.station_nm,
                 type_cd = p.type_cd,
