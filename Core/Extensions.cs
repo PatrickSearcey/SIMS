@@ -658,7 +658,7 @@ namespace Core
                             elem_info = "Last run: " + lastrun + "; Next run: " + nextrun + "; Frequency: " + frequency + "; Status: " + status + "<br /><br />" + element_info;
                         }
                         break;
-                    case "TELEMETRY":
+                    case "TELEMETRY ASSIGNMENT":
                         string dcp_id = "DCPID: ";
                         string channel = "; primary/random channel: ";
                         string az_el = "; azimuth/elevation: ";

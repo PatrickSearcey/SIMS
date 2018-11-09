@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 46.125, 52.125" name="SIMS">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 46.375, 52.125" name="SIMS">
   <DataContextMoniker Name="/SIMSDataContext" />
   <nestedChildShapes>
     <classShape Id="fe78cdc6-6138-440a-b02e-69e1083415a3" absoluteBounds="15.125, 3.375, 2, 3.6939111328124996">
@@ -894,6 +894,12 @@
       <DataClassMoniker Name="/SIMSDataContext/vRMSAuditByRecord" />
       <nestedChildShapes>
         <elementListCompartment Id="72731c8a-4249-4711-a727-ec9325c7485b" absoluteBounds="41.015, 2.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7567615e-d1e2-4128-b789-fd16a95a34f2" absoluteBounds="44.125, 1.625, 2, 2.5401025390625">
+      <DataClassMoniker Name="/SIMSDataContext/vGetTripData" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3dce4436-82ae-459c-a73c-5b1336a460c9" absoluteBounds="44.14, 2.085, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
