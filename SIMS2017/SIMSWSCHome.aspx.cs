@@ -221,7 +221,7 @@ namespace SIMS2017
             private string _SiteType;
             private string _Active;
             private string _tel_flag;
-            private List<int?> _trip_ids;
+            private List<int> _trip_ids;
 
             public string site_id
             {
@@ -273,7 +273,7 @@ namespace SIMS2017
                 get { return _tel_flag; }
                 set { _tel_flag = value; }
             }
-            public List<int?> trip_ids
+            public List<int> trip_ids
             {
                 get { return _trip_ids; }
                 set { _trip_ids = value; }
@@ -317,7 +317,7 @@ namespace SIMS2017
 
         private IEnumerable<SiteDataItem> GetTripData()
         {
-            var ret = db.vSiteMasterLists.Where(p => p.wsc_id == WSCID).Select(p => new SiteDataItem()
+            var ret = db.vGetTripDatas.Where(p => p.wsc_id == WSCID).Select(p => new SiteDataItem()
             {
                 site_id = p.site_id.ToString(),
                 site_no = p.site_no,
@@ -328,19 +328,15 @@ namespace SIMS2017
                 agency_cd = p.agency_cd,
                 SiteType = p.sims_site_tp,
                 TelFlag = p.tel_fg,
-                trip_ids = GetTripIDs(p.site_id)
+                trip_ids = GetTripIDs(p.trip_ids)
             }).OrderBy(p => p.site_no).ToList();
 
             return ret;
         }
 
-        private List<int?> GetTripIDs(int site_id)
+        private List<int> GetTripIDs(string trip_ids)
         {
-            List<int?> ret = new List<int?>();
-
-            var trips = db.TripSites.Where(p => p.site_id == site_id).ToList();
-            foreach (var trip in trips)
-                ret.Add(trip.trip_id);
+            List<int> ret = new List<int>(trip_ids.Split(',').Select(int.Parse));
 
             return ret;
         }

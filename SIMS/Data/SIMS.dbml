@@ -1257,6 +1257,19 @@
       <Association Name="RecordAnalysisPeriod_PeriodDialog" Member="RecordAnalysisPeriod" ThisKey="period_id" OtherKey="period_id" Type="RecordAnalysisPeriod" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.vGetTripData" Member="vGetTripDatas">
+    <Type Name="vGetTripData">
+      <Column Name="site_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="site_no" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="station_nm" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="agency_cd" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="sims_site_tp" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="tel_fg" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Column Name="trip_ids" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">
     <Parameter Name="site_id" Type="System.Int32" DbType="Int" />
     <ElementType Name="spz_GetDCPInfoResult">

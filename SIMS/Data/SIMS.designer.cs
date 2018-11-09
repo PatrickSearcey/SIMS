@@ -889,6 +889,14 @@ namespace Data
 			}
 		}
 		
+		public System.Data.Linq.Table<vGetTripData> vGetTripDatas
+		{
+			get
+			{
+				return this.GetTable<vGetTripData>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spz_GetDCPInfo")]
 		public ISingleResult<spz_GetDCPInfoResult> spz_GetDCPInfo([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> site_id)
 		{
@@ -24346,6 +24354,177 @@ namespace Data
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vGetTripData")]
+	public partial class vGetTripData
+	{
+		
+		private int _site_id;
+		
+		private string _site_no;
+		
+		private string _station_nm;
+		
+		private System.Nullable<int> _office_id;
+		
+		private System.Nullable<int> _wsc_id;
+		
+		private string _agency_cd;
+		
+		private string _sims_site_tp;
+		
+		private string _tel_fg;
+		
+		private string _trip_ids;
+		
+		public vGetTripData()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int NOT NULL")]
+		public int site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					this._site_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_no", DbType="VarChar(15) NOT NULL", CanBeNull=false)]
+		public string site_no
+		{
+			get
+			{
+				return this._site_no;
+			}
+			set
+			{
+				if ((this._site_no != value))
+				{
+					this._site_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_nm", DbType="VarChar(50)")]
+		public string station_nm
+		{
+			get
+			{
+				return this._station_nm;
+			}
+			set
+			{
+				if ((this._station_nm != value))
+				{
+					this._station_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_id", DbType="Int")]
+		public System.Nullable<int> office_id
+		{
+			get
+			{
+				return this._office_id;
+			}
+			set
+			{
+				if ((this._office_id != value))
+				{
+					this._office_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_id", DbType="Int")]
+		public System.Nullable<int> wsc_id
+		{
+			get
+			{
+				return this._wsc_id;
+			}
+			set
+			{
+				if ((this._wsc_id != value))
+				{
+					this._wsc_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_agency_cd", DbType="VarChar(5) NOT NULL", CanBeNull=false)]
+		public string agency_cd
+		{
+			get
+			{
+				return this._agency_cd;
+			}
+			set
+			{
+				if ((this._agency_cd != value))
+				{
+					this._agency_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sims_site_tp", DbType="NVarChar(5)")]
+		public string sims_site_tp
+		{
+			get
+			{
+				return this._sims_site_tp;
+			}
+			set
+			{
+				if ((this._sims_site_tp != value))
+				{
+					this._sims_site_tp = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tel_fg", DbType="VarChar(3)")]
+		public string tel_fg
+		{
+			get
+			{
+				return this._tel_fg;
+			}
+			set
+			{
+				if ((this._tel_fg != value))
+				{
+					this._tel_fg = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_trip_ids", DbType="NVarChar(MAX)")]
+		public string trip_ids
+		{
+			get
+			{
+				return this._trip_ids;
+			}
+			set
+			{
+				if ((this._trip_ids != value))
+				{
+					this._trip_ids = value;
+				}
 			}
 		}
 	}
