@@ -1566,26 +1566,6 @@
       <Column Name="percent_of_cat2_done" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.SP_RMS_Record_Details_by_WSC_or_office" Method="SP_RMS_Record_Details_by_WSC_or_office">
-    <Parameter Name="office_id" Type="System.Int32" DbType="Int" />
-    <Parameter Name="wsc_id" Type="System.Int32" DbType="Int" />
-    <Parameter Name="onlyactive" Type="System.String" DbType="NVarChar(3)" />
-    <ElementType Name="SP_RMS_Record_Details_by_WSC_or_officeResult">
-      <Column Name="rms_record_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="office_cd" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="site_no" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
-      <Column Name="station_nm_short" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Column Name="operator_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="analyzer_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="approver_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="category_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="cat_reason" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="type_ds" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="ts_fg" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
-      <Column Name="not_used_fg" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="ts_full_ds" Type="System.String" DbType="NVarChar(36)" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.SP_RMS_Get_Record_DDs" Method="SP_RMS_Get_Record_DDs">
     <Parameter Name="rms_record_id" Type="System.Int32" DbType="Int" />
     <ElementType Name="SP_RMS_Get_Record_DDsResult">
@@ -1720,6 +1700,27 @@
       <Column Name="sunset_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="entered_by" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="entered_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_RMS_Record_Details_by_WSC_or_office" Method="SP_RMS_Record_Details_by_WSC_or_office">
+    <Parameter Name="office_id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="wsc_id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="onlyactive" Type="System.String" DbType="NVarChar(3)" />
+    <ElementType Name="SP_RMS_Record_Details_by_WSC_or_officeResult">
+      <Column Name="rms_record_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="office_cd" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="site_no" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="station_nm_short" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="operator_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="analyzer_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="approver_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="auditor_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="category_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="cat_reason" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="type_ds" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="ts_fg" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="not_used_fg" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ts_full_ds" Type="System.String" DbType="NVarChar(36)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

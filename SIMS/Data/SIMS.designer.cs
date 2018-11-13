@@ -1072,13 +1072,6 @@ namespace Data
 			return ((ISingleResult<SP_CRP_Cat_ChartsResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RMS_Record_Details_by_WSC_or_office")]
-		public ISingleResult<SP_RMS_Record_Details_by_WSC_or_officeResult> SP_RMS_Record_Details_by_WSC_or_office([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> office_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> wsc_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(3)")] string onlyactive)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), office_id, wsc_id, onlyactive);
-			return ((ISingleResult<SP_RMS_Record_Details_by_WSC_or_officeResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RMS_Get_Record_DDs")]
 		public ISingleResult<SP_RMS_Get_Record_DDsResult> SP_RMS_Get_Record_DDs([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> rms_record_id)
 		{
@@ -1133,6 +1126,13 @@ namespace Data
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), office_id, wsc_id);
 			return ((ISingleResult<SP_RMS_EndangeredGages_by_WSC_or_OfficeResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RMS_Record_Details_by_WSC_or_office")]
+		public ISingleResult<SP_RMS_Record_Details_by_WSC_or_officeResult> SP_RMS_Record_Details_by_WSC_or_office([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> office_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> wsc_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(3)")] string onlyactive)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), office_id, wsc_id, onlyactive);
+			return ((ISingleResult<SP_RMS_Record_Details_by_WSC_or_officeResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -27509,248 +27509,6 @@ namespace Data
 		}
 	}
 	
-	public partial class SP_RMS_Record_Details_by_WSC_or_officeResult
-	{
-		
-		private int _rms_record_id;
-		
-		private string _office_cd;
-		
-		private string _site_no;
-		
-		private string _station_nm_short;
-		
-		private string _operator_uid;
-		
-		private string _analyzer_uid;
-		
-		private string _approver_uid;
-		
-		private System.Nullable<int> _category_no;
-		
-		private string _cat_reason;
-		
-		private string _type_ds;
-		
-		private string _ts_fg;
-		
-		private System.Nullable<bool> _not_used_fg;
-		
-		private string _ts_full_ds;
-		
-		public SP_RMS_Record_Details_by_WSC_or_officeResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int NOT NULL")]
-		public int rms_record_id
-		{
-			get
-			{
-				return this._rms_record_id;
-			}
-			set
-			{
-				if ((this._rms_record_id != value))
-				{
-					this._rms_record_id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_cd", DbType="NVarChar(10)")]
-		public string office_cd
-		{
-			get
-			{
-				return this._office_cd;
-			}
-			set
-			{
-				if ((this._office_cd != value))
-				{
-					this._office_cd = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_no", DbType="NVarChar(15)")]
-		public string site_no
-		{
-			get
-			{
-				return this._site_no;
-			}
-			set
-			{
-				if ((this._site_no != value))
-				{
-					this._site_no = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_nm_short", DbType="NVarChar(150)")]
-		public string station_nm_short
-		{
-			get
-			{
-				return this._station_nm_short;
-			}
-			set
-			{
-				if ((this._station_nm_short != value))
-				{
-					this._station_nm_short = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_operator_uid", DbType="NVarChar(50)")]
-		public string operator_uid
-		{
-			get
-			{
-				return this._operator_uid;
-			}
-			set
-			{
-				if ((this._operator_uid != value))
-				{
-					this._operator_uid = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_analyzer_uid", DbType="NVarChar(50)")]
-		public string analyzer_uid
-		{
-			get
-			{
-				return this._analyzer_uid;
-			}
-			set
-			{
-				if ((this._analyzer_uid != value))
-				{
-					this._analyzer_uid = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approver_uid", DbType="NVarChar(50)")]
-		public string approver_uid
-		{
-			get
-			{
-				return this._approver_uid;
-			}
-			set
-			{
-				if ((this._approver_uid != value))
-				{
-					this._approver_uid = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_category_no", DbType="Int")]
-		public System.Nullable<int> category_no
-		{
-			get
-			{
-				return this._category_no;
-			}
-			set
-			{
-				if ((this._category_no != value))
-				{
-					this._category_no = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cat_reason", DbType="NVarChar(500)")]
-		public string cat_reason
-		{
-			get
-			{
-				return this._cat_reason;
-			}
-			set
-			{
-				if ((this._cat_reason != value))
-				{
-					this._cat_reason = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_ds", DbType="NVarChar(200)")]
-		public string type_ds
-		{
-			get
-			{
-				return this._type_ds;
-			}
-			set
-			{
-				if ((this._type_ds != value))
-				{
-					this._type_ds = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ts_fg", DbType="VarChar(3) NOT NULL", CanBeNull=false)]
-		public string ts_fg
-		{
-			get
-			{
-				return this._ts_fg;
-			}
-			set
-			{
-				if ((this._ts_fg != value))
-				{
-					this._ts_fg = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_not_used_fg", DbType="Bit")]
-		public System.Nullable<bool> not_used_fg
-		{
-			get
-			{
-				return this._not_used_fg;
-			}
-			set
-			{
-				if ((this._not_used_fg != value))
-				{
-					this._not_used_fg = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ts_full_ds", DbType="NVarChar(36)")]
-		public string ts_full_ds
-		{
-			get
-			{
-				return this._ts_full_ds;
-			}
-			set
-			{
-				if ((this._ts_full_ds != value))
-				{
-					this._ts_full_ds = value;
-				}
-			}
-		}
-	}
-	
 	public partial class SP_RMS_Get_Record_DDsResult
 	{
 		
@@ -29332,6 +29090,266 @@ namespace Data
 				if ((this._entered_dt != value))
 				{
 					this._entered_dt = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_RMS_Record_Details_by_WSC_or_officeResult
+	{
+		
+		private int _rms_record_id;
+		
+		private string _office_cd;
+		
+		private string _site_no;
+		
+		private string _station_nm_short;
+		
+		private string _operator_uid;
+		
+		private string _analyzer_uid;
+		
+		private string _approver_uid;
+		
+		private string _auditor_uid;
+		
+		private System.Nullable<int> _category_no;
+		
+		private string _cat_reason;
+		
+		private string _type_ds;
+		
+		private string _ts_fg;
+		
+		private System.Nullable<bool> _not_used_fg;
+		
+		private string _ts_full_ds;
+		
+		public SP_RMS_Record_Details_by_WSC_or_officeResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int NOT NULL")]
+		public int rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					this._rms_record_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_cd", DbType="NVarChar(10)")]
+		public string office_cd
+		{
+			get
+			{
+				return this._office_cd;
+			}
+			set
+			{
+				if ((this._office_cd != value))
+				{
+					this._office_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_no", DbType="NVarChar(15)")]
+		public string site_no
+		{
+			get
+			{
+				return this._site_no;
+			}
+			set
+			{
+				if ((this._site_no != value))
+				{
+					this._site_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_nm_short", DbType="NVarChar(150)")]
+		public string station_nm_short
+		{
+			get
+			{
+				return this._station_nm_short;
+			}
+			set
+			{
+				if ((this._station_nm_short != value))
+				{
+					this._station_nm_short = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_operator_uid", DbType="NVarChar(50)")]
+		public string operator_uid
+		{
+			get
+			{
+				return this._operator_uid;
+			}
+			set
+			{
+				if ((this._operator_uid != value))
+				{
+					this._operator_uid = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_analyzer_uid", DbType="NVarChar(50)")]
+		public string analyzer_uid
+		{
+			get
+			{
+				return this._analyzer_uid;
+			}
+			set
+			{
+				if ((this._analyzer_uid != value))
+				{
+					this._analyzer_uid = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approver_uid", DbType="NVarChar(50)")]
+		public string approver_uid
+		{
+			get
+			{
+				return this._approver_uid;
+			}
+			set
+			{
+				if ((this._approver_uid != value))
+				{
+					this._approver_uid = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_auditor_uid", DbType="NVarChar(50)")]
+		public string auditor_uid
+		{
+			get
+			{
+				return this._auditor_uid;
+			}
+			set
+			{
+				if ((this._auditor_uid != value))
+				{
+					this._auditor_uid = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_category_no", DbType="Int")]
+		public System.Nullable<int> category_no
+		{
+			get
+			{
+				return this._category_no;
+			}
+			set
+			{
+				if ((this._category_no != value))
+				{
+					this._category_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cat_reason", DbType="NVarChar(500)")]
+		public string cat_reason
+		{
+			get
+			{
+				return this._cat_reason;
+			}
+			set
+			{
+				if ((this._cat_reason != value))
+				{
+					this._cat_reason = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_ds", DbType="NVarChar(200)")]
+		public string type_ds
+		{
+			get
+			{
+				return this._type_ds;
+			}
+			set
+			{
+				if ((this._type_ds != value))
+				{
+					this._type_ds = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ts_fg", DbType="VarChar(3) NOT NULL", CanBeNull=false)]
+		public string ts_fg
+		{
+			get
+			{
+				return this._ts_fg;
+			}
+			set
+			{
+				if ((this._ts_fg != value))
+				{
+					this._ts_fg = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_not_used_fg", DbType="Bit")]
+		public System.Nullable<bool> not_used_fg
+		{
+			get
+			{
+				return this._not_used_fg;
+			}
+			set
+			{
+				if ((this._not_used_fg != value))
+				{
+					this._not_used_fg = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ts_full_ds", DbType="NVarChar(36)")]
+		public string ts_full_ds
+		{
+			get
+			{
+				return this._ts_full_ds;
+			}
+			set
+			{
+				if ((this._ts_full_ds != value))
+				{
+					this._ts_full_ds = value;
 				}
 			}
 		}
