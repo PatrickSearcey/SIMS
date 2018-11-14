@@ -1070,6 +1070,8 @@ namespace RMS.Task
                     case "Analyzed":
                         //TO the assigned approver
                         if (!string.IsNullOrEmpty(period.Record.approver_uid)) to.Add(EmailAddress(period.Record.approver_uid));
+                        //If the assigned approver is different from the user who approved the record, CC to the user who approved the record
+                        if (period.Record.approver_uid != period.approved_by && !string.IsNullOrEmpty(period.approved_by)) cc.Add(EmailAddress(period.approved_by));
                         //CC the analyzer
                         cc.Add(user.Email);
 
