@@ -1094,6 +1094,8 @@ namespace RMS.Task
                         if (!string.IsNullOrEmpty(period.Record.analyzer_uid)) to.Add(EmailAddress(period.Record.analyzer_uid)); else to.Add(EmailAddress(period.analyzed_by));
                         //If the assigned analyzer is different from the user who analyzed the record, CC to the user who analyzed the record
                         if (period.Record.analyzer_uid != period.analyzed_by) cc.Add(EmailAddress(period.analyzed_by));
+                        //CC the person who approved
+                        if (!string.IsNullOrEmpty(period.approved_by)) cc.Add(EmailAddress(period.approved_by));
 
                         //If one has been setup, CC the office's designated approver
                         if (appEmailList.Count > 0)
