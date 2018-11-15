@@ -10,7 +10,7 @@
 namespace SIMS2017.Admin {
     
     
-    public partial class Tasks {
+    public partial class EndangeredGages {
         
         /// <summary>
         /// ram control.
@@ -29,6 +29,24 @@ namespace SIMS2017.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadAjaxLoadingPanel ralp;
+        
+        /// <summary>
+        /// rwm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadWindowManager rwm;
+        
+        /// <summary>
+        /// rwEditRecords control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadWindow rwEditRecords;
         
         /// <summary>
         /// ph1 control.
@@ -58,102 +76,129 @@ namespace SIMS2017.Admin {
         protected global::System.Web.UI.WebControls.Panel pnlHasAccess;
         
         /// <summary>
-        /// hlRegisterSite control.
+        /// pnlNotice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlRegisterSite;
+        protected global::System.Web.UI.WebControls.Panel pnlNotice;
         
         /// <summary>
-        /// hlManageOffices control.
+        /// ltlNoticeHeading control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlManageOffices;
+        protected global::System.Web.UI.WebControls.Literal ltlNoticeHeading;
         
         /// <summary>
-        /// hlManagePersonnel control.
+        /// ltlNotice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlManagePersonnel;
+        protected global::System.Web.UI.WebControls.Literal ltlNotice;
         
         /// <summary>
-        /// hlManageFieldTrips control.
+        /// rddlOffice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlManageFieldTrips;
+        protected global::Telerik.Web.UI.RadDropDownList rddlOffice;
         
         /// <summary>
-        /// hlEndangeredGages control.
+        /// rbSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlEndangeredGages;
+        protected global::Telerik.Web.UI.RadButton rbSubmit;
         
         /// <summary>
-        /// hlManageRecords control.
+        /// ltlError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlManageRecords;
+        protected global::System.Web.UI.WebControls.Literal ltlError;
         
         /// <summary>
-        /// hlManageRecordTypes control.
+        /// rts1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlManageRecordTypes;
+        protected global::Telerik.Web.UI.RadTabStrip rts1;
         
         /// <summary>
-        /// hlPeriodDates control.
+        /// rmp1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlPeriodDates;
+        protected global::Telerik.Web.UI.RadMultiPage rmp1;
         
         /// <summary>
-        /// hlPeriodStatus control.
+        /// rpv0 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlPeriodStatus;
+        protected global::Telerik.Web.UI.RadPageView rpv0;
         
         /// <summary>
-        /// hlSANAL control.
+        /// rpbExplanation1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlSANAL;
+        protected global::Telerik.Web.UI.RadPanelBar rpbExplanation1;
         
         /// <summary>
-        /// hlUnlock control.
+        /// rgEndangeredGages control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlUnlock;
+        protected global::Telerik.Web.UI.RadGrid rgEndangeredGages;
+        
+        /// <summary>
+        /// rpv1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPageView rpv1;
+        
+        /// <summary>
+        /// rpbExplanation2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPanelBar rpbExplanation2;
+        
+        /// <summary>
+        /// rgCurrentStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid rgCurrentStatus;
     }
 }

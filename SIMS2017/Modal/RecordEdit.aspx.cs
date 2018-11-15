@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,7 @@ namespace SIMS2017.Modal
     {
         #region Local Variables
         private Data.SIMSDataContext db = new Data.SIMSDataContext();
+        public WindowsAuthenticationUser user = new WindowsAuthenticationUser();
         private Data.Record record;
         private Data.Site site;
         #endregion
@@ -35,6 +37,7 @@ namespace SIMS2017.Modal
                     pnlNewRecord.Visible = true;
                     pnlRecordNotUsed.Visible = false;
                     pnlEditRecord.Visible = false;
+                    pnlThreatenedGage.Visible = false;
                     PopulateNewRecordPanel();
                 }
                 else if (type == "record")
@@ -59,6 +62,7 @@ namespace SIMS2017.Modal
                         pnlRecordNotUsed.Visible = false;
                         pnlEditRecord.Visible = true;
                     }
+
                     PopulateEditRecordPanel("editcurrentrecord");
                 }
             }
@@ -237,6 +241,36 @@ namespace SIMS2017.Modal
             rddlResponsibleOffice.DataBind();
             rddlResponsibleOffice.SelectedValue = office_id.ToString();
 
+            //Threatened Gage
+            if (record != null)
+            {
+                var tg_newest = record.EndangeredGages.OrderByDescending(p => p.entered_dt).FirstOrDefault();
+                if (tg_newest != null)
+                {
+                    pnlThreatenedGage.Visible = true;
+                    rcbThreatenedGage.Checked = true;
+                    tbRemarks.Text = tg_newest.remarks;
+                    rntbYearsOfRecord.Value = tg_newest.years_of_record;
+                    rcbStatus.SelectedValue = tg_newest.status;
+                    rdpSunsetDt.SelectedDate = tg_newest.sunset_dt;
+                    if (tg_newest.status != "Discontinued")
+                    {
+                        rcbRecordInactive.Enabled = false; //If this is an endangered gage, and the status it not discontinued, do not allow them to set the record to inactive
+                        ltlInactiveNotice.Visible = true;
+                    }
+                }
+                else
+                {
+                    pnlThreatenedGage.Visible = false;
+                    rcbThreatenedGage.Checked = false;
+                }
+            }
+            else
+            {
+                pnlThreatenedGage.Visible = false;
+                rcbThreatenedGage.Checked = false;
+            }
+
             //Checkboxesif 
             if (option == "editcurrentrecord")
             {
@@ -321,6 +355,26 @@ namespace SIMS2017.Modal
                 rtbCatReason.Visible = false;
 
         }
+
+        protected void rcbThreatenedGage_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((bool)rcbThreatenedGage.Checked) pnlThreatenedGage.Visible = true;
+            else pnlThreatenedGage.Visible = false;
+        }
+
+        protected void rcbStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (rcbStatus.SelectedValue == "Discontinued")
+            {
+                rcbRecordInactive.Enabled = true;
+                ltlInactiveNotice.Visible = false;
+            }
+            else
+            {
+                rcbRecordInactive.Enabled = false;
+                ltlInactiveNotice.Visible = true;
+            }
+        }
         #endregion
 
         #region Button Events
@@ -401,6 +455,48 @@ namespace SIMS2017.Modal
                         });
                         db.SubmitChanges();
                     }
+                    //Update the threatened gage
+                    var tg_newest = record.EndangeredGages.OrderByDescending(p => p.entered_dt).FirstOrDefault();
+                    if ((bool)rcbThreatenedGage.Checked)
+                    {
+                        if (tg_newest != null)
+                        {
+                            //If there was a change to any of the threatened gage field values, then need to create a new record for it in the database table
+                            if (tg_newest.remarks != tbRemarks.Text || tg_newest.years_of_record != rntbYearsOfRecord.Value || tg_newest.status != rcbStatus.SelectedValue.ToString() || tg_newest.sunset_dt != rdpSunsetDt.SelectedDate)
+                            {
+                                var tg_new = new Data.EndangeredGage();
+                                tg_new.rms_record_id = record.rms_record_id;
+                                tg_new.remarks = tbRemarks.Text;
+                                tg_new.years_of_record = Convert.ToInt32(rntbYearsOfRecord.Value);
+                                tg_new.status = rcbStatus.SelectedValue.ToString();
+                                tg_new.sunset_dt = rdpSunsetDt.SelectedDate;
+                                tg_new.entered_by = user.ID;
+                                tg_new.entered_dt = DateTime.Now;
+                                db.EndangeredGages.InsertOnSubmit(tg_new);
+                            }
+                            //Otherwise, do nothing
+                        }
+                        else //Adding to the threatened gage table for the first time
+                        {
+                            var tg_new = new Data.EndangeredGage();
+                            tg_new.rms_record_id = record.rms_record_id;
+                            tg_new.remarks = tbRemarks.Text;
+                            tg_new.years_of_record = Convert.ToInt32(rntbYearsOfRecord.Value);
+                            tg_new.status = rcbStatus.SelectedValue.ToString();
+                            tg_new.sunset_dt = rdpSunsetDt.SelectedDate;
+                            tg_new.entered_by = user.ID;
+                            tg_new.entered_dt = DateTime.Now;
+                            db.EndangeredGages.InsertOnSubmit(tg_new);
+                        }
+                    }
+                    else //The checkbox was not checked
+                    {
+                        //But, there is history of threatened gage data for this record, what happens now?? - NEED SONYA OR BRIAN HELP!
+                        if (tg_newest != null)
+                        {
+
+                        }
+                    }
                     //Checkbox
                     record.not_used_fg = rcbRecordInactive.Checked;
 
@@ -461,6 +557,20 @@ namespace SIMS2017.Modal
                             alt_office_id = Convert.ToInt32(rddlResponsibleOffice.SelectedValue)
                         });
                         db.SubmitChanges();
+                    }
+
+                    //Insert the threatened gage
+                    if ((bool)rcbThreatenedGage.Checked)
+                    {
+                        var tg_new = new Data.EndangeredGage();
+                        tg_new.rms_record_id = new_record.rms_record_id;
+                        tg_new.remarks = tbRemarks.Text;
+                        tg_new.years_of_record = Convert.ToInt32(rntbYearsOfRecord.Value);
+                        tg_new.status = rcbStatus.SelectedValue.ToString();
+                        tg_new.sunset_dt = rdpSunsetDt.SelectedDate;
+                        tg_new.entered_by = user.ID;
+                        tg_new.entered_dt = DateTime.Now;
+                        db.EndangeredGages.InsertOnSubmit(tg_new);
                     }
                 }
                 

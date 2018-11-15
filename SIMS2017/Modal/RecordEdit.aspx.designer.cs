@@ -319,6 +319,87 @@ namespace SIMS2017.Modal {
         protected global::Telerik.Web.UI.RadDropDownList rddlResponsibleOffice;
         
         /// <summary>
+        /// rcbThreatenedGage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadCheckBox rcbThreatenedGage;
+        
+        /// <summary>
+        /// pnlThreatenedGage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlThreatenedGage;
+        
+        /// <summary>
+        /// tbRemarks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbRemarks;
+        
+        /// <summary>
+        /// rntbYearsOfRecord control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadNumericTextBox rntbYearsOfRecord;
+        
+        /// <summary>
+        /// rcbStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadComboBox rcbStatus;
+        
+        /// <summary>
+        /// imgToolTip_Status control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgToolTip_Status;
+        
+        /// <summary>
+        /// rttStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadToolTip rttStatus;
+        
+        /// <summary>
+        /// rdpSunsetDt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDatePicker rdpSunsetDt;
+        
+        /// <summary>
+        /// ltlInactiveNotice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlInactiveNotice;
+        
+        /// <summary>
         /// rcbRecordInactive control.
         /// </summary>
         /// <remarks>

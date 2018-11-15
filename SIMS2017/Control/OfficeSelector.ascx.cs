@@ -121,7 +121,7 @@ namespace SIMS2017.Control
             OnSelectorChanged();
         }
 
-        protected void btnSiteNo_Command(object sender, CommandEventArgs e)
+        protected void btnSiteNo_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(tbSiteNo.Text))
             {

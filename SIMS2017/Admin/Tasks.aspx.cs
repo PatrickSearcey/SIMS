@@ -76,6 +76,7 @@ namespace SIMS2017.Admin
                 hlManageOffices.NavigateUrl = String.Format("{0}Admin/Offices.aspx?office_id={1}", Config.SIMSURL, OfficeID);
                 hlManagePersonnel.NavigateUrl = String.Format("{0}Admin/Personnel.aspx?office_id={1}", Config.SIMSURL, OfficeID);
                 hlManageFieldTrips.NavigateUrl = String.Format("{0}Admin/FieldTrips.aspx?office_id={1}", Config.SIMSURL, OfficeID);
+                hlEndangeredGages.NavigateUrl = String.Format("{0}Admin/EndangeredGages.aspx?office_id={1}", Config.SIMSURL, OfficeID);
                 hlManageRecords.NavigateUrl = String.Format("{0}Admin/Records.aspx?office_id={1}", Config.RMSURL, OfficeID);
                 hlManageRecordTypes.NavigateUrl = String.Format("{0}Admin/RecordTypes.aspx?office_id={1}", Config.RMSURL, OfficeID);
                 hlPeriodDates.NavigateUrl = String.Format("{0}Admin/PeriodDate.aspx?office_id={1}", Config.RMSURL, OfficeID);
