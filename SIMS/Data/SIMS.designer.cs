@@ -201,6 +201,9 @@ namespace Data
     partial void InsertPeriodDialog(PeriodDialog instance);
     partial void UpdatePeriodDialog(PeriodDialog instance);
     partial void DeletePeriodDialog(PeriodDialog instance);
+    partial void InsertEndangeredGage(EndangeredGage instance);
+    partial void UpdateEndangeredGage(EndangeredGage instance);
+    partial void DeleteEndangeredGage(EndangeredGage instance);
     #endregion
 		
 		public SIMSDataContext() : 
@@ -873,6 +876,38 @@ namespace Data
 			}
 		}
 		
+		public System.Data.Linq.Table<PeriodDialog> PeriodDialogs
+		{
+			get
+			{
+				return this.GetTable<PeriodDialog>();
+			}
+		}
+		
+		public System.Data.Linq.Table<EndangeredGage> EndangeredGages
+		{
+			get
+			{
+				return this.GetTable<EndangeredGage>();
+			}
+		}
+		
+		public System.Data.Linq.Table<vEndangeredGagesHistory> vEndangeredGagesHistories
+		{
+			get
+			{
+				return this.GetTable<vEndangeredGagesHistory>();
+			}
+		}
+		
+		public System.Data.Linq.Table<vEndangeredGagesCurrentStatus> vEndangeredGagesCurrentStatus
+		{
+			get
+			{
+				return this.GetTable<vEndangeredGagesCurrentStatus>();
+			}
+		}
+		
 		public System.Data.Linq.Table<vRMSMostRecentAuditPeriod> vRMSMostRecentAuditPeriods
 		{
 			get
@@ -881,11 +916,11 @@ namespace Data
 			}
 		}
 		
-		public System.Data.Linq.Table<PeriodDialog> PeriodDialogs
+		public System.Data.Linq.Table<vRMSAuditByRecord> vRMSAuditByRecords
 		{
 			get
 			{
-				return this.GetTable<PeriodDialog>();
+				return this.GetTable<vRMSAuditByRecord>();
 			}
 		}
 		
@@ -1037,13 +1072,6 @@ namespace Data
 			return ((ISingleResult<SP_CRP_Cat_ChartsResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RMS_Record_Details_by_WSC_or_office")]
-		public ISingleResult<SP_RMS_Record_Details_by_WSC_or_officeResult> SP_RMS_Record_Details_by_WSC_or_office([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> office_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> wsc_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(3)")] string onlyactive)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), office_id, wsc_id, onlyactive);
-			return ((ISingleResult<SP_RMS_Record_Details_by_WSC_or_officeResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RMS_Get_Record_DDs")]
 		public ISingleResult<SP_RMS_Get_Record_DDsResult> SP_RMS_Get_Record_DDs([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> rms_record_id)
 		{
@@ -1091,6 +1119,20 @@ namespace Data
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), record_type_id, querydate);
 			return ((ISingleResult<SP_RMS_Audit_Progress_by_recordtypeResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RMS_EndangeredGages_by_WSC_or_Office")]
+		public ISingleResult<SP_RMS_EndangeredGages_by_WSC_or_OfficeResult> SP_RMS_EndangeredGages_by_WSC_or_Office([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> office_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> wsc_id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), office_id, wsc_id);
+			return ((ISingleResult<SP_RMS_EndangeredGages_by_WSC_or_OfficeResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RMS_Record_Details_by_WSC_or_office")]
+		public ISingleResult<SP_RMS_Record_Details_by_WSC_or_officeResult> SP_RMS_Record_Details_by_WSC_or_office([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> office_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> wsc_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(3)")] string onlyactive)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), office_id, wsc_id, onlyactive);
+			return ((ISingleResult<SP_RMS_Record_Details_by_WSC_or_officeResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -23338,6 +23380,8 @@ namespace Data
 		
 		private EntitySet<RecordAnalysisPeriod> _RecordAnalysisPeriods;
 		
+		private EntitySet<EndangeredGage> _EndangeredGages;
+		
 		private EntityRef<RecordType> _RecordType;
 		
 		private EntityRef<Site> _Site;
@@ -23378,6 +23422,7 @@ namespace Data
 			this._RecordAltOffice = default(EntityRef<RecordAltOffice>);
 			this._AuditRecords = new EntitySet<AuditRecord>(new Action<AuditRecord>(this.attach_AuditRecords), new Action<AuditRecord>(this.detach_AuditRecords));
 			this._RecordAnalysisPeriods = new EntitySet<RecordAnalysisPeriod>(new Action<RecordAnalysisPeriod>(this.attach_RecordAnalysisPeriods), new Action<RecordAnalysisPeriod>(this.detach_RecordAnalysisPeriods));
+			this._EndangeredGages = new EntitySet<EndangeredGage>(new Action<EndangeredGage>(this.attach_EndangeredGages), new Action<EndangeredGage>(this.detach_EndangeredGages));
 			this._RecordType = default(EntityRef<RecordType>);
 			this._Site = default(EntityRef<Site>);
 			OnCreated();
@@ -23737,6 +23782,19 @@ namespace Data
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_EndangeredGage", Storage="_EndangeredGages", ThisKey="rms_record_id", OtherKey="rms_record_id")]
+		public EntitySet<EndangeredGage> EndangeredGages
+		{
+			get
+			{
+				return this._EndangeredGages;
+			}
+			set
+			{
+				this._EndangeredGages.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RecordType_Record", Storage="_RecordType", ThisKey="record_type_id", OtherKey="record_type_id", IsForeignKey=true)]
 		public RecordType RecordType
 		{
@@ -23860,230 +23918,17 @@ namespace Data
 			this.SendPropertyChanging();
 			entity.Record = null;
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vRMSMostRecentAuditPeriod")]
-	public partial class vRMSMostRecentAuditPeriod
-	{
 		
-		private System.Nullable<int> _wsc_id;
-		
-		private System.Nullable<int> _record_office_id;
-		
-		private string _site_no;
-		
-		private string _station_nm;
-		
-		private int _rms_record_id;
-		
-		private string _type_cd;
-		
-		private string _auditor_uid;
-		
-		private string _TemplateName;
-		
-		private string _sims_site_tp;
-		
-		private System.Nullable<int> _rms_audit_id;
-		
-		private System.Nullable<System.DateTime> _audit_beg_dt;
-		
-		private System.Nullable<System.DateTime> _audit_end_dt;
-		
-		public vRMSMostRecentAuditPeriod()
+		private void attach_EndangeredGages(EndangeredGage entity)
 		{
+			this.SendPropertyChanging();
+			entity.Record = this;
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_id", DbType="Int")]
-		public System.Nullable<int> wsc_id
+		private void detach_EndangeredGages(EndangeredGage entity)
 		{
-			get
-			{
-				return this._wsc_id;
-			}
-			set
-			{
-				if ((this._wsc_id != value))
-				{
-					this._wsc_id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_record_office_id", DbType="Int")]
-		public System.Nullable<int> record_office_id
-		{
-			get
-			{
-				return this._record_office_id;
-			}
-			set
-			{
-				if ((this._record_office_id != value))
-				{
-					this._record_office_id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_no", DbType="NVarChar(15) NOT NULL", CanBeNull=false)]
-		public string site_no
-		{
-			get
-			{
-				return this._site_no;
-			}
-			set
-			{
-				if ((this._site_no != value))
-				{
-					this._site_no = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_nm", DbType="VarChar(50)")]
-		public string station_nm
-		{
-			get
-			{
-				return this._station_nm;
-			}
-			set
-			{
-				if ((this._station_nm != value))
-				{
-					this._station_nm = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int NOT NULL")]
-		public int rms_record_id
-		{
-			get
-			{
-				return this._rms_record_id;
-			}
-			set
-			{
-				if ((this._rms_record_id != value))
-				{
-					this._rms_record_id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_cd", DbType="NVarChar(50)")]
-		public string type_cd
-		{
-			get
-			{
-				return this._type_cd;
-			}
-			set
-			{
-				if ((this._type_cd != value))
-				{
-					this._type_cd = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_auditor_uid", DbType="NVarChar(50)")]
-		public string auditor_uid
-		{
-			get
-			{
-				return this._auditor_uid;
-			}
-			set
-			{
-				if ((this._auditor_uid != value))
-				{
-					this._auditor_uid = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateName", DbType="NVarChar(100)")]
-		public string TemplateName
-		{
-			get
-			{
-				return this._TemplateName;
-			}
-			set
-			{
-				if ((this._TemplateName != value))
-				{
-					this._TemplateName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sims_site_tp", DbType="NVarChar(5)")]
-		public string sims_site_tp
-		{
-			get
-			{
-				return this._sims_site_tp;
-			}
-			set
-			{
-				if ((this._sims_site_tp != value))
-				{
-					this._sims_site_tp = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_audit_id", DbType="Int")]
-		public System.Nullable<int> rms_audit_id
-		{
-			get
-			{
-				return this._rms_audit_id;
-			}
-			set
-			{
-				if ((this._rms_audit_id != value))
-				{
-					this._rms_audit_id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_beg_dt", DbType="DateTime")]
-		public System.Nullable<System.DateTime> audit_beg_dt
-		{
-			get
-			{
-				return this._audit_beg_dt;
-			}
-			set
-			{
-				if ((this._audit_beg_dt != value))
-				{
-					this._audit_beg_dt = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_end_dt", DbType="DateTime")]
-		public System.Nullable<System.DateTime> audit_end_dt
-		{
-			get
-			{
-				return this._audit_end_dt;
-			}
-			set
-			{
-				if ((this._audit_end_dt != value))
-				{
-					this._audit_end_dt = value;
-				}
-			}
+			this.SendPropertyChanging();
+			entity.Record = null;
 		}
 	}
 	
@@ -24354,6 +24199,907 @@ namespace Data
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_Endangered_Gages")]
+	public partial class EndangeredGage : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _rms_endangered_gages_id;
+		
+		private System.Nullable<int> _rms_record_id;
+		
+		private string _remarks;
+		
+		private System.Nullable<int> _years_of_record;
+		
+		private string _status;
+		
+		private System.Nullable<System.DateTime> _sunset_dt;
+		
+		private string _entered_by;
+		
+		private System.Nullable<System.DateTime> _entered_dt;
+		
+		private EntityRef<Record> _Record;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onrms_endangered_gages_idChanging(int value);
+    partial void Onrms_endangered_gages_idChanged();
+    partial void Onrms_record_idChanging(System.Nullable<int> value);
+    partial void Onrms_record_idChanged();
+    partial void OnremarksChanging(string value);
+    partial void OnremarksChanged();
+    partial void Onyears_of_recordChanging(System.Nullable<int> value);
+    partial void Onyears_of_recordChanged();
+    partial void OnstatusChanging(string value);
+    partial void OnstatusChanged();
+    partial void Onsunset_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onsunset_dtChanged();
+    partial void Onentered_byChanging(string value);
+    partial void Onentered_byChanged();
+    partial void Onentered_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onentered_dtChanged();
+    #endregion
+		
+		public EndangeredGage()
+		{
+			this._Record = default(EntityRef<Record>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_endangered_gages_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int rms_endangered_gages_id
+		{
+			get
+			{
+				return this._rms_endangered_gages_id;
+			}
+			set
+			{
+				if ((this._rms_endangered_gages_id != value))
+				{
+					this.Onrms_endangered_gages_idChanging(value);
+					this.SendPropertyChanging();
+					this._rms_endangered_gages_id = value;
+					this.SendPropertyChanged("rms_endangered_gages_id");
+					this.Onrms_endangered_gages_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int")]
+		public System.Nullable<int> rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					if (this._Record.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onrms_record_idChanging(value);
+					this.SendPropertyChanging();
+					this._rms_record_id = value;
+					this.SendPropertyChanged("rms_record_id");
+					this.Onrms_record_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_remarks", DbType="NVarChar(MAX)")]
+		public string remarks
+		{
+			get
+			{
+				return this._remarks;
+			}
+			set
+			{
+				if ((this._remarks != value))
+				{
+					this.OnremarksChanging(value);
+					this.SendPropertyChanging();
+					this._remarks = value;
+					this.SendPropertyChanged("remarks");
+					this.OnremarksChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_years_of_record", DbType="Int")]
+		public System.Nullable<int> years_of_record
+		{
+			get
+			{
+				return this._years_of_record;
+			}
+			set
+			{
+				if ((this._years_of_record != value))
+				{
+					this.Onyears_of_recordChanging(value);
+					this.SendPropertyChanging();
+					this._years_of_record = value;
+					this.SendPropertyChanged("years_of_record");
+					this.Onyears_of_recordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="NVarChar(50)")]
+		public string status
+		{
+			get
+			{
+				return this._status;
+			}
+			set
+			{
+				if ((this._status != value))
+				{
+					this.OnstatusChanging(value);
+					this.SendPropertyChanging();
+					this._status = value;
+					this.SendPropertyChanged("status");
+					this.OnstatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sunset_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> sunset_dt
+		{
+			get
+			{
+				return this._sunset_dt;
+			}
+			set
+			{
+				if ((this._sunset_dt != value))
+				{
+					this.Onsunset_dtChanging(value);
+					this.SendPropertyChanging();
+					this._sunset_dt = value;
+					this.SendPropertyChanged("sunset_dt");
+					this.Onsunset_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entered_by", DbType="NVarChar(20)")]
+		public string entered_by
+		{
+			get
+			{
+				return this._entered_by;
+			}
+			set
+			{
+				if ((this._entered_by != value))
+				{
+					this.Onentered_byChanging(value);
+					this.SendPropertyChanging();
+					this._entered_by = value;
+					this.SendPropertyChanged("entered_by");
+					this.Onentered_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entered_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> entered_dt
+		{
+			get
+			{
+				return this._entered_dt;
+			}
+			set
+			{
+				if ((this._entered_dt != value))
+				{
+					this.Onentered_dtChanging(value);
+					this.SendPropertyChanging();
+					this._entered_dt = value;
+					this.SendPropertyChanged("entered_dt");
+					this.Onentered_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Record_EndangeredGage", Storage="_Record", ThisKey="rms_record_id", OtherKey="rms_record_id", IsForeignKey=true)]
+		public Record Record
+		{
+			get
+			{
+				return this._Record.Entity;
+			}
+			set
+			{
+				Record previousValue = this._Record.Entity;
+				if (((previousValue != value) 
+							|| (this._Record.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Record.Entity = null;
+						previousValue.EndangeredGages.Remove(this);
+					}
+					this._Record.Entity = value;
+					if ((value != null))
+					{
+						value.EndangeredGages.Add(this);
+						this._rms_record_id = value.rms_record_id;
+					}
+					else
+					{
+						this._rms_record_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Record");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vEndangeredGages_History")]
+	public partial class vEndangeredGagesHistory
+	{
+		
+		private System.Nullable<int> _site_id;
+		
+		private int _rms_record_id;
+		
+		private string _type_cd;
+		
+		private string _type_ds;
+		
+		private string _status;
+		
+		private System.Nullable<System.DateTime> _entered_dt;
+		
+		public vEndangeredGagesHistory()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int")]
+		public System.Nullable<int> site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					this._site_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int NOT NULL")]
+		public int rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					this._rms_record_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_cd", DbType="NVarChar(50)")]
+		public string type_cd
+		{
+			get
+			{
+				return this._type_cd;
+			}
+			set
+			{
+				if ((this._type_cd != value))
+				{
+					this._type_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_ds", DbType="NVarChar(200)")]
+		public string type_ds
+		{
+			get
+			{
+				return this._type_ds;
+			}
+			set
+			{
+				if ((this._type_ds != value))
+				{
+					this._type_ds = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="NVarChar(50)")]
+		public string status
+		{
+			get
+			{
+				return this._status;
+			}
+			set
+			{
+				if ((this._status != value))
+				{
+					this._status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entered_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> entered_dt
+		{
+			get
+			{
+				return this._entered_dt;
+			}
+			set
+			{
+				if ((this._entered_dt != value))
+				{
+					this._entered_dt = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vEndangeredGages_CurrentStatus")]
+	public partial class vEndangeredGagesCurrentStatus
+	{
+		
+		private System.Nullable<int> _wsc_id;
+		
+		private int _office_id;
+		
+		private int _site_id;
+		
+		private string _site_no;
+		
+		private string _station_nm;
+		
+		private System.Nullable<System.DateTime> _LastEndangeredDate;
+		
+		private System.Nullable<System.DateTime> _LastRescuedDate;
+		
+		private System.Nullable<System.DateTime> _LastDiscontinuedDate;
+		
+		public vEndangeredGagesCurrentStatus()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_id", DbType="Int")]
+		public System.Nullable<int> wsc_id
+		{
+			get
+			{
+				return this._wsc_id;
+			}
+			set
+			{
+				if ((this._wsc_id != value))
+				{
+					this._wsc_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_id", DbType="Int NOT NULL")]
+		public int office_id
+		{
+			get
+			{
+				return this._office_id;
+			}
+			set
+			{
+				if ((this._office_id != value))
+				{
+					this._office_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int NOT NULL")]
+		public int site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					this._site_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_no", DbType="NVarChar(15) NOT NULL", CanBeNull=false)]
+		public string site_no
+		{
+			get
+			{
+				return this._site_no;
+			}
+			set
+			{
+				if ((this._site_no != value))
+				{
+					this._site_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_nm", DbType="VarChar(50)")]
+		public string station_nm
+		{
+			get
+			{
+				return this._station_nm;
+			}
+			set
+			{
+				if ((this._station_nm != value))
+				{
+					this._station_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastEndangeredDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LastEndangeredDate
+		{
+			get
+			{
+				return this._LastEndangeredDate;
+			}
+			set
+			{
+				if ((this._LastEndangeredDate != value))
+				{
+					this._LastEndangeredDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastRescuedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LastRescuedDate
+		{
+			get
+			{
+				return this._LastRescuedDate;
+			}
+			set
+			{
+				if ((this._LastRescuedDate != value))
+				{
+					this._LastRescuedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastDiscontinuedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LastDiscontinuedDate
+		{
+			get
+			{
+				return this._LastDiscontinuedDate;
+			}
+			set
+			{
+				if ((this._LastDiscontinuedDate != value))
+				{
+					this._LastDiscontinuedDate = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vRMSMostRecentAuditPeriod")]
+	public partial class vRMSMostRecentAuditPeriod
+	{
+		
+		private System.Nullable<int> _wsc_id;
+		
+		private System.Nullable<int> _record_office_id;
+		
+		private string _office_cd;
+		
+		private string _site_no;
+		
+		private string _station_nm;
+		
+		private int _rms_record_id;
+		
+		private string _type_cd;
+		
+		private string _auditor_uid;
+		
+		private string _TemplateName;
+		
+		private string _sims_site_tp;
+		
+		private System.Nullable<int> _rms_audit_id;
+		
+		private System.Nullable<System.DateTime> _audit_beg_dt;
+		
+		private System.Nullable<System.DateTime> _audit_end_dt;
+		
+		public vRMSMostRecentAuditPeriod()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_id", DbType="Int")]
+		public System.Nullable<int> wsc_id
+		{
+			get
+			{
+				return this._wsc_id;
+			}
+			set
+			{
+				if ((this._wsc_id != value))
+				{
+					this._wsc_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_record_office_id", DbType="Int")]
+		public System.Nullable<int> record_office_id
+		{
+			get
+			{
+				return this._record_office_id;
+			}
+			set
+			{
+				if ((this._record_office_id != value))
+				{
+					this._record_office_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_cd", DbType="NVarChar(10)")]
+		public string office_cd
+		{
+			get
+			{
+				return this._office_cd;
+			}
+			set
+			{
+				if ((this._office_cd != value))
+				{
+					this._office_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_no", DbType="NVarChar(15) NOT NULL", CanBeNull=false)]
+		public string site_no
+		{
+			get
+			{
+				return this._site_no;
+			}
+			set
+			{
+				if ((this._site_no != value))
+				{
+					this._site_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_nm", DbType="VarChar(50)")]
+		public string station_nm
+		{
+			get
+			{
+				return this._station_nm;
+			}
+			set
+			{
+				if ((this._station_nm != value))
+				{
+					this._station_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int NOT NULL")]
+		public int rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					this._rms_record_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_cd", DbType="NVarChar(50)")]
+		public string type_cd
+		{
+			get
+			{
+				return this._type_cd;
+			}
+			set
+			{
+				if ((this._type_cd != value))
+				{
+					this._type_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_auditor_uid", DbType="NVarChar(50)")]
+		public string auditor_uid
+		{
+			get
+			{
+				return this._auditor_uid;
+			}
+			set
+			{
+				if ((this._auditor_uid != value))
+				{
+					this._auditor_uid = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateName", DbType="NVarChar(100)")]
+		public string TemplateName
+		{
+			get
+			{
+				return this._TemplateName;
+			}
+			set
+			{
+				if ((this._TemplateName != value))
+				{
+					this._TemplateName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sims_site_tp", DbType="NVarChar(5)")]
+		public string sims_site_tp
+		{
+			get
+			{
+				return this._sims_site_tp;
+			}
+			set
+			{
+				if ((this._sims_site_tp != value))
+				{
+					this._sims_site_tp = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_audit_id", DbType="Int")]
+		public System.Nullable<int> rms_audit_id
+		{
+			get
+			{
+				return this._rms_audit_id;
+			}
+			set
+			{
+				if ((this._rms_audit_id != value))
+				{
+					this._rms_audit_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_beg_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> audit_beg_dt
+		{
+			get
+			{
+				return this._audit_beg_dt;
+			}
+			set
+			{
+				if ((this._audit_beg_dt != value))
+				{
+					this._audit_beg_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_audit_end_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> audit_end_dt
+		{
+			get
+			{
+				return this._audit_end_dt;
+			}
+			set
+			{
+				if ((this._audit_end_dt != value))
+				{
+					this._audit_end_dt = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vRMSAuditByRecord")]
+	public partial class vRMSAuditByRecord
+	{
+		
+		private System.Nullable<int> _rms_record_id;
+		
+		private string _site_no;
+		
+		private string _station_full_nm;
+		
+		private string _type_ds;
+		
+		private string _office_cd;
+		
+		private System.Nullable<int> _wsc_id;
+		
+		public vRMSAuditByRecord()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int")]
+		public System.Nullable<int> rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					this._rms_record_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_no", DbType="NVarChar(15) NOT NULL", CanBeNull=false)]
+		public string site_no
+		{
+			get
+			{
+				return this._site_no;
+			}
+			set
+			{
+				if ((this._site_no != value))
+				{
+					this._site_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_full_nm", DbType="NVarChar(150)")]
+		public string station_full_nm
+		{
+			get
+			{
+				return this._station_full_nm;
+			}
+			set
+			{
+				if ((this._station_full_nm != value))
+				{
+					this._station_full_nm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_ds", DbType="NVarChar(200)")]
+		public string type_ds
+		{
+			get
+			{
+				return this._type_ds;
+			}
+			set
+			{
+				if ((this._type_ds != value))
+				{
+					this._type_ds = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_cd", DbType="NVarChar(10)")]
+		public string office_cd
+		{
+			get
+			{
+				return this._office_cd;
+			}
+			set
+			{
+				if ((this._office_cd != value))
+				{
+					this._office_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_wsc_id", DbType="Int")]
+		public System.Nullable<int> wsc_id
+		{
+			get
+			{
+				return this._wsc_id;
+			}
+			set
+			{
+				if ((this._wsc_id != value))
+				{
+					this._wsc_id = value;
+				}
 			}
 		}
 	}
@@ -26763,248 +27509,6 @@ namespace Data
 		}
 	}
 	
-	public partial class SP_RMS_Record_Details_by_WSC_or_officeResult
-	{
-		
-		private int _rms_record_id;
-		
-		private string _office_cd;
-		
-		private string _site_no;
-		
-		private string _station_nm_short;
-		
-		private string _operator_uid;
-		
-		private string _analyzer_uid;
-		
-		private string _approver_uid;
-		
-		private System.Nullable<int> _category_no;
-		
-		private string _cat_reason;
-		
-		private string _type_ds;
-		
-		private string _ts_fg;
-		
-		private System.Nullable<bool> _not_used_fg;
-		
-		private string _ts_full_ds;
-		
-		public SP_RMS_Record_Details_by_WSC_or_officeResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int NOT NULL")]
-		public int rms_record_id
-		{
-			get
-			{
-				return this._rms_record_id;
-			}
-			set
-			{
-				if ((this._rms_record_id != value))
-				{
-					this._rms_record_id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_cd", DbType="NVarChar(10)")]
-		public string office_cd
-		{
-			get
-			{
-				return this._office_cd;
-			}
-			set
-			{
-				if ((this._office_cd != value))
-				{
-					this._office_cd = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_no", DbType="NVarChar(15)")]
-		public string site_no
-		{
-			get
-			{
-				return this._site_no;
-			}
-			set
-			{
-				if ((this._site_no != value))
-				{
-					this._site_no = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_nm_short", DbType="NVarChar(150)")]
-		public string station_nm_short
-		{
-			get
-			{
-				return this._station_nm_short;
-			}
-			set
-			{
-				if ((this._station_nm_short != value))
-				{
-					this._station_nm_short = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_operator_uid", DbType="NVarChar(50)")]
-		public string operator_uid
-		{
-			get
-			{
-				return this._operator_uid;
-			}
-			set
-			{
-				if ((this._operator_uid != value))
-				{
-					this._operator_uid = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_analyzer_uid", DbType="NVarChar(50)")]
-		public string analyzer_uid
-		{
-			get
-			{
-				return this._analyzer_uid;
-			}
-			set
-			{
-				if ((this._analyzer_uid != value))
-				{
-					this._analyzer_uid = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approver_uid", DbType="NVarChar(50)")]
-		public string approver_uid
-		{
-			get
-			{
-				return this._approver_uid;
-			}
-			set
-			{
-				if ((this._approver_uid != value))
-				{
-					this._approver_uid = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_category_no", DbType="Int")]
-		public System.Nullable<int> category_no
-		{
-			get
-			{
-				return this._category_no;
-			}
-			set
-			{
-				if ((this._category_no != value))
-				{
-					this._category_no = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cat_reason", DbType="NVarChar(500)")]
-		public string cat_reason
-		{
-			get
-			{
-				return this._cat_reason;
-			}
-			set
-			{
-				if ((this._cat_reason != value))
-				{
-					this._cat_reason = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_ds", DbType="NVarChar(200)")]
-		public string type_ds
-		{
-			get
-			{
-				return this._type_ds;
-			}
-			set
-			{
-				if ((this._type_ds != value))
-				{
-					this._type_ds = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ts_fg", DbType="VarChar(3) NOT NULL", CanBeNull=false)]
-		public string ts_fg
-		{
-			get
-			{
-				return this._ts_fg;
-			}
-			set
-			{
-				if ((this._ts_fg != value))
-				{
-					this._ts_fg = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_not_used_fg", DbType="Bit")]
-		public System.Nullable<bool> not_used_fg
-		{
-			get
-			{
-				return this._not_used_fg;
-			}
-			set
-			{
-				if ((this._not_used_fg != value))
-				{
-					this._not_used_fg = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ts_full_ds", DbType="NVarChar(36)")]
-		public string ts_full_ds
-		{
-			get
-			{
-				return this._ts_full_ds;
-			}
-			set
-			{
-				if ((this._ts_full_ds != value))
-				{
-					this._ts_full_ds = value;
-				}
-			}
-		}
-	}
-	
 	public partial class SP_RMS_Get_Record_DDsResult
 	{
 		
@@ -28362,6 +28866,490 @@ namespace Data
 				if ((this._audited != value))
 				{
 					this._audited = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_RMS_EndangeredGages_by_WSC_or_OfficeResult
+	{
+		
+		private int _rms_record_id;
+		
+		private string _office_cd;
+		
+		private string _site_no;
+		
+		private string _station_nm_short;
+		
+		private string _type_ds;
+		
+		private string _site_tp_cd;
+		
+		private string _remarks;
+		
+		private System.Nullable<int> _years_of_record;
+		
+		private string _status;
+		
+		private System.Nullable<System.DateTime> _sunset_dt;
+		
+		private string _entered_by;
+		
+		private System.Nullable<System.DateTime> _entered_dt;
+		
+		public SP_RMS_EndangeredGages_by_WSC_or_OfficeResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int NOT NULL")]
+		public int rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					this._rms_record_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_cd", DbType="NVarChar(10)")]
+		public string office_cd
+		{
+			get
+			{
+				return this._office_cd;
+			}
+			set
+			{
+				if ((this._office_cd != value))
+				{
+					this._office_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_no", DbType="NVarChar(15)")]
+		public string site_no
+		{
+			get
+			{
+				return this._site_no;
+			}
+			set
+			{
+				if ((this._site_no != value))
+				{
+					this._site_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_nm_short", DbType="NVarChar(150)")]
+		public string station_nm_short
+		{
+			get
+			{
+				return this._station_nm_short;
+			}
+			set
+			{
+				if ((this._station_nm_short != value))
+				{
+					this._station_nm_short = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_ds", DbType="NVarChar(200)")]
+		public string type_ds
+		{
+			get
+			{
+				return this._type_ds;
+			}
+			set
+			{
+				if ((this._type_ds != value))
+				{
+					this._type_ds = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_tp_cd", DbType="VarChar(7)")]
+		public string site_tp_cd
+		{
+			get
+			{
+				return this._site_tp_cd;
+			}
+			set
+			{
+				if ((this._site_tp_cd != value))
+				{
+					this._site_tp_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_remarks", DbType="NVarChar(MAX)")]
+		public string remarks
+		{
+			get
+			{
+				return this._remarks;
+			}
+			set
+			{
+				if ((this._remarks != value))
+				{
+					this._remarks = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_years_of_record", DbType="Int")]
+		public System.Nullable<int> years_of_record
+		{
+			get
+			{
+				return this._years_of_record;
+			}
+			set
+			{
+				if ((this._years_of_record != value))
+				{
+					this._years_of_record = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="NVarChar(50)")]
+		public string status
+		{
+			get
+			{
+				return this._status;
+			}
+			set
+			{
+				if ((this._status != value))
+				{
+					this._status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sunset_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> sunset_dt
+		{
+			get
+			{
+				return this._sunset_dt;
+			}
+			set
+			{
+				if ((this._sunset_dt != value))
+				{
+					this._sunset_dt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entered_by", DbType="NVarChar(20)")]
+		public string entered_by
+		{
+			get
+			{
+				return this._entered_by;
+			}
+			set
+			{
+				if ((this._entered_by != value))
+				{
+					this._entered_by = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entered_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> entered_dt
+		{
+			get
+			{
+				return this._entered_dt;
+			}
+			set
+			{
+				if ((this._entered_dt != value))
+				{
+					this._entered_dt = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_RMS_Record_Details_by_WSC_or_officeResult
+	{
+		
+		private int _rms_record_id;
+		
+		private string _office_cd;
+		
+		private string _site_no;
+		
+		private string _station_nm_short;
+		
+		private string _operator_uid;
+		
+		private string _analyzer_uid;
+		
+		private string _approver_uid;
+		
+		private string _auditor_uid;
+		
+		private System.Nullable<int> _category_no;
+		
+		private string _cat_reason;
+		
+		private string _type_ds;
+		
+		private string _ts_fg;
+		
+		private System.Nullable<bool> _not_used_fg;
+		
+		private string _ts_full_ds;
+		
+		public SP_RMS_Record_Details_by_WSC_or_officeResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rms_record_id", DbType="Int NOT NULL")]
+		public int rms_record_id
+		{
+			get
+			{
+				return this._rms_record_id;
+			}
+			set
+			{
+				if ((this._rms_record_id != value))
+				{
+					this._rms_record_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_office_cd", DbType="NVarChar(10)")]
+		public string office_cd
+		{
+			get
+			{
+				return this._office_cd;
+			}
+			set
+			{
+				if ((this._office_cd != value))
+				{
+					this._office_cd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_no", DbType="NVarChar(15)")]
+		public string site_no
+		{
+			get
+			{
+				return this._site_no;
+			}
+			set
+			{
+				if ((this._site_no != value))
+				{
+					this._site_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_station_nm_short", DbType="NVarChar(150)")]
+		public string station_nm_short
+		{
+			get
+			{
+				return this._station_nm_short;
+			}
+			set
+			{
+				if ((this._station_nm_short != value))
+				{
+					this._station_nm_short = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_operator_uid", DbType="NVarChar(50)")]
+		public string operator_uid
+		{
+			get
+			{
+				return this._operator_uid;
+			}
+			set
+			{
+				if ((this._operator_uid != value))
+				{
+					this._operator_uid = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_analyzer_uid", DbType="NVarChar(50)")]
+		public string analyzer_uid
+		{
+			get
+			{
+				return this._analyzer_uid;
+			}
+			set
+			{
+				if ((this._analyzer_uid != value))
+				{
+					this._analyzer_uid = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approver_uid", DbType="NVarChar(50)")]
+		public string approver_uid
+		{
+			get
+			{
+				return this._approver_uid;
+			}
+			set
+			{
+				if ((this._approver_uid != value))
+				{
+					this._approver_uid = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_auditor_uid", DbType="NVarChar(50)")]
+		public string auditor_uid
+		{
+			get
+			{
+				return this._auditor_uid;
+			}
+			set
+			{
+				if ((this._auditor_uid != value))
+				{
+					this._auditor_uid = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_category_no", DbType="Int")]
+		public System.Nullable<int> category_no
+		{
+			get
+			{
+				return this._category_no;
+			}
+			set
+			{
+				if ((this._category_no != value))
+				{
+					this._category_no = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cat_reason", DbType="NVarChar(500)")]
+		public string cat_reason
+		{
+			get
+			{
+				return this._cat_reason;
+			}
+			set
+			{
+				if ((this._cat_reason != value))
+				{
+					this._cat_reason = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type_ds", DbType="NVarChar(200)")]
+		public string type_ds
+		{
+			get
+			{
+				return this._type_ds;
+			}
+			set
+			{
+				if ((this._type_ds != value))
+				{
+					this._type_ds = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ts_fg", DbType="VarChar(3) NOT NULL", CanBeNull=false)]
+		public string ts_fg
+		{
+			get
+			{
+				return this._ts_fg;
+			}
+			set
+			{
+				if ((this._ts_fg != value))
+				{
+					this._ts_fg = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_not_used_fg", DbType="Bit")]
+		public System.Nullable<bool> not_used_fg
+		{
+			get
+			{
+				return this._not_used_fg;
+			}
+			set
+			{
+				if ((this._not_used_fg != value))
+				{
+					this._not_used_fg = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ts_full_ds", DbType="NVarChar(36)")]
+		public string ts_full_ds
+		{
+			get
+			{
+				return this._ts_full_ds;
+			}
+			set
+			{
+				if ((this._ts_full_ds != value))
+				{
+					this._ts_full_ds = value;
 				}
 			}
 		}
