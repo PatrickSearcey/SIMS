@@ -93,6 +93,11 @@ namespace RMS.Report
                 rmp1.SelectedIndex = 1;
                 rts1.SelectedIndex = 1; 
             }
+            else if (processTask == "audit")
+            {
+                rmp1.SelectedIndex = 2;
+                rts1.SelectedIndex = 2;
+            }
         }
         #endregion
 
@@ -431,6 +436,8 @@ namespace RMS.Report
                 station_nm = p.station_nm,
                 type_cd = p.type_cd,
                 auditor_uid = p.auditor_uid,
+                approved_dt = p.approved_dt,
+                last_approved_period = p.last_approved_period,
                 audit_beg_dt = p.audit_beg_dt,
                 audit_end_dt = p.audit_end_dt,
                 months_since_last = CalculateMonthsSinceLast(p.audit_end_dt),
