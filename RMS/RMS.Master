@@ -54,7 +54,8 @@
                                         <ContentTemplate>
                                             <div style="padding:10px;">
                                                 <asp:HyperLink ID="hlAnalyzeRecordsList" runat="server" Font-Bold="true" Text="Records Ready for Analyzing" /><br />
-                                                <asp:HyperLink ID="hlApproveRecordsList" runat="server" Font-Bold="true" Text="Records Ready for Approving" />
+                                                <asp:HyperLink ID="hlApproveRecordsList" runat="server" Font-Bold="true" Text="Records Ready for Approving" /><br />
+                                                <asp:HyperLink ID="hlAuditRecordsList" runat="server" Font-Bold="true" Text="Records Ready for Auditing" />
                                             </div>
                                         </ContentTemplate>
                                     </telerik:RadMenuItem>

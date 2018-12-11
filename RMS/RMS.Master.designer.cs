@@ -94,6 +94,15 @@ namespace RMS {
         protected global::System.Web.UI.WebControls.HyperLink hlApproveRecordsList;
         
         /// <summary>
+        /// hlAuditRecordsList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlAuditRecordsList;
+        
+        /// <summary>
         /// hlCRPStatus control.
         /// </summary>
         /// <remarks>

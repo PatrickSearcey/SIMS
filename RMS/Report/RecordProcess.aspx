@@ -264,6 +264,7 @@
                             <telerik:GridBoundColumn DataField="station_nm" HeaderText="Station Name" UniqueName="station_nm" HeaderStyle-Width="500px" SortExpression="station_nm" FilterControlWidth="200px"/>
                             <telerik:GridBoundColumn DataField="type_cd" UniqueName="type_cd" HeaderText="Record Type" SortExpression="type_cd" FilterControlWidth="100px" />
                             <telerik:GridBoundColumn DataField="auditor_uid" UniqueName="auditor_uid" HeaderText="Assigned Auditor" SortExpression="auditor_uid" FilterControlWidth="100px" />
+                            <telerik:GridBoundColumn DataField="last_approved_period" UniqueName="last_approved_period" HeaderText="Last Approved Period" SortExpression="approved_dt" AllowFiltering="false" />
                             <telerik:GridTemplateColumn DataField="audit_end_dt" UniqueName="last_audit_period" HeaderText="Last Audit Period" SortExpression="audit_end_dt" AllowFiltering="false">
                                 <ItemTemplate>
                                     <asp:HyperLink ID="hlAuditPeriod" runat="server"></asp:HyperLink>
