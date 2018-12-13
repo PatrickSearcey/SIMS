@@ -659,11 +659,8 @@ namespace Core
                         }
                         break;
                     case "TELEMETRY ASSIGNMENT":
-                        string dcp_id = "DCPID: ";
-                        string channel = "; primary/random channel: ";
-                        string az_el = "; azimuth/elevation: ";
-                        string time = "; transmit time/interval/window: ";
-
+                        string dcpText = "";
+                        
                         var dcpInfo = db.spz_GetDCPInfo(site_id).Select(p => new
                             {
                                 dcp_id = p.dcp_id,
@@ -677,18 +674,28 @@ namespace Core
                                 assigned_time = p.assigned_time,
                                 trans_interval = p.trans_interval,
                                 window = p.window
-                            }).FirstOrDefault();
+                            });
 
-                        if (!string.IsNullOrEmpty(dcpInfo.dcp_id)) dcp_id += dcpInfo.dcp_id;
-                        if (dcpInfo.primary_ch != null) channel += dcpInfo.primary_ch.ToString() + " / ";
-                        if (dcpInfo.random_ch != null) channel += dcpInfo.random_ch.ToString();
-                        if (!string.IsNullOrEmpty(dcpInfo.satellite) && dcpInfo.ant_azimuth != null) az_el += dcpInfo.satellite + dcpInfo.ant_azimuth.ToString() + " / ";
-                        if (dcpInfo.ant_elev != null) az_el += dcpInfo.ant_elev.ToString();
-                        if (!string.IsNullOrEmpty(dcpInfo.assigned_time)) time += dcpInfo.assigned_time + " / ";
-                        if (!string.IsNullOrEmpty(dcpInfo.trans_interval)) time += dcpInfo.trans_interval + " / ";
-                        if (!string.IsNullOrEmpty(dcpInfo.window)) time += dcpInfo.window;
+                        foreach (var dcpid in dcpInfo)
+                        {
+                            string dcp_id = "DCPID: ";
+                            string channel = "; primary/random channel: ";
+                            string az_el = "; azimuth/elevation: ";
+                            string time = "; transmit time/interval/window: ";
 
-                        elem_info = dcp_id + channel + az_el + time;
+                            if (!string.IsNullOrEmpty(dcpid.dcp_id)) dcp_id += dcpid.dcp_id;
+                            if (dcpid.primary_ch != null) channel += dcpid.primary_ch.ToString() + " / ";
+                            if (dcpid.random_ch != null) channel += dcpid.random_ch.ToString();
+                            if (!string.IsNullOrEmpty(dcpid.satellite) && dcpid.ant_azimuth != null) az_el += dcpid.satellite + dcpid.ant_azimuth.ToString() + " / ";
+                            if (dcpid.ant_elev != null) az_el += dcpid.ant_elev.ToString();
+                            if (!string.IsNullOrEmpty(dcpid.assigned_time)) time += dcpid.assigned_time + " / ";
+                            if (!string.IsNullOrEmpty(dcpid.trans_interval)) time += dcpid.trans_interval + " / ";
+                            if (!string.IsNullOrEmpty(dcpid.window)) time += dcpid.window;
+
+                            dcpText += "<p>" + dcp_id + channel + az_el + time + "</p>";
+                        }
+
+                        elem_info = dcpText;
 
                         break;
                     default:
