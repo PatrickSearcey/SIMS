@@ -139,9 +139,9 @@
                                                               <area shape="poly" coords="237,116,237,136,279,141,276,116" href="SIMSWSCHome.aspx?wsc_id=27" alt="OK" />
                                                               <area shape="poly" coords="259,7,263,35,264,53,304,54,294,43,292,32,298,23,310,14,280,8" href="SIMSWSCHome.aspx?wsc_id=39" alt="UMW" />
                                                               <area shape="poly" coords="300,28,296,37,310,58,315,62,330,62,333,42,327,32,312,28" href="SIMSWSCHome.aspx?wsc_id=39" alt="UMW" />
-                                                              <area shape="poly" coords="264,57,270,80,302,79,310,66,301,55" href="SIMSWSCHome.aspx?wsc_id=17" alt="IA" />
-                                                              <area shape="poly" coords="273,83,303,83,312,98,320,115,314,119,280,117,279,99" href="SIMSWSCHome.aspx?wsc_id=20" alt="MO" />
-                                                              <area shape="poly" coords="315,66,331,65,334,73,333,99,324,112,306,83" href="SIMSWSCHome.aspx?wsc_id=16" alt="IL" />
+                                                              <area shape="poly" coords="264,57,270,80,302,79,310,66,301,55" href="SIMSWSCHome.aspx?wsc_id=41" alt="IA" />
+                                                              <area shape="poly" coords="273,83,303,83,312,98,320,115,314,119,280,117,279,99" href="SIMSWSCHome.aspx?wsc_id=41" alt="MO" />
+                                                              <area shape="poly" coords="315,66,331,65,334,73,333,99,324,112,306,83" href="SIMSWSCHome.aspx?wsc_id=41" alt="IL" />
                                                               <area shape="poly" coords="345,70,369,69,375,60,374,50,363,52,371,41,361,35,345,27,326,23,324,27,338,36,342,50" href="SIMSWSCHome.aspx?wsc_id=39" alt="UMW" />
                                                               <area shape="poly" coords="338,73,356,73,358,95,349,103,335,106,339,96" href="SIMSWSCHome.aspx?wsc_id=40" alt="IN" />
                                                               <area shape="poly" coords="361,73,377,76,393,70,390,89,377,98,367,97,361,92" href="SIMSWSCHome.aspx?wsc_id=40" alt="OH" />
