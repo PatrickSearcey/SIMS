@@ -90,6 +90,9 @@
                         <%--Content--%>
                         <telerik:CompositeLayoutColumn Span="10" SpanMd="12" SpanSm="12" SpanXs="12">
                             <Content>
+                                <asp:Panel ID="pnlAlert" runat="server">
+                                    <div style="background-color:lightcoral; width:100%; padding: 10px 0 10px 0; text-align:center; font-weight:bold; font-size:12pt;">ALERT: SIMS will be down for scheduled maintenance on Tuesday, March 19th. Please plan accordingly.</div>
+                                </asp:Panel>
                                 <asp:ContentPlaceHolder ID="cph1" runat="server">
                                 </asp:ContentPlaceHolder>
                                 <asp:ContentPlaceHolder ID="cph2" runat="server">
