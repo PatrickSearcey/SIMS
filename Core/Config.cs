@@ -45,9 +45,9 @@ namespace Core
 #endif
 
 #if DEBUG
-        public static String ConnectionInfo { get { return "Data Source=IGSKIACWVMGS012;Initial Catalog=simsdb;Integrated Security=True"; } }
+        public static String ConnectionInfo { get { return "Data Source=IGSKIACWVMI02;Initial Catalog=simsdb;Integrated Security=True"; } }
 #else
-        public static String ConnectionInfo { get { return "Data Source=IGSKIACWVMGS011;Initial Catalog=simsdb;Integrated Security=True"; } }
+        public static String ConnectionInfo { get { return "Data Source=IGSKIACWVMI01;Initial Catalog=simsdb;Integrated Security=True"; } }
 #endif
 
         protected static List<int> SLAPWSC()

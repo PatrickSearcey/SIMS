@@ -6,11 +6,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>\\igskiacwvmgs012\wwwroot\SIMS</_PublishTargetUrl>
+    <_PublishTargetUrl>\\igskiacwvmi02\simsroot\SIMS</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="Admin/EndangeredGages.aspx">
-      <publishTime>10/30/2018 10:26:09</publishTime>
+      <publishTime>11/15/2018 09:12:44</publishTime>
     </File>
     <File Include="Admin/FieldTrips.aspx">
       <publishTime>12/29/2017 09:45:21</publishTime>
@@ -25,7 +25,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/29/2017 09:45:21</publishTime>
     </File>
     <File Include="Admin/Tasks.aspx">
-      <publishTime>10/30/2018 10:26:09</publishTime>
+      <publishTime>11/15/2018 09:12:44</publishTime>
     </File>
     <File Include="Admin/ThreatenedGages.aspx">
       <publishTime>10/17/2018 16:01:25</publishTime>
@@ -148,19 +148,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/29/2017 09:45:21</publishTime>
     </File>
     <File Include="bin/Core.dll">
-      <publishTime>11/08/2018 10:28:16</publishTime>
+      <publishTime>03/15/2019 16:11:57</publishTime>
     </File>
     <File Include="bin/Core.pdb">
-      <publishTime>11/08/2018 10:28:16</publishTime>
+      <publishTime>03/15/2019 16:11:57</publishTime>
     </File>
     <File Include="bin/Data.dll">
-      <publishTime>11/07/2018 10:48:35</publishTime>
+      <publishTime>03/15/2019 14:59:53</publishTime>
     </File>
     <File Include="bin/Data.dll.config">
-      <publishTime>10/30/2018 10:25:11</publishTime>
+      <publishTime>03/14/2019 09:55:04</publishTime>
     </File>
     <File Include="bin/Data.pdb">
-      <publishTime>11/07/2018 10:48:35</publishTime>
+      <publishTime>03/15/2019 14:59:53</publishTime>
     </File>
     <File Include="bin/DotNetZip.dll">
       <publishTime>06/22/2016 21:31:52</publishTime>
@@ -178,10 +178,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/01/2016 16:26:44</publishTime>
     </File>
     <File Include="bin/SIMS2017.dll">
-      <publishTime>11/08/2018 10:29:33</publishTime>
+      <publishTime>03/15/2019 16:12:00</publishTime>
     </File>
     <File Include="bin/SIMS2017.pdb">
-      <publishTime>11/08/2018 10:29:33</publishTime>
+      <publishTime>03/15/2019 16:12:00</publishTime>
     </File>
     <File Include="bin/SIMSCustomControl.dll">
       <publishTime>12/29/2017 09:45:18</publishTime>
@@ -217,7 +217,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/29/2017 09:45:21</publishTime>
     </File>
     <File Include="Control/OfficeSelector.ascx">
-      <publishTime>12/29/2017 09:45:21</publishTime>
+      <publishTime>11/15/2018 09:12:44</publishTime>
     </File>
     <File Include="Control/SitePageHeading.ascx">
       <publishTime>12/29/2017 09:45:21</publishTime>
@@ -313,7 +313,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/29/2017 09:45:21</publishTime>
     </File>
     <File Include="images/QuestionMark.png">
-      <publishTime>10/30/2018 10:26:09</publishTime>
+      <publishTime>11/15/2018 09:12:44</publishTime>
     </File>
     <File Include="images/refresh_custom1.png">
       <publishTime>12/29/2017 09:45:21</publishTime>
@@ -367,7 +367,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/29/2017 09:45:21</publishTime>
     </File>
     <File Include="Modal/RecordEdit.aspx">
-      <publishTime>10/30/2018 10:26:09</publishTime>
+      <publishTime>11/15/2018 09:12:44</publishTime>
     </File>
     <File Include="NWISOpsRequest.aspx">
       <publishTime>12/29/2017 09:45:21</publishTime>
@@ -387,26 +387,80 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="scripts/scripts.js">
       <publishTime>12/29/2017 09:45:21</publishTime>
     </File>
-    <File Include="Service References/SIMSDevService/SIMS2017.SIMSDevService.Element.datasource">
+    <File Include="Service References/SIMSDevService/configuration.svcinfo">
       <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="Service References/SIMSDevService/configuration91.svcinfo">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="Service References/SIMSDevService/Reference.cs">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="Service References/SIMSDevService/Reference.svcmap">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="Service References/SIMSDevService/SIMS2017.SIMSDevService.Element.datasource">
+      <publishTime>03/15/2019 15:27:08</publishTime>
     </File>
     <File Include="Service References/SIMSDevService/SIMS2017.SIMSDevService.Site.datasource">
+      <publishTime>03/15/2019 15:27:08</publishTime>
+    </File>
+    <File Include="Service References/SIMSDevService/SIMSService.wsdl">
       <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="Service References/SIMSDevService/WCFServices.disco">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="Service References/SIMSDevService/WCFServices.xsd">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="Service References/SIMSDevService/WCFServices1.xsd">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="Service References/SIMSDevService/WCFServices2.xsd">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="Service References/SIMSService/configuration.svcinfo">
+      <publishTime>11/20/2018 14:37:03</publishTime>
+    </File>
+    <File Include="Service References/SIMSService/configuration91.svcinfo">
+      <publishTime>11/20/2018 14:37:03</publishTime>
+    </File>
+    <File Include="Service References/SIMSService/Reference.cs">
+      <publishTime>11/20/2018 14:37:05</publishTime>
+    </File>
+    <File Include="Service References/SIMSService/Reference.svcmap">
+      <publishTime>11/20/2018 14:37:03</publishTime>
     </File>
     <File Include="Service References/SIMSService/SIMS2017.SIMSService.Element.datasource">
-      <publishTime>12/29/2017 09:45:21</publishTime>
+      <publishTime>11/20/2018 14:38:02</publishTime>
     </File>
     <File Include="Service References/SIMSService/SIMS2017.SIMSService.Site.datasource">
-      <publishTime>12/29/2017 09:45:21</publishTime>
+      <publishTime>11/20/2018 14:38:02</publishTime>
+    </File>
+    <File Include="Service References/SIMSService/SIMSService.wsdl">
+      <publishTime>11/20/2018 14:37:03</publishTime>
+    </File>
+    <File Include="Service References/SIMSService/WCFServices.disco">
+      <publishTime>11/20/2018 14:37:03</publishTime>
+    </File>
+    <File Include="Service References/SIMSService/WCFServices.xsd">
+      <publishTime>11/20/2018 14:37:03</publishTime>
+    </File>
+    <File Include="Service References/SIMSService/WCFServices1.xsd">
+      <publishTime>11/20/2018 14:37:03</publishTime>
+    </File>
+    <File Include="Service References/SIMSService/WCFServices2.xsd">
+      <publishTime>11/20/2018 14:37:03</publishTime>
     </File>
     <File Include="Service.asmx">
       <publishTime>12/29/2017 09:45:21</publishTime>
     </File>
     <File Include="SIMS.Master">
-      <publishTime>12/29/2017 09:45:21</publishTime>
+      <publishTime>03/13/2019 07:21:29</publishTime>
     </File>
     <File Include="SIMSHome.aspx">
-      <publishTime>08/07/2018 16:32:35</publishTime>
+      <publishTime>03/11/2019 07:00:29</publishTime>
     </File>
     <File Include="SIMSSingleMenu.Master">
       <publishTime>12/29/2017 09:45:21</publishTime>
@@ -427,7 +481,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/29/2017 09:45:21</publishTime>
     </File>
     <File Include="StationDoc/EditDocs.aspx">
-      <publishTime>11/08/2018 10:15:15</publishTime>
+      <publishTime>11/15/2018 09:12:44</publishTime>
     </File>
     <File Include="StationDoc/MAI.aspx">
       <publishTime>12/29/2017 09:45:21</publishTime>
@@ -439,10 +493,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/21/2018 16:22:40</publishTime>
     </File>
     <File Include="StationInfo.aspx">
-      <publishTime>10/30/2018 10:26:09</publishTime>
+      <publishTime>12/07/2018 15:10:15</publishTime>
     </File>
     <File Include="styles/admin.css">
-      <publishTime>10/17/2018 10:48:09</publishTime>
+      <publishTime>11/15/2018 09:12:44</publishTime>
     </File>
     <File Include="styles/base.css">
       <publishTime>12/29/2017 09:45:21</publishTime>
@@ -475,7 +529,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/29/2017 09:45:21</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>10/18/2018 16:00:07</publishTime>
+      <publishTime>12/13/2018 06:00:39</publishTime>
     </File>
   </ItemGroup>
 </Project>
