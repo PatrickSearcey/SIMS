@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="simsdb" Class="SIMSDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=IGSKIACWVMGS012;Initial Catalog=simsdb;Integrated Security=True" SettingsObjectName="Data.Properties.Settings" SettingsPropertyName="simsdbConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=IGSKIACWVMI02;Initial Catalog=simsdb;Integrated Security=True" SettingsObjectName="Data.Properties.Settings" SettingsPropertyName="simsdbConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.lut_Office" Member="Offices">
     <Type Name="Office">
       <Column Name="office_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />

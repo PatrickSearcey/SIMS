@@ -22,11 +22,11 @@
     <MetadataSource Address="http://simsdev.cr.usgs.gov/Services/WCFServices.SIMSService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="WCFServices.xsd" MetadataType="Schema" ID="528f4a37-208d-4680-b758-9365edc3b12c" SourceId="1" SourceUrl="http://igskiacwvmgs012.gs.doi.net/Services/WCFServices.SIMSService.svc?xsd=xsd2" />
-    <MetadataFile FileName="WCFServices.disco" MetadataType="Disco" ID="34d040c8-5ffa-4cb6-a218-58ba580138a4" SourceId="1" SourceUrl="http://igskiacwvmgs012.gs.doi.net/Services/WCFServices.SIMSService.svc?disco" />
-    <MetadataFile FileName="WCFServices1.xsd" MetadataType="Schema" ID="8a1252d5-7247-41fb-8ce5-7c3c839cf67c" SourceId="1" SourceUrl="http://igskiacwvmgs012.gs.doi.net/Services/WCFServices.SIMSService.svc?xsd=xsd1" />
-    <MetadataFile FileName="WCFServices2.xsd" MetadataType="Schema" ID="34722d1e-5f55-4b97-8d8c-7e9a3daa2cd2" SourceId="1" SourceUrl="http://igskiacwvmgs012.gs.doi.net/Services/WCFServices.SIMSService.svc?xsd=xsd0" />
-    <MetadataFile FileName="SIMSService.wsdl" MetadataType="Wsdl" ID="d33bbc96-4735-491d-a786-1cae9a8893b8" SourceId="1" SourceUrl="http://igskiacwvmgs012.gs.doi.net/Services/WCFServices.SIMSService.svc?wsdl" />
+    <MetadataFile FileName="WCFServices1.disco" MetadataType="Disco" ID="d3055c3f-a3d7-4f62-81ab-a2f45df73bda" SourceId="1" SourceUrl="http://simsdev.cr.usgs.gov/Services/WCFServices.SIMSService.svc?disco" />
+    <MetadataFile FileName="SIMSService1.wsdl" MetadataType="Wsdl" ID="4a7b8660-c10c-428f-baa8-44f6698beed6" SourceId="1" SourceUrl="http://simsdev.cr.usgs.gov/Services/WCFServices.SIMSService.svc?wsdl" />
+    <MetadataFile FileName="WCFServices3.xsd" MetadataType="Schema" ID="2d088f5d-5fbb-42f2-9859-eda67d4cb97b" SourceId="1" SourceUrl="http://simsdev.cr.usgs.gov/Services/WCFServices.SIMSService.svc?xsd=xsd2" />
+    <MetadataFile FileName="WCFServices31.xsd" MetadataType="Schema" ID="65fc9ae8-10e7-452c-b28c-d0ba53cf30da" SourceId="1" SourceUrl="http://simsdev.cr.usgs.gov/Services/WCFServices.SIMSService.svc?xsd=xsd0" />
+    <MetadataFile FileName="WCFServices32.xsd" MetadataType="Schema" ID="bb1c6efc-60a6-4078-8562-00019f905702" SourceId="1" SourceUrl="http://simsdev.cr.usgs.gov/Services/WCFServices.SIMSService.svc?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

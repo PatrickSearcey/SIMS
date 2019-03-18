@@ -22,11 +22,11 @@
     <MetadataSource Address="http://sims.water.usgs.gov/Services/WCFServices.SIMSService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="WCFServices.xsd" MetadataType="Schema" ID="98600705-a765-4a4f-a486-73a139016c13" SourceId="1" SourceUrl="http://igskiacwvmgs011.gs.doi.net/Services/WCFServices.SIMSService.svc?xsd=xsd0" />
-    <MetadataFile FileName="SIMSService.wsdl" MetadataType="Wsdl" ID="f78c23d0-b30a-430f-99e8-5c46da8d9ee4" SourceId="1" SourceUrl="http://igskiacwvmgs011.gs.doi.net/Services/WCFServices.SIMSService.svc?wsdl" />
-    <MetadataFile FileName="WCFServices1.xsd" MetadataType="Schema" ID="b67b74c5-573f-49e7-8861-ed0560c49e09" SourceId="1" SourceUrl="http://igskiacwvmgs011.gs.doi.net/Services/WCFServices.SIMSService.svc?xsd=xsd1" />
-    <MetadataFile FileName="WCFServices2.xsd" MetadataType="Schema" ID="f757cf7b-0ff4-4eef-a525-f0ad4bdeda97" SourceId="1" SourceUrl="http://igskiacwvmgs011.gs.doi.net/Services/WCFServices.SIMSService.svc?xsd=xsd2" />
-    <MetadataFile FileName="WCFServices.disco" MetadataType="Disco" ID="dd6da814-0b5b-49da-b0b6-e9c2855ac7e5" SourceId="1" SourceUrl="http://igskiacwvmgs011.gs.doi.net/Services/WCFServices.SIMSService.svc?disco" />
+    <MetadataFile FileName="WCFServices.xsd" MetadataType="Schema" ID="98600705-a765-4a4f-a486-73a139016c13" SourceId="1" SourceUrl="http://igskiacwvmi01.gs.doi.net/Services/WCFServices.SIMSService.svc?xsd=xsd0" />
+    <MetadataFile FileName="SIMSService.wsdl" MetadataType="Wsdl" ID="f78c23d0-b30a-430f-99e8-5c46da8d9ee4" SourceId="1" SourceUrl="http://igskiacwvmi01.gs.doi.net/Services/WCFServices.SIMSService.svc?wsdl" />
+    <MetadataFile FileName="WCFServices1.xsd" MetadataType="Schema" ID="b67b74c5-573f-49e7-8861-ed0560c49e09" SourceId="1" SourceUrl="http://igskiacwvmi01.gs.doi.net/Services/WCFServices.SIMSService.svc?xsd=xsd1" />
+    <MetadataFile FileName="WCFServices2.xsd" MetadataType="Schema" ID="f757cf7b-0ff4-4eef-a525-f0ad4bdeda97" SourceId="1" SourceUrl="http://igskiacwvmi01.gs.doi.net/Services/WCFServices.SIMSService.svc?xsd=xsd2" />
+    <MetadataFile FileName="WCFServices.disco" MetadataType="Disco" ID="dd6da814-0b5b-49da-b0b6-e9c2855ac7e5" SourceId="1" SourceUrl="http://igskiacwvmi01.gs.doi.net/Services/WCFServices.SIMSService.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
