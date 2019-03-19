@@ -11,37 +11,37 @@ namespace Core
 #if DEBUG
         public static String SIMSServerURL { get { return "http://simsdev.cr.usgs.gov/"; } }
 #else
-        public static String SIMSServerURL { get { return "http://sims.water.usgs.gov/" ; } }
+        public static String SIMSServerURL { get { return "https://sims.water.usgs.gov/" ; } }
 #endif
 
 #if DEBUG
         public static String SIMSURL { get { return "http://simsdev.cr.usgs.gov/SIMS/"; } }
 #else
-        public static String SIMSURL { get { return "http://sims.water.usgs.gov/SIMS/" ; } }
+        public static String SIMSURL { get { return "https://sims.water.usgs.gov/SIMS/" ; } }
 #endif
 
 #if DEBUG
         public static String SLAPURL { get { return "http://simsdev.cr.usgs.gov/SLAP/"; } }
 #else
-        public static String SLAPURL { get { return "http://sims.water.usgs.gov/SLAP/" ; } }
+        public static String SLAPURL { get { return "https://sims.water.usgs.gov/SLAP/" ; } }
 #endif
 
 #if DEBUG
         public static String PASSURL { get { return "http://simsdev.cr.usgs.gov/PASS/"; } }
 #else
-        public static String PASSURL { get { return "http://sims.water.usgs.gov/PASS/" ; } }
+        public static String PASSURL { get { return "https://sims.water.usgs.gov/PASS/" ; } }
 #endif
 
 #if DEBUG
         public static String SafetyURL { get { return "http://simsdev.cr.usgs.gov/Safety/"; } }
 #else
-        public static String SafetyURL { get { return "http://sims.water.usgs.gov/Safety/"; } } 
+        public static String SafetyURL { get { return "https://sims.water.usgs.gov/Safety/"; } } 
 #endif
 
 #if DEBUG
         public static String RMSURL { get { return "http://simsdev.cr.usgs.gov/RMS/"; } }
 #else
-        public static String RMSURL { get { return "http://sims.water.usgs.gov/RMS/"; } } 
+        public static String RMSURL { get { return "https://sims.water.usgs.gov/RMS/"; } } 
 #endif
 
 #if DEBUG

@@ -90,7 +90,7 @@
   </wsdl:binding>
   <wsdl:service name="SIMSService">
     <wsdl:port name="BasicHttpBinding_ISIMSService" binding="tns:BasicHttpBinding_ISIMSService">
-      <soap:address location="http://sims.water.usgs.gov/Services/WCFServices.SIMSService.svc" />
+      <soap:address location="https://sims.water.usgs.gov/Services/WCFServices.SIMSService.svc" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

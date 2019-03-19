@@ -33,7 +33,7 @@
   </wsdl:binding>
   <wsdl:service name="PASSService">
     <wsdl:port name="BasicHttpBinding_IPASSService" binding="tns:BasicHttpBinding_IPASSService">
-      <soap:address location="http://sims.water.usgs.gov/Services/WCFServices.PASSService.svc" />
+      <soap:address location="https://sims.water.usgs.gov/Services/WCFServices.PASSService.svc" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

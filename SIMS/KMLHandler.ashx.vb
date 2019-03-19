@@ -131,20 +131,20 @@ Public Class KMLHandler
             Select Case strSiteType
                 Case "LK", "OC", "ST", "ES", "GL", "OC-CO", _
                  "ST-CA", "ST-DCH", "ST-TS", "WE"
-                    strIconFileName = "http://sims.water.usgs.gov/SIMS/images/SiteIcons/SW.png"
+                    strIconFileName = "https://sims.water.usgs.gov/SIMS/images/SiteIcons/SW.png"
                     Exit Select
                 Case "GW", "GW-CR", "GW-EX", "GW-HZ", "GW-IE", "GW-MW", _
                  "GW-TH", "SB", "SB-CV", "SB-GWD", "SB-TSM", "SB-UZ"
-                    strIconFileName = "http://sims.water.usgs.gov/SIMS/images/SiteIcons/GW.png"
+                    strIconFileName = "https://sims.water.usgs.gov/SIMS/images/SiteIcons/GW.png"
                     Exit Select
                 Case "AT"
-                    strIconFileName = "http://sims.water.usgs.gov/SIMS/images/SiteIcons/CL.png"
+                    strIconFileName = "https://sims.water.usgs.gov/SIMS/images/SiteIcons/CL.png"
                     Exit Select
                 Case "SP"
-                    strIconFileName = "http://sims.water.usgs.gov/SIMS/images/SiteIcons/SP.png"
+                    strIconFileName = "https://sims.water.usgs.gov/SIMS/images/SiteIcons/SP.png"
                     Exit Select
                 Case Else
-                    strIconFileName = "http://sims.water.usgs.gov/SIMS/images/SiteIcons/OT.png"
+                    strIconFileName = "https://sims.water.usgs.gov/SIMS/images/SiteIcons/OT.png"
                     Exit Select
             End Select
 
@@ -226,20 +226,20 @@ Public Class KMLHandler
                     Select Case strSiteType
                         Case "LK", "OC", "ST", "ES", "GL", "OC-CO", _
                          "ST-CA", "ST-DCH", "ST-TS", "WE"
-                            strIconFileName = "http://sims.water.usgs.gov/SIMS/images/SiteIcons/SW.png"
+                            strIconFileName = "https://sims.water.usgs.gov/SIMS/images/SiteIcons/SW.png"
                             Exit Select
                         Case "GW", "GW-CR", "GW-EX", "GW-HZ", "GW-IE", "GW-MW", _
                          "GW-TH", "SB", "SB-CV", "SB-GWD", "SB-TSM", "SB-UZ"
-                            strIconFileName = "http://sims.water.usgs.gov/SIMS/images/SiteIcons/GW.png"
+                            strIconFileName = "https://sims.water.usgs.gov/SIMS/images/SiteIcons/GW.png"
                             Exit Select
                         Case "AT"
-                            strIconFileName = "http://sims.water.usgs.gov/SIMS/images/SiteIcons/CL.png"
+                            strIconFileName = "https://sims.water.usgs.gov/SIMS/images/SiteIcons/CL.png"
                             Exit Select
                         Case "SP"
-                            strIconFileName = "http://sims.water.usgs.gov/SIMS/images/SiteIcons/SP.png"
+                            strIconFileName = "https://sims.water.usgs.gov/SIMS/images/SiteIcons/SP.png"
                             Exit Select
                         Case Else
-                            strIconFileName = "http://sims.water.usgs.gov/SIMS/images/SiteIcons/OT.png"
+                            strIconFileName = "https://sims.water.usgs.gov/SIMS/images/SiteIcons/OT.png"
                             Exit Select
                     End Select
 

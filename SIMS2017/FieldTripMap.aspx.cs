@@ -114,7 +114,7 @@ namespace SIMS2017
 
                     winText = winText + "<b>" + site_no + " " + site.station_nm + "<br />" + 
                         trip_nm + "</b><br /><br />" + 
-                        "<a href=\"http://sims.water.usgs.gov/SIMS/StationInfo.aspx?site_id=" + site.site_id.ToString() + "\" target=\"_blank\">SIMS Station Information Page</a><br />" + 
+                        "<a href=\"https://sims.water.usgs.gov/SIMS/StationInfo.aspx?site_id=" + site.site_id.ToString() + "\" target=\"_blank\">SIMS Station Information Page</a><br />" + 
                         "<a href=\"http://waterdata.usgs.gov/nwis/nwisman/?site_no=" + site_no + "\" target=\"_blank\">NWIS Web</a>";
 
                     latAvg = latAvg + lat;

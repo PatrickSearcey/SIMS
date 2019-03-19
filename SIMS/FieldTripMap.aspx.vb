@@ -170,7 +170,7 @@ Public Class FieldTripMap
 
                     winText = winText & "<b>" & row("site_no").ToString & " " & row("station_nm").ToString & "<br />" & _
                         trip_nm & "</b><br /><br />" & _
-                        "<a href=""http://sims.water.usgs.gov/SIMSClassic/StationInfo.asp?site_no=" & row("site_no").ToString & _
+                        "<a href=""https://sims.water.usgs.gov/SIMSClassic/StationInfo.asp?site_no=" & row("site_no").ToString & _
                         """ target=""_blank"">SIMS Station Information Page</a><br />" & _
                         "<a href=""http://waterdata.usgs.gov/nwis/nwisman/?site_no=" & row("site_no").ToString & _
                         """ target=""_blank"">NWIS Web</a>"
