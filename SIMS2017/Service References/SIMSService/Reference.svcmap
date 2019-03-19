@@ -19,7 +19,7 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://sims.water.usgs.gov/Services/WCFServices.SIMSService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="https://sims.water.usgs.gov/Services/WCFServices.SIMSService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="WCFServices.xsd" MetadataType="Schema" ID="98600705-a765-4a4f-a486-73a139016c13" SourceId="1" SourceUrl="http://igskiacwvmi01.gs.doi.net/Services/WCFServices.SIMSService.svc?xsd=xsd0" />

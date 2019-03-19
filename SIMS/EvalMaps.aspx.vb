@@ -171,7 +171,7 @@ Public Class EvalMaps
                 Else
                     winText = winText & "<b>" & dr2.Item(5) & " " & dr2.Item(8) & "<br />" & _
                         dr2.Item(13) & "</b><br /><br />" & _
-                        "<a href=""http://sims.water.usgs.gov/SIMSClassic/StationInfo.asp?site_no=" & dr2.Item(5) & _
+                        "<a href=""https://sims.water.usgs.gov/SIMSClassic/StationInfo.asp?site_no=" & dr2.Item(5) & _
                         """ target=""_blank"">SIMS Station Information Page</a><br />" & _
                         "<a href=""http://waterdata.usgs.gov/nwis/nwisman/?site_no=" & dr2.Item(5) & _
                         """ target=""_blank"">NWIS Web</a><hr />"

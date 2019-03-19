@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_ISIMSService1" contract="SIMSService.ISIMSService" bindingType="basicHttpBinding" address="http://sims.water.usgs.gov/Services/WCFServices.SIMSService.svc" bindingConfiguration="BasicHttpBinding_ISIMSService1">
+    <endpoint name="BasicHttpBinding_ISIMSService1" contract="SIMSService.ISIMSService" bindingType="basicHttpBinding" address="https://sims.water.usgs.gov/Services/WCFServices.SIMSService.svc" bindingConfiguration="BasicHttpBinding_ISIMSService1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://sims.water.usgs.gov/Services/WCFServices.SIMSService.svc</serializedValue>
+          <serializedValue>https://sims.water.usgs.gov/Services/WCFServices.SIMSService.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

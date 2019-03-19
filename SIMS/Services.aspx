@@ -72,7 +72,7 @@
     in the next section.</p>
 
     <p style="font-weight:bold;">
-    http://sims.water.usgs.gov/Services/WCFServices.SIMSService.svc?wsdl
+    https://sims.water.usgs.gov/Services/WCFServices.SIMSService.svc?wsdl
     </p>
     <br />
     <hr />
