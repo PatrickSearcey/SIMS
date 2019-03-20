@@ -93,7 +93,7 @@
                                         <ContentTemplate>
                                             <div style="padding:10px;">
                                                 <b><asp:HyperLink ID="hlMAI" runat="server" Text="Manuscript Approval Interface (MAI)" /></b><br />
-                                                <b><asp:HyperLink ID="hlWYSummaryReport" runat="server" Text="Water Year Summary Details Report" /></b><br />
+                                                <b><asp:HyperLink ID="hlWYSummaryReport" runat="server" Text="Current Publication Status" /></b><br />
                                                 <b><a href="https://collaboration.usgs.gov/wg/owi/specialprojects/SIMS/Shared%20Documents/PADRE/FAQ.html" target="_blank">MAI FAQ</a></b><br />
                                                 <b><a href="http://water.usgs.gov/usgs/adr/index.php" target="_blank">ADR Transition Site</a></b><br />
                                                 <b><a href="mailto:GS-W_Help_ADR_Transition@usgs.gov" target="_blank">GS-W Help ADR Transition</a></b><br />

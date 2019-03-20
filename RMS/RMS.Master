@@ -90,7 +90,7 @@
                         <%--Content--%>
                         <telerik:CompositeLayoutColumn Span="10" SpanMd="12" SpanSm="12" SpanXs="12">
                             <Content>
-                                <asp:Panel ID="pnlAlert" runat="server">
+                                <asp:Panel ID="pnlAlert" runat="server" Visible="false">
                                     <div style="background-color:lightcoral; width:100%; padding: 10px 0 10px 0; text-align:center; font-weight:bold; font-size:12pt;">ALERT: SIMS server update has been completed. The system may not be fully functional until after Tuesday, March 19th. Please limit your activity until your center receives notice from the SIMS team.</div>
                                 </asp:Panel>
                                 <asp:ContentPlaceHolder ID="cph1" runat="server">
