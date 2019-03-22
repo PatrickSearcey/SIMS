@@ -43,6 +43,18 @@ namespace SIMS2017
             return site;
         }
 
+        [WebMethod(Description = "Returns a list of site numbers and site ids by WSC")]
+        public DataSet GetSiteNoSiteID(string wsc_id)
+        {
+            string cs = Config.ConnectionInfo;
+            SqlConnection cn = new SqlConnection(cs);
+            SqlDataAdapter da = new SqlDataAdapter("SELECT site_no, site_id FROM SIMS_Site_Master AS ssm INNER JOIN lut_Office AS lo ON lo.office_id = ssm.office_id WHERE lo.wsc_id = " + wsc_id + " ORDER BY lo.wsc_id, site_no", cn);
+
+            DataSet ds = new DataSet();
+            da.Fill(ds, "SiteNoSiteID");
+            return ds;
+        }
+
         [WebMethod(Description = "Gets Registered Site Information from SIMS using site_id")]
         public SiteInfo GetSiteInfoBySiteID(int site_id)
         {
