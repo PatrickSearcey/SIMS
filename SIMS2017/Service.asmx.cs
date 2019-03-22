@@ -46,9 +46,12 @@ namespace SIMS2017
         [WebMethod(Description = "Returns a list of site numbers and site ids by WSC")]
         public DataSet GetSiteNoSiteID(string wsc_id)
         {
+            string sql;
+            if (string.IsNullOrEmpty(wsc_id)) sql = "SELECT site_no, site_id FROM SIMS_Site_Master AS ssm INNER JOIN lut_Office AS lo ON lo.office_id = ssm.office_id ORDER BY lo.wsc_id, site_no";
+            else sql = "SELECT site_no, site_id FROM SIMS_Site_Master AS ssm INNER JOIN lut_Office AS lo ON lo.office_id = ssm.office_id WHERE lo.wsc_id = " + wsc_id + " ORDER BY lo.wsc_id, site_no";
             string cs = Config.ConnectionInfo;
             SqlConnection cn = new SqlConnection(cs);
-            SqlDataAdapter da = new SqlDataAdapter("SELECT site_no, site_id FROM SIMS_Site_Master AS ssm INNER JOIN lut_Office AS lo ON lo.office_id = ssm.office_id WHERE lo.wsc_id = " + wsc_id + " ORDER BY lo.wsc_id, site_no", cn);
+            SqlDataAdapter da = new SqlDataAdapter(sql, cn);
 
             DataSet ds = new DataSet();
             da.Fill(ds, "SiteNoSiteID");
