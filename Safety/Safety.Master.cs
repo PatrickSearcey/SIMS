@@ -33,7 +33,7 @@ namespace Safety
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            pnlAlert.Visible = true;
+            pnlAlert.Visible = false;
 
             rmTop.Items.Add(new RadMenuItem { Text = "SIMS National Home", NavigateUrl = String.Format("{0}SIMSHome.aspx", Config.SIMSURL) });
             rmTop.Items.Add(new RadMenuItem { IsSeparator = true });
