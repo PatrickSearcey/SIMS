@@ -140,7 +140,7 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="cph2" runat="server">
-        <asp:Panel ID="pnlNWReport" runat="server" CssClass="mainContent">
+    <asp:Panel ID="pnlNWReport" runat="server" CssClass="mainContent">
         <p>Use the filters in the column headings to narrow down the results shown, and click on the headings to sort by that column. Click the tabs to view TCPs by status. 
         </p>
         <telerik:RadTabStrip runat="server" ID="rts1" Orientation="HorizontalTop" SelectedIndex="0" MultiPageID="rmp1" Skin="Bootstrap">
@@ -411,7 +411,7 @@
                         </tr>
                     </table>
                     <telerik:RadGrid ID="rgStatus" runat="server" AutoGenerateColumns="false" EnableLinqExpressions="false" 
-                        Skin="Bootstrap" GridLines="None" ShowStatusBar="true" PageSize="50" OnNeedDataSource="rgStatus_NeedDataSource"
+                        Skin="Bootstrap" GridLines="None" ShowStatusBar="true" PageSize="25" OnNeedDataSource="rgStatus_NeedDataSource"
                         AllowSorting="true" 
                         AllowMultiRowSelection="false" 
                         AllowFiltering="true"
@@ -470,7 +470,7 @@
                         </tr>
                     </table>
                     <telerik:RadGrid ID="rgReview" runat="server" AutoGenerateColumns="false" EnableLinqExpressions="false" 
-                        Skin="Bootstrap" GridLines="None" ShowStatusBar="true" PageSize="50" OnNeedDataSource="rgReview_NeedDataSource"
+                        Skin="Bootstrap" GridLines="None" ShowStatusBar="true" PageSize="25" OnNeedDataSource="rgReview_NeedDataSource"
                         AllowSorting="true" 
                         AllowMultiRowSelection="false" 
                         AllowFiltering="true"
@@ -528,7 +528,7 @@
                         </tr>
                     </table>
                     <telerik:RadGrid ID="rgApprove" runat="server" AutoGenerateColumns="false" EnableLinqExpressions="false" 
-                        Skin="Bootstrap" GridLines="None" ShowStatusBar="true" PageSize="50" OnNeedDataSource="rgApprove_NeedDataSource"
+                        Skin="Bootstrap" GridLines="None" ShowStatusBar="true" PageSize="25" OnNeedDataSource="rgApprove_NeedDataSource"
                         AllowSorting="true" 
                         AllowMultiRowSelection="false" 
                         AllowFiltering="true"
@@ -587,7 +587,7 @@
                         </tr>
                     </table>
                     <telerik:RadGrid ID="rgSitesNoTCP" runat="server" AutoGenerateColumns="false" EnableLinqExpressions="false" 
-                        Skin="Bootstrap" GridLines="None" ShowStatusBar="true" PageSize="50" OnNeedDataSource="rgSitesNoTCP_NeedDataSource"
+                        Skin="Bootstrap" GridLines="None" ShowStatusBar="true" PageSize="25" OnNeedDataSource="rgSitesNoTCP_NeedDataSource"
                         AllowSorting="true" 
                         AllowMultiRowSelection="false" 
                         AllowFiltering="true"

@@ -368,7 +368,7 @@
                         </tr>
                     </table>
                     <telerik:RadGrid ID="rgStatus" runat="server" AutoGenerateColumns="false" EnableLinqExpressions="false" 
-                        Skin="Bootstrap" GridLines="None" ShowStatusBar="true" PageSize="50" OnNeedDataSource="rgStatus_NeedDataSource"
+                        Skin="Bootstrap" GridLines="None" ShowStatusBar="true" PageSize="25" OnNeedDataSource="rgStatus_NeedDataSource"
                         AllowSorting="true" 
                         AllowMultiRowSelection="false" 
                         AllowFiltering="true"
@@ -422,7 +422,7 @@
                         </tr>
                     </table>
                     <telerik:RadGrid ID="rgReview" runat="server" AutoGenerateColumns="false" EnableLinqExpressions="false" 
-                        Skin="Bootstrap" GridLines="None" ShowStatusBar="true" PageSize="50" OnNeedDataSource="rgReview_NeedDataSource"
+                        Skin="Bootstrap" GridLines="None" ShowStatusBar="true" PageSize="25" OnNeedDataSource="rgReview_NeedDataSource"
                         AllowSorting="true" 
                         AllowMultiRowSelection="false" 
                         AllowFiltering="true"
@@ -475,7 +475,7 @@
                         </tr>
                     </table>
                     <telerik:RadGrid ID="rgApprove" runat="server" AutoGenerateColumns="false" EnableLinqExpressions="false" 
-                        Skin="Bootstrap" GridLines="None" ShowStatusBar="true" PageSize="50" OnNeedDataSource="rgApprove_NeedDataSource"
+                        Skin="Bootstrap" GridLines="None" ShowStatusBar="true" PageSize="25" OnNeedDataSource="rgApprove_NeedDataSource"
                         AllowSorting="true" 
                         AllowMultiRowSelection="false" 
                         AllowFiltering="true"
@@ -529,7 +529,7 @@
                         </tr>
                     </table>
                     <telerik:RadGrid ID="rgSitesNoSHA" runat="server" AutoGenerateColumns="false" EnableLinqExpressions="false" 
-                        Skin="Bootstrap" GridLines="None" ShowStatusBar="true" PageSize="50" OnNeedDataSource="rgSitesNoSHA_NeedDataSource"
+                        Skin="Bootstrap" GridLines="None" ShowStatusBar="true" PageSize="25" OnNeedDataSource="rgSitesNoSHA_NeedDataSource"
                         AllowSorting="true" 
                         AllowMultiRowSelection="false" 
                         AllowFiltering="true"

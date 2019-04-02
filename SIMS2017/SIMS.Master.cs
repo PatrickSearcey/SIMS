@@ -41,7 +41,7 @@ namespace SIMS2017
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            pnlAlert.Visible = true;
+            pnlAlert.Visible = false;
             ltlUserID.Text = user.ID;
             if (OfficeID == 0) OfficeID = Convert.ToInt32(Request.QueryString["office_id"]);
             if (OfficeID == 0) OfficeID = user.OfficeID;
