@@ -300,7 +300,7 @@ Public Class NWISOpsRequest
             "Request:" & Chr(10) & hfRequest.Value
 
         Dim smtp As New SmtpClient()
-        smtp.Host = "gscamnlh01.wr.usgs.gov"
+        smtp.Host = "smtp.usgs.gov"
         smtp.Send(message)
 
         IncreaseRequestID(requestID)

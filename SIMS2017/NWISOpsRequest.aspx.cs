@@ -328,7 +328,7 @@ namespace SIMS2017
                 tbRequest.Text;
 
 	        SmtpClient smtp = new SmtpClient();
-	        smtp.Host = "gscamnlh01.wr.usgs.gov";
+	        smtp.Host = "smtp.usgs.gov";
 #if !DEBUG
 	        smtp.Send(message);
             IncreaseRequestID(requestID);
