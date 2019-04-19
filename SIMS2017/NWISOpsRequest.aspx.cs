@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Web;
 using System.Web.UI;
@@ -327,8 +328,8 @@ namespace SIMS2017
                 site_information + "Request:" + "\r\n" + 
                 tbRequest.Text;
 
-	        SmtpClient smtp = new SmtpClient();
-	        smtp.Host = "smtp.usgs.gov";
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "gscamnlh01.wr.usgs.gov";
 #if !DEBUG
 	        smtp.Send(message);
             IncreaseRequestID(requestID);

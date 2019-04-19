@@ -746,7 +746,7 @@ namespace RMS.Task
                 if (to.Contains("@usgs.gov")) to.Remove("@usgs.gov");
             }
 
-            using (var smtp = new SmtpClient() { Host = "smtp.usgs.gov" })
+            using (var smtp = new SmtpClient() { Host = "gscamnlh01.wr.usgs.gov" })
             {
                 var message = new MailMessage("rmsonline@usgs.gov", "rmsonline@usgs.gov");
                 message.IsBodyHtml = true;

@@ -1034,7 +1034,7 @@ namespace RMS.Task
             var cc = new List<String>();
             var to = new List<String>();
 
-            using (var smtp = new SmtpClient() { Host = "smtp.usgs.gov" })
+            using (var smtp = new SmtpClient() { Host = "gscamnlh01.wr.usgs.gov" })
             {
                 var message = new MailMessage("rmsonline@usgs.gov", "rmsonline@usgs.gov");
                 message.IsBodyHtml = true;
