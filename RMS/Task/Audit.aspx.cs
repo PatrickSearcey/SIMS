@@ -788,13 +788,17 @@ namespace RMS.Task
                 {
                     case "new":
                         message.Subject = "RMS: A new audit period was created";
-                        message.Body = "A record period that you either analyzed or approved has been audited.<br /><br />" +
-                            "The audit was performed for the time period of " + timespan + " and included the following records:<br />" + recordList;
+                        message.Body = String.Format("A record period that you either analyzed or approved has been audited.<br /><br />" +
+                            "The audit was performed for the time period of {0} and included the following records:<br />{1}<br />" +
+                            "View the full details <a href='{2}Modal/ViewAudit.aspx?rms_audit_id={3}&rms_record_id={4}' target='_blank'>here</a>.", 
+                            timespan, recordList, Config.RMSURL, audit_id, recordsInAudit.FirstOrDefault().rms_record_id);
                         break;
                     case "edit":
                         message.Subject = "RMS: An audit period was edited";
-                        message.Body = "An audit that involves a record period that you either analyzed or approved has been edited.<br /><br />" +
-                            "The audit encompasses time period of " + timespan + " and included the following records:<br />" + recordList;
+                        message.Body = String.Format("An audit that involves a record period that you either analyzed or approved has been edited.<br /><br />" +
+                            "The audit encompasses time period of {0} and included the following records:<br />{1}<br />" +
+                            "View the full details <a href='{2}Modal/ViewAudit.aspx?rms_audit_id={3}&rms_record_id={4}' target='_blank'>here</a>.",
+                            timespan, recordList, Config.RMSURL, audit_id, recordsInAudit.FirstOrDefault().rms_record_id);
                         break;
                 }
 

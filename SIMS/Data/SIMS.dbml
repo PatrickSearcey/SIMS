@@ -1319,6 +1319,17 @@
       <Column Name="audit_end_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.RMS_ts_aging" Member="RMS_ts_agings">
+    <Type Name="RMS_ts_aging">
+      <Column Name="aging_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="gu_id" Type="System.String" DbType="NVarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="ts_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="applied_dt_utc" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="user_nm" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="start_aging_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="end_aging_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">
     <Parameter Name="site_id" Type="System.Int32" DbType="Int" />
     <ElementType Name="spz_GetDCPInfoResult">

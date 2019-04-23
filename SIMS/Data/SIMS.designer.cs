@@ -204,6 +204,9 @@ namespace Data
     partial void InsertEndangeredGage(EndangeredGage instance);
     partial void UpdateEndangeredGage(EndangeredGage instance);
     partial void DeleteEndangeredGage(EndangeredGage instance);
+    partial void InsertRMS_ts_aging(RMS_ts_aging instance);
+    partial void UpdateRMS_ts_aging(RMS_ts_aging instance);
+    partial void DeleteRMS_ts_aging(RMS_ts_aging instance);
     #endregion
 		
 		public SIMSDataContext() : 
@@ -929,6 +932,14 @@ namespace Data
 			get
 			{
 				return this.GetTable<vRMSMostRecentAuditPeriod>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RMS_ts_aging> RMS_ts_agings
+		{
+			get
+			{
+				return this.GetTable<RMS_ts_aging>();
 			}
 		}
 		
@@ -25307,6 +25318,212 @@ namespace Data
 				{
 					this._audit_end_dt = value;
 				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RMS_ts_aging")]
+	public partial class RMS_ts_aging : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _aging_id;
+		
+		private string _gu_id;
+		
+		private System.Nullable<int> _ts_id;
+		
+		private System.Nullable<System.DateTime> _applied_dt_utc;
+		
+		private string _user_nm;
+		
+		private System.Nullable<System.DateTime> _start_aging_dt;
+		
+		private System.Nullable<System.DateTime> _end_aging_dt;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onaging_idChanging(int value);
+    partial void Onaging_idChanged();
+    partial void Ongu_idChanging(string value);
+    partial void Ongu_idChanged();
+    partial void Onts_idChanging(System.Nullable<int> value);
+    partial void Onts_idChanged();
+    partial void Onapplied_dt_utcChanging(System.Nullable<System.DateTime> value);
+    partial void Onapplied_dt_utcChanged();
+    partial void Onuser_nmChanging(string value);
+    partial void Onuser_nmChanged();
+    partial void Onstart_aging_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onstart_aging_dtChanged();
+    partial void Onend_aging_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onend_aging_dtChanged();
+    #endregion
+		
+		public RMS_ts_aging()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_aging_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int aging_id
+		{
+			get
+			{
+				return this._aging_id;
+			}
+			set
+			{
+				if ((this._aging_id != value))
+				{
+					this.Onaging_idChanging(value);
+					this.SendPropertyChanging();
+					this._aging_id = value;
+					this.SendPropertyChanged("aging_id");
+					this.Onaging_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gu_id", DbType="NVarChar(32) NOT NULL", CanBeNull=false)]
+		public string gu_id
+		{
+			get
+			{
+				return this._gu_id;
+			}
+			set
+			{
+				if ((this._gu_id != value))
+				{
+					this.Ongu_idChanging(value);
+					this.SendPropertyChanging();
+					this._gu_id = value;
+					this.SendPropertyChanged("gu_id");
+					this.Ongu_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ts_id", DbType="Int")]
+		public System.Nullable<int> ts_id
+		{
+			get
+			{
+				return this._ts_id;
+			}
+			set
+			{
+				if ((this._ts_id != value))
+				{
+					this.Onts_idChanging(value);
+					this.SendPropertyChanging();
+					this._ts_id = value;
+					this.SendPropertyChanged("ts_id");
+					this.Onts_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_applied_dt_utc", DbType="DateTime")]
+		public System.Nullable<System.DateTime> applied_dt_utc
+		{
+			get
+			{
+				return this._applied_dt_utc;
+			}
+			set
+			{
+				if ((this._applied_dt_utc != value))
+				{
+					this.Onapplied_dt_utcChanging(value);
+					this.SendPropertyChanging();
+					this._applied_dt_utc = value;
+					this.SendPropertyChanged("applied_dt_utc");
+					this.Onapplied_dt_utcChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_user_nm", DbType="NVarChar(50)")]
+		public string user_nm
+		{
+			get
+			{
+				return this._user_nm;
+			}
+			set
+			{
+				if ((this._user_nm != value))
+				{
+					this.Onuser_nmChanging(value);
+					this.SendPropertyChanging();
+					this._user_nm = value;
+					this.SendPropertyChanged("user_nm");
+					this.Onuser_nmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_start_aging_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> start_aging_dt
+		{
+			get
+			{
+				return this._start_aging_dt;
+			}
+			set
+			{
+				if ((this._start_aging_dt != value))
+				{
+					this.Onstart_aging_dtChanging(value);
+					this.SendPropertyChanging();
+					this._start_aging_dt = value;
+					this.SendPropertyChanged("start_aging_dt");
+					this.Onstart_aging_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_end_aging_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> end_aging_dt
+		{
+			get
+			{
+				return this._end_aging_dt;
+			}
+			set
+			{
+				if ((this._end_aging_dt != value))
+				{
+					this.Onend_aging_dtChanging(value);
+					this.SendPropertyChanging();
+					this._end_aging_dt = value;
+					this.SendPropertyChanged("end_aging_dt");
+					this.Onend_aging_dtChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
