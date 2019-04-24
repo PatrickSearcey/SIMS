@@ -78,7 +78,7 @@
                             <telerik:GridBoundColumn DataField="type_cd" UniqueName="type_cd" HeaderText="Record Type" SortExpression="type_cd" AllowFiltering="false" />
                             <telerik:GridBoundColumn DataField="category_no" UniqueName="category_no" HeaderText="Cat" SortExpression="category_no" AllowFiltering="false" />
                             <telerik:GridDateTimeColumn DataField="approved_period_end_dt" UniqueName="approved_period_end_dt" HeaderText="Last Approved in RMS" DataFormatString="{0:MM/dd/yyyy}" SortExpression="approved_period_end_dt" FilterControlWidth="100px" PickerType="DatePicker" EnableTimeIndependentFiltering="true" />
-                            <telerik:GridDateTimeColumn DataField="last_aging_dt" UniqueName="last_aging_dt" HeaderText="Last Approved DV" DataFormatString="{0:MM/dd/yyyy}" SortExpression="last_aging_dt" FilterControlWidth="100px" PickerType="DatePicker" EnableTimeIndependentFiltering="true" />
+                            <telerik:GridDateTimeColumn DataField="last_aging_dt" UniqueName="last_aging_dt" HeaderText="Last Approved Value" DataFormatString="{0:MM/dd/yyyy}" SortExpression="last_aging_dt" FilterControlWidth="100px" PickerType="DatePicker" EnableTimeIndependentFiltering="true" />
                             <telerik:GridDateTimeColumn DataField="Last_peak_entered" UniqueName="Last_peak_entered" HeaderText="Last Peak Entered" DataFormatString="{0:MM/dd/yyyy}" SortExpression="Last_peak_entered" FilterControlWidth="100px" PickerType="DatePicker" EnableTimeIndependentFiltering="true" />
                             <telerik:GridDateTimeColumn DataField="Last_manu_approved" UniqueName="Last_manu_approved" HeaderText="MANU Approved Date" DataFormatString="{0:MM/dd/yyyy}" SortExpression="Last_manu_approved" FilterControlWidth="100px" PickerType="DatePicker" EnableTimeIndependentFiltering="true" />
                         </Columns>
@@ -106,7 +106,7 @@
                             <telerik:GridBoundColumn DataField="parm_cd" UniqueName="parm_cd" HeaderText="Parm Cd" SortExpression="parm_cd" FilterControlWidth="50px" />
                             <telerik:GridBoundColumn DataField="type_cd" UniqueName="type_cd" HeaderText="Record Type" SortExpression="type_cd" FilterControlWidth="100px" />
                             <telerik:GridBoundColumn DataField="category_no" UniqueName="category_no" HeaderText="Category No" SortExpression="category_no" AllowFiltering="false" />
-                            <telerik:GridDateTimeColumn DataField="last_aging_dt" UniqueName="last_aging_dt" HeaderText="Last Approved DV" DataFormatString="{0:MM/dd/yyyy}" SortExpression="last_aging_dt" FilterControlWidth="100px" PickerType="DatePicker" EnableTimeIndependentFiltering="true" />
+                            <telerik:GridDateTimeColumn DataField="last_aging_dt" UniqueName="last_aging_dt" HeaderText="Last Approved Value" DataFormatString="{0:MM/dd/yyyy}" SortExpression="last_aging_dt" FilterControlWidth="100px" PickerType="DatePicker" EnableTimeIndependentFiltering="true" />
                         </Columns>
                     </MasterTableView>
                 </telerik:RadGrid>

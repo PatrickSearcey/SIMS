@@ -19,7 +19,6 @@
                     <asp:BoundField DataField="office_cd" HeaderText="office cd" ItemStyle-BackColor="White" SortExpression="office_cd" ItemStyle-VerticalAlign="Top" />
                     <asp:BoundField DataField="site_no" HeaderText="site number" SortExpression="site_no" ItemStyle-BackColor="White" ItemStyle-VerticalAlign="Top" />
                     <asp:BoundField DataField="station_nm" HeaderText="station name" ItemStyle-Wrap="false" ItemStyle-BackColor="White" SortExpression="station_nm" ItemStyle-VerticalAlign="Top" />
-                    <asp:BoundField DataField="dd_nu" HeaderText="DD" SortExpression="dd_nu" ItemStyle-BackColor="White" />
                     <asp:BoundField DataField="parm_cd" HeaderText="param cd" ItemStyle-BackColor="White" SortExpression="parm_cd" />
                     <asp:BoundField DataField="type_cd" HeaderText="record-type" SortExpression="type_cd" ItemStyle-BackColor="White" />
                     <asp:BoundField DataField="category_no" HeaderText="cat no" ItemStyle-BackColor="White" SortExpression="category_no" />

@@ -24,7 +24,6 @@ namespace SIMS2017
                     office_cd = p.office_cd,
                     site_no = p.site_no,
                     station_nm = p.station_nm,
-                    dd_nu = p.dd_nu,
                     parm_cd = p.parm_cd,
                     type_cd = p.type_cd,
                     category_no = p.category_no,

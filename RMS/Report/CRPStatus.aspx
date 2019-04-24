@@ -72,7 +72,7 @@
                             <ul>
                                 <li>Clicking on the site number will open the Station Information page</li>
                                 <li>The cat no column shows the assigned category number for the record. If category number equal to 1, the last aging dates are highlighted based on being approved in ADAPS within the last 150 days. If category number equal to 2, the last aging dates are highlighted based on being approved in ADAPS within the last 240 days.</li>
-                                <li>For cases where only provisional data exists for a TS ID, the LAST APPROVED DV IN AQ columns will be blank.</li>
+                                <li>For cases where only provisional data exists for a TS ID, the LAST APPROVED VALUE columns will be blank.</li>
                             </ul>
                         </div>
                     </ContentTemplate>
@@ -89,7 +89,7 @@
             <MasterTableView DataKeyNames="rms_record_id" AllowSorting="true" AllowFilteringByColumn="true" AutoGenerateColumns="false">
                 <ColumnGroups>
                     <telerik:GridColumnGroup HeaderText="Site" Name="Site" HeaderStyle-HorizontalAlign="Center" />
-                    <telerik:GridColumnGroup HeaderText="Last Approved DV" Name="AQ" HeaderStyle-HorizontalAlign="Center" />
+                    <telerik:GridColumnGroup HeaderText="Last Approved Value" Name="AQ" HeaderStyle-HorizontalAlign="Center" />
                 </ColumnGroups>
                 <Columns>
                     <telerik:GridBoundColumn DataField="office_cd" HeaderText="Office" AllowFiltering="false" HeaderStyle-Width="40px" UniqueName="office_cd" />
