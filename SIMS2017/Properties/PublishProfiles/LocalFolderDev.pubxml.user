@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>D:\SIMS\DevSIMSSite</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="Admin/EndangeredGages.aspx">
+      <publishTime>11/15/2018 09:12:44</publishTime>
+    </File>
+    <File Include="Admin/FieldTrips.aspx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="Admin/Offices.aspx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="Admin/Personnel.aspx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="Admin/RegisterSite.aspx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="Admin/Tasks.aspx">
+      <publishTime>11/15/2018 09:12:44</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/0.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/1.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/2.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/3.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/4.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/5.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/6.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/7.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/8.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/9.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/A.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/B.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/C.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/D.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/E.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/F.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/G.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/H.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/I.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/J.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/K.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/L.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/M.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/N.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/O.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/P.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/Q.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/R.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/S.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/T.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/U.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/V.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/W.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/X.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/Y.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadCaptcha/Z.wav">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadSpell/de-DE.tdf">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadSpell/en-US.tdf">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="App_Data/RadSpell/fr-FR.tdf">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="bin/Core.dll">
+      <publishTime>04/24/2019 14:22:17</publishTime>
+    </File>
+    <File Include="bin/Core.pdb">
+      <publishTime>04/24/2019 14:22:17</publishTime>
+    </File>
+    <File Include="bin/Data.dll">
+      <publishTime>04/24/2019 14:22:16</publishTime>
+    </File>
+    <File Include="bin/Data.dll.config">
+      <publishTime>04/22/2019 10:46:59</publishTime>
+    </File>
+    <File Include="bin/Data.pdb">
+      <publishTime>04/24/2019 14:22:16</publishTime>
+    </File>
+    <File Include="bin/DotNetZip.dll">
+      <publishTime>06/22/2016 21:31:52</publishTime>
+    </File>
+    <File Include="bin/GMaps.dll">
+      <publishTime>12/29/2017 09:45:18</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>12/29/2017 09:45:20</publishTime>
+    </File>
+    <File Include="bin/SIMS2017.dll">
+      <publishTime>04/25/2019 06:06:31</publishTime>
+    </File>
+    <File Include="bin/SIMS2017.pdb">
+      <publishTime>04/25/2019 06:06:31</publishTime>
+    </File>
+    <File Include="bin/SIMSCustomControl.dll">
+      <publishTime>12/29/2017 09:45:18</publishTime>
+    </File>
+    <File Include="bin/SIMSCustomControl.pdb">
+      <publishTime>12/29/2017 09:45:18</publishTime>
+    </File>
+    <File Include="bin/Telerik.Web.Spreadsheet.dll">
+      <publishTime>12/29/2017 09:45:20</publishTime>
+    </File>
+    <File Include="bin/Telerik.Web.UI.dll">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="bin/Telerik.Web.UI.Skins.dll">
+      <publishTime>12/29/2017 09:45:20</publishTime>
+    </File>
+    <File Include="bin/Telerik.Windows.Documents.Core.dll">
+      <publishTime>12/29/2017 09:45:20</publishTime>
+    </File>
+    <File Include="bin/Telerik.Windows.Documents.Flow.dll">
+      <publishTime>12/29/2017 09:45:20</publishTime>
+    </File>
+    <File Include="bin/Telerik.Windows.Documents.Spreadsheet.dll">
+      <publishTime>12/29/2017 09:45:20</publishTime>
+    </File>
+    <File Include="bin/Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll">
+      <publishTime>12/29/2017 09:45:20</publishTime>
+    </File>
+    <File Include="bin/Telerik.Windows.Zip.dll">
+      <publishTime>12/29/2017 09:45:20</publishTime>
+    </File>
+    <File Include="Control/ApproveMANU.ascx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="Control/OfficeSelector.ascx">
+      <publishTime>11/15/2018 09:12:44</publishTime>
+    </File>
+    <File Include="Control/SitePageHeading.ascx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="DCPIDReport.aspx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="EditorDialogs/InsertImage.ascx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="EditorDialogs/InsertLink.ascx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="EditorDialogs/InsertTable.ascx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="EditorDialogs/InsertTableLight.ascx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="EditorDialogs/MobileTableProperties.ascx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="EditorDialogs/TableLayouts.ascx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="EditorDialogs/TableProperties.ascx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="EditorDialogs/TableWizard.ascx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="FieldTripMap.aspx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="Handler/DocHandler.ashx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="Handler/FieldTrips.ashx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="Handler/MANUDump_v1.ashx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="images/approve.png">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="images/cleanicon.png">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="images/faqicon.png">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="images/icons/0.png">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="images/icons/8.png">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="images/icons/9.png">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="images/keycolor0.gif">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="images/keycolor1.gif">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="images/keycolor2.gif">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="images/nofootnoteicon.png">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="images/QuestionMark.png">
+      <publishTime>11/15/2018 09:12:44</publishTime>
+    </File>
+    <File Include="images/refresh_custom1.png">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="images/review.png">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="images/SIMSLogo.png">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="images/SIMSTitle.png">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="images/tooltip.png">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="images/underarrow.png">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="images/USGSHeaderLogo.png">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="images/USGSHeaderLogoSIMS.png">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="images/usmap.gif">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="MANUDump_v2.ashx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="Modal/ConfirmDelete.aspx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="Modal/FieldTrip.aspx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="Modal/FieldTripEdit.aspx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="Modal/GWElems.aspx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="Modal/RecordEdit.aspx">
+      <publishTime>04/25/2019 05:56:45</publishTime>
+    </File>
+    <File Include="NWISOpsRequest.aspx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="scripts/scripts.js">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="Service References/SIMSDevService/SIMS2017.SIMSDevService.Element.datasource">
+      <publishTime>03/18/2019 14:12:16</publishTime>
+    </File>
+    <File Include="Service References/SIMSDevService/SIMS2017.SIMSDevService.Site.datasource">
+      <publishTime>03/18/2019 14:12:16</publishTime>
+    </File>
+    <File Include="Service References/SIMSService/SIMS2017.SIMSService.Element.datasource">
+      <publishTime>03/18/2019 14:04:00</publishTime>
+    </File>
+    <File Include="Service References/SIMSService/SIMS2017.SIMSService.Site.datasource">
+      <publishTime>03/18/2019 14:04:00</publishTime>
+    </File>
+    <File Include="Service.asmx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="SIMS.Master">
+      <publishTime>04/22/2019 09:35:47</publishTime>
+    </File>
+    <File Include="SIMSHome.aspx">
+      <publishTime>03/11/2019 07:00:29</publishTime>
+    </File>
+    <File Include="SIMSSingleMenu.Master">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="SIMSWSCHome.aspx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="SiteListsFAQ.html">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="StationDoc/Archive.aspx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="StationDoc/CustomReport.aspx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="StationDoc/EditDocs.aspx">
+      <publishTime>11/15/2018 09:12:44</publishTime>
+    </File>
+    <File Include="StationDoc/MAI.aspx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="StationDoc/SiteMAI.aspx">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="StationDoc/ViewDocs.aspx">
+      <publishTime>05/21/2018 16:22:40</publishTime>
+    </File>
+    <File Include="StationInfo.aspx">
+      <publishTime>03/19/2019 16:16:01</publishTime>
+    </File>
+    <File Include="styles/admin.css">
+      <publishTime>11/15/2018 09:12:44</publishTime>
+    </File>
+    <File Include="styles/base.css">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="styles/default.css">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="styles/home.css">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="styles/recordedit.css">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="styles/stationdoc.css">
+      <publishTime>05/21/2018 15:38:02</publishTime>
+    </File>
+    <File Include="styles/stationinfo.css">
+      <publishTime>12/29/2017 09:45:21</publishTime>
+    </File>
+    <File Include="UltDataAging.aspx">
+      <publishTime>04/24/2019 14:29:32</publishTime>
+    </File>
+    <File Include="web.config">
+      <publishTime>04/25/2019 06:06:31</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

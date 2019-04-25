@@ -194,6 +194,7 @@
     <Content Include="Handler\MANUDump_v1.ashx" />
     <Content Include="MANUDump_v2.ashx" />
     <Content Include="Handler\FieldTrips.ashx" />
+    <None Include="Properties\PublishProfiles\LocalFolderDev.pubxml" />
     <None Include="Properties\PublishProfiles\Production.pubxml" />
     <None Include="Service References\SIMSDevService\configuration91.svcinfo" />
     <None Include="Service References\SIMSDevService\configuration.svcinfo" />
@@ -556,7 +557,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

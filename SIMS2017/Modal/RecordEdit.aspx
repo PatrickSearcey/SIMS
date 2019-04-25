@@ -60,7 +60,7 @@
                                 <asp:Literal ID="ltlAssignedIDs" runat="server" /> <asp:LinkButton ID="lbEditIDs" runat="server" Text="edit" OnCommand="EditIDs" />
                             </asp:Panel>
                             <asp:Panel ID="pnlEditIDs" runat="server">
-                                <telerik:RadCheckBoxList ID="rcblIDs" runat="server" DataBindings-DataValueField="iv_ts_id" DataBindings-DataTextField="dd_ts_ds" Skin="Bootstrap" />
+                                <telerik:RadCheckBoxList ID="rcblIDs" runat="server" DataBindings-DataValueField="gu_id" DataBindings-DataTextField="dd_ts_ds" Skin="Bootstrap" />
                             </asp:Panel>
                         </td>
                     </tr>
