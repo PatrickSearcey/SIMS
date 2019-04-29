@@ -294,7 +294,8 @@
                                     <asp:Label ID="lblAQApprovalHistory" runat="server" Text="AQ Approval History" Font-Bold="true" />
                                     <telerik:RadToolTip RenderMode="Lightweight" runat="server" ID="rttAQApprovalHistory" TargetControlID="lblAQApprovalHistory" IsClientID="false"
                                         ShowEvent="OnMouseOver" HideEvent="Default" Position="MiddleRight" RelativeTo="Mouse" Width="300px" Height="270px" Skin="Bootstrap" AutoCloseDelay="9000" 
-                                        Text="If data approved in AQ need to be modified, the audit step and revision policy need to be followed.  If a period in RMS was accidentally set to approved and the data in AQ for that period are not approved or have recently been approved by mistake, please send a note to GS-W Help SIMS to have that period set back to analyzing.<br /><br />Click on the time-series parameter codes above to visit the AQ approval history for that ID.">
+                                        Text="If data approved in AQ need to be modified, the audit step and revision policy need to be followed. If a period in RMS was accidentally set to approved and the data in 
+                                        AQ for that period are not approved, please send a note to GS-W Help SIMS to have that period set back to analyzing.<br /><br />Click on the time-series parameter codes above to visit the AQ approval history for that ID.">
                                     </telerik:RadToolTip><br />
                                 </div>
                                 <div class="NewPeriod">                                                    
