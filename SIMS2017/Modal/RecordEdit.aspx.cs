@@ -323,10 +323,7 @@ namespace SIMS2017.Modal
                 var ids = record.RecordDDs.Select(p => p.gu_id).ToList();
 
                 foreach (var id in assigned_ids)
-                    rcblIDs.Items.Add(new ButtonListItem { Value = id.gu_id.ToString(), Text = id.dd_ts_ds });
-
-                foreach (ButtonListItem item in rcblIDs.Items)
-                    if (ids.Contains(item.Value)) item.Selected = true;
+                    rcblIDs.Items.Add(new ButtonListItem { Value = id.gu_id.ToString(), Text = id.dd_ts_ds, Selected = true });
             }
         }
         #endregion
