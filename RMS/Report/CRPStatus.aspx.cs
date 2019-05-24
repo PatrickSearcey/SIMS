@@ -186,7 +186,7 @@ namespace RMS.Report
                     DateTime daysAgo;
                     if (ras.category_no == 1) daysAgo = DateTime.Now.AddDays(-150); else if (ras.category_no == 2) daysAgo = DateTime.Now.AddDays(-240); else return;
 
-                    //If all analyzed periods have been approved, then set the background colors of both the analyzed and approved columns to blanched almond
+                    //If all analyzed periods have been approved, then set the background colors of both the analyzed and approved columns to "peach"
                     if (ras.analyzed_period_end_dt == ras.approved_period_end_dt)
                     {
                         item["analyzed_period_dt"].BackColor = System.Drawing.Color.BurlyWood;
@@ -196,13 +196,13 @@ namespace RMS.Report
                     //If the analyzed period date is within range
                     if (ras.analyzed_period_end_dt > daysAgo)
                     {
-                        //If all analyzed periods have been approved and are within range, then set the background colors of both the analyzed and approved columns to pale goldenrod
+                        //If all analyzed periods have been approved and are within range, then set the background colors of both the analyzed and approved columns to khaki
                         if (ras.analyzed_period_end_dt == ras.approved_period_end_dt)
                         {
                             item["analyzed_period_dt"].BackColor = System.Drawing.Color.DarkKhaki;
                             item["approved_period_dt"].BackColor = System.Drawing.Color.DarkKhaki;
                         }
-                        //Otherwise, set only the background of the analyzed cell to peach puff
+                        //Otherwise, set only the background of the analyzed cell to pale yellow
                         else
                         {
                             item["analyzed_period_dt"].BackColor = System.Drawing.Color.PaleGoldenrod;
@@ -212,13 +212,13 @@ namespace RMS.Report
                     //If the approved period date is within range
                     if (ras.approved_period_end_dt > daysAgo)
                     {
-                        //If all analyzed periods have been approved and are within range, then set the background colors of both the analyzed and approved columns to pale goldenrod
+                        //If all analyzed periods have been approved and are within range, then set the background colors of both the analyzed and approved columns to khaki
                         if (ras.approved_period_end_dt == ras.analyzed_period_end_dt)
                         {
                             item["analyzed_period_dt"].BackColor = System.Drawing.Color.DarkKhaki;
                             item["approved_period_dt"].BackColor = System.Drawing.Color.DarkKhaki;
                         }
-                        //Otherwise, set only the background of the approved cell to peach puff
+                        //Otherwise, set only the background of the approved cell to pale yellow
                         else
                         {
                             item["approved_period_dt"].BackColor = System.Drawing.Color.PaleGoldenrod;

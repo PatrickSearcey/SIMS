@@ -352,6 +352,7 @@ namespace RMS.Task
                         pnlNotice.Visible = false;
                         pnlSetupAuditPeriodForMultiples.Visible = false;
                         pnlAuditPeriod.Visible = true;
+                        hfAuditType.Value = "multiple";
                         SetupAuditForm("multiple");
                     }
                     else
@@ -373,6 +374,7 @@ namespace RMS.Task
                     pnlNotice.Visible = false;
                     pnlSetupAuditPeriod.Visible = false;
                     pnlAuditPeriod.Visible = true;
+                    hfAuditType.Value = "single";
                     SetupAuditForm("single");
                 }
                 else
@@ -449,7 +451,7 @@ namespace RMS.Task
             else
             {
                 DateTime? beg_dt, end_dt;
-                if (rdpBeginDt1.SelectedDate != null)
+                if (rdpBeginDt1.SelectedDate != null && hfAuditType.Value == "single")
                 {
                     beg_dt = rdpBeginDt1.SelectedDate;
                     end_dt = rdpEndDt1.SelectedDate;

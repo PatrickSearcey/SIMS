@@ -40,6 +40,15 @@ namespace RMS.Task {
         protected global::RMS.Control.RecordPageHeading ph1;
         
         /// <summary>
+        /// hfAuditType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfAuditType;
+        
+        /// <summary>
         /// pnlNoAccess control.
         /// </summary>
         /// <remarks>

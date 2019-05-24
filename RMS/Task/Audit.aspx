@@ -31,6 +31,7 @@
                     <telerik:AjaxUpdatedControl ControlID="pnlAuditPeriod" LoadingPanelID="ralp" />
                     <telerik:AjaxUpdatedControl ControlID="pnlSetupAuditPeriodForMultiples" LoadingPanelID="ralp" />
                     <telerik:AjaxUpdatedControl ControlID="pnlNotice" />
+                    <telerik:AjaxUpdatedControl ControlID="hfAuditType" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="rlbViewRecords">
@@ -84,6 +85,7 @@
                     <telerik:AjaxUpdatedControl ControlID="pnlAuditPeriod" />
                     <telerik:AjaxUpdatedControl ControlID="pnlSetupAuditPeriod" LoadingPanelID="ralp" />
                     <telerik:AjaxUpdatedControl ControlID="pnlNotice" />
+                    <telerik:AjaxUpdatedControl ControlID="hfAuditType" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
         </AjaxSettings>
@@ -98,6 +100,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph2" runat="server">
     <div class="mainContent">
+        <asp:HiddenField ID="hfAuditType" runat="server" />
 
         <asp:Panel ID="pnlNoAccess" runat="server">
             <h3>NO ACCESS</h3>
