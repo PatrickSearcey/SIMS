@@ -351,7 +351,7 @@ namespace Safety
                             agency_cd = p.agency_cd,
                             station_full_nm = p.station_full_nm,
                             office_id = p.office_id
-                        });
+                        }).OrderBy(p => p.site_no);
                     ddlCablewayStatus.DataSource = db.CablewayStatus.Select(p => new {
                         status_cd_desc = p.cableway_status_cd + " - " + p.cableway_status_desc,
                         cableway_status_cd = p.cableway_status_cd
