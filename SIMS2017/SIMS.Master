@@ -122,7 +122,7 @@
                         <telerik:CompositeLayoutColumn Span="10" SpanMd="12" SpanSm="12" SpanXs="12">
                             <Content>
                                 <asp:Panel ID="pnlAlert" runat="server">
-                                    <div style="background-color:lightcoral; width:100%; padding: 10px 0 10px 0; text-align:center; font-weight:bold; font-size:12pt;">ALERT: SIMS server update has been completed. The system may not be fully functional until after Tuesday, March 19th. Please limit your activity until your center receives notice from the SIMS team.</div>
+                                    <div style="background-color:lightcoral; width:100%; padding: 10px 0 10px 0; text-align:center; font-weight:bold; font-size:12pt;">ALERT: SIMS server updates will be applied today, June 6th, at 3pm CST.  The system will be down for approximately 5 minutes. Please avoid working in SIMS during this time. Thank you!</div>
                                 </asp:Panel>
                                 <asp:ContentPlaceHolder ID="cph1" runat="server">
                                 </asp:ContentPlaceHolder>

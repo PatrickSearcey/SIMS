@@ -184,7 +184,7 @@
                             </asp:Panel>
                             <asp:Panel ID="pnlInsert1" runat="server" CssClass="EditForm">
                                 <h4>Lookup a user in Active Directory by their user ID<br />
-                                    <i>NOTE: This is not necessarily their E-mail alias, but the user ID they use to logon to their computer.</i>
+                                    <i>NOTE: Lookup a user in Active Directory by their user ID. Where usernames are longer than 8 characters use the shorter login ID used on Unix systems.</i>
                                 </h4>
                                 <div style="padding:10px;">
                                     <label>Enter the user ID:</label> <telerik:RadTextBox ID="rtbUserID2" runat="server" Width="130px" MaxLength="20" />
