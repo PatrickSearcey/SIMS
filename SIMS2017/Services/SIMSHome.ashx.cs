@@ -19,19 +19,6 @@ namespace SIMS2017.Services
             string wsc_cd = "0";
             string district_cd = "0";
             string cs = Config.ConnectionInfo;
-            string site_no;// = pRS.Fields("site_no")
-            string agency_cd;// = pRS.Fields("agency_cd")
-            string station_nm;// = pRS.Fields("station_nm")
-            string office_cd;// = pRS.Fields("office_cd")
-            string office_id;// = pRS.Fields("office_id")
-            string wsc_id;// = pRS.Fields("wsc_id")
-            string district_abbrev;// = pRS.Fields("district_abbrev")
-            string site_tp_cd;// = pRS.Fields("site_tp_cd")
-            string agency_use_cd;// = pRS.Fields("agency_use_cd")
-            string trip_nm;// = pRS.Fields("trip_nm")
-            string user_id;// = pRS.Fields("user_id")
-            string type_ds;// = pRS.Fields("type_ds")
-            string slap_auto;// = pRS.Fields("sims_auto_rm")
 
             if (!string.IsNullOrEmpty(context.Request.QueryString["wsc_cd"])) wsc_cd = context.Request.QueryString["wsc_cd"];
             if (!string.IsNullOrEmpty(context.Request.QueryString["district_cd"])) district_cd = context.Request.QueryString["district_cd"];
@@ -59,6 +46,21 @@ namespace SIMS2017.Services
 
                 foreach (DataRow row in dt.Rows)
                 {
+                    string site_no = "";
+                    string agency_cd = "";
+                    string station_nm = "";
+                    string office_cd = "";
+                    string office_id = "";
+                    string wsc_id = "";
+                    wsc_cd = "";
+                    string district_abbrev = "";
+                    string site_tp_cd = "";
+                    string agency_use_cd = "";
+                    string trip_nm = "";
+                    string user_id = "";
+                    string type_ds = "";
+                    string slap_auto = "";
+
                     site_no = row["site_no"].ToString();
                     agency_cd = row["agency_cd"].ToString();
                     station_nm = row["station_nm"].ToString();
