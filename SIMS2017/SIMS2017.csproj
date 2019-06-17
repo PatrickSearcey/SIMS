@@ -396,6 +396,9 @@
       <DependentUpon>Service.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Services\SIMSHome.ashx.cs">
+      <DependentUpon>SIMSHome.ashx</DependentUpon>
+    </Compile>
     <Compile Include="SIMSHome.aspx.cs">
       <DependentUpon>SIMSHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -507,6 +510,7 @@
     <None Include="Service References\SIMSService\WCFServices2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Services\SIMSHome.ashx" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -557,7 +561,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
