@@ -592,7 +592,7 @@ namespace Safety
             List<int> elementids = new List<int>();
             phElements.Controls.Clear();
 
-            var elements = db.SiteElements.Where(p => p.site_id == SiteID && p.element_id == 13 || p.site_id == SiteID && p.element_id == 57 || p.site_id == SiteID && p.element_id == 124 || p.site_id == SiteID && p.element_id == 1002 || p.site_id == SiteID && p.element_id == 1003 || p.site_id == SiteID && p.element_id == 1004).ToList();
+            var elements = db.SiteElements.Where(p => p.site_id == SiteID && p.element_id == 13 || p.site_id == SiteID && p.element_id == 57 || p.site_id == SiteID && p.element_id == 124 || p.site_id == SiteID && p.element_id == 1002 || p.site_id == SiteID && p.element_id == 1003 || p.site_id == SiteID && p.element_id == 1004 || p.site_id == SiteID && p.element_id == 21).ToList();
 
             foreach (var rec in elements)
             {
@@ -616,7 +616,7 @@ namespace Safety
             string site_tp_cd = db.vSITEFILEs.FirstOrDefault(p => p.site_id == currSHA.Site.nwisweb_site_id).site_tp_cd;
             string sims_site_tp = db.SiteTypes.FirstOrDefault(p => p.site_tp_cd == site_tp_cd).sims_site_tp;
 
-            if (sims_site_tp == "sw" & elementids.Count < 5 & (string.IsNullOrEmpty(ddlNewMeasType.SelectedValue) | ddlNewMeasType.SelectedValue == "0"))
+            if (sims_site_tp == "sw" & elementids.Count < 6 & (string.IsNullOrEmpty(ddlNewMeasType.SelectedValue) | ddlNewMeasType.SelectedValue == "0"))
             {
                 ddlNewMeasType.Items.Clear();
 
@@ -627,6 +627,7 @@ namespace Safety
                 if (!elementids.Contains(Config.QWMeasElem)) ddlNewMeasType.Items.Add(new DropDownListItem { Text = "WATER QUALITY MEASUREMENT", Value = Config.QWMeasElem.ToString() });
                 if (!elementids.Contains(Config.EcoMeasElem)) ddlNewMeasType.Items.Add(new DropDownListItem { Text = "ECOLOGICAL MEASUREMENTS", Value = Config.EcoMeasElem.ToString() });
                 if (!elementids.Contains(Config.AtmMeasElem)) ddlNewMeasType.Items.Add(new DropDownListItem { Text = "ATMOSPHERIC MEASUREMENTS", Value = Config.AtmMeasElem.ToString() });
+                if (!elementids.Contains(Config.FloodMeasElem)) ddlNewMeasType.Items.Add(new DropDownListItem { Text = "FLOOD MEASUREMENTS", Value = Config.FloodMeasElem.ToString() });
 
                 ddlNewMeasType.Visible = true;
                 btnNewMeasType.Visible = true;

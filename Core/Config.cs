@@ -116,6 +116,11 @@ namespace Core
             get { return 45; }
         }
 
+        public static int FloodMeasElem
+        {
+            get { return 21; }
+        }
+
 
     }
 }
