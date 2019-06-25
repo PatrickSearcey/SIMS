@@ -405,6 +405,9 @@
     <Compile Include="Services\SIMSHome.ashx.cs">
       <DependentUpon>SIMSHome.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Services\StationsRpts.ashx.cs">
+      <DependentUpon>StationsRpts.ashx</DependentUpon>
+    </Compile>
     <Compile Include="SIMSHome.aspx.cs">
       <DependentUpon>SIMSHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -519,6 +522,7 @@
     <Content Include="Services\SIMSHome.ashx" />
     <Content Include="Services\go2OperatorDump.ashx" />
     <Content Include="Services\go2PASSDump.ashx" />
+    <Content Include="Services\StationsRpts.ashx" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -569,7 +573,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
