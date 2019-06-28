@@ -515,7 +515,6 @@ namespace RMS.Task
                 {
                     currAudit.audit_beg_dt = beg_dt;
                     currAudit.audit_end_dt = end_dt;
-                    currAudit.audit_by = user.ID;
                     currAudit.audit_dt = DateTime.Now;
                     currAudit.audit_type_id = audit_type_id;
                     currAudit.audit_results_id = audit_results_id;
@@ -663,8 +662,6 @@ namespace RMS.Task
                 rlbViewRecords.DataBind();
             }
             
-            ltlAuditBy.Text = user.ID;
-            
             rddlAuditType.DataSource = db.AuditTypes.Select(p => new { audit_type_id = p.audit_type_id, description = p.type + ": " + p.description }).ToList();
             rddlAuditType.DataBind();
             rddlAuditType.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
@@ -675,6 +672,8 @@ namespace RMS.Task
 
             if (currAudit != null)
             {
+                ltlAuditBy.Text = currAudit.audit_by;
+
                 rddlAuditResults.SelectedValue = currAudit.audit_results_id.ToString();
                 rddlAuditType.SelectedValue = currAudit.audit_type_id.ToString();
 
@@ -683,6 +682,8 @@ namespace RMS.Task
             }
             else
             {
+                ltlAuditBy.Text = user.ID;
+
                 rddlAuditType.SelectedIndex = 0;
                 rddlAuditResults.SelectedIndex = 0;
 
