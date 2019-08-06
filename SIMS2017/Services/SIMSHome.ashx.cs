@@ -16,10 +16,12 @@ namespace SIMS2017.Services
 
         public void ProcessRequest(HttpContext context)
         {
+            int wscid = 0;
             string wsc_cd = "0";
             string district_cd = "0";
             string cs = Config.ConnectionInfo;
 
+            if (!string.IsNullOrEmpty(context.Request.QueryString["wsc_id"])) wscid = Convert.ToInt32(context.Request.QueryString["wsc_id"]);
             if (!string.IsNullOrEmpty(context.Request.QueryString["wsc_cd"])) wsc_cd = context.Request.QueryString["wsc_cd"];
             if (!string.IsNullOrEmpty(context.Request.QueryString["district_cd"])) district_cd = context.Request.QueryString["district_cd"];
 
@@ -29,6 +31,7 @@ namespace SIMS2017.Services
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@wsc_cd", SqlDbType.NVarChar, 15).Value = wsc_cd;
             cmd.Parameters.Add("@district_cd", SqlDbType.NVarChar, 15).Value = district_cd;
+            cmd.Parameters.Add("@wsc_id", SqlDbType.NVarChar, 3).Value = wscid.ToString();
 
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(cmd);
