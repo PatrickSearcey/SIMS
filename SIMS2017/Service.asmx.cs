@@ -271,6 +271,38 @@ namespace SIMS2017
             return ds;
         }
 
+        [WebMethod(Description = "Gets office list for field trip map")]
+        public DataSet GetOfficesForTripMap()
+        {
+            string cs = Config.ConnectionInfo;
+            SqlConnection cn = new SqlConnection(cs);
+            SqlDataAdapter da = new SqlDataAdapter("SP_trips_offices_map", cn);
+
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+            DataSet ds = new DataSet();
+            da.Fill(ds, "officeinfo");
+            return ds;
+        }
+
+        [WebMethod(Description = "Gets sites for field trip map")]
+        public DataSet GetSitesForTripMap(string wsc_cd, int office_id)
+        {
+            string cs = Config.ConnectionInfo;
+            SqlConnection cn = new SqlConnection(cs);
+            SqlDataAdapter da = new SqlDataAdapter("SP_trip_map", cn);
+
+            if (string.IsNullOrEmpty(wsc_cd)) wsc_cd = "0";
+
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand.Parameters.Add("@wsc_cd", SqlDbType.NVarChar, 5).Value = wsc_cd;
+            da.SelectCommand.Parameters.Add("@office_id", SqlDbType.Int).Value = office_id;
+
+            DataSet ds = new DataSet();
+            da.Fill(ds, "sitetripinfo");
+            return ds;
+        }
+
         [WebMethod(Description = "Gets information about an employee from Active Directory")]
         public DataSet GetEmployeeInfoFromAD(string user_id)
         {
