@@ -148,19 +148,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/29/2017 09:45:21</publishTime>
     </File>
     <File Include="bin/Core.dll">
-      <publishTime>06/25/2019 05:57:32</publishTime>
+      <publishTime>08/30/2019 15:49:36</publishTime>
     </File>
     <File Include="bin/Core.pdb">
-      <publishTime>06/25/2019 05:57:32</publishTime>
+      <publishTime>08/30/2019 15:49:36</publishTime>
     </File>
     <File Include="bin/Data.dll">
-      <publishTime>06/25/2019 05:57:31</publishTime>
+      <publishTime>08/30/2019 15:49:35</publishTime>
     </File>
     <File Include="bin/Data.dll.config">
-      <publishTime>06/25/2019 05:47:56</publishTime>
+      <publishTime>08/30/2019 13:47:26</publishTime>
     </File>
     <File Include="bin/Data.pdb">
-      <publishTime>06/25/2019 05:57:31</publishTime>
+      <publishTime>08/30/2019 15:49:35</publishTime>
     </File>
     <File Include="bin/DotNetZip.dll">
       <publishTime>06/22/2016 21:31:52</publishTime>
@@ -178,10 +178,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/01/2016 16:26:44</publishTime>
     </File>
     <File Include="bin/SIMS2017.dll">
-      <publishTime>06/25/2019 05:57:35</publishTime>
+      <publishTime>08/30/2019 15:52:15</publishTime>
     </File>
     <File Include="bin/SIMS2017.pdb">
-      <publishTime>06/25/2019 05:57:35</publishTime>
+      <publishTime>08/30/2019 15:52:15</publishTime>
     </File>
     <File Include="bin/SIMSCustomControl.dll">
       <publishTime>12/29/2017 09:45:18</publishTime>
@@ -466,7 +466,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/17/2019 20:47:49</publishTime>
     </File>
     <File Include="Services/StationsRpts.ashx">
-      <publishTime>06/25/2019 05:48:50</publishTime>
+      <publishTime>06/25/2019 05:59:25</publishTime>
     </File>
     <File Include="SIMS.Master">
       <publishTime>06/21/2019 13:52:32</publishTime>
