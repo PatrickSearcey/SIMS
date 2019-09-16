@@ -99,6 +99,11 @@
                     <telerik:AjaxUpdatedControl ControlID="dlDCPTable" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="rtsTelemetry">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="rmp" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
         </AjaxSettings>
     </telerik:RadAjaxManager>
     <telerik:RadAjaxLoadingPanel ID="ralp" runat="server" Skin="Bootstrap" />
@@ -199,72 +204,105 @@
                 </asp:Panel>
             </div>
 
-            <div>
-                <h4>DCP/Realtime Ops</h4>
-                <asp:Panel ID="pnlDCPTable" runat="server" CssClass="DCPTable">
-                    <div>
-                        <b>Office Time:</b> <asp:Literal ID="ltlDCPOfficeTime" runat="server" /><br />
-                        <b>Site Time:</b> <asp:Literal ID="ltlDCPSiteTime" runat="server" /><br />
-                        <b>GMT Time:</b> <asp:Literal ID="ltlDCPGMTTime" runat="server" />
-                    </div>
-                    <asp:DataList ID="dlDCPTable" runat="server">
-                        <ItemTemplate>
-                            <table width="700">
-                                <tr>
-                                    <td width="180">
-                                        <b>Next Transmit Time:</b>
-                                        <table style="border:1px solid #acb274;" cellpadding="3px">
-                                            <tr>
-                                                <td><b>Local</b></td>
-                                                <td style="background-color:white;color: #808080;"><b><%# Eval("LocalTransmitTime") %></b></td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>GMT</b></tdstyle="background-color:white;>
-                                                <td style="background-color:white;color: #808080;"><b><%# Eval("GMTTransmitTime") %></b></td>
-                                            </tr>
-                                        </table>
-                                        <b>Minutes to next trans.: <span style="background-color:white;padding:0 3px 0 3px;color: #808080;"><%# Eval("MinutesToNext") %></span></b>
-                                    </td>
-                                    <td valign="top">
-                                        <table style="border:1px solid #acb274;" cellpadding="3px">
-                                            <tr>
-                                                <td style="text-align:center;"><b>DCPID</b></td>
-                                                <td style="text-align:center;"><b>Prim./<br />Rndm. Channel</b></td>
-                                                <td style="text-align:center;"><b>Prim./<br />Rndm. Baud</b></td>
-                                                <td style="text-align:center;"><b>Satellite Azimuth/<br />Elevation</b></td>
-                                                <td style="text-align:center;"><b>Trans. Time/<br />Interval/ Window</b></td>
-                                            </tr>
-                                            <tr>
-                                                <td style="background-color:white;text-align:center;color: #808080;"><%# Eval("dcp_id") %></td>
-                                                <td style="background-color:white;text-align:center;color: #808080;"><%# Eval("primary_ch") %> / <%# Eval("random_ch") %></td>
-                                                <td style="background-color:white;text-align:center;color: #808080;"><%# Eval("primary_bd") %> / <%# Eval("random_bd") %></td>
-                                                <td style="background-color:white;text-align:center;color: #808080;"><%# Eval("satellite") %><%# Eval("ant_azimuth") %> / <%# Eval("ant_elev") %></td>
-                                                <td style="background-color:white;text-align:center;color: #808080;"><%# Eval("assigned_time") %> / <%# Eval("trans_interval") %> / <%# Eval("window") %></td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" valign="top">
-                                        <div style="width:100%;">
-                                            <div style="width:30%;float:left;">
-                                                <b><a href='<%# String.Format("https://hads.ncep.noaa.gov/cgi-bin/hads/interactiveDisplays/displayMetaData.pl?table=dcp&nesdis_id={0}", Eval("dcp_id")) %>' target="_blank">NWS HADS System</a></b><br />
-                                                <b><a href='<%# String.Format("http://eddn.usgs.gov/cgi-bin/configSummary.cgi?dcpid={0}&type=view", Eval("dcp_id")) %>' target="_blank">EDDN Platform Configuration</a></b><br />
-                                                <b><a href='<%# String.Format("{0}", Eval("PASSURL")) %>' target="_blank">PASS Home</a></b><br />
-                                            </div>
-                                            <div style="float:right;width:70%;">
-                                                <b>View data for specified hours:</b> <asp:TextBox ID="tbDCPViewData" runat="server" Text="8" Width="40px" /> 
-                                                <asp:Button ID="btnDCPViewData" runat="server" OnCommand="btnDCPViewData_Command" CommandArgument='<%# Eval("dcp_id") %>' Text="Go!" /><br />
-                                                <!--<b><i>This option currently not available. Maintainers of this web site have been notified of the problem.</i></b>-->
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </ItemTemplate>
-                    </asp:DataList>
-                </asp:Panel>
-                <asp:Literal ID="ltlNoDCP" runat="server" />
+            <div style="padding-bottom:20px;">
+                <h4>Telemetry Ops</h4>
+                <telerik:RadTabStrip RenderMode="Lightweight" runat="server" ID="rtsTelemetry" Orientation="HorizontalTop" MultiPageID="rmp" Skin="Bootstrap">
+                    <Tabs>
+                        <telerik:RadTab Text="GOES Assignments" Selected="true"></telerik:RadTab>
+                        <telerik:RadTab Text="Iridium/Cellular Assignments"></telerik:RadTab>
+                    </Tabs>
+                </telerik:RadTabStrip>
+                <telerik:RadMultiPage runat="server" ID="rmp" CssClass="multiPage">
+                    <telerik:RadPageView runat="server" ID="rpvGOES" Selected="true">
+                        <asp:Panel ID="pnlDCPTable" runat="server" CssClass="DCPTable">
+                            <div>
+                                <b>Office Time:</b> <asp:Literal ID="ltlDCPOfficeTime" runat="server" /><br />
+                                <b>Site Time:</b> <asp:Literal ID="ltlDCPSiteTime" runat="server" /><br />
+                                <b>GMT Time:</b> <asp:Literal ID="ltlDCPGMTTime" runat="server" />
+                            </div>
+                            <asp:DataList ID="dlDCPTable" runat="server">
+                                <ItemTemplate>
+                                    <table width="700">
+                                        <tr>
+                                            <td width="180">
+                                                <b><span style="font-size:14pt;">Minutes to next transmit:</span> <span style="background-color:white;padding:0 3px 0 3px;color: #808080; font-size:18pt;"><%# Eval("MinutesToNext") %></span></b>
+                                            </td>
+                                            <td valign="top">
+                                                <table style="border:1px solid #acb274;" cellpadding="3px">
+                                                    <tr>
+                                                        <td style="text-align:center;"><b>DCPID</b></td>
+                                                        <td style="text-align:center;"><b>Prim./<br />Rndm. Channel</b></td>
+                                                        <td style="text-align:center;"><b>Prim./<br />Rndm. Baud</b></td>
+                                                        <td style="text-align:center;"><b>Satellite Azimuth/<br />Elevation</b></td>
+                                                        <td style="text-align:center;"><b>Trans. Time/<br />Interval/ Window</b></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="background-color:white;text-align:center;color: #808080;"><%# Eval("dcp_id") %></td>
+                                                        <td style="background-color:white;text-align:center;color: #808080;"><%# Eval("primary_ch") %> / <%# Eval("random_ch") %></td>
+                                                        <td style="background-color:white;text-align:center;color: #808080;"><%# Eval("primary_bd") %> / <%# Eval("random_bd") %></td>
+                                                        <td style="background-color:white;text-align:center;color: #808080;"><%# Eval("satellite") %><%# Eval("ant_azimuth") %> / <%# Eval("ant_elev") %></td>
+                                                        <td style="background-color:white;text-align:center;color: #808080;"><%# Eval("assigned_time") %> / <%# Eval("trans_interval") %> / <%# Eval("window") %></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" valign="top">
+                                                <div style="width:100%;">
+                                                    <div style="width:30%;float:left;">
+                                                        <b><a href='<%# String.Format("https://hads.ncep.noaa.gov/cgi-bin/hads/interactiveDisplays/displayMetaData.pl?table=dcp&nesdis_id={0}", Eval("dcp_id")) %>' target="_blank">NWS HADS System</a></b><br />
+                                                        <b><a href='<%# String.Format("http://eddn.usgs.gov/cgi-bin/configSummary.cgi?dcpid={0}&type=view", Eval("dcp_id")) %>' target="_blank">EDDN Platform Configuration</a></b><br />
+                                                        <b><a href='<%# String.Format("{0}", Eval("PASSURL")) %>' target="_blank">PASS Home</a></b><br />
+                                                    </div>
+                                                    <div style="float:right;width:70%;">
+                                                        <b>View data for specified hours:</b> <asp:TextBox ID="tbDCPViewData" runat="server" Text="8" Width="40px" /> 
+                                                        <asp:Button ID="btnDCPViewData" runat="server" OnCommand="btnDCPViewData_Command" CommandArgument='<%# Eval("dcp_id") %>' Text="Go!" /><br />
+                                                        <!--<b><i>This option currently not available. Maintainers of this web site have been notified of the problem.</i></b>-->
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </ItemTemplate>
+                            </asp:DataList>
+                        </asp:Panel>
+                        <asp:Literal ID="ltlNoDCP" runat="server" />
+                    </telerik:RadPageView>
+                    <telerik:RadPageView runat="server" ID="rpvIMEI">
+                        <asp:Panel ID="pnlIMEITable" runat="server" CssClass="DCPTable">
+                            <div>
+                                <b>Office Time:</b> <asp:Literal ID="ltlDCPOfficeTime2" runat="server" /><br />
+                                <b>Site Time:</b> <asp:Literal ID="ltlDCPSiteTime2" runat="server" /><br />
+                                <b>GMT Time:</b> <asp:Literal ID="ltlDCPGMTTime2" runat="server" />
+                            </div>
+                            <asp:DataList ID="dlIMEITable" runat="server">
+                                <ItemTemplate>
+                                    <table width="700">
+                                        <tr>
+                                            <td>
+                                                <span style="font-size:10pt;"><b>Assignment Type:</b><br /><%# Eval("IDType") %></span>
+                                            </td>
+                                            <td>
+                                                <span style="font-size:10pt;"><b>IMEI Number:</b><br /><%# Eval("IMEI") %></span>
+                                            </td>
+                                            <td>
+                                                <span style="font-size:10pt;"><b>Transmit Interval:</b><br /><%# Eval("TransmitInterval") %></span>
+                                            </td>
+                                            <td>
+                                                <span style="font-size:10pt;"><%# Eval("MobileNo") %></span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <hr />
+                                </ItemTemplate>
+                            </asp:DataList>
+                            <b><a href="https://eddn.usgs.gov/msgaccess.html" target="_blank">LRGS Message Access</a></b>&nbsp;&nbsp;|&nbsp;&nbsp;
+                            <b><asp:HyperLink ID="hlPASSURL" runat="server" Target="_blank">PASS Home</asp:HyperLink></b><br />
+                        </asp:Panel>
+                        <asp:Literal ID="ltlNoIMEI" runat="server" />
+                    </telerik:RadPageView>
+                </telerik:RadMultiPage>
+                <asp:Literal ID="ltlNoTelemetry" runat="server" />
             </div>
         </div>
         <div class="rightColumn">

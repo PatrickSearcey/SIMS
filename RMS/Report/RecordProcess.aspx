@@ -259,8 +259,12 @@
                     <MasterTableView DataKeyNames="rms_record_id" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" 
                         Name="Records" AllowFilteringByColumn="true">
                         <Columns>
-                            <telerik:GridBoundColumn DataField="office_cd" HeaderText="Office" UniqueName="office_cd" SortExpression="office_cd" HeaderStyle-Width="90px" FilterControlWidth="70px" />
-                            <telerik:GridBoundColumn DataField="site_no" HeaderText="Site Number" UniqueName="site_no" SortExpression="site_no" HeaderStyle-Width="150px" FilterControlWidth="100px" />
+                            <telerik:GridBoundColumn DataField="office_cd" HeaderText="Office" UniqueName="office_cd" SortExpression="office_cd" HeaderStyle-Width="90px" FilterControlWidth="70px" /> 
+                            <telerik:GridTemplateColumn AllowSorting="true" AllowFiltering="true" SortExpression="site_no" HeaderText="Site Number" FilterControlWidth="90px">
+                                <ItemTemplate>
+                                    <b><a href='<%# String.Format("{0}StationInfo.aspx?site_no={1}", Eval("SIMSURL"), Eval("site_no")) %>'><%# Eval("site_no") %></a></b>
+                                </ItemTemplate>
+                            </telerik:GridTemplateColumn>
                             <telerik:GridBoundColumn DataField="station_nm" HeaderText="Station Name" UniqueName="station_nm" HeaderStyle-Width="500px" SortExpression="station_nm" FilterControlWidth="200px"/>
                             <telerik:GridBoundColumn DataField="type_cd" UniqueName="type_cd" HeaderText="Record Type" SortExpression="type_cd" FilterControlWidth="100px" />
                             <telerik:GridBoundColumn DataField="auditor_uid" UniqueName="auditor_uid" HeaderText="Assigned Auditor" SortExpression="auditor_uid" FilterControlWidth="100px" />

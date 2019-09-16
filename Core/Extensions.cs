@@ -660,6 +660,7 @@ namespace Core
                         break;
                     case "TELEMETRY ASSIGNMENT":
                         string dcpText = "";
+                        string imeiText = "";
                         
                         var dcpInfo = db.spz_GetDCPInfo(site_id).Select(p => new
                             {
@@ -695,7 +696,30 @@ namespace Core
                             dcpText += "<p>" + dcp_id + channel + az_el + time + "</p>";
                         }
 
-                        elem_info = dcpText;
+                        var imeiInfo = db.spz_GetIMEIInfo(site_id).Select(p => new
+                        {
+                            IDType = p.IDType,
+                            IMEI = p.IMEI,
+                            TransmitInterval = p.TransmitInterval,
+                            MobileNo = p.MobileNo
+                        });
+
+                        foreach (var imei in imeiInfo)
+                        {
+                            string imeiNo = "IMEI: ";
+                            string idType = "; assignment type: ";
+                            string transmitInterval = "; transmit interval: ";
+                            string mobileNo = "; mobile number: ";
+
+                            imeiNo += imei.IMEI;
+                            if (!string.IsNullOrEmpty(imei.IDType)) idType += imei.IDType;
+                            if (imei.TransmitInterval != "::") transmitInterval += imei.TransmitInterval;
+                            if (imei.MobileNo != "--") mobileNo += imei.MobileNo;
+
+                            imeiText += "<p>" + imeiNo + idType + transmitInterval + mobileNo + "</p>";
+                        }
+
+                        elem_info = dcpText + imeiText;
 
                         break;
                     default:
