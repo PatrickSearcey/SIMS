@@ -235,19 +235,24 @@ namespace SIMS2017
 
             //DCP/Realtime Ops
             var di = db.spz_GetDCPInfo(currSite.site_id).FirstOrDefault();
-            if (di != null)
+            var im = db.spz_GetIMEIInfo(currSite.site_id).FirstOrDefault();
+            if (di != null || im != null)
             {
-                pnlDCPTable.Visible = true;
-                ltlNoDCP.Visible = false;
+                rtsTelemetry.Visible = true;
+                rmp.Visible = true;
+                ltlNoTelemetry.Visible = false;
 
-                ltlDCPOfficeTime.Text = String.Format("{0:dddd, MMMM dd, yyyy} ({1}), {0:h:mm:ss tt}", di.doffice, di.jdoffice.Substring(4));
-                ltlDCPSiteTime.Text = String.Format("{0:dddd, MMMM dd, yyyy} ({1}), {0:h:mm:ss tt}", di.dsite, di.jdsite.Substring(4));
-                ltlDCPGMTTime.Text = String.Format("{0:dddd, MMMM dd, yyyy} ({1}), {0:h:mm:ss tt}", di.dutc, di.jdutc.Substring(4));
+                if (di != null)
+                {
+                    pnlDCPTable.Visible = true;
+                    ltlNoDCP.Visible = false;
 
-                dlDCPTable.DataSource = db.spz_GetDCPInfo(currSite.site_id).Select(p => new
+                    ltlDCPOfficeTime.Text = String.Format("{0:dddd, MMMM dd, yyyy} ({1}), {0:h:mm:ss tt}", di.doffice, di.jdoffice.Substring(4));
+                    ltlDCPSiteTime.Text = String.Format("{0:dddd, MMMM dd, yyyy} ({1}), {0:h:mm:ss tt}", di.dsite, di.jdsite.Substring(4));
+                    ltlDCPGMTTime.Text = String.Format("{0:dddd, MMMM dd, yyyy} ({1}), {0:h:mm:ss tt}", di.dutc, di.jdutc.Substring(4));
+
+                    dlDCPTable.DataSource = db.spz_GetDCPInfo(currSite.site_id).Select(p => new
                     {
-                        LocalTransmitTime = NextTransmitTime(Convert.ToDateTime(p.doffice), p.officedcptimes, "local"),
-                        GMTTransmitTime = NextTransmitTime(Convert.ToDateTime(p.dutc), p.utcdcptimes, "GMT"),
                         MinutesToNext = NextTransmitTime(Convert.ToDateTime(p.doffice), p.officedcptimes, "next"),
                         dcp_id = p.dcp_id,
                         primary_ch = p.primary_ch,
@@ -262,12 +267,55 @@ namespace SIMS2017
                         window = p.window,
                         PASSURL = Config.PASSURL
                     });
-                dlDCPTable.DataBind();
+                    dlDCPTable.DataBind();
+                }
+                else
+                {
+                    pnlDCPTable.Visible = false;
+                    ltlNoDCP.Text = "No Package Contents";
+                }
+
+                if (im != null)
+                {
+                    pnlIMEITable.Visible = true;
+                    ltlNoIMEI.Visible = false;
+
+                    try
+                    {
+                        ltlDCPOfficeTime2.Text = String.Format("{0:dddd, MMMM dd, yyyy} ({1}), {0:h:mm:ss tt}", di.doffice, di.jdoffice.Substring(4));
+                        ltlDCPSiteTime2.Text = String.Format("{0:dddd, MMMM dd, yyyy} ({1}), {0:h:mm:ss tt}", di.dsite, di.jdsite.Substring(4));
+                        ltlDCPGMTTime2.Text = String.Format("{0:dddd, MMMM dd, yyyy} ({1}), {0:h:mm:ss tt}", di.dutc, di.jdutc.Substring(4));
+                    }
+                    catch (Exception ex)
+                    {
+                        ltlDCPOfficeTime2.Text = "<i>unknown</i>";
+                        ltlDCPSiteTime2.Text = "<i>unknown</i>";
+                        ltlDCPGMTTime2.Text = "<i>unknown</i>";
+                    }
+
+                    hlPASSURL.NavigateUrl = Config.PASSURL;
+
+                    dlIMEITable.DataSource = db.spz_GetIMEIInfo(currSite.site_id).Select(p => new
+                    {
+                        IDType = p.IDType,
+                        IMEI = p.IMEI,
+                        TransmitInterval = p.TransmitInterval,
+                        MobileNo = p.MobileNo == "--" ? "" : "<b>Mobile Number:</b><br />" + p.MobileNo
+                    });
+                    dlIMEITable.DataBind();
+                }
+                else
+                {
+                    pnlIMEITable.Visible = false;
+                    ltlNoIMEI.Text = "No Iridium/Cellular Contents";
+                }
+                
             }
             else
             {
-                pnlDCPTable.Visible = false;
-                ltlNoDCP.Text = "No Package Contents";
+                rtsTelemetry.Visible = false;
+                rmp.Visible = false;
+                ltlNoTelemetry.Text = "No Telemetry Information";
             }
         }
 
@@ -414,14 +462,6 @@ namespace SIMS2017
             {
                 TimeSpan span = Convert.ToDateTime(String.Format("{0:MM/dd/yyyy} {1}", dNow, time[i])).Subtract(dNow);
                 ret = span.Minutes.ToString();
-            }
-            else if (type == "local")
-            {
-                ret = String.Format("{0:hh:mm}", time[i]);
-            }
-            else if (type == "GMT")
-            {
-                ret = String.Format("{0:hh:mm}", time[idxNext]);
             }
 
             return ret;

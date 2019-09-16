@@ -481,6 +481,33 @@ namespace SIMS2017 {
         protected global::System.Web.UI.WebControls.HyperLink hlTCPTrackStatus;
         
         /// <summary>
+        /// rtsTelemetry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadTabStrip rtsTelemetry;
+        
+        /// <summary>
+        /// rmp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadMultiPage rmp;
+        
+        /// <summary>
+        /// rpvGOES control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPageView rpvGOES;
+        
+        /// <summary>
         /// pnlDCPTable control.
         /// </summary>
         /// <remarks>
@@ -533,6 +560,87 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlNoDCP;
+        
+        /// <summary>
+        /// rpvIMEI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPageView rpvIMEI;
+        
+        /// <summary>
+        /// pnlIMEITable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlIMEITable;
+        
+        /// <summary>
+        /// ltlDCPOfficeTime2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlDCPOfficeTime2;
+        
+        /// <summary>
+        /// ltlDCPSiteTime2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlDCPSiteTime2;
+        
+        /// <summary>
+        /// ltlDCPGMTTime2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlDCPGMTTime2;
+        
+        /// <summary>
+        /// dlIMEITable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dlIMEITable;
+        
+        /// <summary>
+        /// hlPASSURL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlPASSURL;
+        
+        /// <summary>
+        /// ltlNoIMEI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlNoIMEI;
+        
+        /// <summary>
+        /// ltlNoTelemetry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlNoTelemetry;
         
         /// <summary>
         /// pnlRMS control.

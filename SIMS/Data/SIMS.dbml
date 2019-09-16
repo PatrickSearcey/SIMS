@@ -1737,4 +1737,13 @@
       <Column Name="DaysSinceAging" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.spz_GetIMEIInfo" Method="spz_GetIMEIInfo">
+    <Parameter Name="site_id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="spz_GetIMEIInfoResult">
+      <Column Name="IDType" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="IMEI" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TransmitInterval" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="MobileNo" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

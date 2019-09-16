@@ -109,7 +109,7 @@ namespace SIMS2017
             {
                 SiteID = Convert.ToInt32(p.site_id),
                 SiteNo = p.Site.site_no,
-                StationName = p.Site.station_full_nm,
+                StationName = db.vSITEFILEs.FirstOrDefault(s => s.site_id == p.Site.nwisweb_site_id).station_nm,
                 DecLatVa = db.vSITEFILEs.FirstOrDefault(s => s.site_id == p.Site.nwisweb_site_id).dec_lat_va,
                 DecLongVa = db.vSITEFILEs.FirstOrDefault(s => s.site_id == p.Site.nwisweb_site_id).dec_long_va,
                 AgencyCd = p.Site.agency_cd,

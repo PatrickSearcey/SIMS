@@ -1145,6 +1145,13 @@ namespace Data
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), wsc_id);
 			return ((ISingleResult<SP_CRP_Ult_Data_Aging_Table_LegacyResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spz_GetIMEIInfo")]
+		public ISingleResult<spz_GetIMEIInfoResult> spz_GetIMEIInfo([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> site_id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), site_id);
+			return ((ISingleResult<spz_GetIMEIInfoResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.lut_Office")]
@@ -29621,6 +29628,86 @@ namespace Data
 				if ((this._DaysSinceAging != value))
 				{
 					this._DaysSinceAging = value;
+				}
+			}
+		}
+	}
+	
+	public partial class spz_GetIMEIInfoResult
+	{
+		
+		private string _IDType;
+		
+		private long _IMEI;
+		
+		private string _TransmitInterval;
+		
+		private string _MobileNo;
+		
+		public spz_GetIMEIInfoResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDType", DbType="NVarChar(20)")]
+		public string IDType
+		{
+			get
+			{
+				return this._IDType;
+			}
+			set
+			{
+				if ((this._IDType != value))
+				{
+					this._IDType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IMEI", DbType="BigInt NOT NULL")]
+		public long IMEI
+		{
+			get
+			{
+				return this._IMEI;
+			}
+			set
+			{
+				if ((this._IMEI != value))
+				{
+					this._IMEI = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TransmitInterval", DbType="NVarChar(10)")]
+		public string TransmitInterval
+		{
+			get
+			{
+				return this._TransmitInterval;
+			}
+			set
+			{
+				if ((this._TransmitInterval != value))
+				{
+					this._TransmitInterval = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MobileNo", DbType="NVarChar(12)")]
+		public string MobileNo
+		{
+			get
+			{
+				return this._MobileNo;
+			}
+			set
+			{
+				if ((this._MobileNo != value))
+				{
+					this._MobileNo = value;
 				}
 			}
 		}

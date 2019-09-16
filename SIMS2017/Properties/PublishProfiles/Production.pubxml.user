@@ -19,7 +19,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/29/2017 09:45:21</publishTime>
     </File>
     <File Include="Admin/Personnel.aspx">
-      <publishTime>12/29/2017 09:45:21</publishTime>
+      <publishTime>06/17/2019 20:47:49</publishTime>
     </File>
     <File Include="Admin/RegisterSite.aspx">
       <publishTime>12/29/2017 09:45:21</publishTime>
@@ -145,19 +145,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/29/2017 09:45:21</publishTime>
     </File>
     <File Include="bin/Core.dll">
-      <publishTime>04/18/2019 15:24:29</publishTime>
+      <publishTime>09/10/2019 20:33:12</publishTime>
     </File>
     <File Include="bin/Core.pdb">
-      <publishTime>04/18/2019 15:24:29</publishTime>
+      <publishTime>09/10/2019 20:33:12</publishTime>
     </File>
     <File Include="bin/Data.dll">
-      <publishTime>04/18/2019 15:24:29</publishTime>
+      <publishTime>09/10/2019 20:33:12</publishTime>
     </File>
     <File Include="bin/Data.dll.config">
-      <publishTime>04/18/2019 15:23:45</publishTime>
+      <publishTime>09/10/2019 20:31:57</publishTime>
     </File>
     <File Include="bin/Data.pdb">
-      <publishTime>04/18/2019 15:24:29</publishTime>
+      <publishTime>09/10/2019 20:33:12</publishTime>
     </File>
     <File Include="bin/DotNetZip.dll">
       <publishTime>06/22/2016 21:31:52</publishTime>
@@ -169,10 +169,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/29/2017 09:45:20</publishTime>
     </File>
     <File Include="bin/SIMS2017.dll">
-      <publishTime>04/19/2019 12:47:07</publishTime>
+      <publishTime>09/10/2019 20:33:15</publishTime>
     </File>
     <File Include="bin/SIMS2017.pdb">
-      <publishTime>04/19/2019 12:47:07</publishTime>
+      <publishTime>09/10/2019 20:33:15</publishTime>
     </File>
     <File Include="bin/SIMSCustomControl.dll">
       <publishTime>12/29/2017 09:45:18</publishTime>
@@ -331,7 +331,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/29/2017 09:45:21</publishTime>
     </File>
     <File Include="Modal/RecordEdit.aspx">
-      <publishTime>11/15/2018 09:12:44</publishTime>
+      <publishTime>04/29/2019 15:09:21</publishTime>
     </File>
     <File Include="NWISOpsRequest.aspx">
       <publishTime>12/29/2017 09:45:21</publishTime>
@@ -357,8 +357,23 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Service.asmx">
       <publishTime>12/29/2017 09:45:21</publishTime>
     </File>
+    <File Include="Services/FieldTripMap.ashx">
+      <publishTime>09/03/2019 21:07:15</publishTime>
+    </File>
+    <File Include="Services/go2OperatorDump.ashx">
+      <publishTime>06/17/2019 20:47:49</publishTime>
+    </File>
+    <File Include="Services/go2PASSDump.ashx">
+      <publishTime>06/17/2019 20:47:49</publishTime>
+    </File>
+    <File Include="Services/SIMSHome.ashx">
+      <publishTime>06/17/2019 20:47:49</publishTime>
+    </File>
+    <File Include="Services/StationsRpts.ashx">
+      <publishTime>06/25/2019 05:59:25</publishTime>
+    </File>
     <File Include="SIMS.Master">
-      <publishTime>04/18/2019 15:23:45</publishTime>
+      <publishTime>06/21/2019 13:52:32</publishTime>
     </File>
     <File Include="SIMSHome.aspx">
       <publishTime>03/11/2019 07:00:29</publishTime>
@@ -391,7 +406,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/21/2018 16:22:40</publishTime>
     </File>
     <File Include="StationInfo.aspx">
-      <publishTime>03/19/2019 16:16:01</publishTime>
+      <publishTime>09/10/2019 16:19:58</publishTime>
     </File>
     <File Include="styles/admin.css">
       <publishTime>11/15/2018 09:12:44</publishTime>
@@ -418,7 +433,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/29/2017 09:45:21</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>04/18/2019 15:24:31</publishTime>
+      <publishTime>09/10/2019 13:52:45</publishTime>
     </File>
   </ItemGroup>
 </Project>
