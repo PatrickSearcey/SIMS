@@ -441,7 +441,8 @@ namespace RMS.Report
                 audit_beg_dt = p.audit_beg_dt,
                 audit_end_dt = p.audit_end_dt,
                 months_since_last = CalculateMonthsSinceLast(p.audit_end_dt),
-                rms_record_id = p.rms_record_id
+                rms_record_id = p.rms_record_id,
+                SIMSURL = Config.SIMSURL
             }).ToList();
         }
 
