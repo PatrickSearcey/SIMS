@@ -61,6 +61,7 @@ namespace SIMS2017.Services
                         trip.office_id = rdr["office_id"].ToString();
                         trip.office_nm = rdr["office_nm"].ToString();
                         trip.office_trip_id = rdr["office_trip_id"].ToString();
+                        trip.office_rank = Convert.ToInt32(rdr["office_rank"]);
                         trip.trip_id = rdr["trip_id"].ToString();
                         trip.trip = rdr["trip"].ToString();
                         trip.site_id = rdr["site_id"].ToString();
@@ -118,6 +119,7 @@ namespace SIMS2017.Services
             public string office_id { get; set; }
             public string office_nm { get; set; }
             public string office_trip_id { get; set; }
+            public int office_rank { get; set; }
             public string trip_id { get; set; }
             public string trip { get; set; }
             public string site_id { get; set; }
