@@ -199,8 +199,8 @@
       <Column Name="site_contact_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="sha_site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="contact_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="SHA_SHAContact" Member="SHA" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHA" IsForeignKey="true" DeleteRule="CASCADE" />
       <Association Name="Contact_SHAContact" Member="Contact" ThisKey="contact_id" OtherKey="contact_id" Type="Contact" IsForeignKey="true" />
+      <Association Name="SHA_Site_Master_SHAContact" Member="SHA" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHA" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.SHA_Site_Equip" Member="SHAEquips">
@@ -208,7 +208,7 @@
       <Column Name="site_equip_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="sha_site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="recom_equip" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Association Name="SHA_SHAEquip" Member="SHA" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHA" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="SHA_Site_Master_SHAEquip" Member="SHA" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHA" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.SHA_Site_Hospital" Member="SHAHospitals">
@@ -216,8 +216,8 @@
       <Column Name="site_hospital_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="sha_site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="hospital_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="SHA_SHAHospital" Member="SHA" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHA" IsForeignKey="true" DeleteRule="CASCADE" />
       <Association Name="Hospital_SHAHospital" Member="Hospital" ThisKey="hospital_id" OtherKey="hospital_id" Type="Hospital" IsForeignKey="true" />
+      <Association Name="SHA_Site_Master_SHAHospital" Member="SHA" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHA" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.SHA_Site_JHA" Member="SHAJHAs">
@@ -228,28 +228,7 @@
       <Association Name="SHAJHA_SHASpecificCondition" Member="SHASpecificConditions" ThisKey="site_jha_id" OtherKey="site_jha_id" Type="SHASpecificCondition" />
       <Association Name="SHAJHA_SHAReferenceLevel" Member="SHAReferenceLevels" ThisKey="site_jha_id" OtherKey="site_jha_id" Type="SHAReferenceLevel" />
       <Association Name="ElementJHA_SHAJHA" Member="ElementJHA" ThisKey="elem_jha_id" OtherKey="elem_jha_id" Type="ElementJHA" IsForeignKey="true" />
-      <Association Name="SHA_SHAJHA" Member="SHA" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHA" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.SHA_Site_Master" Member="SHAs">
-    <Type Name="SHA">
-      <Column Name="sha_site_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="emerg_service" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="cell_service" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="updated_by" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="updated_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="reviewed_by" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
-      <Column Name="reviewed_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="approved_by" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
-      <Column Name="approved_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="reviewer_comments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Association Name="SHA_SHAContact" Member="SHAContacts" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHAContact" />
-      <Association Name="SHA_SHAEquip" Member="SHAEquips" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHAEquip" />
-      <Association Name="SHA_SHAHospital" Member="SHAHospitals" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHAHospital" />
-      <Association Name="SHA_SHAJHA" Member="SHAJHAs" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHAJHA" />
-      <Association Name="SHA_SHAServicing" Member="SHAServicings" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHAServicing" />
-      <Association Name="Site_SHA" Member="Site" ThisKey="site_id" OtherKey="site_id" Type="Site" IsForeignKey="true" />
+      <Association Name="SHA_Site_Master_SHAJHA" Member="SHA" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHA" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.SHA_Site_RefLevel" Member="SHAReferenceLevels">
@@ -270,7 +249,7 @@
       <Column Name="sha_site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="servicing_va" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="priority" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="SHA_SHAServicing" Member="SHA" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHA" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="SHA_Site_Master_SHAServicing" Member="SHA" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHA" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.Elem_Lut_ElemDetail" Member="ElementDetails">
@@ -644,13 +623,13 @@
       <Column Name="alt_basin_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
       <Association Name="Site_ElemReportApprove" Member="ElemReportApproves" ThisKey="site_id" OtherKey="site_id" Type="ElemReportApprove" />
       <Association Name="Site_ElemReportSum" Member="ElemReportSums" ThisKey="site_id" OtherKey="site_id" Type="ElemReportSum" />
-      <Association Name="Site_SHA" Member="SHAs" ThisKey="site_id" OtherKey="site_id" Type="SHA" />
       <Association Name="Site_TCPSite" Member="TCPSite" ThisKey="site_id" OtherKey="site_id" Type="TCPSite" Cardinality="One" />
       <Association Name="Site_OpsLevel" Member="OpsLevel" ThisKey="site_id" OtherKey="site_id" Type="OpsLevel" Cardinality="One" />
       <Association Name="Site_TripSite" Member="TripSites" ThisKey="site_id" OtherKey="site_id" Type="TripSite" />
       <Association Name="Site_SiteElement" Member="SiteElements" ThisKey="site_id" OtherKey="site_id" Type="SiteElement" />
       <Association Name="Site_Cableway" Member="Cableways" ThisKey="site_id" OtherKey="site_id" Type="Cableway" />
       <Association Name="Site_Record" Member="Records" ThisKey="site_id" OtherKey="site_id" Type="Record" />
+      <Association Name="Site_SHA_Site_Master" Member="SHAs" ThisKey="site_id" OtherKey="site_id" Type="SHA" />
       <Association Name="Office_Site" Member="Office" ThisKey="office_id" OtherKey="office_id" Type="Office" IsForeignKey="true" />
     </Type>
   </Table>
@@ -1328,6 +1307,25 @@
       <Column Name="office_cd" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Column Name="site_no" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
       <Column Name="office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SHA_Site_Master" Member="SHAs">
+    <Type Name="SHA">
+      <Column Name="sha_site_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="site_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="emerg_service" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="cell_service" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="reviewed_by" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="reviewed_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="approved_by" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="approved_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="reviewer_comments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="SHA_Site_Master_SHAContact" Member="SHAContacts" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHAContact" />
+      <Association Name="SHA_Site_Master_SHAEquip" Member="SHAEquips" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHAEquip" />
+      <Association Name="SHA_Site_Master_SHAHospital" Member="SHAHospitals" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHAHospital" />
+      <Association Name="SHA_Site_Master_SHAJHA" Member="SHAJHAs" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHAJHA" />
+      <Association Name="SHA_Site_Master_SHAServicing" Member="SHAServicings" ThisKey="sha_site_id" OtherKey="sha_site_id" Type="SHAServicing" />
+      <Association Name="Site_SHA_Site_Master" Member="Site" ThisKey="site_id" OtherKey="site_id" Type="Site" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">

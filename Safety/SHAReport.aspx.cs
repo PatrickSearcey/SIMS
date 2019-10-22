@@ -109,8 +109,6 @@ namespace Safety
             private string _site_no;
             private string _site_no_nm;
             private string _office_cd;
-            private string _updated_by;
-            private string _updated_dt;
             private string _reviewed_by;
             private string _reviewed_dt;
             private string _approved_by;
@@ -137,16 +135,6 @@ namespace Safety
             {
                 get { return _office_cd; }
                 set { _office_cd = value; }
-            }
-            public string updated_by
-            {
-                get { return _updated_by; }
-                set { _updated_by = value; }
-            }
-            public string updated_dt
-            {
-                get { return _updated_dt; }
-                set { _updated_dt = value; }
             }
             public string reviewed_by
             {
@@ -209,8 +197,6 @@ namespace Safety
                 _site_no = site_no;
                 _site_no_nm = site_no_nm;
                 _office_cd = office_cd;
-                _updated_by = updated_by;
-                _updated_dt = updated_dt;
                 _reviewed_by = reviewed_by;
                 _reviewed_dt = reviewed_dt;
                 _approved_by = approved_by;
@@ -232,6 +218,7 @@ namespace Safety
             get
             {
                 List<SHADataItem> data = new List<SHADataItem>();
+                DateTime oneYearAgo = DateTime.Now.AddDays(-365);
 
                 switch (grid_tp)
                 {
@@ -239,15 +226,13 @@ namespace Safety
                         data = (from p in db.vEval_FullSiteDiagnostics
                                 join s in db.SHAs on p.site_id equals s.site_id
                                 join w in db.WSCs on p.wsc_id equals w.wsc_id
-                                where (s.updated_dt < s.approved_dt && s.reviewed_dt < s.approved_dt && s.approved_by != "transfer") ||
-                                (s.approved_dt != null && s.approved_by != "transfer" && (s.updated_dt == null || s.reviewed_dt == null))
+                                where (s.reviewed_dt > oneYearAgo && s.reviewed_dt < s.approved_dt && s.approved_by != "transfer") ||
+                                (s.approved_dt != null && s.approved_by != "transfer" && (s.reviewed_dt == null))
                                 select new SHADataItem()
                                 {
                                     site_no = p.site_no,
                                     site_no_nm = p.site_no + " " + p.station_nm,
                                     office_cd = p.office_cd,
-                                    updated_by = s.updated_by,
-                                    updated_dt = String.Format("{0:MM/dd/yyyy}", s.updated_dt),
                                     reviewed_by = s.reviewed_by,
                                     reviewed_dt = String.Format("{0:MM/dd/yyyy}", s.reviewed_dt),
                                     approved_by = s.approved_by,
@@ -256,7 +241,7 @@ namespace Safety
                                     wsc_id = w.wsc_id.ToString(),
                                     wsc_cd = w.wsc_cd,
                                     region_cd = w.region_cd,
-                                    action = GetAction(s.updated_dt, s.reviewed_dt, s.approved_dt),
+                                    action = GetAction(s.reviewed_dt, s.approved_dt),
                                     site_tp_cd = p.site_tp_cd,
                                     agency_use_cd = p.agency_use_cd.ToString()
                                 }).OrderBy(p => p.region_cd).ThenBy(p => p.wsc_id).ThenBy(p => p.office_cd).ThenBy(p => p.site_no).ToList();
@@ -265,14 +250,12 @@ namespace Safety
                         data = (from p in db.vEval_FullSiteDiagnostics
                                 join s in db.SHAs on p.site_id equals s.site_id
                                 join w in db.WSCs on p.wsc_id equals w.wsc_id
-                                where (s.updated_dt > s.reviewed_dt) || (s.reviewed_dt == null) || (s.reviewed_by.Equals("transfer"))
+                                where (s.reviewed_dt == null) || (s.reviewed_by.Equals("transfer") || (s.reviewed_dt < oneYearAgo))
                                 select new SHADataItem()
                                 {
                                     site_no = p.site_no,
                                     site_no_nm = p.site_no + " " + p.station_nm,
                                     office_cd = p.office_cd,
-                                    updated_by = s.updated_by,
-                                    updated_dt = String.Format("{0:MM/dd/yyyy}", s.updated_dt),
                                     reviewed_by = s.reviewed_by,
                                     reviewed_dt = String.Format("{0:MM/dd/yyyy}", s.reviewed_dt),
                                     approved_by = s.approved_by,
@@ -281,7 +264,7 @@ namespace Safety
                                     wsc_id = w.wsc_id.ToString(),
                                     wsc_cd = w.wsc_cd,
                                     region_cd = w.region_cd,
-                                    action = GetAction(s.updated_dt, s.reviewed_dt, s.approved_dt),
+                                    action = GetAction(s.reviewed_dt, s.approved_dt),
                                     site_tp_cd = p.site_tp_cd,
                                     agency_use_cd = p.agency_use_cd.ToString()
                                 }).OrderBy(p => p.region_cd).ThenBy(p => p.wsc_id).ThenBy(p => p.office_cd).ThenBy(p => p.site_no).ToList();
@@ -290,15 +273,13 @@ namespace Safety
                         data = (from p in db.vEval_FullSiteDiagnostics
                                 join s in db.SHAs on p.site_id equals s.site_id
                                 join w in db.WSCs on p.wsc_id equals w.wsc_id
-                                where (s.updated_dt < s.reviewed_dt && s.reviewed_dt > s.approved_dt) || (s.reviewed_dt > s.updated_dt && s.approved_dt == null) ||
-                                (s.reviewed_dt > s.approved_dt && s.updated_dt == null) || (s.reviewed_dt != null && s.updated_dt == null && s.approved_dt == null)
+                                where (s.reviewed_dt > s.approved_dt) || (s.approved_dt == null) ||
+                                (s.reviewed_dt > s.approved_dt) || (s.reviewed_dt != null && s.approved_dt == null)
                                 select new SHADataItem()
                                 {
                                     site_no = p.site_no,
                                     site_no_nm = p.site_no + " " + p.station_nm,
                                     office_cd = p.office_cd,
-                                    updated_by = s.updated_by,
-                                    updated_dt = String.Format("{0:MM/dd/yyyy}", s.updated_dt),
                                     reviewed_by = s.reviewed_by,
                                     reviewed_dt = String.Format("{0:MM/dd/yyyy}", s.reviewed_dt),
                                     approved_by = s.approved_by,
@@ -307,7 +288,7 @@ namespace Safety
                                     wsc_id = w.wsc_id.ToString(),
                                     wsc_cd = w.wsc_cd,
                                     region_cd = w.region_cd,
-                                    action = GetAction(s.updated_dt, s.reviewed_dt, s.approved_dt),
+                                    action = GetAction(s.reviewed_dt, s.approved_dt),
                                     site_tp_cd = p.site_tp_cd,
                                     agency_use_cd = p.agency_use_cd.ToString()
                                 }).OrderBy(p => p.region_cd).ThenBy(p => p.wsc_id).ThenBy(p => p.office_cd).ThenBy(p => p.site_no).ToList();
@@ -347,19 +328,16 @@ namespace Safety
             }
         }
 
-        private string GetAction(DateTime? updated_dt, DateTime? reviewed_dt, DateTime? approved_dt)
+        private string GetAction(DateTime? reviewed_dt, DateTime? approved_dt)
         {
             string ret = "";
 
-            if (updated_dt != null)
+            if (reviewed_dt != null)
             {
-                if (updated_dt > reviewed_dt && updated_dt > approved_dt)
-                    ret = "Review";
-                else
-                    if (reviewed_dt > approved_dt) ret = "Approve"; else ret = "View";
+                if (reviewed_dt > approved_dt) ret = "Approve"; else ret = "Review";
             }
             else
-                ret = "View";
+                ret = "Review";
 
             return ret;
         }

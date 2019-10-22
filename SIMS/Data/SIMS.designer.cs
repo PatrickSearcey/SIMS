@@ -72,9 +72,6 @@ namespace Data
     partial void InsertSHAJHA(SHAJHA instance);
     partial void UpdateSHAJHA(SHAJHA instance);
     partial void DeleteSHAJHA(SHAJHA instance);
-    partial void InsertSHA(SHA instance);
-    partial void UpdateSHA(SHA instance);
-    partial void DeleteSHA(SHA instance);
     partial void InsertSHAReferenceLevel(SHAReferenceLevel instance);
     partial void UpdateSHAReferenceLevel(SHAReferenceLevel instance);
     partial void DeleteSHAReferenceLevel(SHAReferenceLevel instance);
@@ -207,6 +204,9 @@ namespace Data
     partial void InsertRMS_ts_aging(RMS_ts_aging instance);
     partial void UpdateRMS_ts_aging(RMS_ts_aging instance);
     partial void DeleteRMS_ts_aging(RMS_ts_aging instance);
+    partial void InsertSHA(SHA instance);
+    partial void UpdateSHA(SHA instance);
+    partial void DeleteSHA(SHA instance);
     #endregion
 		
 		public SIMSDataContext() : 
@@ -356,14 +356,6 @@ namespace Data
 			get
 			{
 				return this.GetTable<SHAJHA>();
-			}
-		}
-		
-		public System.Data.Linq.Table<SHA> SHAs
-		{
-			get
-			{
-				return this.GetTable<SHA>();
 			}
 		}
 		
@@ -940,6 +932,14 @@ namespace Data
 			get
 			{
 				return this.GetTable<RecordApprovalStatus>();
+			}
+		}
+		
+		public System.Data.Linq.Table<SHA> SHAs
+		{
+			get
+			{
+				return this.GetTable<SHA>();
 			}
 		}
 		
@@ -4990,9 +4990,9 @@ namespace Data
 		
 		private System.Nullable<int> _contact_id;
 		
-		private EntityRef<SHA> _SHA;
-		
 		private EntityRef<Contact> _Contact;
+		
+		private EntityRef<SHA> _SHA;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -5008,8 +5008,8 @@ namespace Data
 		
 		public SHAContact()
 		{
-			this._SHA = default(EntityRef<SHA>);
 			this._Contact = default(EntityRef<Contact>);
+			this._SHA = default(EntityRef<SHA>);
 			OnCreated();
 		}
 		
@@ -5081,40 +5081,6 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_SHAContact", Storage="_SHA", ThisKey="sha_site_id", OtherKey="sha_site_id", IsForeignKey=true, DeleteRule="CASCADE")]
-		public SHA SHA
-		{
-			get
-			{
-				return this._SHA.Entity;
-			}
-			set
-			{
-				SHA previousValue = this._SHA.Entity;
-				if (((previousValue != value) 
-							|| (this._SHA.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SHA.Entity = null;
-						previousValue.SHAContacts.Remove(this);
-					}
-					this._SHA.Entity = value;
-					if ((value != null))
-					{
-						value.SHAContacts.Add(this);
-						this._sha_site_id = value.sha_site_id;
-					}
-					else
-					{
-						this._sha_site_id = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("SHA");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Contact_SHAContact", Storage="_Contact", ThisKey="contact_id", OtherKey="contact_id", IsForeignKey=true)]
 		public Contact Contact
 		{
@@ -5145,6 +5111,40 @@ namespace Data
 						this._contact_id = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Contact");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Site_Master_SHAContact", Storage="_SHA", ThisKey="sha_site_id", OtherKey="sha_site_id", IsForeignKey=true, DeleteRule="CASCADE")]
+		public SHA SHA
+		{
+			get
+			{
+				return this._SHA.Entity;
+			}
+			set
+			{
+				SHA previousValue = this._SHA.Entity;
+				if (((previousValue != value) 
+							|| (this._SHA.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SHA.Entity = null;
+						previousValue.SHAContacts.Remove(this);
+					}
+					this._SHA.Entity = value;
+					if ((value != null))
+					{
+						value.SHAContacts.Add(this);
+						this._sha_site_id = value.sha_site_id;
+					}
+					else
+					{
+						this._sha_site_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("SHA");
 				}
 			}
 		}
@@ -5266,7 +5266,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_SHAEquip", Storage="_SHA", ThisKey="sha_site_id", OtherKey="sha_site_id", IsForeignKey=true, DeleteRule="CASCADE")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Site_Master_SHAEquip", Storage="_SHA", ThisKey="sha_site_id", OtherKey="sha_site_id", IsForeignKey=true, DeleteRule="CASCADE")]
 		public SHA SHA
 		{
 			get
@@ -5333,9 +5333,9 @@ namespace Data
 		
 		private System.Nullable<int> _hospital_id;
 		
-		private EntityRef<SHA> _SHA;
-		
 		private EntityRef<Hospital> _Hospital;
+		
+		private EntityRef<SHA> _SHA;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -5351,8 +5351,8 @@ namespace Data
 		
 		public SHAHospital()
 		{
-			this._SHA = default(EntityRef<SHA>);
 			this._Hospital = default(EntityRef<Hospital>);
+			this._SHA = default(EntityRef<SHA>);
 			OnCreated();
 		}
 		
@@ -5424,40 +5424,6 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_SHAHospital", Storage="_SHA", ThisKey="sha_site_id", OtherKey="sha_site_id", IsForeignKey=true, DeleteRule="CASCADE")]
-		public SHA SHA
-		{
-			get
-			{
-				return this._SHA.Entity;
-			}
-			set
-			{
-				SHA previousValue = this._SHA.Entity;
-				if (((previousValue != value) 
-							|| (this._SHA.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SHA.Entity = null;
-						previousValue.SHAHospitals.Remove(this);
-					}
-					this._SHA.Entity = value;
-					if ((value != null))
-					{
-						value.SHAHospitals.Add(this);
-						this._sha_site_id = value.sha_site_id;
-					}
-					else
-					{
-						this._sha_site_id = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("SHA");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Hospital_SHAHospital", Storage="_Hospital", ThisKey="hospital_id", OtherKey="hospital_id", IsForeignKey=true)]
 		public Hospital Hospital
 		{
@@ -5488,6 +5454,40 @@ namespace Data
 						this._hospital_id = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Hospital");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Site_Master_SHAHospital", Storage="_SHA", ThisKey="sha_site_id", OtherKey="sha_site_id", IsForeignKey=true, DeleteRule="CASCADE")]
+		public SHA SHA
+		{
+			get
+			{
+				return this._SHA.Entity;
+			}
+			set
+			{
+				SHA previousValue = this._SHA.Entity;
+				if (((previousValue != value) 
+							|| (this._SHA.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SHA.Entity = null;
+						previousValue.SHAHospitals.Remove(this);
+					}
+					this._SHA.Entity = value;
+					if ((value != null))
+					{
+						value.SHAHospitals.Add(this);
+						this._sha_site_id = value.sha_site_id;
+					}
+					else
+					{
+						this._sha_site_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("SHA");
 				}
 			}
 		}
@@ -5682,7 +5682,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_SHAJHA", Storage="_SHA", ThisKey="sha_site_id", OtherKey="sha_site_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Site_Master_SHAJHA", Storage="_SHA", ThisKey="sha_site_id", OtherKey="sha_site_id", IsForeignKey=true)]
 		public SHA SHA
 		{
 			get
@@ -5758,489 +5758,6 @@ namespace Data
 		{
 			this.SendPropertyChanging();
 			entity.SHAJHA = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SHA_Site_Master")]
-	public partial class SHA : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _sha_site_id;
-		
-		private System.Nullable<int> _site_id;
-		
-		private System.Nullable<bool> _emerg_service;
-		
-		private System.Nullable<bool> _cell_service;
-		
-		private string _updated_by;
-		
-		private System.Nullable<System.DateTime> _updated_dt;
-		
-		private string _reviewed_by;
-		
-		private System.Nullable<System.DateTime> _reviewed_dt;
-		
-		private string _approved_by;
-		
-		private System.Nullable<System.DateTime> _approved_dt;
-		
-		private string _reviewer_comments;
-		
-		private EntitySet<SHAContact> _SHAContacts;
-		
-		private EntitySet<SHAEquip> _SHAEquips;
-		
-		private EntitySet<SHAHospital> _SHAHospitals;
-		
-		private EntitySet<SHAJHA> _SHAJHAs;
-		
-		private EntitySet<SHAServicing> _SHAServicings;
-		
-		private EntityRef<Site> _Site;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onsha_site_idChanging(int value);
-    partial void Onsha_site_idChanged();
-    partial void Onsite_idChanging(System.Nullable<int> value);
-    partial void Onsite_idChanged();
-    partial void Onemerg_serviceChanging(System.Nullable<bool> value);
-    partial void Onemerg_serviceChanged();
-    partial void Oncell_serviceChanging(System.Nullable<bool> value);
-    partial void Oncell_serviceChanged();
-    partial void Onupdated_byChanging(string value);
-    partial void Onupdated_byChanged();
-    partial void Onupdated_dtChanging(System.Nullable<System.DateTime> value);
-    partial void Onupdated_dtChanged();
-    partial void Onreviewed_byChanging(string value);
-    partial void Onreviewed_byChanged();
-    partial void Onreviewed_dtChanging(System.Nullable<System.DateTime> value);
-    partial void Onreviewed_dtChanged();
-    partial void Onapproved_byChanging(string value);
-    partial void Onapproved_byChanged();
-    partial void Onapproved_dtChanging(System.Nullable<System.DateTime> value);
-    partial void Onapproved_dtChanged();
-    partial void Onreviewer_commentsChanging(string value);
-    partial void Onreviewer_commentsChanged();
-    #endregion
-		
-		public SHA()
-		{
-			this._SHAContacts = new EntitySet<SHAContact>(new Action<SHAContact>(this.attach_SHAContacts), new Action<SHAContact>(this.detach_SHAContacts));
-			this._SHAEquips = new EntitySet<SHAEquip>(new Action<SHAEquip>(this.attach_SHAEquips), new Action<SHAEquip>(this.detach_SHAEquips));
-			this._SHAHospitals = new EntitySet<SHAHospital>(new Action<SHAHospital>(this.attach_SHAHospitals), new Action<SHAHospital>(this.detach_SHAHospitals));
-			this._SHAJHAs = new EntitySet<SHAJHA>(new Action<SHAJHA>(this.attach_SHAJHAs), new Action<SHAJHA>(this.detach_SHAJHAs));
-			this._SHAServicings = new EntitySet<SHAServicing>(new Action<SHAServicing>(this.attach_SHAServicings), new Action<SHAServicing>(this.detach_SHAServicings));
-			this._Site = default(EntityRef<Site>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sha_site_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int sha_site_id
-		{
-			get
-			{
-				return this._sha_site_id;
-			}
-			set
-			{
-				if ((this._sha_site_id != value))
-				{
-					this.Onsha_site_idChanging(value);
-					this.SendPropertyChanging();
-					this._sha_site_id = value;
-					this.SendPropertyChanged("sha_site_id");
-					this.Onsha_site_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int")]
-		public System.Nullable<int> site_id
-		{
-			get
-			{
-				return this._site_id;
-			}
-			set
-			{
-				if ((this._site_id != value))
-				{
-					if (this._Site.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onsite_idChanging(value);
-					this.SendPropertyChanging();
-					this._site_id = value;
-					this.SendPropertyChanged("site_id");
-					this.Onsite_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_emerg_service", DbType="Bit")]
-		public System.Nullable<bool> emerg_service
-		{
-			get
-			{
-				return this._emerg_service;
-			}
-			set
-			{
-				if ((this._emerg_service != value))
-				{
-					this.Onemerg_serviceChanging(value);
-					this.SendPropertyChanging();
-					this._emerg_service = value;
-					this.SendPropertyChanged("emerg_service");
-					this.Onemerg_serviceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cell_service", DbType="Bit")]
-		public System.Nullable<bool> cell_service
-		{
-			get
-			{
-				return this._cell_service;
-			}
-			set
-			{
-				if ((this._cell_service != value))
-				{
-					this.Oncell_serviceChanging(value);
-					this.SendPropertyChanging();
-					this._cell_service = value;
-					this.SendPropertyChanged("cell_service");
-					this.Oncell_serviceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_updated_by", DbType="NVarChar(20)")]
-		public string updated_by
-		{
-			get
-			{
-				return this._updated_by;
-			}
-			set
-			{
-				if ((this._updated_by != value))
-				{
-					this.Onupdated_byChanging(value);
-					this.SendPropertyChanging();
-					this._updated_by = value;
-					this.SendPropertyChanged("updated_by");
-					this.Onupdated_byChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_updated_dt", DbType="DateTime")]
-		public System.Nullable<System.DateTime> updated_dt
-		{
-			get
-			{
-				return this._updated_dt;
-			}
-			set
-			{
-				if ((this._updated_dt != value))
-				{
-					this.Onupdated_dtChanging(value);
-					this.SendPropertyChanging();
-					this._updated_dt = value;
-					this.SendPropertyChanged("updated_dt");
-					this.Onupdated_dtChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_reviewed_by", DbType="NVarChar(15)")]
-		public string reviewed_by
-		{
-			get
-			{
-				return this._reviewed_by;
-			}
-			set
-			{
-				if ((this._reviewed_by != value))
-				{
-					this.Onreviewed_byChanging(value);
-					this.SendPropertyChanging();
-					this._reviewed_by = value;
-					this.SendPropertyChanged("reviewed_by");
-					this.Onreviewed_byChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_reviewed_dt", DbType="DateTime")]
-		public System.Nullable<System.DateTime> reviewed_dt
-		{
-			get
-			{
-				return this._reviewed_dt;
-			}
-			set
-			{
-				if ((this._reviewed_dt != value))
-				{
-					this.Onreviewed_dtChanging(value);
-					this.SendPropertyChanging();
-					this._reviewed_dt = value;
-					this.SendPropertyChanged("reviewed_dt");
-					this.Onreviewed_dtChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved_by", DbType="NVarChar(15)")]
-		public string approved_by
-		{
-			get
-			{
-				return this._approved_by;
-			}
-			set
-			{
-				if ((this._approved_by != value))
-				{
-					this.Onapproved_byChanging(value);
-					this.SendPropertyChanging();
-					this._approved_by = value;
-					this.SendPropertyChanged("approved_by");
-					this.Onapproved_byChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved_dt", DbType="DateTime")]
-		public System.Nullable<System.DateTime> approved_dt
-		{
-			get
-			{
-				return this._approved_dt;
-			}
-			set
-			{
-				if ((this._approved_dt != value))
-				{
-					this.Onapproved_dtChanging(value);
-					this.SendPropertyChanging();
-					this._approved_dt = value;
-					this.SendPropertyChanged("approved_dt");
-					this.Onapproved_dtChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_reviewer_comments", DbType="NVarChar(MAX)")]
-		public string reviewer_comments
-		{
-			get
-			{
-				return this._reviewer_comments;
-			}
-			set
-			{
-				if ((this._reviewer_comments != value))
-				{
-					this.Onreviewer_commentsChanging(value);
-					this.SendPropertyChanging();
-					this._reviewer_comments = value;
-					this.SendPropertyChanged("reviewer_comments");
-					this.Onreviewer_commentsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_SHAContact", Storage="_SHAContacts", ThisKey="sha_site_id", OtherKey="sha_site_id")]
-		public EntitySet<SHAContact> SHAContacts
-		{
-			get
-			{
-				return this._SHAContacts;
-			}
-			set
-			{
-				this._SHAContacts.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_SHAEquip", Storage="_SHAEquips", ThisKey="sha_site_id", OtherKey="sha_site_id")]
-		public EntitySet<SHAEquip> SHAEquips
-		{
-			get
-			{
-				return this._SHAEquips;
-			}
-			set
-			{
-				this._SHAEquips.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_SHAHospital", Storage="_SHAHospitals", ThisKey="sha_site_id", OtherKey="sha_site_id")]
-		public EntitySet<SHAHospital> SHAHospitals
-		{
-			get
-			{
-				return this._SHAHospitals;
-			}
-			set
-			{
-				this._SHAHospitals.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_SHAJHA", Storage="_SHAJHAs", ThisKey="sha_site_id", OtherKey="sha_site_id")]
-		public EntitySet<SHAJHA> SHAJHAs
-		{
-			get
-			{
-				return this._SHAJHAs;
-			}
-			set
-			{
-				this._SHAJHAs.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_SHAServicing", Storage="_SHAServicings", ThisKey="sha_site_id", OtherKey="sha_site_id")]
-		public EntitySet<SHAServicing> SHAServicings
-		{
-			get
-			{
-				return this._SHAServicings;
-			}
-			set
-			{
-				this._SHAServicings.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_SHA", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
-		public Site Site
-		{
-			get
-			{
-				return this._Site.Entity;
-			}
-			set
-			{
-				Site previousValue = this._Site.Entity;
-				if (((previousValue != value) 
-							|| (this._Site.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Site.Entity = null;
-						previousValue.SHAs.Remove(this);
-					}
-					this._Site.Entity = value;
-					if ((value != null))
-					{
-						value.SHAs.Add(this);
-						this._site_id = value.site_id;
-					}
-					else
-					{
-						this._site_id = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Site");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_SHAContacts(SHAContact entity)
-		{
-			this.SendPropertyChanging();
-			entity.SHA = this;
-		}
-		
-		private void detach_SHAContacts(SHAContact entity)
-		{
-			this.SendPropertyChanging();
-			entity.SHA = null;
-		}
-		
-		private void attach_SHAEquips(SHAEquip entity)
-		{
-			this.SendPropertyChanging();
-			entity.SHA = this;
-		}
-		
-		private void detach_SHAEquips(SHAEquip entity)
-		{
-			this.SendPropertyChanging();
-			entity.SHA = null;
-		}
-		
-		private void attach_SHAHospitals(SHAHospital entity)
-		{
-			this.SendPropertyChanging();
-			entity.SHA = this;
-		}
-		
-		private void detach_SHAHospitals(SHAHospital entity)
-		{
-			this.SendPropertyChanging();
-			entity.SHA = null;
-		}
-		
-		private void attach_SHAJHAs(SHAJHA entity)
-		{
-			this.SendPropertyChanging();
-			entity.SHA = this;
-		}
-		
-		private void detach_SHAJHAs(SHAJHA entity)
-		{
-			this.SendPropertyChanging();
-			entity.SHA = null;
-		}
-		
-		private void attach_SHAServicings(SHAServicing entity)
-		{
-			this.SendPropertyChanging();
-			entity.SHA = this;
-		}
-		
-		private void detach_SHAServicings(SHAServicing entity)
-		{
-			this.SendPropertyChanging();
-			entity.SHA = null;
 		}
 	}
 	
@@ -6628,7 +6145,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_SHAServicing", Storage="_SHA", ThisKey="sha_site_id", OtherKey="sha_site_id", IsForeignKey=true, DeleteRule="CASCADE")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Site_Master_SHAServicing", Storage="_SHA", ThisKey="sha_site_id", OtherKey="sha_site_id", IsForeignKey=true, DeleteRule="CASCADE")]
 		public SHA SHA
 		{
 			get
@@ -13217,8 +12734,6 @@ namespace Data
 		
 		private EntitySet<ElemReportSum> _ElemReportSums;
 		
-		private EntitySet<SHA> _SHAs;
-		
 		private EntityRef<TCPSite> _TCPSite;
 		
 		private EntityRef<OpsLevel> _OpsLevel;
@@ -13230,6 +12745,8 @@ namespace Data
 		private EntitySet<Cableway> _Cableways;
 		
 		private EntitySet<Record> _Records;
+		
+		private EntitySet<SHA> _SHAs;
 		
 		private EntityRef<Office> _Office;
 		
@@ -13261,13 +12778,13 @@ namespace Data
 		{
 			this._ElemReportApproves = new EntitySet<ElemReportApprove>(new Action<ElemReportApprove>(this.attach_ElemReportApproves), new Action<ElemReportApprove>(this.detach_ElemReportApproves));
 			this._ElemReportSums = new EntitySet<ElemReportSum>(new Action<ElemReportSum>(this.attach_ElemReportSums), new Action<ElemReportSum>(this.detach_ElemReportSums));
-			this._SHAs = new EntitySet<SHA>(new Action<SHA>(this.attach_SHAs), new Action<SHA>(this.detach_SHAs));
 			this._TCPSite = default(EntityRef<TCPSite>);
 			this._OpsLevel = default(EntityRef<OpsLevel>);
 			this._TripSites = new EntitySet<TripSite>(new Action<TripSite>(this.attach_TripSites), new Action<TripSite>(this.detach_TripSites));
 			this._SiteElements = new EntitySet<SiteElement>(new Action<SiteElement>(this.attach_SiteElements), new Action<SiteElement>(this.detach_SiteElements));
 			this._Cableways = new EntitySet<Cableway>(new Action<Cableway>(this.attach_Cableways), new Action<Cableway>(this.detach_Cableways));
 			this._Records = new EntitySet<Record>(new Action<Record>(this.attach_Records), new Action<Record>(this.detach_Records));
+			this._SHAs = new EntitySet<SHA>(new Action<SHA>(this.attach_SHAs), new Action<SHA>(this.detach_SHAs));
 			this._Office = default(EntityRef<Office>);
 			OnCreated();
 		}
@@ -13482,19 +12999,6 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_SHA", Storage="_SHAs", ThisKey="site_id", OtherKey="site_id")]
-		public EntitySet<SHA> SHAs
-		{
-			get
-			{
-				return this._SHAs;
-			}
-			set
-			{
-				this._SHAs.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_TCPSite", Storage="_TCPSite", ThisKey="site_id", OtherKey="site_id", IsUnique=true, IsForeignKey=false)]
 		public TCPSite TCPSite
 		{
@@ -13605,6 +13109,19 @@ namespace Data
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_SHA_Site_Master", Storage="_SHAs", ThisKey="site_id", OtherKey="site_id")]
+		public EntitySet<SHA> SHAs
+		{
+			get
+			{
+				return this._SHAs;
+			}
+			set
+			{
+				this._SHAs.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Office_Site", Storage="_Office", ThisKey="office_id", OtherKey="office_id", IsForeignKey=true)]
 		public Office Office
 		{
@@ -13683,18 +13200,6 @@ namespace Data
 			entity.Site = null;
 		}
 		
-		private void attach_SHAs(SHA entity)
-		{
-			this.SendPropertyChanging();
-			entity.Site = this;
-		}
-		
-		private void detach_SHAs(SHA entity)
-		{
-			this.SendPropertyChanging();
-			entity.Site = null;
-		}
-		
 		private void attach_TripSites(TripSite entity)
 		{
 			this.SendPropertyChanging();
@@ -13738,6 +13243,18 @@ namespace Data
 		}
 		
 		private void detach_Records(Record entity)
+		{
+			this.SendPropertyChanging();
+			entity.Site = null;
+		}
+		
+		private void attach_SHAs(SHA entity)
+		{
+			this.SendPropertyChanging();
+			entity.Site = this;
+		}
+		
+		private void detach_SHAs(SHA entity)
 		{
 			this.SendPropertyChanging();
 			entity.Site = null;
@@ -25532,6 +25049,441 @@ namespace Data
 					this._office_id = value;
 				}
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SHA_Site_Master")]
+	public partial class SHA : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _sha_site_id;
+		
+		private System.Nullable<int> _site_id;
+		
+		private System.Nullable<bool> _emerg_service;
+		
+		private System.Nullable<bool> _cell_service;
+		
+		private string _reviewed_by;
+		
+		private System.Nullable<System.DateTime> _reviewed_dt;
+		
+		private string _approved_by;
+		
+		private System.Nullable<System.DateTime> _approved_dt;
+		
+		private string _reviewer_comments;
+		
+		private EntitySet<SHAContact> _SHAContacts;
+		
+		private EntitySet<SHAEquip> _SHAEquips;
+		
+		private EntitySet<SHAHospital> _SHAHospitals;
+		
+		private EntitySet<SHAJHA> _SHAJHAs;
+		
+		private EntitySet<SHAServicing> _SHAServicings;
+		
+		private EntityRef<Site> _Site;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onsha_site_idChanging(int value);
+    partial void Onsha_site_idChanged();
+    partial void Onsite_idChanging(System.Nullable<int> value);
+    partial void Onsite_idChanged();
+    partial void Onemerg_serviceChanging(System.Nullable<bool> value);
+    partial void Onemerg_serviceChanged();
+    partial void Oncell_serviceChanging(System.Nullable<bool> value);
+    partial void Oncell_serviceChanged();
+    partial void Onreviewed_byChanging(string value);
+    partial void Onreviewed_byChanged();
+    partial void Onreviewed_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onreviewed_dtChanged();
+    partial void Onapproved_byChanging(string value);
+    partial void Onapproved_byChanged();
+    partial void Onapproved_dtChanging(System.Nullable<System.DateTime> value);
+    partial void Onapproved_dtChanged();
+    partial void Onreviewer_commentsChanging(string value);
+    partial void Onreviewer_commentsChanged();
+    #endregion
+		
+		public SHA()
+		{
+			this._SHAContacts = new EntitySet<SHAContact>(new Action<SHAContact>(this.attach_SHAContacts), new Action<SHAContact>(this.detach_SHAContacts));
+			this._SHAEquips = new EntitySet<SHAEquip>(new Action<SHAEquip>(this.attach_SHAEquips), new Action<SHAEquip>(this.detach_SHAEquips));
+			this._SHAHospitals = new EntitySet<SHAHospital>(new Action<SHAHospital>(this.attach_SHAHospitals), new Action<SHAHospital>(this.detach_SHAHospitals));
+			this._SHAJHAs = new EntitySet<SHAJHA>(new Action<SHAJHA>(this.attach_SHAJHAs), new Action<SHAJHA>(this.detach_SHAJHAs));
+			this._SHAServicings = new EntitySet<SHAServicing>(new Action<SHAServicing>(this.attach_SHAServicings), new Action<SHAServicing>(this.detach_SHAServicings));
+			this._Site = default(EntityRef<Site>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sha_site_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int sha_site_id
+		{
+			get
+			{
+				return this._sha_site_id;
+			}
+			set
+			{
+				if ((this._sha_site_id != value))
+				{
+					this.Onsha_site_idChanging(value);
+					this.SendPropertyChanging();
+					this._sha_site_id = value;
+					this.SendPropertyChanged("sha_site_id");
+					this.Onsha_site_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_site_id", DbType="Int")]
+		public System.Nullable<int> site_id
+		{
+			get
+			{
+				return this._site_id;
+			}
+			set
+			{
+				if ((this._site_id != value))
+				{
+					if (this._Site.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onsite_idChanging(value);
+					this.SendPropertyChanging();
+					this._site_id = value;
+					this.SendPropertyChanged("site_id");
+					this.Onsite_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_emerg_service", DbType="Bit")]
+		public System.Nullable<bool> emerg_service
+		{
+			get
+			{
+				return this._emerg_service;
+			}
+			set
+			{
+				if ((this._emerg_service != value))
+				{
+					this.Onemerg_serviceChanging(value);
+					this.SendPropertyChanging();
+					this._emerg_service = value;
+					this.SendPropertyChanged("emerg_service");
+					this.Onemerg_serviceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cell_service", DbType="Bit")]
+		public System.Nullable<bool> cell_service
+		{
+			get
+			{
+				return this._cell_service;
+			}
+			set
+			{
+				if ((this._cell_service != value))
+				{
+					this.Oncell_serviceChanging(value);
+					this.SendPropertyChanging();
+					this._cell_service = value;
+					this.SendPropertyChanged("cell_service");
+					this.Oncell_serviceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_reviewed_by", DbType="NVarChar(15)")]
+		public string reviewed_by
+		{
+			get
+			{
+				return this._reviewed_by;
+			}
+			set
+			{
+				if ((this._reviewed_by != value))
+				{
+					this.Onreviewed_byChanging(value);
+					this.SendPropertyChanging();
+					this._reviewed_by = value;
+					this.SendPropertyChanged("reviewed_by");
+					this.Onreviewed_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_reviewed_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> reviewed_dt
+		{
+			get
+			{
+				return this._reviewed_dt;
+			}
+			set
+			{
+				if ((this._reviewed_dt != value))
+				{
+					this.Onreviewed_dtChanging(value);
+					this.SendPropertyChanging();
+					this._reviewed_dt = value;
+					this.SendPropertyChanged("reviewed_dt");
+					this.Onreviewed_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved_by", DbType="NVarChar(15)")]
+		public string approved_by
+		{
+			get
+			{
+				return this._approved_by;
+			}
+			set
+			{
+				if ((this._approved_by != value))
+				{
+					this.Onapproved_byChanging(value);
+					this.SendPropertyChanging();
+					this._approved_by = value;
+					this.SendPropertyChanged("approved_by");
+					this.Onapproved_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved_dt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> approved_dt
+		{
+			get
+			{
+				return this._approved_dt;
+			}
+			set
+			{
+				if ((this._approved_dt != value))
+				{
+					this.Onapproved_dtChanging(value);
+					this.SendPropertyChanging();
+					this._approved_dt = value;
+					this.SendPropertyChanged("approved_dt");
+					this.Onapproved_dtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_reviewer_comments", DbType="NVarChar(MAX)")]
+		public string reviewer_comments
+		{
+			get
+			{
+				return this._reviewer_comments;
+			}
+			set
+			{
+				if ((this._reviewer_comments != value))
+				{
+					this.Onreviewer_commentsChanging(value);
+					this.SendPropertyChanging();
+					this._reviewer_comments = value;
+					this.SendPropertyChanged("reviewer_comments");
+					this.Onreviewer_commentsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Site_Master_SHAContact", Storage="_SHAContacts", ThisKey="sha_site_id", OtherKey="sha_site_id")]
+		public EntitySet<SHAContact> SHAContacts
+		{
+			get
+			{
+				return this._SHAContacts;
+			}
+			set
+			{
+				this._SHAContacts.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Site_Master_SHAEquip", Storage="_SHAEquips", ThisKey="sha_site_id", OtherKey="sha_site_id")]
+		public EntitySet<SHAEquip> SHAEquips
+		{
+			get
+			{
+				return this._SHAEquips;
+			}
+			set
+			{
+				this._SHAEquips.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Site_Master_SHAHospital", Storage="_SHAHospitals", ThisKey="sha_site_id", OtherKey="sha_site_id")]
+		public EntitySet<SHAHospital> SHAHospitals
+		{
+			get
+			{
+				return this._SHAHospitals;
+			}
+			set
+			{
+				this._SHAHospitals.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Site_Master_SHAJHA", Storage="_SHAJHAs", ThisKey="sha_site_id", OtherKey="sha_site_id")]
+		public EntitySet<SHAJHA> SHAJHAs
+		{
+			get
+			{
+				return this._SHAJHAs;
+			}
+			set
+			{
+				this._SHAJHAs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SHA_Site_Master_SHAServicing", Storage="_SHAServicings", ThisKey="sha_site_id", OtherKey="sha_site_id")]
+		public EntitySet<SHAServicing> SHAServicings
+		{
+			get
+			{
+				return this._SHAServicings;
+			}
+			set
+			{
+				this._SHAServicings.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_SHA_Site_Master", Storage="_Site", ThisKey="site_id", OtherKey="site_id", IsForeignKey=true)]
+		public Site Site
+		{
+			get
+			{
+				return this._Site.Entity;
+			}
+			set
+			{
+				Site previousValue = this._Site.Entity;
+				if (((previousValue != value) 
+							|| (this._Site.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Site.Entity = null;
+						previousValue.SHAs.Remove(this);
+					}
+					this._Site.Entity = value;
+					if ((value != null))
+					{
+						value.SHAs.Add(this);
+						this._site_id = value.site_id;
+					}
+					else
+					{
+						this._site_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Site");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_SHAContacts(SHAContact entity)
+		{
+			this.SendPropertyChanging();
+			entity.SHA = this;
+		}
+		
+		private void detach_SHAContacts(SHAContact entity)
+		{
+			this.SendPropertyChanging();
+			entity.SHA = null;
+		}
+		
+		private void attach_SHAEquips(SHAEquip entity)
+		{
+			this.SendPropertyChanging();
+			entity.SHA = this;
+		}
+		
+		private void detach_SHAEquips(SHAEquip entity)
+		{
+			this.SendPropertyChanging();
+			entity.SHA = null;
+		}
+		
+		private void attach_SHAHospitals(SHAHospital entity)
+		{
+			this.SendPropertyChanging();
+			entity.SHA = this;
+		}
+		
+		private void detach_SHAHospitals(SHAHospital entity)
+		{
+			this.SendPropertyChanging();
+			entity.SHA = null;
+		}
+		
+		private void attach_SHAJHAs(SHAJHA entity)
+		{
+			this.SendPropertyChanging();
+			entity.SHA = this;
+		}
+		
+		private void detach_SHAJHAs(SHAJHA entity)
+		{
+			this.SendPropertyChanging();
+			entity.SHA = null;
+		}
+		
+		private void attach_SHAServicings(SHAServicing entity)
+		{
+			this.SendPropertyChanging();
+			entity.SHA = this;
+		}
+		
+		private void detach_SHAServicings(SHAServicing entity)
+		{
+			this.SendPropertyChanging();
+			entity.SHA = null;
 		}
 	}
 	

@@ -68,6 +68,7 @@
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="lbToggleEquipEditMode" />
                     <telerik:AjaxUpdatedControl ControlID="hfToggleEquipEditMode" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlAdmin" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="lbAddSiteSpecificInfo">
@@ -91,6 +92,7 @@
                     <telerik:AjaxUpdatedControl ControlID="lvServicingSiteSpecificCond" LoadingPanelID="ralp" />
                     <telerik:AjaxUpdatedControl ControlID="lbToggleHazardEditMode" />
                     <telerik:AjaxUpdatedControl ControlID="rlbHazards" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlAdmin" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="btnAddEquip">
@@ -98,6 +100,7 @@
                     <telerik:AjaxUpdatedControl ControlID="lvServicingSiteRecEquip" LoadingPanelID="ralp" />
                     <telerik:AjaxUpdatedControl ControlID="lbToggleEquipEditMode" />
                     <telerik:AjaxUpdatedControl ControlID="rlbEquip" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlAdmin" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="lvServicingSiteSpecificCond">
@@ -105,6 +108,7 @@
                     <telerik:AjaxUpdatedControl ControlID="lvServicingSiteSpecificCond" LoadingPanelID="ralp" />
                     <telerik:AjaxUpdatedControl ControlID="lbToggleHazardEditMode" />
                     <telerik:AjaxUpdatedControl ControlID="hfToggleHazardEditMode" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlAdmin" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="btnNewMeasType">
@@ -115,6 +119,7 @@
                     <telerik:AjaxUpdatedControl ControlID="btnNewMeasType" />
                     <telerik:AjaxUpdatedControl ControlID="lblError1" />
                     <telerik:AjaxUpdatedControl ControlID="lblSuccess1" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlAdmin" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="lbToggleElementEditMode">
@@ -135,6 +140,7 @@
                     <telerik:AjaxUpdatedControl ControlID="ltlElemInfo" />
                     <telerik:AjaxUpdatedControl ControlID="pnlStaticElemInfo" LoadingPanelID="ralp" />
                     <telerik:AjaxUpdatedControl ControlID="pnlEditElemInfo" LoadingPanelID="ralp" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlAdmin" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="btnCloseElemInfoEditing">
@@ -158,6 +164,7 @@
                     <telerik:AjaxUpdatedControl ControlID="rgHospitals" LoadingPanelID="ralp" />
                     <telerik:AjaxUpdatedControl ControlID="ltlNotice2" />
                     <telerik:AjaxUpdatedControl ControlID="ltlNotice1" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlAdmin" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="rgContacts">
@@ -165,6 +172,7 @@
                     <telerik:AjaxUpdatedControl ControlID="rgContacts" LoadingPanelID="ralp" />
                     <telerik:AjaxUpdatedControl ControlID="ltlNotice2" />
                     <telerik:AjaxUpdatedControl ControlID="ltlNotice1" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlAdmin" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="lbReview">
@@ -202,11 +210,13 @@
             <telerik:AjaxSetting AjaxControlID="lb911Service">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="lbl911Service" LoadingPanelID="ralp" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlAdmin" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
             <telerik:AjaxSetting AjaxControlID="lbCellService">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="lblCellService" LoadingPanelID="ralp" />
+                    <telerik:AjaxUpdatedControl ControlID="pnlAdmin" />
                 </UpdatedControls>
             </telerik:AjaxSetting>
         </AjaxSettings>
@@ -593,7 +603,7 @@
             <h4 class="sectionHeadings">Review Info</h4>
             <p><label>Last Reviewed By:</label> <asp:Literal ID="ltlReviewedBy" runat="server" /> &nbsp;&nbsp;&nbsp;<label>Last Reviewed Date:</label> <asp:Literal ID="ltlReviewedDate" runat="server" /></p>
             <p><label>Reviewer Comments:</label><br /><asp:Literal ID="ltlReviewerComments" runat="server" /></p>
-            <asp:Panel ID="pnlReview" runat="server">
+            <asp:Panel ID="pnlReview" runat="server" Visible="false">
                 <p>Have you reviewed all sections of this document and want to<br />update the last reviewed by information? 
                 <asp:LinkButton ID="lbReview" runat="server" Text="If yes, click here." OnCommand="lbReview_Command" CommandArgument="reviewed" /></p>
             </asp:Panel>
