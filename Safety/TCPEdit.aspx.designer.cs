@@ -472,6 +472,24 @@ namespace Safety {
         protected global::Telerik.Web.UI.RadToolTip rtt0;
         
         /// <summary>
+        /// lblReviewerRemarks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblReviewerRemarks;
+        
+        /// <summary>
+        /// rtbRemarks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadTextBox rtbRemarks;
+        
+        /// <summary>
         /// ltlNote control.
         /// </summary>
         /// <remarks>

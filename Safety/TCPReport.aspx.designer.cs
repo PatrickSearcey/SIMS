@@ -238,6 +238,42 @@ namespace Safety {
         protected global::System.Web.UI.WebControls.Panel pnlWSCReport;
         
         /// <summary>
+        /// pnlTCPStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlTCPStatus;
+        
+        /// <summary>
+        /// ltlTotalTCPNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlTotalTCPNo;
+        
+        /// <summary>
+        /// ltlTotalSiteTCPNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlTotalSiteTCPNo;
+        
+        /// <summary>
+        /// ltlApprovedTCPNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlApprovedTCPNo;
+        
+        /// <summary>
         /// rts2 control.
         /// </summary>
         /// <remarks>

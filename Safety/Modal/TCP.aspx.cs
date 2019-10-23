@@ -43,7 +43,6 @@ namespace Safety
         {
             ltlPlanTitle.Text = tcp.TCPPlanDetail.Number + " - " + tcp.TCPPlanDetail.Name;
             ltlPlanSubTitle.Text = tcp.TCPPlanDetail.SubName;
-            ltlUpdated.Text = String.Format("{0:MM/dd/yyyy} ({1})", tcp.UpdatedDt, tcp.UpdatedBy);
             ltlReviewed.Text = String.Format("{0:MM/dd/yyyy} ({1})", tcp.ReviewedDt, tcp.ReviewedBy);
             ltlApproved1.Text = String.Format("{0:MM/dd/yyyy} ({1})", tcp.ApprovedDt, tcp.ApprovedBy);
             ltlRemoteSite.Text = tcp.TCPSite.RemoteSite.ProcessBoolean();

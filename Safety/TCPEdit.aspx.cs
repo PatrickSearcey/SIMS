@@ -460,18 +460,20 @@ namespace Safety
                             if (x == 1 && x != plan8Index) //Update the first plan, unless it's plan V (too complicated)
                             {
                                 if (plan_id == 5 && tcp.PlanID == 6) tcp.PlanID = tcp.PlanID; else tcp.PlanID = plan_id; //If the determined plan is IVa, then do not update the plan ID for IVb
-                                tcp.UpdatedBy = user.ID;
-                                tcp.UpdatedDt = DateTime.Now;
-                                tcp.ApprovalReady = false;
+                                tcp.ReviewedBy = user.ID;
+                                tcp.ReviewedDt = DateTime.Now;
+                                tcp.ApprovalReady = true;
+                                tcp.ReviewerComments = rtbRemarks.Text.FormatParagraphIn();
                                 db.SubmitChanges();
                                 note = "<br /><b>ALERT:</b> Based on your submitted site specific information, the assigned TCP has been updated to " + tcp.TCPPlanDetail.Number + " - " + tcp.TCPPlanDetail.SubName + ".";
                             }
                             else if (x == 2 && plan8Index == 1) //If the first plan was plan V (too complicated), update the second plan
                             {
                                 if (plan_id == 5 && tcp.PlanID == 6) tcp.PlanID = tcp.PlanID; else tcp.PlanID = plan_id; //If the determined plan is IVa, then do not update the plan ID for IVb
-                                tcp.UpdatedBy = user.ID;
-                                tcp.UpdatedDt = DateTime.Now;
-                                tcp.ApprovalReady = false;
+                                tcp.ReviewedBy = user.ID;
+                                tcp.ReviewedDt = DateTime.Now;
+                                tcp.ApprovalReady = true;
+                                tcp.ReviewerComments = rtbRemarks.Text.FormatParagraphIn();
                                 db.SubmitChanges();
                                 note = "<br /><b>ALERT:</b> Based on your submitted site specific information, the assigned TCP has been updated to " + tcp.TCPPlanDetail.Number + " - " + tcp.TCPPlanDetail.SubName + ".";
                             }
@@ -494,9 +496,10 @@ namespace Safety
                                     PlanID = 6,
                                     WorkAreaActivity = "",
                                     Remarks = "",
-                                    UpdatedBy = user.ID,
-                                    UpdatedDt = DateTime.Now,
-                                    ApprovalReady = false
+                                    ReviewedBy = user.ID,
+                                    ReviewedDt = DateTime.Now,
+                                    ApprovalReady = true,
+                                    ReviewerComments = rtbRemarks.Text.FormatParagraphIn()
                                 };
                                 db.TCPs.InsertOnSubmit(newTCP);
                                 db.SubmitChanges();
@@ -506,17 +509,19 @@ namespace Safety
                         {
                             if (x == currPlanIndex)
                             {
-                                tcp.UpdatedBy = user.ID;
-                                tcp.UpdatedDt = DateTime.Now;
-                                tcp.ApprovalReady = false;
+                                tcp.ReviewedBy = user.ID;
+                                tcp.ReviewedDt = DateTime.Now;
+                                tcp.ApprovalReady = true;
+                                tcp.ReviewerComments = rtbRemarks.Text.FormatParagraphIn();
                                 db.SubmitChanges();
                                 note = "";
                             }
                             else if (plan_id == 5 && tcp.PlanID == 6) //Also make sure to update plan IVb if plan IVa was the determined plan
                             {
-                                tcp.UpdatedBy = user.ID;
-                                tcp.UpdatedDt = DateTime.Now;
-                                tcp.ApprovalReady = false;
+                                tcp.ReviewedBy = user.ID;
+                                tcp.ReviewedDt = DateTime.Now;
+                                tcp.ApprovalReady = true;
+                                tcp.ReviewerComments = rtbRemarks.Text.FormatParagraphIn();
                                 db.SubmitChanges();
                                 note = "";
                             }
@@ -553,9 +558,10 @@ namespace Safety
                         if (plan_id == 8)
                         {
                             var tcpVI = newSite.TCPs.FirstOrDefault();
-                            tcpVI.UpdatedBy = user.ID;
-                            tcpVI.UpdatedDt = DateTime.Now;
-                            tcpVI.ApprovalReady = false;
+                            tcpVI.ReviewedBy = user.ID;
+                            tcpVI.ReviewedDt = DateTime.Now;
+                            tcpVI.ApprovalReady = true;
+                            tcpVI.ReviewerComments = rtbRemarks.Text.FormatParagraphIn();
                             db.SubmitChanges();
                             note = "";
                         }
@@ -567,10 +573,11 @@ namespace Safety
                                 PlanID = plan_id,
                                 WorkAreaActivity = "",
                                 Remarks = "",
-                                UpdatedBy = user.ID,
-                                UpdatedDt = DateTime.Now,
-                                ApprovalReady = false
-                            };
+                                ReviewedBy = user.ID,
+                                ReviewedDt = DateTime.Now,
+                                ApprovalReady = true,
+                                ReviewerComments = rtbRemarks.Text.FormatParagraphIn()
+                        };
                             db.TCPs.InsertOnSubmit(newTCP);
                             db.SubmitChanges();
 
@@ -582,9 +589,10 @@ namespace Safety
                                     PlanID = 6,
                                     WorkAreaActivity = "",
                                     Remarks = "",
-                                    UpdatedBy = user.ID,
-                                    UpdatedDt = DateTime.Now,
-                                    ApprovalReady = false
+                                    ReviewedBy = user.ID,
+                                    ReviewedDt = DateTime.Now,
+                                    ApprovalReady = true,
+                                    ReviewerComments = rtbRemarks.Text.FormatParagraphIn()
                                 };
                                 db.TCPs.InsertOnSubmit(newTCPIVb);
                                 db.SubmitChanges();
@@ -601,17 +609,19 @@ namespace Safety
                         //Update the one plan that's there, and then add the one that is missing
                         var updtTcp = newSite.TCPs.FirstOrDefault();
                         if (pn == 6) updtTcp.PlanID = 5;
-                        updtTcp.UpdatedBy = user.ID;
-                        updtTcp.UpdatedDt = DateTime.Now;
-                        updtTcp.ApprovalReady = false;
+                        updtTcp.ReviewedBy = user.ID;
+                        updtTcp.ReviewedDt = DateTime.Now;
+                        updtTcp.ApprovalReady = true;
+                        updtTcp.ReviewerComments = rtbRemarks.Text.FormatParagraphIn();
                         db.SubmitChanges();
 
                         Data.TCP newTCPIV = new Data.TCP();
                         newTCPIV.site_id = newSite.site_id;
                         newTCPIV.PlanID = pn;
-                        newTCPIV.UpdatedBy = user.ID;
-                        newTCPIV.UpdatedDt = DateTime.Now;
-                        newTCPIV.ApprovalReady = false;
+                        newTCPIV.ReviewedBy = user.ID;
+                        newTCPIV.ReviewedDt = DateTime.Now;
+                        newTCPIV.ApprovalReady = true;
+                        newTCPIV.ReviewerComments = rtbRemarks.Text.FormatParagraphIn();
                         db.TCPs.InsertOnSubmit(newTCPIV);
                         db.SubmitChanges();
                         note = "<br /><b>ALERT:</b> A new TCP was created for this site. You can view it by clicking the link under the Traffic Control Plan section below.";
@@ -621,9 +631,10 @@ namespace Safety
                     {
                         var updtTcp = newSite.TCPs.FirstOrDefault();
                         updtTcp.PlanID = plan_id;
-                        updtTcp.UpdatedBy = user.ID;
-                        updtTcp.UpdatedDt = DateTime.Now;
-                        updtTcp.ApprovalReady = false;
+                        updtTcp.ReviewedBy = user.ID;
+                        updtTcp.ReviewedDt = DateTime.Now;
+                        updtTcp.ApprovalReady = true;
+                        updtTcp.ReviewerComments = rtbRemarks.Text.FormatParagraphIn();
                         db.SubmitChanges();
                         note = "";
                     }
@@ -638,9 +649,10 @@ namespace Safety
                         PlanID = plan_id,
                         WorkAreaActivity = "",
                         Remarks = "",
-                        UpdatedBy = user.ID,
-                        UpdatedDt = DateTime.Now,
-                        ApprovalReady = false
+                        ReviewedBy = user.ID,
+                        ReviewedDt = DateTime.Now,
+                        ApprovalReady = true,
+                        ReviewerComments = rtbRemarks.Text.FormatParagraphIn()
                     };
                     db.TCPs.InsertOnSubmit(newTCP);
                     db.SubmitChanges();
@@ -654,9 +666,10 @@ namespace Safety
                             PlanID = 6,
                             WorkAreaActivity = "",
                             Remarks = "",
-                            UpdatedBy = user.ID,
-                            UpdatedDt = DateTime.Now,
-                            ApprovalReady = false
+                            ReviewedBy = user.ID,
+                            ReviewedDt = DateTime.Now,
+                            ApprovalReady = true,
+                            ReviewerComments = rtbRemarks.Text.FormatParagraphIn()
                         };
                         db.TCPs.InsertOnSubmit(newTCP);
                         db.SubmitChanges();
@@ -730,9 +743,10 @@ namespace Safety
             {
                 site_id = currSite.site_id,
                 PlanID = 8,
-                UpdatedBy = user.ID,
-                UpdatedDt = DateTime.Now,
-                ApprovalReady = false
+                ReviewedBy = user.ID,
+                ReviewedDt = DateTime.Now,
+                ApprovalReady = true,
+                ReviewerComments = rtbRemarks.Text.FormatParagraphIn()
             };
             db.TCPs.InsertOnSubmit(newTCPV);
             db.SubmitChanges();
@@ -849,9 +863,10 @@ namespace Safety
             var TCP = db.TCPs.FirstOrDefault(p => p.TCPID == TCPID);
             TCP.Remarks = plan_remarks.FormatParagraphIn();
             TCP.WorkAreaActivity = waa;
-            TCP.UpdatedBy = user.ID;
-            TCP.UpdatedDt = DateTime.Now;
-            TCP.ApprovalReady = false;
+            TCP.ReviewedBy = user.ID;
+            TCP.ReviewedDt = DateTime.Now;
+            TCP.ApprovalReady = true;
+            TCP.ReviewerComments = rtbRemarks.Text.FormatParagraphIn();
 
             db.SubmitChanges();
 

@@ -99,7 +99,6 @@ namespace Safety
                     pnlAllData.Visible = false;
 
                     ltlNotes0.Text = currTCP.TCPSite.Notes.ToStringSafe();
-                    ltlUpdated0.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.UpdatedBy.ToStringSafe();
 
                 }
                 else if (currTCP.TCPPlanDetail.Number == "V")
@@ -117,9 +116,8 @@ namespace Safety
                     ltlTrafficV.Text = currTCP.TCPSite.TrafficVolume.ToString("unknown");
                     ltlNotesV.Text = currTCP.TCPSite.Notes.ToStringSafe();
                     ltlRemarksV.Text = currTCP.WorkAreaActivity + "<br />" + currTCP.Remarks.ToStringSafe();
-                    ltlUpdatedV.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.UpdatedBy.ToStringSafe();
-                    ltlReviewedV.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.ReviewedBy.ToStringSafe();
-                    ltlApprovedV.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.ApprovedBy.ToStringSafe();
+                    ltlReviewedV.Text = string.Format("{0:MM/dd/yyyy}", currTCP.ReviewedDt) + ", by " + currTCP.ReviewedBy.ToStringSafe();
+                    ltlApprovedV.Text = string.Format("{0:MM/dd/yyyy}", currTCP.ApprovedDt) + ", by " + currTCP.ApprovedBy.ToStringSafe();
                 }
                 else
                 {
@@ -141,9 +139,8 @@ namespace Safety
                         ltlCell.Text = "Yes";
                     else
                         ltlCell.Text = "No";
-                    ltlUpdated.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.UpdatedBy.ToStringSafe();
-                    ltlReviewed.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.ReviewedBy.ToStringSafe();
-                    ltlApproved.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.ApprovedBy.ToStringSafe();
+                    ltlReviewed.Text = string.Format("{0:MM/dd/yyyy}", currTCP.ReviewedDt) + ", by " + currTCP.ReviewedBy.ToStringSafe();
+                    ltlApproved.Text = string.Format("{0:MM/dd/yyyy}", currTCP.ApprovedDt) + ", by " + currTCP.ApprovedBy.ToStringSafe();
                     ltlNotes.Text = currTCP.TCPSite.Notes.ToStringSafe();
                     if (currTCP.TCPSite.TrafficVolume == "high")
                         ltlRemarks.Text = currTCP.WorkAreaActivity + "<br />Because of high traffic volume, consider using a buffer zone.<br />" + currTCP.Remarks.ToStringSafe();

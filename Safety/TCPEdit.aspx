@@ -292,6 +292,14 @@
                                                     </telerik:RadToolTip>
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td valign="top">Reviewer Remarks<br />
+                                                    <asp:Label ID="lblReviewerRemarks" runat="server" Text="please enter information about what changed to assist the Approver" Font-Bold="true" Font-Italic="true" />
+                                                </td>
+                                                <td>
+                                                    <telerik:RadTextBox ID="rtbRemarks" runat="server" TextMode="MultiLine" Width="400px" Height="100px" Skin="Bootstrap" />
+                                                </td>
+                                            </tr>
                                         </table>
                                         <hr />
                                         <asp:Literal ID="ltlNote" runat="server" /><br />

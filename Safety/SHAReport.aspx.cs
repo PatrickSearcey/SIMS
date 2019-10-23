@@ -93,6 +93,7 @@ namespace Safety
             {
                 //Clear session state variables
                 ResetSessionStateVariables();
+                GetSHAStatusNumbers();
 
                 //--APPROVER ACCESS SECTION-------------------------------------------------------------
                 if (user.IsSuperUser || user.WSCID.Contains(WSCID) && user.IsSafetyApprover) 
@@ -102,6 +103,22 @@ namespace Safety
                 //--END PAGE ACCESS SECTION---------------------------------------------------------
             }
         }
+
+        #region Year Summary
+        private void GetSHAStatusNumbers()
+        {
+            string totalSHANo = "0", totalApprovedNo = "0";
+
+            var totalSHAs = db.vSHAWSCStatus.Where(p => p.wsc_id == WSCID).ToList();
+            totalSHANo = totalSHAs.Count().ToString();
+
+            var totalApproved = db.vSHAWSCStatus.Where(p => p.wsc_id == WSCID && p.approved_dt > DateTime.Now.AddDays(-365)).ToList();
+            totalApprovedNo = totalApproved.Count().ToString();
+
+            ltlTotalSHANo.Text = totalSHANo;
+            ltlApprovedSHANo.Text = totalApprovedNo;
+        }
+        #endregion
 
         #region Internal Classes
         internal class SHADataItem
@@ -227,7 +244,8 @@ namespace Safety
                                 join s in db.SHAs on p.site_id equals s.site_id
                                 join w in db.WSCs on p.wsc_id equals w.wsc_id
                                 where (s.reviewed_dt > oneYearAgo && s.reviewed_dt < s.approved_dt && s.approved_by != "transfer") ||
-                                (s.approved_dt != null && s.approved_by != "transfer" && (s.reviewed_dt == null))
+                                (s.approved_dt != null && s.approved_by != "transfer" && (s.reviewed_dt == null) || 
+                                (s.reviewed_dt < s.approved_dt && s.approved_by != "transfer" && s.approved_dt > oneYearAgo))
                                 select new SHADataItem()
                                 {
                                     site_no = p.site_no,
@@ -274,7 +292,7 @@ namespace Safety
                                 join s in db.SHAs on p.site_id equals s.site_id
                                 join w in db.WSCs on p.wsc_id equals w.wsc_id
                                 where (s.reviewed_dt > s.approved_dt) || (s.approved_dt == null) ||
-                                (s.reviewed_dt > s.approved_dt) || (s.reviewed_dt != null && s.approved_dt == null)
+                                (oneYearAgo > s.approved_dt) || (s.reviewed_dt != null && s.approved_dt == null)
                                 select new SHADataItem()
                                 {
                                     site_no = p.site_no,

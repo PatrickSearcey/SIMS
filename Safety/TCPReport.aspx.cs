@@ -93,6 +93,7 @@ namespace Safety
             {
                 //Clear session state variables
                 ResetSessionStateVariables();
+                GetTCPStatusNumbers();
 
                 //--APPROVER ACCESS SECTION-------------------------------------------------------------
                 if (user.IsSuperUser || user.WSCID.Contains(WSCID) && user.IsSafetyApprover)
@@ -103,6 +104,26 @@ namespace Safety
             }
         }
 
+        #region Year Summary
+        private void GetTCPStatusNumbers()
+        {
+            string totalTCPNo = "0", totalSiteTCPNo = "0", totalApprovedNo = "0";
+
+            var totalTCPs = db.vTCPWSCStatus.Where(p => p.wsc_id == WSCID).ToList();
+            totalTCPNo = totalTCPs.Count().ToString();
+
+            var totalSiteTCPs = db.vTCPSitesWSCStatus.Where(p => p.wsc_id == WSCID).ToList();
+            totalSiteTCPNo = totalSiteTCPs.Count().ToString();
+
+            var totalApproved = db.vTCPWSCStatus.Where(p => p.wsc_id == WSCID && p.ApprovedDt > DateTime.Now.AddDays(-365)).ToList();
+            totalApprovedNo = totalApproved.Count().ToString();
+
+            ltlTotalTCPNo.Text = totalTCPNo;
+            ltlTotalSiteTCPNo.Text = totalSiteTCPNo;
+            ltlApprovedTCPNo.Text = totalApprovedNo;
+        }
+        #endregion
+
         #region Internal Classes
         internal class TCPDataItem
         {
@@ -110,8 +131,6 @@ namespace Safety
             private string _plan_no;
             private string _site_no_nm;
             private string _office_cd;
-            private string _updated_by;
-            private string _updated_dt;
             private string _reviewed_by;
             private string _reviewed_dt;
             private string _approved_by;
@@ -143,16 +162,6 @@ namespace Safety
             {
                 get { return _office_cd; }
                 set { _office_cd = value; }
-            }
-            public string updated_by
-            {
-                get { return _updated_by; }
-                set { _updated_by = value; }
-            }
-            public string updated_dt
-            {
-                get { return _updated_dt; }
-                set { _updated_dt = value; }
             }
             public string reviewed_by
             {
@@ -216,8 +225,6 @@ namespace Safety
                 _plan_no = plan_no;
                 _site_no_nm = site_no_nm;
                 _office_cd = office_cd;
-                _updated_by = updated_by;
-                _updated_dt = updated_dt;
                 _reviewed_by = reviewed_by;
                 _reviewed_dt = reviewed_dt;
                 _approved_by = approved_by;
@@ -239,6 +246,7 @@ namespace Safety
             get
             {
                 List<TCPDataItem> data = new List<TCPDataItem>();
+                DateTime oneYearAgo = DateTime.Now.AddDays(-365);
 
                 switch (grid_tp)
                 {
@@ -246,16 +254,15 @@ namespace Safety
                         data = (from p in db.vEval_FullSiteDiagnostics
                                 join t in db.TCPs on p.site_id equals t.site_id
                                 join w in db.WSCs on p.wsc_id equals w.wsc_id
-                                where (t.UpdatedDt < t.ApprovedDt && t.ReviewedDt < t.ApprovedDt && t.ApprovedBy != "transfer") ||
-                                (t.ApprovedDt != null && t.ApprovedBy != "transfer" && (t.UpdatedDt == null || t.ReviewedDt == null))
+                                where (t.ReviewedDt > oneYearAgo && t.ReviewedDt < t.ApprovedDt && t.ApprovedBy != "transfer") ||
+                                (t.ApprovedDt != null && t.ApprovedBy != "transfer" && (t.ReviewedDt == null) ||
+                                (t.ReviewedDt < t.ApprovedDt && t.ApprovedBy != "transfer" && t.ApprovedDt > oneYearAgo))
                                 select new TCPDataItem()
                                 {
                                     site_no = p.site_no,
                                     plan_no = t.TCPPlanDetail.Number,
                                     site_no_nm = p.site_no + " " + p.station_nm,
                                     office_cd = p.office_cd,
-                                    updated_by = t.UpdatedBy,
-                                    updated_dt = String.Format("{0:MM/dd/yyyy}", t.UpdatedDt),
                                     reviewed_by = t.ReviewedBy,
                                     reviewed_dt = String.Format("{0:MM/dd/yyyy}", t.ReviewedDt),
                                     approved_by = t.ApprovedBy,
@@ -264,7 +271,7 @@ namespace Safety
                                     wsc_id = w.wsc_id.ToString(),
                                     wsc_cd = w.wsc_cd,
                                     region_cd = w.region_cd,
-                                    action = GetAction(t.UpdatedDt, t.ReviewedDt, t.ApprovedDt),
+                                    action = GetAction(t.ReviewedDt, t.ApprovedDt),
                                     site_tp_cd = p.site_tp_cd,
                                     agency_use_cd = p.agency_use_cd.ToString()
                                 }).OrderBy(p => p.region_cd).ThenBy(p => p.wsc_id).ThenBy(p => p.office_cd).ThenBy(p => p.site_no).ToList();
@@ -273,15 +280,13 @@ namespace Safety
                         data = (from p in db.vEval_FullSiteDiagnostics
                                 join t in db.TCPs on p.site_id equals t.site_id
                                 join w in db.WSCs on p.wsc_id equals w.wsc_id
-                                where (t.UpdatedDt > t.ReviewedDt) || (t.ReviewedDt == null) || (t.ReviewedBy.Equals("transfer"))
+                                where (t.ReviewedDt == null) || (t.ReviewedBy.Equals("transfer") || (t.ReviewedDt < oneYearAgo))
                                 select new TCPDataItem()
                                 {
                                     site_no = p.site_no,
                                     plan_no = t.TCPPlanDetail.Number,
                                     site_no_nm = p.site_no + " " + p.station_nm,
                                     office_cd = p.office_cd,
-                                    updated_by = t.UpdatedBy,
-                                    updated_dt = String.Format("{0:MM/dd/yyyy}", t.UpdatedDt),
                                     reviewed_by = t.ReviewedBy,
                                     reviewed_dt = String.Format("{0:MM/dd/yyyy}", t.ReviewedDt),
                                     approved_by = t.ApprovedBy,
@@ -290,7 +295,7 @@ namespace Safety
                                     wsc_id = w.wsc_id.ToString(),
                                     wsc_cd = w.wsc_cd,
                                     region_cd = w.region_cd,
-                                    action = GetAction(t.UpdatedDt, t.ReviewedDt, t.ApprovedDt),
+                                    action = GetAction(t.ReviewedDt, t.ApprovedDt),
                                     site_tp_cd = p.site_tp_cd,
                                     agency_use_cd = p.agency_use_cd.ToString()
                                 }).OrderBy(p => p.region_cd).ThenBy(p => p.wsc_id).ThenBy(p => p.office_cd).ThenBy(p => p.site_no).ToList();
@@ -306,8 +311,6 @@ namespace Safety
                                     plan_no = t.TCPPlanDetail.Number,
                                     site_no_nm = p.site_no + " " + p.station_nm,
                                     office_cd = p.office_cd,
-                                    updated_by = t.UpdatedBy,
-                                    updated_dt = String.Format("{0:MM/dd/yyyy}", t.UpdatedDt),
                                     reviewed_by = t.ReviewedBy,
                                     reviewed_dt = String.Format("{0:MM/dd/yyyy}", t.ReviewedDt),
                                     approved_by = t.ApprovedBy,
@@ -316,7 +319,7 @@ namespace Safety
                                     wsc_id = w.wsc_id.ToString(),
                                     wsc_cd = w.wsc_cd,
                                     region_cd = w.region_cd,
-                                    action = GetAction(t.UpdatedDt, t.ReviewedDt, t.ApprovedDt),
+                                    action = GetAction(t.ReviewedDt, t.ApprovedDt),
                                     site_tp_cd = p.site_tp_cd,
                                     agency_use_cd = p.agency_use_cd.ToString()
                                 }).OrderBy(p => p.region_cd).ThenBy(p => p.wsc_id).ThenBy(p => p.office_cd).ThenBy(p => p.site_no).ToList();
@@ -356,19 +359,16 @@ namespace Safety
             }
         }
 
-        private string GetAction(DateTime? updated_dt, DateTime? reviewed_dt, DateTime? approved_dt)
+        private string GetAction(DateTime? reviewed_dt, DateTime? approved_dt)
         {
             string ret = "";
 
-            if (updated_dt != null)
+            if (reviewed_dt != null)
             {
-                if (updated_dt > reviewed_dt && updated_dt > approved_dt)
-                    ret = "Review";
-                else
-                    if (reviewed_dt > approved_dt) ret = "Approve"; else ret = "View";
+                if (reviewed_dt > approved_dt) ret = "Approve"; else ret = "Review";
             }
             else
-                ret = "View";
+                ret = "Review";
 
             return ret;
         }
@@ -956,6 +956,7 @@ namespace Safety
             rgStatus.Rebind();
             rgApprove.Rebind();
             rgReview.Rebind();
+            GetTCPStatusNumbers();
         }
     }
 }
