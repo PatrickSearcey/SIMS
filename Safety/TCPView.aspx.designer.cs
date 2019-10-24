@@ -49,15 +49,6 @@ namespace Safety {
         protected global::System.Web.UI.WebControls.Panel pnlPlan0;
         
         /// <summary>
-        /// ltlUpdated0 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlUpdated0;
-        
-        /// <summary>
         /// ltlNotes0 control.
         /// </summary>
         /// <remarks>
@@ -101,15 +92,6 @@ namespace Safety {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlTrafficV;
-        
-        /// <summary>
-        /// ltlUpdatedV control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlUpdatedV;
         
         /// <summary>
         /// ltlReviewedV control.
@@ -254,15 +236,6 @@ namespace Safety {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlCell;
-        
-        /// <summary>
-        /// ltlUpdated control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlUpdated;
         
         /// <summary>
         /// ltlReviewed control.

@@ -700,6 +700,13 @@ namespace Safety
                             db.SubmitChanges();
                         }
                     }
+
+                    //Also go ahead and update the reviewed by/reviewed date because it's possible it was overlooked above
+                    planV.ReviewedBy = user.ID;
+                    planV.ReviewedDt = DateTime.Now;
+                    planV.ReviewerComments = rtbRemarks.Text.FormatParagraphIn();
+                    planV.ApprovalReady = true;
+                    db.SubmitChanges();
                 }
                 #endregion
 

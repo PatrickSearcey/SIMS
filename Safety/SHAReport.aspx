@@ -4,6 +4,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="styles/reports.css" rel="stylesheet" />
+    <style type="text/css">
+        .imgPadding {
+            padding-left:5px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph1" runat="Server">
     <telerik:RadAjaxManager ID="ram" runat="server">
@@ -343,9 +348,15 @@
                 </td>
                 <td nowrap>
                     <div style="border:1px solid #e8d0ad; background:#fcfaf6; padding:5px;margin-top:10px;">
-                        <h4>SHA Status (real time SW only) for past 365 days</h4>
+                        <h4>SHA WSC Status (real time SW only) for past 365 days</h4>
                         <p>Total SHAs: <b><asp:Literal ID="ltlTotalSHANo" runat="server" /></b><br />
-                        Approved SHAs: <b><asp:Literal ID="ltlApprovedSHANo" runat="server" /></b></p>
+                        Approved SHAs: <b><asp:Literal ID="ltlApprovedSHANo" runat="server" /></b>
+                        <asp:Image ID="imgApprovedTT" runat="server" ImageURL="~/Images/tooltip.png" CssClass="imgPadding" />
+                        <telerik:RadToolTip runat="server" ID="rttApproved" RelativeTo="Element" Width="300px" AutoCloseDelay="10000"
+                            Height="120px" TargetControlID="imgApprovedTT" IsClientID="false" Animation="Fade" Position="TopRight">
+                            This is the number of SHAs that have been approved in the past year, regardless of review status. Meaning, the number here does not
+                            necessarily match the number of SHAs that show up for the WSC under the Currently Approved SHAs tab.
+                        </telerik:RadToolTip></p>
                     </div>
                 </td>
             </tr>
