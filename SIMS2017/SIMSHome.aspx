@@ -126,7 +126,7 @@
                                                               <area shape="poly" coords="201,6,203,31,260,32,256,17,254,5" href="SIMSWSCHome.aspx?wsc_id=37" alt="ND" />
                                                               <area shape="poly" coords="144,42,142,76,198,76,197,41" href="SIMSWSCHome.aspx?wsc_id=8" alt="WY" />
                                                               <area shape="poly" coords="37,72,66,70,68,96,113,135,111,153,93,151,65,136,46,105,34,87" href="SIMSWSCHome.aspx?wsc_id=12" alt="CA" />
-                                                              <area shape="poly" coords="180,159,206,158,209,118,233,118,233,137,281,145,280,156,282,176,265,189,253,200,256,212,242,206,225,183,217,179,206,185,194,174" href="SIMSWSCHome.aspx?wsc_id=31" alt="TX" />
+                                                              <area shape="poly" coords="180,159,206,158,209,118,233,118,233,137,281,145,280,156,282,176,265,189,253,200,256,212,242,206,225,183,217,179,206,185,194,174" href="SIMSWSCHome.aspx?wsc_id=42" alt="TX" />
                                                               <area shape="poly" coords="71,72,115,69,115,117,111,126,72,95" href="SIMSWSCHome.aspx?wsc_id=22" alt="NV" />
                                                               <area shape="poly" coords="120,71,138,71,138,80,156,80,156,111,119,111" href="SIMSWSCHome.aspx?wsc_id=32" alt="UT" />
                                                               <area shape="poly" coords="160,79,160,112,214,111,214,78" href="SIMSWSCHome.aspx?wsc_id=13" alt="CO" />
@@ -136,7 +136,7 @@
                                                               <area shape="poly" coords="202,61,201,77,219,76,219,85,268,85,257,63" href="SIMSWSCHome.aspx?wsc_id=21" alt="NE" />
                                                               <area shape="poly" coords="104,180,105,221,140,246,134,253,99,229,76,223,53,241,31,255,43,237,24,228,18,212,32,204,9,198,31,191,19,181,39,169,70,171" href="SIMSWSCHome.aspx?wsc_id=10" alt="AK" />
                                                               <area shape="poly" coords="218,88,217,112,276,112,271,89" href="SIMSWSCHome.aspx?wsc_id=18" alt="KS" />
-                                                              <area shape="poly" coords="237,116,237,136,279,141,276,116" href="SIMSWSCHome.aspx?wsc_id=27" alt="OK" />
+                                                              <area shape="poly" coords="237,116,237,136,279,141,276,116" href="SIMSWSCHome.aspx?wsc_id=42" alt="OK" />
                                                               <area shape="poly" coords="259,7,263,35,264,53,304,54,294,43,292,32,298,23,310,14,280,8" href="SIMSWSCHome.aspx?wsc_id=39" alt="UMW" />
                                                               <area shape="poly" coords="300,28,296,37,310,58,315,62,330,62,333,42,327,32,312,28" href="SIMSWSCHome.aspx?wsc_id=39" alt="UMW" />
                                                               <area shape="poly" coords="264,57,270,80,302,79,310,66,301,55" href="SIMSWSCHome.aspx?wsc_id=41" alt="IA" />
