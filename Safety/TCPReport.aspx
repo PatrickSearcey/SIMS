@@ -403,7 +403,7 @@
                         <asp:Image ID="imgApprovedTT" runat="server" ImageURL="~/Images/tooltip.png" CssClass="imgPadding" />
                         <telerik:RadToolTip runat="server" ID="rttApproved" RelativeTo="Element" Width="300px" AutoCloseDelay="10000"
                             Height="120px" TargetControlID="imgApprovedTT" IsClientID="false" Animation="Fade" Position="TopRight">
-                            This is the number of TCPs that have been approved in the past year, regardless of review status. Meaning, the number here does not
+                            This is the number of Real Time SW Site TCPs that have been approved in the past 365 days, regardless of review status. Meaning, the number here does not
                             necessarily match the number of TCPs that show up for the WSC under the Currently Approved TCPs tab.
                         </telerik:RadToolTip></p>
                     </asp:Panel>

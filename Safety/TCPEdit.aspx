@@ -66,6 +66,25 @@
         <Rows>
             <telerik:LayoutRow>
                 <Columns>
+                    <telerik:CompositeLayoutColumn Span="9" SpanMd="9" SpanSm="9" HiddenXs="true">
+                    </telerik:CompositeLayoutColumn>
+                    <telerik:CompositeLayoutColumn Span="3" SpanMd="3" SpanSm="3" HiddenXs="true">
+                        <Rows>
+                            <telerik:LayoutRow>
+                                <Content>
+                                    <br />
+                                    <img src="images/bullet.png" alt="bullet" style="float:left;padding-top:3px;padding-right:3px;" /> 
+                                    <asp:HyperLink ID="hlTCPReport" runat="server" Text="Go to the TCP Status Report" Font-Bold="true" />
+                                </Content>
+                            </telerik:LayoutRow>
+                        </Rows>
+                    </telerik:CompositeLayoutColumn>
+                </Columns>
+            </telerik:LayoutRow>
+        </Rows>
+        <Rows>
+            <telerik:LayoutRow>
+                <Columns>
                     <telerik:CompositeLayoutColumn Span="12" SpanMd="12" SpanSm="12" HiddenXs="true">
                         <Rows>
                             <telerik:LayoutRow>

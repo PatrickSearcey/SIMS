@@ -49,6 +49,15 @@ namespace Safety {
         protected global::Telerik.Web.UI.RadPageLayout rpl1;
         
         /// <summary>
+        /// hlTCPReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlTCPReport;
+        
+        /// <summary>
         /// pnlEditSiteSpecificInfo control.
         /// </summary>
         /// <remarks>

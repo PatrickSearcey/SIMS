@@ -79,6 +79,8 @@ namespace Safety
             ph1.Title = "Manage Traffic Control Safety Plans";
             ph1.SubTitle = currSite.site_no + " " + db.vSITEFILEs.FirstOrDefault(s => s.site_no == currSite.site_no && s.agency_cd == currSite.agency_cd).station_nm;
 
+            hlTCPReport.NavigateUrl = String.Format("TCPReport.aspx?office_id={0}", OfficeID);
+
             //Find and set the shoulder rule based on the physical (which state) location of the site
             ShoulderRule = Convert.ToInt32(db.TCPShoulderRules.FirstOrDefault(p => p.StateCode == db.vSITEFILEs.FirstOrDefault(s => s.site_id == currSite.nwisweb_site_id).state_cd).ShoulderRule);
 
@@ -598,7 +600,7 @@ namespace Safety
                                 db.SubmitChanges();
                             }
 
-                            note = "<br /><b>AlERT:</b> A new TCP was created for this site. You can view it by clicking the link under the Traffic Control Plan section below.";
+                            note = "<br /><b>ALERT:</b> A new TCP was created for this site. You can view it by clicking the link under the Traffic Control Plan section below.";
                         }
                     }
                     else if (plan_id == 5) //Check to see if the determined plan is IVa
@@ -674,11 +676,11 @@ namespace Safety
                         db.TCPs.InsertOnSubmit(newTCP);
                         db.SubmitChanges();
 
-                        note = "<br /><b>AlERT:</b> Two new TCPs were created for this site. You can view them by clicking the links under the Traffic Control Plan section below. <b>Refresh your browser if you do not see the new plans.</b>";
+                        note = "<br /><b>ALERT:</b> Two new TCPs were created for this site. You can view them by clicking the links under the Traffic Control Plan section below. <b>Refresh your browser if you do not see the new plans.</b>";
                     }
                     else
                     {
-                        note = "<br /><b>AlERT:</b> A new TCP was created for this site. You can view it by clicking the link under the Traffic Control Plan section below. <b>Refreh your browser if you do not see the new plan.</b>";
+                        note = "<br /><b>ALERT:</b> A new TCP was created for this site. You can view it by clicking the link under the Traffic Control Plan section below. <b>Refreh your browser if you do not see the new plan.</b>";
                     }
                 }
                 #endregion

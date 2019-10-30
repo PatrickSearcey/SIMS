@@ -121,6 +121,9 @@ namespace Safety
             ltlTotalTCPNo.Text = totalTCPNo;
             ltlTotalSiteTCPNo.Text = totalSiteTCPNo;
             ltlApprovedTCPNo.Text = totalApprovedNo;
+
+            var wsc_cd = db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID).wsc_cd;
+            if (wsc_cd != "TX") pnlTCPStatus.Visible = false;
         }
         #endregion
 
