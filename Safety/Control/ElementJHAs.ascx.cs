@@ -535,10 +535,10 @@ namespace Safety.Control
 			    }
 		    }
 
-		    //Update the updated_by and updated_dt fields of SHA_Site_Master - the updated_by and updated_dt fields are legacy; not being used outside of this situation
+            //Update the reviewed_by and reviewed_dt fields of SHA_Site_Master - the reviewed_by and reviewed_dt fields are legacy; not being used outside of this situation
             var sha = db.SHAs.FirstOrDefault(p => p.site_id == SiteID);
-		    sha.updated_by = user.ID;
-            sha.updated_dt = DateTime.Now;
+		    sha.reviewed_by = user.ID;
+            sha.reviewed_dt = DateTime.Now;
             db.SubmitChanges();
 	    }
 
@@ -583,10 +583,10 @@ namespace Safety.Control
 			    }
 		    }
 
-		    //Update the updated_by and updated_dt fields of SHA_Site_Master - the updated_by and updated_dt fields are legacy; not being used outside of this situation
+            //Update the reviewed_by and reviewed_dt fields of SHA_Site_Master - the reviewed_by and reviewed_dt fields are legacy; not being used outside of this situation
             var sha = db.SHAs.FirstOrDefault(p => p.site_id == SiteID);
-            sha.updated_by = user.ID;
-            sha.updated_dt = DateTime.Now;
+            sha.reviewed_by = user.ID;
+            sha.reviewed_dt = DateTime.Now;
             db.SubmitChanges();
 	    }
 
@@ -641,10 +641,10 @@ namespace Safety.Control
 			    }
 		    }
 
-		    //Update the updated_by and updated_dt fields of SHA_Site_Master - the updated_by and updated_dt fields are legacy; not being used outside of this situation
+            //Update the reviewed_by and reviewed_dt fields of SHA_Site_Master - the reviewed_by and reviewed_dt fields are legacy; not being used outside of this situation
             var sha = db.SHAs.FirstOrDefault(p => p.site_id == SiteID);
-            sha.updated_by = user.ID;
-            sha.updated_dt = DateTime.Now;
+            sha.reviewed_by = user.ID;
+            sha.reviewed_dt = DateTime.Now;
             db.SubmitChanges();
 	    }
 	    

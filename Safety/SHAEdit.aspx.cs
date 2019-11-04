@@ -165,12 +165,12 @@ namespace Safety
             }
         }
 
-        protected void UpdateSHA()
+        protected void ReviewSHA()
         {
-            //Update the updated_by and updated_dt fields of SHA_Site_Master - the updated_by and updated_dt fields are legacy; not being used outside of this situation
-            currSHA.updated_by = user.ID;
-            currSHA.updated_dt = DateTime.Now;
+            currSHA.reviewed_by = user.ID;
+            currSHA.reviewed_dt = DateTime.Now;
             db.SubmitChanges();
+            SetupAdminPanel();
         }
         #endregion
 
@@ -478,8 +478,8 @@ namespace Safety
 
             db.SubmitChanges();
 
-            //Update the updated_by and updated_dt fields of SHA_Site_Master
-            UpdateSHA();
+            //Update the review_by and review_dt fields of SHA_Site_Master
+            ReviewSHA();
 
             //Refresh the servicing site panel
             SetupServicingSitePanel();
@@ -498,8 +498,8 @@ namespace Safety
 
             db.SubmitChanges();
 
-            //Update the updated_by and updated_dt fields of SHA_Site_Master
-            UpdateSHA();
+            //Update the review_by and review_dt fields of SHA_Site_Master
+            ReviewSHA();
 
             //Refresh the servicing site panel
             SetupServicingSitePanel();
@@ -541,8 +541,8 @@ namespace Safety
             tbOtherHazard.Text = "";
             rlbHazards.ClearChecked();
 
-            //Update the updated_by and updated_dt fields of SHA_Site_Master
-            UpdateSHA();
+            //Update the review_by and review_dt fields of SHA_Site_Master
+            ReviewSHA();
         }
 
         public void AddRecEquipment()
@@ -581,8 +581,8 @@ namespace Safety
             tbOtherEquip.Text = "";
             rlbEquip.ClearChecked();
 
-            //Update the updated_by and updated_dt fields of SHA_Site_Master
-            UpdateSHA();
+            //Update the review_by and review_dt fields of SHA_Site_Master
+            ReviewSHA();
         }
         #endregion
 
@@ -679,6 +679,8 @@ namespace Safety
                     db.SubmitChanges();
 
                     DisplayMessage(false, "The element was added!", "element");
+
+                    ReviewSHA();
                 }
                 catch (Exception ex)
                 {
@@ -790,6 +792,8 @@ namespace Safety
                     DisplayMessage(false, "The element information was updated!", "element");
                     ltlElemRevisedInfo.Text = "Revised by: " + user.ID + " &nbsp;&nbsp;Date revised: " + System.DateTime.Now.ToString();
                     ltlElemInfo.Text = reElemInfo.Content;
+
+                    ReviewSHA();
                 }
                 catch (Exception ex)
                 {
@@ -862,9 +866,7 @@ namespace Safety
                 currSHA.cell_service = es;
             }
 
-            currSHA.updated_by = user.ID;
-            currSHA.updated_dt = DateTime.Now;
-            db.SubmitChanges();
+            ReviewSHA();
         }
 
         #region Contacts
@@ -961,6 +963,8 @@ namespace Safety
                     db.SubmitChanges();
 
                     DisplayContactMessage(false, "The emergency contact was added!");
+
+                    ReviewSHA();
                 }
                 else
                 {
@@ -1086,6 +1090,8 @@ namespace Safety
                     db.SubmitChanges();
                     
                     DisplayHospitalMessage(false, "The hospital was added!");
+
+                    ReviewSHA();
                 }
                 else
                 {
@@ -1124,10 +1130,12 @@ namespace Safety
             if (String.Format("{0:MM/dd/yyyy}", currSHA.reviewed_dt) == "01/01/1900")
             {
                 ltlReviewedDate.Text = "never reviewed";
+                pnlReview.Visible = true;
             }
             else
             {
                 ltlReviewedDate.Text = String.Format("{0:MM/dd/yyyy}", currSHA.reviewed_dt);
+                if (currSHA.reviewed_dt < DateTime.Now.AddDays(-365)) pnlReview.Visible = true;
             }
 
             ltlApprovedBy.Text = currSHA.approved_by;

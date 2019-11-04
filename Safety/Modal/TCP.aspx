@@ -28,9 +28,6 @@
             <table width="100%">
                 <tr>
                     <td>
-                        <b>Last Updated:</b> <asp:Literal ID="ltlUpdated" runat="server" />
-                    </td>
-                    <td>
                         <b>Last Reviewed:</b> <asp:Literal ID="ltlReviewed" runat="server" />
                     </td>
                     <td>

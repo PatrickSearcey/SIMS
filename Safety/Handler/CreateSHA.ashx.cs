@@ -20,8 +20,8 @@ namespace Safety.Helper
 
             Data.SHA sha = new Data.SHA() {
                 site_id = site_id,
-                updated_by = user.ID,
-                updated_dt = DateTime.Now
+                reviewed_by = user.ID,
+                reviewed_dt = DateTime.Now
             };
 
             db.SHAs.InsertOnSubmit(sha);

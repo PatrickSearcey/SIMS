@@ -102,7 +102,6 @@ namespace Safety
                     pnlAllData.Visible = false;
 
                     ltlNotes0.Text = currTCP.TCPSite.Notes.ToStringSafe();
-                    ltlUpdated0.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.UpdatedBy.ToStringSafe();
 
                 }
                 else if (currTCP.TCPPlanDetail.Number == "V")
@@ -120,7 +119,6 @@ namespace Safety
                     ltlTrafficV.Text = currTCP.TCPSite.TrafficVolume.ToString("unknown");
                     ltlNotesV.Text = currTCP.TCPSite.Notes.ToStringSafe();
                     ltlRemarksV.Text = currTCP.WorkAreaActivity + "<br />" + currTCP.Remarks.ToStringSafe();
-                    ltlUpdatedV.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.UpdatedBy.ToStringSafe();
                     ltlReviewedV.Text = string.Format("{0:MM/dd/yyyy}", currTCP.ReviewedDt) + ", by " + currTCP.ReviewedBy.ToStringSafe();
                     ltlApprovedV.Text = string.Format("{0:MM/dd/yyyy}", currTCP.ApprovedDt) + ", by " + currTCP.ApprovedBy.ToStringSafe();
 
@@ -158,7 +156,6 @@ namespace Safety
                     {
                         ltlCell.Text = "Unknown";
                     }
-                    ltlUpdated.Text = string.Format("{0:MM/dd/yyyy}", currTCP.UpdatedDt) + ", by " + currTCP.UpdatedBy.ToStringSafe();
                     ltlReviewed.Text = string.Format("{0:MM/dd/yyyy}", currTCP.ReviewedDt) + ", by " + currTCP.ReviewedBy.ToStringSafe();
                     ltlApproved.Text = string.Format("{0:MM/dd/yyyy}", currTCP.ApprovedDt) + ", by " + currTCP.ApprovedBy.ToStringSafe();
                     ltlNotes.Text = currTCP.TCPSite.Notes.ToStringSafe();

@@ -22,7 +22,6 @@
             </div>
             <asp:Panel ID="pnlPlan0" runat="server" CssClass="pnlSiteInfo" ClientIDMode="Static">
                 <h4>Site and Plan Info</h4>
-                <b>Plan Updated: </b><asp:Literal ID="ltlUpdated0" runat="server" /><br /> 
                 <b>Site Specific Notes - Reason No TCP is Required:</b><br />
                 <asp:Literal ID="ltlNotes0" runat="server" />
             </asp:Panel>
@@ -32,7 +31,6 @@
                 <b>Highway/Road: </b><asp:Literal ID="ltlHighwayV" runat="server" /><br />
                 <b>Speed Limit: </b><asp:Literal ID="ltlSpeedV" runat="server" /><br /> 
                 <b>Traffic Volume: </b><asp:Literal ID="ltlTrafficV" runat="server" /><br />
-                <b>Plan Updated: </b><asp:Literal ID="ltlUpdatedV" runat="server" /><br /> 
                 <b>Plan Reviewed: </b><asp:Literal ID="ltlReviewedV" runat="server" /><br />
                 <b>Plan Approved: </b><asp:Literal ID="ltlApprovedV" runat="server" /><br /> 
                 <asp:Panel ID="pnlDownloadPlan" runat="server">
@@ -57,7 +55,6 @@
                 <b>Speed Limit: </b><asp:Literal ID="ltlSpeed" runat="server" /><br /> 
                 <b>Traffic Volume: </b><asp:Literal ID="ltlTraffic" runat="server" /><br />
                 <b>Cell Service Available: </b><asp:Literal ID="ltlCell" runat="server" /><br />
-                <b>Plan Updated: </b><asp:Literal ID="ltlUpdated" runat="server" /><br /> 
                 <b>Plan Reviewed: </b><asp:Literal ID="ltlReviewed" runat="server" /><br />
                 <b>Plan Approved: </b><asp:Literal ID="ltlApproved" runat="server" /><br />           
                 <b>Site Specific Notes:</b><br />

@@ -66,6 +66,25 @@
         <Rows>
             <telerik:LayoutRow>
                 <Columns>
+                    <telerik:CompositeLayoutColumn Span="9" SpanMd="9" SpanSm="9" HiddenXs="true">
+                    </telerik:CompositeLayoutColumn>
+                    <telerik:CompositeLayoutColumn Span="3" SpanMd="3" SpanSm="3" HiddenXs="true">
+                        <Rows>
+                            <telerik:LayoutRow>
+                                <Content>
+                                    <br />
+                                    <img src="images/bullet.png" alt="bullet" style="float:left;padding-top:3px;padding-right:3px;" /> 
+                                    <asp:HyperLink ID="hlTCPReport" runat="server" Text="Go to the TCP Status Report" Font-Bold="true" />
+                                </Content>
+                            </telerik:LayoutRow>
+                        </Rows>
+                    </telerik:CompositeLayoutColumn>
+                </Columns>
+            </telerik:LayoutRow>
+        </Rows>
+        <Rows>
+            <telerik:LayoutRow>
+                <Columns>
                     <telerik:CompositeLayoutColumn Span="12" SpanMd="12" SpanSm="12" HiddenXs="true">
                         <Rows>
                             <telerik:LayoutRow>
@@ -290,6 +309,14 @@
                                                         If a plan document has already been uploaded, you will be able to see the link and download it under the TCP V below. Uploading
                                                         a new document will replace the current one. Only one plan document can be stored with TCP V.   
                                                     </telerik:RadToolTip>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="top">Reviewer Remarks<br />
+                                                    <asp:Label ID="lblReviewerRemarks" runat="server" Text="please enter information about what changed to assist the Approver" Font-Bold="true" Font-Italic="true" />
+                                                </td>
+                                                <td>
+                                                    <telerik:RadTextBox ID="rtbRemarks" runat="server" TextMode="MultiLine" Width="400px" Height="100px" Skin="Bootstrap" />
                                                 </td>
                                             </tr>
                                         </table>

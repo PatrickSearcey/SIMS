@@ -220,6 +220,42 @@ namespace Safety {
         protected global::System.Web.UI.WebControls.Panel pnlWSCReport;
         
         /// <summary>
+        /// ltlTotalSHANo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlTotalSHANo;
+        
+        /// <summary>
+        /// ltlApprovedSHANo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlApprovedSHANo;
+        
+        /// <summary>
+        /// imgApprovedTT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgApprovedTT;
+        
+        /// <summary>
+        /// rttApproved control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadToolTip rttApproved;
+        
+        /// <summary>
         /// rts2 control.
         /// </summary>
         /// <remarks>
