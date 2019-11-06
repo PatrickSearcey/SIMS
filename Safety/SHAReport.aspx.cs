@@ -117,6 +117,9 @@ namespace Safety
 
             ltlTotalSHANo.Text = totalSHANo;
             ltlApprovedSHANo.Text = totalApprovedNo;
+
+            var wsc_cd = db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID).wsc_cd;
+            if (wsc_cd != "OT") pnlSHAStatus.Visible = false;
         }
         #endregion
 

@@ -220,6 +220,15 @@ namespace Safety {
         protected global::System.Web.UI.WebControls.Panel pnlWSCReport;
         
         /// <summary>
+        /// pnlSHAStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlSHAStatus;
+        
+        /// <summary>
         /// ltlTotalSHANo control.
         /// </summary>
         /// <remarks>

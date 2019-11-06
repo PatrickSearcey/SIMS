@@ -123,7 +123,7 @@ namespace Safety
             ltlApprovedTCPNo.Text = totalApprovedNo;
 
             var wsc_cd = db.WSCs.FirstOrDefault(p => p.wsc_id == WSCID).wsc_cd;
-            if (wsc_cd != "TX") pnlTCPStatus.Visible = false;
+            if (wsc_cd != "OT") pnlTCPStatus.Visible = false;
         }
         #endregion
 

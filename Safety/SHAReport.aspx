@@ -8,6 +8,12 @@
         .imgPadding {
             padding-left:5px;
         }
+        .SHAStatusPanel {
+            border:1px solid #e8d0ad; 
+            background:#fcfaf6; 
+            padding:5px;
+            margin-top:10px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph1" runat="Server">
@@ -347,7 +353,7 @@
                     </p>
                 </td>
                 <td nowrap>
-                    <div style="border:1px solid #e8d0ad; background:#fcfaf6; padding:5px;margin-top:10px;">
+                    <asp:Panel ID="pnlSHAStatus" runat="server" CssClass="SHAStatusPanel">
                         <h4>SHA WSC Status (real time SW only) for past 365 days</h4>
                         <p>Total SHAs: <b><asp:Literal ID="ltlTotalSHANo" runat="server" /></b><br />
                         Approved SHAs: <b><asp:Literal ID="ltlApprovedSHANo" runat="server" /></b>
@@ -357,7 +363,7 @@
                             This is the number of SHAs that have been approved in the past year, regardless of review status. Meaning, the number here does not
                             necessarily match the number of SHAs that show up for the WSC under the Currently Approved SHAs tab.
                         </telerik:RadToolTip></p>
-                    </div>
+                    </asp:Panel>
                 </td>
             </tr>
         </table>
