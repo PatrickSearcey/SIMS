@@ -247,7 +247,7 @@ namespace Safety
                                 join s in db.SHAs on p.site_id equals s.site_id
                                 join w in db.WSCs on p.wsc_id equals w.wsc_id
                                 where (s.reviewed_dt > oneYearAgo && s.reviewed_dt < s.approved_dt && s.approved_by != "transfer") ||
-                                (s.approved_dt != null && s.approved_by != "transfer" && (s.reviewed_dt == null) || 
+                                (s.approved_dt > oneYearAgo && s.approved_by != "transfer" && (s.reviewed_dt == null) || 
                                 (s.reviewed_dt < s.approved_dt && s.approved_by != "transfer" && s.approved_dt > oneYearAgo))
                                 select new SHADataItem()
                                 {

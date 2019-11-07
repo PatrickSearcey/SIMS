@@ -258,7 +258,7 @@ namespace Safety
                                 join t in db.TCPs on p.site_id equals t.site_id
                                 join w in db.WSCs on p.wsc_id equals w.wsc_id
                                 where (t.ReviewedDt > oneYearAgo && t.ReviewedDt < t.ApprovedDt && t.ApprovedBy != "transfer") ||
-                                (t.ApprovedDt != null && t.ApprovedBy != "transfer" && (t.ReviewedDt == null) ||
+                                (t.ApprovedDt > oneYearAgo && t.ApprovedBy != "transfer" && (t.ReviewedDt == null) ||
                                 (t.ReviewedDt < t.ApprovedDt && t.ApprovedBy != "transfer" && t.ApprovedDt > oneYearAgo))
                                 select new TCPDataItem()
                                 {
