@@ -45,7 +45,7 @@ namespace SIMS2017.Services
             }
             else
             {
-                context.Response.Write("district\toffice_cd\toffice_id\tsite_no\tstation_nm\tsite_tp_cd\tagency_use_cd\trecord_type\tfield_trip\tuser_id\tSLAP_auto\t\n");
+                context.Response.Write("district\toffice_cd\toffice_id\tsite_no\tstation_nm\tsite_tp_cd\tagency_use_cd\trecord_type\tfield_trip\tuser_id\tSLAP_auto\tCRP_category_no\n");
 
                 foreach (DataRow row in dt.Rows)
                 {
@@ -63,6 +63,7 @@ namespace SIMS2017.Services
                     string user_id = "";
                     string type_ds = "";
                     string slap_auto = "";
+                    string category_no = "";
 
                     site_no = row["site_no"].ToString();
                     agency_cd = row["agency_cd"].ToString();
@@ -78,6 +79,7 @@ namespace SIMS2017.Services
                     user_id = row["user_id"].ToString();
                     type_ds = row["type_ds"].ToString();
                     slap_auto = row["sims_auto_rm"].ToString();
+                    category_no = row["category_no"].ToString();
 
                     if (slap_auto == "True")
                         slap_auto = "Y";
@@ -85,7 +87,7 @@ namespace SIMS2017.Services
                         slap_auto = "N";
 
                     context.Response.Write(district_abbrev + "\t" + office_cd + "\t" + office_id + "\t" + site_no + "\t" + station_nm + "\t" + site_tp_cd + "\t" + agency_use_cd + "\t" +
-                        type_ds + "\t" + trip_nm + "\t" + user_id + "\t" + slap_auto + "\n");
+                        type_ds + "\t" + trip_nm + "\t" + user_id + "\t" + slap_auto + "\t" + category_no + "\n");
                 }
             }
         }
