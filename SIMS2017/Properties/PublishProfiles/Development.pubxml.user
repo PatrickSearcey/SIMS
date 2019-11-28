@@ -148,19 +148,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/07/2019 13:47:57</publishTime>
     </File>
     <File Include="bin/Core.dll">
-      <publishTime>10/22/2019 20:19:17</publishTime>
+      <publishTime>11/27/2019 19:52:53</publishTime>
     </File>
     <File Include="bin/Core.pdb">
-      <publishTime>10/22/2019 20:19:17</publishTime>
+      <publishTime>11/27/2019 19:52:53</publishTime>
     </File>
     <File Include="bin/Data.dll">
-      <publishTime>11/19/2019 09:36:16</publishTime>
+      <publishTime>11/27/2019 19:52:52</publishTime>
     </File>
     <File Include="bin/Data.dll.config">
-      <publishTime>11/08/2019 10:53:30</publishTime>
+      <publishTime>11/19/2019 12:25:16</publishTime>
     </File>
     <File Include="bin/Data.pdb">
-      <publishTime>11/19/2019 09:36:16</publishTime>
+      <publishTime>11/27/2019 19:52:52</publishTime>
     </File>
     <File Include="bin/DotNetZip.dll">
       <publishTime>06/22/2016 21:31:52</publishTime>
@@ -178,10 +178,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/01/2016 16:26:44</publishTime>
     </File>
     <File Include="bin/SIMS2017.dll">
-      <publishTime>11/19/2019 09:36:19</publishTime>
+      <publishTime>11/27/2019 19:52:56</publishTime>
     </File>
     <File Include="bin/SIMS2017.pdb">
-      <publishTime>11/19/2019 09:36:19</publishTime>
+      <publishTime>11/27/2019 19:52:56</publishTime>
     </File>
     <File Include="bin/SIMSCustomControl.dll">
       <publishTime>11/07/2019 13:47:56</publishTime>
@@ -472,10 +472,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/07/2019 13:47:57</publishTime>
     </File>
     <File Include="SIMS.Master">
-      <publishTime>11/07/2019 13:47:57</publishTime>
+      <publishTime>11/27/2019 19:50:58</publishTime>
     </File>
     <File Include="SIMSHome.aspx">
-      <publishTime>11/07/2019 13:47:57</publishTime>
+      <publishTime>11/27/2019 19:49:42</publishTime>
     </File>
     <File Include="SIMSSingleMenu.Master">
       <publishTime>11/07/2019 13:47:57</publishTime>

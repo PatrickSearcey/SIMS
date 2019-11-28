@@ -82,11 +82,10 @@ namespace SIMS2017
             hlEmergencyInfo.NavigateUrl = String.Format("{0}EmergencyInfo.aspx?office_id={1}", Config.SafetyURL, OfficeID);
             hlMAI.NavigateUrl = String.Format("{0}StationDoc/MAI.aspx?office_id={1}", Config.SIMSURL, OfficeID);
             hlWYSummaryReport.NavigateUrl = String.Format("{0}Report/PubStatus.aspx", Config.RMSURL);
-            hlMapFieldTrips.Enabled = false;
+            hlMapFieldTrips.NavigateUrl = String.Format("{0}FieldTrip/", Config.SIMSServerURL);
             hlKMLWSC.Enabled = false;
             hlKMLOffice.Enabled = false;
             hlKMLInstructions.Enabled = false;
-            hlEvalMaps.Enabled = false;
         }
 
         /// <summary>
