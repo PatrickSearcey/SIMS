@@ -105,8 +105,8 @@
                                     <telerik:RadMenuItem Text="Mapping">
                                         <ContentTemplate>
                                             <div style="padding:10px;">
-                                                <b><asp:HyperLink ID="hlMapFieldTrips" runat="server" Text="Map Field Trips" /></b><br />
-                                                <b><i>KML links are currently unavailable!</i></b><br /><br />
+                                                <b><asp:HyperLink ID="hlMapFieldTrips" runat="server" Text="Map Field Trips" Target="_blank" /></b><br /><br />
+                                                <b><i>KML links are currently unavailable!</i></b><br />
                                                 <b>KML for use in ArcGIS &amp; Google Earth:</b><br />
                                                 &nbsp;&nbsp;&nbsp;Download for: <asp:HyperLink ID="hlKMLWSC" runat="server" Text="WSC" /> | <asp:HyperLink ID="hlKMLOffice" runat="server" Text="Office" /><br />
                                                 <asp:HyperLink ID="hlKMLInstructions" runat="server" Text="Download Instructions" Target="_blank" />
