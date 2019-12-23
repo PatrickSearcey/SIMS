@@ -408,6 +408,7 @@
                                                             <ClientTemplate>
                                                                 #=dataItem.PercentRecordsAssignedToApproveAnalyzedString# | #=dataItem.RecordsAssignedToApproveAnalyzed# records have been analyzed out of #=dataItem.TotalRecordsAssignedToApprove# records assigned to approve.
                                                             </ClientTemplate>
+
                                                         </TooltipsAppearance>
                                                     </telerik:BarSeries>
                                                     <telerik:BarSeries Name="Approved" Stacked="false" Gap="1.5" Spacing="0.4" DataFieldY="PercentRecordsAssignedToApproveApproved">

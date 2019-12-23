@@ -151,37 +151,49 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/12/2017 12:07:22</publishTime>
     </File>
     <File Include="bin/Core.dll">
-      <publishTime>12/18/2019 13:15:29</publishTime>
+      <publishTime>12/23/2019 09:40:15</publishTime>
     </File>
     <File Include="bin/Core.pdb">
-      <publishTime>12/18/2019 13:15:29</publishTime>
+      <publishTime>12/23/2019 09:40:15</publishTime>
     </File>
     <File Include="bin/Data.dll">
-      <publishTime>12/18/2019 13:15:28</publishTime>
+      <publishTime>12/23/2019 09:40:14</publishTime>
     </File>
     <File Include="bin/Data.dll.config">
-      <publishTime>12/13/2019 06:32:05</publishTime>
+      <publishTime>12/23/2019 09:36:24</publishTime>
     </File>
     <File Include="bin/Data.pdb">
-      <publishTime>12/18/2019 13:15:28</publishTime>
+      <publishTime>12/23/2019 09:40:14</publishTime>
+    </File>
+    <File Include="bin/EnvDTE.dll">
+      <publishTime>05/06/2019 14:17:39</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>11/07/2019 13:47:57</publishTime>
     </File>
     <File Include="bin/RMS.dll">
-      <publishTime>12/18/2019 13:15:32</publishTime>
+      <publishTime>12/23/2019 11:04:40</publishTime>
     </File>
     <File Include="bin/RMS.pdb">
-      <publishTime>12/18/2019 13:15:32</publishTime>
+      <publishTime>12/23/2019 11:04:40</publishTime>
+    </File>
+    <File Include="bin/stdole.dll">
+      <publishTime>05/06/2019 14:17:39</publishTime>
+    </File>
+    <File Include="bin/Telerik.Web.Design.dll">
+      <publishTime>10/22/2019 17:24:00</publishTime>
+    </File>
+    <File Include="bin/Telerik.Web.Device.Detection.dll">
+      <publishTime>10/22/2019 17:24:00</publishTime>
     </File>
     <File Include="bin/Telerik.Web.Spreadsheet.dll">
       <publishTime>11/07/2019 13:47:57</publishTime>
     </File>
     <File Include="bin/Telerik.Web.UI.dll">
-      <publishTime>11/07/2019 13:47:57</publishTime>
+      <publishTime>10/22/2019 17:24:00</publishTime>
     </File>
     <File Include="bin/Telerik.Web.UI.Skins.dll">
-      <publishTime>11/07/2019 13:47:57</publishTime>
+      <publishTime>10/22/2019 17:24:00</publishTime>
     </File>
     <File Include="bin/Telerik.Windows.Documents.Core.dll">
       <publishTime>11/07/2019 13:47:57</publishTime>
@@ -382,7 +394,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/07/2019 13:47:56</publishTime>
     </File>
     <File Include="Report/RecordProgress.aspx">
-      <publishTime>11/07/2019 13:47:56</publishTime>
+      <publishTime>12/23/2019 11:23:03</publishTime>
     </File>
     <File Include="Report/RecordProgressWSC.aspx">
       <publishTime>11/07/2019 13:47:56</publishTime>
