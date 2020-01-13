@@ -172,6 +172,14 @@
     <Content Include="images\review.png" />
     <Content Include="images\SIMSLogo.png" />
     <Content Include="images\SIMSTitle.png" />
+    <Content Include="images\SiteIcons\CL.png" />
+    <Content Include="images\SiteIcons\CLS.png" />
+    <Content Include="images\SiteIcons\GW.png" />
+    <Content Include="images\SiteIcons\GWS.png" />
+    <Content Include="images\SiteIcons\OT.png" />
+    <Content Include="images\SiteIcons\SP.png" />
+    <Content Include="images\SiteIcons\SW.png" />
+    <Content Include="images\SiteIcons\SWS.png" />
     <Content Include="images\tooltip.png" />
     <Content Include="images\underarrow.png" />
     <Content Include="images\USGSHeaderLogo.png" />
@@ -581,7 +589,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
