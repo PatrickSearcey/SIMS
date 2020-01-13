@@ -17,8 +17,9 @@ public class KMLHandler : IHttpHandler
     private const string office_id_qs = "office_id";
     private const string wsc_id_qs = "wsc_id";
 
-    private int wsc_id = 22;
+    private int wsc_id = 0;
     private string office_id = "0";
+    private string activeSites = "false";
 
     /// <summary>
     ///  This is your main, or page_load.  It's where we're gonna start.
@@ -45,6 +46,9 @@ public class KMLHandler : IHttpHandler
 
         if (context.Request.QueryString[office_id_qs] != null)
             office_id = context.Request.QueryString[office_id_qs];
+
+        if (context.Request.QueryString[activeSites] != null)
+            activeSites = context.Request.QueryString[activeSites];
     }
 
     /// <summary>
@@ -366,7 +370,7 @@ public class KMLHandler : IHttpHandler
         context.Response.End();
     }
 
-    public static DataTable GetSites(string office_id, int wsc_id, int trip_id)
+    public DataTable GetSites(string office_id, int wsc_id, int trip_id)
     {
         DataTable dt = new DataTable();
         dt.Clear();
@@ -375,11 +379,18 @@ public class KMLHandler : IHttpHandler
         {
             cnx.Open();
 
+            bool activeOnly = false;
+            if (activeSites != "false")
+            {
+                activeOnly = true;
+            }
+
             SqlCommand cmd = new SqlCommand("SP_Sites_By_WSC_KMZMapping", cnx);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.Add("@wsc_id", SqlDbType.Int).Value = wsc_id;
             cmd.Parameters.Add("@office_id", SqlDbType.Int).Value = System.Convert.ToInt32(office_id);
             cmd.Parameters.Add("@trip_id", SqlDbType.Int).Value = trip_id;
+            cmd.Parameters.Add("@active", SqlDbType.Bit).Value = activeOnly;
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);
@@ -390,7 +401,7 @@ public class KMLHandler : IHttpHandler
         return dt;
     }
 
-    public static string GetOfficeInfo(string office_id, string what_info, int wsc_id)
+    public string GetOfficeInfo(string office_id, string what_info, int wsc_id)
     {
         string pOut = null;
         string office_nm = null;
@@ -457,7 +468,7 @@ public class KMLHandler : IHttpHandler
         return pOut;
     }
 
-    public static string GetWSCInfo(int wsc_id, string what_info)
+    public string GetWSCInfo(int wsc_id, string what_info)
     {
         string pOut = null;
         string wsc_nm = null;
@@ -503,7 +514,7 @@ public class KMLHandler : IHttpHandler
         return pOut;
     }
 
-    public static DataTable GetFieldTrips(string office_id)
+    public DataTable GetFieldTrips(string office_id)
     {
         DataTable dt = new DataTable();
         dt.Clear();
