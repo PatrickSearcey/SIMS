@@ -26,7 +26,7 @@ namespace Data.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=IGSKIACWVMI02;Initial Catalog=simsdb;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=IGSKIACWVMI01;Initial Catalog=simsdb;Integrated Security=True")]
         public string simsdbConnectionString {
             get {
                 return ((string)(this["simsdbConnectionString"]));
