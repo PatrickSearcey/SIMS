@@ -419,10 +419,6 @@ public class KMLHandler : IHttpHandler
             SqlCommand cmd = new SqlCommand("SP_Office_Info", cnx);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.Add("@office_id", SqlDbType.Int).Value = System.Convert.ToInt32(office_id);
-            cmd.Parameters.Add("@office_cd", SqlDbType.NVarChar, 3).Value = "0";
-            cmd.Parameters.Add("@wsc_id", SqlDbType.Int).Value = 0;
-            cmd.Parameters.Add("@site_id", SqlDbType.Int).Value = 0;
-            cmd.Parameters.Add("@action", SqlDbType.NVarChar, 12).Value = "byofficeid";
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);
