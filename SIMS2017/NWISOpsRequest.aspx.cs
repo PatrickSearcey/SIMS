@@ -270,13 +270,15 @@ namespace SIMS2017
 
 		        foreach (string ao in assigned_operators) {
 			        if (!trip_userids.Contains(ao) & !string.IsNullOrEmpty(ao) & ao != null) {
-				        message.CC.Add(GetUserEmailAliasFromAD(ao));
+                        string aoEmail = GetUserEmailAliasFromAD(ao);
+                        if (!string.IsNullOrEmpty(aoEmail)) message.CC.Add(aoEmail);
 			        }
 		        }
 
 		        foreach (string tu in trip_userids) {
 			        if (!string.IsNullOrEmpty(tu) & tu != null) {
-				        message.CC.Add(GetUserEmailAliasFromAD(tu));
+                        string tuEmail = GetUserEmailAliasFromAD(tu);
+                        if (!string.IsNullOrEmpty(tuEmail)) message.CC.Add(tuEmail);
 			        }
 		        }
 	        } 
@@ -423,13 +425,15 @@ namespace SIMS2017
 
 		            foreach (string ao in assigned_operators) {
 			            if (!trip_userids.Contains(ao) & !string.IsNullOrEmpty(ao) & ao != null) {
-				             pOut += "<li>" + GetUserEmailAliasFromAD(ao) + "</li>" + "\r\n";
+                            string aoEmail = GetUserEmailAliasFromAD(ao);
+                            if (!string.IsNullOrEmpty(aoEmail)) pOut += "<li>" + aoEmail + "</li>" + "\r\n";
 			            }
 		            }
 
 		            foreach (string tu in trip_userids) {
 			            if (!string.IsNullOrEmpty(tu) & tu != null) {
-				            pOut += "<li>" + GetUserEmailAliasFromAD(tu) + "</li>" + "\r\n";
+                            string tuEmail = GetUserEmailAliasFromAD(tu);
+                            if (!string.IsNullOrEmpty(tuEmail)) pOut += "<li>" + GetUserEmailAliasFromAD(tu) + "</li>" + "\r\n";
 			            }
 		            }
 				}
