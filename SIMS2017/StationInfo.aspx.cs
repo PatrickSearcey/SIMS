@@ -91,7 +91,7 @@ namespace SIMS2017
             hlNWISOpsRequest.NavigateUrl = String.Format("{0}NWISOpsRequest.aspx?office_id={1}&site_id={2}", Config.SIMSURL, OfficeID, SiteID);
 
             //Station Details
-            ltlPubName.Text = currSite.station_full_nm;
+            ltlPubName.Text = currSite.site_no + " " + currSite.station_full_nm;
             rtbPubName.Text = currSite.station_full_nm;
             ltlOffice.Text = currSite.Office.office_nm;
             rddlOffice.DataSource = db.Offices.Where(p => p.wsc_id == WSCID).Select(p => new { office_id = p.office_id, office_nm = p.office_nm }).ToList();
