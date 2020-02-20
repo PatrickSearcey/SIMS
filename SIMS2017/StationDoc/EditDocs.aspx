@@ -127,7 +127,7 @@
         </asp:Panel>
 
         <asp:Panel ID="pnlChooseElement" runat="server">
-            <p class="EditDocList">2. Choose the element on which to perform the action (Do not copy and paste photos. Refer to photo guidance <a href="https://doimspp.sharepoint.com/:w:/s/SIMSDEV/Efxy3q5gCOBEvMBH5k8iFGIBSV_5uz6v1r4iHg1nLB5DCA" target="_blank">here</a>)</p>
+            <p class="EditDocList">2. Choose the element on which to perform the action <span style="font-size:10pt !important;">(Do not copy and paste photos. Refer to photo guidance <a href="https://doimspp.sharepoint.com/:w:/s/SIMSDEV/Efxy3q5gCOBEvMBH5k8iFGIBSV_5uz6v1r4iHg1nLB5DCA" target="_blank">here</a>)</span></p>
             <div class="EditDocList">
                 <telerik:RadDropDownList ID="rddlElements" runat="server" Skin="Bootstrap" Width="400px" DropDownHeight="400px" OnItemDataBound="rddlElements_ItemDataBound"
                     DataValueField="element_id" DataTextField="element_nm" OnSelectedIndexChanged="UpdateControls" AutoPostBack="true" />
