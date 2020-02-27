@@ -105,7 +105,7 @@ namespace RMS.Report
             rddlOffice.Items.Insert(0, "");
 
             rddlRecords.DataSource = db.Records
-                .Where(p => p.Site.Office.wsc_id == WSCID && p.not_used_fg == false)
+                .Where(p => p.Site.Office.wsc_id == WSCID)
                 .Select(p => new { rms_record_id = p.rms_record_id, SiteRecord = p.Site.site_no + " " + p.Site.station_full_nm + " (" + p.RecordType.type_cd + ")" })
                 .OrderBy(p => p.SiteRecord).ToList();
             rddlRecords.DataBind();
@@ -133,7 +133,7 @@ namespace RMS.Report
                 if (records.Count() > 0)
                 {
                     var recList = db.Records
-                        .Where(p => records.Contains(p.rms_record_id) && p.not_used_fg == false)
+                        .Where(p => records.Contains(p.rms_record_id))
                         .Select(p => new { rms_record_id = p.rms_record_id, SiteRecord = p.Site.site_no + " " + p.Site.station_full_nm + " (" + p.RecordType.type_cd + ")" })
                         .OrderBy(p => p.SiteRecord).ToList();
                     if (recList.Count() > 0)
@@ -162,7 +162,7 @@ namespace RMS.Report
             else //If office selection was reset back to "nothing", then reset the record list to be the full, WSC-wide list
             {
                 rddlRecords.DataSource = db.Records
-                    .Where(p => p.Site.Office.wsc_id == WSCID && p.not_used_fg == false)
+                    .Where(p => p.Site.Office.wsc_id == WSCID)
                     .Select(p => new { rms_record_id = p.rms_record_id, SiteRecord = p.Site.site_no + " " + p.Site.station_full_nm + " (" + p.RecordType.type_cd + ")" })
                     .OrderBy(p => p.SiteRecord).ToList();
                 rddlRecords.DataBind();
