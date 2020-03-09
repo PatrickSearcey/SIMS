@@ -484,6 +484,12 @@ namespace SIMS2017.Modal
                     //Checkbox
                     record.not_used_fg = rcbRecordInactive.Checked;
 
+                    if ((bool)record.not_used_fg) //If setting the record to inactive, make sure to delete any TS IDs tied to the record
+                    {
+                        var tsIDs = record.RecordDDs.ToList();
+                        db.RecordDDs.DeleteAllOnSubmit(tsIDs);
+                    }
+
                     db.SubmitChanges();
                 }
                 else //Create a new record
