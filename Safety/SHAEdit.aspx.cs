@@ -1135,7 +1135,8 @@ namespace Safety
             else
             {
                 ltlReviewedDate.Text = String.Format("{0:MM/dd/yyyy}", currSHA.reviewed_dt);
-                if (currSHA.reviewed_dt > DateTime.Now.AddDays(-365)) pnlReview.Visible = true;
+                //if (currSHA.reviewed_dt > DateTime.Now.AddDays(-1095)) pnlReview.Visible = true;
+                pnlReview.Visible = true;
             }
 
             ltlApprovedBy.Text = currSHA.approved_by;
