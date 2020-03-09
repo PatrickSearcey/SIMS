@@ -112,7 +112,7 @@ namespace Safety
             var totalSHAs = db.vSHAWSCStatus.Where(p => p.wsc_id == WSCID).ToList();
             totalSHANo = totalSHAs.Count().ToString();
 
-            var totalApproved = db.vSHAWSCStatus.Where(p => p.wsc_id == WSCID && p.approved_dt > DateTime.Now.AddDays(-365)).ToList();
+            var totalApproved = db.vSHAWSCStatus.Where(p => p.wsc_id == WSCID && p.approved_dt > DateTime.Now.AddDays(-1095)).ToList();
             totalApprovedNo = totalApproved.Count().ToString();
 
             ltlTotalSHANo.Text = totalSHANo;
@@ -238,7 +238,7 @@ namespace Safety
             get
             {
                 List<SHADataItem> data = new List<SHADataItem>();
-                DateTime oneYearAgo = DateTime.Now.AddDays(-365);
+                DateTime oneYearAgo = DateTime.Now.AddDays(-1095);
 
                 switch (grid_tp)
                 {

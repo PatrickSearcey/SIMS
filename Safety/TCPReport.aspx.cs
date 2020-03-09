@@ -115,7 +115,7 @@ namespace Safety
             var totalSiteTCPs = db.vTCPSitesWSCStatus.Where(p => p.wsc_id == WSCID).ToList();
             totalSiteTCPNo = totalSiteTCPs.Count().ToString();
 
-            var totalApproved = db.vTCPWSCStatus.Where(p => p.wsc_id == WSCID && p.ApprovedDt > DateTime.Now.AddDays(-365)).ToList();
+            var totalApproved = db.vTCPWSCStatus.Where(p => p.wsc_id == WSCID && p.ApprovedDt > DateTime.Now.AddDays(-1095)).ToList();
             totalApprovedNo = totalApproved.Count().ToString();
 
             ltlTotalTCPNo.Text = totalTCPNo;
@@ -249,7 +249,7 @@ namespace Safety
             get
             {
                 List<TCPDataItem> data = new List<TCPDataItem>();
-                DateTime oneYearAgo = DateTime.Now.AddDays(-365);
+                DateTime oneYearAgo = DateTime.Now.AddDays(-1095);
 
                 switch (grid_tp)
                 {
