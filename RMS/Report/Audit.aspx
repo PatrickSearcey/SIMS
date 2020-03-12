@@ -367,21 +367,26 @@
                     AllowAutomaticDeletes="true" OnNeedDataSource="rgAuditsDue_NeedDataSource"
                     OnItemDataBound="rgAuditsDue_ItemDataBound"
                     OnPreRender="rgAuditsDue_PreRender">
-                    <PagerStyle Mode="NumericPages" />
+                    <PagerStyle Mode="NextPrevNumericAndAdvanced" />
                     <MasterTableView DataKeyNames="rms_record_id" AllowMultiColumnSorting="true" Width="100%" CommandItemDisplay="None" 
                         Name="Records" AllowFilteringByColumn="true">
                         <Columns>
-                            <telerik:GridBoundColumn DataField="office_cd" HeaderText="Office" UniqueName="office_cd" SortExpression="office_cd" HeaderStyle-Width="90px" FilterControlWidth="70px" />
-                            <telerik:GridBoundColumn DataField="site_no" HeaderText="Site Number" UniqueName="site_no" SortExpression="site_no" HeaderStyle-Width="150px" FilterControlWidth="100px" />
-                            <telerik:GridBoundColumn DataField="station_nm" HeaderText="Station Name" UniqueName="station_nm" HeaderStyle-Width="500px" SortExpression="station_nm" FilterControlWidth="200px"/>
-                            <telerik:GridBoundColumn DataField="type_cd" UniqueName="type_cd" HeaderText="Record Type" SortExpression="type_cd" FilterControlWidth="100px" />
-                            <telerik:GridBoundColumn DataField="auditor_uid" UniqueName="auditor_uid" HeaderText="Assigned Auditor" SortExpression="auditor_uid" FilterControlWidth="100px" />
-                            <telerik:GridTemplateColumn DataField="audit_end_dt" UniqueName="last_audit_period" HeaderText="Last Audit Period" SortExpression="audit_end_dt" AllowFiltering="false">
+                            <telerik:GridBoundColumn DataField="office_cd" HeaderText="Office" UniqueName="office_cd" SortExpression="office_cd" FilterControlWidth="50px" />
+                            <telerik:GridBoundColumn DataField="site_no" HeaderText="Site Number" UniqueName="site_no" SortExpression="site_no" FilterControlWidth="80px" />
+                            <telerik:GridBoundColumn DataField="station_nm" HeaderText="Station Name" UniqueName="station_nm" SortExpression="station_nm" FilterControlWidth="170px"/>
+                            <telerik:GridBoundColumn DataField="type_cd" UniqueName="type_cd" HeaderText="Record Type" SortExpression="type_cd" FilterControlWidth="50px" />
+                            <telerik:GridBoundColumn DataField="auditor_uid" UniqueName="auditor_uid" HeaderText="Assigned Auditor" SortExpression="auditor_uid" FilterControlWidth="70px" />
+                            <telerik:GridTemplateColumn DataField="audit_end_dt" UniqueName="last_audit_period" HeaderText="Last Audit Period" SortExpression="audit_end_dt" HeaderStyle-Width="130px" AllowFiltering="false">
                                 <ItemTemplate>
                                     <asp:HyperLink ID="hlAuditPeriod" runat="server"></asp:HyperLink>
                                 </ItemTemplate>
                             </telerik:GridTemplateColumn>
-                            <telerik:GridTemplateColumn DataField="months_since_last" UniqueName="months_since_last" HeaderText="Months Since Last Audit" SortExpression="months_since_last" FilterControlWidth="60px">
+                            <telerik:GridBoundColumn DataField="audit_by" UniqueName="audit_by" HeaderText="Audit By" SortExpression="audit_by" FilterControlWidth="70px" />
+                            <telerik:GridBoundColumn DataField="audit_dt" UniqueName="audit_dt" HeaderText="Audit Date" SortExpression="audit_dt" AllowFiltering="false" DataFormatString="{0:MM/dd/yy}" />
+                            <telerik:GridBoundColumn DataField="audit_type" UniqueName="audit_type" HeaderText="Audit Type" SortExpression="audit_type" AllowFiltering="false" />
+                            <telerik:GridBoundColumn DataField="result" UniqueName="result" HeaderText="Result" SortExpression="result" AllowFiltering="false" HeaderStyle-Width="170px" />
+                            <telerik:GridBoundColumn datafield="description" UniqueName="description" HeaderText="Description" SortExpression="description" AllowFiltering="false" HeaderStyle-Width="170px" />
+                            <telerik:GridTemplateColumn DataField="months_since_last" UniqueName="months_since_last" HeaderText="Months Since Last Audit" SortExpression="months_since_last" FilterControlWidth="50px">
                                 <ItemTemplate>
                                     <asp:Literal ID="ltlMonthsSinceLast" runat="server" />
                                 </ItemTemplate>

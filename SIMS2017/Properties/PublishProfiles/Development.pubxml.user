@@ -148,19 +148,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/07/2019 13:47:57</publishTime>
     </File>
     <File Include="bin/Core.dll">
-      <publishTime>03/09/2020 10:57:58</publishTime>
+      <publishTime>03/11/2020 08:46:07</publishTime>
     </File>
     <File Include="bin/Core.pdb">
-      <publishTime>03/09/2020 10:57:58</publishTime>
+      <publishTime>03/11/2020 08:46:07</publishTime>
     </File>
     <File Include="bin/Data.dll">
-      <publishTime>03/09/2020 10:57:57</publishTime>
+      <publishTime>03/11/2020 08:46:06</publishTime>
     </File>
     <File Include="bin/Data.dll.config">
-      <publishTime>03/02/2020 15:19:38</publishTime>
+      <publishTime>03/09/2020 12:39:56</publishTime>
     </File>
     <File Include="bin/Data.pdb">
-      <publishTime>03/09/2020 10:57:57</publishTime>
+      <publishTime>03/11/2020 08:46:06</publishTime>
     </File>
     <File Include="bin/DotNetZip.dll">
       <publishTime>06/22/2016 21:31:52</publishTime>
@@ -178,10 +178,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/01/2016 16:26:44</publishTime>
     </File>
     <File Include="bin/SIMS2017.dll">
-      <publishTime>03/09/2020 10:58:01</publishTime>
+      <publishTime>03/11/2020 08:48:10</publishTime>
     </File>
     <File Include="bin/SIMS2017.pdb">
-      <publishTime>03/09/2020 10:58:01</publishTime>
+      <publishTime>03/11/2020 08:48:10</publishTime>
     </File>
     <File Include="bin/SIMSCustomControl.dll">
       <publishTime>11/07/2019 13:47:56</publishTime>
@@ -482,6 +482,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Service.asmx">
       <publishTime>11/07/2019 13:47:57</publishTime>
+    </File>
+    <File Include="Services/AuditHistory.ashx">
+      <publishTime>03/09/2020 12:43:51</publishTime>
     </File>
     <File Include="Services/FieldTripMap.ashx">
       <publishTime>11/07/2019 13:47:57</publishTime>

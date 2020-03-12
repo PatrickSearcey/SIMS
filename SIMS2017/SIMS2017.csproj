@@ -408,6 +408,9 @@
       <DependentUpon>Service.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Services\AuditHistory.ashx.cs">
+      <DependentUpon>AuditHistory.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Services\FieldTripMap.ashx.cs">
       <DependentUpon>FieldTripMap.ashx</DependentUpon>
     </Compile>
@@ -539,6 +542,7 @@
     <Content Include="Services\go2PASSDump.ashx" />
     <Content Include="Services\StationsRpts.ashx" />
     <Content Include="Services\FieldTripMap.ashx" />
+    <Content Include="Services\AuditHistory.ashx" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -589,7 +593,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
