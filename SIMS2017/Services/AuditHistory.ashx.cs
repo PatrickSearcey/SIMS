@@ -15,42 +15,107 @@ namespace SIMS2017.Services
 
         public void ProcessRequest(HttpContext context)
         {
-            string json = GetAuditHistoryJSON();
+            string wsc_cd = context.Request["wsc_cd"];
+            string site_no = context.Request["site_no"];
+
+            string json = GetAuditHistoryJSON(wsc_cd, site_no);
             context.Response.ContentType = "text/json";
             context.Response.Write(json);
         }
 
-        private string GetAuditHistoryJSON()
+        private string GetAuditHistoryJSON(string wsc_cd, string site_no)
         {
             List<AuditItem> audits = new List<AuditItem>();
 
-            audits = db.vAuditHistories.Select(p => new AuditItem
+            if (string.IsNullOrEmpty(wsc_cd) && string.IsNullOrEmpty(site_no))
             {
-                WSCID = p.wsc_id,
-                WSCCode = p.wsc_cd,
-                SiteWSC = p.site_wsc,
-                OfficeCode = p.office_cd,
-                OfficeName = p.office_nm,
-                AgencyCode = p.agency_cd,
-                SiteNo = p.site_no,
-                StationName = p.station_nm,
-                SiteTypeCode = p.site_tp_cd,
-                TypeCode = p.type_cd,
-                TypeDesc = p.type_ds,
-                CategoryNo = p.category_no,
-                Timeseries = p.Timeseries,
-                ActiveRecordType = p.active_record_type,
-                AssignedAuditor = p.assigned_auditor,
-                AuditDate = p.audit_dt,
-                AuditBy = p.audit_by,
-                AuditBegDate = p.audit_beg_dt,
-                AuditEndDate = p.audit_end_dt,
-                Type = p.type,
-                Description = p.description,
-                Result = p.result,
-                AuditURL = string.Format("{0}Modal/ViewAudit.aspx?rms_audit_id={1}", Core.Config.RMSURL, p.rms_audit_id)
-            }).OrderBy(p => p.SiteWSC).ThenBy(p => p.OfficeName).ThenBy(p => p.SiteNo).ThenBy(p => p.TypeCode).ThenBy(p => p.AuditDate).ToList();
+                audits = db.vAuditHistories.Select(p => new AuditItem
+                {
+                    WSCID = p.wsc_id,
+                    WSCCode = p.wsc_cd,
+                    SiteWSC = p.site_wsc,
+                    OfficeCode = p.office_cd,
+                    OfficeName = p.office_nm,
+                    AgencyCode = p.agency_cd,
+                    SiteNo = p.site_no,
+                    StationName = p.station_nm,
+                    SiteTypeCode = p.site_tp_cd,
+                    TypeCode = p.type_cd,
+                    TypeDesc = p.type_ds,
+                    CategoryNo = p.category_no,
+                    Timeseries = p.Timeseries,
+                    ActiveRecordType = p.active_record_type,
+                    AssignedAuditor = p.assigned_auditor,
+                    AuditDate = p.audit_dt,
+                    AuditBy = p.audit_by,
+                    AuditBegDate = p.audit_beg_dt,
+                    AuditEndDate = p.audit_end_dt,
+                    Type = p.type,
+                    Description = p.description,
+                    Result = p.result,
+                    AuditURL = string.Format("{0}Modal/ViewAudit.aspx?rms_audit_id={1}", Core.Config.RMSURL, p.rms_audit_id)
+                }).OrderBy(p => p.SiteWSC).ThenBy(p => p.OfficeName).ThenBy(p => p.SiteNo).ThenBy(p => p.TypeCode).ThenBy(p => p.AuditDate).ToList();
+            }
+            else if (!string.IsNullOrEmpty(wsc_cd))
+            {
+                audits = db.vAuditHistories.Where(p => p.wsc_cd == wsc_cd).Select(p => new AuditItem
+                {
+                    WSCID = p.wsc_id,
+                    WSCCode = p.wsc_cd,
+                    SiteWSC = p.site_wsc,
+                    OfficeCode = p.office_cd,
+                    OfficeName = p.office_nm,
+                    AgencyCode = p.agency_cd,
+                    SiteNo = p.site_no,
+                    StationName = p.station_nm,
+                    SiteTypeCode = p.site_tp_cd,
+                    TypeCode = p.type_cd,
+                    TypeDesc = p.type_ds,
+                    CategoryNo = p.category_no,
+                    Timeseries = p.Timeseries,
+                    ActiveRecordType = p.active_record_type,
+                    AssignedAuditor = p.assigned_auditor,
+                    AuditDate = p.audit_dt,
+                    AuditBy = p.audit_by,
+                    AuditBegDate = p.audit_beg_dt,
+                    AuditEndDate = p.audit_end_dt,
+                    Type = p.type,
+                    Description = p.description,
+                    Result = p.result,
+                    AuditURL = string.Format("{0}Modal/ViewAudit.aspx?rms_audit_id={1}", Core.Config.RMSURL, p.rms_audit_id)
+                }).OrderBy(p => p.SiteWSC).ThenBy(p => p.OfficeName).ThenBy(p => p.SiteNo).ThenBy(p => p.TypeCode).ThenBy(p => p.AuditDate).ToList();
+            }
+            else if (!string.IsNullOrEmpty(site_no))
+            {
+                audits = db.vAuditHistories.Where(p => p.site_no == site_no).Select(p => new AuditItem
+                {
+                    WSCID = p.wsc_id,
+                    WSCCode = p.wsc_cd,
+                    SiteWSC = p.site_wsc,
+                    OfficeCode = p.office_cd,
+                    OfficeName = p.office_nm,
+                    AgencyCode = p.agency_cd,
+                    SiteNo = p.site_no,
+                    StationName = p.station_nm,
+                    SiteTypeCode = p.site_tp_cd,
+                    TypeCode = p.type_cd,
+                    TypeDesc = p.type_ds,
+                    CategoryNo = p.category_no,
+                    Timeseries = p.Timeseries,
+                    ActiveRecordType = p.active_record_type,
+                    AssignedAuditor = p.assigned_auditor,
+                    AuditDate = p.audit_dt,
+                    AuditBy = p.audit_by,
+                    AuditBegDate = p.audit_beg_dt,
+                    AuditEndDate = p.audit_end_dt,
+                    Type = p.type,
+                    Description = p.description,
+                    Result = p.result,
+                    AuditURL = string.Format("{0}Modal/ViewAudit.aspx?rms_audit_id={1}", Core.Config.RMSURL, p.rms_audit_id)
+                }).OrderBy(p => p.SiteWSC).ThenBy(p => p.OfficeName).ThenBy(p => p.SiteNo).ThenBy(p => p.TypeCode).ThenBy(p => p.AuditDate).ToList();
+            }
 
+            
             return (new JavaScriptSerializer().Serialize(audits));
         }
 
