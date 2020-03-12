@@ -1220,25 +1220,6 @@
       <Column Name="trip_ids" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.vRMSMostRecentAuditPeriod" Member="vRMSMostRecentAuditPeriods">
-    <Type Name="vRMSMostRecentAuditPeriod">
-      <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="record_office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="office_cd" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="site_no" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
-      <Column Name="station_nm" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="rms_record_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="type_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="auditor_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="TemplateName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="sims_site_tp" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
-      <Column Name="approved_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="last_approved_period" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="rms_audit_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="audit_beg_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="audit_end_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.RMS_ts_aging" Member="RMS_ts_agings">
     <Type Name="RMS_ts_aging">
       <Column Name="aging_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -1348,6 +1329,57 @@
       <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="approved_by" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
       <Column Name="approved_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vAuditHistory" Member="vAuditHistories">
+    <Type Name="vAuditHistory">
+      <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="wsc_cd" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="site_wsc" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="office_cd" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="office_nm" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="agency_cd" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="site_no" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="station_nm" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="site_tp_cd" Type="System.String" DbType="VarChar(7)" CanBeNull="true" />
+      <Column Name="type_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="type_ds" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="category_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Timeseries" Type="System.String" DbType="VarChar(14) NOT NULL" CanBeNull="false" />
+      <Column Name="active_record_type" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="assigned_auditor" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="audit_dt" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="audit_by" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="audit_beg_dt" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="audit_end_dt" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="result" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="rms_audit_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vRMSMostRecentAuditPeriod" Member="vRMSMostRecentAuditPeriods">
+    <Type Name="vRMSMostRecentAuditPeriod">
+      <Column Name="wsc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="record_office_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="office_cd" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="site_no" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="station_nm" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="rms_record_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="type_cd" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="auditor_uid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TemplateName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="sims_site_tp" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="approved_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="last_approved_period" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="rms_audit_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="audit_beg_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="audit_end_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="audit_by" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="audit_dt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="result" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.spz_GetDCPInfo" Method="spz_GetDCPInfo">

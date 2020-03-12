@@ -338,7 +338,12 @@ namespace RMS.Report
                 audit_beg_dt = p.audit_beg_dt,
                 audit_end_dt = p.audit_end_dt,
                 months_since_last = CalculateMonthsSinceLast(p.audit_end_dt),
-                rms_record_id = p.rms_record_id
+                rms_record_id = p.rms_record_id,
+                audit_by = p.audit_by,
+                audit_dt = p.audit_dt,
+                audit_type = p.type,
+                result = p.result,
+                description = p.description
             }).ToList();
         }
 
@@ -348,7 +353,7 @@ namespace RMS.Report
             int i = 0;
             while (i < menu.Items.Count)
             {
-                if (menu.Items[i].Text == "NoFilter" | menu.Items[i].Text == "Contains" | menu.Items[i].Text == "EqualTo" | menu.Items[i].Text == "DoesNotContain")
+                if (menu.Items[i].Text == "NoFilter" | menu.Items[i].Text == "Contains" | menu.Items[i].Text == "EqualTo" | menu.Items[i].Text == "DoesNotContain" | menu.Items[i].Text == "LessThan" | menu.Items[i].Text == "GreaterThan")
                     i = i + 1;
                 else
                     menu.Items.RemoveAt(i);
@@ -371,7 +376,7 @@ namespace RMS.Report
 
                     if (recAudit.audit_beg_dt != null && recAudit.audit_end_dt != null)
                     {
-                        hlAuditPeriod.Text = String.Format("{0:MM/dd/yyyy} - {1:MM/dd/yyyy}", recAudit.audit_beg_dt, recAudit.audit_end_dt);
+                        hlAuditPeriod.Text = String.Format("{0:MM/dd/yy} - {1:MM/dd/yy}", recAudit.audit_beg_dt, recAudit.audit_end_dt);
                         hlAuditPeriod.NavigateUrl = String.Format("javascript:OpenPopup('../Modal/ViewAudit.aspx?rms_audit_id={0}&rms_record_id={1}')", recAudit.rms_audit_id, rms_record_id);
 
                         int monthsSinceLast = CalculateMonthsSinceLast(recAudit.audit_end_dt);
