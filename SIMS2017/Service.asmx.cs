@@ -347,6 +347,37 @@ namespace SIMS2017
             return ds;
         }
 
+        [WebMethod(Description = "Gets all sites in PASS with irridium and cellular IDs")]
+        public DataSet GetPASSIMEISiteInfo()
+        {
+            string cs = Config.ConnectionInfo;
+            SqlConnection cn = new SqlConnection(cs);
+            SqlDataAdapter da = new SqlDataAdapter("SELECT pai.site_no, pai.TransmitInterval, pai.Remarks, pim.IMEI, pim.IPAddress, pim.SIMCard," +
+                " lc.Carrier, (CASE WHEN pim.PrivateNetwork = 1 THEN 'yes' ELSE 'no' END) AS PrivateNetwork, pim.IDType, pim.MobileNo," + 
+                " pim.ModemMake, pim.ModemModel, pim.SerialNumber, pim.DataPlan, pim.CertStd, pim.wsc_id, lw.wsc_cd" +
+                " FROM simsdb_water.dbo.PASS_AssignedIMEI AS pai INNER JOIN simsdb_water.dbo.PASS_IMEI_Master AS pim ON pai.IMEI_ID = pim.IMEI_ID INNER JOIN " +
+                " lut_WSC AS lw ON lw.wsc_id = pim.wsc_id LEFT OUTER JOIN simsdb_water.dbo.lut_Carrier AS lc ON pim.CarrierID = lc.CarrierID", cn);
+            DataSet ds = new DataSet();
+            da.Fill(ds, "PASSIMEISiteInfo");
+            return ds;
+        }
+
+        [WebMethod(Description = "Gets PASS irridium and cellular info for a site from SIMS")]
+        public DataSet GetPASSIMEIForSite(string site_no)
+        {
+            string cs = Config.ConnectionInfo;
+            SqlConnection cn = new SqlConnection(cs);
+            SqlDataAdapter da = new SqlDataAdapter("SELECT pai.site_no, pai.TransmitInterval, pai.Remarks, pim.IMEI, pim.IPAddress, pim.SIMCard," +
+                " lc.Carrier, (CASE WHEN pim.PrivateNetwork = 1 THEN 'yes' ELSE 'no' END) AS PrivateNetwork, pim.IDType, pim.MobileNo," +
+                " pim.ModemMake, pim.ModemModel, pim.SerialNumber, pim.DataPlan, pim.CertStd, pim.wsc_id, lw.wsc_cd" +
+                " FROM simsdb_water.dbo.PASS_AssignedIMEI AS pai INNER JOIN simsdb_water.dbo.PASS_IMEI_Master AS pim ON pai.IMEI_ID = pim.IMEI_ID INNER JOIN " +
+                " lut_WSC AS lw ON lw.wsc_id = pim.wsc_id LEFT OUTER JOIN simsdb_water.dbo.lut_Carrier AS lc ON pim.CarrierID = lc.CarrierID" +
+                " WHERE pai.site_no = '" + site_no + "'", cn);
+            DataSet ds = new DataSet();
+            da.Fill(ds, "PASSIMEIInfo");
+            return ds;
+        }
+
         [WebMethod(Description = "Gets operator user names by site number")]
         public DataSet GetRecordOperators(string site_no, string agency_cd)
         {
