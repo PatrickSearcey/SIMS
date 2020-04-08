@@ -76,7 +76,6 @@ namespace SIMS2017.StationDoc
                 if (user.WSCID.Contains(WSCID) || user.IsSuperUser) HasEditAccess = true;
 
                 PopulateSDESCView();
-                PopulateSANALView();
                 PopulateMANUView();
                 PopulateCustomView();
 
@@ -86,16 +85,12 @@ namespace SIMS2017.StationDoc
                         rtsMain.SelectedIndex = 0;
                         rpvSDESC.Selected = true;
                         break;
-                    case "SANAL":
-                        rtsMain.SelectedIndex = 1;
-                        rpvSANAL.Selected = true;
-                        break;
                     case "MANU":
-                        rtsMain.SelectedIndex = 2;
+                        rtsMain.SelectedIndex = 1;
                         rpvMANU.Selected = true;
                         break;
                     case "Custom":
-                        rtsMain.SelectedIndex = 3;
+                        rtsMain.SelectedIndex = 2;
                         rpvCustom.Selected = true;
                         break;
                 }
@@ -140,25 +135,6 @@ namespace SIMS2017.StationDoc
 
             dlSDESC.DataSource = svcSIMS.GetElementsBySiteAndReport(currSite.site_no, currSite.agency_cd, "SDESC");
             dlSDESC.DataBind();
-        }
-
-        protected void PopulateSANALView()
-        {
-            var SANALelems = currSite.SiteElements.Where(p => p.ElementDetail.priority > 199 && p.ElementDetail.priority < 300);
-            if (SANALelems.Count() > 0)
-            {
-                DateTime last_revised = Convert.ToDateTime(SANALelems.OrderByDescending(p => p.revised_dt).FirstOrDefault().revised_dt);
-                ltlSANALRevisedDt.Text = String.Format("{0:MM/dd/yyyy}", last_revised);
-                ltlSANALRevisedBy.Text = SANALelems.OrderByDescending(p => p.revised_dt).FirstOrDefault().revised_by;
-            }
-            else
-            {
-                ltlSANALRevisedDt.Text = "<i>N/A</i>";
-                ltlSANALRevisedBy.Text = "<i>N/A</i>";
-            }
-
-            dlSANAL.DataSource = svcSIMS.GetElementsBySiteAndReport(currSite.site_no, currSite.agency_cd, "SANAL");
-            dlSANAL.DataBind();
         }
 
         protected void PopulateMANUView()

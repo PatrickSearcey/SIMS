@@ -86,7 +86,7 @@ namespace SIMS2017.StationDoc
         #region Data
         private List<Data.SiteElementItem> SiteElements()
         {
-            List<Data.SiteElementItem> data = currSite.SiteElements.Select(p => new Data.SiteElementItem
+            List<Data.SiteElementItem> data = currSite.SiteElements.Where(p => p.ElementDetail.active == true).Select(p => new Data.SiteElementItem
             {
                 ElementID = Convert.ToInt32(p.element_id),
                 ElementInfo = p.element_info.FormatElementInfo(Convert.ToInt32(p.element_id), Convert.ToInt32(p.site_id)),

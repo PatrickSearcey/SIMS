@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SIMS2017 {
-    
-    
-    public partial class StationInfo {
-        
+namespace SIMS2017
+{
+
+
+    public partial class StationInfo
+    {
+
         /// <summary>
         /// ram control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadAjaxManager ram;
-        
+
         /// <summary>
         /// ralp control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadAjaxLoadingPanel ralp;
-        
+
         /// <summary>
         /// rwm control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadWindowManager rwm;
-        
+
         /// <summary>
         /// rwEditFieldTrips control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadWindow rwEditFieldTrips;
-        
+
         /// <summary>
         /// rwEditRecords control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadWindow rwEditRecords;
-        
+
         /// <summary>
         /// rwTCPReview control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadWindow rwTCPReview;
-        
+
         /// <summary>
         /// hfFieldTripIDs control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfFieldTripIDs;
-        
+
         /// <summary>
         /// ph1 control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::SIMS2017.Control.SitePageHeading ph1;
-        
+
         /// <summary>
         /// rtbSiteNo control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadTextBox rtbSiteNo;
-        
+
         /// <summary>
         /// rbJump control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadButton rbJump;
-        
+
         /// <summary>
         /// hlNWISWeb control.
         /// </summary>
@@ -110,7 +112,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlNWISWeb;
-        
+
         /// <summary>
         /// hlNWISOpsRequest control.
         /// </summary>
@@ -119,7 +121,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlNWISOpsRequest;
-        
+
         /// <summary>
         /// pnlPubNameView control.
         /// </summary>
@@ -128,7 +130,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlPubNameView;
-        
+
         /// <summary>
         /// ltlPubName control.
         /// </summary>
@@ -137,7 +139,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlPubName;
-        
+
         /// <summary>
         /// lbEditPubName control.
         /// </summary>
@@ -146,7 +148,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbEditPubName;
-        
+
         /// <summary>
         /// pnlPubNameEdit control.
         /// </summary>
@@ -155,7 +157,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlPubNameEdit;
-        
+
         /// <summary>
         /// rtbPubName control.
         /// </summary>
@@ -164,7 +166,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadTextBox rtbPubName;
-        
+
         /// <summary>
         /// rbPubName control.
         /// </summary>
@@ -173,7 +175,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadButton rbPubName;
-        
+
         /// <summary>
         /// pnlOfficeView control.
         /// </summary>
@@ -182,7 +184,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlOfficeView;
-        
+
         /// <summary>
         /// ltlOffice control.
         /// </summary>
@@ -191,7 +193,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlOffice;
-        
+
         /// <summary>
         /// lbEditOffice control.
         /// </summary>
@@ -200,7 +202,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbEditOffice;
-        
+
         /// <summary>
         /// pnlOfficeEdit control.
         /// </summary>
@@ -209,7 +211,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlOfficeEdit;
-        
+
         /// <summary>
         /// rddlOffice control.
         /// </summary>
@@ -218,7 +220,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadDropDownList rddlOffice;
-        
+
         /// <summary>
         /// pnlFieldTripView control.
         /// </summary>
@@ -227,7 +229,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlFieldTripView;
-        
+
         /// <summary>
         /// ltlFieldTrip control.
         /// </summary>
@@ -236,7 +238,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlFieldTrip;
-        
+
         /// <summary>
         /// hlMapTrips control.
         /// </summary>
@@ -245,7 +247,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlMapTrips;
-        
+
         /// <summary>
         /// lbEditFieldTrip control.
         /// </summary>
@@ -254,7 +256,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbEditFieldTrip;
-        
+
         /// <summary>
         /// hlSiFTA control.
         /// </summary>
@@ -263,7 +265,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlSiFTA;
-        
+
         /// <summary>
         /// hlEditDocs control.
         /// </summary>
@@ -272,7 +274,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlEditDocs;
-        
+
         /// <summary>
         /// hlSDESC control.
         /// </summary>
@@ -281,7 +283,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlSDESC;
-        
+
         /// <summary>
         /// hlMANU control.
         /// </summary>
@@ -290,7 +292,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlMANU;
-        
+
         /// <summary>
         /// ltlApproved control.
         /// </summary>
@@ -299,16 +301,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlApproved;
-        
-        /// <summary>
-        /// hlSANAL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlSANAL;
-        
+
         /// <summary>
         /// hlCustomReport control.
         /// </summary>
@@ -317,7 +310,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlCustomReport;
-        
+
         /// <summary>
         /// hlArchives control.
         /// </summary>
@@ -326,7 +319,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlArchives;
-        
+
         /// <summary>
         /// hlSLAP control.
         /// </summary>
@@ -335,7 +328,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlSLAP;
-        
+
         /// <summary>
         /// pnlSafety control.
         /// </summary>
@@ -344,7 +337,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlSafety;
-        
+
         /// <summary>
         /// hlSHATutorial control.
         /// </summary>
@@ -353,7 +346,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlSHATutorial;
-        
+
         /// <summary>
         /// pnlSHACreate control.
         /// </summary>
@@ -362,7 +355,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlSHACreate;
-        
+
         /// <summary>
         /// hlSHACreate control.
         /// </summary>
@@ -371,7 +364,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlSHACreate;
-        
+
         /// <summary>
         /// pnlSHAEdit control.
         /// </summary>
@@ -380,7 +373,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlSHAEdit;
-        
+
         /// <summary>
         /// hlSHAEdit control.
         /// </summary>
@@ -389,7 +382,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlSHAEdit;
-        
+
         /// <summary>
         /// hlSHAPrintVersion control.
         /// </summary>
@@ -398,7 +391,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlSHAPrintVersion;
-        
+
         /// <summary>
         /// ltlSHAReviewed control.
         /// </summary>
@@ -407,7 +400,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlSHAReviewed;
-        
+
         /// <summary>
         /// ltlSHAApproved control.
         /// </summary>
@@ -416,7 +409,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlSHAApproved;
-        
+
         /// <summary>
         /// hlTCPTutorial control.
         /// </summary>
@@ -425,7 +418,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlTCPTutorial;
-        
+
         /// <summary>
         /// pnlTCPCreate control.
         /// </summary>
@@ -434,7 +427,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlTCPCreate;
-        
+
         /// <summary>
         /// hlTCPCreate control.
         /// </summary>
@@ -443,7 +436,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlTCPCreate;
-        
+
         /// <summary>
         /// pnlTCPEdit control.
         /// </summary>
@@ -452,7 +445,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlTCPEdit;
-        
+
         /// <summary>
         /// hlTCPEdit control.
         /// </summary>
@@ -461,7 +454,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlTCPEdit;
-        
+
         /// <summary>
         /// dlTCPs control.
         /// </summary>
@@ -470,7 +463,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DataList dlTCPs;
-        
+
         /// <summary>
         /// hlTCPTrackStatus control.
         /// </summary>
@@ -479,7 +472,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlTCPTrackStatus;
-        
+
         /// <summary>
         /// rtsTelemetry control.
         /// </summary>
@@ -488,7 +481,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadTabStrip rtsTelemetry;
-        
+
         /// <summary>
         /// rmp control.
         /// </summary>
@@ -497,7 +490,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadMultiPage rmp;
-        
+
         /// <summary>
         /// rpvGOES control.
         /// </summary>
@@ -506,7 +499,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadPageView rpvGOES;
-        
+
         /// <summary>
         /// pnlDCPTable control.
         /// </summary>
@@ -515,7 +508,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlDCPTable;
-        
+
         /// <summary>
         /// ltlDCPOfficeTime control.
         /// </summary>
@@ -524,7 +517,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlDCPOfficeTime;
-        
+
         /// <summary>
         /// ltlDCPSiteTime control.
         /// </summary>
@@ -533,7 +526,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlDCPSiteTime;
-        
+
         /// <summary>
         /// ltlDCPGMTTime control.
         /// </summary>
@@ -542,7 +535,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlDCPGMTTime;
-        
+
         /// <summary>
         /// dlDCPTable control.
         /// </summary>
@@ -551,7 +544,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DataList dlDCPTable;
-        
+
         /// <summary>
         /// ltlNoDCP control.
         /// </summary>
@@ -560,7 +553,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlNoDCP;
-        
+
         /// <summary>
         /// rpvIMEI control.
         /// </summary>
@@ -569,7 +562,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadPageView rpvIMEI;
-        
+
         /// <summary>
         /// pnlIMEITable control.
         /// </summary>
@@ -578,7 +571,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlIMEITable;
-        
+
         /// <summary>
         /// ltlDCPOfficeTime2 control.
         /// </summary>
@@ -587,7 +580,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlDCPOfficeTime2;
-        
+
         /// <summary>
         /// ltlDCPSiteTime2 control.
         /// </summary>
@@ -596,7 +589,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlDCPSiteTime2;
-        
+
         /// <summary>
         /// ltlDCPGMTTime2 control.
         /// </summary>
@@ -605,7 +598,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlDCPGMTTime2;
-        
+
         /// <summary>
         /// dlIMEITable control.
         /// </summary>
@@ -614,7 +607,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DataList dlIMEITable;
-        
+
         /// <summary>
         /// hlPASSURL control.
         /// </summary>
@@ -623,7 +616,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlPASSURL;
-        
+
         /// <summary>
         /// ltlNoIMEI control.
         /// </summary>
@@ -632,7 +625,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlNoIMEI;
-        
+
         /// <summary>
         /// ltlNoTelemetry control.
         /// </summary>
@@ -641,7 +634,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlNoTelemetry;
-        
+
         /// <summary>
         /// pnlRMS control.
         /// </summary>
@@ -650,7 +643,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlRMS;
-        
+
         /// <summary>
         /// hlAutoReview control.
         /// </summary>
@@ -659,7 +652,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlAutoReview;
-        
+
         /// <summary>
         /// dlRecords control.
         /// </summary>
@@ -668,7 +661,7 @@ namespace SIMS2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DataList dlRecords;
-        
+
         /// <summary>
         /// lbNewRecordType control.
         /// </summary>
