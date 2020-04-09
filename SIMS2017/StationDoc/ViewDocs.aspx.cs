@@ -176,7 +176,7 @@ namespace SIMS2017.StationDoc
                 ltlMANURevisedBy.Text = "<i>N/A</i>";
             }
 
-            if (!string.IsNullOrEmpty(currSite.alt_basin_nm)) 
+            if (!string.IsNullOrEmpty(currSite.alt_basin_nm))
                 ltlPublishedBasin.Text = currSite.alt_basin_nm;
             else
             {

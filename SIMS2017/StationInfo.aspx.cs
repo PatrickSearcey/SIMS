@@ -61,9 +61,9 @@ namespace SIMS2017
                 SiteID = Convert.ToInt32(site_id);
             else if (!string.IsNullOrEmpty(site_no))
                 SiteID = db.Sites.FirstOrDefault(p => p.site_no == site_no).site_id;
-            else 
+            else
                 Response.Redirect(Config.SIMSURL + "SIMSWSCHome.aspx");
-            
+
             //Using the passed site_id, setup the site data element, and reset the office and wsc to match that of the current site
             currSite = db.Sites.Where(p => p.site_id == SiteID).FirstOrDefault();
             OfficeID = (int)currSite.office_id;
@@ -76,7 +76,7 @@ namespace SIMS2017
             if (!Page.IsPostBack)
             {
                 //If the user belongs to this site's WSC (or has an exception to work in the WSC), or is a SuperUser, then allow them to edit the page
-                if (user.WSCID.Contains(WSCID) || user.IsSuperUser) HasEditAccess = true; 
+                if (user.WSCID.Contains(WSCID) || user.IsSuperUser) HasEditAccess = true;
 
                 PopulatePageData();
                 SetupPermission();
@@ -137,7 +137,7 @@ namespace SIMS2017
                     {
                         DateTime approved_dt = Convert.ToDateTime(manuApproved.approved_dt);
                         DateTime? revised_dt = null;
-                        if (db.ElemReportSums.FirstOrDefault(p => p.site_id == currSite.site_id && p.report_type_cd == "MANU") != null) 
+                        if (db.ElemReportSums.FirstOrDefault(p => p.site_id == currSite.site_id && p.report_type_cd == "MANU") != null)
                             revised_dt = db.ElemReportSums.FirstOrDefault(p => p.site_id == currSite.site_id && p.report_type_cd == "MANU").revised_dt;
                         if (revised_dt > approved_dt) ltlApproved.Text = String.Format("(<a href='{0}StationDoc/SiteMAI.aspx?site_id={1}' style='color:red;'>Needs Approval</a>)", Config.SIMSURL, currSite.site_id); else ltlApproved.Text = String.Format("(<a href='{0}StationDoc/SiteMAI.aspx?site_id={1}' style='color:green'>Approved</a>)", Config.SIMSURL, currSite.site_id);
                     }
@@ -309,7 +309,7 @@ namespace SIMS2017
                     pnlIMEITable.Visible = false;
                     ltlNoIMEI.Text = "No Iridium/Cellular Contents";
                 }
-                
+
             }
             else
             {
@@ -376,14 +376,14 @@ namespace SIMS2017
                 if (type_ds.Length > 24)
                     ret = type_ds.Substring(0, 25) + "...";
             }
-            
+
             return ret;
         }
 
         private string GetTimeSeries(Data.Record record)
         {
             string ret = "";
-            
+
             if (Convert.ToBoolean(record.RecordType.ts_fg))
                 ret = "yes";
             else
@@ -446,7 +446,7 @@ namespace SIMS2017
             DateTime dCur;
             int i;
 
-            for (i = 0; i < time.Length; i++ )
+            for (i = 0; i < time.Length; i++)
             {
                 dCur = Convert.ToDateTime(String.Format("{0:MM/dd/yyyy} {1}", dNow, time[i]));
                 if (dCur > dNow)
@@ -664,7 +664,7 @@ namespace SIMS2017
                     rddlWYs.DataSource = years;
                     rddlWYs.DataBind();
                     rddlWYs.Items.Insert(0, new DropDownListItem { Value = "", Text = "" });
-                    
+
                     List<string> currWYs = new List<string>();
                     string currPeriods = "";
                     ltlCurrentPeriods.Text = "";
@@ -715,7 +715,7 @@ namespace SIMS2017
                         hlNewPeriod.Visible = false;
                         imgLock.Visible = false;
                     }
-                    
+
                 }
                 else
                 {
@@ -772,7 +772,7 @@ namespace SIMS2017
             string showsavepng = ShowLocks("save", rms_record_id);
 
             //Check to see if there are any audits for this record
-            var audits = db.Audits.Where(p => p.AuditRecords.Where(a => a.rms_record_id == rms_record_id ).ToList().Count > 0).ToList();
+            var audits = db.Audits.Where(p => p.AuditRecords.Where(a => a.rms_record_id == rms_record_id).ToList().Count > 0).ToList();
 
             foreach (var period in periods)
             {
@@ -801,7 +801,7 @@ namespace SIMS2017
                     level = 2;
                 }
                 //A period with a status of 'Reanalyze' means that it was sent back for reanalyzing by the approver
-                else if (period.status_va == "Reanalyze")  
+                else if (period.status_va == "Reanalyze")
                 {
                     hlStart = String.Format("<a href='{0}Task/RecordProcess.aspx?period_id={1}&task=Reanalyze' style='padding-left:14px;'>", Config.RMSURL, period.period_id);
                     note = " <i>(reanalyze)</i>";
@@ -1195,7 +1195,7 @@ namespace SIMS2017
                     fieldtrips += trip.Trip.trip_nm + " - " + trip.Trip.user_id + ", ";
                 }
                 if (!string.IsNullOrEmpty(fieldtrips)) ltlFieldTrip.Text = fieldtrips.TrimEnd(' ').TrimEnd(','); else ltlFieldTrip.Text = "<i>none assigned</i>";
-                
+
             }
             else if (e.Argument == "RebindRecords")
             {

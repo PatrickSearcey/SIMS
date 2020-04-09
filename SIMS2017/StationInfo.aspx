@@ -42,10 +42,8 @@
             open(AudUrl, 'SAudPU', 'toolbar=yes, menubar=no, width=900, height=600, scrollbar=yes');
         }
 
-        function OnKeyPress(sender, args)
-        {
-            if (args.get_keyCode() == 13)
-            {
+        function OnKeyPress(sender, args) {
+            if (args.get_keyCode() == 13) {
                 document.getElementById('rbJump').click();
                 args.set_cancel(true);
             }
