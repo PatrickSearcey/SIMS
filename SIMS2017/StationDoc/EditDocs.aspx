@@ -94,6 +94,7 @@
         <div style="float:left;">
             <span style="font-weight:bold;">Note:&nbsp;&nbsp;SDESC, 
             <img src="../images/keycolor0.gif" alt="white color" /> = Station Description;
+            &nbsp;&nbsp;SANAL, <img src="../images/keycolor1.gif" alt="gray color" /> = Station Analysis;
             &nbsp;&nbsp;MANU, <img src="../images/keycolor2.gif" alt="purple color" /> = Manuscripts</span>
         </div>
         <div style="float:right;">

@@ -42,10 +42,8 @@
             open(AudUrl, 'SAudPU', 'toolbar=yes, menubar=no, width=900, height=600, scrollbar=yes');
         }
 
-        function OnKeyPress(sender, args)
-        {
-            if (args.get_keyCode() == 13)
-            {
+        function OnKeyPress(sender, args) {
+            if (args.get_keyCode() == 13) {
                 document.getElementById('rbJump').click();
                 args.set_cancel(true);
             }
@@ -158,6 +156,7 @@
                     <asp:HyperLink ID="hlEditDocs" runat="server" Text="Edit Documents" /><br />
                     <asp:HyperLink ID="hlSDESC" runat="server" Text="Station Description" /><br />
                     <asp:HyperLink ID="hlMANU" runat="server" Text="Manuscript" /> &nbsp;&nbsp;<asp:Literal ID="ltlApproved" runat="server" /><br />
+                    <asp:HyperLink ID="hlSANAL" runat="server" Text="Station Analysis" /><br />
                     <asp:HyperLink ID="hlCustomReport" runat="server" Text="Custom Report" /><br />
                     <asp:HyperLink ID="hlArchives" runat="server" Text="Retrieve Archived Elements" /><br />
                     <asp:HyperLink ID="hlSLAP" runat="server" Text="SLAP: Historic Level Summary" Target="_blank" />

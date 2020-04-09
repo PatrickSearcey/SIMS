@@ -105,6 +105,42 @@ namespace SIMS2017.StationDoc
         protected global::System.Web.UI.WebControls.DataList dlSDESC;
 
         /// <summary>
+        /// rpvSANAL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPageView rpvSANAL;
+
+        /// <summary>
+        /// ltlSANALRevisedDt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlSANALRevisedDt;
+
+        /// <summary>
+        /// ltlSANALRevisedBy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlSANALRevisedBy;
+
+        /// <summary>
+        /// dlSANAL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dlSANAL;
+
+        /// <summary>
         /// rpvMANU control.
         /// </summary>
         /// <remarks>
