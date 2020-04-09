@@ -35,7 +35,6 @@
         <telerik:RadTabStrip RenderMode="Lightweight" runat="server" ID="rtsMain" Orientation="HorizontalTop" MultiPageID="rmp" Skin="Bootstrap">
             <Tabs>
                 <telerik:RadTab Text="Station Description"></telerik:RadTab>
-                <telerik:RadTab Text="Station Analysis"></telerik:RadTab>
                 <telerik:RadTab Text="Manuscript"></telerik:RadTab>
                 <telerik:RadTab Text="Custom Report"></telerik:RadTab>
             </Tabs>
@@ -49,19 +48,6 @@
                 </div>
                 <p><b>SITE CHARACTERIZATION.--</b> <asp:Literal ID="ltlSiteCharacterization" runat="server" /></p>
                 <asp:DataList ID="dlSDESC" runat="server">
-                    <ItemTemplate>
-                        <b><%# Eval("ElementName") %>.--</b> <%# Eval("ElementInfo") %>
-                        <p></p>
-                    </ItemTemplate>
-                </asp:DataList>
-            </telerik:RadPageView>
-            <telerik:RadPageView runat="server" ID="rpvSANAL">
-                <h3>Station Analysis View</h3>
-                <div class="LastRevised">
-                    <p style="padding:5px 0 0 10px;"><b>Most recent revision:</b> <asp:Literal ID="ltlSANALRevisedDt" runat="server" /><br />
-                    <b>Revised by:</b> <asp:Literal ID="ltlSANALRevisedBy" runat="server" /></p>
-                </div>
-                <asp:DataList ID="dlSANAL" runat="server">
                     <ItemTemplate>
                         <b><%# Eval("ElementName") %>.--</b> <%# Eval("ElementInfo") %>
                         <p></p>
