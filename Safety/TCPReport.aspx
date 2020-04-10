@@ -397,13 +397,13 @@
                 </td>
                 <td nowrap>
                     <asp:Panel ID="pnlTCPStatus" runat="server" CssClass="TCPStatusPanel">
-                        <h4>TCP WSC Status (real time SW only) for past 365 days</h4>
+                        <h4>TCP WSC Status (real time SW only) for past 3 years</h4>
                         <p>Total TCPs: <b><asp:Literal ID="ltlTotalTCPNo" runat="server" /></b> (<asp:Literal ID="ltlTotalSiteTCPNo" runat="server" /> sites with TCPs - a site can have multiple TCPs)<br />
                         Approved TCPs: <b><asp:Literal ID="ltlApprovedTCPNo" runat="server" /></b>
                         <asp:Image ID="imgApprovedTT" runat="server" ImageURL="~/Images/tooltip.png" CssClass="imgPadding" />
                         <telerik:RadToolTip runat="server" ID="rttApproved" RelativeTo="Element" Width="300px" AutoCloseDelay="10000"
                             Height="120px" TargetControlID="imgApprovedTT" IsClientID="false" Animation="Fade" Position="TopRight">
-                            This is the number of Real Time SW Site TCPs that have been approved in the past 365 days, regardless of review status. Meaning, the number here does not
+                            This is the number of Real Time SW Site TCPs that have been approved in the past 3 years, regardless of review status. Meaning, the number here does not
                             necessarily match the number of TCPs that show up for the WSC under the Currently Approved TCPs tab.
                         </telerik:RadToolTip></p>
                     </asp:Panel>

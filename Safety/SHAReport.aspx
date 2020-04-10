@@ -354,13 +354,13 @@
                 </td>
                 <td nowrap>
                     <asp:Panel ID="pnlSHAStatus" runat="server" CssClass="SHAStatusPanel">
-                        <h4>SHA WSC Status (real time SW only) for past 365 days</h4>
+                        <h4>SHA WSC Status (real time SW only) for past 3 years</h4>
                         <p>Total SHAs: <b><asp:Literal ID="ltlTotalSHANo" runat="server" /></b><br />
                         Approved SHAs: <b><asp:Literal ID="ltlApprovedSHANo" runat="server" /></b>
                         <asp:Image ID="imgApprovedTT" runat="server" ImageURL="~/Images/tooltip.png" CssClass="imgPadding" />
                         <telerik:RadToolTip runat="server" ID="rttApproved" RelativeTo="Element" Width="300px" AutoCloseDelay="10000"
                             Height="120px" TargetControlID="imgApprovedTT" IsClientID="false" Animation="Fade" Position="TopRight">
-                            This is the number of SHAs that have been approved in the past year, regardless of review status. Meaning, the number here does not
+                            This is the number of SHAs that have been approved in the past 3 years, regardless of review status. Meaning, the number here does not
                             necessarily match the number of SHAs that show up for the WSC under the Currently Approved SHAs tab.
                         </telerik:RadToolTip></p>
                     </asp:Panel>
