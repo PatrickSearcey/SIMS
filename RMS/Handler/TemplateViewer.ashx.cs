@@ -24,13 +24,17 @@ namespace RMS.Handler
                 var template = db.RecordTemplates.FirstOrDefault(p => p.TemplateID == TemplateID);
 
                 context.Response.ContentType = "text/html";
-                if (type == "analyze")
-                {
-                    context.Response.Write(template.AnalyzeTemplateText);
-                }
+                if (TemplateID == 10) context.Response.Write(template.TemplateName);
                 else
                 {
-                    context.Response.Write(template.ApproveTemplateText);
+                    if (type == "analyze")
+                    {
+                        context.Response.Write(template.AnalyzeTemplateText);
+                    }
+                    else
+                    {
+                        context.Response.Write(template.ApproveTemplateText);
+                    }
                 }
             }
             else 
